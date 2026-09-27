@@ -1,13 +1,37 @@
 param([string]$InstallRoot)
 $ErrorActionPreference = 'Stop'
-try { $taskHealth = Invoke-RestMethod 'http://127.0.0.1:47493' -TimeoutSec 3 } catch { exit 0 }
-if ($taskHealth.activeTask) { Write-Error 'Finish or cancel the active DropRun task before installing.'; exit 1 }
 $taskData = Join-Path $env:LOCALAPPDATA 'DropRun'
 $taskFile = Join-Path $taskData 'config.json'
-if (-not (Test-Path -LiteralPath $taskFile)) { exit 0 }
-$taskConfig = Get-Content -LiteralPath $taskFile -Raw | ConvertFrom-Json
-if ($taskHealth.instanceId -ne $taskConfig.instanceId) { exit 0 }
-$task = Get-ScheduledTask -TaskName ('DropRun Connector ' + $taskConfig.instanceId) -ErrorAction SilentlyContinue
-if ($task) { Stop-ScheduledTask -TaskName $task.TaskName }
-& (Join-Path $InstallRoot 'runtime/node.exe') (Join-Path $InstallRoot 'scripts/setup.mjs') stop --data-dir $taskData
-if ($LASTEXITCODE -ne 0) { exit 1 }
+$taskInstall = (Resolve-Path -LiteralPath $InstallRoot).Path
+if (Test-Path -LiteralPath $taskFile) {
+  $taskConfig = Get-Content -LiteralPath $taskFile -Raw | ConvertFrom-Json
+  $taskOrigin = [Uri]$taskConfig.relay
+  if ($taskOrigin.Scheme -ne 'https' -or $taskOrigin.UserInfo -or $taskOrigin.AbsolutePath -ne '/' -or $taskOrigin.Query -or $taskOrigin.Fragment) {
+    throw 'Invalid saved Relay origin. Repair setup before upgrading.'
+  }
+  $taskRelay = Invoke-RestMethod ($taskOrigin.AbsoluteUri + 'health') -TimeoutSec 15
+  if ($taskRelay.instanceId -ne $taskConfig.instanceId -or $taskRelay.protocolVersion -ne 2 -or $taskRelay.schemaVersion -ne 11 -or $taskRelay.ready -ne $true) {
+    throw 'Relay protocol/schema is incompatible. Keep the current installation and follow the release migration guide.'
+  }
+  $taskHealth = $null
+  try { $taskHealth = Invoke-RestMethod 'http://127.0.0.1:47493' -TimeoutSec 3 } catch {}
+  if ($taskHealth -and $taskHealth.instanceId -eq $taskConfig.instanceId) {
+    if ($taskHealth.activeTask) { throw 'Finish or cancel the active DropRun task before installing.' }
+    $task = Get-ScheduledTask -TaskName ('DropRun Connector ' + $taskConfig.instanceId) -ErrorAction SilentlyContinue
+    if ($task) { Stop-ScheduledTask -TaskName $task.TaskName }
+    & (Join-Path $taskInstall 'runtime/node.exe') (Join-Path $taskInstall 'scripts/setup.mjs') stop --data-dir $taskData
+    if ($LASTEXITCODE -ne 0) { throw 'The Connector could not be stopped safely.' }
+  }
+}
+$taskBackup = Join-Path (Join-Path $env:LOCALAPPDATA 'DropRun-backups') ([Guid]::NewGuid().ToString())
+if ($taskBackup.StartsWith($taskInstall.TrimEnd('\') + '\', [StringComparison]::OrdinalIgnoreCase)) {
+  throw 'The backup directory must be outside the application directory.'
+}
+New-Item -ItemType Directory -Path $taskBackup -ErrorAction Stop | Out-Null
+Copy-Item -LiteralPath $taskInstall -Destination (Join-Path $taskBackup 'app') -Recurse -ErrorAction Stop
+if (Test-Path -LiteralPath $taskData) {
+  Copy-Item -LiteralPath $taskData -Destination (Join-Path $taskBackup 'data') -Recurse -ErrorAction Stop
+}
+@{ createdAt = [DateTime]::UtcNow.ToString('o'); complete = $true; source = $taskInstall } |
+  ConvertTo-Json | Set-Content -LiteralPath (Join-Path $taskBackup 'backup.json') -Encoding UTF8
+exit 0

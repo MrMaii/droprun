@@ -99,6 +99,30 @@ Do not delete the old package until health and a handoff pass. Relay/schema
 updates are explicit owner actions, not silent background changes. Current update
 automation and any manual steps are stated in the release notes.
 
+The Windows installer checks a configured Relay for protocol 2/schema 11 and
+refuses replacement during active work or failed compatibility checks. Before
+replacing an existing installation it copies the old application and local data
+to `%LOCALAPPDATA%/DropRun-backups/<id>/`. Only a backup with `backup.json` containing
+`complete: true` is ready for recovery. A backup failure stops replacement.
+These private backups are not uploaded. Keep a previous installer as well.
+
+Recovery is manual: stop Connector and close setup, retain the failed installation,
+reinstall the previous version, then restore the backup's `data` contents to the
+same data directory under the same Windows account (DPAPI is account-bound).
+Do not restore local data over a running Connector. Cloud data is separate:
+export D1 and retain needed R2 objects before any cloud migration. The installer
+does not migrate or roll back cloud resources. Portable users keep their old
+directory and make the same data backup before switching versions.
+
+For a historical database already at migration `0010`, the compatibility step
+is `relay/migrations/0011-selfhost.sql`, applied **once after backup**, followed by
+the matching Workers/configuration. Check existing columns first; if
+`root_task_id` already exists, do not reapply its ALTER statements. Older or
+partially migrated databases require owner review; the fresh baseline is not
+an upgrade script. Check `/health` for the expected instance, protocol 2, schema
+11 and `ready: true` before pairing. Keep the previous cloud deployment and
+database export for recovery; this candidate has no automatic cloud rollback.
+
 If setup fails, retry the saved step and share only redacted diagnostics. If a
 source cannot be read, try a directly shared file you have permission to use;
 do not treat metadata-only fallback as full video understanding.

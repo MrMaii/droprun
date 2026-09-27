@@ -51,6 +51,6 @@ begin
   if FileExists(ExpandConstant('{app}\runtime\node.exe')) then begin
     ExtractTemporaryFile('preflight.ps1');
     if not Exec('powershell.exe', '-NoProfile -NonInteractive -WindowStyle Hidden -File "' + ExpandConstant('{tmp}\preflight.ps1') + '" -InstallRoot "' + ExpandConstant('{app}') + '"', '', SW_HIDE, ewWaitUntilTerminated, Code) or (Code <> 0) then
-      Result := 'Finish the active DropRun task and close its setup window before updating. Your installation has not changed.';
+      Result := 'Update checks or backup failed. Finish active work, close setup, and verify Relay compatibility and free disk space. Your application files have not been replaced.';
   end;
 end;
