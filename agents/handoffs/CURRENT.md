@@ -1,63 +1,72 @@
 # Current Handoff
 
-Updated 2026-09-26. Task: deliver the public self-hosted DropRun candidate.
-The user confirmed no physical Android is available; finish the candidate and
-preserve real-device acceptance gaps. The approved full plan remains active.
+Updated 2026-09-26 (local date). Public self-hosted candidate is online.
+The user accepted a candidate without a physical Android device. Stable-release
+acceptance gaps remain explicit; social posting has not been performed.
 
-## Implemented
+## Delivered
 
-- Android project home/history, consolidated settings, light/dark, EN/ZH,
-  instance-scoped Keystore pairing. Native Java Views retained.
-- Relay root-task statistics, pagination, fresh database baseline, separate
-  preview capabilities and retention.
-- Windows self-host setup, DPAPI, explicit Cloudflare resources, Codex
-  account/project diagnostics, portable and per-user installer packaging.
-- Bilingual landing source, README, Apache license, contribution/security docs,
-  CI, self-hosting guides and launch copy. No social posts sent.
-
-## Evidence
-
-[0.5.0 release evidence](../../docs/releases/0.5.0.md) is the canonical record.
-Latest Node suite: **188/188 passed**. npm audit: **0 vulnerabilities**.
-Signed Android APK built and signature verified. Local artifacts:
-
-- `.local/releases/DropRun-0.5.0-android.apk`
-- `.local/releases/windows-rc1/DropRun-0.5.0-windows-x64.zip`
-- `.local/releases/windows-rc1/DropRun-0.5.0-windows-x64-setup.exe`
-
-Cloud synthetic checks passed, fixtures cleaned up; no actual Codex run claimed.
-Android unit/build/lint checks passed before final signed build; lint warnings
-remain. Signing material is local only and must never be published.
-
-## Incomplete / blockers
-
-- Source still untracked; no first Git commit. Curate staging, scan and manually
-  review privacy before publication. Approved author: Thomas Deng,
+- Native Android project home/history, consolidated settings, share recovery,
+  result-first delivery, EN/ZH, light/dark and instance-scoped Keystore pairing.
+- Relay v2/schema 11, complete project statistics, pagination, stable task roots,
+  separate preview origin/capabilities, retention and separate administration.
+- Windows setup, DPAPI, resumable Cloudflare provisioning, per-user installer and
+  portable ZIP. Updates check compatibility/active work and preserve a recovery
+  backup before replacement. Cloud recovery and portable backups remain manual.
+- Apache-2.0 public source, contribution/security docs, templates, CI and bilingual
+  self-hosting/development documentation. Git author is Thomas Deng,
   150266369+MrMaii@users.noreply.github.com.
-- Public source/release and GPTSites deployment incomplete. Existing private
-  service and old Netlify site untouched.
-- Registered Site: `appgprj_6ab726bb8cd48191acd3234da262627d`.
-  Reuse `landing/.openai/hosting.json`; do not register a duplicate. Obtain a fresh
-  write credential in session memory for publishing.
-- App screenshots/GIF/short and long video pending. Debug-only demo activities
-  are labelled synthetic data, never evidence of genuine Codex execution.
-- Dedicated emulator `DropRunTest`, port 5556, exited during resumed capture.
-- No physical Android, clean Windows install, 20 real-source samples or five
-  genuine complete tasks across three projects verified.
-- Parallel agents hit account usage limits. Their files remain; inspect last
-  polish changes rather than assuming all review feedback was resolved.
-- ROADMAP and old document references still need public-release reconciliation.
+- Public bilingual website, actual app screenshots/GIF, 24-second and 64-second
+  UI tours with EN/ZH captions, three social image formats and ready campaign copy.
+  All UI examples are visibly labelled demonstration data, not genuine agent runs.
+
+## Public entry points and evidence
+
+- Website: https://droprun.dengmaizi0802.chatgpt.site (Chinese at `/zh/`).
+- Repository: https://github.com/MrMaii/droprun
+- Release: https://github.com/MrMaii/droprun/releases/tag/v0.5.0-rc.1
+- Release source: `90718812d764c2d590e2d0db2d1381e2a2dfccaf`.
+- Release CI: https://github.com/MrMaii/droprun/actions/runs/36290007838
+- Canonical validation: [release record](../../docs/releases/0.5.0.md) and
+  [anonymous download evidence](../../docs/releases/0.5.0-download-verification.json).
+
+190 Node tests pass locally and on hosted Windows CI, with no skips; dependency
+audit is clean. Android build/unit/lint passes on hosted Linux CI. Signed APK
+verification and emulator pairing-screen launch pass. Windows final installer was
+installed, replaced with a completed backup, and uninstalled on the development
+host. All 2,019 package file hashes match; release assets were downloaded without
+authentication and checked byte-for-byte against SHA-256. Public reporting enabled.
+
+GPTSites project `appgprj_6ab726bb8cd48191acd3234da262627d`, saved version 2,
+public access, deployment succeeded. Reuse it; do not register a duplicate.
+The manifest serves `landing/dist`, generated by `npm run site:build`.
+The old Netlify site and original private Connector were not replaced.
+
+Local final assets: `.local/releases/public-update-final/`. Signing material stays
+under ignored `.local/signing/`; never publish it. Test/runtime logs remain local.
+
+## Remaining stable-release gates
+
+- Physical Android: background behavior, TalkBack, OEM behavior, frame and latency
+  measurements. No physical device was available; emulator checks do not replace it.
+- Twenty genuine source samples and five complete genuine handoffs over three real
+  projects; no fixture or edited UI tour counts toward these gates.
+- Independent clean Windows and new cloud-account onboarding/upgrade field tests.
+- Windows has no trusted publisher signature. Static snapshots support compatible
+  exports; backend live previews need the owner's configured domain and tunnel.
+
+No assertion that the stable release is complete. Campaign materials describe the
+public preview accurately. Posting remains a separate user action.
 
 ## Single recommended next action
 
-Complete candidate integration: verify packaged Windows installation and signed
-Android runtime, capture labelled app media, then curate/publish source and
-prerelease assets and deploy the registered Site. Do not claim stable or online
-until the corresponding checks and publishing steps pass.
+Complete the remaining field-validation gates with actual devices and real source
+materials before promoting the published prerelease to stable. Keep candidate
+feedback separate from measured success/performance claims.
 
 ## Files involved
 
 `android/`, `connector/`, `relay/`, `installer/`, `scripts/`, `tests/`, `landing/`,
-`.github/`, package manifests, root open-source files, product/technical/decision/
-launch/release documentation. Latest status update modified this handoff and
-0.5.0 release evidence; test/build outputs remain in ignored local folders.
+`.github/`, package manifests, open-source root files and product/technical/launch/
+release documents. Final follow-up updates only publication evidence and handoff;
+release binaries correspond to the tagged source commit above.
