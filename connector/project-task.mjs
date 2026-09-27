@@ -1,6 +1,6 @@
 import { readFile, writeFile, rename, realpath } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
-import { join, relative, isAbsolute, sep } from 'node:path';
+import { join, relative, isAbsolute, sep, dirname, basename, resolve } from 'node:path';
 import { randomUUID } from 'node:crypto';
 import { prepare, assessVisualEvidence } from './materials.mjs';
 import { openConversation, recoveryTurn } from './conversation.mjs';
@@ -60,7 +60,7 @@ export function developerInstructions(task, planning, receiptPath = null) {
 
 让用户在手机上看得见效果（凡是改了页面、界面或任何可视化的东西，都要做）：
 所有本机工具请求都加请求头 X-DropRun-Task: ${task.id}，只在执行回合允许调用。
-1. 先起预览：POST http://127.0.0.1:47493/preview ，JSON 里给 {"script":"dev","port":3000,"path":"/改动的页面路径"}（script 只能是 package.json 里的 dev/start/preview/serve 之一，port 是它实际监听的端口）；纯静态站点用 {"static":"dist","path":"/"}。DropRun 会在你的项目目录里启动它、开一条 30 分钟有效的公网隧道，返回 {url, localUrl}。不要自己后台启动服务器。
+1. 先起预览：POST http://127.0.0.1:47493/preview ，JSON 里给 {"script":"dev","port":3000,"path":"/改动的页面路径"}（script 只能是 package.json 里的 dev/start/preview/serve 之一，port 是它实际监听的端口）；纯静态站点用 {"static":"dist","path":"/"}。DropRun 会启动本机预览，返回 {url, localUrl}。静态目录默认发布到独立来源的固定版本快照；需要后端的实时预览仅在用户配置自己的域名和 managed Cloudflare Tunnel 后可用。未配置时应交付真实文件和验证证据，并明确预览限制；不要自行使用临时隧道或后台启动服务器。
    PowerShell 例：Invoke-RestMethod -Method Post -Uri http://127.0.0.1:47493/preview -Headers @{'X-DropRun-Task'='${task.id}'} -ContentType 'application/json' -Body (@{static='dist';path='/about'} | ConvertTo-Json)
 2. 页面修改完成且验证命令通过后，调用 POST http://127.0.0.1:47493/verify-visual ，JSON 为 {"url":"预览返回的 localUrl","expectedPath":"/实际目标路由","steps":[{"action":"hover","selector":".card"},{"action":"assert","selector":".card","text":"页面应有的文字"}]}。支持 hover/click/scroll/wait/assert；assert 可检查实际页面文字或 computedStyle。按效果触发动作执行，每一步自动截图，必须保留至少一条有意义的 assert。静态页也要 assert 目标内容。对每个目标路由分别调用。返回 passed=false 时修复原因再验证。不要把只加载首页当成目标页验证。
    动效用动作前后截图核对。接口返回的图片路径要读来看，比较参考画面和任务目标，再写完成报告。额外截图可 GET http://127.0.0.1:47493/screenshot?url=<localUrl>&name=after 。
@@ -86,14 +86,24 @@ artifacts 只列本次新增或修改的交付文件；verification 可填真实
 ${receiptPath ? '执行凭据由 Connector 自动维护在 ' + receiptPath + '。提交报告前可只读此 JSON 的 events，不能修改凭据文件；对用户的报告只需说明验证了什么，不必展示内部路径或事件编号。' : ''}`).replaceAll('127.0.0.1:47493', '127.0.0.1:' + (process.env.DROPRUN_HELPER_PORT || '47493'));
 }
 
-export function recordedProjectChanges(cwd, events) {
+export async function recordedProjectChanges(cwd, events) {
   const changes = events.filter(event => event.type === 'files' && event.status === 'completed').flatMap(event => event.changes || []);
-  const path = value => {
-    const name = isAbsolute(value) ? relative(cwd, value) : value;
+  const root = await realpath(cwd);
+  // Deleted files have no realpath: canonicalize their nearest surviving parent.
+  const canonical = async value => {
+    try { return await realpath(value); }
+    catch (error) {
+      if (error.code !== 'ENOENT' || dirname(value) === value) throw error;
+      return join(await canonical(dirname(value)), basename(value));
+    }
+  };
+  const path = async value => {
+    const name = relative(root, await canonical(resolve(cwd, value)));
     if (isAbsolute(name) || name === '..' || name.startsWith('..' + sep)) throw new Error('文件变更事件超出原项目范围，请在电脑核对。');
     return name.replaceAll('\\', '/');
   };
-  return { changedFiles: [...new Set(changes.map(change => path(change.path)))], deletedPaths: changes.filter(change => change.kind?.type === 'delete').map(change => path(change.path)) };
+  const paths = await Promise.all(changes.map(change => path(change.path)));
+  return { changedFiles: [...new Set(paths)], deletedPaths: paths.filter((value, index) => changes[index].kind?.type === 'delete') };
 }
 
 // The listener spans exactly one turn; plan commands never become execution receipts.
@@ -368,7 +378,7 @@ export async function processProjectTask(task, { codex, api, save, stateDir, con
     if (result.needsEvidence) { Object.assign(state, { status: 'blocked', report: result.report, error: 'Codex 的报告缺少可核对的证据块，未标记完成。可以在电脑上核对实际改动。', deliveryPending: false }); return; }
     Object.assign(state, result);
     if (state.deliveryPending) {
-      const { changedFiles } = recordedProjectChanges(state.cwd, state.executionEvents);
+      const { changedFiles } = await recordedProjectChanges(state.cwd, state.executionEvents);
       state.deliveryEvidence = await validateDelivery(state.reportData, { cwd: state.cwd, events: state.executionEvents, changedFiles, startedAt: state.turnStartedAt || null });
       const visualChanges = changedFiles.some(path => /\.(html?|css|scss|sass|less|jsx|tsx|vue|svelte|svg)$/i.test(path));
       if (state.reportData.outcome === 'completed' && (state.visualIntent || visualChanges)) {

@@ -40,6 +40,9 @@ plan-version, per-command approval and report-evidence checks remain in force.
   preview limitation. Existing visual evidence cannot claim a preview verification
   receipt that does not exist. Live previews remain optional and require the
   owner's configured origin; Quick Tunnel is development-only.
+- File-change receipts resolve filesystem aliases before checking project scope.
+  Deleted paths resolve through their nearest surviving parent. Junctions pointing
+  outside the project are rejected, including deleted descendants.
 
 
 ## Android 0.4.0 展示与提交边界

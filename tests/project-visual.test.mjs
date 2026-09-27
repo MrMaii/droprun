@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { EventEmitter } from 'node:events';
-import { mkdtemp, mkdir, writeFile, readFile, unlink } from 'node:fs/promises';
+import { mkdtemp, mkdir, writeFile, readFile, unlink, realpath } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { randomUUID } from 'node:crypto';
@@ -13,7 +13,7 @@ const reportData={outcome:'completed',artifacts:['work.html'],verification:['rea
 const report='## 我看到了什么\n参考片段中卡片悬停展开。\n## 用在哪里\n/work 是作品展示页。\n## 我做了什么\n更新卡片交互。\n## 验证\n核对页面与截图。\n## 未完成\n无\n\n```droprun\n'+JSON.stringify(reportData)+'\n```';
 
 async function fixture(options={}) {
-  const root=await mkdtemp(join(tmpdir(),'droprun-project-visual-')),cwd=join(root,'project'),stateDir=join(root,'state');
+  const root=await realpath(await mkdtemp(join(tmpdir(),'droprun-project-visual-'))),cwd=join(root,'project'),stateDir=join(root,'state');
   await mkdir(cwd); await mkdir(stateDir); await writeFile(join(cwd,'work.html'),'<main>Original portfolio</main>');
   const task={id:randomUUID(),project_id:randomUUID(),permission_version:randomUUID(),execution_mode:'direct',project_name:'Portfolio',content:'https://example.test/ui-demo',message:'把第2页替换成这个效果',status:'reading'};
   const f={root,cwd,stateDir,task,turns:[],uploads:[],completedTurns:[],enabled:true,writes:0,executionTurns:0,restores:0,readCalls:0,store:new VisualStore(stateDir)};

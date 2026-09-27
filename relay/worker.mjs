@@ -42,7 +42,7 @@ async function route(request, env) {
   if (path === '/pair' && method === 'GET') return new Response(pairPage(), { headers: { 'Content-Type': 'text/html;charset=utf-8', 'Cache-Control': 'no-store' } });
   if (path === '/.well-known/assetlinks.json') return Response.json(env.ANDROID_CERT_SHA256 ? [{ relation: ['delegate_permission/common.handle_all_urls'], target: { namespace: 'android_app', package_name: 'app.droprun.mobile', sha256_cert_fingerprints: [env.ANDROID_CERT_SHA256] } }] : [], { headers: { 'Cache-Control': 'public,max-age=3600' } });
   if (path === '/download.apk') {
-    if (env.INSTANCE_ID) return Response.redirect('https://github.com/MrMaii/droprun/releases/latest', 302);
+    if (env.INSTANCE_ID) return Response.redirect('https://github.com/MrMaii/droprun/releases', 302);
     const object = await env.FILES.get('releases/droprun.apk');
     return object ? new Response(object.body, { headers: { 'Content-Type': 'application/vnd.android.package-archive', 'Content-Disposition': 'attachment; filename="DropRun.apk"', 'Cache-Control': 'no-store' } }) : json({ error: 'Build not published yet' }, 404);
   }
@@ -448,7 +448,7 @@ async function route(request, env) {
 function publicPage() {
   return `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DropRun Relay</title>
 <style>body{margin:0;background:#f6f7f2;color:#18231b;font:17px/1.65 system-ui,sans-serif}main{max-width:640px;margin:auto;padding:72px 24px}a{color:#285533}h1{font-size:44px;letter-spacing:-.05em}a:focus-visible{outline:3px solid #6b8e40;outline-offset:4px}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto}}</style>
-<main><h1>Your DropRun Relay.</h1><p>This is a private, self-hosted connection between your Android phone and Windows computer. Pair using the QR code displayed by your Connector.</p><p><a href="https://github.com/MrMaii/droprun/releases/latest">Download Android and Windows</a> · <a href="https://github.com/MrMaii/droprun">Setup and source code</a></p><p>Keep your pairing code private. This server has no public account registration. Android release builds install alongside old debug builds; pair again to connect to this instance.</p><hr><p lang="zh-CN">这是你的自部署中转服务。请扫描电脑上的配对二维码。正式 Android 版与旧 debug 版并行安装，重新配对后连接到此实例。电脑需保持开机和联网。</p></main></html>`;
+<main><h1>Your DropRun Relay.</h1><p>This is a private, self-hosted connection between your Android phone and Windows computer. Pair using the QR code displayed by your Connector.</p><p><a href="https://github.com/MrMaii/droprun/releases">Download Android and Windows</a> · <a href="https://github.com/MrMaii/droprun">Setup and source code</a></p><p>Keep your pairing code private. This server has no public account registration. Android release builds install alongside old debug builds; pair again to connect to this instance.</p><hr><p lang="zh-CN">这是你的自部署中转服务。请扫描电脑上的配对二维码。正式 Android 版与旧 debug 版并行安装，重新配对后连接到此实例。电脑需保持开机和联网。</p></main></html>`;
 }
 
 function pairPage() {

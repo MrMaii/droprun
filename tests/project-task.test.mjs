@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { EventEmitter } from 'node:events';
-import { mkdtemp, mkdir, writeFile, readFile, readdir, rm } from 'node:fs/promises';
+import { mkdtemp, mkdir, writeFile, readFile, readdir, rm, realpath } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { randomUUID } from 'node:crypto';
@@ -14,7 +14,7 @@ const human = '## 我看到了什么\n收到材料\n\n## 用在哪里\n测试项
 const evidence = { outcome: 'completed', artifacts: ['result.txt'], verification: ['read result.txt'], remaining: [] };
 
 async function fixture(t, mode = 'review', { withEvidence = true } = {}) {
-  const root = await mkdtemp(join(tmpdir(), 'droprun-project-task-'));
+  const root = await realpath(await mkdtemp(join(tmpdir(), 'droprun-project-task-')));
   t.after(() => rm(root, { recursive: true, force: true }));
   const source = join(root, 'source'), stateDir = join(root, 'state');
   await mkdir(source); await mkdir(stateDir); await writeFile(join(source, 'user.txt'), 'UNCOMMITTED_USER_WORK');

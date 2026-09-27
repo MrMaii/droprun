@@ -6,7 +6,7 @@
   "scripts": {
     "connector": "node connector/main.mjs",
     "probe": "node scripts/probe-codex.mjs",
-    "test": "node --test tests/*.test.mjs",
+    "test": "node --test --test-concurrency=4 tests/*.test.mjs",
     "site:build": "node scripts/build-landing.mjs",
     "check:public": "node scripts/check-public.mjs"
   },

@@ -25,7 +25,7 @@ test('public brand uses exact selected bytes; publishing is administrator-only a
     assert.equal(digest(Buffer.from(await logo.arrayBuffer())),digest(bytes));
     assert.equal((await mf.dispatchFetch('https://brand.test/brand/private.png')).status,401);
     const page = await (await mf.dispatchFetch('https://brand.test/')).text();
-    assert.match(page,/self-hosted/);assert.match(page,/prefers-reduced-motion/);assert.match(page,/releases\/latest/);
+    assert.match(page,/self-hosted/);assert.match(page,/prefers-reduced-motion/);assert.match(page,/droprun\/releases/);
     assert.doesNotMatch(page,new RegExp(token));
   } finally { await mf.dispose(); }
 });

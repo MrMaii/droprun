@@ -1,4 +1,4 @@
-import { mkdir, writeFile, access } from 'node:fs/promises';
+import { mkdir, writeFile, access, cp } from 'node:fs/promises';
 import { resolve } from 'node:path';
 const site = resolve(import.meta.dirname, '../landing');
 const repo = 'https://github.com/MrMaii/droprun';
@@ -45,4 +45,9 @@ for(const [locale,c] of Object.entries(texts)){
 }
 await writeFile(resolve(site,'robots.txt'),`User-agent: *\nAllow: /\n${origin?`Sitemap: ${origin}/sitemap.xml\n`:''}`);
 if(origin)await writeFile(resolve(site,'sitemap.xml'),`<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url><loc>${origin}/</loc></url><url><loc>${origin}/zh/</loc></url></urlset>`);
-console.log(JSON.stringify({pages:['/','/zh/'],realScreenshots:media,origin:origin||'not deployed'}));
+const dist = resolve(site, 'dist');
+await mkdir(dist, { recursive: true });
+for (const name of ['index.html', 'zh', 'styles.css', 'app.js', 'brand-logo.png', 'robots.txt', 'sitemap.xml', 'media']) {
+ if (await exists(resolve(site, name))) await cp(resolve(site, name), resolve(dist, name), { recursive: true });
+}
+console.log(JSON.stringify({pages:['/','/zh/'],realScreenshots:media,origin:origin||'not deployed',output:dist}));
