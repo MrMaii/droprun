@@ -1,0 +1,13 @@
+name: Feature request
+description: Describe a user problem and a concrete outcome.
+body:
+  - type: textarea
+    id: outcome
+    attributes:
+      label: What are you trying to achieve?
+    validations:
+      required: true
+  - type: textarea
+    id: current
+    attributes:
+      label: Current workaround

@@ -1,0 +1,10 @@
+{
+  "$schema": "../node_modules/wrangler/config-schema.json",
+  "name": "droprun-preview",
+  "main": "preview-worker.mjs",
+  "compatibility_date": "2026-09-01",
+  "workers_dev": true,
+  "vars": { "INSTANCE_ID": "SAME_UUID_AS_RELAY" },
+  "d1_databases": [{ "binding": "DB", "database_name": "droprun", "database_id": "SAME_D1_ID_AS_RELAY" }],
+  "r2_buckets": [{ "binding": "FILES", "bucket_name": "droprun-files" }]
+}

@@ -1,0 +1,4 @@
+ALTER TABLE tasks ADD COLUMN model TEXT;
+ALTER TABLE tasks ADD COLUMN effort TEXT;
+ALTER TABLE tasks ADD COLUMN title TEXT;
+ALTER TABLE tasks ADD COLUMN material_summary TEXT;

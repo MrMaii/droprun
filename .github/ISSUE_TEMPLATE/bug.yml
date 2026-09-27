@@ -1,0 +1,21 @@
+name: Bug report
+description: Report a reproducible problem without private data.
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Include expected behavior and steps to reproduce.
+    validations:
+      required: true
+  - type: input
+    id: versions
+    attributes:
+      label: Android, Connector and Relay versions
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Redacted evidence
+      description: No tokens, pairing QR codes, private URLs or source material.

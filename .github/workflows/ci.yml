@@ -1,0 +1,50 @@
+name: Validate
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  core:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install media test tools
+        run: choco install ffmpeg -y --no-progress
+      - run: npm ci
+      - run: npm test
+      - run: npm audit --audit-level=high
+      - run: npm run site:build
+      - run: npm run check:public
+      - name: Install package compiler
+        run: choco install innosetup -y --no-progress
+      - name: Build Windows installer and portable package
+        shell: pwsh
+        run: |
+          $compiler = Get-ChildItem 'C:/Program Files*/Inno Setup*/ISCC.exe' | Select-Object -First 1
+          if (-not $compiler) { throw 'Inno Setup compiler is unavailable.' }
+          node scripts/package-windows.mjs --output .local/releases/ci --iscc $compiler.FullName
+      - uses: actions/upload-artifact@v4
+        with:
+          name: windows-build-verification
+          path: |
+            .local/releases/ci/*.exe
+            .local/releases/ci/*.zip
+            .local/releases/ci/*.sha256
+  android:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: android-actions/setup-android@v3
+      - run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
+      - run: chmod +x android/gradlew
+      - run: ./gradlew assembleDebug testDebugUnitTest lintDebug
+        working-directory: android

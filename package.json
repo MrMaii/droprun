@@ -1,0 +1,28 @@
+{
+  "name": "droprun",
+  "version": "0.5.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "connector": "node connector/main.mjs",
+    "probe": "node scripts/probe-codex.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "site:build": "node scripts/build-landing.mjs",
+    "check:public": "node scripts/check-public.mjs"
+  },
+  "devDependencies": {
+    "@electron/asar": "^4.3.0",
+    "@resvg/resvg-js": "2.6.2",
+    "miniflare": "5.20260925.0-alpha",
+    "wrangler": "4.141.0"
+  },
+  "dependencies": {
+    "cloudflared": "^0.7.3",
+    "qrcode": "^1.5.4"
+  },
+  "license": "Apache-2.0",
+  "description": "Share inspiration from Android into an existing local Codex project.",
+  "engines": {
+    "node": ">=24"
+  }
+}

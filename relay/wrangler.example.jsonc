@@ -1,0 +1,19 @@
+{
+  "$schema": "../node_modules/wrangler/config-schema.json",
+  "name": "droprun-relay",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-09-01",
+  "workers_dev": true,
+  "vars": {
+    "INSTANCE_ID": "GENERATE_A_NEW_UUID",
+    "PREVIEW_ORIGIN": "https://droprun-preview.YOUR_SUBDOMAIN.workers.dev",
+    "RAW_RETENTION_DAYS": "7",
+    "ARTIFACT_RETENTION_DAYS": "30"
+  },
+  "d1_databases": [{ "binding": "DB", "database_name": "droprun", "database_id": "YOUR_D1_ID", "migrations_dir": "migrations-fresh" }],
+  "r2_buckets": [{ "binding": "FILES", "bucket_name": "droprun-files" }],
+  "ai": { "binding": "AI" },
+  "triggers": { "crons": ["17 * * * *"] }
+  // Set CONNECTOR_HASH as a Wrangler secret. ADMIN_HASH is optional and separate.
+  // LIVE_PREVIEW_ORIGIN is optional: your own HTTPS domain with a named Tunnel.
+}
