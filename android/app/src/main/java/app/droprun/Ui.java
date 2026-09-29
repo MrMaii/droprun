@@ -225,16 +225,21 @@ public final class Ui {
         StateListDrawable states=new StateListDrawable();
         states.addState(new int[]{-android.R.attr.state_enabled},outlined(context,SURFACE,LINE,RADIUS,1));
         states.addState(new int[]{android.R.attr.state_pressed},outlined(context,pressed,stroke,RADIUS,1));
-        states.addState(new int[]{android.R.attr.state_focused},outlined(context,fill,kind==1?TEXT:LIME,RADIUS,1));
+        states.addState(new int[]{android.R.attr.state_focused},outlined(context,fill,kind==1?ON_LIME:ACCENT,RADIUS,2));
         states.addState(new int[]{},outlined(context,fill,stroke,RADIUS,kind==3?0:1));view.setBackground(states);
         view.setTextColor(new ColorStateList(new int[][]{new int[]{-android.R.attr.state_enabled},new int[]{}},new int[]{DIM,kind==1?ON_LIME:kind==2?DANGER:TEXT}));
         bindPress(view);
     }
-    /** 40dp round icon button (settings gear, back chevron, close). Tint follows TEXT. */
+    /** Round icon button (settings gear, back chevron, close). Tint follows TEXT. */
     public static ImageButton iconButton(Context context,int icon,CharSequence description){
         ImageButton button=new ImageButton(context);button.setImageResource(icon);button.setImageTintList(ColorStateList.valueOf(TEXT));button.setContentDescription(description);
         button.setScaleType(ImageView.ScaleType.CENTER_INSIDE);int pad=dp(context,9);button.setPadding(pad,pad,pad,pad);
-        StateListDrawable states=new StateListDrawable();states.addState(new int[]{android.R.attr.state_pressed},circle(context,SURFACE_3,LINE_STRONG));states.addState(new int[]{},circle(context,SURFACE_2,LINE));
+        GradientDrawable focused=circle(context,SURFACE_2,ACCENT);focused.setStroke(dp(context,2),ACCENT);
+        StateListDrawable states=new StateListDrawable();
+        states.addState(new int[]{-android.R.attr.state_enabled},circle(context,SURFACE_2,LINE));
+        states.addState(new int[]{android.R.attr.state_pressed},circle(context,SURFACE_3,LINE_STRONG));
+        states.addState(new int[]{android.R.attr.state_focused},focused);
+        states.addState(new int[]{},circle(context,SURFACE_2,LINE));
         button.setBackground(states);bindPress(button);return button;
     }
     /** Compact text pill button for secondary header actions. */

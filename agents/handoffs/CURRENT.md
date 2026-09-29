@@ -13,18 +13,23 @@ posting is authorized. New campaign assets remain deferred until the agreed gate
 
 ## Completed this pass
 
-- Reproduced model-choice keyboard focus falling to the whole ScrollView after
-  Settings rebuilt its sections. Model/effort buttons now have stable IDs; local
-  rebuilds and recreation restore the corresponding focus and reveal the control.
-- Added one actual keyboard case covering model selection, effort selection,
-  Cancel and recreation with a synthetic catalog. It verifies local defaults,
-  focus, full visibility and unchanged values/offset on Cancel.
-- Five affected Settings/Home cases pass on API 26/35 at 100% and 200% font.
-  The preceding 49-case full results are a prior-source baseline, not a claim of
-  a full 50-case run this pass. Twelve JVM tests, debug lint and builds pass.
-- Refreshed the locally signed APK with unchanged certificate. Final DropBox
-  snapshots show no new ANR; the original SyncJob and emulator incidents remain
-  documented. No real mutations, public deployment or new campaign assets.
+- Replaced barely visible light action focus borders with 2dp accent outlines;
+  primary lime actions use a dark inner border. Icons now have a distinct focus
+  outline, with disabled state taking precedence. No layout/activation changes.
+- Inspected actual focused Home/Settings screenshots in light and dark themes.
+  Palette contrast of light secondary focus against white rises from 1.34:1 to
+  7.94:1; this is not a full rendered accessibility certification.
+- Four keyboard/navigation cases pass on API 26/35 at 100%; model/effort also
+  passes at 200% on both. Twelve JVM cases, debug lint and builds pass. No new
+  instrumentation case or full-suite claim for this drawable-only change.
+- Refreshed signed APK with unchanged certificate. Final DropBox snapshots show
+  no new ANR. Emulator preferences restored and devices stopped. No real mutation,
+  public deployment or campaign assets. Evidence/hash live in the release record.
+
+The preceding pass (`b297d30`) restored model/effort keyboard focus and full control
+visibility across Settings rebuild/recreation. Five affected cases passed on API
+26/35 at 100%/200%. It added the 50th available native case, but did not rerun the
+whole suite; the prior 49-case full results below belong to the prior source.
 
 The preceding pass (`d5365e2`) preserved Settings scroll/expanded access and
 appearance/language focus, including revealing a clipped Language row after a
@@ -137,14 +142,14 @@ Signing material remains ignored. Git author: Thomas Deng
 
 ## Single recommended next action
 
-Audit shared keyboard-focus visuals locally. Ui.styleAction uses a lime focus
-outline on light secondary buttons; Ui.iconButton currently lists pressed/default
-background states without a distinct focused state. Verify contrast and actual
-focused screenshots before changing shared styles. Keep remote mutations disabled;
-this is UI feedback work, not real-delivery or marketing acceptance.
+Audit the remaining shared control states locally, starting with the light-theme
+destructive button's pressed text/fill contrast in Ui.styleAction. Verify actual
+rendered states without activating delete/disconnect/approval actions. The current
+pass validated action/icon focus, not every pressed/disabled/chip/option state.
+Keep remote mutations disabled; this is not real-delivery or marketing acceptance.
 
 ## Files involved
 
-SettingsActivity, resource IDs, LocalRecoveryTest, PRD, CONTRACTS, UI matrix, UX
-release record and this handoff. Refreshed ignored signed APK. Public deployments,
-Windows packages and private Connector unchanged.
+Ui.java, PRD, CONTRACTS, UI matrix, UX release record and this handoff. Refreshed
+ignored signed APK and local screenshots. Public deployments, Windows packages
+and private Connector unchanged.

@@ -44,6 +44,8 @@ in [0.5.0](../releases/0.5.0.md).
   disclosure changes have feedback with a motion-off path. Destructive or
   permission-expanding decisions require confirmation; ordinary selections show
   their selected value without an extra confirmation dialog.
+  Shared action and icon buttons show a distinct keyboard-focus outline in both
+  themes, without changing their layout or activating the action.
 - Scrolling text stays outside system bars. Decision errors remain visible after
   polling; expired cached approvals and previews offer accurate next steps.
   Data settings show the last known policy for the selected Relay, distinguish
