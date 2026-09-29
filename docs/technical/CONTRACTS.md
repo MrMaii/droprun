@@ -34,6 +34,10 @@ plan-version, per-command approval and report-evidence checks remain in force.
   control is revealed if translated content has moved it outside the viewport.
   This restores presentation, not authorization;
   it never replays permission or execution-mode writes.
+  Local model/effort changes retain keyboard focus on the corresponding control
+  after a section rebuild, provided the updated catalog still offers that control.
+  Defaults are instance-scoped local preferences; choosing or cancelling these
+  dialogs never submits an execution-mode or project-permission mutation.
 - Fresh installs apply migrations-fresh/0001-baseline.sql only. Existing instances
   apply the compatibility upgrade; never apply consolidated schema and duplicate
   historical ALTER migrations to the same new database.

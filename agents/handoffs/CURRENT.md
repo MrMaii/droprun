@@ -13,23 +13,24 @@ posting is authorized. New campaign assets remain deferred until the agreed gate
 
 ## Completed this pass
 
-- Settings now retains its project-access disclosure and native scroll position
-  across recreation; stable appearance/language IDs retain keyboard focus.
-- Reproduced a real landscape issue: switching to Chinese left only 54px of a
-  63px focused Language row visible. After layout, Settings now reveals the current
-  keyboard preference control; touch reading offsets remain unchanged.
-- Added three native cases for scroll/expanded-state restoration and actual
-  appearance/language keyboard choices in portrait and landscape. Final full
-  suites pass 49/49 on API 26/35 at 100%; three new cases pass on both at 200%.
-  Twelve JVM tests, debug lint, debug/instrumentation/release builds pass.
-- Failure evidence is retained: API 26 emulator goldfish_pipe kernel panic/reboot;
-  API 35 focused-window timeouts and rotation/test interference; mid-transition
-  visibility checks and one stale instrumentation install. Final runs use matching
-  test APK hashes. None of those failed/interrupted runs are counted as acceptance.
-- Updated signed local APK with unchanged certificate. Final DropBox snapshots
-  show no new app ANR; older SyncJob incident remains open. No real submissions,
-  public deployment, Windows package changes or campaign generation.
+- Reproduced model-choice keyboard focus falling to the whole ScrollView after
+  Settings rebuilt its sections. Model/effort buttons now have stable IDs; local
+  rebuilds and recreation restore the corresponding focus and reveal the control.
+- Added one actual keyboard case covering model selection, effort selection,
+  Cancel and recreation with a synthetic catalog. It verifies local defaults,
+  focus, full visibility and unchanged values/offset on Cancel.
+- Five affected Settings/Home cases pass on API 26/35 at 100% and 200% font.
+  The preceding 49-case full results are a prior-source baseline, not a claim of
+  a full 50-case run this pass. Twelve JVM tests, debug lint and builds pass.
+- Refreshed the locally signed APK with unchanged certificate. Final DropBox
+  snapshots show no new ANR; the original SyncJob and emulator incidents remain
+  documented. No real mutations, public deployment or new campaign assets.
 
+The preceding pass (`d5365e2`) preserved Settings scroll/expanded access and
+appearance/language focus, including revealing a clipped Language row after a
+landscape locale change. Final native suites passed 49/49 on both APIs, with
+three Settings cases at 200%. Its initial emulator, test timing and stale-test
+installation failures remain in the release record.
 The preceding pass (`b7a1a09`) preserved Home project/offset across recreation
 and appearance changes, with 45 full cases plus a separate actual Settings
 round-trip case. Those cases are included in the final 49-test runs above.
@@ -136,14 +137,14 @@ Signing material remains ignored. Git author: Thomas Deng
 
 ## Single recommended next action
 
-Check local default model/effort controls with keyboard input. Unlike appearance
-and language, their selection calls render() and replaces the section views in
-place; reproduce whether focus and reading position survive before changing code.
-Use the synthetic model catalog only. Do not submit permissions, execution modes
-or tasks to a real Relay; real delivery/physical-device gates remain pending.
+Audit shared keyboard-focus visuals locally. Ui.styleAction uses a lime focus
+outline on light secondary buttons; Ui.iconButton currently lists pressed/default
+background states without a distinct focused state. Verify contrast and actual
+focused screenshots before changing shared styles. Keep remote mutations disabled;
+this is UI feedback work, not real-delivery or marketing acceptance.
 
 ## Files involved
 
-SettingsActivity, resource IDs, DemoSettingsActivity, LocalRecoveryTest, PRD,
-CONTRACTS, UI matrix, UX release record and this handoff. Refreshed ignored signed
-APK. Public website/release, Windows packages and private Connector unchanged.
+SettingsActivity, resource IDs, LocalRecoveryTest, PRD, CONTRACTS, UI matrix, UX
+release record and this handoff. Refreshed ignored signed APK. Public deployments,
+Windows packages and private Connector unchanged.

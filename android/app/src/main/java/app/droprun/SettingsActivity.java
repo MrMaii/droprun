@@ -43,9 +43,11 @@ public class SettingsActivity extends StyledActivity {
     String snapshot(){JSONObject data=store.projectsData();return data.optString("name")+store.computerOnline()+data.optJSONArray("projects")+data.optJSONArray("models")+store.directExecution()+store.prefs.getString("settingsError","")+store.prefs.getString("retention","");}
     /** Rebuilds the sections in place: the ScrollView around them keeps its position and nothing re-animates. */
     void render(){
+        View focused=getCurrentFocus();int focusId=focused!=null&&!focused.isInTouchMode()?focused.getId():View.NO_ID;
         noticeView.setText(notice);noticeView.setVisibility(notice.isEmpty()?View.GONE:View.VISIBLE);
         body.removeAllViews();
         computerSection();appearanceSection();modeSection();modelSection();accessSection();retentionSection();aboutSection();disconnectSection();
+        if(focusId==R.id.settings_model||focusId==R.id.settings_effort){View replacement=body.findViewById(focusId);if(replacement!=null){replacement.requestFocus();revealPreferenceAfterLayout();}}
     }
     LinearLayout section(String label){body.addView(Ui.label(this,label));LinearLayout card=Ui.card(this);body.addView(card,Ui.cardParams(this));return card;}
     LinearLayout.LayoutParams trailing(){LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(-2,-2);params.setMarginStart(dp(10));return params;}
@@ -116,9 +118,10 @@ public class SettingsActivity extends StyledActivity {
         if(catalog.length()==0){card.addView(Ui.caption(this,L.t("Waiting for your computer's model list.","等待电脑同步模型列表。")));return;}
         String model=store.defaultModel(),effort=store.defaultEffort(model);JSONObject current=store.model(model);
         Button choose=Ui.button(this,L.t("Model · ","模型 · ")+(current==null?model:current.optString("displayName",model)),false);
+        choose.setId(R.id.settings_model);
         choose.setOnClickListener(v->{String[] names=new String[catalog.length()];int selected=0;for(int n=0;n<catalog.length();n++){JSONObject item=catalog.optJSONObject(n);names[n]=item.optString("displayName",item.optString("id"));if(item.optString("id").equals(model))selected=n;}new AlertDialog.Builder(this).setTitle(L.t("Default model","默认模型")).setSingleChoiceItems(names,selected,(dialog,index)->{String id=catalog.optJSONObject(index).optString("id");store.saveDefaults(id,store.defaultEffort(id));dialog.dismiss();render();}).setNegativeButton(L.t("Cancel","取消"),null).show();});card.addView(choose);
         JSONArray available=current==null?null:current.optJSONArray("efforts");
-        if(available!=null&&available.length()>0){Button strength=Ui.button(this,L.t("Effort · ","推理强度 · ")+effort,false);strength.setOnClickListener(v->{String[] names=new String[available.length()];int selected=0;for(int n=0;n<names.length;n++){names[n]=available.optString(n);if(names[n].equals(effort))selected=n;}new AlertDialog.Builder(this).setTitle(L.t("Reasoning effort","推理强度")).setSingleChoiceItems(names,selected,(dialog,index)->{store.saveDefaults(model,available.optString(index));dialog.dismiss();render();}).setNegativeButton(L.t("Cancel","取消"),null).show();});card.addView(strength,Ui.margins(this,8,0));}
+        if(available!=null&&available.length()>0){Button strength=Ui.button(this,L.t("Effort · ","推理强度 · ")+effort,false);strength.setId(R.id.settings_effort);strength.setOnClickListener(v->{String[] names=new String[available.length()];int selected=0;for(int n=0;n<names.length;n++){names[n]=available.optString(n);if(names[n].equals(effort))selected=n;}new AlertDialog.Builder(this).setTitle(L.t("Reasoning effort","推理强度")).setSingleChoiceItems(names,selected,(dialog,index)->{store.saveDefaults(model,available.optString(index));dialog.dismiss();render();}).setNegativeButton(L.t("Cancel","取消"),null).show();});card.addView(strength,Ui.margins(this,8,0));}
         card.addView(Ui.caption(this,L.t("You can still change these for an individual handoff.","每次转发时仍可临时更改。")),Ui.margins(this,10,0));
     }
     /** One-line key for the effort ids the model offers, e.g. "low 快 · medium 均衡 · high 深入". */
@@ -206,10 +209,12 @@ public class SettingsActivity extends StyledActivity {
 
     @Override protected void onSaveInstanceState(Bundle state){state.putBoolean("showAccess",showAccess);super.onSaveInstanceState(state);}
     @Override protected void onRestoreInstanceState(Bundle state){
-        super.onRestoreInstanceState(state);
+        super.onRestoreInstanceState(state);revealPreferenceAfterLayout();
+    }
+    void revealPreferenceAfterLayout(){
         body.getViewTreeObserver().addOnPreDrawListener(new android.view.ViewTreeObserver.OnPreDrawListener(){public boolean onPreDraw(){
             body.getViewTreeObserver().removeOnPreDrawListener(this);View focused=getCurrentFocus();
-            if(focused!=null&&!focused.isInTouchMode()&&(focused.getId()==R.id.settings_appearance||focused.getId()==R.id.settings_language))
+            if(focused!=null&&!focused.isInTouchMode()&&(focused.getId()==R.id.settings_appearance||focused.getId()==R.id.settings_language||focused.getId()==R.id.settings_model||focused.getId()==R.id.settings_effort))
                 focused.requestRectangleOnScreen(new android.graphics.Rect(0,0,focused.getWidth(),focused.getHeight()),true);
             return true;
         }});

@@ -341,6 +341,24 @@ public class LocalRecoveryTest {
     }
 
     android.widget.ScrollView settingsScroll(SettingsActivity activity){return (android.widget.ScrollView)activity.body.getParent().getParent();}
+    @Test public void settingsModelAndEffortChoicesRetainFocusAndCancelKeepsValues()throws Exception{
+        android.app.Instrumentation instrumentation=InstrumentationRegistry.getInstrumentation();
+        try(ActivityScenario<DemoSettingsActivity> scenario=ActivityScenario.launch(DemoSettingsActivity.class)){
+            DemoSettingsActivity[] opened={null};scenario.onActivity(activity->{opened[0]=activity;try{
+                JSONObject data=activity.store.projectsData();data.getJSONArray("models").put(new JSONObject().put("id","local-second-model").put("displayName","Local second model").put("defaultEffort","low").put("efforts",new JSONArray().put("low").put("high")));
+                activity.store.prefs.edit().putString("projects",data.toString()).commit();activity.store.saveDefaults("example-model","medium");activity.render();
+            }catch(Exception error){throw new AssertionError(error);}});awaitSettingsWindow(opened[0]);instrumentation.sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_TAB);
+            for(String[] choice:new String[][]{{"Model · Computer default","Model · Local second model"},{"Effort · low","Effort · high"}}){
+                scenario.onActivity(activity->assertTrue(findText(activity.body,choice[0]).requestFocus()));instrumentation.waitForIdleSync();
+                instrumentation.sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_ENTER);captureUi("settings-model-choice-local");instrumentation.sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_DPAD_DOWN);instrumentation.sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_ENTER);captureUi("settings-model-result-local");
+                scenario.onActivity(activity->{android.widget.TextView selected=findText(activity.body,choice[1]);assertNotNull(selected);assertSame("The changed model/effort control must retain keyboard focus",selected,activity.getCurrentFocus());android.graphics.Rect visible=new android.graphics.Rect();assertTrue(selected.getGlobalVisibleRect(visible));assertTrue("The full selected control must be visible",visible.height()>=selected.getHeight());assertTrue("Model choices must not return to the page header",settingsScroll(activity).getScrollY()>0);});
+            }
+            int[] scroll={0};scenario.onActivity(activity->{assertEquals("local-second-model",activity.store.defaultModel());assertEquals("high",activity.store.defaultEffort(activity.store.defaultModel()));scroll[0]=settingsScroll(activity).getScrollY();});
+            instrumentation.sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_ENTER);captureUi("settings-effort-cancel-local");clickWindowText("Cancel");instrumentation.waitForIdleSync();
+            scenario.onActivity(activity->{assertEquals("local-second-model",activity.store.defaultModel());assertEquals("high",activity.store.defaultEffort(activity.store.defaultModel()));assertSame(findText(activity.body,"Effort · high"),activity.getCurrentFocus());assertEquals(scroll[0],settingsScroll(activity).getScrollY());});
+            scenario.recreate();captureUi("settings-model-recreated-local");scenario.onActivity(activity->{assertEquals("local-second-model",activity.store.defaultModel());assertEquals("high",activity.store.defaultEffort(activity.store.defaultModel()));assertSame(findText(activity.body,"Effort · high"),activity.getCurrentFocus());});
+        }
+    }
     void awaitSettingsWindow(SettingsActivity activity)throws Exception{
         android.app.Instrumentation instrumentation=InstrumentationRegistry.getInstrumentation();long deadline=android.os.SystemClock.elapsedRealtime()+5000;boolean[] ready={false};
         do{instrumentation.runOnMainSync(()->ready[0]=activity.hasWindowFocus()&&activity.body.getAlpha()==1f&&activity.body.getTranslationY()==0f);if(ready[0])return;Thread.sleep(25);}while(android.os.SystemClock.elapsedRealtime()<deadline);

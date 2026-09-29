@@ -3,4 +3,6 @@
     <item name="settings_scroll" type="id" />
     <item name="settings_appearance" type="id" />
     <item name="settings_language" type="id" />
+    <item name="settings_model" type="id" />
+    <item name="settings_effort" type="id" />
 </resources>
