@@ -13,23 +13,26 @@ posting is authorized. New campaign assets remain deferred until the agreed gate
 
 ## Completed this pass
 
-- Reproduced share-model keyboard selection moving focus to the backdrop labelled
-  Cancel. Model/effort panel rebuilds now restore focus by model ID or effort value
-  and reveal the replacement control. Touch selection does not force focus.
-- Chips, option rows and effort segments now distinguish keyboard focus from
-  selected state. Existing selected fills and press ripples remain. Dedicated
-  styleDanger has no production caller; its unused palette was not modified.
-- Added one native case selecting a synthetic model and effort in both themes.
-  It checks replacement focus, full visibility, selected values, unchanged default
-  model and empty outbox. No task is submitted.
-- Full current-source native suites: API 35 and API 26 each 51/51. Four relevant
-  cases pass at 200% on each API. Twelve JVM cases, debug lint, debug/test builds
-  and signed release build pass. Refreshed the ignored APK, same certificate.
-- Initial class-based share Activity launch timed out before assertions; using
-  the existing ACTION_SEND harness then reproduced the actual focus failure.
-  Both logs remain preserved. Final DropBox snapshots contain no new ANR.
-- No public deployment, remote mutation, Windows change or campaign asset change.
-  Emulator preferences restored and both devices stopped.
+- Audited original requirement groups against native/test assertions, CI, public
+  preview documents and local artifacts. The evidence table in the release record
+  distinguishes local coverage, historical public evidence and still-open gates.
+- Rehashed Android and both Windows candidates; hashes match recorded values and
+  Windows sidecars. Re-read latest successful 51-case/4-case logs and build result.
+  No production code changed; no rebuild or redundant suite rerun.
+- Actually terminated the background debug share process on API 35 at 200% font.
+  After observing STOPPED/saved state, PID 10785 disappeared. Restoring existing
+  task 2317 started PID 10978 with chosen project and note intact. Back to project
+  selection still showed the shared-link host/category. No Send occurred.
+- This is a stopped-editor process-recovery observation, not an exact source-byte
+  or interrupted-attachment-copy assertion. Screenshots/XML are ignored local
+  evidence. Initial unready UI/kill attempts are distinguished in the record.
+- No public deployment, remote mutation, code/package change or campaign assets.
+  No emulator preferences changed; the debug app and emulator were stopped.
+
+Previous code pass `4d17757` fixed share option keyboard focus moving to Cancel,
+added distinct selectable-control focus outlines and a dual-theme native case.
+Current-source evidence remains API 26/35 full51/51, relevant 200% subset4/4,
+12 JVM cases, debug lint and signed build. This audit does not increase those counts.
 
 Evidence and current artifact hash: [0.5.1 UX validation](../../docs/releases/0.5.1-ux.md).
 Control/flow coverage and missing acceptance: [UI matrix](../../docs/releases/0.5.1-ui-matrix.md).
@@ -41,7 +44,9 @@ only their local assertions, not real delivery or physical performance.
 APK: `.local/releases/ux-polish-sep29/DropRun-0.5.1-android-candidate.apk`.
 Windows installer/ZIP: `.local/releases/ux-actions-sep29-windows-final/`.
 Current screenshots: `.local/ux-cloud-check/share-choice-api{26,35}-{light,dark}.png`
-and `share-choice-api{26,35}-large-{light,dark}.png`. Synthetic fixtures are not
+and `share-choice-api{26,35}-large-{light,dark}.png`. Process probe uses
+`process-share-{before,after,material}.xml` and `process-share-after.png`.
+Synthetic fixtures are not
 actual agent work. Node's preceding 198-case pass and Windows manifest evidence
 remain in the release record; Node/Windows did not change this pass.
 
@@ -82,13 +87,14 @@ Git author: Thomas Deng <150266369+MrMaii@users.noreply.github.com>.
 
 ## Single recommended next action
 
-Consolidate the final local acceptance audit against the UI matrix and original
-release gates. Identify concrete remaining locally reproducible failures or missing
-checks, separating them from user-retained real-submission and unavailable device
-acceptance. Do not prolong work with speculative restyling, treat synthetic flows
-as real delivery, or start marketing assets before the agreed acceptance gate.
+Validate local attachment integrity and recovery using synthetic files/providers,
+including interruption during copy and process termination after copy. Current
+process probe proves only a stopped text-editor path and visible link host/category.
+Inspect ShareActivity.receive/onSaveInstanceState and local attachment ownership
+before designing the probe; no real provider, remote submission or Codex execution.
+Keep genuine-source/device gates and marketing boundary intact.
 
 ## Files involved
 
-ShareActivity, Ui, LocalRecoveryTest, PRD, CONTRACTS, UI matrix, UX release record
-and this handoff. Refreshed ignored signed APK and local screenshots.
+UI matrix, UX release record and this handoff; ignored local process-probe
+screenshots/XML. No production code, test suite or package changes.
