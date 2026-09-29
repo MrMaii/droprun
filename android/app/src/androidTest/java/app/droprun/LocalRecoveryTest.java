@@ -55,6 +55,74 @@ public class LocalRecoveryTest {
     void openLocalDelivery(ActivityScenario<DemoDeliverablesActivity> scenario)throws Exception{
         awaitDelivery(scenario,"local-evidence.txt");scenario.onActivity(activity->activity.download(DemoDeliverablesActivity.item()));awaitDelivery(scenario,DemoDeliverablesActivity.CONTENT);
     }
+    Intent exportDestination(){return new Intent().setData(android.net.Uri.parse("content://"+context.getPackageName()+".export-fixture/local-output"));}
+    @Test public void deliveryPickerLocksUntilCancelAndRecoversWhenUnavailable()throws Exception{
+        DemoDeliverablesActivity.reset();
+        try(ActivityScenario<DemoDeliverablesActivity> scenario=ActivityScenario.launch(DemoDeliverablesActivity.class)){
+            openLocalDelivery(scenario);scenario.onActivity(activity->{activity.saveFile();activity.saveFile();assertEquals(1,DemoDeliverablesActivity.pickers.get());assertFalse(findText(activity.page,"Choosing location…").isEnabled());});
+            scenario.recreate();awaitDelivery(scenario,"Choosing location…");
+            scenario.onActivity(activity->{activity.onActivityResult(20,android.app.Activity.RESULT_CANCELED,null);assertTrue(findText(activity.page,"Save to phone").isEnabled());assertTrue(activity.currentFile.isFile());});
+            DemoDeliverablesActivity.failPicker=true;scenario.onActivity(DemoDeliverablesActivity::saveFile);awaitDelivery(scenario,"Could not open save locations.");
+            scenario.onActivity(activity->assertTrue(findText(activity.page,"Save to phone").isEnabled()));
+        }finally{DemoDeliverablesActivity.reset();}
+    }
+    @Test public void deliveryLostSaveStateExplainsUncertaintyWithoutWritingAgain()throws Exception{
+        DemoDeliverablesActivity.reset();DemoExportProvider.opens.set(0);
+        File cache=File.createTempFile("droprun-delivery-",".bin",new Store(context).cacheDir());Files.write(cache.toPath(),DemoDeliverablesActivity.CONTENT.getBytes(StandardCharsets.UTF_8));
+        android.os.Bundle state=new android.os.Bundle();state.putString("file",cache.getPath());state.putString("item",DemoDeliverablesActivity.item().toString());state.putBoolean("savePending",true);
+        try(ActivityScenario<DemoDeliverablesActivity> scenario=ActivityScenario.launch(new Intent(context,DemoDeliverablesActivity.class).putExtra("fixtureRestore",state))){
+            awaitDelivery(scenario,"Save status is unknown.");assertEquals(0,DemoExportProvider.opens.get());
+            scenario.recreate();awaitDelivery(scenario,"Save status is unknown.");assertEquals(0,DemoExportProvider.opens.get());
+            captureUi("export-interrupted-local");
+        }finally{cache.delete();DemoDeliverablesActivity.reset();}
+    }
+    @Test public void deliveryRevokedFileCannotOpenTheDestination()throws Exception{
+        DemoDeliverablesActivity.reset();DemoExportProvider.opens.set(0);DemoExportProvider.fail=false;
+        try(ActivityScenario<DemoDeliverablesActivity> scenario=ActivityScenario.launch(DemoDeliverablesActivity.class)){
+            openLocalDelivery(scenario);DemoDeliverablesActivity.empty=true;
+            scenario.onActivity(activity->{activity.saveFile();activity.onActivityResult(20,android.app.Activity.RESULT_OK,exportDestination());});awaitDelivery(scenario,"Save failed. Your preview is still available.");
+            assertEquals(0,DemoExportProvider.opens.get());
+        }finally{DemoDeliverablesActivity.reset();}
+    }
+    @Test public void deliverySaveShowsProgressAndSurvivesRecreationWithoutDuplicateWrite()throws Exception{
+        DemoDeliverablesActivity.reset();DemoExportProvider.opens.set(0);DemoExportProvider.fail=false;
+        java.util.concurrent.CountDownLatch gate=new java.util.concurrent.CountDownLatch(1);
+        try(ActivityScenario<DemoDeliverablesActivity> scenario=ActivityScenario.launch(DemoDeliverablesActivity.class)){
+            openLocalDelivery(scenario);DemoDeliverablesActivity.listGate=gate;
+            scenario.onActivity(activity->{activity.saveFile();activity.onActivityResult(20,android.app.Activity.RESULT_OK,exportDestination());assertNotNull(findText(activity.page,"Saving file…"));assertFalse(findText(activity.page,"Saving file…").isEnabled());});
+            scenario.recreate();awaitDelivery(scenario,"Saving file…");
+            scenario.onActivity(activity->activity.onActivityResult(20,android.app.Activity.RESULT_OK,exportDestination()));
+            captureUi("export-pending-local");
+            gate.countDown();awaitDelivery(scenario,"Saved to your chosen location.");
+            assertEquals("Recreation and duplicate callbacks must not repeat the write",1,DemoExportProvider.opens.get());
+            assertEquals(DemoDeliverablesActivity.CONTENT,new String(Files.readAllBytes(DemoExportProvider.file(context).toPath()),StandardCharsets.UTF_8));
+            captureUi("export-success-local");
+        }finally{gate.countDown();DemoDeliverablesActivity.reset();DemoExportProvider.file(context).delete();}
+    }
+    @Test public void deliverySaveFailureRetainsPreviewAndAllowsExplicitRetry()throws Exception{
+        DemoDeliverablesActivity.reset();DemoExportProvider.opens.set(0);DemoExportProvider.fail=true;
+        try(ActivityScenario<DemoDeliverablesActivity> scenario=ActivityScenario.launch(DemoDeliverablesActivity.class)){
+            openLocalDelivery(scenario);scenario.onActivity(activity->{activity.saveFile();activity.onActivityResult(20,android.app.Activity.RESULT_OK,exportDestination());});
+            awaitDelivery(scenario,"Save failed. Your preview is still available.");
+            scenario.onActivity(activity->{assertTrue(activity.currentFile.isFile());assertTrue(findText(activity.page,"Save to phone").isEnabled());});
+            captureUi("export-failure-local");DemoExportProvider.fail=false;
+            scenario.onActivity(activity->{activity.saveFile();activity.onActivityResult(20,android.app.Activity.RESULT_OK,exportDestination());});awaitDelivery(scenario,"Saved to your chosen location.");assertEquals(2,DemoExportProvider.opens.get());
+        }finally{DemoDeliverablesActivity.reset();DemoExportProvider.fail=false;DemoExportProvider.file(context).delete();}
+    }
+    @Test public void deliveryLeavingDuringSaveConfirmsAndRetainsBytesUntilFinished()throws Exception{
+        DemoDeliverablesActivity.reset();DemoExportProvider.opens.set(0);DemoExportProvider.fail=false;
+        java.util.concurrent.CountDownLatch gate=new java.util.concurrent.CountDownLatch(1);String[] cache={null};
+        try(ActivityScenario<DemoDeliverablesActivity> scenario=ActivityScenario.launch(DemoDeliverablesActivity.class)){
+            openLocalDelivery(scenario);DemoDeliverablesActivity.listGate=gate;
+            scenario.onActivity(activity->{cache[0]=activity.currentFile.getPath();activity.saveFile();activity.onActivityResult(20,android.app.Activity.RESULT_OK,exportDestination());activity.onBackPressed();});
+            clickWindowText("Stay here");scenario.onActivity(activity->{assertFalse(activity.isFinishing());assertFalse(findText(activity.page,"Saving file…").isEnabled());activity.onBackPressed();});
+            captureUi("export-leave-local");clickWindowText("Leave preview");
+            assertTrue("Leaving must not remove bytes needed by the in-progress save",new File(cache[0]).isFile());
+            gate.countDown();long deadline=android.os.SystemClock.elapsedRealtime()+4000;while(new File(cache[0]).exists()&&android.os.SystemClock.elapsedRealtime()<deadline)Thread.sleep(25);
+            assertFalse("Source is cleaned up after the detached save completes",new File(cache[0]).exists());assertEquals(1,DemoExportProvider.opens.get());
+            assertEquals(DemoDeliverablesActivity.CONTENT,new String(Files.readAllBytes(DemoExportProvider.file(context).toPath()),StandardCharsets.UTF_8));
+        }finally{gate.countDown();DemoDeliverablesActivity.reset();DemoExportProvider.file(context).delete();}
+    }
     @Test public void deliveryLoadingAndFailedListRemainRecoverable()throws Exception{
         DemoDeliverablesActivity.reset();DemoDeliverablesActivity.failFirst=true;java.util.concurrent.CountDownLatch gate=new java.util.concurrent.CountDownLatch(1);DemoDeliverablesActivity.listGate=gate;
         try(ActivityScenario<DemoDeliverablesActivity> scenario=ActivityScenario.launch(DemoDeliverablesActivity.class)){

@@ -61,6 +61,15 @@ plan-version, per-command approval and report-evidence checks remain in force.
   presenting contents/Save. Invalid caches are discarded and the list can reload.
   Export rechecks bytes after current server authorization and before opening the
   destination. Cancelling the system save picker does not discard the preview.
+- File export locks repeated picker launches and callbacks while choosing/saving.
+  Authorization and file-copy work runs off the UI thread, with persistent inline
+  progress, success or failure next to Save. A configuration change retains the
+  same operation; it never starts a second write. Losing the operation with a
+  saved pending state shows an unknown-result warning and never retries on its
+  own. The user checks the selected destination for an incomplete file first.
+  Leaving an active save requires confirmation; the source cache is retained
+  until that operation finishes, then removed. This is an in-process operation,
+  not a durable background transfer or a promise that killing the app completes it.
 
 
 ## Android 0.5.1 本地体验增量（待发布）

@@ -13,24 +13,30 @@ posting is authorized. New campaign assets remain deferred until the agreed gate
 
 ## Completed this pass
 
-- Investigated the prior API 35 ANR. Logs show cancelled-job binding timeouts;
-  captured app main thread was idle and instrumentation was entering an Activity.
-  This suggests test/job lifecycle interference but does not establish root cause.
-- Fixed a proven scheduling problem: reopening home repeatedly registered the
-  same periodic job. Identical JobInfo now preserves the existing job; missing or
-  changed schedules are registered. Explicit immediate retries remain separate.
-- Two new native contract cases reproduce the old duplicate registrations and
-  pass after the fix. They use Android JobInfo with a recording scheduler, not
-  actual background-delivery execution.
-- Local UI setup seeds data without opening home and cancelling a newly scheduled
-  job before each test. The decision-error fixture now supplies a local initial
-  refresh too; a DNS-dependent test timeout was reproduced and removed.
-- Final API 26 and API 35 runs each pass 30/30 at 100% font. Twelve JVM tests,
-  debug/test/release builds and both lint variants pass. No new DropBox ANR in
-  either final run; the old incident is retained and not claimed fixed.
-- Signed candidate refreshed. Exact hash/logs are in the release record; no push,
-  public deployment, real submission or existing Connector change.
+- File export now shows pending/success/failure next to Save, before hash details.
+  Picker requests lock immediately; duplicate callbacks do not repeat active saves.
+  Cancellation and picker-launch failure keep the preview usable.
+- The in-process save survives configuration changes, with the old Activity
+  observer detached. Missing retained work with a saved pending flag shows an
+  unknown-result warning; no automatic write occurs.
+- Provider failure retains the preview for explicit retry. Leaving an active save
+  requires confirmation and defers source-file cleanup until the operation ends.
+  This does not promise completion after process termination.
+- Six new native cases use a private debug-only local provider and an intercepted
+  picker. They cover writes, provider-open failure/retry, duplicate requests,
+  recreation, revoked access, uncertain-state restoration and leave/cleanup.
+  Actual system-picker UI, external providers and real process death remain open.
+- Final 36-case suite passes on API 26/35 at 100%/200% font. Twelve JVM cases,
+  debug/test/signed-release builds and both lint variants pass. No new ANR in
+  final DropBox snapshots. Screenshots confirm large-text feedback/confirmation.
+- Signed candidate refreshed; exact hash/logs are in the release record. No push,
+  live task, deployment or existing Connector change.
 
+The preceding pass (`604d556`) preserves unchanged periodic JobInfo, registers
+missing/changed schedules, and removes DNS/home-launch dependencies from local
+fixtures. Its final API 26/35 runs each passed 30 cases. The original API 35
+SyncJob service-timeout ANR remains unproven: logs suggest lifecycle interference,
+not a confirmed root cause or an exhaustive background-delivery fix.
 The preceding Android pass (`f8c370d`) verifies restored/exported cache bytes,
 shortens file errors and fixes focus scrolling within system-bar padding. Its
 28 native cases passed on both runtimes at 100%/200% font; 12 JVM cases passed.
@@ -117,15 +123,15 @@ Signing material remains ignored. Git author: Thomas Deng
 
 ## Single recommended next action
 
-Verify Android export progress/recovery with a synthetic document provider:
-DeliverablesActivity returns from the picker and performs background authorization
-and copy work without explicit pending feedback. Reproduce duplicate Save,
-provider failure and lifecycle changes locally before modifying behavior.
-Keep the prior ANR as an unresolved real-background acceptance item; current local
-regressions do not reproduce it. Do not send real tasks or call fixtures delivery.
+Validate the actual Android system save picker against a synthetic local delivery:
+open/cancel, choose a test destination, recreate while choosing and inspect the
+saved bytes, without calling a real Relay. Then cover partial-write/provider
+failure recovery. Current export tests intercept the picker and must not be
+presented as system-picker acceptance. Preserve the unresolved ANR and all real
+submission/physical-device gates.
 
 ## Files involved
 
-SyncJob, TaskActivity; debug fixture seeding/decision activity/manifest; native
-tests; PRD, contracts, changelog, release record and this handoff.
+DeliverablesActivity; debug delivery fixture/local provider/manifest; native
+recovery tests; PRD, contracts, changelog, UI matrix, release record and this handoff.
 No Windows runtime change, public deployment or social posting in this pass.

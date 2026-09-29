@@ -2,6 +2,10 @@
 
 ## 0.5.1 — unreleased UX candidate
 
+- File saving shows inline progress/results, prevents duplicate picker/write
+  requests, and survives page recreation without repeating a write. Interrupted
+  state explains uncertainty; failed saves retain a retryable preview. Leaving
+  an active save requires confirmation and defers source cleanup until completion.
 - Reopening home preserves an unchanged periodic sync job instead of repeatedly
   replacing it. Missing or changed schedules are registered again.
 - Restored delivery previews verify cached size and SHA-256 again before showing

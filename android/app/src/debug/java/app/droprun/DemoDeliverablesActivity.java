@@ -10,19 +10,25 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import org.json.*;
 
-/** Native delivery UI with synthetic cache bytes; never calls a Relay or a document provider. */
+/** Synthetic delivery source; export tests use only the private local fixture provider. */
 public final class DemoDeliverablesActivity extends DeliverablesActivity {
     static final String CONTENT="Synthetic delivery file. No agent work was performed.";
     static final AtomicInteger reads=new AtomicInteger();
+    static final AtomicInteger pickers=new AtomicInteger();
+    static volatile boolean failPicker;
     static volatile boolean failFirst,empty;
     static volatile CountDownLatch listGate;
-    static void reset(){reads.set(0);failFirst=false;empty=false;listGate=null;}
+    static void reset(){reads.set(0);pickers.set(0);failPicker=false;failFirst=false;empty=false;listGate=null;}
     static JSONObject item(){
         try{return new JSONObject().put("id",Store.scope("synthetic-file","")).put("name","local-evidence.txt").put("sha256",digest(CONTENT.getBytes(StandardCharsets.UTF_8))).put("size",CONTENT.getBytes(StandardCharsets.UTF_8).length).put("kind","artifact");}
         catch(Exception error){throw new IllegalStateException(error);}
     }
     static String digest(byte[] bytes)throws Exception{StringBuilder value=new StringBuilder();for(byte b:java.security.MessageDigest.getInstance("SHA-256").digest(bytes))value.append(String.format(java.util.Locale.ROOT,"%02x",b&255));return value.toString();}
-    @Override public void onCreate(Bundle state){if(state==null)DemoFixture.seed(this);getIntent().putExtra("taskId",DemoFixture.TASK);super.onCreate(state);}
+    @Override public void onCreate(Bundle state){if(state==null){state=getIntent().getBundleExtra("fixtureRestore");getIntent().removeExtra("fixtureRestore");}if(state==null)DemoFixture.seed(this);getIntent().putExtra("taskId",DemoFixture.TASK);super.onCreate(state);}
+    @Override public void startActivityForResult(android.content.Intent intent,int request){
+        if(request==20&&android.content.Intent.ACTION_CREATE_DOCUMENT.equals(intent.getAction())){pickers.incrementAndGet();if(failPicker)throw new android.content.ActivityNotFoundException("Synthetic picker unavailable");return;}
+        super.startActivityForResult(intent,request);
+    }
     @Override Store createStore(){return new Store(this){
         @Override JSONObject get(String path)throws Exception{
             if(!path.equals("/tasks/"+DemoFixture.TASK+"/deliverables"))throw new IOException("Unexpected fixture request");

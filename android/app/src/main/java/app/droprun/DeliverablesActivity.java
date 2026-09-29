@@ -22,14 +22,22 @@ import org.json.*;
 public class DeliverablesActivity extends StyledActivity {
     final ExecutorService io=Executors.newSingleThreadExecutor();
     Store store;String taskId;LinearLayout page;File currentFile;JSONObject currentItem;
+    Button saveButton,fileBack;TextView saveNotice,saveDetail;boolean picking;
+    String saveMessage="",saveError="";SaveOperation saving;
 
     @Override public void onCreate(Bundle state){
         super.onCreate(state);store=createStore();taskId=getIntent().getStringExtra("taskId");Ui.configureWindow(this);
         if(taskId==null||!taskId.matches("[a-zA-Z0-9-]{20,64}")){finish();return;}
+        saving=(SaveOperation)getLastNonConfigurationInstance();
+        if(saving!=null&&!saving.store.scope.equals(store.scope)){saving.cleanup=true;if(saving.done)saving.file.delete();saving=null;}
+        if(state!=null){picking=state.getBoolean("picking");saveMessage=state.getString("saveMessage","");saveError=state.getString("saveError","");
+            if(saving==null&&state.getBoolean("savePending")){saveMessage=L.t("Save status is unknown.","保存状态尚未确认。");saveError=L.t("The app restarted during saving. Check your chosen location before saving again; a partial file may remain.","App 在保存期间重新启动。再次保存前，请检查所选位置；那里可能留有不完整文件。");}}
+        if(saving!=null)saving.observer=this::updateSaveUi;
         if(state!=null)try{
             File restored=new File(state.getString("file",""));
             if(restored.isFile()&&restored.getCanonicalFile().getParentFile().equals(store.cacheDir().getCanonicalFile())&&restored.getName().startsWith("droprun-delivery-")){currentFile=restored;currentItem=new JSONObject(state.getString("item"));restorePreview();return;}
         }catch(Exception ignored){}
+        picking=false;if(saving!=null){saving.observer=null;saving.cleanup=true;if(saving.done)saving.file.delete();saving=null;}
         loadList();
     }
     Store createStore(){return new Store(this);}
@@ -44,8 +52,9 @@ public class DeliverablesActivity extends StyledActivity {
     int dp(int value){return Ui.dp(this,value);}
     /** Fresh page for each state (list, download, preview): black ground, back chevron, screen title. */
     void base(String title){
+        saveButton=null;fileBack=null;saveNotice=null;saveDetail=null;
         page=Ui.page(this);
-        ImageButton back=Ui.iconButton(this,R.drawable.ic_chevron_left,L.t("Back","返回"));back.setOnClickListener(v->finish());
+        ImageButton back=Ui.iconButton(this,R.drawable.ic_chevron_left,L.t("Back","返回"));back.setOnClickListener(v->onBackPressed());
         Ui.topBar(this,page,back,title,false,null);Ui.enter(page);
     }
     void primary(String title,Runnable action){add(Ui.button(this,title,true),action);}
@@ -67,6 +76,8 @@ public class DeliverablesActivity extends StyledActivity {
 
     // ---- list -----------------------------------------------------------------------------------
     void loadList(){
+        if(saveBusy()||picking)return;
+        saving=null;saveMessage="";saveError="";
         clearFile();base(L.t("Delivery files","交付文件"));information(L.t("Loading delivery files","正在读取清单"),L.t("Checking the private delivery files available to this phone…","正在确认这台手机可下载的私有交付文件…"));secondary(L.t("Back to report","返回报告"),this::finish);
         io.execute(()->{
             try{JSONArray items=store.get("/tasks/"+taskId+"/deliverables").getJSONArray("deliverables");runOnUiThread(()->{if(isDestroyed()||isFinishing())return;renderList(items);});}
@@ -111,9 +122,12 @@ public class DeliverablesActivity extends StyledActivity {
     void showFile(){
         base(L.t("File preview","文件预览"));
         TextView filename=Ui.title(this,currentItem.optString("name"),18);filename.setTextIsSelectable(true);page.addView(filename);
+        saveNotice=Ui.text(this,"",14,Ui.TEXT);saveNotice.setAccessibilityLiveRegion(android.view.View.ACCESSIBILITY_LIVE_REGION_POLITE);page.addView(saveNotice,Ui.margins(this,8,0));
+        saveDetail=Ui.text(this,"",13,Ui.MUTED);page.addView(saveDetail,Ui.margins(this,4,0));
+        saveButton=Ui.button(this,L.t("Save to phone","保存到手机"),true);add(saveButton,this::saveFile);
+        fileBack=Ui.button(this,L.t("Back to delivery files","返回交付列表"),false);add(fileBack,this::loadList);updateSaveUi();
         LinearLayout verified=information(L.t("SHA-256 verified · ","SHA-256 已核对 · ")+size(currentItem.optLong("size")),L.t("Preview displays content only. HTML, scripts and patches are not executed.","预览只显示内容，不执行 HTML、脚本或补丁。"));
         TextView hash=Ui.text(this,currentItem.optString("sha256"),11,Ui.MUTED);hash.setTypeface(Typeface.MONOSPACE);hash.setTextIsSelectable(true);verified.addView(hash,1);
-        primary(L.t("Save to phone","保存到手机"),this::saveFile);secondary(L.t("Back to delivery files","返回交付列表"),this::loadList);
         page.addView(Ui.label(this,L.t("File contents","文件内容")));
         boolean previewed=false;
         try{
@@ -139,21 +153,52 @@ public class DeliverablesActivity extends StyledActivity {
     }
 
     // ---- save through the system file picker ---------------------------------------------------
-    void saveFile(){Intent intent=new Intent(Intent.ACTION_CREATE_DOCUMENT);intent.addCategory(Intent.CATEGORY_OPENABLE);intent.setType("application/octet-stream");intent.putExtra(Intent.EXTRA_TITLE,currentItem.optString("name").replace('\\','/').replaceAll(".*/",""));startActivityForResult(intent,20);}
+    boolean saveBusy(){return saving!=null&&!saving.done;}
+    void updateSaveUi(){
+        if(saveButton==null||isDestroyed()||isFinishing())return;
+        if(saving!=null&&saving.done&&saving.invalidCache){String reason=saving.error;loadList();error(new IOException(reason));return;}
+        boolean busy=saveBusy();
+        if(saving!=null&&saving.done){saveMessage=saving.error.isEmpty()?L.t("Saved to your chosen location.","已保存到你选择的位置。"):L.t("Save failed. Your preview is still available.","保存失败，预览仍然保留。");saveError=saving.error.isEmpty()?"":saving.error+L.t("\nCheck the selected location for a partial file before trying again.","\n重试前，请检查所选位置是否留有不完整文件。");}
+        String message=busy?L.t("Checking access and saving to your chosen location.","正在核对权限并保存到所选位置。"):picking?L.t("Choose a location in the system file picker.","请在系统文件选择器中选择保存位置。"):saveMessage;
+        saveNotice.setText(message);saveNotice.setVisibility(message.isEmpty()?android.view.View.GONE:android.view.View.VISIBLE);
+        saveDetail.setText(saveError);saveDetail.setVisibility(saveError.isEmpty()||busy||picking?android.view.View.GONE:android.view.View.VISIBLE);
+        saveButton.setText(busy?L.t("Saving file…","正在保存…"):picking?L.t("Choosing location…","正在选择位置…"):L.t("Save to phone","保存到手机"));saveButton.setEnabled(!busy&&!picking);fileBack.setEnabled(!busy&&!picking);
+    }
+    void saveFile(){
+        if(picking||saveBusy()||currentFile==null||currentItem==null)return;
+        saving=null;saveMessage="";saveError="";picking=true;updateSaveUi();
+        Intent intent=new Intent(Intent.ACTION_CREATE_DOCUMENT);intent.addCategory(Intent.CATEGORY_OPENABLE);intent.setType("application/octet-stream");intent.putExtra(Intent.EXTRA_TITLE,currentItem.optString("name").replace('\\','/').replaceAll(".*/",""));
+        try{startActivityForResult(intent,20);}catch(RuntimeException e){picking=false;saveMessage=L.t("Could not open save locations.","无法打开保存位置。");saveError=e.getMessage()==null?"":e.getMessage();updateSaveUi();}
+    }
     @Override protected void onActivityResult(int requestCode,int resultCode,Intent data){
-        super.onActivityResult(requestCode,resultCode,data);if(requestCode!=20||resultCode!=RESULT_OK||data==null||data.getData()==null)return;
+        super.onActivityResult(requestCode,resultCode,data);if(requestCode!=20||!picking||saveBusy())return;
+        picking=false;
+        if(resultCode!=RESULT_OK||data==null||data.getData()==null){saveMessage=L.t("Save cancelled. Your preview is still available.","已取消保存，预览仍然保留。");updateSaveUi();return;}
         Uri destination=data.getData();File file=currentFile;JSONObject item=currentItem;
-        if(!"content".equals(destination.getScheme())){error(new IOException(L.t("Choose a location from the system file picker.","请选择系统文件选择器提供的保存位置")));return;}
-        if(file==null||item==null){error(new IOException(L.t("The cached download expired. Download it again.","下载缓存已失效，请重新下载")));return;}
-        io.execute(()->{try{
+        if(!"content".equals(destination.getScheme())){updateSaveUi();error(new IOException(L.t("Choose a location from the system file picker.","请选择系统文件选择器提供的保存位置")));return;}
+        if(file==null||item==null){updateSaveUi();error(new IOException(L.t("The cached download expired. Download it again.","下载缓存已失效，请重新下载")));return;}
+        saving=new SaveOperation(store,taskId,file,item,destination);saving.observer=this::updateSaveUi;saveMessage="";saveError="";updateSaveUi();io.execute(saving);
+    }
+    /** Work uses application context; the UI observer is detached when its Activity is destroyed. */
+    static final class SaveOperation implements Runnable {
+        final Store store;final String taskId;final File file;final JSONObject item;final Uri destination;
+        boolean done,cleanup,invalidCache;String error="";Runnable observer;
+        SaveOperation(Store store,String taskId,File file,JSONObject item,Uri destination){this.store=store;this.taskId=taskId;this.file=file;this.item=item;this.destination=destination;}
+        @Override public void run(){String failure="";try{
             JSONArray allowed=store.get("/tasks/"+taskId+"/deliverables").getJSONArray("deliverables");boolean found=false;
             for(int i=0;i<allowed.length();i++)if(allowed.getJSONObject(i).optString("id").equals(item.optString("id"))&&allowed.getJSONObject(i).optString("sha256").equals(item.optString("sha256")))found=true;
             if(!found)throw new IOException(L.t("This file was deleted or is no longer available to this phone.","产物已删除或不再允许下载"));
-            Store.verifyDeliverable(file,item);
-            try(InputStream in=new FileInputStream(file);OutputStream out=getContentResolver().openOutputStream(destination,"w")){if(out==null)throw new IOException(L.t("Could not open the save location.","无法打开保存位置"));byte[] buffer=new byte[65536];int n;while((n=in.read(buffer))!=-1)out.write(buffer,0,n);}
-            runOnUiThread(()->{if(!isDestroyed())Toast.makeText(this,L.t("Saved to the location you selected.","已保存到你选择的位置"),Toast.LENGTH_LONG).show();});
-        }catch(Exception e){runOnUiThread(()->error(e));}});
+            try{Store.verifyDeliverable(file,item);}catch(Exception changed){invalidCache=true;throw changed;}
+            try(InputStream in=new FileInputStream(file);OutputStream out=store.context.getContentResolver().openOutputStream(destination,"w")){if(out==null)throw new IOException(L.t("Could not open the save location.","无法打开保存位置"));byte[] buffer=new byte[65536];int n;while((n=in.read(buffer))!=-1)out.write(buffer,0,n);}
+        }catch(Exception e){failure=e.getMessage()==null?L.t("Could not complete the save.","未能完成保存。"):e.getMessage();}
+            String result=failure;new android.os.Handler(android.os.Looper.getMainLooper()).post(()->{error=result;done=true;if(cleanup)file.delete();if(observer!=null)observer.run();});
+        }
     }
-    @Override protected void onSaveInstanceState(Bundle state){if(currentFile!=null&&currentItem!=null){state.putString("file",currentFile.getPath());state.putString("item",currentItem.toString());}super.onSaveInstanceState(state);}
-    @Override protected void onDestroy(){if(isFinishing())clearFile();io.shutdown();super.onDestroy();}
+    @Override public void onBackPressed(){
+        if(saveBusy()){new AlertDialog.Builder(this).setTitle(L.t("Save in progress","正在保存文件")).setMessage(L.t("Leaving closes this preview while the save continues. Check the selected location for the result.","离开会关闭预览，保存仍将继续。请到所选位置检查结果。")).setNegativeButton(L.t("Stay here","留在此页"),null).setPositiveButton(L.t("Leave preview","离开预览"),(dialog,which)->finish()).show();}
+        else super.onBackPressed();
+    }
+    @Override public Object onRetainNonConfigurationInstance(){return saving;}
+    @Override protected void onSaveInstanceState(Bundle state){if(currentFile!=null&&currentItem!=null){state.putString("file",currentFile.getPath());state.putString("item",currentItem.toString());}state.putBoolean("picking",picking);state.putBoolean("savePending",saveBusy());state.putString("saveMessage",saveMessage);state.putString("saveError",saveError);super.onSaveInstanceState(state);}
+    @Override protected void onDestroy(){if(saving!=null)saving.observer=null;if(isFinishing()){if(saveBusy())saving.cleanup=true;else clearFile();}io.shutdown();super.onDestroy();}
 }

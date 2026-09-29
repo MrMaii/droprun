@@ -55,6 +55,10 @@ in [0.5.0](../releases/0.5.0.md).
 - Delivery-file previews recheck cached size and hash after recreation and before
   export. Changed or expired content must not appear as verified. Loading, empty,
   failed/retry and cancelled-save states preserve an accurate route back to reports.
+- File saving shows waiting/results beside the action and prevents duplicate
+  requests. Recreation preserves the active save; losing its state explains the
+  unknown result without automatically writing again. Failure retains the preview
+  for explicit retry. Leaving during a save requires an accurate confirmation.
 
 
 状态：目标需求，含已采纳的 0.3.0 增量  
