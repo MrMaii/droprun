@@ -13,25 +13,26 @@ posting is authorized. New campaign assets remain deferred until the agreed gate
 
 ## Completed this pass
 
-- File export now shows pending/success/failure next to Save, before hash details.
-  Picker requests lock immediately; duplicate callbacks do not repeat active saves.
-  Cancellation and picker-launch failure keep the preview usable.
-- The in-process save survives configuration changes, with the old Activity
-  observer detached. Missing retained work with a saved pending flag shows an
-  unknown-result warning; no automatic write occurs.
-- Provider failure retains the preview for explicit retry. Leaving an active save
-  requires confirmation and defers source-file cleanup until the operation ends.
-  This does not promise completion after process termination.
-- Six new native cases use a private debug-only local provider and an intercepted
-  picker. They cover writes, provider-open failure/retry, duplicate requests,
-  recreation, revoked access, uncertain-state restoration and leave/cleanup.
-  Actual system-picker UI, external providers and real process death remain open.
-- Final 36-case suite passes on API 26/35 at 100%/200% font. Twelve JVM cases,
-  debug/test/signed-release builds and both lint variants pass. No new ANR in
-  final DropBox snapshots. Screenshots confirm large-text feedback/confirmation.
-- Signed candidate refreshed; exact hash/logs are in the release record. No push,
-  live task, deployment or existing Connector change.
+- Exercised the installed Android system document picker with synthetic delivery
+  bytes: cancellation, rotation, return to a recreated preview, actual local save,
+  exact-byte readback through the returned URI and deletion of that test document.
+- Found a system-picker limitation on both emulators: rotation resets edited names
+  to the suggested filename. Final tests record this, reconfirm the name and only
+  then save; filename preservation is NOT passed. EN/ZH self-hosting guides explain
+  the check. No custom-picker workaround or new App permission was introduced.
+- A controlled provider failure after a nonempty prefix of a 2 MiB write produces
+  failure feedback and retains the source. Explicit retry replaces the partial
+  output, with exact length/hash verification. This is not actual disk-full proof.
+- Final full native suites pass 39/39 on API 26/35 at 100% font. All three new
+  cases pass at 200% on both. Debug/test builds, 12 JVM cases and debug lint pass.
+  Final DropBox snapshots have no new ANR; old incident remains unresolved.
+- Only debug fixtures, tests and docs changed. The signed release APK, production
+  code, public website/release and private Connector remain unchanged.
 
+The preceding pass (`5d7ab01`) added retained export progress, duplicate-request
+locks, inline success/failure/retry and leave confirmation with deferred source
+cleanup. Its 36 cases passed on both runtimes at both font scales. The current
+release APK still contains that production implementation.
 The preceding pass (`604d556`) preserves unchanged periodic JobInfo, registers
 missing/changed schedules, and removes DNS/home-launch dependencies from local
 fixtures. Its final API 26/35 runs each passed 30 cases. The original API 35
@@ -123,15 +124,15 @@ Signing material remains ignored. Git author: Thomas Deng
 
 ## Single recommended next action
 
-Validate the actual Android system save picker against a synthetic local delivery:
-open/cancel, choose a test destination, recreate while choosing and inspect the
-saved bytes, without calling a real Relay. Then cover partial-write/provider
-failure recovery. Current export tests intercept the picker and must not be
-presented as system-picker acceptance. Preserve the unresolved ANR and all real
-submission/physical-device gates.
+Close the remaining local history-view coverage: use synthetic multi-page history
+and status/pending changes to verify that render/refresh preserves the visible
+item and offset, retains loaded older pages and does not replay entry animation.
+ProjectHistoryActivity.render currently rebuilds rows with notifyDataSetChanged;
+its saved scroll state is used on restoration, so inspect actual runtime behavior
+before deciding whether code needs changing. No live Relay requests.
 
 ## Files involved
 
-DeliverablesActivity; debug delivery fixture/local provider/manifest; native
-recovery tests; PRD, contracts, changelog, UI matrix, release record and this handoff.
-No Windows runtime change, public deployment or social posting in this pass.
+Debug delivery fixture/export provider; native recovery tests; EN/ZH self-hosting
+guides; UI matrix, release record and this handoff. No production implementation,
+release artifact, public deployment or social posting change in this pass.

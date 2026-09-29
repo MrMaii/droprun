@@ -132,3 +132,9 @@ database export for recovery; this candidate has no automatic cloud rollback.
 If setup fails, retry the saved step and share only redacted diagnostics. If a
 source cannot be read, try a directly shared file you have permission to use;
 do not treat metadata-only fallback as full video understanding.
+
+When saving a delivery file, check its name and location in Android's system
+picker before pressing Save. The tested Android 8 and 15 emulator pickers reset
+an edited filename to the suggested name after rotation; enter the name again
+if needed. This picker behavior is outside DropRun's preview. If a save fails,
+check the destination for an incomplete file before retrying.

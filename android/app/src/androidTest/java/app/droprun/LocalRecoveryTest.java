@@ -56,6 +56,71 @@ public class LocalRecoveryTest {
         awaitDelivery(scenario,"local-evidence.txt");scenario.onActivity(activity->activity.download(DemoDeliverablesActivity.item()));awaitDelivery(scenario,DemoDeliverablesActivity.CONTENT);
     }
     Intent exportDestination(){return new Intent().setData(android.net.Uri.parse("content://"+context.getPackageName()+".export-fixture/local-output"));}
+    @Test public void deliveryPartialWriteIsFailureAndAnExplicitRetryReplacesIt()throws Exception{
+        DemoDeliverablesActivity.reset();DemoExportProvider.opens.set(0);DemoExportProvider.fail=false;DemoExportProvider.partial=true;
+        DemoDeliverablesActivity.exportBytes=new byte[2*1024*1024];java.util.Arrays.fill(DemoDeliverablesActivity.exportBytes,(byte)'x');
+        try(ActivityScenario<DemoDeliverablesActivity> scenario=ActivityScenario.launch(DemoDeliverablesActivity.class)){
+            awaitDelivery(scenario,"local-evidence.txt");scenario.onActivity(activity->activity.download(DemoDeliverablesActivity.item()));awaitDelivery(scenario,"Save to phone");
+            scenario.onActivity(activity->{activity.saveFile();activity.onActivityResult(20,android.app.Activity.RESULT_OK,exportDestination());});awaitDelivery(scenario,"Save failed. Your preview is still available.");
+            assertTrue(DemoExportProvider.file(context).length()>0);assertTrue(DemoExportProvider.file(context).length()<DemoDeliverablesActivity.content().length);
+            scenario.onActivity(activity->{assertNull(findText(activity.page,"Saved to your chosen location."));assertTrue(findText(activity.page,"Save to phone").isEnabled());assertEquals(DemoDeliverablesActivity.content().length,activity.currentFile.length());});captureUi("export-partial-write-local");
+            DemoExportProvider.partial=false;scenario.onActivity(activity->{activity.saveFile();activity.onActivityResult(20,android.app.Activity.RESULT_OK,exportDestination());});awaitDelivery(scenario,"Saved to your chosen location.");
+            Store.verifyDeliverable(DemoExportProvider.file(context),DemoDeliverablesActivity.item());assertEquals(2,DemoExportProvider.opens.get());
+        }finally{DemoExportProvider.partial=false;DemoExportProvider.file(context).delete();DemoDeliverablesActivity.reset();}
+    }
+    @Test public void deliverySystemPickerCancellationReturnsToPreview()throws Exception{
+        DemoDeliverablesActivity.reset();DemoDeliverablesActivity.systemPicker=true;
+        try(ActivityScenario<DemoDeliverablesActivity> scenario=ActivityScenario.launch(DemoDeliverablesActivity.class)){
+            openLocalDelivery(scenario);scenario.onActivity(DemoDeliverablesActivity::saveFile);awaitSystemPicker();captureUi("system-picker-local");
+            android.view.accessibility.AccessibilityNodeInfo root=InstrumentationRegistry.getInstrumentation().getUiAutomation().getRootInActiveWindow();StringBuilder tree=new StringBuilder();pickerTree(root,tree);Files.write(new File(context.getExternalFilesDir(null),"system-picker-tree.txt").toPath(),tree.toString().getBytes(StandardCharsets.UTF_8));
+            assertTrue(InstrumentationRegistry.getInstrumentation().getUiAutomation().performGlobalAction(android.accessibilityservice.AccessibilityService.GLOBAL_ACTION_BACK));
+            captureUi("system-picker-first-back-local");
+            root=InstrumentationRegistry.getInstrumentation().getUiAutomation().getRootInActiveWindow();
+            if(root!=null&&root.getPackageName()!=null&&root.getPackageName().toString().contains("documentsui"))assertTrue(InstrumentationRegistry.getInstrumentation().getUiAutomation().performGlobalAction(android.accessibilityservice.AccessibilityService.GLOBAL_ACTION_BACK));
+            awaitDelivery(scenario,"Save cancelled. Your preview is still available.");scenario.onActivity(activity->{assertTrue(activity.currentFile.isFile());assertTrue(findText(activity.page,"Save to phone").isEnabled());});assertNull(DemoDeliverablesActivity.savedDestination);
+        }finally{DemoDeliverablesActivity.reset();}
+    }
+    void awaitSystemPicker()throws Exception{
+        long deadline=android.os.SystemClock.elapsedRealtime()+6000;
+        do{android.view.accessibility.AccessibilityNodeInfo root=InstrumentationRegistry.getInstrumentation().getUiAutomation().getRootInActiveWindow();if(root!=null&&root.getPackageName()!=null&&root.getPackageName().toString().contains("documentsui"))return;Thread.sleep(50);}while(android.os.SystemClock.elapsedRealtime()<deadline);
+        fail("System document picker did not appear");
+    }
+    void pickerTree(android.view.accessibility.AccessibilityNodeInfo node,StringBuilder tree){
+        if(node==null)return;tree.append(node.getViewIdResourceName()).append(" | ").append(node.getText()).append(" | ").append(node.getContentDescription()).append(" | clickable=").append(node.isClickable()).append('\n');for(int n=0;n<node.getChildCount();n++)pickerTree(node.getChild(n),tree);
+    }
+    android.view.accessibility.AccessibilityNodeInfo pickerFilename(android.view.accessibility.AccessibilityNodeInfo node){
+        if(node==null)return null;if(node.isEditable()&&"android:id/title".equals(node.getViewIdResourceName()))return node;
+        for(int n=0;n<node.getChildCount();n++){android.view.accessibility.AccessibilityNodeInfo found=pickerFilename(node.getChild(n));if(found!=null)return found;}return null;
+    }
+    void awaitPickerFilename(String expected)throws Exception{
+        long deadline=android.os.SystemClock.elapsedRealtime()+4000;String actual="";
+        do{android.view.accessibility.AccessibilityNodeInfo input=pickerFilename(InstrumentationRegistry.getInstrumentation().getUiAutomation().getRootInActiveWindow());if(input!=null){input.refresh();actual=String.valueOf(input.getText());if(expected.equals(actual))return;}Thread.sleep(50);}while(android.os.SystemClock.elapsedRealtime()<deadline);
+        assertEquals("System picker filename",expected,actual);
+    }
+    @Test public void deliverySystemPickerSavesExactBytesAfterRotation()throws Exception{
+        DemoDeliverablesActivity.reset();DemoDeliverablesActivity.systemPicker=true;
+        android.app.UiAutomation automation=InstrumentationRegistry.getInstrumentation().getUiAutomation();
+        try(ActivityScenario<DemoDeliverablesActivity> scenario=ActivityScenario.launch(DemoDeliverablesActivity.class)){
+            openLocalDelivery(scenario);scenario.onActivity(DemoDeliverablesActivity::saveFile);awaitSystemPicker();
+            String name="droprun-local-"+UUID.randomUUID()+".txt";
+            android.view.accessibility.AccessibilityNodeInfo input=pickerFilename(automation.getRootInActiveWindow());assertNotNull(input);
+            android.os.Bundle text=new android.os.Bundle();text.putCharSequence(android.view.accessibility.AccessibilityNodeInfo.ACTION_ARGUMENT_SET_TEXT_CHARSEQUENCE,name);assertTrue(input.performAction(android.view.accessibility.AccessibilityNodeInfo.ACTION_SET_TEXT,text));
+            awaitPickerFilename(name);captureUi("system-picker-named-local");
+            int before=DemoDeliverablesActivity.creations.get();assertTrue(automation.setRotation(android.app.UiAutomation.ROTATION_FREEZE_90));
+            long deadline=android.os.SystemClock.elapsedRealtime()+5000;android.graphics.Rect bounds=new android.graphics.Rect();
+            do{android.view.accessibility.AccessibilityNodeInfo root=automation.getRootInActiveWindow();if(root!=null)root.getBoundsInScreen(bounds);if(bounds.width()>bounds.height()&&pickerFilename(root)!=null)break;Thread.sleep(50);}while(android.os.SystemClock.elapsedRealtime()<deadline);
+            assertTrue("The system picker must actually rotate",bounds.width()>bounds.height());awaitSystemPicker();
+            captureUi("system-picker-rotated-local");input=pickerFilename(automation.getRootInActiveWindow());assertNotNull(input);String rotatedName=String.valueOf(input.getText());
+            assertTrue("Picker must retain either the edited or originally suggested name",name.equals(rotatedName)||DemoDeliverablesActivity.item().getString("name").equals(rotatedName));
+            // Some system picker versions reset edited names on rotation. Record, then explicitly confirm the name again.
+            Files.write(new File(context.getExternalFilesDir(null),"system-picker-rotation.txt").toPath(),("editedFilenamePreserved="+name.equals(rotatedName)+"\n").getBytes(StandardCharsets.UTF_8));
+            assertTrue(input.performAction(android.view.accessibility.AccessibilityNodeInfo.ACTION_SET_TEXT,text));awaitPickerFilename(name);clickWindowText("SAVE");
+            awaitDelivery(scenario,"Saved to your chosen location.");assertTrue("The hidden preview recreates when it returns from the rotated picker",DemoDeliverablesActivity.creations.get()>before);assertNotNull(DemoDeliverablesActivity.savedDestination);
+            assertFalse(DemoDeliverablesActivity.savedDestination.getAuthority().endsWith("export-fixture"));
+            try(java.io.InputStream bytes=context.getContentResolver().openInputStream(DemoDeliverablesActivity.savedDestination);java.io.ByteArrayOutputStream output=new java.io.ByteArrayOutputStream()){byte[] buffer=new byte[256];int n;while((n=bytes.read(buffer))!=-1)output.write(buffer,0,n);assertEquals(DemoDeliverablesActivity.CONTENT,new String(output.toByteArray(),StandardCharsets.UTF_8));}
+            captureUi("system-picker-saved-local");assertTrue(android.provider.DocumentsContract.deleteDocument(context.getContentResolver(),DemoDeliverablesActivity.savedDestination));DemoDeliverablesActivity.savedDestination=null;
+        }finally{if(DemoDeliverablesActivity.savedDestination!=null)android.provider.DocumentsContract.deleteDocument(context.getContentResolver(),DemoDeliverablesActivity.savedDestination);automation.setRotation(android.app.UiAutomation.ROTATION_FREEZE_0);DemoDeliverablesActivity.reset();}
+    }
     @Test public void deliveryPickerLocksUntilCancelAndRecoversWhenUnavailable()throws Exception{
         DemoDeliverablesActivity.reset();
         try(ActivityScenario<DemoDeliverablesActivity> scenario=ActivityScenario.launch(DemoDeliverablesActivity.class)){
