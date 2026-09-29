@@ -13,35 +13,35 @@ posting is authorized. New campaign assets remain deferred until the agreed gate
 
 ## Completed this pass
 
-- Added private DemoImportProvider and three ShareAttachmentTest cases covering
-  exact bytes, original-source disappearance after a complete copy, second-file
-  partial failure cleanup, recreation while copying and cleanup on normal Close.
-  DemoShare now preserves incoming MIME and multiple-share action. Never submits.
-- Actual API 35 post-copy process probe removed the provider source, killed the
-  stopped app, restored task2326 with PID11494 changing to11581, and verified the
-  copied file's SHA-256 unchanged. Normal Close removed this copy; no outbox write.
-- Full regression exposed touch-mode viewport jumps in Home/history. Explicit
-  touch/keyboard test variants reproduced both. Touch updates now capture record
-  ID and padding-relative offset before replacing rows, then restore that record.
-  Keyboard native stable-ID handling and Activity restoration retain precedence.
-- Final current-source native suites: API35 and API26 each54/54. Two viewport
-  cases at200% pass on both. Twelve JVM cases, debug lint and signed build pass.
-  Refreshed signed candidate; same certificate. Hash/evidence in release record.
-- Preserved initial failures: fixture MIME launch mismatch (explicitly stopped),
-  touch jumps and insufficient native-only saved-state attempt; one total-read
-  assertion (1 versus2) in file-preview restoration. That test now requires zero
-  added reads across recreation, retaining path/Save assertions. Extra-read cause
-  is not established; isolated and final full runs pass.
-- API26 snapshot resumed with ADB offline; reconnect failed, orderly stop/cold
-  boot retained data and restored connectivity. No new app ANR in final records.
-  Preferences restored and devices stopped. No public/remote/Windows/campaign change.
+- Added a debug-only `/held-input` source. It writes4096 bytes, then waits while
+  cache/synthetic-import.hold exists. This gate survives the receiving process,
+  allowing the host to kill it and release the next process without fake lifecycle.
+- Reproduced a real orphan: PID15049 was killed while stopped mid-copy; original
+  task2642 resumed in PID15246 and completed a new262144-byte file. The old4096-byte
+  copy persisted. Normal Close removed only the full copy. This remains UNFIXED.
+- The receive path assigns attachment metadata only after all copying finishes;
+  saved Activity state omits attachments while receiving. The partial file has no
+  restored cleanup owner. Do not call this a passing interruption case.
+- Recorded XML and structured observations. Removed only this probe's known
+  partial64d71ad9-4c1a-4bb0-b6ae-016ba3fafd1e and synthetic source after recording.
+  The older unknown file remained untouched. Manual cleanup is not a product fix.
+- Debug/instrumentation build passed; three existing attachment cases pass5.974s.
+  No production source or signed APK changed. No full54-case rerun for this small
+  fixture extension; previous full results belong to the preceding code pass.
+- No preference changes, real submission, public deployment or campaign assets.
+  Debug app stopped, emulator shut down; no running workers/markers remain.
+
+Previous code pass `88ce635` fixed touch viewport jumps and added three attachment
+cases. Its full native suites passed54/54 on both APIs, two viewport cases at200%
+passed on each, and JVM12/debug lint/signed build passed. Initial viewport, fixture
+launch and file-preview total-read assertion failures remain in the release record.
 
 Prior audit `2b385ac` maps original requirements to evidence in the release record
 and verifies stopped text-editor process recovery. It does not close live gates.
 
 Evidence and current artifact hash: [0.5.1 UX validation](../../docs/releases/0.5.1-ux.md).
 Control/flow coverage and missing acceptance: [UI matrix](../../docs/releases/0.5.1-ui-matrix.md).
-Do not duplicate detailed historical run results here. The current 54-case suites
+Do not duplicate detailed historical run results here. The preceding 54-case suites
 include prior model/default focus, Home/history restoration, file-export recovery,
 permission, retention, instance-isolation and scheduling cases. Those tests prove
 only their local assertions, not real delivery or physical performance.
@@ -53,6 +53,8 @@ and `share-choice-api{26,35}-large-{light,dark}.png`. Text process probe uses
 `process-share-{before,after,material}.xml` and `process-share-after.png`.
 File process probe uses `attachment-process-{before,after}.xml` and
 `attachment-process-after.png` in the same folder.
+Interrupted-copy evidence: `import-held-{before,restored}.xml` and
+`import-interruption-observations.json`. The latter explicitly records failure.
 Synthetic fixtures are not
 actual agent work. Node's preceding 198-case pass and Windows manifest evidence
 remain in the release record; Node/Windows did not change this pass.
@@ -94,17 +96,17 @@ Git author: Thomas Deng <150266369+MrMaii@users.noreply.github.com>.
 
 ## Single recommended next action
 
-Validate local attachment integrity and recovery using synthetic files/providers,
-specifically abrupt process termination during copying. Post-copy process recovery
-and same-process Activity recreation are now covered, not that missing path.
-One preexisting fixture-scope attachment remained before/after the manual probe
-(`6d908a45-e442-428d-aac7-b9eace8e1705`); ownership is not established and it was
-not deleted. Inspect receive/onSaveInstanceState and file ownership, then use a
-controlled slow local source to reproduce partial-file cleanup/recovery. Do not
-blindly sweep attachment directories. No real provider, submission or Codex run.
+Fix the confirmed interrupted-copy orphan with explicit per-share file ownership
+that survives process recovery. Preserve completed copies, validate instance/source
+identity, distinguish partial from completed bytes, and prevent a closing old
+Activity from deleting another Activity's adopted copy or an outbox-owned file.
+Inspect receiver lifecycle before choosing the smallest implementation; blindly
+sweeping attachments or merely moving the orphan into cache is not the fix.
+Re-run the held-source process probe and the three existing attachment cases.
+Older unknown6d908a45-e442-428d-aac7-b9eace8e1705 remains; do not delete it without
+ownership evidence. No real provider, remote submission or Codex execution.
 
 ## Files involved
 
-MainActivity, ProjectHistoryActivity, LocalRecoveryTest, ShareAttachmentTest,
-DemoImportProvider, DemoShareActivity, debug manifest, PRD/CONTRACTS, UI matrix,
-UX release record and this handoff. Refreshed ignored signed APK and local evidence.
+DemoImportProvider, UI matrix, UX release record and this handoff. Ignored local
+process-probe XML/observations. Production code and signed APK remain unchanged.
