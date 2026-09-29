@@ -8,6 +8,7 @@ executable distributed alongside it. Dependency licenses must accompany releases
 | Node.js | Windows runtime | [MIT and bundled notices](https://github.com/nodejs/node/blob/main/LICENSE) |
 | node-qrcode | Pairing QR codes | [MIT](https://github.com/soldair/node-qrcode/blob/master/license) |
 | ZXing core | Android QR decoding | [Apache-2.0](https://github.com/zxing/zxing/blob/master/LICENSE) |
+| AndroidX Test | Development-only device test runner and ActivityScenario | [Apache-2.0](https://github.com/android/android-test/blob/main/LICENSE) |
 | resvg-js | Development-only SVG campaign rendering | [MPL-2.0](https://github.com/yisibl/resvg-js/blob/main/LICENSE) |
 | Wrangler | User-controlled Cloudflare deployment | [Apache-2.0 / MIT](https://github.com/cloudflare/workers-sdk) |
 | cloudflared | Optional live preview tunnel | [Apache-2.0](https://github.com/cloudflare/cloudflared/blob/master/LICENSE) |

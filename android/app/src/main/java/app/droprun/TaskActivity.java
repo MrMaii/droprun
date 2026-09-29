@@ -21,21 +21,25 @@ public class TaskActivity extends StyledActivity {
     final Handler handler=new Handler(Looper.getMainLooper());
     Store store;String taskId,snapshot="";LinearLayout body;TextView notice;boolean foreground,busy,loading,thumbnailRequested;
     android.graphics.Bitmap thumbnail;String thumbnailError="";final java.util.Set<String> expanded=new java.util.HashSet<>();
+    AlertDialog followupDialog;EditText followupInput;String followupDraft="",followupId=UUID.randomUUID().toString();
     final Runnable refresh=this::load;
     interface Work { void run() throws Exception; }
 
     @Override public void onCreate(Bundle state){
         super.onCreate(state);store=new Store(this);taskId=getIntent().getStringExtra("taskId");
+        if(state!=null){followupDraft=state.getString("followupDraft","");followupId=state.getString("followupId",followupId);java.util.ArrayList<String> sections=state.getStringArrayList("expanded");if(sections!=null)expanded.addAll(sections);}
         if(taskId==null||!taskId.matches("[a-zA-Z0-9-]{20,64}")){finish();return;}
         Ui.configureWindow(this);LinearLayout page=Ui.page(this);
         ImageButton back=Ui.iconButton(this,R.drawable.ic_chevron_left,L.t("Back to history","返回历史"));back.setOnClickListener(v->finish());
         Ui.topBar(this,page,back,L.t("Handoff","交办"),false,null);
-        notice=Ui.text(this,"",13,Ui.AMBER);notice.setVisibility(View.GONE);page.addView(notice);
+        notice=Ui.text(this,"",13,Ui.AMBER);notice.setVisibility(View.GONE);notice.setAccessibilityLiveRegion(View.ACCESSIBILITY_LIVE_REGION_POLITE);page.addView(notice);
         body=Ui.vertical(this);page.addView(body,Ui.fill());render();Ui.enter(body);
+        if(state!=null&&state.getBoolean("followupOpen"))followup();
     }
     @Override protected void onResume(){super.onResume();foreground=true;if(store!=null)load();}
     @Override protected void onPause(){foreground=false;handler.removeCallbacks(refresh);super.onPause();}
-    @Override protected void onDestroy(){handler.removeCallbacksAndMessages(null);io.shutdown();super.onDestroy();}
+    @Override protected void onSaveInstanceState(Bundle state){super.onSaveInstanceState(state);state.putStringArrayList("expanded",new java.util.ArrayList<>(expanded));state.putString("followupId",followupId);state.putString("followupDraft",followupInput==null?followupDraft:followupInput.getText().toString());if(followupDialog!=null&&followupDialog.isShowing())state.putBoolean("followupOpen",true);}
+    @Override protected void onDestroy(){handler.removeCallbacksAndMessages(null);if(followupDialog!=null)followupDialog.dismiss();io.shutdown();super.onDestroy();}
     void load(){
         handler.removeCallbacks(refresh);if(!foreground||busy||loading)return;loading=true;
         io.execute(()->{
@@ -54,7 +58,10 @@ public class TaskActivity extends StyledActivity {
         Button button=Ui.button(this,label,primary);button.setEnabled(!busy);button.setOnClickListener(v->action.run());body.addView(button,Ui.margins(this,8,0));
     }
     void disclosure(String heading,String value){
-        if(value.isEmpty())return;Button toggle=Ui.button(this,heading+(expanded.contains(heading)?" −":" +"),false);toggle.setContentDescription(heading+L.t(expanded.contains(heading)?", expanded":", collapsed",expanded.contains(heading)?L.t(", expanded","，已展开"):L.t(", collapsed","，已折叠")));toggle.setOnClickListener(v->{if(!expanded.remove(heading))expanded.add(heading);snapshot="";render();});body.addView(toggle,Ui.margins(this,12,0));if(expanded.contains(heading))block("",value);
+        if(value.isEmpty())return;
+        TextView content=Ui.text(this,ReportText.render(value),15,Ui.TEXT);content.setTextIsSelectable(true);content.setPadding(0,0,0,Ui.dp(this,16));
+        LinearLayout group=Ui.disclosure(this,heading,content,expanded.contains(heading),open->{if(open)expanded.add(heading);else expanded.remove(heading);});
+        body.addView(group,Ui.margins(this,8,0));
     }
     void render(){
         JSONObject task=store.task(taskId);String next=(task==null?"missing":task.toString())+busy+(thumbnail!=null)+thumbnailError;
@@ -62,7 +69,7 @@ public class TaskActivity extends StyledActivity {
         if(task==null){block(L.t("Handoff unavailable","任务暂不可用"),L.t("Refresh when connected. This handoff may have been deleted.","请联网刷新；任务也可能已被删除。"));return;}
         String status=text(task,"status"),plan=text(task,"plan_report"),report=text(task,"report");
         body.addView(Ui.title(this,MainActivity.name(task),24));
-        body.addView(Ui.pill(this,TaskPresentation.status(status),TaskPresentation.statusColor(status)),Ui.margins(this,8,8));
+        LinearLayout statusLine=Ui.row(this);statusLine.addView(Ui.pill(this,TaskPresentation.status(status),TaskPresentation.statusColor(status)));body.addView(statusLine,Ui.margins(this,8,8));
         body.addView(Ui.caption(this,text(task,"project_name")+" · "+TaskPresentation.mode(text(task,"execution_mode"))));
         body.addView(Ui.caption(this,L.t("Shared ","交办于 ")+TaskPresentation.elapsed(task.optLong("created_at"),System.currentTimeMillis())));
         block(L.t("Needs attention","需要处理"),text(task,"error"));
@@ -84,9 +91,9 @@ public class TaskActivity extends StyledActivity {
             button(L.t("Deny this command","拒绝这条命令"),false,()->perform(()->store.decideApproval(taskId,id,false)));
         }
         if(report.isEmpty())block(L.t("What's happening","当前进展"),TaskPresentation.noReport(status,!plan.isEmpty()));
-        else {LinearLayout outcome=Ui.card(this);outcome.addView(Ui.label(this,L.t("THE RESULT","交付结果")));String summary=report.replaceAll("(?m)^#{1,6}[^\\n]*\\n?","").replace("**","").trim();outcome.addView(Ui.text(this,TaskPresentation.clip(summary,240),16,Ui.TEXT));body.addView(outcome,Ui.margins(this,18,6));}
+        else {LinearLayout outcome=Ui.card(this);TextView label=Ui.label(this,L.t("THE RESULT","交付结果"));label.setPadding(0,0,0,Ui.dp(this,8));outcome.addView(label);String summary=TaskPresentation.resultSummary(report);outcome.addView(Ui.text(this,summary,16,Ui.TEXT));body.addView(outcome,Ui.margins(this,18,6));}
         if(Store.finished(status)){
-            if(thumbnail!=null){ImageView picture=new ImageView(this);picture.setImageBitmap(thumbnail);picture.setAdjustViewBounds(true);picture.setScaleType(ImageView.ScaleType.FIT_CENTER);picture.setContentDescription(L.t("Verified screenshot from this handoff. Open all delivery files.","本次交办的已校验截图。打开全部交付文件。"));picture.setBackground(Ui.surface(this,Ui.SURFACE));picture.setClipToOutline(true);picture.setFocusable(true);picture.setOnClickListener(v->openDeliverables());body.addView(picture,Ui.margins(this,14,8));}
+            if(thumbnail!=null){ImageView picture=new ImageView(this);picture.setImageBitmap(thumbnail);picture.setAdjustViewBounds(true);picture.setScaleType(ImageView.ScaleType.FIT_CENTER);picture.setContentDescription(L.t("Verified screenshot from this handoff. Open all delivery files.","本次交办的已校验截图。打开全部交付文件。"));picture.setBackground(Ui.surface(this,Ui.SURFACE));picture.setClipToOutline(true);picture.setFocusable(true);picture.setOnClickListener(v->openDeliverables());Ui.bindPress(picture);body.addView(picture,Ui.margins(this,14,8));}
             else if(!thumbnailError.isEmpty())body.addView(Ui.caption(this,thumbnailError),Ui.margins(this,10,0));
             if(!thumbnailRequested)loadThumbnail();
         }
@@ -121,23 +128,24 @@ public class TaskActivity extends StyledActivity {
     void confirm(String title,String message,Work work){new AlertDialog.Builder(this).setTitle(title).setMessage(message).setNegativeButton(L.t("Cancel","取消"),null).setPositiveButton(L.t("Confirm","确认"),(d,w)->perform(work)).show();}
     void notice(String message){notice.setText(message);notice.setVisibility(View.VISIBLE);}
     void perform(Work work){
-        if(busy)return;busy=true;render();
+        if(busy)return;busy=true;notice(L.t("Saving your decision…","正在保存你的决定…"));render();
         io.execute(()->{String error="";try{work.run();}catch(Exception e){error=e.getMessage();}String message=error;
-            runOnUiThread(()->{if(isDestroyed())return;busy=false;if(!message.isEmpty())notice(message);render();if(foreground)load();});});
+            runOnUiThread(()->{if(isDestroyed())return;busy=false;notice(message.isEmpty()?L.t("Saved.","已保存。"):message);if(message.isEmpty())Toast.makeText(this,L.t("Decision saved","决定已保存"),Toast.LENGTH_SHORT).show();render();if(foreground)load();});});
     }
     void followup(){
-        EditText input=new EditText(this);Ui.styleInput(input);input.setHint(L.t("Continue this handoff…","继续这个任务…"));input.setMinLines(3);
+        EditText input=new EditText(this);followupInput=input;Ui.styleInput(input);input.setHint(L.t("Continue this handoff…","继续这个任务…"));input.setMinLines(3);input.setText(followupDraft);input.setSelection(input.length());
         input.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_FLAG_MULTI_LINE);input.setFilters(new InputFilter[]{new InputFilter.LengthFilter(15000)});
         LinearLayout box=Ui.vertical(this);int padding=Ui.dp(this,20);box.setPadding(padding,0,padding,0);box.addView(input);
         box.addView(Ui.caption(this,store.directExecution()?L.t("Continues the same session. Your current setting allows direct execution.","复用原会话，按当前设置直接执行。"):L.t("Continues the same session. Your current setting requires plan approval.","复用原会话，按当前设置先看计划。")));
         AlertDialog dialog=new AlertDialog.Builder(this).setTitle(L.t("Follow up","继续追问")).setView(box).setNegativeButton(L.t("Cancel","取消"),null).setPositiveButton(L.t("Send","发送"),null).create();
-        String id=UUID.randomUUID().toString();
+        followupDialog=dialog;String id=followupId;
+        dialog.setOnDismissListener(d->followupDraft=input.getText().toString());
         dialog.setOnShowListener(d->dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v->{
             String message=input.getText().toString();if(message.trim().isEmpty()){input.setError(L.t("Write a follow-up first.","请填写追问"));return;}
             try{
                 JSONObject parent=store.task(taskId);JSONObject next=new JSONObject().put("id",id).put("parentTaskId",taskId).put("projectId",parent.getString("project_id")).put("projectName",parent.optString("project_name")).put("rootTaskId",parent.optString("root_task_id",taskId)).put("message",message).put("assets",new JSONArray()).put("localFiles",new JSONArray());
                 String model=store.defaultModel(),effort=store.defaultEffort(model);if(!model.isEmpty())next.put("model",model);if(!effort.isEmpty())next.put("effort",effort);
-                store.save(next);SyncJob.soon(this);TaskSyncService.start(this);dialog.dismiss();notice(L.t("Follow-up saved. It will send when connected; the new report will appear in this project's history.","追问已保存，联网后发送；新报告会出现在历史列表。"));
+                store.save(next);input.setText("");followupDraft="";followupId=UUID.randomUUID().toString();SyncJob.soon(this);TaskSyncService.start(this);dialog.dismiss();notice(L.t("Follow-up saved. It will send when connected; the new report will appear in this project's history.","追问已保存，联网后发送；新报告会出现在历史列表。"));Toast.makeText(this,L.t("Follow-up saved","追问已保存"),Toast.LENGTH_SHORT).show();
             }catch(Exception e){input.setError(e.getMessage());}
         }));dialog.show();
     }

@@ -29,10 +29,20 @@
     <style name="DialogTheme" parent="android:style/Theme.Material.Light.Dialog.Alert">
         <item name="android:colorAccent">#365A24</item>
         <item name="android:colorBackgroundFloating">#FFFFFF</item>
+        <item name="android:windowBackground">@drawable/dialog_surface</item>
+        <item name="android:buttonBarButtonStyle">@style/DialogButton</item>
     </style>
     <style name="DialogThemeDark" parent="android:style/Theme.Material.Dialog.Alert">
         <item name="android:colorAccent">#B8EF73</item>
         <item name="android:colorBackgroundFloating">#212B24</item>
+        <item name="android:windowBackground">@drawable/dialog_surface</item>
+        <item name="android:buttonBarButtonStyle">@style/DialogButton</item>
+    </style>
+    <style name="DialogButton" parent="android:style/Widget.Material.Button.Borderless">
+        <item name="android:textAllCaps">false</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textColor">?android:attr/colorAccent</item>
+        <item name="android:minHeight">48dp</item>
     </style>
     <style name="ShareTheme" parent="AppTheme">
         <item name="android:windowIsTranslucent">true</item>

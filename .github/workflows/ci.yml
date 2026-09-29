@@ -48,5 +48,5 @@ jobs:
           packages: platform-tools
       - run: sdkmanager 'platforms;android-35' 'build-tools;35.0.0'
       - run: chmod +x android/gradlew
-      - run: ./gradlew assembleDebug testDebugUnitTest lintDebug
+      - run: ./gradlew assembleDebug assembleDebugAndroidTest testDebugUnitTest lintDebug
         working-directory: android

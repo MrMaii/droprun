@@ -47,6 +47,7 @@ public class ShareActivity extends StyledActivity {
     final Handler handler=new Handler(Looper.getMainLooper());
     Store store;FrameLayout root,stage;Capped holder;LinearLayout sheet,projectList,panel;ScrollView scroll;Ui.Dots dots;ImageButton back,gauge;
     EditText search,note;TextView gaugeText,sendTitle,status,badge;Ui.PlaneView plane;Ui.Glass dialog;ColorDrawable scrim;ValueAnimator panelAnimator;
+    AlertDialog discardDialog;
     String shared="",last="",selected="",model="",effort="",query="",draft="";JSONArray attachments=new JSONArray();
     int step=-1;boolean receiving=true,showAll=false,panelOpen=false,busy=false,closing=false,sent=false;
 
@@ -84,6 +85,7 @@ public class ShareActivity extends StyledActivity {
     }
     @Override protected void onDestroy(){
         handler.removeCallbacksAndMessages(null);io.shutdown();
+        if(discardDialog!=null)discardDialog.dismiss();
         if(!sent&&isFinishing())discardAttachments();
         super.onDestroy();
     }
@@ -135,6 +137,16 @@ public class ShareActivity extends StyledActivity {
         if(in)scrim.setAlpha(0);ObjectAnimator.ofInt(scrim,"alpha",in?0:full,in?full:0).setDuration(in?240:200).start();
     }
     void close(){
+        if(closing)return;
+        String message=note==null?draft:note.getText().toString();
+        if(!sent&&!message.trim().isEmpty()){
+            if(discardDialog!=null&&discardDialog.isShowing())return;
+            discardDialog=new AlertDialog.Builder(this).setTitle(L.t("Discard your note?","放弃这段留言？")).setMessage(L.t("Nothing has been handed off. Closing will remove your note.","这次分享尚未交办。关闭后，这段留言将被丢弃。")).setNegativeButton(L.t("Keep editing","继续编辑"),null).setPositiveButton(L.t("Discard","放弃"),(d,w)->finishShare()).show();
+            return;
+        }
+        finishShare();
+    }
+    void finishShare(){
         if(closing)return;closing=true;hideKeyboard();closeDialog(null);
         dim(false);Ui.slideDown(holder,()->{finish();overridePendingTransition(0,0);});
     }
@@ -251,7 +263,7 @@ public class ShareActivity extends StyledActivity {
         String id=project.optString("id"),name=project.optString("name");boolean enabled=Store.projectEnabled(project),chosen=id.equals(selected);
         LinearLayout row=Ui.row(this);row.setPadding(dp(12),dp(11),dp(12),dp(11));row.setMinimumHeight(dp(52));
         if(chosen)row.setBackground(Ui.outlined(this,Ui.LIME_SOFT,0,10,0));
-        TextView label=Ui.text(this,name,15,chosen?Ui.ACCENT:Ui.TEXT);label.setPadding(0,0,0,0);if(chosen)label.setTypeface(Ui.medium());Ui.oneLine(label);row.addView(label,Ui.grow());
+        TextView label=Ui.text(this,name,15,chosen?Ui.ACCENT:Ui.TEXT);label.setPadding(0,0,0,0);if(chosen)label.setTypeface(Ui.medium());row.addView(label,Ui.grow());
         Ui.space(row,10);row.addView(Ui.pill(this,enabled?L.t("Allowed","已授权"):L.t("Allow access","需授权"),enabled?Ui.ACCENT:Ui.MUTED));
         row.setClickable(true);row.setFocusable(true);row.setContentDescription(name+(enabled?L.t(", allowed","，已授权"):L.t(", permission required","，需授权"))+(chosen?L.t(", selected","，已选择"):""));Ui.bindPress(row);
         row.setOnClickListener(v->pick(project));
@@ -294,16 +306,16 @@ public class ShareActivity extends StyledActivity {
     View stepNote(){
         LinearLayout column=Ui.vertical(this);
         column.addView(Ui.title(this,L.t("What should Codex do?","想让 Codex 做什么？"),20));
-        TextView target=Ui.caption(this,L.t("For “","转发到「")+projectName()+L.t("”","」"));Ui.oneLine(target);column.addView(target);
+        TextView target=Ui.caption(this,L.t("For “","转发到「")+projectName()+L.t("”","」"));column.addView(target);
         note=new EditText(this);note.setHint(L.t("Optional. Leave this blank and let Codex find the useful part.","可选。留空让 Codex 自己判断怎么用。"));note.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_FLAG_MULTI_LINE|InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
         note.setMinLines(3);note.setMaxLines(6);note.setFilters(new InputFilter[]{new InputFilter.LengthFilter(15000)});note.setText(draft);Ui.styleInput(note);
         column.addView(note,Ui.margins(this,8,10));
         gauge=null;gaugeText=null;panel=null;panelOpen=false;
         if(store.models().length()>0){
-            LinearLayout gaugeRow=Ui.row(this);gaugeRow.setClickable(true);gaugeRow.setFocusable(true);gaugeRow.setOnClickListener(v->togglePanel());
+            LinearLayout gaugeRow=Ui.row(this);gaugeRow.setClickable(true);gaugeRow.setFocusable(true);gaugeRow.setOnClickListener(v->togglePanel());Ui.bindPress(gaugeRow);
             gauge=Ui.iconButton(this,R.drawable.ic_gauge,L.t("Model & effort","模型强度"));gauge.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);gauge.setOnClickListener(v->togglePanel());
             gaugeRow.addView(gauge,Ui.square(this,48));Ui.space(gaugeRow,10);
-            gaugeText=Ui.caption(this,"");Ui.oneLine(gaugeText);gaugeRow.addView(gaugeText,Ui.grow());
+            gaugeText=Ui.caption(this,"");gaugeRow.addView(gaugeText,Ui.grow());
             column.addView(gaugeRow,Ui.fill());
             panel=Ui.vertical(this);panel.setVisibility(View.GONE);column.addView(panel,Ui.margins(this,4,0));
             updateGauge();
@@ -374,7 +386,7 @@ public class ShareActivity extends StyledActivity {
     // ---- step 3: the send animation -------------------------------------------------------------
     View stepSend(){
         LinearLayout column=Ui.vertical(this);
-        sendTitle=Ui.title(this,L.t("Saved on your phone","正在安排发送"),18);sendTitle.setGravity(Gravity.CENTER);column.addView(sendTitle,Ui.fill());
+        sendTitle=Ui.title(this,L.t("Saved on your phone","已保存在手机"),18);sendTitle.setGravity(Gravity.CENTER);column.addView(sendTitle,Ui.fill());
         TextView target=Ui.caption(this,L.t("For “","转发到「")+projectName()+L.t("”","」"));target.setGravity(Gravity.CENTER);Ui.oneLine(target);column.addView(target,Ui.fill());
         LinearLayout flight=Ui.row(this);
         TextView chip=materialChip();chip.setMaxWidth(dp(100));flight.addView(chip,new LinearLayout.LayoutParams(-2,-2));
@@ -393,14 +405,14 @@ public class ShareActivity extends StyledActivity {
         return mode+" "+updates;
     }
     void fly(){
-        handler.postDelayed(()->{if(!gone())plane.play(600,this::landed);},50);
+        handler.postDelayed(()->{if(!gone())plane.play(360,this::landed);},50);
     }
     void landed(){
         if(gone())return;
         sendTitle.setText(L.t("Saved. We'll take it from here.","已保存，自动发送"));
         badge.setTextColor(Ui.ACCENT);badge.setBackground(Ui.circle(this,Ui.LIME_SOFT,Ui.LIME_LINE));Ui.pulse(badge);
         status.setVisibility(View.VISIBLE);Ui.fadeIn(status,220);
-        int timeout=Ui.motionEnabled(this)?900:100;android.view.accessibility.AccessibilityManager accessibility=(android.view.accessibility.AccessibilityManager)getSystemService(ACCESSIBILITY_SERVICE);
+        int timeout=Ui.motionEnabled(this)?280:100;android.view.accessibility.AccessibilityManager accessibility=(android.view.accessibility.AccessibilityManager)getSystemService(ACCESSIBILITY_SERVICE);
         if(Build.VERSION.SDK_INT>=29)timeout=accessibility.getRecommendedTimeoutMillis(timeout,android.view.accessibility.AccessibilityManager.FLAG_CONTENT_TEXT|android.view.accessibility.AccessibilityManager.FLAG_CONTENT_CONTROLS);
         else if(accessibility.isTouchExplorationEnabled())timeout=8000;
         handler.postDelayed(this::close,timeout);

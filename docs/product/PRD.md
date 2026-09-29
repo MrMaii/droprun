@@ -28,6 +28,12 @@ in [0.5.0](../releases/0.5.0.md).
 - Accessibility: 48dp targets, 200% font, TalkBack, motion off, API26 fallback.
   Physical-device performance targets: <5% overdue frames, no >700ms frozen frame,
   p95 press feedback <100ms. These are goals, not measured results.
+- UX polish acceptance: project/computer names remain readable at 200% font;
+  share actions remain reachable by scrolling; pending entries expose failure and
+  retry; follow-up drafts survive Activity recreation. Presses, navigation and
+  disclosure changes have feedback with a motion-off path. Destructive or
+  permission-expanding decisions require confirmation; ordinary selections show
+  their selected value without an extra confirmation dialog.
 
 
 状态：目标需求，含已采纳的 0.3.0 增量  

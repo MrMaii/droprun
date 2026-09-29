@@ -43,7 +43,7 @@ public class SettingsActivity extends StyledActivity {
     void render(){
         noticeView.setText(notice);noticeView.setVisibility(notice.isEmpty()?View.GONE:View.VISIBLE);
         body.removeAllViews();
-        computerSection();appearanceSection();modeSection();modelSection();accessSection();aboutSection();
+        computerSection();appearanceSection();modeSection();modelSection();accessSection();aboutSection();disconnectSection();
     }
     LinearLayout section(String label){body.addView(Ui.label(this,label));LinearLayout card=Ui.card(this);body.addView(card,Ui.cardParams(this));return card;}
     LinearLayout.LayoutParams trailing(){LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(-2,-2);params.setMarginStart(dp(10));return params;}
@@ -53,11 +53,14 @@ public class SettingsActivity extends StyledActivity {
     void computerSection(){
         LinearLayout card=section(L.t("Computer","电脑"));
         LinearLayout head=Ui.row(this);
-        TextView name=Ui.text(this,store.computerName(),17,Ui.TEXT);name.setTypeface(Ui.medium());name.setPadding(0,0,0,0);Ui.oneLine(name);head.addView(name,Ui.grow());
+        TextView name=Ui.text(this,store.computerName(),17,Ui.TEXT);name.setTypeface(Ui.medium());name.setPadding(0,0,0,0);head.addView(name,Ui.grow());
         boolean online=store.computerOnline();
         head.addView(Ui.pill(this,online?L.t("Online","在线"):L.t("Offline","离线"),online?Ui.ACCENT:Ui.MUTED),trailing());
         card.addView(head);
         card.addView(Ui.caption(this,store.projects().length()+L.t(" Codex projects · "," 个 Codex 项目 · ")+(online?L.t("Ready to receive handoffs","随时可以接收任务"):L.t("Handoffs wait safely while offline","离线时任务会排队等待"))));
+    }
+    void disconnectSection(){
+        LinearLayout card=section(L.t("Connection management","连接管理"));
         Button disconnect=Ui.button(this,L.t("Disconnect this phone","断开这台手机"),false);Ui.styleGhost(disconnect);
         disconnect.setTextColor(new ColorStateList(new int[][]{new int[]{-android.R.attr.state_enabled},new int[]{}},new int[]{Ui.DIM,Ui.DANGER}));
         disconnect.setEnabled(!busy);
@@ -100,7 +103,7 @@ public class SettingsActivity extends StyledActivity {
     void saveMode(boolean direct){
         busy=true;notice=L.t("Saving…","正在保存…");render();
         io.execute(()->{
-            try{store.setDirectExecution(direct);runOnUiThread(()->{if(isDestroyed())return;busy=false;notice="";render();});}
+            try{store.setDirectExecution(direct);runOnUiThread(()->{if(isDestroyed())return;busy=false;notice=L.t("Execution preference saved.","执行偏好已保存。");render();noticeView.announceForAccessibility(notice);});}
             catch(Exception e){runOnUiThread(()->{if(isDestroyed())return;busy=false;notice=e.getMessage();render();});}
         });
     }
@@ -139,10 +142,9 @@ public class SettingsActivity extends StyledActivity {
 
     // ---- 项目授权 -------------------------------------------------------------------------------
     void accessSection(){
-        LinearLayout card=section(L.t("Project access","项目授权"));
+        LinearLayout container=section(L.t("Project access","项目授权"));LinearLayout card=Ui.vertical(this);
         JSONArray projects=store.projects();
-        Button manage=Ui.button(this,projects.length()+L.t(" projects · manage access"," 个项目 · 管理授权")+(showAccess?" −":" +"),false);manage.setOnClickListener(v->{showAccess=!showAccess;render();});card.addView(manage);
-        if(!showAccess)return;
+        container.addView(Ui.disclosure(this,projects.length()+L.t(" projects · manage access"," 个项目 · 管理授权"),card,showAccess,open->showAccess=open));
         if(projects.length()==0)card.addView(Ui.caption(this,L.t("No projects have synced yet. Check that your Connector is running.","电脑还没有同步项目。请确认 Connector 已启动。")));
         for(int n=0;n<projects.length();n++){
             JSONObject p=projects.optJSONObject(n);if(p==null)continue;
@@ -156,7 +158,7 @@ public class SettingsActivity extends StyledActivity {
             toggle.setContentDescription(name+(pending?L.t(", updating","，正在更改"):enabled?L.t(", allowed, tap to revoke access","，已允许，点按停止转发"):L.t(", not allowed, tap to allow","，未允许，点按允许")));
             toggle.setOnClickListener(v->{
                 if(enabled)new AlertDialog.Builder(this).setTitle(L.t("Stop handoffs to “","停止向「")+name+L.t("”?","」转发？")).setMessage(L.t("Queued and running handoffs for this project will be stopped. Changes already made will not be undone.","这个项目里排队和进行中的任务会被停止；已经发生的改动不会回滚。")).setNegativeButton(L.t("Keep","保留"),null).setPositiveButton(L.t("Stop","停止"),(d,w)->setPermission(id,false)).show();
-                else setPermission(id,true);
+                else new AlertDialog.Builder(this).setTitle(L.t("Allow handoffs to this project?","允许向这个项目交办？")).setMessage(name+"\n\n"+L.t("Future shares can ask Codex to edit this original project using your execution preference.","之后的分享可按你的执行偏好，请 Codex 修改这个原项目。" )).setNegativeButton(L.t("Cancel","取消"),null).setPositiveButton(L.t("Allow","允许"),(d,w)->setPermission(id,true)).show();
             });
             line.addView(toggle,trailing());card.addView(line);
         }
@@ -177,13 +179,14 @@ public class SettingsActivity extends StyledActivity {
         card.addView(Ui.caption(this,L.t("Your Relay: ","你的中转服务：")+store.relay().replace("https://","")));
         card.addView(Ui.caption(this,L.t("Self-hosted. Shared material and reports pass through your Relay. Codex credentials stay on your computer; transcription follows your Connector configuration.","自主部署。材料与报告经你的中转服务传递；Codex 凭证留在电脑，转写使用 Connector 配置的服务。")));
         Button notifications=Ui.button(this,L.t("Notification settings","通知设置"),false);notifications.setOnClickListener(v->startActivity(new Intent(android.provider.Settings.ACTION_APP_NOTIFICATION_SETTINGS).putExtra(android.provider.Settings.EXTRA_APP_PACKAGE,getPackageName())));card.addView(notifications,Ui.margins(this,12,0));
-        TextView help=Ui.caption(this,L.t("Need help? Run droprun doctor on your computer. It checks the connection and writes a redacted diagnostic report.","需要帮助？在电脑运行 droprun doctor，检查连接并生成已脱敏的诊断报告。"));card.addView(help,Ui.margins(this,12,0));
+        TextView help=Ui.caption(this,L.t("Need help? Open DropRun setup on your computer to check tools and connection. Share only redacted diagnostics.","需要帮助？在电脑打开 DropRun 配置页，检查工具与连接；仅分享脱敏后的诊断信息。"));card.addView(help,Ui.margins(this,12,0));
     }
 
     void appearanceSection(){
         LinearLayout card=section(L.t("Make it yours","外观与语言"));String mode=store.preferences.getString("appearance","light");String[] values={"light","dark","system"};String[] labels={L.t("Light","浅色"),L.t("Dark","深色"),L.t("System","跟随系统")};int selected=java.util.Arrays.asList(values).indexOf(mode);
-        Button appearance=Ui.button(this,L.t("Appearance · ","外观 · ")+labels[Math.max(0,selected)],false);appearance.setOnClickListener(v->new AlertDialog.Builder(this).setTitle(L.t("Appearance","外观")).setSingleChoiceItems(labels,Math.max(0,selected),(dialog,index)->{store.preferences.edit().putString("appearance",values[index]).apply();dialog.dismiss();recreate();}).setNegativeButton(L.t("Cancel","取消"),null).show());card.addView(appearance);
-        Button language=Ui.button(this,L.t("Language · English","语言 · 简体中文"),false);language.setOnClickListener(v->new AlertDialog.Builder(this).setTitle(L.t("Language","语言")).setSingleChoiceItems(new String[]{"English","简体中文"},L.chinese()?1:0,(dialog,index)->{store.preferences.edit().putString("language",index==0?"en":"zh").apply();dialog.dismiss();recreate();}).setNegativeButton(L.t("Cancel","取消"),null).show());card.addView(language,Ui.margins(this,8,0));
+        card.addView(Ui.setting(this,L.t("Appearance","外观"),labels[Math.max(0,selected)],()->new AlertDialog.Builder(this).setTitle(L.t("Appearance","外观")).setSingleChoiceItems(labels,Math.max(0,selected),(dialog,index)->{store.preferences.edit().putString("appearance",values[index]).apply();dialog.dismiss();recreate();}).setNegativeButton(L.t("Cancel","取消"),null).show()));
+        card.addView(Ui.divider(this));
+        card.addView(Ui.setting(this,L.t("Language","语言"),L.chinese()?"简体中文":"English",()->new AlertDialog.Builder(this).setTitle(L.t("Language","语言")).setSingleChoiceItems(new String[]{"English","简体中文"},L.chinese()?1:0,(dialog,index)->{store.preferences.edit().putString("language",index==0?"en":"zh").apply();dialog.dismiss();recreate();}).setNegativeButton(L.t("Cancel","取消"),null).show()));
     }
 
     @Override protected void onDestroy(){io.shutdown();super.onDestroy();}

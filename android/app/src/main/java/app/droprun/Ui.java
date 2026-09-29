@@ -20,6 +20,7 @@ import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.StateListDrawable;
+import android.graphics.drawable.RippleDrawable;
 import android.os.Build;
 import android.text.TextUtils;
 import android.view.Gravity;
@@ -70,13 +71,13 @@ public final class Ui {
         android.content.SharedPreferences p=activity.getSharedPreferences("droprun.preferences",Context.MODE_PRIVATE);String mode=p.getString("appearance","light");
         dark=mode.equals("dark")||(mode.equals("system")&&(activity.getResources().getConfiguration().uiMode&android.content.res.Configuration.UI_MODE_NIGHT_MASK)==android.content.res.Configuration.UI_MODE_NIGHT_YES);
         L.language(p.getString("language","en"));
-        BG=dark?0xFF111812:0xFFF6F7F2;SURFACE=dark?0xF0212B24:0xEFFFFFFF;SURFACE_2=dark?0xFF28332B:0xFFF1F3ED;SURFACE_3=dark?0xFF354437:0xFFE6EBCF;
-        TEXT=dark?0xFFF1F5ED:0xFF17251E;MUTED=dark?0xFFB3C1B1:0xFF5B695F;DIM=dark?0xFF9DAE9C:0xFF69786C;
+        BG=dark?0xFF121614:0xFFF5F5F0;SURFACE=dark?0xFF202622:0xFFFFFFFF;SURFACE_2=dark?0xFF292F2B:0xFFF3F4EF;SURFACE_3=dark?0xFF374138:0xFFE8EDD9;
+        TEXT=dark?0xFFF3F5F0:0xFF1C2721;MUTED=dark?0xFFB8C2B8:0xFF606C62;DIM=dark?0xFFA1AEA1:0xFF69786C;
         LINE=dark?0x24FFFFFF:0x180F211B;LINE_STRONG=dark?0x40FFFFFF:0x300F211B;LIME_SOFT=dark?0xFF2D4224:0xFFE5F3D7;LIME_LINE=dark?0xFF90B963:0xFF71894D;ACCENT=dark?LIME:0xFF365A24;
         DANGER=dark?0xFFFFB4A9:0xFFAB342E;AMBER=dark?0xFFEBD08A:0xFF826013;SCRIM=dark?0x99000000:0x660F2018;
         activity.setTheme(overlay?(dark?R.style.ShareThemeDark:R.style.ShareTheme):(dark?R.style.AppThemeDark:R.style.AppTheme));
     }
-    public static android.graphics.drawable.Drawable ground(){return new GradientDrawable(GradientDrawable.Orientation.TL_BR,dark?new int[]{0xFF182319,BG,BG}:new int[]{0xFFEDF4E5,BG,0xFFFFFCF5});}
+    public static android.graphics.drawable.Drawable ground(){return new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM,dark?new int[]{0xFF19221B,BG,BG}:new int[]{0xFFF1F5E9,BG,0xFFFAF9F5});}
 
     // ---- window ---------------------------------------------------------------------------------
     /** Palette-aware system bars, drawn edge to edge. */
@@ -267,8 +268,8 @@ public final class Ui {
     /** Two-line list row: title on top, meta beneath, optional trailing view. Compact (≈56dp). */
     public static LinearLayout listRow(Context context,CharSequence title,CharSequence meta,View trailing){
         LinearLayout row=row(context);row.setPadding(dp(context,4),dp(context,10),dp(context,4),dp(context,10));row.setMinimumHeight(dp(context,52));
-        LinearLayout words=vertical(context);TextView heading=text(context,title,15,TEXT);heading.setPadding(0,0,0,0);oneLine(heading);words.addView(heading);
-        if(meta!=null&&meta.length()>0){TextView sub=text(context,meta,12,MUTED);sub.setPadding(0,dp(context,2),0,0);oneLine(sub);words.addView(sub);}
+        LinearLayout words=vertical(context);TextView heading=text(context,title,15,TEXT);heading.setPadding(0,0,0,0);words.addView(heading);
+        if(meta!=null&&meta.length()>0){TextView sub=text(context,meta,12,MUTED);sub.setPadding(0,dp(context,2),0,0);words.addView(sub);}
         row.addView(words,grow());
         if(trailing!=null){LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(-2,-2);params.setMarginStart(dp(context,10));row.addView(trailing,params);}
         row.setClickable(true);row.setFocusable(true);bindPress(row);return row;
@@ -290,16 +291,46 @@ public final class Ui {
 
     // ---- motion ---------------------------------------------------------------------------------
     public static void bindPress(View view){
+        // A foreground ripple also covers keyboard presses and custom clickable rows.
+        view.setForeground(new RippleDrawable(ColorStateList.valueOf(dark?0x24FFFFFF:0x181C3522),null,surface(view.getContext(),Color.WHITE)));
         view.setOnTouchListener((target,event)->{
             int action=event.getActionMasked();
             if(action==MotionEvent.ACTION_DOWN||action==MotionEvent.ACTION_UP||action==MotionEvent.ACTION_CANCEL){
                 target.animate().cancel();
                 boolean down=action==MotionEvent.ACTION_DOWN&&target.isEnabled();
-                if(motionEnabled(target.getContext()))target.animate().scaleX(down?0.975f:1f).scaleY(down?0.975f:1f).setDuration(120).setInterpolator(new DecelerateInterpolator()).start();
+                if(motionEnabled(target.getContext()))target.animate().scaleX(down?0.982f:1f).scaleY(down?0.982f:1f).setDuration(down?80:160).setInterpolator(new DecelerateInterpolator()).start();
                 else{target.setScaleX(1f);target.setScaleY(1f);}
             }
             return false;
         });
+    }
+    /** Disclosure changes only its own subtree; polling never restarts this motion. */
+    public static LinearLayout disclosure(Context context,String title,View content,boolean open,java.util.function.Consumer<Boolean> change){
+        LinearLayout group=vertical(context),header=row(context);
+        TextView label=text(context,title,15,TEXT);label.setTypeface(medium());header.addView(label,grow());
+        ImageView chevron=new ImageView(context);chevron.setImageResource(R.drawable.ic_chevron_left);chevron.setImageTintList(ColorStateList.valueOf(MUTED));chevron.setRotation(open?-90:180);header.addView(chevron,square(context,20));
+        header.setMinimumHeight(dp(context,52));header.setPadding(dp(context,4),0,dp(context,4),0);header.setClickable(true);header.setFocusable(true);bindPress(header);
+        header.setContentDescription(title+(open?L.t(", expanded",", 已展开"):L.t(", collapsed",", 已折叠")));
+        content.setVisibility(open?View.VISIBLE:View.GONE);group.addView(header,fill());group.addView(content,fill());
+        header.setTag(open);
+        header.setOnClickListener(v->{boolean show=!Boolean.TRUE.equals(header.getTag());header.setTag(show);change.accept(show);header.setContentDescription(title+(show?L.t(", expanded",", 已展开"):L.t(", collapsed",", 已折叠")));expand(content,show);chevron.animate().rotation(show?-90:180).setDuration(motionEnabled(context)?240:0).start();});
+        return group;
+    }
+    public static void expand(View content,boolean show){
+        Object running=content.getTag(R.id.expand_animation);if(running instanceof ValueAnimator)((ValueAnimator)running).cancel();
+        ViewGroup.LayoutParams params=content.getLayoutParams();
+        if(!motionEnabled(content.getContext())){params.height=-2;content.setLayoutParams(params);content.setVisibility(show?View.VISIBLE:View.GONE);content.setAlpha(1);return;}
+        View parent=(View)content.getParent();int width=Math.max(1,parent.getWidth()-parent.getPaddingLeft()-parent.getPaddingRight());
+        int from=content.getVisibility()==View.GONE?0:content.getHeight();content.measure(View.MeasureSpec.makeMeasureSpec(width,View.MeasureSpec.EXACTLY),View.MeasureSpec.makeMeasureSpec(0,View.MeasureSpec.UNSPECIFIED));
+        int to=show?content.getMeasuredHeight():0;content.setVisibility(View.VISIBLE);
+        ValueAnimator animator=ValueAnimator.ofInt(from,to);content.setTag(R.id.expand_animation,animator);animator.setDuration(260);animator.setInterpolator(new DecelerateInterpolator(1.6f));
+        animator.addUpdateListener(a->{params.height=(int)a.getAnimatedValue();content.setLayoutParams(params);content.setAlpha(show?0.4f+0.6f*a.getAnimatedFraction():1f-a.getAnimatedFraction());});
+        animator.addListener(new AnimatorListenerAdapter(){boolean cancelled;@Override public void onAnimationCancel(Animator a){cancelled=true;}@Override public void onAnimationEnd(Animator a){if(cancelled)return;params.height=-2;content.setLayoutParams(params);content.setAlpha(1);content.setVisibility(show?View.VISIBLE:View.GONE);content.setTag(R.id.expand_animation,null);}});animator.start();
+    }
+    /** Compact settings navigation; values wrap at large font sizes. */
+    public static LinearLayout setting(Context context,String title,String value,Runnable action){
+        ImageView arrow=new ImageView(context);arrow.setImageResource(R.drawable.ic_chevron_left);arrow.setRotation(180);arrow.setImageTintList(ColorStateList.valueOf(MUTED));arrow.setLayoutParams(square(context,18));
+        LinearLayout row=listRow(context,title,value,arrow);row.setContentDescription(title+", "+value);row.setOnClickListener(v->action.run());return row;
     }
     /** Entrance for a freshly built screen: 200ms fade + 6dp rise. */
     public static void enter(View view){

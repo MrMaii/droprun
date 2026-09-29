@@ -1,6 +1,18 @@
 package app.droprun;
 
 final class TaskPresentation {
+    /** Prefer the actual outcome section over the report's source-analysis introduction. */
+    static String resultSummary(String report){
+        String clean=report.replaceAll("(?s)```droprun\\s.*?```", "").trim();
+        java.util.regex.Matcher section=java.util.regex.Pattern.compile("(?im)^#{1,6}\\s*(?:我做了什么|交付结果|结果|What changed|What I did|The result|Summary)\\s*[:：]?\\s*\\n").matcher(clean);
+        if(section.find()){
+            String remaining=clean.substring(section.end());java.util.regex.Matcher next=java.util.regex.Pattern.compile("(?m)^#{1,6}\\s").matcher(remaining);
+            clean=next.find()?remaining.substring(0,next.start()):remaining;
+        }else clean=clean.replaceAll("(?m)^#{1,6}[^\\n]*\\n?", "");
+        clean=clean.replace("**", "").trim();
+        int paragraph=clean.indexOf("\n\n");if(paragraph>0)clean=clean.substring(0,paragraph);
+        return clip(clean,200);
+    }
     static String status(String value) {
         return switch(value) {
             case "queued" -> L.t("Waiting for computer","等待电脑接收");

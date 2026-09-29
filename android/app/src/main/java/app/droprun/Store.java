@@ -239,7 +239,11 @@ public class Store {
                     JSONObject result=api("/uploads","POST",Files.readAllBytes(file.toPath()),a.getString("mime"),a.getString("name"));uploaded.put(result.getString("id"));t.put("assets",uploaded);save(t);
                 }
                 String parent=t.optString("parentTaskId");JSONObject accepted=post(parent.isEmpty()?"/tasks":"/tasks/"+parent+"/followup",t);prefs.edit().putString("task:"+t.getString("id"),accepted.toString()).apply();acceptedTasks.add(t);
-                }catch(Exception e){pendingError=e.getMessage();}
+                }catch(Exception e){
+                    pendingError=e.getMessage();JSONObject failed=all.getJSONObject(i);
+                    // save() stamps this instance: never adopt a foreign or damaged outbox entry.
+                    if(instanceId.equals(failed.optString("instanceId"))){failed.put("sendError",pendingError==null?L.t("Could not send. Retry when connected.","暂时无法发送，请联网重试。"):pendingError);save(failed);}
+                }
             }
             JSONObject response=get(refreshContext?"/tasks":"/tasks?since="+prefs.getLong("tasksCursor",0)),tasks;
             try{tasks=mergeTasks(tasksData(),response);}catch(Exception incomplete){response=get("/tasks");tasks=mergeTasks(new JSONObject(),response);}

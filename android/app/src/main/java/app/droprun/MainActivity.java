@@ -43,7 +43,7 @@ public class MainActivity extends StyledActivity {
         TextView title=Ui.title(this,L.t("Recent handoffs","最近交办"),27);header.addView(title,Ui.grow());
         ImageButton gear=Ui.iconButton(this,R.drawable.ic_gear,L.t("Settings","设置"));gear.setOnClickListener(v->startActivity(new Intent(this,SettingsActivity.class)));header.addView(gear,Ui.square(this,48));root.addView(header);
         TextView intro=Ui.text(this,L.t("Good ideas, moving forward.","让好想法，接着往前走。"),14,Ui.MUTED);intro.setPadding(dp(24),0,dp(24),dp(18));root.addView(intro);
-        notice=Ui.text(this,"",13,Ui.AMBER);notice.setPadding(dp(24),dp(4),dp(24),dp(14));notice.setAccessibilityLiveRegion(View.ACCESSIBILITY_LIVE_REGION_POLITE);root.addView(notice);
+        notice=Ui.text(this,"",13,Ui.AMBER);notice.setPadding(dp(24),dp(10),dp(24),dp(10));notice.setMinHeight(dp(48));notice.setFocusable(true);Ui.bindPress(notice);notice.setAccessibilityLiveRegion(View.ACCESSIBILITY_LIVE_REGION_POLITE);root.addView(notice);
         FrameLayout stage=new FrameLayout(this);root.addView(stage,new LinearLayout.LayoutParams(-1,0,1));
         list=new ListView(this);list.setAdapter(adapter);list.setDivider(null);list.setSelector(android.R.color.transparent);list.setVerticalScrollBarEnabled(false);list.setClipToPadding(false);list.setPadding(dp(20),0,dp(20),dp(28));stage.addView(list,new FrameLayout.LayoutParams(-1,-1));
         LinearLayout empty=Ui.vertical(this);empty.setGravity(Gravity.CENTER);empty.setPadding(dp(32),0,dp(32),dp(64));
@@ -71,17 +71,17 @@ public class MainActivity extends StyledActivity {
             else {
                 outer=Ui.vertical(MainActivity.this);outer.setPadding(0,0,0,dp(12));LinearLayout card=Ui.card(MainActivity.this);outer.addView(card);
                 LinearLayout head=Ui.row(MainActivity.this);TextView name=Ui.title(MainActivity.this,"",21);name.setMaxLines(2);head.addView(name,Ui.grow());head.addView(Ui.text(MainActivity.this,"›",28,Ui.MUTED));card.addView(head);
-                TextView counts=Ui.text(MainActivity.this,"",14,Ui.MUTED);card.addView(counts,Ui.margins(MainActivity.this,3,14));TextView state=Ui.pill(MainActivity.this,"",Ui.MUTED);card.addView(state);
+                TextView counts=Ui.text(MainActivity.this,"",14,Ui.MUTED);card.addView(counts,Ui.margins(MainActivity.this,2,12));LinearLayout footer=Ui.row(MainActivity.this);TextView state=Ui.pill(MainActivity.this,"",Ui.MUTED);footer.addView(state);TextView date=Ui.caption(MainActivity.this,"");date.setGravity(Gravity.END);footer.addView(date,Ui.grow());card.addView(footer);
                 TextView pending=Ui.caption(MainActivity.this,"");card.addView(pending,Ui.margins(MainActivity.this,9,0));TextView unavailable=Ui.caption(MainActivity.this,L.t("Project unavailable · history is still here","项目暂不可用 · 历史记录仍在"));card.addView(unavailable,Ui.margins(MainActivity.this,8,0));
-                holder=new HomeHolder(card,name,counts,state,pending,unavailable);outer.setTag(holder);card.setFocusable(true);card.setClickable(true);Ui.bindPress(card);
+                holder=new HomeHolder(card,name,counts,state,date,pending,unavailable);outer.setTag(holder);card.setFocusable(true);card.setClickable(true);Ui.bindPress(card);
             }
-            holder.name.setText(project.optString("name"));holder.counts.setText(ProjectPresentation.counts(project)+"\n"+L.t("Last handoff · ","最近交办 · ")+TaskPresentation.elapsed(project.optLong("last_dispatch_at"),System.currentTimeMillis()));String state=ProjectPresentation.state(project);holder.state.setText(state);holder.state.setTextColor(project.optInt("attention_count")>0?Ui.AMBER:project.optInt("active_count")>0?Ui.ACCENT:Ui.MUTED);
+            holder.name.setText(project.optString("name"));holder.counts.setText(ProjectPresentation.counts(project));holder.date.setText(TaskPresentation.elapsed(project.optLong("last_dispatch_at"),System.currentTimeMillis()));holder.date.setContentDescription(L.t("Last handoff · ","最近交办 · ")+holder.date.getText());String state=ProjectPresentation.state(project);holder.state.setText(state);holder.state.setTextColor(project.optInt("attention_count")>0?Ui.AMBER:project.optInt("active_count")>0?Ui.ACCENT:Ui.MUTED);
             int pending=project.optInt("pending_count");holder.pending.setText(pending+L.t(" saved on this phone · waiting to send"," 条已保存在手机 · 等待发送"));holder.pending.setVisibility(pending>0?View.VISIBLE:View.GONE);holder.unavailable.setVisibility(project.optBoolean("available",true)?View.GONE:View.VISIBLE);
             holder.card.setContentDescription(project.optString("name")+", "+ProjectPresentation.counts(project)+", "+state+(pending>0?", "+holder.pending.getText():""));holder.card.setOnClickListener(v->startActivity(new Intent(MainActivity.this,ProjectHistoryActivity.class).putExtra("projectId",project.optString("id")).putExtra("projectName",project.optString("name"))));return outer;
         }
     }
     static final class HomeHolder {
-        final LinearLayout card;final TextView name,counts,state,pending,unavailable;
-        HomeHolder(LinearLayout card,TextView name,TextView counts,TextView state,TextView pending,TextView unavailable){this.card=card;this.name=name;this.counts=counts;this.state=state;this.pending=pending;this.unavailable=unavailable;}
+        final LinearLayout card;final TextView name,counts,state,date,pending,unavailable;
+        HomeHolder(LinearLayout card,TextView name,TextView counts,TextView state,TextView date,TextView pending,TextView unavailable){this.card=card;this.name=name;this.counts=counts;this.state=state;this.date=date;this.pending=pending;this.unavailable=unavailable;}
     }
 }
