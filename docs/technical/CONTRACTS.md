@@ -163,6 +163,8 @@ Relay 任务新增 `preview_status`（`ready|expired|stopped|unavailable|reopeni
 
 Android 从分享/追问或可见操作启动 `TaskSyncService`，前台通知使用低打扰通道；服务自身串行拉取，每次成功后间隔八秒，电脑元数据约 30 秒、设置约 60 秒刷新。全任务终态或只剩等待用户处理时停收，结果/审批通知去重；重开预览单独通知。每次明确启动最长 90 分钟，手机/电脑连接中断十分钟转周期同步。超时与系统 `onTimeout` 只结束接收，不取消电脑任务；`START_NOT_STICKY`，不从 boot 或后台 Job 反复拉起。周期 Job 的 15 分钟是调度周期，不是送达上限。
 
+周期 Job 注册按完整 `JobInfo` 幂等：已有相同配置时保留系统中的任务，缺失或配置变化时才注册。重新打开首页不能反复替换同一周期任务；显式请求的即时重试仍使用独立 Job。Android 对相同 ID 的重复 `schedule` 会替换任务并停止正在运行的任务，见 [JobScheduler.schedule](https://developer.android.com/reference/android/app/job/JobScheduler#schedule(android.app.job.JobInfo))，核查日期 2026-09-29。
+
 系统边界：Android 14 要求 foreground service 类型及权限；Android 15 对后台 dataSync 合计最多六小时/24 小时，回到前台会重置系统计时，收到超时必须迅速停止；Android 16 并行存在 FGS 也不免除 Job 配额。来源：[类型](https://developer.android.com/develop/background-work/services/fgs/service-types#data-sync)、[超时](https://developer.android.com/develop/background-work/services/fgs/timeout)、[Job 配额](https://developer.android.com/about/versions/16/behavior-changes-all#job-scheduler)、[周期调度](https://developer.android.com/reference/android/app/job/JobInfo.Builder#setPeriodic(long))，核查日期 2026-09-12。没有 FCM 接入或秒达承诺；通知禁用、强制停止、锁屏省电与离线可能延迟结果。批准/重开异步请求完成前立即切后台时，当前客户端不会违规拉起服务，周期同步仍兜底。
 
 ## 已采纳增量：原项目计划审批与直接执行

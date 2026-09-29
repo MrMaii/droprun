@@ -6,7 +6,9 @@ import android.content.ComponentName;
 public class SyncJob extends JobService {
     public static void schedule(Context c) {
         JobScheduler js=(JobScheduler)c.getSystemService(Context.JOB_SCHEDULER_SERVICE);
-        js.schedule(new JobInfo.Builder(701,new ComponentName(c,SyncJob.class)).setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY).setPersisted(true).setPeriodic(15*60*1000).build());
+        JobInfo job=new JobInfo.Builder(701,new ComponentName(c,SyncJob.class)).setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY).setPersisted(true).setPeriodic(15*60*1000).build();
+        // Re-registering the same ID stops an in-flight job and resets its schedule.
+        if(!job.equals(js.getPendingJob(701)))js.schedule(job);
     }
     public static void soon(Context c) {
         ((JobScheduler)c.getSystemService(Context.JOB_SCHEDULER_SERVICE)).schedule(new JobInfo.Builder(702,new ComponentName(c,SyncJob.class)).setRequiredNetworkType(JobInfo.NETWORK_TYPE_ANY).setPersisted(true).setBackoffCriteria(30000,JobInfo.BACKOFF_POLICY_EXPONENTIAL).build());

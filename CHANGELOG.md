@@ -2,6 +2,8 @@
 
 ## 0.5.1 — unreleased UX candidate
 
+- Reopening home preserves an unchanged periodic sync job instead of repeatedly
+  replacing it. Missing or changed schedules are registered again.
 - Restored delivery previews verify cached size and SHA-256 again before showing
   contents or Save. Export also rechecks bytes; changed/expired caches offer
   recovery instead of retaining a verified-preview claim.

@@ -26,7 +26,7 @@ public class TaskActivity extends StyledActivity {
     interface Work { void run() throws Exception; }
 
     @Override public void onCreate(Bundle state){
-        super.onCreate(state);store=new Store(this);taskId=getIntent().getStringExtra("taskId");
+        super.onCreate(state);store=createStore();taskId=getIntent().getStringExtra("taskId");
         if(state!=null){followupDraft=state.getString("followupDraft","");followupId=state.getString("followupId",followupId);java.util.ArrayList<String> sections=state.getStringArrayList("expanded");if(sections!=null)expanded.addAll(sections);}
         if(taskId==null||!taskId.matches("[a-zA-Z0-9-]{20,64}")){finish();return;}
         Ui.configureWindow(this);LinearLayout page=Ui.page(this);
@@ -36,6 +36,7 @@ public class TaskActivity extends StyledActivity {
         body=Ui.vertical(this);page.addView(body,Ui.fill());render();Ui.enter(body);
         if(state!=null&&state.getBoolean("followupOpen"))followup();
     }
+    Store createStore(){return new Store(this);}
     @Override protected void onResume(){super.onResume();foreground=true;if(store!=null)load();}
     @Override protected void onPause(){foreground=false;handler.removeCallbacks(refresh);super.onPause();}
     @Override protected void onSaveInstanceState(Bundle state){super.onSaveInstanceState(state);state.putStringArrayList("expanded",new java.util.ArrayList<>(expanded));state.putString("followupId",followupId);state.putString("followupDraft",followupInput==null?followupDraft:followupInput.getText().toString());if(followupDialog!=null&&followupDialog.isShowing())state.putBoolean("followupOpen",true);}

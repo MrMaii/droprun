@@ -13,26 +13,29 @@ posting is authorized. New campaign assets remain deferred until the agreed gate
 
 ## Completed this pass
 
-- Native delivery fixtures reproduced changed cache bytes still being called
-  verified after Activity recreation. Restoration now hashes the saved file off
-  the UI thread before showing contents/Save; export rechecks bytes before opening
-  a destination. Invalid caches return to the list with recovery guidance.
-- Loading/failure/retry, empty-list guidance, preview recreation and cancelled-save
-  callback are covered locally. Fixtures use synthetic bytes/overridden transport;
-  they do not establish real download or system document-provider acceptance.
-- A 200% capture exposed a truncated error title; it now reads File action failed.
-- API 26 native bounds checks then exposed Save hidden behind navigation padding.
-  Shared page focus scrolling now respects the padded viewport and content range.
-  Permission Cancel's separate timing failure was sampled during scale animation;
-  the unchanged assertion now follows the existing settled screenshot wait.
-- Twelve JVM cases pass. Final debug/release/test builds and both lint variants
-  pass. All 28 native cases pass on API 26 and API 35 at 100% and 200% font.
-  Signed candidate refreshed; exact hash and logs are in the release record.
-- Failed runs are retained: API 26 system-server crash; API 35 SyncJob service
-  timeout displayed an ANR dialog and disrupted four focus/action checks. The
-  unchanged suite passed after debug-package force-stop. The ANR cause is still
-  unresolved; do not claim background-sync reliability from the passing rerun.
+- Investigated the prior API 35 ANR. Logs show cancelled-job binding timeouts;
+  captured app main thread was idle and instrumentation was entering an Activity.
+  This suggests test/job lifecycle interference but does not establish root cause.
+- Fixed a proven scheduling problem: reopening home repeatedly registered the
+  same periodic job. Identical JobInfo now preserves the existing job; missing or
+  changed schedules are registered. Explicit immediate retries remain separate.
+- Two new native contract cases reproduce the old duplicate registrations and
+  pass after the fix. They use Android JobInfo with a recording scheduler, not
+  actual background-delivery execution.
+- Local UI setup seeds data without opening home and cancelling a newly scheduled
+  job before each test. The decision-error fixture now supplies a local initial
+  refresh too; a DNS-dependent test timeout was reproduced and removed.
+- Final API 26 and API 35 runs each pass 30/30 at 100% font. Twelve JVM tests,
+  debug/test/release builds and both lint variants pass. No new DropBox ANR in
+  either final run; the old incident is retained and not claimed fixed.
+- Signed candidate refreshed. Exact hash/logs are in the release record; no push,
+  public deployment, real submission or existing Connector change.
 
+The preceding Android pass (`f8c370d`) verifies restored/exported cache bytes,
+shortens file errors and fixes focus scrolling within system-bar padding. Its
+28 native cases passed on both runtimes at 100%/200% font; 12 JVM cases passed.
+Final tests above include those 28 cases. Original ANR and emulator system-server
+crash evidence remain preserved in the release record.
 The preceding Windows pass (`3f02f56`) added immediate action locks and feedback,
 status reconciliation after lost acknowledgement, persistent inline errors and
 localized release-check states. Node suite passed 198/198, no skips; all five
@@ -114,14 +117,15 @@ Signing material remains ignored. Git author: Thomas Deng
 
 ## Single recommended next action
 
-Investigate the API 35 local SyncJob service-timeout ANR before expanding UX work.
-Use `.local/delivery-api35-normal-dropbox.txt`, the companion logcat and failed-run
-screenshot; distinguish instrumentation/job lifecycle interference from a product
-defect. Keep all transport local/synthetic. Then return to export pending feedback,
-duplicate Save and provider/lifecycle recovery; actual provider acceptance is open.
+Verify Android export progress/recovery with a synthetic document provider:
+DeliverablesActivity returns from the picker and performs background authorization
+and copy work without explicit pending feedback. Reproduce duplicate Save,
+provider failure and lifecycle changes locally before modifying behavior.
+Keep the prior ANR as an unresolved real-background acceptance item; current local
+regressions do not reproduce it. Do not send real tasks or call fixtures delivery.
 
 ## Files involved
 
-DeliverablesActivity, Store, Ui; debug-only delivery fixture/manifest; native and
-JVM tests; PRD, contracts, changelog, UI matrix, release record and this handoff.
+SyncJob, TaskActivity; debug fixture seeding/decision activity/manifest; native
+tests; PRD, contracts, changelog, release record and this handoff.
 No Windows runtime change, public deployment or social posting in this pass.

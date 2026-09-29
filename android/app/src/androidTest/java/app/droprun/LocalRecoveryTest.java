@@ -30,8 +30,8 @@ public class LocalRecoveryTest {
         assertTrue("Never run fixtures in the public package",context.getPackageName().endsWith(".debug"));
         String previousRelay=new Store(context).relay();
         assertTrue("Do not replace a developer's existing connection",previousRelay.isEmpty()||previousRelay.equals("https://preview.example.invalid"));
-        try(ActivityScenario<DemoHomeActivity> fixture=ActivityScenario.launch(DemoHomeActivity.class)){}
         stopSync();
+        DemoFixture.seed(context,new Intent());
         Store store=new Store(context);
         assertEquals("https://preview.example.invalid",store.relay());
         for(JSONArray pending=store.pending();pending.length()>0;pending=store.pending())store.cancelPending(pending.getJSONObject(0).getString("id"));
@@ -170,7 +170,7 @@ public class LocalRecoveryTest {
     @Test public void failedDecisionRemainsVisibleAfterSuccessfulRefresh() throws Exception {
         Store store=new Store(context);JSONObject task=new JSONObject(store.task(DemoFixture.TASK).toString()).put("status","running").put("report","");cacheTask(store,task);
         java.util.concurrent.atomic.AtomicInteger polls=new java.util.concurrent.atomic.AtomicInteger();
-        try(ActivityScenario<TaskActivity> scenario=ActivityScenario.launch(new Intent(context,TaskActivity.class).putExtra("taskId",DemoFixture.TASK))){
+        try(ActivityScenario<TaskActivity> scenario=ActivityScenario.launch(new Intent(context,DemoDecisionActivity.class).putExtra("taskId",DemoFixture.TASK))){
             awaitTaskUi(scenario,activity->!activity.loading);
             scenario.onActivity(activity->{
                 activity.store=new Store(context){@Override JSONObject refreshTask(String id){polls.incrementAndGet();return task(id);}};
