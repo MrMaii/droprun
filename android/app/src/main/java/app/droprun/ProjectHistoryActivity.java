@@ -58,7 +58,8 @@ public class ProjectHistoryActivity extends StyledActivity {
         new AlertDialog.Builder(this).setTitle(L.t("Saved on this phone","已保存在手机")).setMessage(detail.trim()).setNegativeButton(L.t("Close","关闭"),null).setPositiveButton(L.t("Retry sending","重试发送"),(d,w)->{SyncJob.soon(this);TaskSyncService.start(this);notice.setText(L.t("Retry requested. Keep the app open to see confirmation.","已请求重试，请保持 App 打开查看接收确认。"));notice.setVisibility(View.VISIBLE);notice.announceForAccessibility(notice.getText());}).show();
     }
     final class HistoryAdapter extends BaseAdapter {
-        public int getCount(){return rows.size();}public Object getItem(int p){return rows.get(p);}public long getItemId(int p){return rows.get(p).optString("id").hashCode();}public boolean hasStableIds(){return true;}
+        // AbsListView restores saved rows only when their stable ID is nonnegative.
+        public int getCount(){return rows.size();}public Object getItem(int p){return rows.get(p);}public long getItemId(int p){return Integer.toUnsignedLong(rows.get(p).optString("id").hashCode());}public boolean hasStableIds(){return true;}
         public View getView(int position,View recycled,ViewGroup parent){
             JSONObject task=rows.get(position);boolean pending=pendingIds.contains(task.optString("id"));LinearLayout outer;Holder holder;
             if(recycled instanceof LinearLayout&&recycled.getTag() instanceof Holder){outer=(LinearLayout)recycled;holder=(Holder)outer.getTag();}

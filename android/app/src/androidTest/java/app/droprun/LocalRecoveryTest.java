@@ -47,6 +47,45 @@ public class LocalRecoveryTest {
 
     void stopSync(){context.stopService(new Intent(context,TaskSyncService.class));((JobScheduler)context.getSystemService(Context.JOB_SCHEDULER_SERVICE)).cancelAll();}
 
+    void seedPagedHistory()throws Exception{
+        JSONArray rows=new JSONArray();long now=System.currentTimeMillis();
+        for(int n=0;n<240;n++)rows.put(new JSONObject().put("id",UUID.nameUUIDFromBytes(("local-history-"+n).getBytes(StandardCharsets.UTF_8)).toString()).put("project_id","demo-studio").put("title","Local history item "+n).put("status","completed").put("created_at",now-n*60000).put("updated_at",1));
+        new Store(context).prefs.edit().putString("history:demo-studio",new JSONObject().put("tasks",rows).put("nextCursor","synthetic-earlier-page").toString()).commit();
+    }
+    ActivityScenario<ProjectHistoryActivity> historyScenario(){return ActivityScenario.launch(new Intent(context,ProjectHistoryActivity.class).putExtra("projectId","demo-studio").putExtra("projectName","Local history fixture"));}
+    String[] historyPosition(ActivityScenario<ProjectHistoryActivity> scenario){
+        InstrumentationRegistry.getInstrumentation().waitForIdleSync();String[] position=new String[2];
+        scenario.onActivity(activity->{int first=activity.list.getFirstVisiblePosition();assertNotNull(activity.list.getChildAt(0));position[0]=activity.rows.get(first).optString("id");position[1]=String.valueOf(activity.list.getChildAt(0).getTop());});return position;
+    }
+    void scrollHistory(ActivityScenario<ProjectHistoryActivity> scenario){scenario.onActivity(activity->activity.list.setSelectionFromTop(170,-17));InstrumentationRegistry.getInstrumentation().waitForIdleSync();scenario.onActivity(activity->assertEquals(170,activity.list.getFirstVisiblePosition()));}
+    @Test public void historyStatusRefreshKeepsOlderPagesAndReadingPosition()throws Exception{
+        seedPagedHistory();try(ActivityScenario<ProjectHistoryActivity> scenario=historyScenario()){
+            scrollHistory(scenario);String[] before=historyPosition(scenario);
+            scenario.onActivity(activity->{try{JSONObject updated=new JSONObject(activity.rows.get(activity.list.getFirstVisiblePosition()).toString()).put("status","running").put("updated_at",2);activity.store.prefs.edit().putString("tasks",new JSONObject().put("tasks",new JSONArray().put(updated)).toString()).commit();activity.refresh.run();}catch(Exception error){throw new AssertionError(error);}});
+            assertArrayEquals("Status refresh must keep the visible task and pixel offset",before,historyPosition(scenario));
+            scenario.onActivity(activity->{assertEquals(240,activity.rows.size());assertEquals("synthetic-earlier-page",activity.cursor);assertEquals("running",activity.rows.get(activity.list.getFirstVisiblePosition()).optString("status"));assertEquals(1f,activity.list.getChildAt(0).getAlpha(),0f);assertEquals(0f,activity.list.getChildAt(0).getTranslationY(),0f);});captureUi("history-status-local");
+        }
+    }
+    @Test public void historyPendingChangesAboveViewportDoNotMoveReadingPosition()throws Exception{
+        seedPagedHistory();try(ActivityScenario<ProjectHistoryActivity> scenario=historyScenario()){
+            scrollHistory(scenario);String[] before=historyPosition(scenario);String id=UUID.randomUUID().toString();
+            scenario.onActivity(activity->{try{activity.store.save(new JSONObject().put("id",id).put("projectId","demo-studio").put("content","Synthetic pending history item"));activity.refresh.run();}catch(Exception error){throw new AssertionError(error);}});
+            assertArrayEquals("A new pending item above the viewport must not move the reader",before,historyPosition(scenario));
+            scenario.onActivity(activity->{try{assertEquals(241,activity.rows.size());activity.store.cancelPending(id);activity.refresh.run();}catch(Exception error){throw new AssertionError(error);}});
+            assertArrayEquals("Removing the pending item must not move the reader",before,historyPosition(scenario));
+        }
+    }
+    @Test public void historyRecreationRestoresOlderPageAndOffset()throws Exception{
+        seedPagedHistory();try(ActivityScenario<ProjectHistoryActivity> scenario=historyScenario()){
+            boolean[] wasTouch={false};scenario.onActivity(activity->wasTouch[0]=activity.list.isInTouchMode());
+            try{for(boolean touch:new boolean[]{false,true}){
+                InstrumentationRegistry.getInstrumentation().setInTouchMode(touch);
+                scrollHistory(scenario);String[] before=historyPosition(scenario);scenario.recreate();
+                assertArrayEquals("Restore task and offset in touch mode="+touch,before,historyPosition(scenario));scenario.onActivity(activity->{assertEquals(240,activity.rows.size());assertTrue(activity.paged);assertEquals("synthetic-earlier-page",activity.cursor);});
+            }}finally{InstrumentationRegistry.getInstrumentation().setInTouchMode(wasTouch[0]);}
+        }
+    }
+
     void awaitDelivery(ActivityScenario<DemoDeliverablesActivity> scenario,String text)throws Exception{
         long deadline=android.os.SystemClock.elapsedRealtime()+4000;boolean[] found={false};
         do{scenario.onActivity(activity->found[0]=findText(activity.page,text)!=null&&activity.page.getAlpha()==1f&&activity.page.getTranslationY()==0f);if(found[0])return;Thread.sleep(25);}while(android.os.SystemClock.elapsedRealtime()<deadline);

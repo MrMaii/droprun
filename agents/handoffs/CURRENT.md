@@ -13,22 +13,23 @@ posting is authorized. New campaign assets remain deferred until the agreed gate
 
 ## Completed this pass
 
-- Exercised the installed Android system document picker with synthetic delivery
-  bytes: cancellation, rotation, return to a recreated preview, actual local save,
-  exact-byte readback through the returned URI and deletion of that test document.
-- Found a system-picker limitation on both emulators: rotation resets edited names
-  to the suggested filename. Final tests record this, reconfirm the name and only
-  then save; filename preservation is NOT passed. EN/ZH self-hosting guides explain
-  the check. No custom-picker workaround or new App permission was introduced.
-- A controlled provider failure after a nonempty prefix of a 2 MiB write produces
-  failure feedback and retains the source. Explicit retry replaces the partial
-  output, with exact length/hash verification. This is not actual disk-full proof.
-- Final full native suites pass 39/39 on API 26/35 at 100% font. All three new
-  cases pass at 200% on both. Debug/test builds, 12 JVM cases and debug lint pass.
-  Final DropBox snapshots have no new ANR; old incident remains unresolved.
-- Only debug fixtures, tests and docs changed. The signed release APK, production
-  code, public website/release and private Connector remain unchanged.
+- Added three production-Activity history tests with 240 cached synthetic rows.
+  Status refresh and pending insertion/removal preserve the visible task and exact
+  offset, retain loaded pages/cursor and do not replay entry motion.
+- Reproduced recreation jumping from row 170 to row 0: negative stable hash IDs
+  are ignored by Android's saved-row restore path. History IDs now use unsigned
+  widening. Both touch and keyboard recreation preserve the task/offset.
+- Full native regression passes 42/42 on API 26/35 at 100% font; three history
+  cases pass on both at 200%. Debug/test/release builds, 12 JVM cases and debug
+  lint pass. Final DropBox snapshots have no new ANR; old incident remains open.
+- Refreshed the locally signed candidate APK, with the same certificate. Canonical
+  hash/evidence are in the UX release record. No public deployment, real Relay
+  submission, private Connector changes or campaign generation.
 
+The preceding pass (`a30ef4b`) validated the actual system document picker and
+partial-write recovery. Both emulator pickers reset edited names on rotation;
+this limitation is documented, not counted as passed. Full native suites passed
+39/39 on both APIs; details remain in the release record.
 The preceding pass (`5d7ab01`) added retained export progress, duplicate-request
 locks, inline success/failure/retry and leave confirmation with deferred source
 cleanup. Its 36 cases passed on both runtimes at both font scales. The current
@@ -124,15 +125,14 @@ Signing material remains ignored. Git author: Thomas Deng
 
 ## Single recommended next action
 
-Close the remaining local history-view coverage: use synthetic multi-page history
-and status/pending changes to verify that render/refresh preserves the visible
-item and offset, retains loaded older pages and does not replay entry animation.
-ProjectHistoryActivity.render currently rebuilds rows with notifyDataSetChanged;
-its saved scroll state is used on restoration, so inspect actual runtime behavior
-before deciding whether code needs changing. No live Relay requests.
+Verify home-list reading position locally: MainActivity's adapter still returns
+signed hash IDs and does not currently save list state on recreation. Reproduce
+with a synthetic used-project list before changing code; check returning from
+settings and status/pending updates, without scheduling real transport. Do not
+expand the current authorization to real submissions or marketing readiness.
 
 ## Files involved
 
-Debug delivery fixture/export provider; native recovery tests; EN/ZH self-hosting
-guides; UI matrix, release record and this handoff. No production implementation,
-release artifact, public deployment or social posting change in this pass.
+ProjectHistoryActivity, LocalRecoveryTest, PRD, CONTRACTS, UI matrix, UX release
+record and this handoff. Refreshed ignored signed APK. No website, Windows package,
+public release or private Connector change in this pass.

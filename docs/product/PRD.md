@@ -16,6 +16,9 @@ in [0.5.0](../releases/0.5.0.md).
   including follow-ups. Retries never count; local pending shares are separate.
 - Project history is paginated. Saved outbox entries become immediately visible,
   survive interruption, and merge with server acknowledgements by UUID.
+  Status/pending updates retain the visible task and offset without replaying
+  entry motion. Activity recreation restores the reading position in retained
+  older pages for both touch and keyboard browsing.
 - Reports prioritize required action and verifiable deliverables, preserve full
   approval context, and correctly disclose original-directory execution.
 - Screenshots/files are baseline delivery; compatible static exports have cloud

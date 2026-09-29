@@ -23,6 +23,9 @@ plan-version, per-command approval and report-evidence checks remain in force.
   records, not a lifetime usage counter. UUID retries never create a new dispatch.
 - Android overlays local pending by UUID; pending counts are separate from server
   accepted counts and cannot disappear between persistence and acknowledgement.
+  Cached project-history pages remain available across Activity recreation.
+  History adapter stable IDs must be nonnegative for Android's native saved-row
+  restoration; transient status changes must not change those IDs.
 - Fresh installs apply migrations-fresh/0001-baseline.sql only. Existing instances
   apply the compatibility upgrade; never apply consolidated schema and duplicate
   historical ALTER migrations to the same new database.
