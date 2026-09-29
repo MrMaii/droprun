@@ -47,7 +47,7 @@ public class ShareActivity extends StyledActivity {
     EditText search,note;TextView gaugeText,sendTitle,status,badge;Ui.PlaneView plane;Ui.Glass dialog;ColorDrawable scrim;ValueAnimator panelAnimator;
     AlertDialog discardDialog;
     ShareImport incoming;Runnable importObserver;Bundle restoredState;
-    LinearLayout receiveActions;
+    LinearLayout receiveActions,receiveContent;
     String shared="",last="",selected="",model="",effort="",query="",draft="";JSONArray attachments=new JSONArray();
     List<JSONObject> recentProjects=Collections.emptyList();
     int step=-1;boolean receiving=true,showAll=false,panelOpen=false,busy=false,closing=false,sent=false;
@@ -93,6 +93,7 @@ public class ShareActivity extends StyledActivity {
         super.onActivityResult(request,result,data);
         if(request==PAIR){store=new Store(this);if(result==RESULT_OK&&store.paired())start();else close();}
     }
+    @Override public void onConfigurationChanged(android.content.res.Configuration config){super.onConfigurationChanged(config);layoutReceiveActions();}
     @Override public void onBackPressed(){
         if(dialog!=null){if(!busy)closeDialog(null);return;}
         if(step==1)go(0,-1);else close();
@@ -141,12 +142,13 @@ public class ShareActivity extends StyledActivity {
         });
         view.requestApplyInsets();
     }
-    /** Bottom sheet holder: never taller than 86% of the visible height, so long steps scroll inside the sheet. */
+    /** Keep breathing room on tall screens; use the available height on compact screens. */
     static final class Capped extends FrameLayout {
         Capped(Context context){super(context);}
         @Override protected void onMeasure(int w,int h){
             if(MeasureSpec.getMode(h)==MeasureSpec.UNSPECIFIED){super.onMeasure(w,h);return;}
-            super.onMeasure(w,MeasureSpec.makeMeasureSpec(Math.round(MeasureSpec.getSize(h)*0.86f),MeasureSpec.AT_MOST));
+            int height=MeasureSpec.getSize(h);if(height>Ui.dp(getContext(),400))height=Math.round(height*0.86f);
+            super.onMeasure(w,MeasureSpec.makeMeasureSpec(height,MeasureSpec.AT_MOST));
         }
     }
     void dim(boolean in){
@@ -176,12 +178,12 @@ public class ShareActivity extends StyledActivity {
     void fatal(Exception e){receiving=false;if(gone())return;new AlertDialog.Builder(this).setTitle(L.t("Could not complete this action","暂时无法完成")).setMessage(e.getMessage()).setPositiveButton(L.t("Got it","知道了"),null).setOnDismissListener(d->close()).show();}
 
     // ---- receiving the share --------------------------------------------------------------------
-    void clearReceiveActions(){if(receiveActions!=null){sheet.removeView(receiveActions);receiveActions=null;scroll.setLayoutParams(Ui.fill());scroll.setVerticalScrollBarEnabled(false);}}
+    void clearReceiveActions(){if(receiveActions!=null){sheet.removeView(receiveActions);receiveActions=null;receiveContent=null;scroll.setLayoutParams(Ui.fill());scroll.setVerticalScrollBarEnabled(false);}}
     void receiveFailed(){
         receiving=false;step=-1;dots.setVisibility(View.INVISIBLE);back.setVisibility(View.INVISIBLE);
         LinearLayout column=Ui.vertical(this);column.addView(Ui.title(this,L.t("Let's finish receiving","材料尚未接收完成"),20));
         TextView summary=Ui.text(this,L.t(incoming.completeCount()+" of "+incoming.sources.length()+" files kept on your phone. Nothing has been handed off.","手机已保留 "+incoming.completeCount()+" / "+incoming.sources.length()+" 份文件，尚未交办。"),14,Ui.MUTED);summary.setAccessibilityLiveRegion(View.ACCESSIBILITY_LIVE_REGION_POLITE);column.addView(summary,Ui.margins(this,4,14));
-        TextView problem=Ui.text(this,incoming.error.getMessage(),14,Ui.TEXT);column.addView(problem,Ui.margins(this,0,14));
+        TextView problem=Ui.text(this,incoming.error.getMessage(),14,Ui.TEXT);problem.setTag("receive-problem");column.addView(problem,Ui.margins(this,0,14));
         JSONArray files=incoming.record.optJSONArray("files");LinearLayout materials=Ui.card(this);
         for(int n=0;n<incoming.sources.length();n++){
             JSONObject item=files==null?null:files.optJSONObject(n);boolean ready=item!=null&&item.optBoolean("complete");
@@ -190,11 +192,23 @@ public class ShareActivity extends StyledActivity {
             materials.addView(Ui.text(this,ready?L.t("Ready on this phone","已保存在手机"):n==incoming.failureIndex?L.t("Not received","未接收完成"):L.t("Waiting","等待接收"),12,ready?Ui.MUTED:Ui.AMBER),Ui.fill());
         }
         column.addView(materials,Ui.fill());
-        clearReceiveActions();receiveActions=Ui.vertical(this);receiveActions.setPadding(0,dp(12),0,0);
+        clearReceiveActions();receiveContent=column;receiveActions=Ui.vertical(this);receiveActions.setPadding(0,dp(12),0,0);
         Button retry=Ui.button(this,L.t("Retry receiving","重试接收"),true);retry.setTag("retry-import");retry.setOnClickListener(v->retryIncoming());receiveActions.addView(retry,Ui.fill());
         Button discard=Ui.button(this,L.t("Discard share","放弃分享"),false);discard.setTag("discard-import");Ui.styleGhost(discard);discard.setOnClickListener(v->close());receiveActions.addView(discard,Ui.margins(this,6,0));
-        scroll.setLayoutParams(new LinearLayout.LayoutParams(-1,0,1));scroll.setVerticalScrollBarEnabled(true);sheet.addView(receiveActions,Ui.fill());
+        scroll.setLayoutParams(new LinearLayout.LayoutParams(-1,0,1));scroll.setVerticalScrollBarEnabled(true);sheet.addView(receiveActions,Ui.fill());layoutReceiveActions();
         Ui.swap(stage,column,1);scroll.scrollTo(0,0);
+    }
+    void layoutReceiveActions(){
+        if(receiveActions==null)return;
+        boolean wide=getResources().getConfiguration().orientation==android.content.res.Configuration.ORIENTATION_LANDSCAPE;
+        receiveContent.getChildAt(0).setVisibility(wide?View.GONE:View.VISIBLE);
+        View problem=receiveContent.findViewWithTag("receive-problem");receiveContent.removeView(problem);receiveContent.addView(problem,wide?1:2);
+        receiveActions.setOrientation(wide?LinearLayout.HORIZONTAL:LinearLayout.VERTICAL);
+        for(int n=0;n<receiveActions.getChildCount();n++){
+            LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(wide?0:-1,-2,wide?1:0);
+            if(n>0){if(wide)params.setMarginStart(dp(8));else params.topMargin=dp(6);}
+            receiveActions.getChildAt(n).setLayoutParams(params);
+        }
     }
     void retryIncoming(){
         if(receiving||gone())return;

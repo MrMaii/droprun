@@ -14,23 +14,23 @@ mechanism. Automatic review gave only `blocked by policy`; the user chose local-
 
 ## Completed this pass
 
-- Deterministically reproduced history/Home one-row shifts on consecutive pre-layout
-  updates and local removal blocked behind a history GET holding the outbox lock.
-- History reads now release the outbox lock during network access. Instance-scoped
-  request tokens reject older page publication; older task receipts cannot replace
-  newer cache entries. Actual upload/removal serialization remains intact.
-- Separate local-removal worker shows progress, disables duplicate actions, retains
-  one operation across rotation, and preserves errors after polls/recreation.
-  Interrupted process restoration with a remaining copy explains the interruption.
-- List anchors use the ID bound to the visible View, avoiding replaced-data indices.
-  Added seven native tests. Full suites passed72/72 on API35 and API26 at100%.
-  Initial focused run had one viewport failure; isolated rerun and both full suites
-  passed. Final helpers wait for pre-draw, not queue idle; ten focused cases pass
-  at200% on both APIs. Preserve the earlier failure, do not claim its timing proven.
-- Screenshot review caught an incorrect retry hint during removal. Final wording
-  describes local-copy removal; disabled controls/rotation/progress pass on both
-  APIs at200%. Signed build, JVM12 and lint pass. Candidate refreshed, not published.
-- Contract, PRD and UI matrix updated. No Node/Windows changes, no remote actions.
+- Reproduced short-landscape failure UI at200%: stacked actions plus86% height cap
+  left less than72dp of readable explanation. Initial test inherited the launcher's
+  portrait orientation; using the local fullscreen Home as backdrop made it valid.
+- Compact screens(available height<=400dp) now use available height. Failure actions
+  are parallel in landscape and stacked in portrait. Landscape hides the decorative
+  title and shows the failure cause before counts/files; content remains scrollable.
+  Rotation preserves one import, kept bytes, no outbox entry and no provider replay.
+- Full native suites pass73/73 per API at200%. After the final cause-first adjustment,
+  all15 attachment cases pass on each API at200%. JVM12, lint and signed build pass.
+  Stable native captures inspected; prior captures caught system rotation frames,
+  so final screenshot capture waits for those transforms as well as View animation.
+- Candidate refreshed locally. No Node/Windows changes or external mutation.
+- Recovery source inspection found the next gap: journals retain material but not
+  note/project/model choices; those only have an Activity Bundle. No Home entry
+  opens a never-restored journal. onDestroy also discards whenever isFinishing(),
+  which does not distinguish explicit discard from other reasons a page ends.
+  PRD now names this still-unmet recovery acceptance. No recovery UI implemented.
 
 Canonical evidence, hashes and exact logs:
 [0.5.1 UX record](../../docs/releases/0.5.1-ux.md).
@@ -39,13 +39,13 @@ Control coverage and unmet gates: [UI matrix](../../docs/releases/0.5.1-ui-matri
 ## Artifacts and environment
 
 - Current signed APK `.local/releases/ux-polish-sep29/DropRun-0.5.1-android-candidate.apk`:
-  SHA256 `fefbe41e64341e9f0a3e7ebbbffe9435a0346e6342fb682907d131f4f36188cb`.
+  SHA256 `d2c8084e7b76dbda8f173f9777498f90023c755f378e68b43e710ca6e65e3b51`.
   Version0.5.1/code14, package `app.droprun.mobile`, same stable certificate.
-  Previous927b2a... candidate saved as `DropRun-0.5.1-before-history-race.apk`.
+  Previousfefbe4... candidate saved as `DropRun-0.5.1-before-short-landscape.apk`.
   The earlier `DropRun-0.5.1-import-retry-review.apk` remains separate.
 - Windows artifacts unchanged: `.local/releases/ux-actions-sep29-windows-final/`.
   No trusted publisher signature. Signing material stays ignored.
-- New screenshots `.local/ux-cloud-check/history-removing-api{26,35}-large.png`
+- New screenshots `.local/ux-cloud-check/receive-failure-{landscape,portrait}-api{26,35}-large.png`
   show native200% UI with synthetic data. Older actual process-recovery evidence
   and all failed logs remain linked in the UX record.
 - Both emulators stopped; API35 DropRunTest/5556 restored font2.0, keep-awake3,
@@ -67,8 +67,8 @@ Control coverage and unmet gates: [UI matrix](../../docs/releases/0.5.1-ui-matri
   and uninstall remain open. Emulator timing does not establish device performance.
 - ShareImport now preserves verified files/failure state and supports explicit
   retry across process restoration. Never-restored incoming journals have no
-  recovery surface yet. Real provider URI loss, storage-full/max-size and short
-  landscape require further coverage. See prior process evidence in UX record.
+  recovery surface yet. Real provider URI loss and storage-full/max-size
+  require further coverage. See prior process evidence in UX record.
 - Original API35 SyncJob ANR(2026-09-29 18:10:25) still has no proven root cause;
   earlier API26 emulator crashes and test failures remain recorded.
 
@@ -85,14 +85,28 @@ Git author Thomas Deng <150266369+MrMaii@users.noreply.github.com>.
 
 ## Single recommended next action
 
-Examine never-restored incoming share ownership/recovery using local fixtures.
-A journal survives process loss, but an abandoned task currently has no screen
-for the user to discover it. Define a minimal instance-scoped recovery path and
-explicit discard, without inventing server receipt or silently deleting materials.
-Then cover the incoming-failure controls at short landscape/200% font. Keep unknown
-older files untouched. No genuine source, Relay submission or Codex execution.
+Implement recoverable, instance-scoped unsent shares with local fixtures. Retaining
+files alone is insufficient: preserve the note, project and model choices alongside
+material; show a recovery entry after the original page is gone, and require an
+explicit choice before discarding. Never auto-submit or imply server receipt.
+
+Implementation proposal, not an adopted architecture: keep editor snapshots with
+the existing atomic import journal, serialize writes off the UI thread, and guard
+late writes after transfer/discard and across recreation. Add a non-exported recovery
+route rather than trusting recovery IDs passed to the exported share target. Handle
+an active editor/copy without concurrent owners of the same files. Show only the
+current instance's drafts; explicitly handle unpaired drafts at first pairing,
+never adopt another paired instance's material. Exclude pending/outbox-owned IDs.
+Do not treat isFinishing() alone as evidence the user confirmed deletion. Corrupt
+or legacy material cannot be silently swept; unknown6d908a45... remains untouched.
+
+Verify real background process loss with private fixtures, restored note/material
+identity, explicit discard/Keep, duplicate-open prevention, two-instance isolation
+and no submission. Latest authorization remains local-only; no real sources, Relay
+mutation or Codex execution. All formal device/provider/install gates remain open.
 
 ## Files involved
 
-MainActivity, ProjectHistoryActivity, Store, LocalRecoveryTest, PRD, CONTRACTS,
-UI matrix, UX release record and this handoff. Ignored logs/screenshots/signed APK.
+ShareActivity, ShareAttachmentTest, PRD, CONTRACTS, UI matrix, UX release record and
+this handoff. Ignored logs/screenshots/signed APK. Previous history fixes remain
+committed in fa1c8bf; their evidence is in the canonical UX record.

@@ -70,6 +70,28 @@ public class ShareAttachmentTest {
             scenario.onActivity(a->{try{assertEquals(1,a.attachments.length());assertArrayEquals(source,Files.readAllBytes(new File(a.attachments.getJSONObject(0).getString("path")).toPath()));assertEquals(0,a.store.pending().length());}catch(Exception e){throw new AssertionError(e);}});assertEquals("Rotation keeps one receive operation",1,DemoImportProvider.opens.get());
         }finally{DemoImportProvider.resume.countDown();}awaitCleanup();
     }
+    @Test public void receiveFailureRemainsReadableAndActionableInLandscape()throws Exception{
+        android.app.UiAutomation automation=InstrumentationRegistry.getInstrumentation().getUiAutomation();
+        try(ActivityScenario<DemoHomeActivity> background=ActivityScenario.launch(DemoHomeActivity.class);ActivityScenario<DemoShareActivity> scenario=ActivityScenario.launch(share("local-input","failed-input"))){
+            awaitReceive(scenario);String[] id={null};scenario.onActivity(a->id[0]=a.incoming.id);
+            try{for(int rotation:new int[]{android.app.UiAutomation.ROTATION_FREEZE_90,android.app.UiAutomation.ROTATION_FREEZE_0}){
+                assertTrue(automation.setRotation(rotation));int orientation=rotation==android.app.UiAutomation.ROTATION_FREEZE_90?android.content.res.Configuration.ORIENTATION_LANDSCAPE:android.content.res.Configuration.ORIENTATION_PORTRAIT;
+                long end=android.os.SystemClock.elapsedRealtime()+3000;boolean[] ready={false};do{scenario.onActivity(a->ready[0]=a.getResources().getConfiguration().orientation==orientation&&!a.holder.isLayoutRequested());if(ready[0])break;Thread.sleep(25);}while(android.os.SystemClock.elapsedRealtime()<end);assertTrue("Wait for requested orientation and layout: "+orientation,ready[0]);awaitSheet(scenario);
+                // Window-manager rotation runs outside the View animation checked by awaitSheet.
+                automation.waitForIdle(100,3000);Thread.sleep(700);
+                scenario.onActivity(a->a.scroll.scrollTo(0,0));InstrumentationRegistry.getInstrumentation().waitForIdleSync();
+                android.graphics.Bitmap image=automation.takeScreenshot();assertNotNull(image);try(java.io.FileOutputStream output=new java.io.FileOutputStream(new File(context.getExternalFilesDir(null),"receive-failure-rotation-"+rotation+".png"))){assertTrue(image.compress(android.graphics.Bitmap.CompressFormat.PNG,100,output));}finally{image.recycle();}
+                scenario.onActivity(a->{assertEquals(id[0],a.incoming.id);assertEquals(1,a.incoming.completeCount());assertEquals(0,a.store.pending().length());assertTrue("Failure explanation needs a readable scrolling viewport; height="+a.scroll.getHeight(),a.scroll.getHeight()>=a.dp(72));
+                    if(orientation==android.content.res.Configuration.ORIENTATION_LANDSCAPE){android.widget.TextView problem=a.receiveContent.findViewWithTag("receive-problem");android.graphics.Rect visible=new android.graphics.Rect();assertTrue("Show the cause before decoration on short screens",problem.getGlobalVisibleRect(visible));assertTrue(visible.height()>=problem.getLineHeight());}
+                    for(String tag:new String[]{"retry-import","discard-import"}){android.view.View action=a.sheet.findViewWithTag(tag);android.graphics.Rect visible=new android.graphics.Rect();assertTrue(action.getGlobalVisibleRect(visible));assertTrue("Failure action must stay fully visible",visible.height()>=action.getHeight()&&visible.width()>=action.getWidth());}
+                    a.scroll.fullScroll(android.view.View.FOCUS_DOWN);
+                });
+                InstrumentationRegistry.getInstrumentation().waitForIdleSync();
+                scenario.onActivity(a->{a.sheet.findViewWithTag("discard-import").performClick();assertTrue(a.discardDialog.isShowing());a.discardDialog.getButton(android.content.DialogInterface.BUTTON_NEGATIVE).performClick();assertFalse(a.closing);assertTrue(a.incoming.file(0).exists());});
+            }}finally{automation.setRotation(android.app.UiAutomation.ROTATION_UNFREEZE);}
+            assertEquals("Rotating a failure must not reopen providers",2,DemoImportProvider.opens.get());
+        }awaitCleanup();
+    }
     @Test public void journalRecoveryReusesCompletedCopyAndReplacesOnlyPartial()throws Exception{
         Intent intent=share("local-input","paused-input");ShareImport interrupted=new ShareImport(store,intent,null,null);
         // A durable complete receipt plus an unreceipted partial is the killed-process state.

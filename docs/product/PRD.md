@@ -36,6 +36,12 @@ in [0.5.0](../releases/0.5.0.md).
   copies only missing files; repeat taps cannot start concurrent copies. Incomplete
   shares cannot be handed off. Failure actions remain visible while content scrolls;
   discarding requires confirmation and only removes this share's private copies.
+  Short landscape screens retain a readable explanation and reachable actions at
+  200% font. Rotation does not restart a failed provider or change share identity.
+  An interrupted unsent share must remain discoverable after its original page is
+  gone, with its material, note and target choices intact. Recovery is scoped to
+  the intended instance and never sends automatically. This recovery entry remains
+  an open acceptance item; a material journal alone does not meet it.
 - Reports prioritize required action and verifiable deliverables, preserve full
   approval context, and correctly disclose original-directory execution.
 - Screenshots/files are baseline delivery; compatible static exports have cloud
