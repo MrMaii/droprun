@@ -313,7 +313,7 @@ public class ShareActivity extends StyledActivity {
         gauge=null;gaugeText=null;panel=null;panelOpen=false;
         if(store.models().length()>0){
             LinearLayout gaugeRow=Ui.row(this);gaugeRow.setClickable(true);gaugeRow.setFocusable(true);gaugeRow.setOnClickListener(v->togglePanel());Ui.bindPress(gaugeRow);
-            gauge=Ui.iconButton(this,R.drawable.ic_gauge,L.t("Model & effort","模型强度"));gauge.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);gauge.setOnClickListener(v->togglePanel());
+            gauge=Ui.iconButton(this,R.drawable.ic_gauge,L.t("Model & effort","模型强度"));gauge.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);gauge.setFocusable(false);gauge.setOnClickListener(v->togglePanel());
             gaugeRow.addView(gauge,Ui.square(this,48));Ui.space(gaugeRow,10);
             gaugeText=Ui.caption(this,"");gaugeRow.addView(gaugeText,Ui.grow());
             column.addView(gaugeRow,Ui.fill());

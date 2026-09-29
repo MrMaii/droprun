@@ -142,7 +142,7 @@ public final class Ui {
         sheet.setPadding(dp(context,20),dp(context,12),dp(context,20),dp(context,20));
         // Without cross-window blur, an opaque sheet prevents source-app text bleeding through.
         float r=dpf(context,RADIUS_SHEET);GradientDrawable shape=new GradientDrawable();shape.setColor(SURFACE|0xFF000000);shape.setCornerRadii(new float[]{r,r,r,r,0,0,0,0});shape.setStroke(dp(context,1),LINE);
-        sheet.setBackground(shape);sheet.setClickable(true);sheet.setClipToOutline(true);return sheet;
+        sheet.setBackground(shape);sheet.setClickable(true);sheet.setFocusable(false);sheet.setClipToOutline(true);return sheet;
     }
 
     // ---- shapes ---------------------------------------------------------------------------------

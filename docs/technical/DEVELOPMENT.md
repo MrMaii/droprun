@@ -53,6 +53,11 @@ built test APK with `adb shell am instrument -w -r` using
 Check the reported test failures as well as the shell exit code: instrumentation
 can return a successful shell exit while reporting JUnit failures.
 
+Run the suite again with the dedicated emulator's system font set to 200%, then
+restore its original setting. Empty-state checks validate complete text layout
+and scroll reachability; keyboard checks use actual key events. Do not run a
+second UI automation client while instrumentation owns the device.
+
 Generate both static website languages and the hosting export in `landing/dist/`
 with `npm run site:build`. The Sites manifest uses that export directory. Set
 `DROPRUN_SITE_URL` for canonical metadata. Real Android screenshots belong in

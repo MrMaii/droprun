@@ -47,6 +47,86 @@ public class LocalRecoveryTest {
 
     void stopSync(){context.stopService(new Intent(context,TaskSyncService.class));((JobScheduler)context.getSystemService(Context.JOB_SCHEDULER_SERVICE)).cancelAll();}
 
+    @Test public void emptyHomeGuidanceIsNotTruncated() {
+        Intent intent=new Intent(context,DemoHomeActivity.class).putExtra("empty",true);
+        try(ActivityScenario<DemoHomeActivity> scenario=ActivityScenario.launch(intent)){
+            InstrumentationRegistry.getInstrumentation().waitForIdleSync();
+            scenario.onActivity(activity->{
+                assertEquals(0,activity.list.getCount());
+                android.view.View empty=activity.list.getEmptyView();
+                android.widget.TextView hint=findText(empty,"Share a link, photo or video from another app. Pick a project. Its progress will find a home here.");
+                assertNotNull("The empty state must explain the next action",hint);
+                android.text.Layout layout=hint.getLayout();assertNotNull(layout);
+                assertEquals(hint.length(),layout.getLineEnd(layout.getLineCount()-1));
+                assertTrue("All guidance lines must be laid out, even at 200% font",hint.getHeight()>=layout.getHeight()+hint.getCompoundPaddingTop()+hint.getCompoundPaddingBottom());
+                hint.requestRectangleOnScreen(new android.graphics.Rect(0,hint.getHeight()-1,hint.getWidth(),hint.getHeight()),true);
+                android.graphics.Rect visible=new android.graphics.Rect();assertTrue(hint.getLocalVisibleRect(visible));
+                assertTrue("The final line must be reachable by scrolling",visible.bottom>=hint.getHeight()&&visible.top<=hint.getCompoundPaddingTop()+layout.getLineTop(layout.getLineCount()-1));
+            });
+        }
+    }
+
+    static android.widget.TextView findText(android.view.View view,String text){
+        if(view instanceof android.widget.TextView&&text.contentEquals(((android.widget.TextView)view).getText()))return (android.widget.TextView)view;
+        if(view instanceof android.view.ViewGroup){android.view.ViewGroup group=(android.view.ViewGroup)view;for(int i=0;i<group.getChildCount();i++){android.widget.TextView found=findText(group.getChildAt(i),text);if(found!=null)return found;}}
+        return null;
+    }
+
+    @Test public void keyboardCanActivateAProjectCard() {
+        android.app.Instrumentation instrumentation=InstrumentationRegistry.getInstrumentation();
+        android.app.Instrumentation.ActivityMonitor destination=instrumentation.addMonitor(ProjectHistoryActivity.class.getName(),null,true);
+        try(ActivityScenario<DemoHomeActivity> scenario=ActivityScenario.launch(DemoHomeActivity.class)){
+            instrumentation.sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_TAB);instrumentation.waitForIdleSync();
+            scenario.onActivity(activity->focusDescription(activity,"Settings"));
+            instrumentation.sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_TAB);
+            scenario.onActivity(activity->assertEquals("Studio website, 3 tasks · 5 dispatches, Delivered",activity.getCurrentFocus().getContentDescription().toString()));
+            instrumentation.sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_ENTER);
+            instrumentation.waitForIdleSync();assertEquals(1,destination.getHits());
+        }finally{instrumentation.removeMonitor(destination);}
+    }
+
+    @Test public void keyboardCanActivateATaskCard() {
+        android.app.Instrumentation instrumentation=InstrumentationRegistry.getInstrumentation();
+        android.app.Instrumentation.ActivityMonitor destination=instrumentation.addMonitor(TaskActivity.class.getName(),null,true);
+        Intent intent=new Intent(context,ProjectHistoryActivity.class).putExtra("projectId","demo-studio").putExtra("projectName","Studio website");
+        try(ActivityScenario<ProjectHistoryActivity> scenario=ActivityScenario.launch(intent)){
+            instrumentation.sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_TAB);instrumentation.waitForIdleSync();
+            scenario.onActivity(activity->focusDescription(activity,"Back to projects"));
+            instrumentation.sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_TAB);
+            instrumentation.sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_TAB);
+            scenario.onActivity(activity->{
+                android.view.View focused=activity.getCurrentFocus();assertTrue(focused.isClickable());
+                assertNotNull(findText(focused,"Give the homepage room to breathe"));
+            });
+            instrumentation.sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_ENTER);
+            instrumentation.waitForIdleSync();assertEquals(1,destination.getHits());
+        }finally{instrumentation.removeMonitor(destination);}
+    }
+
+    static void focusDescription(android.app.Activity activity,String description){
+        ArrayList<android.view.View> matches=new ArrayList<>();
+        activity.getWindow().getDecorView().findViewsWithText(matches,description,android.view.View.FIND_VIEWS_WITH_CONTENT_DESCRIPTION);
+        assertEquals(1,matches.size());assertTrue(matches.get(0).requestFocus());
+    }
+
+    @Test public void shareKeyboardSkipsDecorativeAndDuplicateStops() {
+        android.app.Instrumentation instrumentation=InstrumentationRegistry.getInstrumentation();
+        Intent share=new Intent(context,DemoShareActivity.class).setAction(Intent.ACTION_SEND).setType("text/plain");
+        try(ActivityScenario<DemoShareActivity> scenario=ActivityScenario.launch(share)){
+            scenario.onActivity(activity->{activity.selected="demo-studio";activity.go(1,1);});
+            instrumentation.sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_TAB);instrumentation.waitForIdleSync();
+            scenario.onActivity(activity->{assertFalse(activity.sheet.isFocusable());assertFalse(activity.gauge.isFocusable());assertTrue(activity.note.requestFocus());});
+            instrumentation.sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_TAB);
+            scenario.onActivity(activity->assertTrue(activity.getCurrentFocus().getContentDescription().toString().startsWith("Model & effort,")));
+            instrumentation.sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_TAB);
+            scenario.onActivity(activity->{
+                assertTrue(activity.getCurrentFocus() instanceof android.widget.Button);
+                assertEquals("Hand off to Codex",((android.widget.Button)activity.getCurrentFocus()).getText().toString());
+                assertEquals(0,activity.store.pending().length());
+            });
+        }
+    }
+
     @Test public void followupDraftAndIdentitySurviveRecreationAndCancel() {
         Intent intent=new Intent(context,TaskActivity.class).putExtra("taskId",DemoFixture.TASK);
         String[] id={null};

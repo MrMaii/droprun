@@ -11,6 +11,9 @@
 - Confirm before discarding an unsent note. Local instrumented recovery checks
   cover drafts, interrupted uploads, lost acknowledgements and instance isolation.
 - Rounded confirmation surfaces and readable sentence-case actions in both themes.
+- Scrollable empty-home guidance at large font sizes; keyboard focus and Enter
+  activation for project and task cards.
+- Share keyboard navigation skips the passive sheet surface and duplicate model icon.
 - Reject foreign saved tasks without adopting their instance identity on failure.
 - Fixed-length string bodies in the local Miniflare test transport avoid Windows
   resets on early rejection; production Worker authentication is unchanged.

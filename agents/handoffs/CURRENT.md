@@ -19,7 +19,7 @@ posting is authorized. New campaign assets remain deferred until the agreed gate
   restoration, permission confirmation and immediate local-save feedback.
 - Confirmation before discarding an unsent note. Rounded native dialogs with
   sentence-case actions; inspected light and dark/200% font without clipped actions.
-- Six native instrumented recovery tests: lifecycle/draft, partial upload retry,
+- Native instrumented recovery tests: lifecycle/draft, partial upload retry,
   lost acknowledgement identity, instance isolation, explicit discard and foreign
   outbox rejection. All pass on API 35 with synthetic transport, files and Keystore.
 - The foreign-record test reproduced a real bug: saving a failure retagged it to
@@ -30,8 +30,20 @@ posting is authorized. New campaign assets remain deferred until the agreed gate
   weakened assertions. Full Node suite **191/191**, repeated relevant suites **28/28**.
   Local commit `6a96bb4` contains the transport fix and regression.
 - Final signed/debug/test APK builds, nine unit tests and debug/release lint pass.
-  Six emulator tests passed again after the dialog style change. Stable signer
+  Ten emulator tests pass at both 100% and 200% font on API 26 and API 35. Stable signer
   verified. Tests do not establish physical-device performance or live acceptance.
+- Empty-home guidance previously disappeared at 200% font; it now scrolls without
+  truncation. Keyboard focus previously stopped at ListView; both lists now let
+  cards receive focus and Enter. Actual keyboard project/history/report/follow-up
+  navigation was checked, including cancelling and reopening an unsent draft.
+- Minimum runtime API 26 now has a dedicated local AVD (`DropRunApi26`, port 5558).
+  Ten tests pass at both 100% and 200% font; opaque dark sharing surfaces inspected.
+  The signed candidate installed and opened pairing without connecting. Both
+  packages were stopped afterward; the AVD was stopped to free resources.
+- Share keyboard navigation now skips the inactive sheet and duplicate model icon;
+  the tenth regression checks note/model/send focus without sending. Settings
+  Appearance was opened/cancelled with keys; final signed EN/ZH pairing UI checked
+  on API 26 without pairing. Both dedicated emulators are stopped.
 
 Canonical evidence, artifact hash and limits:
 [0.5.1 UX validation](../../docs/releases/0.5.1-ux.md).
@@ -54,11 +66,11 @@ Fixtures are visibly marked demonstration data; no agent work was performed.
   counted as passes; the same AVD was cold-started without wiping data. Final
   tests passed afterward. Font scale and keep-awake settings were restored;
   the debug package was force-stopped after local checks.
-- Physical Android/TalkBack/performance, API 26 fallback, full keyboard coverage,
+- Physical Android/TalkBack/performance, full keyboard coverage,
   20 genuine sources, five full tasks over three projects, clean Windows/new
   cloud-account installation and upgrade acceptance remain open.
-- Do not infer every state is visually perfect from the six screenshots. The empty
-  home at 200% font and complete keyboard navigation still warrant local inspection.
+- Empty-home, keyboard project/history/follow-up and API 26 fallback evidence is
+  in the release record. Other screens and complete TalkBack still need coverage.
 
 ## Public baseline (unchanged)
 
@@ -77,8 +89,8 @@ Git author: Thomas Deng <150266369+MrMaii@users.noreply.github.com>.
 
 ## Single recommended next action
 
-Continue local accessibility inspection of empty history and keyboard navigation,
-then address observed failures. Keep live submissions disabled and acceptance gaps
+Build a local UI control/state acceptance matrix and cover remaining approval,
+offline and pending screens with labelled synthetic fixtures. Keep live submissions disabled and acceptance gaps
 visible; do not claim marketing readiness or publish campaign assets as proof of
 an end-to-end handoff.
 
