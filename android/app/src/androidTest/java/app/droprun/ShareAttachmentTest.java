@@ -41,6 +41,10 @@ public class ShareAttachmentTest {
     void awaitCleanup()throws Exception{
         long end=android.os.SystemClock.elapsedRealtime()+5000;while(!files().equals(before)&&android.os.SystemClock.elapsedRealtime()<end)Thread.sleep(25);assertEquals("Unsent copies are cleaned, preexisting files untouched",before,files());
     }
+    void awaitSheet(ActivityScenario<DemoShareActivity> scenario)throws Exception{
+        long end=android.os.SystemClock.elapsedRealtime()+3000;boolean[] settled={false};
+        do{scenario.onActivity(a->settled[0]=a.holder.getAlpha()==1f&&a.holder.getTranslationY()==0f);if(settled[0])return;Thread.sleep(25);}while(android.os.SystemClock.elapsedRealtime()<end);fail("Share entrance animation did not finish");
+    }
     @Test public void completeCopyRestoresWithoutReopeningSource()throws Exception{
         try(ActivityScenario<DemoShareActivity> scenario=ActivityScenario.launch(share("local-input"))){
             awaitReceive(scenario);String[] path={null};scenario.onActivity(a->{try{assertEquals(1,a.attachments.length());path[0]=a.attachments.getJSONObject(0).getString("path");assertArrayEquals(source,Files.readAllBytes(new File(path[0]).toPath()));}catch(Exception e){throw new AssertionError(e);}});
@@ -50,10 +54,14 @@ public class ShareAttachmentTest {
             scenario.onActivity(a->{a.selected="demo-studio";a.go(1,1);a.note.setText("Keep this note");a.importObserver.run();assertEquals(1,a.step);assertEquals("Keep this note",a.note.getText().toString());});
         }awaitCleanup();
     }
-    @Test public void interruptedSecondCopyRemovesPartialAndEarlierCopies()throws Exception{
+    @Test public void interruptedSecondCopyKeepsCompleteBytesUntilConfirmedDiscard()throws Exception{
         try(ActivityScenario<DemoShareActivity> scenario=ActivityScenario.launch(share("local-input","failed-input"))){
-            awaitReceive(scenario);scenario.onActivity(a->{assertEquals(0,a.attachments.length());assertEquals(-1,a.step);assertEquals(0,a.store.pending().length());});assertEquals(2,DemoImportProvider.opens.get());awaitCleanup();
-        }
+            awaitReceive(scenario);scenario.onActivity(a->{try{assertEquals(0,a.attachments.length());assertEquals(-1,a.step);assertEquals(0,a.store.pending().length());assertEquals(1,a.incoming.completeCount());assertArrayEquals(source,Files.readAllBytes(a.incoming.file(0).toPath()));assertFalse(a.incoming.file(1).exists());assertNotNull(a.sheet.findViewWithTag("retry-import"));}catch(Exception e){throw new AssertionError(e);}});assertEquals(2,DemoImportProvider.opens.get());
+            scenario.recreate();awaitReceive(scenario);assertEquals("Recreation does not retry a failed provider",2,DemoImportProvider.opens.get());
+            awaitSheet(scenario);InstrumentationRegistry.getInstrumentation().waitForIdleSync();
+            scenario.onActivity(a->{for(String tag:new String[]{"retry-import","discard-import"}){android.view.View action=a.sheet.findViewWithTag(tag);android.graphics.Rect visible=new android.graphics.Rect();assertTrue(action.getHeight()>0);assertTrue(action.getGlobalVisibleRect(visible));assertTrue("Failure actions stay fully visible without scrolling",visible.height()>=action.getHeight());}});
+            scenario.onActivity(a->{a.sheet.findViewWithTag("discard-import").performClick();assertTrue(a.discardDialog.isShowing());a.discardDialog.getButton(android.content.DialogInterface.BUTTON_NEGATIVE).performClick();assertFalse(a.closing);assertTrue(a.incoming.file(0).exists());a.sheet.findViewWithTag("discard-import").performClick();a.discardDialog.getButton(android.content.DialogInterface.BUTTON_POSITIVE).performClick();});
+        }awaitCleanup();
     }
     @Test public void recreationDuringCopyKeepsOnlyTheRestoredCopy()throws Exception{
         DemoImportProvider.resume=new CountDownLatch(1);
@@ -106,7 +114,8 @@ public class ShareAttachmentTest {
     @Test public void modifiedCompleteCopyFailsVerificationWithoutReopeningSource()throws Exception{
         Intent intent=share("local-input");ShareImport original=new ShareImport(store,intent,null,null);original.run();assertNull(original.error);
         byte[] changed=source.clone();changed[100]^=1;Files.write(original.file(0).toPath(),changed);
-        ShareImport recovered=new ShareImport(store,intent,original.id,store.scope);recovered.run();assertNotNull(recovered.error);assertEquals(1,DemoImportProvider.opens.get());awaitCleanup();
+        ShareImport recovered=new ShareImport(store,intent,original.id,store.scope);recovered.run();assertNotNull(recovered.error);assertEquals(0,recovered.completeCount());assertFalse(recovered.file(0).exists());assertEquals(1,DemoImportProvider.opens.get());
+        try{assertTrue(recovered.retry());recovered.run();assertNull(recovered.error);assertArrayEquals(source,Files.readAllBytes(recovered.file(0).toPath()));}finally{recovered.cancel();}awaitCleanup();
     }
     @Test public void closingDuringCopyCleansItsOwnedPartial()throws Exception{
         DemoImportProvider.resume=new CountDownLatch(1);
@@ -117,5 +126,31 @@ public class ShareAttachmentTest {
         Intent intent=share("local-input");ShareImport first=new ShareImport(store,intent,null,null),second=new ShareImport(store,intent,null,null);
         try{first.run();second.run();assertNull(first.error);assertNull(second.error);first.cancel();assertArrayEquals(source,Files.readAllBytes(second.file(0).toPath()));}
         finally{first.cancel();second.cancel();}awaitCleanup();
+    }
+    @Test public void retryReadsOnlyMissingMaterialAndIgnoresRepeatedTap()throws Exception{
+        File gate=new File(context.getCacheDir(),"synthetic-import.fail"),first=new File(context.getCacheDir(),"synthetic-import-first.bin");Files.write(first.toPath(),source);assertTrue(gate.createNewFile());
+        try(ActivityScenario<DemoShareActivity> scenario=ActivityScenario.launch(share("first-input","flaky-input"))){
+            awaitReceive(scenario);assertEquals(2,DemoImportProvider.opens.get());scenario.onActivity(a->assertNotNull(a.incoming.error));assertTrue(first.delete());assertTrue(gate.delete());
+            scenario.onActivity(a->{android.view.View retry=a.sheet.findViewWithTag("retry-import");assertNotNull(retry);retry.performClick();retry.performClick();assertTrue(a.receiving);});awaitReceive(scenario);
+            scenario.onActivity(a->{try{assertNull(a.incoming.error);assertEquals(0,a.step);assertEquals(2,a.attachments.length());assertArrayEquals(source,Files.readAllBytes(a.incoming.file(0).toPath()));assertArrayEquals(source,Files.readAllBytes(a.incoming.file(1).toPath()));assertEquals(0,a.store.pending().length());}catch(Exception e){throw new AssertionError(e);}});assertEquals(3,DemoImportProvider.opens.get());
+        }finally{gate.delete();first.delete();}awaitCleanup();
+    }
+    @Test public void persistedFailureIsVerifiedWithoutAutomaticProviderRetry()throws Exception{
+        Intent intent=share("local-input","failed-input");ShareImport original=new ShareImport(store,intent,null,null);original.run();assertNotNull(original.error);assertEquals(1,original.completeCount());assertEquals(2,DemoImportProvider.opens.get());
+        ShareImport recovered=new ShareImport(store,intent,original.id,store.scope);
+        try{recovered.run();assertNotNull(recovered.error);assertEquals(1,recovered.failureIndex);assertEquals(1,recovered.completeCount());assertEquals(2,DemoImportProvider.opens.get());assertTrue(recovered.retry());assertFalse(recovered.retry());recovered.run();assertNotNull(recovered.error);assertEquals(3,DemoImportProvider.opens.get());assertArrayEquals(source,Files.readAllBytes(recovered.file(0).toPath()));}
+        finally{recovered.cancel();}awaitCleanup();
+    }
+    @Test public void sourceRevocationKeepsCompleteMaterialAndHonestFailure()throws Exception{
+        Intent intent=share("local-input","revoked-input");ShareImport original=new ShareImport(store,intent,null,null);
+        try{original.run();assertNotNull(original.error);assertEquals("source",((ShareImport.ReceiveFailure)original.error).kind);assertEquals(1,original.completeCount());assertFalse(original.file(1).exists());assertArrayEquals(source,Files.readAllBytes(original.file(0).toPath()));assertThrows(java.io.IOException.class,()->original.save(new JSONObject()));assertEquals(0,store.pending().length());}
+        finally{original.cancel();}awaitCleanup();
+    }
+    @Test public void incompleteReceiptIsNotReadyAndDoesNotHideOtherValidCopies()throws Exception{
+        Intent intent=share("local-input","local-input");ShareImport original=new ShareImport(store,intent,null,null);original.run();assertNull(original.error);
+        original.record.getJSONArray("files").getJSONObject(0).remove("sha256");original.write();assertTrue(DemoImportProvider.file(context).delete());
+        ShareImport recovered=new ShareImport(store,intent,original.id,store.scope);
+        try{recovered.run();assertEquals("integrity",((ShareImport.ReceiveFailure)recovered.error).kind);assertEquals(1,recovered.completeCount());assertFalse(recovered.file(0).exists());assertArrayEquals(source,Files.readAllBytes(recovered.file(1).toPath()));assertEquals(2,DemoImportProvider.opens.get());assertEquals(0,store.pending().length());}
+        finally{recovered.cancel();}awaitCleanup();
     }
 }

@@ -47,6 +47,7 @@ public class ShareActivity extends StyledActivity {
     EditText search,note;TextView gaugeText,sendTitle,status,badge;Ui.PlaneView plane;Ui.Glass dialog;ColorDrawable scrim;ValueAnimator panelAnimator;
     AlertDialog discardDialog;
     ShareImport incoming;Runnable importObserver;Bundle restoredState;
+    LinearLayout receiveActions;
     String shared="",last="",selected="",model="",effort="",query="",draft="";JSONArray attachments=new JSONArray();
     List<JSONObject> recentProjects=Collections.emptyList();
     int step=-1;boolean receiving=true,showAll=false,panelOpen=false,busy=false,closing=false,sent=false;
@@ -68,7 +69,7 @@ public class ShareActivity extends StyledActivity {
             if(!incoming.store.scope.equals(store.scope))incoming.bind(store);
             importObserver=()->{
                 if(!receiving||!incoming.finished||gone())return;
-                if(incoming.error!=null){fatal(incoming.error);return;}
+                if(incoming.error!=null){receiveFailed();return;}
                 try{attachments=incoming.attachments();received();}catch(Exception e){fatal(e);}
             };
             incoming.observer=importObserver;
@@ -80,6 +81,7 @@ public class ShareActivity extends StyledActivity {
     }
     void received(){
         receiving=false;if(gone()){discardAttachments();return;}
+        clearReceiveActions();
         if(shared.trim().isEmpty()&&attachments.length()==0){fatal(new IOException(L.t("Share a link, text or file.","请分享链接、文字或文件")));return;}
         if(store.paired()){
             start();
@@ -155,9 +157,10 @@ public class ShareActivity extends StyledActivity {
     void close(){
         if(closing)return;
         String message=note==null?draft:note.getText().toString();
-        if(!sent&&!message.trim().isEmpty()){
+        boolean failed=receiveActions!=null||(incoming!=null&&incoming.error!=null);
+        if(!sent&&(!message.trim().isEmpty()||failed)){
             if(discardDialog!=null&&discardDialog.isShowing())return;
-            discardDialog=new AlertDialog.Builder(this).setTitle(L.t("Discard your note?","放弃这段留言？")).setMessage(L.t("Nothing has been handed off. Closing will remove your note.","这次分享尚未交办。关闭后，这段留言将被丢弃。")).setNegativeButton(L.t("Keep editing","继续编辑"),null).setPositiveButton(L.t("Discard","放弃"),(d,w)->finishShare()).show();
+            discardDialog=new AlertDialog.Builder(this).setTitle(failed?L.t("Discard this share?","放弃这次分享？"):L.t("Discard your note?","放弃这段留言？")).setMessage(failed?L.t("Nothing has been handed off. This removes this share's saved copies and note. Your original files stay in the source app.","这次分享尚未交办。将移除本次保存的副本和留言，来源 App 中的原文件不受影响。"):L.t("Nothing has been handed off. Closing will remove your note.","这次分享尚未交办。关闭后，这段留言将被丢弃。")).setNegativeButton(failed?L.t("Keep share","保留分享"):L.t("Keep editing","继续编辑"),null).setPositiveButton(L.t("Discard","放弃"),(d,w)->finishShare()).show();
             return;
         }
         finishShare();
@@ -173,6 +176,31 @@ public class ShareActivity extends StyledActivity {
     void fatal(Exception e){receiving=false;if(gone())return;new AlertDialog.Builder(this).setTitle(L.t("Could not complete this action","暂时无法完成")).setMessage(e.getMessage()).setPositiveButton(L.t("Got it","知道了"),null).setOnDismissListener(d->close()).show();}
 
     // ---- receiving the share --------------------------------------------------------------------
+    void clearReceiveActions(){if(receiveActions!=null){sheet.removeView(receiveActions);receiveActions=null;scroll.setLayoutParams(Ui.fill());scroll.setVerticalScrollBarEnabled(false);}}
+    void receiveFailed(){
+        receiving=false;step=-1;dots.setVisibility(View.INVISIBLE);back.setVisibility(View.INVISIBLE);
+        LinearLayout column=Ui.vertical(this);column.addView(Ui.title(this,L.t("Let's finish receiving","材料尚未接收完成"),20));
+        TextView summary=Ui.text(this,L.t(incoming.completeCount()+" of "+incoming.sources.length()+" files kept on your phone. Nothing has been handed off.","手机已保留 "+incoming.completeCount()+" / "+incoming.sources.length()+" 份文件，尚未交办。"),14,Ui.MUTED);summary.setAccessibilityLiveRegion(View.ACCESSIBILITY_LIVE_REGION_POLITE);column.addView(summary,Ui.margins(this,4,14));
+        TextView problem=Ui.text(this,incoming.error.getMessage(),14,Ui.TEXT);column.addView(problem,Ui.margins(this,0,14));
+        JSONArray files=incoming.record.optJSONArray("files");LinearLayout materials=Ui.card(this);
+        for(int n=0;n<incoming.sources.length();n++){
+            JSONObject item=files==null?null:files.optJSONObject(n);boolean ready=item!=null&&item.optBoolean("complete");
+            String name=item==null?L.t("File "+(n+1),"文件 "+(n+1)):item.optString("name",L.t("File "+(n+1),"文件 "+(n+1)));
+            materials.addView(Ui.text(this,name,14,Ui.TEXT),Ui.margins(this,n==0?0:12,2));
+            materials.addView(Ui.text(this,ready?L.t("Ready on this phone","已保存在手机"):n==incoming.failureIndex?L.t("Not received","未接收完成"):L.t("Waiting","等待接收"),12,ready?Ui.MUTED:Ui.AMBER),Ui.fill());
+        }
+        column.addView(materials,Ui.fill());
+        clearReceiveActions();receiveActions=Ui.vertical(this);receiveActions.setPadding(0,dp(12),0,0);
+        Button retry=Ui.button(this,L.t("Retry receiving","重试接收"),true);retry.setTag("retry-import");retry.setOnClickListener(v->retryIncoming());receiveActions.addView(retry,Ui.fill());
+        Button discard=Ui.button(this,L.t("Discard share","放弃分享"),false);discard.setTag("discard-import");Ui.styleGhost(discard);discard.setOnClickListener(v->close());receiveActions.addView(discard,Ui.margins(this,6,0));
+        scroll.setLayoutParams(new LinearLayout.LayoutParams(-1,0,1));scroll.setVerticalScrollBarEnabled(true);sheet.addView(receiveActions,Ui.fill());
+        Ui.swap(stage,column,1);scroll.scrollTo(0,0);
+    }
+    void retryIncoming(){
+        if(receiving||gone())return;
+        try{if(!incoming.retry())return;receiving=true;Button retry=receiveActions.findViewWithTag("retry-import");retry.setEnabled(false);retry.setText(L.t("Receiving…","正在接收…"));Ui.swap(stage,notice(L.t("Receiving the remaining material…","正在接收剩余材料…")),1);io.execute(incoming);}
+        catch(Exception e){error(e);}
+    }
     void unpaired(){
         dots.setVisibility(View.INVISIBLE);LinearLayout column=Ui.vertical(this);
         column.addView(Ui.title(this,L.t("Connect your computer first","先连接电脑"),20));

@@ -27,6 +27,11 @@ in [0.5.0](../releases/0.5.0.md).
   Status/pending updates retain the visible task and offset without replaying
   entry motion. Activity recreation restores the reading position in retained
   older pages for both touch and keyboard browsing.
+- Incoming-file failure keeps verified complete copies and identifies missing
+  material. Restoring the failure does not retry a provider automatically. Retry
+  copies only missing files; repeat taps cannot start concurrent copies. Incomplete
+  shares cannot be handed off. Failure actions remain visible while content scrolls;
+  discarding requires confirmation and only removes this share's private copies.
 - Reports prioritize required action and verifiable deliverables, preserve full
   approval context, and correctly disclose original-directory execution.
 - Screenshots/files are baseline delivery; compatible static exports have cloud

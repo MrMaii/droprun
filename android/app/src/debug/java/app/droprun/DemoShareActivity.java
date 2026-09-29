@@ -3,9 +3,9 @@ import android.os.Bundle;
 public final class DemoShareActivity extends ShareActivity {
     @Override protected void onCreate(Bundle state){
         if(state==null)DemoFixture.seed(this);
-        if(getIntent().getBooleanExtra("twoLocalInputs",false)){
+        if(getIntent().getBooleanExtra("twoLocalInputs",false)||getIntent().getBooleanExtra("localReceiveFailure",false)){
             java.util.ArrayList<android.net.Uri> sources=new java.util.ArrayList<>();
-            for(String path:new String[]{"first-input","held-input"})sources.add(android.net.Uri.parse("content://"+getPackageName()+".import-fixture/"+path));
+            for(String path:new String[]{"first-input",getIntent().getBooleanExtra("localReceiveFailure",false)?"flaky-input":"held-input"})sources.add(android.net.Uri.parse("content://"+getPackageName()+".import-fixture/"+path));
             getIntent().setAction(android.content.Intent.ACTION_SEND_MULTIPLE).setType("application/octet-stream").putParcelableArrayListExtra(android.content.Intent.EXTRA_STREAM,sources);
         }
         if(!android.content.Intent.ACTION_SEND_MULTIPLE.equals(getIntent().getAction()))getIntent().setAction(android.content.Intent.ACTION_SEND);

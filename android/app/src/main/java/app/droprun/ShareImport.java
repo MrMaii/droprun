@@ -26,6 +26,8 @@ final class ShareImport implements Runnable {
     volatile boolean finished,cancelled,transferred;
     volatile Exception error;
     volatile Runnable observer;
+    private boolean retryRequested;
+    int failureIndex=-1;
     private InputStream input;
 
     ShareImport(Store current,Intent intent,String savedId,String savedScope)throws Exception{
@@ -65,6 +67,16 @@ final class ShareImport implements Runnable {
     }
     static IOException invalid(){return new IOException(L.t("This saved share could not be verified. Please share the material again.","无法核验这次保存的分享，请重新分享材料。"));}
     static IOException changed(){return new IOException(L.t("The connection changed. Share again to choose the intended computer.","连接已改变，请重新分享并选择目标电脑。"));}
+    static final class ReceiveFailure extends IOException {
+        final String kind;
+        ReceiveFailure(String kind){super(switch(kind){
+            case "source"->L.t("The source is no longer available. If retry cannot reopen it, return to the source app and share again.","来源已不可用。如果重试仍无法读取，请返回来源 App 重新分享。");
+            case "integrity"->L.t("A saved copy could not be verified. Retry to copy that file again.","一份已保存副本未通过校验，请重试复制该文件。");
+            case "size"->L.t("A file exceeds the 50 MB limit. Share a smaller version from the source app.","一份文件超过 50 MB，请从来源 App 分享较小版本。");
+            case "storage"->L.t("Recovery could not be saved. Free up space on your phone, then retry.","无法保存恢复记录。请释放手机空间后重试。");
+            default->L.t("Copying was interrupted. Check free space and try again.","复制中断了，请检查剩余空间后重试。");
+        });this.kind=kind;}
+    }
     void write()throws IOException{
         FileOutputStream output=null;
         try{output=journal.startWrite();output.write(record.toString().getBytes(StandardCharsets.UTF_8));journal.finishWrite(output);}
@@ -78,18 +90,35 @@ final class ShareImport implements Runnable {
         return hex(digest.digest());
     }
     void checkCancelled()throws InterruptedIOException{if(cancelled)throw new InterruptedIOException("Share closed.");}
+    synchronized boolean retry()throws IOException{
+        if(!finished||error==null||cancelled||transferred)return false;
+        if(!store.scope.equals(new Store(store.context).scope))throw changed();
+        retryRequested=true;finished=false;error=null;return true;
+    }
+    int completeCount(){int count=0;JSONArray files=record.optJSONArray("files");for(int n=0;files!=null&&n<files.length();n++){JSONObject item=files.optJSONObject(n);if(item!=null&&item.optBoolean("complete"))count++;}return count;}
     @Override public void run(){
         try{
+            if(retryRequested){retryRequested=false;record.remove("failure");write();}
             JSONArray files=record.getJSONArray("files");
+            // Validate every retained receipt before describing any copy as ready, even on failure restoration.
+            int damaged=-1;
+            for(int index=0;index<files.length();index++){
+                checkCancelled();JSONObject saved=files.optJSONObject(index);if(saved==null||!saved.optBoolean("complete"))continue;
+                File target=file(index);boolean verified=false;
+                try{verified=saved.opt("name") instanceof String&&saved.opt("mime") instanceof String&&target.isFile()&&target.length()==saved.getLong("size")&&digest(target).equals(saved.getString("sha256"));}catch(Exception unreadable){}
+                if(!verified){saved.put("complete",false);target.delete();if(damaged<0)damaged=index;}
+            }
+            if(damaged>=0){failureIndex=damaged;throw new ReceiveFailure("integrity");}
+            JSONObject previousFailure=record.optJSONObject("failure");
+            if(previousFailure!=null){failureIndex=previousFailure.optInt("index",-1);throw new ReceiveFailure(previousFailure.optString("kind","copy"));}
             for(int index=0;index<sources.length();index++){
                 checkCancelled();File target=file(index);JSONObject saved=files.optJSONObject(index);
-                if(saved!=null&&saved.optBoolean("complete")){
-                    if(!target.isFile()||target.length()!=saved.getLong("size")||!digest(target).equals(saved.getString("sha256")))throw invalid();
-                    continue;
-                }
+                if(saved!=null&&saved.optBoolean("complete"))continue;
+                failureIndex=index;
                 Uri uri=Uri.parse(sources.getString(index));String type=store.context.getContentResolver().getType(uri);if(type==null)type=mime;
                 String name="shared-file";
                 try(Cursor cursor=store.context.getContentResolver().query(uri,null,null,null,null)){if(cursor!=null&&cursor.moveToFirst()){int column=cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME);if(column>=0&&cursor.getString(column)!=null)name=cursor.getString(column);}}
+                files.put(index,new JSONObject().put("name",name).put("mime",type).put("complete",false));write();
                 MessageDigest hash=MessageDigest.getInstance("SHA-256");long size=0;
                 // The name is derived from the journal ID and index before any bytes are written.
                 // After a killed process, truncating this same owned file removes the partial copy.
@@ -97,12 +126,22 @@ final class ShareImport implements Runnable {
                     if(source==null)throw new IOException(L.t("The source could not be opened. Share it again.","无法打开来源，请重新分享。"));
                     synchronized(this){input=source;checkCancelled();}
                     byte[] buffer=new byte[65536];int count;
-                    while((count=source.read(buffer))!=-1){checkCancelled();size+=count;if(size>50L*1024*1024)throw new IOException(L.t("An attachment exceeds the 50 MB limit.","附件超过 50 MB"));output.write(buffer,0,count);hash.update(buffer,0,count);}
+                    while((count=source.read(buffer))!=-1){checkCancelled();size+=count;if(size>50L*1024*1024)throw new ReceiveFailure("size");output.write(buffer,0,count);hash.update(buffer,0,count);}
                     checkCancelled();output.getFD().sync();
                 }finally{synchronized(this){input=null;}}
                 files.put(index,new JSONObject().put("name",name).put("mime",type).put("size",size).put("sha256",hex(hash.digest())).put("complete",true));write();
             }
-        }catch(Exception e){error=e instanceof FileNotFoundException||e instanceof SecurityException?new IOException(L.t("The source is no longer available. Please share the material again.","来源已不可用，请重新分享材料。")):e;discard();}
+            failureIndex=-1;
+        }catch(Exception e){
+            if(cancelled){error=e;discard();}
+            else{
+                ReceiveFailure failure=e instanceof ReceiveFailure?(ReceiveFailure)e:new ReceiveFailure(e instanceof FileNotFoundException||e instanceof SecurityException?"source":"copy");error=failure;
+                JSONArray files=record.optJSONArray("files");
+                for(int index=0;index<sources.length();index++){JSONObject saved=files==null?null:files.optJSONObject(index);if(saved==null||!saved.optBoolean("complete"))file(index).delete();}
+                try{record.put("failure",new JSONObject().put("kind",failure.kind).put("index",failureIndex));write();}
+                catch(Exception unavailable){error=new ReceiveFailure("storage");}
+            }
+        }
         finally{
             finished=true;if(cancelled)discard();
             new Handler(Looper.getMainLooper()).post(()->{Runnable callback=observer;if(callback!=null)callback.run();});
@@ -110,7 +149,7 @@ final class ShareImport implements Runnable {
     }
     JSONArray attachments()throws JSONException{
         JSONArray result=new JSONArray(),files=record.getJSONArray("files");
-        for(int index=0;index<files.length();index++){JSONObject saved=files.getJSONObject(index);result.put(new JSONObject().put("path",file(index).getAbsolutePath()).put("name",saved.getString("name")).put("mime",saved.getString("mime")));}
+        for(int index=0;index<files.length();index++){JSONObject saved=files.optJSONObject(index);if(saved!=null&&saved.optBoolean("complete"))result.put(new JSONObject().put("path",file(index).getAbsolutePath()).put("name",saved.getString("name")).put("mime",saved.getString("mime")));}
         return result;
     }
     /** Only a previously unpaired share may follow an explicitly confirmed first pairing. */

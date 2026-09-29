@@ -13,47 +13,40 @@ posting is authorized. New campaign assets remain deferred until the agreed gate
 
 ## Completed this pass
 
-- Fixed the orphan reproduced in `ecf0173`. ShareImport now persists an atomic
-  instance-scoped UUID journal before copying, validates source identity and
-  completed-byte receipts, retains one operation across recreation, and overwrites
-  only its own partial on process restoration. Close cannot delete another share
-  or outbox-owned files. First pairing can adopt an unpaired draft; paired instances
-  cannot exchange drafts. Contract updated with ownership and transfer rules.
-- Outbox uses the receive UUID; restoration detects an already saved task. Both
-  restoration and outbox cleanup handle a leftover journal after the save boundary.
-  Completion callbacks are consumed once, protecting a restored note from a late
-  duplicate callback. Legacy flat attachment paths remain supported.
-- Ten native attachment cases now include copy reuse, interruption, recreation,
-  journal recovery, source/instance isolation, outbox ownership, first pairing,
-  byte modification, mid-copy close and independent drafts.
-- Full native suites passed61/61 on both APIs. The final callback guard and direct
-  receive-UUID assignment were then verified by ten focused cases on each API,
-  with API35 at200%. JVM12, debug lint and signed build passed. Signed local APK
-  refreshed; previous candidate preserved. Exact evidence/hash belongs in release record.
-- Actual API35 process probe passed: task2766/PID16929 killed with first196608-byte
-  copy complete and second4096-byte partial; first source deleted; PID17051 resumed
-  the same directory, retained first bytes and finished second262144 bytes. Both
-  hashes matched. Normal Close removed the entire owned folder; no manual attachment
-  cleanup needed. Unknown older6d908a45-e442-428d-aac7-b9eace8e1705 untouched.
-- Synthetic source/hold files removed; preferences restored; both emulators stopped.
-  No live submission, remote mutation, public deployment or campaign assets.
-
-Previous code pass `88ce635` fixed touch viewport jumps and added three attachment
-cases. Its full native suites passed54/54 on both APIs, two viewport cases at200%
-passed on each, and JVM12/debug lint/signed build passed. Initial viewport, fixture
-launch and file-preview total-read assertion failures remain in the release record.
-
-Prior audit `2b385ac` maps original requirements to evidence in the release record
-and verifies stopped text-editor process recovery. It does not close live gates.
+- Added inbound receive-failure recovery: retain verified copies, remove partial
+  or corrupt copies, persist a bounded failure kind/index, and restore without
+  automatically retrying providers. Explicit retry copies only missing material
+  and rejects repeat taps. Missing receipt fields cannot claim a copy is ready.
+- Failure overlay shows cause before the file list, kept count and file states.
+  Retry/discard stay below scrolling content; retry disables with immediate status.
+  Discard asks for confirmation; Keep retains materials. Incomplete batches cannot
+  submit. PRD and CONTRACTS updated. No abandoned-draft recovery screen yet.
+- Fourteen native attachment cases pass on both APIs at200%. The subsequent
+  reason-first layout change passes its focused visibility/confirmation case on
+  both. Visibility waits for actual sheet alpha1/translation0 and allows outward
+  integer mapping; earlier assertion failures remain recorded, not erased.
+- Actual API35 failure process probe passed: task2777/PID17907 killed after first
+  196608-byte copy and second-source failure. First original deleted; second source
+  restored before PID18058 resumed. Failure persisted without auto-retry; explicit
+  Retry completed the second262144 bytes, retained the first and matched both hashes.
+  Normal Close cleaned own folder; outbox stayed empty and unknown older file stayed.
+- A broader run found API35 history shift(item170 to169) and pending removal still
+  present after3s. Isolated history passed, but pending removal failed again. These
+  remain UNFIXED. Initial API26 pre-footer suite passed64/64; later full runs are
+  not green. Do not represent the attachment subset as full acceptance.
+- JVM12, lint, final signed build passed. New APK is a separate review build;
+  named candidate remains `ffdfe7e`'s artifact until regression investigation.
+  System preferences restored, synthetic sources/markers removed, both emulators
+  stopped. No live submission, remote mutation, public deployment or campaign assets.
 
 Evidence and current artifact hash: [0.5.1 UX validation](../../docs/releases/0.5.1-ux.md).
 Control/flow coverage and missing acceptance: [UI matrix](../../docs/releases/0.5.1-ui-matrix.md).
-Do not duplicate detailed historical run results here. The preceding 54-case suites
-include prior model/default focus, Home/history restoration, file-export recovery,
-permission, retention, instance-isolation and scheduling cases. Those tests prove
-only their local assertions, not real delivery or physical performance.
+The record retains preceding viewport, model/focus, file-export and ownership
+results, including failed attempts. Local assertions do not prove real delivery
+or physical performance; earlier green runs do not erase the current regression.
 
 APK: `.local/releases/ux-polish-sep29/DropRun-0.5.1-android-candidate.apk`.
+New review only: `.local/releases/ux-polish-sep29/DropRun-0.5.1-import-retry-review.apk`.
 Windows installer/ZIP: `.local/releases/ux-actions-sep29-windows-final/`.
 Current screenshots: `.local/ux-cloud-check/share-choice-api{26,35}-{light,dark}.png`
 and `share-choice-api{26,35}-large-{light,dark}.png`. Text process probe uses
@@ -64,6 +57,9 @@ Interrupted-copy failing evidence remains `import-held-{before,restored}.xml` an
 `import-interruption-observations.json`. Passing ownership evidence is
 `import-owned-{before,restored,closed}.xml`, `import-owned-restored.png`, and
 `import-ownership-observations.json` in the same local folder.
+Latest failure probe: `import-retry-{before,restored,actions,success,closed}.xml`,
+`import-retry-observations.json`. UI: `import-retry-footer.png` (EN200%) and
+`import-retry-final-zh.png` (Chinese dark, cause-first final layout).
 Synthetic fixtures are not
 actual agent work. Node's preceding 198-case pass and Windows manifest evidence
 remain in the release record; Node/Windows did not change this pass.
@@ -105,18 +101,20 @@ Git author: Thomas Deng <150266369+MrMaii@users.noreply.github.com>.
 
 ## Single recommended next action
 
-Complete the inbound receive-failure UX using the new ownership records. The
-existing provider-failure path still deletes the batch and shows a fatal-dismiss
-dialog; the original requirement asks for retained material plus visible retry
-and cancel. Preserve verified complete copies when a later source fails, make the
-failure state recoverable without duplicate writes, and show accurate source-loss
-wording using private providers only. Examine abandoned journals whose Activity is
-never restored before claiming the whole draft lifecycle is closed. Do not sweep
-unknown files. The older6d908a45-e442-428d-aac7-b9eace8e1705 remains unowned by this
-work. Real provider, remote submission and Codex execution remain out of scope.
+Fix the repeated local pending-removal failure before promoting the review APK.
+ProjectHistoryActivity.load and removeSaved share a single executor; a blocked
+history request may queue local removal. Reproduce deterministically with local
+fixtures, inspect actual thread/queue state, then make removal responsive with
+honest progress. Do not just increase the test's3s timeout. Also retain the one-row
+history shift from the full run: a second render before layout may read an anchor
+from already-replaced rows, but this is only a hypothesis; its isolated case passed.
+Evidence is in `import-retry-api35-final.log` and `import-retry-history-isolated.log`.
+After these regressions, examine never-restored draft ownership and short landscape.
+Do not sweep unknown6d908a45-e442-428d-aac7-b9eace8e1705. No real provider, Relay task
+or Codex execution; current authorized validation remains local-only.
 
 ## Files involved
 
-ShareImport (new), ShareActivity, Store, ShareAttachmentTest, DemoImportProvider,
-DemoShareActivity, CONTRACTS, UI matrix, UX release record and this handoff.
-Ignored local probe XML/PNG/observations and refreshed signed candidate APK.
+ShareImport, ShareActivity, ShareAttachmentTest, DemoImportProvider,
+DemoShareActivity, PRD, CONTRACTS, UI matrix, UX release record and this handoff.
+Ignored local probe XML/PNG/observations and a separate signed review APK.

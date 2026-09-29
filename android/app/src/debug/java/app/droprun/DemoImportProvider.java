@@ -23,14 +23,15 @@ public final class DemoImportProvider extends ContentProvider {
         MatrixCursor cursor=new MatrixCursor(new String[]{OpenableColumns.DISPLAY_NAME,OpenableColumns.SIZE});cursor.addRow(new Object[]{"/first-input".equals(uri.getPath())?"first-evidence.bin":"local-evidence.bin",source(uri).length()});return cursor;
     }
     @Override public ParcelFileDescriptor openFile(Uri uri,String mode)throws FileNotFoundException{
-        String path=uri.getPath();if(!"r".equals(mode)||!("/local-input".equals(path)||"/first-input".equals(path)||"/failed-input".equals(path)||"/paused-input".equals(path)||"/held-input".equals(path)))throw new FileNotFoundException("Unexpected synthetic input");
-        opens.incrementAndGet();if("/local-input".equals(path)||"/first-input".equals(path))return ParcelFileDescriptor.open(source(uri),ParcelFileDescriptor.MODE_READ_ONLY);
+        String path=uri.getPath();if(!"r".equals(mode)||!("/local-input".equals(path)||"/first-input".equals(path)||"/failed-input".equals(path)||"/flaky-input".equals(path)||"/revoked-input".equals(path)||"/paused-input".equals(path)||"/held-input".equals(path)))throw new FileNotFoundException("Unexpected synthetic input");
+        opens.incrementAndGet();if("/revoked-input".equals(path))throw new SecurityException("Synthetic source access revoked");
+        if("/local-input".equals(path)||"/first-input".equals(path)||("/flaky-input".equals(path)&&!new File(getContext().getCacheDir(),"synthetic-import.fail").exists()))return ParcelFileDescriptor.open(source(uri),ParcelFileDescriptor.MODE_READ_ONLY);
         try{
             ParcelFileDescriptor[] pipe=ParcelFileDescriptor.createReliablePipe();File source=file(getContext()),hold=new File(getContext().getCacheDir(),"synthetic-import.hold");CountDownLatch gate=resume;
             new Thread(()->{
                 try(InputStream input=new FileInputStream(source);OutputStream output=new ParcelFileDescriptor.AutoCloseOutputStream(pipe[1])){
                     byte[] buffer=new byte[4096];int count=input.read(buffer);if(count>0)output.write(buffer,0,count);output.flush();firstChunk.countDown();
-                    if("/failed-input".equals(path)){pipe[1].closeWithError("Synthetic source interrupted");return;}
+                    if("/failed-input".equals(path)||"/flaky-input".equals(path)){pipe[1].closeWithError("Synthetic source interrupted");return;}
                     // The host removes this gate after terminating the original app process.
                     if("/held-input".equals(path))while(hold.exists())Thread.sleep(25);
                     gate.await();while((count=input.read(buffer))!=-1)output.write(buffer,0,count);
