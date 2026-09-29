@@ -52,6 +52,9 @@ in [0.5.0](../releases/0.5.0.md).
   clicks. Errors remain readable after polling. Unknown status blocks further
   mutations until recovery; an uncertain acknowledgement must not trigger an
   automatic retry. Read-only release checks have their own waiting/retry feedback.
+- Delivery-file previews recheck cached size and hash after recreation and before
+  export. Changed or expired content must not appear as verified. Loading, empty,
+  failed/retry and cancelled-save states preserve an accurate route back to reports.
 
 
 状态：目标需求，含已采纳的 0.3.0 增量  

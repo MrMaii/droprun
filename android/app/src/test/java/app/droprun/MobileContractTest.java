@@ -8,6 +8,19 @@ import java.util.List;
 public class MobileContractTest {
     private static final String INSTANCE="a02b08d5-850d-4d7c-884a-a14b8559d6fc";
     private static final String CODE="ABCDEF0123456789ABCD";
+    @Test public void cachedDeliveryRequiresTheSameBytesSizeAndValidMetadata()throws Exception{
+        java.nio.file.Path path=java.nio.file.Files.createTempFile("droprun-delivery-test-",".bin");
+        try{
+            java.nio.file.Files.write(path,"hello".getBytes(java.nio.charset.StandardCharsets.UTF_8));
+            JSONObject item=new JSONObject().put("size",5).put("sha256","2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824");
+            Store.verifyDeliverable(path.toFile(),item);
+            java.nio.file.Files.write(path,"jello".getBytes(java.nio.charset.StandardCharsets.UTF_8));
+            assertThrows(java.io.IOException.class,()->Store.verifyDeliverable(path.toFile(),item));
+            java.nio.file.Files.write(path,new byte[0]);assertThrows(java.io.IOException.class,()->Store.verifyDeliverable(path.toFile(),item));
+            item.put("size",0).put("sha256","not-a-digest");assertThrows(java.io.IOException.class,()->Store.verifyDeliverable(path.toFile(),item));
+            java.nio.file.Files.delete(path);assertThrows(java.io.IOException.class,()->Store.verifyDeliverable(path.toFile(),item));
+        }finally{java.nio.file.Files.deleteIfExists(path);}
+    }
     private static String link(String origin){return "droprun://pair?relay="+origin+"&instance="+INSTANCE+"&code="+CODE;}
     @Test public void pairingRequiresAnExplicitHttpsInstance(){
         PairingTarget target=PairingTarget.parse(link("https%3A%2F%2Fexample.workers.dev"));assertNotNull(target);assertEquals("https://example.workers.dev",target.relay);assertEquals(INSTANCE,target.instanceId);assertEquals(CODE,target.code);

@@ -81,6 +81,16 @@ public class Store {
         }finally{conn.disconnect();if(!ok)file.delete();}
     }
 
+    /** Cached previews can outlive an Activity; never reuse an old verification label for changed bytes. */
+    static void verifyDeliverable(File file,JSONObject item)throws Exception{
+        long size=item.optLong("size",-1);String expected=item.optString("sha256");
+        if(size<0||size>50L*1024*1024||!expected.matches("[a-f0-9]{64}")||!file.isFile()||file.length()!=size)throw new IOException(L.t("The cached file changed or expired. Download it again.","缓存文件已改变或失效，请重新下载。"));
+        java.security.MessageDigest digest=java.security.MessageDigest.getInstance("SHA-256");long total=0;
+        try(InputStream in=new FileInputStream(file)){byte[] buffer=new byte[65536];int n;while((n=in.read(buffer))!=-1){total+=n;if(total>size)break;digest.update(buffer,0,n);}}
+        StringBuilder actual=new StringBuilder();for(byte b:digest.digest())actual.append(String.format(Locale.ROOT,"%02x",b&255));
+        if(total!=size||!actual.toString().equals(expected))throw new IOException(L.t("The cached file changed or expired. Download it again.","缓存文件已改变或失效，请重新下载。"));
+    }
+
     // ---- cached state -------------------------------------------------------------------------
     JSONObject projectsData(){try{return new JSONObject(prefs.getString("projects","{}"));}catch(Exception e){return new JSONObject();}}
     JSONArray projects(){JSONArray a=projectsData().optJSONArray("projects");return a==null?new JSONArray():a;}

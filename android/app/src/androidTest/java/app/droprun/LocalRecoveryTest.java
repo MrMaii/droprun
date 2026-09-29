@@ -47,6 +47,54 @@ public class LocalRecoveryTest {
 
     void stopSync(){context.stopService(new Intent(context,TaskSyncService.class));((JobScheduler)context.getSystemService(Context.JOB_SCHEDULER_SERVICE)).cancelAll();}
 
+    void awaitDelivery(ActivityScenario<DemoDeliverablesActivity> scenario,String text)throws Exception{
+        long deadline=android.os.SystemClock.elapsedRealtime()+4000;boolean[] found={false};
+        do{scenario.onActivity(activity->found[0]=findText(activity.page,text)!=null&&activity.page.getAlpha()==1f&&activity.page.getTranslationY()==0f);if(found[0])return;Thread.sleep(25);}while(android.os.SystemClock.elapsedRealtime()<deadline);
+        fail("Delivery UI did not show: "+text);
+    }
+    void openLocalDelivery(ActivityScenario<DemoDeliverablesActivity> scenario)throws Exception{
+        awaitDelivery(scenario,"local-evidence.txt");scenario.onActivity(activity->activity.download(DemoDeliverablesActivity.item()));awaitDelivery(scenario,DemoDeliverablesActivity.CONTENT);
+    }
+    @Test public void deliveryLoadingAndFailedListRemainRecoverable()throws Exception{
+        DemoDeliverablesActivity.reset();DemoDeliverablesActivity.failFirst=true;java.util.concurrent.CountDownLatch gate=new java.util.concurrent.CountDownLatch(1);DemoDeliverablesActivity.listGate=gate;
+        try(ActivityScenario<DemoDeliverablesActivity> scenario=ActivityScenario.launch(DemoDeliverablesActivity.class)){
+            scenario.onActivity(activity->{assertNotNull(findText(activity.page,"Loading delivery files"));assertNotNull(findText(activity.page,"Back to report"));assertNull(findText(activity.page,"Save to phone"));});
+            gate.countDown();awaitDelivery(scenario,"Synthetic delivery list unavailable");
+            scenario.onActivity(activity->findText(activity.page,"Try again").performClick());awaitDelivery(scenario,"local-evidence.txt");
+            scenario.onActivity(activity->{assertNull(findText(activity.page,"Synthetic delivery list unavailable"));assertNull(activity.currentFile);});
+            assertEquals(2,DemoDeliverablesActivity.reads.get());
+        }finally{gate.countDown();DemoDeliverablesActivity.reset();}
+    }
+    @Test public void deliveryEmptyListDoesNotOfferASave()throws Exception{
+        DemoDeliverablesActivity.reset();DemoDeliverablesActivity.empty=true;
+        try(ActivityScenario<DemoDeliverablesActivity> scenario=ActivityScenario.launch(DemoDeliverablesActivity.class)){
+            awaitDelivery(scenario,"No delivery files yet");scenario.onActivity(activity->{assertNotNull(findText(activity.page,"Back to report"));assertNull(findText(activity.page,"Save to phone"));});
+        }finally{DemoDeliverablesActivity.reset();}
+    }
+    @Test public void deliveryPreviewAndCancelledSaveSurviveRecreation()throws Exception{
+        DemoDeliverablesActivity.reset();String[] cached={null};
+        try(ActivityScenario<DemoDeliverablesActivity> scenario=ActivityScenario.launch(DemoDeliverablesActivity.class)){
+            openLocalDelivery(scenario);scenario.onActivity(activity->{cached[0]=activity.currentFile.getPath();activity.onActivityResult(20,android.app.Activity.RESULT_CANCELED,null);assertNotNull(findText(activity.page,"Save to phone"));assertTrue(activity.currentFile.isFile());});
+            scenario.recreate();awaitDelivery(scenario,DemoDeliverablesActivity.CONTENT);
+            scenario.onActivity(activity->{assertEquals(cached[0],activity.currentFile.getPath());assertNotNull(findText(activity.page,"Save to phone"));});assertEquals(1,DemoDeliverablesActivity.reads.get());
+            InstrumentationRegistry.getInstrumentation().waitForIdleSync();
+            scenario.onActivity(activity->{android.widget.TextView save=findText(activity.page,"Save to phone");save.requestRectangleOnScreen(new android.graphics.Rect(0,0,save.getWidth(),save.getHeight()),true);});
+            captureUi("delivery-restored-local");
+            scenario.onActivity(activity->{android.widget.TextView save=findText(activity.page,"Save to phone");android.graphics.Rect visible=new android.graphics.Rect();assertTrue(save.getGlobalVisibleRect(visible));assertEquals("Save must be fully reachable by scrolling",save.getHeight(),visible.height());});
+        }finally{DemoDeliverablesActivity.reset();}
+        assertFalse("Finishing removes this temporary preview",new File(cached[0]).exists());
+    }
+    @Test public void deliveryRestorationDoesNotCallChangedCacheVerified()throws Exception{
+        DemoDeliverablesActivity.reset();String[] cached={null};
+        try(ActivityScenario<DemoDeliverablesActivity> scenario=ActivityScenario.launch(DemoDeliverablesActivity.class)){
+            openLocalDelivery(scenario);scenario.onActivity(activity->{cached[0]=activity.currentFile.getPath();try{byte[] changed=Files.readAllBytes(activity.currentFile.toPath());changed[0]='X';Files.write(activity.currentFile.toPath(),changed);}catch(Exception error){throw new AssertionError(error);}});
+            scenario.recreate();awaitDelivery(scenario,"local-evidence.txt");
+            scenario.onActivity(activity->{assertNull("Corrupt cache must not retain a verified preview",activity.currentFile);assertNull(findText(activity.page,"Save to phone"));});
+            assertFalse(new File(cached[0]).exists());
+            captureUi("delivery-corrupt-cache-local");clickWindowText("Got it");
+        }finally{DemoDeliverablesActivity.reset();}
+    }
+
     @Test public void scrollingSettingsKeepContentInsideSystemBars(){
         try(ActivityScenario<DemoSettingsActivity> scenario=ActivityScenario.launch(DemoSettingsActivity.class)){
             InstrumentationRegistry.getInstrumentation().waitForIdleSync();
@@ -327,6 +375,7 @@ public class LocalRecoveryTest {
                 cancel.requestRectangleOnScreen(new android.graphics.Rect(0,0,cancel.getWidth(),cancel.getHeight()),true);
             });
             InstrumentationRegistry.getInstrumentation().waitForIdleSync();
+            captureUi("permission-cancel-local");
             scenario.onActivity(activity->{
                 android.widget.TextView cancel=findText(activity.dialog.card,"Cancel");android.graphics.Rect visible=new android.graphics.Rect();
                 assertTrue("Permission Cancel must remain reachable",cancel.getGlobalVisibleRect(visible));
@@ -335,7 +384,6 @@ public class LocalRecoveryTest {
                 int bottom=android.os.Build.VERSION.SDK_INT>=30?insets.getInsets(android.view.WindowInsets.Type.systemBars()).bottom:insets.getSystemWindowInsetBottom();
                 assertTrue("Permission actions must avoid system navigation",visible.bottom<=origin[1]+activity.root.getHeight()-bottom);
             });
-            captureUi("permission-cancel-local");
             scenario.onActivity(activity->{
                 android.widget.TextView cancel=findText(activity.dialog.card,"Cancel");
                 cancel.performClick();assertNull(activity.dialog);assertEquals(0,activity.step);assertEquals(0,activity.store.pending().length());

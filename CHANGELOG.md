@@ -2,6 +2,11 @@
 
 ## 0.5.1 — unreleased UX candidate
 
+- Restored delivery previews verify cached size and SHA-256 again before showing
+  contents or Save. Export also rechecks bytes; changed/expired caches offer
+  recovery instead of retaining a verified-preview claim.
+- Page focus scrolling keeps buttons inside system-bar insets; delivery errors
+  use a short title that remains readable with large text.
 - Setup actions immediately show progress and prevent duplicate clicks; errors
   survive status polling. Lost acknowledgements require a status check, without
   automatically repeating an action. Release checks provide bilingual waiting,

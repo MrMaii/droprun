@@ -56,6 +56,11 @@ plan-version, per-command approval and report-evidence checks remain in force.
 - File-change receipts resolve filesystem aliases before checking project scope.
   Deleted paths resolve through their nearest surviving parent. Junctions pointing
   outside the project are rejected, including deleted descendants.
+- Android delivery cache restoration first enforces the current instance's cache
+  directory, then verifies the saved size and SHA-256 off the UI thread before
+  presenting contents/Save. Invalid caches are discarded and the list can reload.
+  Export rechecks bytes after current server authorization and before opening the
+  destination. Cancelling the system save picker does not discard the preview.
 
 
 ## Android 0.5.1 本地体验增量（待发布）

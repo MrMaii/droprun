@@ -24,13 +24,22 @@ public class DeliverablesActivity extends StyledActivity {
     Store store;String taskId;LinearLayout page;File currentFile;JSONObject currentItem;
 
     @Override public void onCreate(Bundle state){
-        super.onCreate(state);store=new Store(this);taskId=getIntent().getStringExtra("taskId");Ui.configureWindow(this);
+        super.onCreate(state);store=createStore();taskId=getIntent().getStringExtra("taskId");Ui.configureWindow(this);
         if(taskId==null||!taskId.matches("[a-zA-Z0-9-]{20,64}")){finish();return;}
         if(state!=null)try{
             File restored=new File(state.getString("file",""));
-            if(restored.isFile()&&restored.getCanonicalFile().getParentFile().equals(store.cacheDir().getCanonicalFile())&&restored.getName().startsWith("droprun-delivery-")){currentFile=restored;currentItem=new JSONObject(state.getString("item"));showFile();return;}
+            if(restored.isFile()&&restored.getCanonicalFile().getParentFile().equals(store.cacheDir().getCanonicalFile())&&restored.getName().startsWith("droprun-delivery-")){currentFile=restored;currentItem=new JSONObject(state.getString("item"));restorePreview();return;}
         }catch(Exception ignored){}
         loadList();
+    }
+    Store createStore(){return new Store(this);}
+    void restorePreview(){
+        base(L.t("File preview","文件预览"));information(L.t("Checking saved preview","正在核对已保存的预览"),L.t("The cached file is checked again before its contents or Save action appear.","重新核对缓存文件后，才会显示内容和保存操作。"));secondary(L.t("Back to report","返回报告"),this::finish);
+        File file=currentFile;JSONObject item=currentItem;
+        io.execute(()->{
+            try{Store.verifyDeliverable(file,item);runOnUiThread(()->{if(!isDestroyed()&&!isFinishing())showFile();});}
+            catch(Exception e){runOnUiThread(()->{if(isDestroyed()||isFinishing())return;loadList();error(e);});}
+        });
     }
     int dp(int value){return Ui.dp(this,value);}
     /** Fresh page for each state (list, download, preview): black ground, back chevron, screen title. */
@@ -53,7 +62,7 @@ public class DeliverablesActivity extends StyledActivity {
         if(bytes<1024*1024)return String.format(Locale.ROOT,"%.1f KB",bytes/1024.0);
         return String.format(Locale.ROOT,"%.1f MB",bytes/1048576.0);
     }
-    void error(Exception error){if(!isDestroyed())new AlertDialog.Builder(this).setTitle(L.t("Could not complete this action","暂时无法完成")).setMessage(error.getMessage()).setPositiveButton(L.t("Got it","知道了"),null).show();}
+    void error(Exception error){if(!isDestroyed())new AlertDialog.Builder(this).setTitle(L.t("File action failed","文件操作失败")).setMessage(error.getMessage()).setPositiveButton(L.t("Got it","知道了"),null).show();}
     void clearFile(){if(currentFile!=null)currentFile.delete();currentFile=null;currentItem=null;}
 
     // ---- list -----------------------------------------------------------------------------------
@@ -140,6 +149,7 @@ public class DeliverablesActivity extends StyledActivity {
             JSONArray allowed=store.get("/tasks/"+taskId+"/deliverables").getJSONArray("deliverables");boolean found=false;
             for(int i=0;i<allowed.length();i++)if(allowed.getJSONObject(i).optString("id").equals(item.optString("id"))&&allowed.getJSONObject(i).optString("sha256").equals(item.optString("sha256")))found=true;
             if(!found)throw new IOException(L.t("This file was deleted or is no longer available to this phone.","产物已删除或不再允许下载"));
+            Store.verifyDeliverable(file,item);
             try(InputStream in=new FileInputStream(file);OutputStream out=getContentResolver().openOutputStream(destination,"w")){if(out==null)throw new IOException(L.t("Could not open the save location.","无法打开保存位置"));byte[] buffer=new byte[65536];int n;while((n=in.read(buffer))!=-1)out.write(buffer,0,n);}
             runOnUiThread(()->{if(!isDestroyed())Toast.makeText(this,L.t("Saved to the location you selected.","已保存到你选择的位置"),Toast.LENGTH_LONG).show();});
         }catch(Exception e){runOnUiThread(()->error(e));}});

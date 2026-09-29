@@ -13,20 +13,31 @@ posting is authorized. New campaign assets remain deferred until the agreed gate
 
 ## Completed this pass
 
-- Windows setup mutations now lock immediately, show localized waiting labels,
-  and recheck server status after success or failed acknowledgement. No automatic
-  mutation retry; unknown status keeps controls locked.
-- Older responses cannot unlock newer work. Timer polling does not overlap a
-  pending read; requests bypass cache and have bounded timeouts.
-- Action errors survive polls and display next to their triggering button. A
-  simultaneous status failure remains visible too. Release checks have separate
-  waiting/retry/result state, updated when language changes.
-- Full Node suite: 198/198, no skips. Final inline-error placement passed all five
-  setup browser cases. All new requests went to synthetic local fixture servers;
-  no real installation, deployment, Connector start or task submission occurred.
-- Final Windows installer/ZIP built; 2,019 manifest files, changed setup sources
-  and artifact hashes verified. The earlier ux-actions build lacks inline errors
-  and is superseded. Packages were not installed or published.
+- Native delivery fixtures reproduced changed cache bytes still being called
+  verified after Activity recreation. Restoration now hashes the saved file off
+  the UI thread before showing contents/Save; export rechecks bytes before opening
+  a destination. Invalid caches return to the list with recovery guidance.
+- Loading/failure/retry, empty-list guidance, preview recreation and cancelled-save
+  callback are covered locally. Fixtures use synthetic bytes/overridden transport;
+  they do not establish real download or system document-provider acceptance.
+- A 200% capture exposed a truncated error title; it now reads File action failed.
+- API 26 native bounds checks then exposed Save hidden behind navigation padding.
+  Shared page focus scrolling now respects the padded viewport and content range.
+  Permission Cancel's separate timing failure was sampled during scale animation;
+  the unchanged assertion now follows the existing settled screenshot wait.
+- Twelve JVM cases pass. Final debug/release/test builds and both lint variants
+  pass. All 28 native cases pass on API 26 and API 35 at 100% and 200% font.
+  Signed candidate refreshed; exact hash and logs are in the release record.
+- Failed runs are retained: API 26 system-server crash; API 35 SyncJob service
+  timeout displayed an ANR dialog and disrupted four focus/action checks. The
+  unchanged suite passed after debug-package force-stop. The ANR cause is still
+  unresolved; do not claim background-sync reliability from the passing rerun.
+
+The preceding Windows pass (`3f02f56`) added immediate action locks and feedback,
+status reconciliation after lost acknowledgement, persistent inline errors and
+localized release-check states. Node suite passed 198/198, no skips; all five
+setup browser cases passed the final inline adjustment. Installer/ZIP built and
+2,019 manifest files plus checksums verified. No Windows/Node source changed here.
 
 The preceding Windows pass (`61c4870`) added a protected read-only inventory of
 full project IDs, local root paths and availability, including all project pages.
@@ -35,8 +46,8 @@ Its Node suite passed 194/194. Public website/release remain unchanged.
 
 The preceding Android pass (`ac5d284`) fixed recent ordering, same-name identity
 labels and unavailable-target guards. Its 24 native cases and 11 JVM cases pass
-with exact runtime/font evidence in the release record. The signed APK is unchanged
-in this Windows-only pass.
+with exact runtime/font evidence in the release record. Current Android evidence
+is recorded above.
 
 The previous pass (`f486599`) preserved share search/catalog expansion across
 recreation, made permission surfaces scroll, contained keyboard focus, and exposed
@@ -103,13 +114,14 @@ Signing material remains ignored. Git author: Thomas Deng
 
 ## Single recommended next action
 
-Close the remaining local delivery-file UI gap in the Android matrix. Inspect
-DeliverablesActivity and add native fixture checks for list/loading/failure/retry,
-verified preview restoration and save cancellation before making any fixes.
-Use only synthetic private-cache files and fake responses; do not launch the
-paired release app, send real tasks or claim a genuine download/save acceptance.
+Investigate the API 35 local SyncJob service-timeout ANR before expanding UX work.
+Use `.local/delivery-api35-normal-dropbox.txt`, the companion logcat and failed-run
+screenshot; distinguish instrumentation/job lifecycle interference from a product
+defect. Keep all transport local/synthetic. Then return to export pending feedback,
+duplicate Save and provider/lifecycle recovery; actual provider acceptance is open.
 
 ## Files involved
 
-installer/setup-ui.js, tests/setup-actions.test.mjs; PRD, contracts, changelog,
-release record and this handoff. No Android source or public deployment change.
+DeliverablesActivity, Store, Ui; debug-only delivery fixture/manifest; native and
+JVM tests; PRD, contracts, changelog, UI matrix, release record and this handoff.
+No Windows runtime change, public deployment or social posting in this pass.
