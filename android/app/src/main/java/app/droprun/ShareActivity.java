@@ -58,7 +58,7 @@ public class ShareActivity extends StyledActivity {
         if(state!=null&&state.getBoolean("sent")){sent=true;receiving=false;close();return;}
         if(state!=null&&state.containsKey("attachments")){
             try{attachments=new JSONArray(state.getString("attachments"));}catch(JSONException e){fatal(e);return;}
-            shared=state.getString("shared",shared);selected=state.getString("selected","");draft=state.getString("draft","");
+            shared=state.getString("shared",shared);selected=state.getString("selected","");draft=state.getString("draft","");query=state.getString("query","");showAll=state.getBoolean("showAll");
             receiving=false;
             if(store.paired()){start();model=state.getString("model",model);effort=state.getString("effort",effort);if(state.getInt("step")==1&&Store.projectEnabled(store.project(selected)))go(1,1);}
             else unpaired();return;
@@ -92,6 +92,7 @@ public class ShareActivity extends StyledActivity {
     void discardAttachments(){for(int n=0;n<attachments.length();n++){JSONObject a=attachments.optJSONObject(n);if(a!=null)new File(a.optString("path")).delete();}}
     @Override protected void onSaveInstanceState(Bundle state){
         super.onSaveInstanceState(state);state.putBoolean("sent",sent);
+        state.putString("query",query);state.putBoolean("showAll",showAll);
         if(!receiving){state.putString("attachments",attachments.toString());state.putString("shared",shared);state.putString("selected",selected);state.putString("draft",note==null?draft:note.getText().toString());state.putString("model",model);state.putString("effort",effort);state.putInt("step",step);}
     }
     int dp(int value){return Ui.dp(this,value);}
@@ -247,12 +248,13 @@ public class ShareActivity extends StyledActivity {
         search.setVisibility(projects.length()>6||!query.isEmpty()?View.VISIBLE:View.GONE);
         if(projects.length()==0){projectList.addView(notice(L.t("Waiting for projects. Check that DropRun Connector is running on your computer.","等待电脑同步项目。请确认电脑上的 DropRun Connector 已启动。")));return;}
         // The chosen (else last-used) project first; long catalogs collapse behind "show all" unless searching.
+        String filter=query.trim().toLowerCase(Locale.ROOT);
         String first=selected.isEmpty()?last:selected;ArrayList<JSONObject> ordered=new ArrayList<>();
         for(int n=0;n<projects.length();n++){JSONObject p=projects.optJSONObject(n);if(p==null)continue;if(p.optString("id").equals(first))ordered.add(0,p);else ordered.add(p);}
         int shown=0,hidden=0;
         for(JSONObject p:ordered){
-            if(!query.isEmpty()&&!p.optString("name").toLowerCase(Locale.ROOT).contains(query.toLowerCase(Locale.ROOT)))continue;
-            if(query.isEmpty()&&!showAll&&shown>=6){hidden++;continue;}
+            if(!filter.isEmpty()&&!p.optString("name").toLowerCase(Locale.ROOT).contains(filter))continue;
+            if(filter.isEmpty()&&!showAll&&shown>=6){hidden++;continue;}
             if(shown>0){LinearLayout.LayoutParams line=new LinearLayout.LayoutParams(-1,Math.max(1,dp(1)));line.setMargins(dp(12),0,dp(12),0);projectList.addView(Ui.divider(this),line);}
             projectList.addView(projectRow(p),Ui.fill());shown++;
         }
@@ -281,7 +283,7 @@ public class ShareActivity extends StyledActivity {
         LinearLayout card=glass.card;
         card.addView(Ui.title(this,L.t("“","「")+name+L.t("” needs permission","」需要授权"),18));
         card.addView(Ui.text(this,L.t("Allow handoffs from this phone to read and edit the original project and run commands, subject to your execution setting. You can revoke this in Settings.","授权后，从这台手机转发到这个项目的任务，Codex 会直接在这个项目目录里读写文件和运行命令。可以在设置里随时关闭。"),14,Ui.MUTED),Ui.margins(this,4,12));
-        TextView problem=Ui.text(this,"",13,Ui.AMBER);problem.setVisibility(View.GONE);card.addView(problem,Ui.margins(this,0,8));
+        TextView problem=Ui.text(this,"",13,Ui.AMBER);problem.setAccessibilityLiveRegion(View.ACCESSIBILITY_LIVE_REGION_POLITE);problem.setVisibility(View.GONE);card.addView(problem,Ui.margins(this,0,8));
         Button ok=Ui.button(this,L.t("Allow & continue","授权并继续"),true);card.addView(ok,Ui.fill());
         Button cancel=Ui.button(this,L.t("Cancel","取消"),false);Ui.styleGhost(cancel);card.addView(cancel,Ui.margins(this,6,0));
         cancel.setOnClickListener(v->{if(!busy)closeDialog(null);});
@@ -289,7 +291,7 @@ public class ShareActivity extends StyledActivity {
             if(busy)return;busy=true;ok.setEnabled(false);ok.setText(L.t("Allowing…","正在授权…"));cancel.setEnabled(false);problem.setVisibility(View.GONE);
             io.execute(()->{
                 try{store.setProjectPermission(id,true);runOnUiThread(()->{busy=false;if(gone()||dialog!=glass)return;selected=id;renderProjects();authorized(glass);});}
-                catch(Exception e){runOnUiThread(()->{busy=false;if(gone()||dialog!=glass)return;ok.setEnabled(true);ok.setText(L.t("Allow & continue","授权并继续"));cancel.setEnabled(true);problem.setText(e.getMessage());problem.setVisibility(View.VISIBLE);});}
+                catch(Exception e){runOnUiThread(()->{busy=false;if(gone()||dialog!=glass)return;ok.setEnabled(true);ok.setText(L.t("Allow & continue","授权并继续"));cancel.setEnabled(true);problem.setText(e.getMessage());problem.setVisibility(View.VISIBLE);problem.post(()->problem.requestRectangleOnScreen(new android.graphics.Rect(0,-dp(8),problem.getWidth(),problem.getHeight()+dp(18)),true));});}
             });
         });
     }

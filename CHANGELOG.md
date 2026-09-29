@@ -2,6 +2,9 @@
 
 ## 0.5.1 — unreleased Android UX candidate
 
+- Share search and expanded catalogs survive Activity recreation; search ignores
+  surrounding whitespace. Permission dialogs scroll at large font sizes, keep
+  keyboard focus inside, and reveal failed authorization messages for retry.
 - Refined project cards, grouped settings and result-first reports.
 - Shared press feedback, internal page transitions and animated disclosures;
   system-disabled animation remains supported.

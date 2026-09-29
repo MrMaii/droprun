@@ -13,24 +13,30 @@ posting is authorized. New campaign assets remain deferred until the agreed gate
 
 ## Completed this pass
 
-- Added the [control/state matrix](../../docs/releases/0.5.1-ui-matrix.md), separating
-  source inspection, native local tests and real acceptance gaps.
-- Reproduced and fixed cached command/preview actions remaining live after expiry.
-  Failed task decisions now use a persistent error dialog, surviving background
-  refresh. An exception does not claim that the server never received the action.
-- Verified pending-copy inspection and Keep/remove confirmation using local files.
-- Added read-only retention settings: actual last-synced policy, instance-scoped
-  cache, explicit unknown/offline state, and local-copy/preview/report explanations.
-- Corrected Chinese reading status: attempted extraction is not complete coverage.
-- Found scrolled settings text overlapping the clock. The shared ScrollView now
-  clips to system-bar/keyboard insets. Its visible-bounds regression failed before
-  the fix and passes afterward.
-- The native suite now has 17 cases. Final runtime/font results, red evidence,
-  screenshots and logs are in the release record below. No live task was sent.
-- Debug/release/test APK builds, nine unit tests, debug/release lint and stable
-  signer verification pass. Refreshed local signed 0.5.1 candidate; no publication.
-- All 17 native tests pass on API 26 and API 35, at 100% and 200% system font.
-  Settled safe-area and large-font confirmation captures were inspected.
+- Reproduced search/expanded-catalog loss on share Activity recreation. Both now
+  restore; matching ignores surrounding whitespace and case. Nine-project native
+  fixtures cover filtering, no match and clearing the search.
+- Reproduced an unreachable Cancel action in the share permission overlay at
+  200% font. Its content now scrolls within a fixed rounded surface and stays
+  above system navigation. Older Android uses an opaque surface.
+- Reproduced keyboard Tab escaping to the underlying Close button. The modal
+  blocks background keyboard focus and restores the prior policy on dismissal.
+- Two synthetic authorization failures keep the same step, re-enable the actions,
+  and reveal the error. Cancel closes the panel without creating an outbox item.
+  No permission request or task was sent to a real Relay.
+- The native suite now has 21 cases. Runtime/font results and screenshots are in
+  the release record. Final debug/release/test builds, nine unit tests, both lint
+  variants and stable signer verification pass; the signed candidate is refreshed.
+- All 21 tests pass on API 26/API 35 at 100% and 200% font. Actual normal/large
+  permission screenshots were inspected, including error visibility and Cancel.
+- The debug share fixture seeds only on first creation, preserving its catalog
+  across recreation. Release packages contain no demonstration activities.
+
+Previous local pass (`a97658c`) added the control/state matrix, fixed cached
+approval/preview expiry and persistent decision errors, added instance-scoped
+retention policy display, clarified Chinese reading status, and prevented
+scrolling content from overlapping system bars. Its 17 tests passed on both
+runtimes at both font scales.
 
 Earlier local work remains: quieter project cards, grouped settings, result-first
 reports, shared press/navigation/disclosure motion, draft restoration, explicit
@@ -85,12 +91,12 @@ Signing material remains ignored. Git author: Thomas Deng
 
 ## Single recommended next action
 
-Use the matrix to complete remaining local keyboard and share catalog/search/no-match
-coverage with labelled fixtures. Keep real submission disabled. Then report the
-remaining externally dependent acceptance gates without claiming marketing readiness.
+Audit share-project ordering and duplicate-name selection using complete activity
+summaries and labelled local fixtures. Share ordering currently promotes only the
+selected/last project, then retains catalog order. Keep real submissions disabled.
 
 ## Files involved
 
-TaskActivity, TaskPresentation, SettingsActivity, shared Ui and LocalRecoveryTest;
+ShareActivity, DemoShareActivity, shared Ui and LocalRecoveryTest;
 PRD, contracts, changelog, UI matrix, release record and this handoff. No Node
 runtime change, public release, website deployment or social post in this pass.

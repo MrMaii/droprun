@@ -468,14 +468,20 @@ public final class Ui {
     /** Handle for a frosted-glass overlay. Dismiss removes it and clears the blur behind. */
     public static final class Glass {
         public final FrameLayout overlay;public final LinearLayout card;final View behind;final int importance;boolean dismissed=false;
-        Glass(FrameLayout overlay,LinearLayout card,View behind){this.overlay=overlay;this.card=card;this.behind=behind;importance=behind==null?View.IMPORTANT_FOR_ACCESSIBILITY_AUTO:behind.getImportantForAccessibility();if(behind!=null)behind.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO_HIDE_DESCENDANTS);}
+        final View root,previousFocus,surface;final boolean rootFocusable,behindFocusable;final int behindFocusPolicy;
+        Glass(FrameLayout overlay,LinearLayout card,View behind){
+            this.overlay=overlay;this.card=card;this.behind=behind;surface=overlay.getChildAt(0);root=(View)overlay.getParent();previousFocus=root.findFocus();rootFocusable=root.isFocusable();root.setFocusable(false);
+            importance=behind==null?View.IMPORTANT_FOR_ACCESSIBILITY_AUTO:behind.getImportantForAccessibility();behindFocusable=behind!=null&&behind.isFocusable();behindFocusPolicy=behind instanceof ViewGroup?((ViewGroup)behind).getDescendantFocusability():0;
+            if(behind!=null){behind.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO_HIDE_DESCENDANTS);behind.setFocusable(false);if(behind instanceof ViewGroup)((ViewGroup)behind).setDescendantFocusability(ViewGroup.FOCUS_BLOCK_DESCENDANTS);}
+            overlay.post(()->{if(!dismissed)overlay.requestFocus(View.FOCUS_FORWARD);});
+        }
         public void dismiss(Runnable end){
             if(dismissed)return;dismissed=true;
             if(Build.VERSION.SDK_INT>=31&&behind!=null)behind.setRenderEffect(null);
             if(behind!=null)behind.setImportantForAccessibility(importance);
-            Runnable remove=()->{ViewGroup parent=(ViewGroup)overlay.getParent();if(parent!=null)parent.removeView(overlay);if(end!=null)end.run();};
+            Runnable remove=()->{ViewGroup parent=(ViewGroup)overlay.getParent();if(parent!=null)parent.removeView(overlay);root.setFocusable(rootFocusable);if(behind!=null){behind.setFocusable(behindFocusable);if(behind instanceof ViewGroup)((ViewGroup)behind).setDescendantFocusability(behindFocusPolicy);}if(previousFocus!=null&&previousFocus.isAttachedToWindow())previousFocus.requestFocus();if(end!=null)end.run();};
             if(!motionEnabled(overlay.getContext())){remove.run();return;}
-            card.animate().cancel();card.animate().alpha(0f).scaleX(0.96f).scaleY(0.96f).setDuration(140).start();
+            surface.animate().cancel();surface.animate().alpha(0f).scaleX(0.96f).scaleY(0.96f).setDuration(140).start();
             overlay.animate().cancel();overlay.animate().alpha(0f).setDuration(160).withEndAction(remove).start();
         }
     }
@@ -486,16 +492,22 @@ public final class Ui {
     public static Glass glass(Activity activity,FrameLayout root,View behind){
         Context context=activity;
         FrameLayout overlay=new FrameLayout(context);overlay.setBackgroundColor(Build.VERSION.SDK_INT>=31&&behind!=null?0x66000000:0xA6000000);overlay.setClickable(true);overlay.setFocusable(true);
+        overlay.setDescendantFocusability(ViewGroup.FOCUS_AFTER_DESCENDANTS);
+        overlay.setOnApplyWindowInsetsListener((target,insets)->{int bottom=Build.VERSION.SDK_INT>=30?insets.getInsets(WindowInsets.Type.systemBars()|WindowInsets.Type.displayCutout()).bottom:insets.getSystemWindowInsetBottom();target.setPadding(0,0,0,Math.max(0,bottom-root.getPaddingBottom()));return insets;});
         LinearLayout card=vertical(context);card.setPadding(dp(context,22),dp(context,22),dp(context,22),dp(context,18));
         GradientDrawable shape=new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM,dark?new int[]{0xF0334136,0xFF202A22}:new int[]{0xF8FFFFFF,0xFFF0F5EA});shape.setCornerRadius(dpf(context,28));shape.setStroke(dp(context,1),LINE_STRONG);
-        card.setBackground(shape);card.setClickable(true);card.setElevation(dpf(context,12));
-        FrameLayout.LayoutParams params=new FrameLayout.LayoutParams(-1,-2,Gravity.CENTER);int m=dp(context,22);params.setMargins(m,m,m,m);overlay.addView(card,params);
+        if(Build.VERSION.SDK_INT<31)shape.setColors(dark?new int[]{0xFF334136,0xFF202A22}:new int[]{0xFFFFFFFF,0xFFF0F5EA});
+        card.setClickable(true);
+        ScrollView viewport=new ScrollView(context);viewport.addView(card,new ScrollView.LayoutParams(-1,-2));
+        FrameLayout surface=new FrameLayout(context);surface.setBackground(shape);surface.setElevation(dpf(context,12));surface.setClipToOutline(true);surface.addView(viewport,new FrameLayout.LayoutParams(-1,-2));
+        FrameLayout.LayoutParams params=new FrameLayout.LayoutParams(-1,-2,Gravity.CENTER);int m=dp(context,22);params.setMargins(m,m,m,m);overlay.addView(surface,params);
         root.addView(overlay,new FrameLayout.LayoutParams(-1,-1));
+        overlay.requestApplyInsets();
         if(Build.VERSION.SDK_INT>=28)overlay.setAccessibilityPaneTitle(L.t("Permission","授权"));
         if(Build.VERSION.SDK_INT>=31&&behind!=null)behind.setRenderEffect(RenderEffect.createBlurEffect(dpf(context,16),dpf(context,16),Shader.TileMode.CLAMP));
         if(motionEnabled(context)){
             overlay.setAlpha(0f);overlay.animate().alpha(1f).setDuration(170).start();
-            card.setAlpha(0f);card.setScaleX(0.94f);card.setScaleY(0.94f);card.animate().alpha(1f).scaleX(1f).scaleY(1f).setDuration(240).setInterpolator(new DecelerateInterpolator(1.8f)).start();
+            surface.setAlpha(0f);surface.setScaleX(0.94f);surface.setScaleY(0.94f);surface.animate().alpha(1f).scaleX(1f).scaleY(1f).setDuration(240).setInterpolator(new DecelerateInterpolator(1.8f)).start();
         }
         return new Glass(overlay,card,behind);
     }

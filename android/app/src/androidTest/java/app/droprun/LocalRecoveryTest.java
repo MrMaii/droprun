@@ -238,6 +238,110 @@ public class LocalRecoveryTest {
         assertEquals(1,matches.size());assertTrue(matches.get(0).requestFocus());
     }
 
+    static void shareCatalog(ShareActivity activity){
+        try{
+            JSONObject data=activity.store.projectsData();JSONArray projects=data.getJSONArray("projects");
+            for(int n=0;n<6;n++)projects.put(new JSONObject().put("id","extra-"+n).put("name","Extra project "+n).put("permission",new JSONObject().put("enabled",true)));
+            data.put("projects",projects);activity.store.prefs.edit().putString("projects",data.toString()).commit();activity.renderProjects();
+        }catch(Exception error){throw new AssertionError(error);}
+    }
+
+    @Test public void shareSearchAndExpandedCatalogSurviveRecreation(){
+        try(ActivityScenario<DemoShareActivity> scenario=ActivityScenario.launch(new Intent(context,DemoShareActivity.class).setAction(Intent.ACTION_SEND).setType("text/plain"))){
+            scenario.onActivity(activity->{
+                shareCatalog(activity);findText(activity.projectList,"Show all 9 projects").performClick();
+                assertNotNull(findText(activity.projectList,"Extra project 5"));
+                activity.search.setText("oRbIt");
+                assertNotNull(findText(activity.projectList,"Orbit"));
+                assertNull(findText(activity.projectList,"Studio website"));
+            });
+            scenario.recreate();
+            scenario.onActivity(activity->{
+                assertEquals("oRbIt",activity.search.getText().toString());
+                assertNotNull(findText(activity.projectList,"Orbit"));
+                activity.search.setText("  oRbIt  ");assertNotNull("Search ignores surrounding whitespace and case",findText(activity.projectList,"Orbit"));
+                activity.search.setText("");assertNotNull(findText(activity.projectList,"Extra project 5"));
+                activity.search.setText("does-not-exist");assertNotNull(findText(activity.projectList,"No matching projects"));
+                activity.search.setText("Extra project 5");assertNotNull(findText(activity.projectList,"Extra project 5"));
+                assertEquals(0,activity.store.pending().length());
+            });
+        }
+    }
+
+    @Test public void sharePermissionActionsRemainReachableAtLargeText()throws Exception {
+        try(ActivityScenario<DemoShareActivity> scenario=ActivityScenario.launch(new Intent(context,DemoShareActivity.class).setAction(Intent.ACTION_SEND).setType("text/plain"))){
+            scenario.onActivity(activity->{
+                JSONObject project=activity.store.project("demo-studio");
+                try{project.getJSONObject("permission").put("enabled",false);}catch(Exception error){throw new AssertionError(error);}
+                activity.pick(project);assertNotNull(activity.dialog);
+                android.widget.TextView cancel=findText(activity.dialog.card,"Cancel");assertNotNull(cancel);
+                cancel.requestRectangleOnScreen(new android.graphics.Rect(0,0,cancel.getWidth(),cancel.getHeight()),true);
+            });
+            InstrumentationRegistry.getInstrumentation().waitForIdleSync();
+            scenario.onActivity(activity->{
+                android.widget.TextView cancel=findText(activity.dialog.card,"Cancel");
+                cancel.requestRectangleOnScreen(new android.graphics.Rect(0,0,cancel.getWidth(),cancel.getHeight()),true);
+            });
+            InstrumentationRegistry.getInstrumentation().waitForIdleSync();
+            scenario.onActivity(activity->{
+                android.widget.TextView cancel=findText(activity.dialog.card,"Cancel");android.graphics.Rect visible=new android.graphics.Rect();
+                assertTrue("Permission Cancel must remain reachable",cancel.getGlobalVisibleRect(visible));
+                assertEquals("Permission Cancel must not be clipped",cancel.getHeight(),visible.height());
+                int[] origin=new int[2];activity.root.getLocationOnScreen(origin);android.view.WindowInsets insets=activity.root.getRootWindowInsets();
+                int bottom=android.os.Build.VERSION.SDK_INT>=30?insets.getInsets(android.view.WindowInsets.Type.systemBars()).bottom:insets.getSystemWindowInsetBottom();
+                assertTrue("Permission actions must avoid system navigation",visible.bottom<=origin[1]+activity.root.getHeight()-bottom);
+            });
+            captureUi("permission-cancel-local");
+            scenario.onActivity(activity->{
+                android.widget.TextView cancel=findText(activity.dialog.card,"Cancel");
+                cancel.performClick();assertNull(activity.dialog);assertEquals(0,activity.step);assertEquals(0,activity.store.pending().length());
+            });
+        }
+    }
+
+    @Test public void sharePermissionKeyboardStaysInTheDialog(){
+        android.app.Instrumentation instrumentation=InstrumentationRegistry.getInstrumentation();
+        try(ActivityScenario<DemoShareActivity> scenario=ActivityScenario.launch(new Intent(context,DemoShareActivity.class).setAction(Intent.ACTION_SEND).setType("text/plain"))){
+            scenario.onActivity(activity->activity.authorize(activity.store.project("demo-studio")));
+            instrumentation.sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_TAB);instrumentation.waitForIdleSync();
+            scenario.onActivity(activity->assertTrue(findText(activity.dialog.card,"Allow & continue").requestFocus()));
+            for(int n=0;n<4;n++){
+                instrumentation.sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_TAB);
+                scenario.onActivity(activity->{
+                    android.view.View focused=activity.getCurrentFocus();assertNotNull(focused);
+                    android.view.ViewParent parent=focused.getParent();while(parent!=null&&parent!=activity.dialog.overlay)parent=parent.getParent();
+                    assertTrue("Tab must stay in permission, focused: "+focused+" / "+focused.getContentDescription(),focused==activity.dialog.overlay||parent==activity.dialog.overlay);
+                });
+            }
+        }
+    }
+
+    @Test public void failedSharePermissionCanRetryAndCancelWithoutAdvancing()throws Exception {
+        java.util.concurrent.atomic.AtomicInteger attempts=new java.util.concurrent.atomic.AtomicInteger();
+        try(ActivityScenario<DemoShareActivity> scenario=ActivityScenario.launch(new Intent(context,DemoShareActivity.class).setAction(Intent.ACTION_SEND).setType("text/plain"))){
+            scenario.onActivity(activity->{
+                activity.store=new Store(context){@Override JSONObject setProjectPermission(String id,boolean enabled)throws Exception{attempts.incrementAndGet();throw new IOException("Synthetic permission unavailable");}};
+                activity.authorize(activity.store.project("demo-studio"));
+            });
+            for(int n=1;n<=2;n++){
+                scenario.onActivity(activity->findText(activity.dialog.card,"Allow & continue").performClick());
+                long deadline=android.os.SystemClock.elapsedRealtime()+5000;boolean[] complete={false};
+                do{scenario.onActivity(activity->complete[0]=!activity.busy);if(!complete[0])Thread.sleep(25);}while(!complete[0]&&android.os.SystemClock.elapsedRealtime()<deadline);
+                assertTrue(complete[0]);assertEquals(n,attempts.get());
+                scenario.onActivity(activity->{
+                    assertNotNull(findText(activity.dialog.card,"Synthetic permission unavailable"));
+                    assertTrue(findText(activity.dialog.card,"Allow & continue").isEnabled());
+                    assertTrue(findText(activity.dialog.card,"Cancel").isEnabled());assertEquals(0,activity.step);assertEquals("",activity.selected);
+                });
+            }
+            captureUi("permission-retry-local");
+            scenario.onActivity(activity->{
+                android.widget.TextView problem=findText(activity.dialog.card,"Synthetic permission unavailable");android.graphics.Rect visible=new android.graphics.Rect();assertTrue(problem.getGlobalVisibleRect(visible));assertEquals(problem.getHeight(),visible.height());
+                findText(activity.dialog.card,"Cancel").performClick();assertNull(activity.dialog);assertEquals(0,activity.store.pending().length());
+            });
+        }
+    }
+
     @Test public void shareKeyboardSkipsDecorativeAndDuplicateStops() {
         android.app.Instrumentation instrumentation=InstrumentationRegistry.getInstrumentation();
         Intent share=new Intent(context,DemoShareActivity.class).setAction(Intent.ACTION_SEND).setType("text/plain");

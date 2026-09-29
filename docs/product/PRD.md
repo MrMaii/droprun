@@ -39,6 +39,9 @@ in [0.5.0](../releases/0.5.0.md).
   polling; expired cached approvals and previews offer accurate next steps.
   Data settings show the last known policy for the selected Relay, distinguish
   unknown/offline values, and explain local pending copies and server retention.
+- Share search and catalog expansion survive recreation. Permission explanations
+  and actions remain reachable at 200% font; keyboard focus stays inside the
+  open dialog. Failed permission changes remain retryable without advancing.
 
 
 状态：目标需求，含已采纳的 0.3.0 增量  
