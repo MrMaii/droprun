@@ -46,7 +46,7 @@ public class MainActivity extends StyledActivity {
         TextView intro=Ui.text(this,L.t("Good ideas, moving forward.","让好想法，接着往前走。"),14,Ui.MUTED);intro.setPadding(dp(24),0,dp(24),dp(18));root.addView(intro);
         notice=Ui.text(this,"",13,Ui.AMBER);notice.setPadding(dp(24),dp(10),dp(24),dp(10));notice.setMinHeight(dp(48));notice.setFocusable(true);Ui.bindPress(notice);notice.setAccessibilityLiveRegion(View.ACCESSIBILITY_LIVE_REGION_POLITE);root.addView(notice);
         FrameLayout stage=new FrameLayout(this);root.addView(stage,new LinearLayout.LayoutParams(-1,0,1));
-        list=new ListView(this);list.setAdapter(adapter);list.setItemsCanFocus(true);list.setDivider(null);list.setSelector(android.R.color.transparent);list.setVerticalScrollBarEnabled(false);list.setClipToPadding(false);list.setPadding(dp(20),0,dp(20),dp(28));stage.addView(list,new FrameLayout.LayoutParams(-1,-1));
+        list=new ListView(this);list.setId(android.R.id.list);list.setAdapter(adapter);list.setItemsCanFocus(true);list.setDivider(null);list.setSelector(android.R.color.transparent);list.setVerticalScrollBarEnabled(false);list.setClipToPadding(false);list.setPadding(dp(20),0,dp(20),dp(28));stage.addView(list,new FrameLayout.LayoutParams(-1,-1));
         ScrollView emptyScroll=new ScrollView(this);emptyScroll.setFillViewport(true);emptyScroll.setVerticalScrollBarEnabled(false);
         LinearLayout empty=Ui.vertical(this);empty.setGravity(Gravity.CENTER);empty.setPadding(dp(32),dp(24),dp(32),dp(64));
         ImageView plane=new ImageView(this);plane.setImageResource(R.drawable.ic_plane);plane.setImageTintList(android.content.res.ColorStateList.valueOf(Ui.ACCENT));plane.setPadding(dp(22),dp(22),dp(22),dp(22));plane.setBackground(Ui.circle(this,Ui.LIME_SOFT,Ui.LINE));empty.addView(plane,Ui.square(this,88));Ui.space(empty,24);
@@ -66,7 +66,8 @@ public class MainActivity extends StyledActivity {
     static String text(JSONObject object,String key){return object.isNull(key)?"":object.optString(key);}
     static String name(JSONObject task){String title=text(task,"title");if(title.isEmpty())title=text(task,"message");if(title.isEmpty())title=text(task,"content");if(title.isEmpty())title=L.t("Shared material","分享的材料");return TaskPresentation.clip(title,100);}
     final class HomeAdapter extends BaseAdapter {
-        public int getCount(){return items.size();}public Object getItem(int p){return items.get(p);}public long getItemId(int p){return items.get(p).optString("id").hashCode();}public boolean hasStableIds(){return true;}
+        // AbsListView restores saved rows only when their stable ID is nonnegative.
+        public int getCount(){return items.size();}public Object getItem(int p){return items.get(p);}public long getItemId(int p){return Integer.toUnsignedLong(items.get(p).optString("id").hashCode());}public boolean hasStableIds(){return true;}
         public View getView(int position,View recycled,ViewGroup parent){
             JSONObject project=items.get(position);LinearLayout outer;HomeHolder holder;
             if(recycled instanceof LinearLayout&&recycled.getTag() instanceof HomeHolder){outer=(LinearLayout)recycled;holder=(HomeHolder)outer.getTag();}

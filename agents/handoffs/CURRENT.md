@@ -13,19 +13,26 @@ posting is authorized. New campaign assets remain deferred until the agreed gate
 
 ## Completed this pass
 
-- Added three production-Activity history tests with 240 cached synthetic rows.
-  Status refresh and pending insertion/removal preserve the visible task and exact
-  offset, retain loaded pages/cursor and do not replay entry motion.
-- Reproduced recreation jumping from row 170 to row 0: negative stable hash IDs
-  are ignored by Android's saved-row restore path. History IDs now use unsigned
-  widening. Both touch and keyboard recreation preserve the task/offset.
-- Full native regression passes 42/42 on API 26/35 at 100% font; three history
-  cases pass on both at 200%. Debug/test/release builds, 12 JVM cases and debug
-  lint pass. Final DropBox snapshots have no new ANR; old incident remains open.
-- Refreshed the locally signed candidate APK, with the same certificate. Canonical
-  hash/evidence are in the UX release record. No public deployment, real Relay
-  submission, private Connector changes or campaign generation.
+- Reproduced Home resetting project 40 to project 0 during recreation and after
+  appearance changes. Added a stable native ListView ID and nonnegative adapter
+  IDs, allowing Android to restore the original project and exact pixel offset.
+- Four new local tests cover an 80-project list: status/pending changes,
+  touch/keyboard recreation, ordinary return, appearance-change resume and the
+  actual Settings button / keyboard Dark selection / Back route.
+- The first three extend both API 26/35 full suites to 45/45 at 100% font; they
+  pass at 200% on both. The additional actual-control case passes separately on
+  both runtimes at 100%/200%. 12 JVM cases, debug lint and signed release build pass.
+- Test-only failures are preserved: native radio rows are not standalone clickable
+  nodes, and ActivityMonitor can return an earlier lifecycle notification. The
+  final test uses keyboard selection and awaits the newly resumed Settings instance.
+- Refreshed the locally signed candidate APK, with unchanged certificate. Final
+  evidence/hash are in the UX release record. No new ANR; old SyncJob incident
+  remains unresolved. No real submissions, public deployment or campaign assets.
 
+The preceding pass (`6024cbb`) fixed negative stable task IDs causing history
+recreation to jump to the top. Its 240-row tests preserve task/offset and cached
+pages through status updates, pending changes and touch/keyboard recreation.
+Full native suites passed 42/42 on both APIs; three history cases passed at 200%.
 The preceding pass (`a30ef4b`) validated the actual system document picker and
 partial-write recovery. Both emulator pickers reset edited names on rotation;
 this limitation is documented, not counted as passed. Full native suites passed
@@ -125,14 +132,14 @@ Signing material remains ignored. Git author: Thomas Deng
 
 ## Single recommended next action
 
-Verify home-list reading position locally: MainActivity's adapter still returns
-signed hash IDs and does not currently save list state on recreation. Reproduce
-with a synthetic used-project list before changing code; check returning from
-settings and status/pending updates, without scheduling real transport. Do not
-expand the current authorization to real submissions or marketing readiness.
+Verify settings-page reading continuity locally: its ScrollView currently has no
+stable View ID, and appearance/language choices recreate the Activity. Reproduce
+whether the chosen section and expanded project-access state survive before
+changing code. Keep real permission/setting submissions disabled; use synthetic
+fixtures and local appearance/language controls only.
 
 ## Files involved
 
-ProjectHistoryActivity, LocalRecoveryTest, PRD, CONTRACTS, UI matrix, UX release
-record and this handoff. Refreshed ignored signed APK. No website, Windows package,
-public release or private Connector change in this pass.
+MainActivity, DemoHomeActivity, LocalRecoveryTest, PRD, CONTRACTS, UI matrix, UX
+release record and this handoff. Refreshed ignored signed APK. No website, Windows
+package, public release or private Connector change in this pass.

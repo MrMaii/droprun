@@ -12,6 +12,8 @@ in [0.5.0](../releases/0.5.0.md).
   registration, subscription or multitenant service. GPTSites is the public website.
 - Light translucent UI, lime actions, dark/system appearance, English/Chinese.
   Home contains Recent handoffs and settings, with only used or pending projects.
+  Returning to Home or recreating it after an appearance change preserves the
+  visible project and reading offset; routine updates do not reset the list.
 - Project totals count retained independent root tasks and accepted dispatches,
   including follow-ups. Retries never count; local pending shares are separate.
 - Project history is paginated. Saved outbox entries become immediately visible,

@@ -47,6 +47,72 @@ public class LocalRecoveryTest {
 
     void stopSync(){context.stopService(new Intent(context,TaskSyncService.class));((JobScheduler)context.getSystemService(Context.JOB_SCHEDULER_SERVICE)).cancelAll();}
 
+    void seedHomeList(ActivityScenario<DemoHomeActivity> scenario){
+        stopSync();scenario.onActivity(activity->{try{
+            JSONArray projects=new JSONArray();long now=System.currentTimeMillis();
+            for(int n=0;n<80;n++)projects.put(new JSONObject().put("id","local-project-"+n).put("name","Local project "+n).put("task_count",3).put("dispatch_count",5).put("last_status","completed").put("last_dispatch_at",now-n*60000));
+            activity.store.prefs.edit().putString("activity",new JSONObject().put("projects",projects).toString()).commit();activity.show();
+        }catch(Exception error){throw new AssertionError(error);}});
+        InstrumentationRegistry.getInstrumentation().waitForIdleSync();
+        scenario.onActivity(activity->activity.list.setSelectionFromTop(40,-17));InstrumentationRegistry.getInstrumentation().waitForIdleSync();
+        scenario.onActivity(activity->assertEquals(40,activity.list.getFirstVisiblePosition()));
+    }
+    String[] homePosition(ActivityScenario<DemoHomeActivity> scenario){
+        InstrumentationRegistry.getInstrumentation().waitForIdleSync();String[] position=new String[2];
+        scenario.onActivity(activity->{int first=activity.list.getFirstVisiblePosition();assertNotNull(activity.list.getChildAt(0));position[0]=activity.items.get(first).optString("id");position[1]=String.valueOf(activity.list.getChildAt(0).getTop());});return position;
+    }
+    @Test public void homeRefreshAndPendingChangesKeepReadingPosition()throws Exception{
+        try(ActivityScenario<DemoHomeActivity> scenario=ActivityScenario.launch(DemoHomeActivity.class)){
+            seedHomeList(scenario);String[] before=homePosition(scenario);
+            scenario.onActivity(activity->{try{JSONArray projects=activity.store.activity();projects.getJSONObject(40).put("active_count",1);activity.store.prefs.edit().putString("activity",new JSONObject().put("projects",projects).toString()).commit();activity.show();}catch(Exception error){throw new AssertionError(error);}});
+            assertArrayEquals("Status refresh must retain the visible project and offset",before,homePosition(scenario));
+            String id=UUID.randomUUID().toString();scenario.onActivity(activity->{try{activity.store.save(new JSONObject().put("id",id).put("projectId","local-new-project").put("projectName","Local pending project").put("content","Synthetic UI material"));activity.show();}catch(Exception error){throw new AssertionError(error);}});
+            assertArrayEquals("A new pending project must not move the reader",before,homePosition(scenario));scenario.onActivity(activity->assertEquals(81,activity.items.size()));
+            scenario.onActivity(activity->{try{activity.store.cancelPending(id);activity.show();}catch(Exception error){throw new AssertionError(error);}});
+            assertArrayEquals(before,homePosition(scenario));scenario.onActivity(activity->{assertEquals(80,activity.items.size());assertEquals(1,activity.items.get(activity.list.getFirstVisiblePosition()).optInt("active_count"));});
+        }
+    }
+    @Test public void homeRecreationRestoresProjectAndOffset(){
+        try(ActivityScenario<DemoHomeActivity> scenario=ActivityScenario.launch(DemoHomeActivity.class)){
+            boolean[] wasTouch={false};scenario.onActivity(activity->wasTouch[0]=activity.list.isInTouchMode());
+            try{for(boolean touch:new boolean[]{false,true}){
+                InstrumentationRegistry.getInstrumentation().setInTouchMode(touch);seedHomeList(scenario);String[] before=homePosition(scenario);scenario.recreate();stopSync();
+                assertArrayEquals("Restore home reading position in touch mode="+touch,before,homePosition(scenario));scenario.onActivity(activity->assertEquals(80,activity.items.size()));
+            }}finally{InstrumentationRegistry.getInstrumentation().setInTouchMode(wasTouch[0]);}
+        }
+    }
+    @Test public void homeAppearanceChangeOnReturnRetainsReadingPosition()throws Exception{
+        try(ActivityScenario<DemoHomeActivity> scenario=ActivityScenario.launch(DemoHomeActivity.class)){
+            seedHomeList(scenario);String[] before=homePosition(scenario);DemoHomeActivity[] previous={null};scenario.onActivity(activity->previous[0]=activity);
+            scenario.moveToState(androidx.lifecycle.Lifecycle.State.CREATED);scenario.moveToState(androidx.lifecycle.Lifecycle.State.RESUMED);
+            scenario.onActivity(activity->assertSame(previous[0],activity));assertArrayEquals("Ordinary return must retain the project",before,homePosition(scenario));
+            scenario.moveToState(androidx.lifecycle.Lifecycle.State.CREATED);
+            new Store(context).preferences.edit().putString("appearance","dark").commit();
+            scenario.moveToState(androidx.lifecycle.Lifecycle.State.RESUMED);InstrumentationRegistry.getInstrumentation().waitForIdleSync();stopSync();
+            scenario.onActivity(activity->{assertNotSame("Returning after an appearance change must rebuild the themed page",previous[0],activity);assertEquals("dark",activity.store.preferences.getString("appearance",""));});
+            assertArrayEquals("Appearance recreation must keep the current project",before,homePosition(scenario));captureUi("home-dark-restored-local");
+        }
+    }
+    @Test public void homeSettingsButtonsReturnToTheSameProject()throws Exception{
+        android.app.Instrumentation instrumentation=InstrumentationRegistry.getInstrumentation();
+        android.app.Instrumentation.ActivityMonitor settings=instrumentation.addMonitor(SettingsActivity.class.getName(),null,false);
+        try(ActivityScenario<DemoHomeActivity> scenario=ActivityScenario.launch(DemoHomeActivity.class)){
+            seedHomeList(scenario);String[] before=homePosition(scenario);
+            scenario.onActivity(activity->{focusDescription(activity,"Settings");assertTrue(activity.getCurrentFocus().performClick());});
+            SettingsActivity opened=(SettingsActivity)settings.waitForActivityWithTimeout(5000);assertNotNull("Settings button must open the real settings Activity",opened);
+            instrumentation.runOnMainSync(()->{focusDescription(opened,"Appearance, Light");opened.getCurrentFocus().requestRectangleOnScreen(new android.graphics.Rect(0,0,1,opened.getCurrentFocus().getHeight()),true);});
+            instrumentation.waitForIdleSync();instrumentation.sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_ENTER);captureUi("settings-appearance-local");instrumentation.sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_DPAD_DOWN);instrumentation.sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_ENTER);
+            SettingsActivity[] changed={null};long deadline=android.os.SystemClock.elapsedRealtime()+5000;
+            do{instrumentation.runOnMainSync(()->{for(android.app.Activity activity:androidx.test.runner.lifecycle.ActivityLifecycleMonitorRegistry.getInstance().getActivitiesInStage(androidx.test.runner.lifecycle.Stage.RESUMED))if(activity instanceof SettingsActivity&&activity!=opened)changed[0]=(SettingsActivity)activity;});if(changed[0]!=null)break;Thread.sleep(25);}while(android.os.SystemClock.elapsedRealtime()<deadline);
+            assertNotNull("Appearance choice must resume a newly themed Settings Activity",changed[0]);
+            instrumentation.runOnMainSync(()->{assertEquals("dark",changed[0].store.preferences.getString("appearance",""));focusDescription(changed[0],"Back");assertTrue(changed[0].getCurrentFocus().performClick());});
+            instrumentation.waitForIdleSync();stopSync();assertArrayEquals("Settings controls must return to the same project and offset",before,homePosition(scenario));
+        }finally{
+            instrumentation.runOnMainSync(()->{for(android.app.Activity activity:androidx.test.runner.lifecycle.ActivityLifecycleMonitorRegistry.getInstance().getActivitiesInStage(androidx.test.runner.lifecycle.Stage.RESUMED))if(activity instanceof SettingsActivity)activity.finish();});
+            instrumentation.removeMonitor(settings);
+        }
+    }
+
     void seedPagedHistory()throws Exception{
         JSONArray rows=new JSONArray();long now=System.currentTimeMillis();
         for(int n=0;n<240;n++)rows.put(new JSONObject().put("id",UUID.nameUUIDFromBytes(("local-history-"+n).getBytes(StandardCharsets.UTF_8)).toString()).put("project_id","demo-studio").put("title","Local history item "+n).put("status","completed").put("created_at",now-n*60000).put("updated_at",1));
