@@ -26,6 +26,16 @@ plan-version, per-command approval and report-evidence checks remain in force.
   Cached project-history pages remain available across Activity recreation.
   Home/history adapter stable IDs must be nonnegative for Android's native
   saved-row restoration; transient status changes must not change those IDs.
+  Touch-mode refresh anchors use the identity bound to the visible View, not an
+  index into data that a preceding pre-layout update may already have replaced.
+  History GETs run outside the outbox lock; a per-project, instance-scoped request
+  token permits only the latest started request to publish its page. History
+  rows cannot replace a newer cached task receipt by `updated_at`.
+  Local pending removal uses its own worker, shows progress, blocks duplicate
+  removal and retains that operation across configuration changes. Action errors
+  take priority over history-read errors and survive polling/recreation. If process
+  restoration finds an interrupted removal and the copy still exists, it offers
+  an explicit retry; it never automatically replays removal or claims server stop.
   Home's list has a stable View ID so Activity state restores its reading position
   on recreation, including when returning after an appearance preference change.
   Settings saves its project-access disclosure state in the Activity Bundle and

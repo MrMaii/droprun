@@ -106,14 +106,20 @@ public class Store {
     JSONArray activity(){try{return new JSONObject(prefs.getString("activity","{}")).optJSONArray("projects");}catch(Exception e){return null;}}
     JSONObject history(String projectId){try{return new JSONObject(prefs.getString("history:"+projectId,"{}"));}catch(Exception e){return new JSONObject();}}
     JSONObject loadHistory(String projectId,String cursor)throws Exception {
-        synchronized(SYNC_LOCK){
+        String requestKey="historyRequest:"+projectId,requestId=UUID.randomUUID().toString();
+        synchronized(SYNC_LOCK){prefs.edit().putString(requestKey,requestId).apply();}
+        try{
             JSONObject page=get("/tasks?project_id="+URLEncoder.encode(projectId,"UTF-8")+"&limit=50"+(cursor==null||cursor.isEmpty()?"":"&cursor="+URLEncoder.encode(cursor,"UTF-8")));
+            // Network reads never hold the outbox lock. Only the newest request may publish a page.
+            synchronized(SYNC_LOCK){
+            if(!requestId.equals(prefs.getString(requestKey,"")))return history(projectId);
             JSONArray combined=new JSONArray();LinkedHashMap<String,JSONObject> rows=new LinkedHashMap<>();
             if(cursor!=null&&!cursor.isEmpty()){JSONArray old=history(projectId).optJSONArray("tasks");for(int n=0;old!=null&&n<old.length();n++){JSONObject t=old.getJSONObject(n);rows.put(t.getString("id"),t);}}
             JSONArray next=page.optJSONArray("tasks");android.content.SharedPreferences.Editor edit=prefs.edit();
-            for(int n=0;next!=null&&n<next.length();n++){JSONObject t=next.getJSONObject(n);rows.put(t.getString("id"),t);edit.putString("task:"+t.getString("id"),t.toString());}
-            for(JSONObject t:rows.values())combined.put(t);page.put("tasks",combined);edit.putString("history:"+projectId,page.toString()).apply();return page;
-        }
+            for(int n=0;next!=null&&n<next.length();n++){JSONObject t=next.getJSONObject(n);rows.put(t.getString("id"),t);JSONObject current=task(t.getString("id"));if(current==null||current.optLong("updated_at")<=t.optLong("updated_at"))edit.putString("task:"+t.getString("id"),t.toString());}
+            for(JSONObject t:rows.values())combined.put(t);page.put("tasks",combined);edit.putString("history:"+projectId,page.toString()).remove(requestKey).apply();return page;
+            }
+        }catch(Exception e){synchronized(SYNC_LOCK){if(requestId.equals(prefs.getString(requestKey,"")))prefs.edit().remove(requestKey).apply();}throw e;}
     }
     JSONObject project(String id){JSONArray projects=projects();for(int n=0;n<projects.length();n++){JSONObject p=projects.optJSONObject(n);if(p!=null&&p.optString("id").equals(id))return p;}return null;}
     static boolean projectEnabled(JSONObject project){JSONObject p=project==null?null:project.optJSONObject("permission");return p!=null&&p.optBoolean("enabled");}

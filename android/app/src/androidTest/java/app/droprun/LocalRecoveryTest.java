@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 import static org.junit.Assert.*;
 
 /** Runs real Views, Keystore and outbox files, with synthetic data and no live Relay. */
@@ -46,6 +48,11 @@ public class LocalRecoveryTest {
     }
 
     void stopSync(){context.stopService(new Intent(context,TaskSyncService.class));((JobScheduler)context.getSystemService(Context.JOB_SCHEDULER_SERVICE)).cancelAll();}
+    void awaitFrame(ActivityScenario<?> scenario){
+        CountDownLatch frame=new CountDownLatch(1);
+        scenario.onActivity(activity->{android.view.View root=activity.getWindow().getDecorView();root.getViewTreeObserver().addOnPreDrawListener(new android.view.ViewTreeObserver.OnPreDrawListener(){public boolean onPreDraw(){root.getViewTreeObserver().removeOnPreDrawListener(this);frame.countDown();return true;}});root.invalidate();});
+        try{assertTrue("Wait for layout before reading rendered list positions",frame.await(3,TimeUnit.SECONDS));}catch(InterruptedException e){Thread.currentThread().interrupt();throw new AssertionError(e);}
+    }
     void testRotation(int rotation,int orientation)throws Exception{
         assertTrue(InstrumentationRegistry.getInstrumentation().getUiAutomation().setRotation(rotation));long deadline=android.os.SystemClock.elapsedRealtime()+5000;
         while(context.getResources().getConfiguration().orientation!=orientation&&android.os.SystemClock.elapsedRealtime()<deadline)Thread.sleep(25);
@@ -63,7 +70,7 @@ public class LocalRecoveryTest {
         scenario.onActivity(activity->assertEquals(40,activity.list.getFirstVisiblePosition()));
     }
     String[] homePosition(ActivityScenario<DemoHomeActivity> scenario){
-        InstrumentationRegistry.getInstrumentation().waitForIdleSync();String[] position=new String[2];
+        awaitFrame(scenario);String[] position=new String[2];
         scenario.onActivity(activity->{int first=activity.list.getFirstVisiblePosition();assertNotNull(activity.list.getChildAt(0));position[0]=activity.items.get(first).optString("id");position[1]=String.valueOf(activity.list.getChildAt(0).getTop());});return position;
     }
     @Test public void homeRefreshAndPendingChangesKeepReadingPosition()throws Exception{
@@ -130,7 +137,7 @@ public class LocalRecoveryTest {
     }
     ActivityScenario<ProjectHistoryActivity> historyScenario(){return ActivityScenario.launch(new Intent(context,ProjectHistoryActivity.class).putExtra("projectId","demo-studio").putExtra("projectName","Local history fixture"));}
     String[] historyPosition(ActivityScenario<ProjectHistoryActivity> scenario){
-        InstrumentationRegistry.getInstrumentation().waitForIdleSync();String[] position=new String[2];
+        awaitFrame(scenario);String[] position=new String[2];
         scenario.onActivity(activity->{int first=activity.list.getFirstVisiblePosition();assertNotNull(activity.list.getChildAt(0));position[0]=activity.rows.get(first).optString("id");position[1]=String.valueOf(activity.list.getChildAt(0).getTop());});return position;
     }
     void scrollHistory(ActivityScenario<ProjectHistoryActivity> scenario){scenario.onActivity(activity->activity.list.setSelectionFromTop(170,-17));InstrumentationRegistry.getInstrumentation().waitForIdleSync();scenario.onActivity(activity->assertEquals(170,activity.list.getFirstVisiblePosition()));}
@@ -148,7 +155,7 @@ public class LocalRecoveryTest {
             try{for(boolean touch:new boolean[]{true,false}){InstrumentationRegistry.getInstrumentation().setInTouchMode(touch);
             scrollHistory(scenario);String[] before=historyPosition(scenario);String id=UUID.randomUUID().toString();
             scenario.onActivity(activity->{try{activity.store.save(new JSONObject().put("id",id).put("projectId","demo-studio").put("content","Synthetic pending history item"));activity.refresh.run();}catch(Exception error){throw new AssertionError(error);}});
-            assertArrayEquals("A new pending item above the viewport must not move the reader",before,historyPosition(scenario));
+            assertArrayEquals("A new pending item above the viewport must not move the reader, touch="+touch,before,historyPosition(scenario));
             scenario.onActivity(activity->{try{assertEquals(241,activity.rows.size());activity.store.cancelPending(id);activity.refresh.run();}catch(Exception error){throw new AssertionError(error);}});
             assertArrayEquals("Removing the pending item must not move the reader",before,historyPosition(scenario));
             }}finally{InstrumentationRegistry.getInstrumentation().setInTouchMode(wasTouch[0]);}
@@ -163,6 +170,81 @@ public class LocalRecoveryTest {
                 assertArrayEquals("Restore task and offset in touch mode="+touch,before,historyPosition(scenario));scenario.onActivity(activity->{assertEquals(240,activity.rows.size());assertTrue(activity.paged);assertEquals("synthetic-earlier-page",activity.cursor);});
             }}finally{InstrumentationRegistry.getInstrumentation().setInTouchMode(wasTouch[0]);}
         }
+    }
+    @Test public void historyBackToBackUpdatesKeepTheVisibleRecord()throws Exception{
+        seedPagedHistory();try(ActivityScenario<ProjectHistoryActivity> scenario=historyScenario()){
+            boolean[] wasTouch={false};scenario.onActivity(a->wasTouch[0]=a.list.isInTouchMode());
+            try{for(boolean touch:new boolean[]{true,false}){
+                InstrumentationRegistry.getInstrumentation().setInTouchMode(touch);scrollHistory(scenario);String[] before=historyPosition(scenario);String one=UUID.randomUUID().toString(),two=UUID.randomUUID().toString();
+                scenario.onActivity(a->{try{for(String id:new String[]{one,two}){a.store.save(new JSONObject().put("id",id).put("projectId","demo-studio").put("content","Local burst fixture"));a.render();}}catch(Exception e){throw new AssertionError(e);}});
+                assertArrayEquals("Two updates before layout retain the visible row, touch="+touch,before,historyPosition(scenario));
+                scenario.onActivity(a->{try{for(String id:new String[]{one,two}){a.store.cancelPending(id);a.render();}}catch(Exception e){throw new AssertionError(e);}});
+                assertArrayEquals(before,historyPosition(scenario));
+            }}finally{InstrumentationRegistry.getInstrumentation().setInTouchMode(wasTouch[0]);}
+        }
+    }
+    @Test public void homeBackToBackUpdatesKeepTheVisibleProject()throws Exception{
+        try(ActivityScenario<DemoHomeActivity> scenario=ActivityScenario.launch(DemoHomeActivity.class)){
+            boolean[] wasTouch={false};scenario.onActivity(a->wasTouch[0]=a.list.isInTouchMode());
+            try{for(boolean touch:new boolean[]{true,false}){
+                InstrumentationRegistry.getInstrumentation().setInTouchMode(touch);seedHomeList(scenario);String[] before=homePosition(scenario);String one=UUID.randomUUID().toString(),two=UUID.randomUUID().toString();
+                scenario.onActivity(a->{try{for(String id:new String[]{one,two}){a.store.save(new JSONObject().put("id",id).put("projectId","local-burst-"+id).put("projectName","Local burst fixture").put("content","Synthetic only"));a.show();}}catch(Exception e){throw new AssertionError(e);}});
+                assertArrayEquals("Two updates before layout retain the visible project, touch="+touch,before,homePosition(scenario));
+                scenario.onActivity(a->{try{for(String id:new String[]{one,two}){a.store.cancelPending(id);a.show();}}catch(Exception e){throw new AssertionError(e);}});
+                assertArrayEquals(before,homePosition(scenario));
+            }}finally{InstrumentationRegistry.getInstrumentation().setInTouchMode(wasTouch[0]);}
+        }
+    }
+    @Test public void pendingRemovalDoesNotWaitForHistoryRead()throws Exception{
+        seedPagedHistory();Store store=new Store(context);JSONObject pending=task().put("content","Local blocked-read fixture");store.save(pending);
+        CountDownLatch entered=new CountDownLatch(1),release=new CountDownLatch(1);Thread[] reader={null};boolean[] heldSync={false};
+        try(ActivityScenario<ProjectHistoryActivity> scenario=historyScenario()){
+            scenario.onActivity(a->{a.store=new Store(context){@Override JSONObject get(String path)throws Exception{assertTrue(path.startsWith("/tasks?project_id="));reader[0]=Thread.currentThread();heldSync[0]=Thread.holdsLock(Store.SYNC_LOCK);entered.countDown();if(!release.await(20,TimeUnit.SECONDS))throw new IOException("Local read gate timed out");return new JSONObject().put("tasks",new JSONArray()).put("nextCursor",JSONObject.NULL);}};a.paged=false;a.load(false);});
+            assertTrue(entered.await(3,TimeUnit.SECONDS));scenario.onActivity(a->a.removeSaved(pending));clickWindowText("Remove saved copy");
+            long end=android.os.SystemClock.elapsedRealtime()+3000;while(store.pending().length()>0&&android.os.SystemClock.elapsedRealtime()<end)Thread.sleep(25);
+            assertEquals("Removal must finish while the read remains gated; read state="+reader[0].getState()+", holds SYNC_LOCK="+heldSync[0]+", stack="+java.util.Arrays.toString(reader[0].getStackTrace()),0,store.pending().length());assertEquals(1,release.getCount());
+        }finally{release.countDown();}
+    }
+    void awaitHistory(ActivityScenario<ProjectHistoryActivity> scenario,java.util.function.Predicate<ProjectHistoryActivity> condition)throws Exception{
+        long end=android.os.SystemClock.elapsedRealtime()+3000;boolean[] ready={false};
+        do{scenario.onActivity(a->ready[0]=condition.test(a));if(ready[0])return;Thread.sleep(25);}while(android.os.SystemClock.elapsedRealtime()<end);fail("History did not reach the expected local state");
+    }
+    @Test public void pendingRemovalKeepsOneOperationAcrossRecreation()throws Exception{
+        seedPagedHistory();Store store=new Store(context);JSONObject pending=task().put("content","Local removal lifecycle fixture");store.save(pending);
+        CountDownLatch entered=new CountDownLatch(1),release=new CountDownLatch(1);java.util.concurrent.atomic.AtomicInteger calls=new java.util.concurrent.atomic.AtomicInteger();
+        try(ActivityScenario<ProjectHistoryActivity> scenario=historyScenario()){
+            scenario.onActivity(a->{a.store=new Store(context){@Override void cancelPending(String id)throws Exception{calls.incrementAndGet();entered.countDown();if(!release.await(20,TimeUnit.SECONDS))throw new IOException("Local removal gate timed out");super.cancelPending(id);}};a.removeSaved(pending);});clickWindowText("Remove saved copy");assertTrue(entered.await(3,TimeUnit.SECONDS));
+            scenario.onActivity(a->{assertTrue(a.removing());assertEquals("Removing saved copy…",a.notice.getText().toString());a.removeSaved(pending);});scenario.recreate();
+            scenario.onActivity(a->{assertTrue(a.removing());assertEquals(pending.optString("id"),a.removal.id);assertEquals("Removing saved copy…",a.notice.getText().toString());a.removeSaved(pending);});awaitFrame(scenario);scenario.onActivity(a->{ProjectHistoryActivity.Holder row=(ProjectHistoryActivity.Holder)a.list.getChildAt(0).getTag();assertEquals("Removing only this phone's copy.",row.meta.getText().toString());assertFalse(row.remove.isEnabled());assertFalse(row.card.isEnabled());});captureUi("history-removing-local");assertEquals(1,calls.get());release.countDown();
+            awaitHistory(scenario,a->!a.removing()&&a.store.pending().length()==0);assertEquals(1,calls.get());
+        }finally{release.countDown();}
+    }
+    @Test public void pendingRemovalFailureSurvivesHistoryRefreshAndRecreation()throws Exception{
+        seedPagedHistory();Store store=new Store(context);JSONObject pending=task().put("content","Local removal failure fixture");store.save(pending);
+        try(ActivityScenario<ProjectHistoryActivity> scenario=historyScenario()){
+            scenario.onActivity(a->{a.store=new Store(context){@Override void cancelPending(String id)throws Exception{throw new IOException("Synthetic local removal failure");}@Override JSONObject get(String path)throws Exception{throw new IOException("Synthetic history offline");}};a.removeSaved(pending);});clickWindowText("Remove saved copy");
+            awaitHistory(scenario,a->!a.removing()&&a.actionError.contains("Synthetic local removal failure"));scenario.onActivity(a->{a.paged=false;a.load(false);});
+            awaitHistory(scenario,a->!a.busy&&a.readError.equals("Synthetic history offline"));scenario.onActivity(a->assertTrue(a.notice.getText().toString().contains("Synthetic local removal failure")));scenario.recreate();
+            scenario.onActivity(a->{assertTrue(a.notice.getText().toString().contains("Synthetic local removal failure"));assertEquals(1,a.store.pending().length());});
+        }
+    }
+    @Test public void slowHistoryReadDoesNotReplaceANewerTaskReceipt()throws Exception{
+        String id=UUID.randomUUID().toString();CountDownLatch entered=new CountDownLatch(1),release=new CountDownLatch(1);java.util.concurrent.ExecutorService workers=java.util.concurrent.Executors.newFixedThreadPool(2);
+        Store history=new Store(context){@Override JSONObject get(String path)throws Exception{entered.countDown();if(!release.await(20,TimeUnit.SECONDS))throw new IOException("Local history gate timed out");return new JSONObject().put("tasks",new JSONArray().put(new JSONObject().put("id",id).put("updated_at",1).put("status","running")));}};
+        Store latest=new Store(context){@Override JSONObject get(String path)throws Exception{return new JSONObject().put("id",id).put("updated_at",2).put("status","completed");}};
+        try{
+            java.util.concurrent.Future<?> page=workers.submit(()->{try{history.loadHistory("local-history-receipt","");}catch(Exception e){throw new RuntimeException(e);}});assertTrue(entered.await(3,TimeUnit.SECONDS));
+            workers.submit(()->{try{latest.refreshTask(id);}catch(Exception e){throw new RuntimeException(e);}}).get(3,TimeUnit.SECONDS);release.countDown();page.get(3,TimeUnit.SECONDS);assertEquals(2,latest.task(id).optLong("updated_at"));assertEquals("completed",latest.task(id).optString("status"));
+        }finally{release.countDown();workers.shutdownNow();latest.prefs.edit().remove("history:local-history-receipt").remove("task:"+id).commit();}
+    }
+    @Test public void slowHistoryPageCannotReplaceANewerHistoryRequest()throws Exception{
+        CountDownLatch entered=new CountDownLatch(1),release=new CountDownLatch(1);java.util.concurrent.ExecutorService workers=java.util.concurrent.Executors.newFixedThreadPool(2);
+        Store slow=new Store(context){@Override JSONObject get(String path)throws Exception{entered.countDown();if(!release.await(20,TimeUnit.SECONDS))throw new IOException("Local stale-page gate timed out");return new JSONObject().put("tasks",new JSONArray().put(new JSONObject().put("id","old-local-page")));}};
+        Store recent=new Store(context){@Override JSONObject get(String path)throws Exception{return new JSONObject().put("tasks",new JSONArray().put(new JSONObject().put("id","new-local-page")));}};
+        try{
+            java.util.concurrent.Future<JSONObject> stale=workers.submit(()->slow.loadHistory("local-history-order",""));assertTrue(entered.await(3,TimeUnit.SECONDS));
+            workers.submit(()->recent.loadHistory("local-history-order","")).get(3,TimeUnit.SECONDS);release.countDown();assertEquals("new-local-page",stale.get(3,TimeUnit.SECONDS).getJSONArray("tasks").getJSONObject(0).getString("id"));assertEquals("new-local-page",recent.history("local-history-order").getJSONArray("tasks").getJSONObject(0).getString("id"));
+        }finally{release.countDown();workers.shutdownNow();recent.prefs.edit().remove("history:local-history-order").remove("task:old-local-page").remove("task:new-local-page").commit();}
     }
 
     void awaitDelivery(ActivityScenario<DemoDeliverablesActivity> scenario,String text)throws Exception{

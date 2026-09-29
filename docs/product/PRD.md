@@ -27,6 +27,10 @@ in [0.5.0](../releases/0.5.0.md).
   Status/pending updates retain the visible task and offset without replaying
   entry motion. Activity recreation restores the reading position in retained
   older pages for both touch and keyboard browsing.
+  Consecutive updates before the next frame must preserve the same visible record.
+  Removing a saved copy shows immediate progress, survives rotation as one
+  operation, and does not wait for a project-history network read. Failure remains
+  visible after polling and rotation; interruption never claims successful removal.
 - Incoming-file failure keeps verified complete copies and identifies missing
   material. Restoring the failure does not retry a provider automatically. Retry
   copies only missing files; repeat taps cannot start concurrent copies. Incomplete

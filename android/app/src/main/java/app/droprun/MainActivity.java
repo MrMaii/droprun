@@ -60,8 +60,8 @@ public class MainActivity extends StyledActivity {
         notice.setText(line);notice.setVisibility(line.isEmpty()?View.GONE:View.VISIBLE);
         boolean notificationNotice=error.isEmpty()&&store.computerOnline()&&receiver.isEmpty()&&!TaskNotifications.allowed(this);
         notice.setOnClickListener(v->{if(notificationNotice){if(Build.VERSION.SDK_INT>=33&&checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS)!=PackageManager.PERMISSION_GRANTED)requestPermissions(new String[]{android.Manifest.permission.POST_NOTIFICATIONS},10);else startActivity(new Intent(android.provider.Settings.ACTION_APP_NOTIFICATION_SETTINGS).putExtra(android.provider.Settings.EXTRA_APP_PACKAGE,getPackageName()));}else load();});
-        int first=list.getFirstVisiblePosition(),offset=list.getChildCount()>0?list.getChildAt(0).getTop()-list.getPaddingTop():0;
-        String anchor=list.isInTouchMode()&&list.getChildCount()>0&&first<items.size()?items.get(first).optString("id"):null;
+        View visible=list.getChildAt(0);int offset=visible==null?0:visible.getTop()-list.getPaddingTop();
+        String anchor=list.isInTouchMode()&&visible!=null&&visible.getTag() instanceof HomeHolder?((HomeHolder)visible.getTag()).id:null;
         items.clear();items.addAll(ProjectPresentation.merge(store.activity(),store.pending(),store.tasks()));adapter.notifyDataSetChanged();
         if(anchor!=null)for(int n=0;n<items.size();n++)if(anchor.equals(items.get(n).optString("id"))){list.setSelectionFromTop(n,offset);break;}
     }
@@ -81,12 +81,13 @@ public class MainActivity extends StyledActivity {
                 TextView pending=Ui.caption(MainActivity.this,"");card.addView(pending,Ui.margins(MainActivity.this,9,0));TextView unavailable=Ui.caption(MainActivity.this,L.t("Project unavailable · history is still here","项目暂不可用 · 历史记录仍在"));card.addView(unavailable,Ui.margins(MainActivity.this,8,0));
                 holder=new HomeHolder(card,name,counts,state,date,pending,unavailable);outer.setTag(holder);card.setFocusable(true);card.setClickable(true);Ui.bindPress(card);
             }
-            String label=ProjectPresentation.label(project.optString("id"),project.optString("name"),catalog,new JSONArray(items));holder.name.setText(label);holder.name.setMaxLines(label.equals(project.optString("name"))?2:Integer.MAX_VALUE);holder.counts.setText(ProjectPresentation.counts(project));holder.date.setText(TaskPresentation.elapsed(project.optLong("last_dispatch_at"),System.currentTimeMillis()));holder.date.setContentDescription(L.t("Last handoff · ","最近交办 · ")+holder.date.getText());String state=ProjectPresentation.state(project);holder.state.setText(state);holder.state.setTextColor(project.optInt("attention_count")>0?Ui.AMBER:project.optInt("active_count")>0?Ui.ACCENT:Ui.MUTED);
+            holder.id=project.optString("id");String label=ProjectPresentation.label(project.optString("id"),project.optString("name"),catalog,new JSONArray(items));holder.name.setText(label);holder.name.setMaxLines(label.equals(project.optString("name"))?2:Integer.MAX_VALUE);holder.counts.setText(ProjectPresentation.counts(project));holder.date.setText(TaskPresentation.elapsed(project.optLong("last_dispatch_at"),System.currentTimeMillis()));holder.date.setContentDescription(L.t("Last handoff · ","最近交办 · ")+holder.date.getText());String state=ProjectPresentation.state(project);holder.state.setText(state);holder.state.setTextColor(project.optInt("attention_count")>0?Ui.AMBER:project.optInt("active_count")>0?Ui.ACCENT:Ui.MUTED);
             int pending=project.optInt("pending_count");holder.pending.setText(pending+L.t(" saved on this phone · waiting to send"," 条已保存在手机 · 等待发送"));holder.pending.setVisibility(pending>0?View.VISIBLE:View.GONE);holder.unavailable.setVisibility(project.optBoolean("available",true)?View.GONE:View.VISIBLE);
             holder.card.setContentDescription(label+", "+ProjectPresentation.counts(project)+", "+state+(pending>0?", "+holder.pending.getText():""));holder.card.setOnClickListener(v->startActivity(new Intent(MainActivity.this,ProjectHistoryActivity.class).putExtra("projectId",project.optString("id")).putExtra("projectName",project.optString("name"))));return outer;
         }
     }
     static final class HomeHolder {
+        String id;
         final LinearLayout card;final TextView name,counts,state,date,pending,unavailable;
         HomeHolder(LinearLayout card,TextView name,TextView counts,TextView state,TextView date,TextView pending,TextView unavailable){this.card=card;this.name=name;this.counts=counts;this.state=state;this.date=date;this.pending=pending;this.unavailable=unavailable;}
     }
