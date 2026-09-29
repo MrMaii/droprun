@@ -16,14 +16,15 @@ public final class DemoImportProvider extends ContentProvider {
     static final AtomicInteger opens=new AtomicInteger();
     static volatile CountDownLatch firstChunk=new CountDownLatch(1),resume=new CountDownLatch(0);
     static File file(android.content.Context context){return new File(context.getCacheDir(),"synthetic-import.bin");}
+    File source(Uri uri){return "/first-input".equals(uri.getPath())?new File(getContext().getCacheDir(),"synthetic-import-first.bin"):file(getContext());}
     @Override public boolean onCreate(){return true;}
     @Override public String getType(Uri uri){return "application/octet-stream";}
     @Override public Cursor query(Uri uri,String[] columns,String selection,String[] args,String sort){
-        MatrixCursor cursor=new MatrixCursor(new String[]{OpenableColumns.DISPLAY_NAME,OpenableColumns.SIZE});cursor.addRow(new Object[]{"local-evidence.bin",file(getContext()).length()});return cursor;
+        MatrixCursor cursor=new MatrixCursor(new String[]{OpenableColumns.DISPLAY_NAME,OpenableColumns.SIZE});cursor.addRow(new Object[]{"/first-input".equals(uri.getPath())?"first-evidence.bin":"local-evidence.bin",source(uri).length()});return cursor;
     }
     @Override public ParcelFileDescriptor openFile(Uri uri,String mode)throws FileNotFoundException{
-        String path=uri.getPath();if(!"r".equals(mode)||!("/local-input".equals(path)||"/failed-input".equals(path)||"/paused-input".equals(path)||"/held-input".equals(path)))throw new FileNotFoundException("Unexpected synthetic input");
-        opens.incrementAndGet();if("/local-input".equals(path))return ParcelFileDescriptor.open(file(getContext()),ParcelFileDescriptor.MODE_READ_ONLY);
+        String path=uri.getPath();if(!"r".equals(mode)||!("/local-input".equals(path)||"/first-input".equals(path)||"/failed-input".equals(path)||"/paused-input".equals(path)||"/held-input".equals(path)))throw new FileNotFoundException("Unexpected synthetic input");
+        opens.incrementAndGet();if("/local-input".equals(path)||"/first-input".equals(path))return ParcelFileDescriptor.open(source(uri),ParcelFileDescriptor.MODE_READ_ONLY);
         try{
             ParcelFileDescriptor[] pipe=ParcelFileDescriptor.createReliablePipe();File source=file(getContext()),hold=new File(getContext().getCacheDir(),"synthetic-import.hold");CountDownLatch gate=resume;
             new Thread(()->{

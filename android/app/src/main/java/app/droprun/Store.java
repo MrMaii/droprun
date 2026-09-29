@@ -185,7 +185,7 @@ public class Store {
         synchronized(SYNC_LOCK){
             post("/device/revoke",new JSONObject());
             JSONArray pending=pending();
-            for(int i=0;i<pending.length();i++){JSONObject task=pending.getJSONObject(i);JSONArray files=task.optJSONArray("localFiles");for(int n=0;files!=null&&n<files.length();n++){File file=new File(files.getJSONObject(n).getString("path"));if(file.getCanonicalPath().startsWith(context.getFilesDir().getCanonicalPath()+File.separator))file.delete();}new File(outbox(),task.getString("id")+".json").delete();}
+            for(int i=0;i<pending.length();i++){JSONObject task=pending.getJSONObject(i);JSONArray files=task.optJSONArray("localFiles");for(int n=0;files!=null&&n<files.length();n++){File file=new File(files.getJSONObject(n).getString("path"));if(file.getCanonicalPath().startsWith(context.getFilesDir().getCanonicalPath()+File.separator))deleteAttachment(file);}new File(outbox(),task.getString("id")+".json").delete();}
             vault.clear();prefs.edit().clear().commit();preferences.edit().remove("relay").remove("instanceId").commit();
             ((android.app.NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE)).cancelAll();
         }
@@ -214,9 +214,16 @@ public class Store {
     File instanceFiles(){File dir=new File(context.getFilesDir(),"instances/"+scope);dir.mkdirs();return dir;}
     File cacheDir(){File dir=new File(context.getCacheDir(),"instances/"+scope);dir.mkdirs();return dir;}
     File attachments(){File dir=new File(instanceFiles(),"attachments");dir.mkdirs();return dir;}
+    void deleteAttachment(File file)throws IOException{
+        file.delete();File parent=file.getCanonicalFile().getParentFile();
+        if(parent!=null&&attachments().getCanonicalFile().equals(parent.getParentFile())&&parent.getName().matches("[0-9a-f-]{36}")){
+            // An outbox entry may have survived a kill just before its import journal was removed.
+            new android.util.AtomicFile(new File(parent,"import.json")).delete();parent.delete();
+        }
+    }
     File outbox(){File f=new File(instanceFiles(),"outbox");f.mkdirs();return f;}
     synchronized void save(JSONObject task)throws Exception{task.put("instanceId",instanceId);if(!task.has("createdAt"))task.put("createdAt",System.currentTimeMillis());android.util.AtomicFile f=new android.util.AtomicFile(new File(outbox(),task.getString("id")+".json"));FileOutputStream out=null;try{out=f.startWrite();out.write(task.toString().getBytes(StandardCharsets.UTF_8));f.finishWrite(out);}catch(Exception e){if(out!=null)f.failWrite(out);throw e;}}
-    void cancelPending(String id)throws Exception {synchronized(SYNC_LOCK){for(int n=0;n<pending().length();n++){JSONObject task=pending().getJSONObject(n);if(!id.equals(task.optString("id")))continue;JSONArray files=task.optJSONArray("localFiles");for(int j=0;files!=null&&j<files.length();j++){File f=new File(files.getJSONObject(j).getString("path"));if(f.getCanonicalPath().startsWith(instanceFiles().getCanonicalPath()+File.separator))f.delete();}new File(outbox(),id+".json").delete();return;}}}
+    void cancelPending(String id)throws Exception {synchronized(SYNC_LOCK){for(int n=0;n<pending().length();n++){JSONObject task=pending().getJSONObject(n);if(!id.equals(task.optString("id")))continue;JSONArray files=task.optJSONArray("localFiles");for(int j=0;files!=null&&j<files.length();j++){File f=new File(files.getJSONObject(j).getString("path"));if(f.getCanonicalPath().startsWith(instanceFiles().getCanonicalPath()+File.separator))deleteAttachment(f);}new File(outbox(),id+".json").delete();return;}}}
     JSONArray pending(){JSONArray a=new JSONArray();File[] files=outbox().listFiles((d,n)->n.endsWith(".json"));if(files!=null)for(File f:files)try{a.put(new JSONObject(new String(Files.readAllBytes(f.toPath()),StandardCharsets.UTF_8)));}catch(Exception ignored){}return a;}
     boolean online(){android.net.ConnectivityManager manager=(android.net.ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);android.net.Network network=manager.getActiveNetwork();android.net.NetworkCapabilities capabilities=manager.getNetworkCapabilities(network);return capabilities!=null&&capabilities.hasCapability(android.net.NetworkCapabilities.NET_CAPABILITY_VALIDATED);}
     /** Server order is authoritative; unchanged reports stay cached and deleted tasks disappear. */
@@ -261,7 +268,7 @@ public class Store {
             try{tasks=mergeTasks(tasksData(),response);}catch(Exception incomplete){response=get("/tasks");tasks=mergeTasks(new JSONObject(),response);}
             prefs.edit().putString("tasks",tasks.toString()).putLong("tasksCursor",response.optLong("syncCursor",0)).apply();
             JSONObject activity=get("/projects/activity");prefs.edit().putString("activity",activity.toString()).apply();
-            for(JSONObject accepted:acceptedTasks){new File(outbox(),accepted.getString("id")+".json").delete();JSONArray files=accepted.optJSONArray("localFiles");for(int n=0;files!=null&&n<files.length();n++)new File(files.getJSONObject(n).getString("path")).delete();}
+            for(JSONObject accepted:acceptedTasks){new File(outbox(),accepted.getString("id")+".json").delete();JSONArray files=accepted.optJSONArray("localFiles");for(int n=0;files!=null&&n<files.length();n++)deleteAttachment(new File(files.getJSONObject(n).getString("path")));}
             TaskNotifications.update(context,prefs,tasks.optJSONArray("tasks"));
             if(refreshContext||System.currentTimeMillis()-prefs.getLong("projectsCheckedAt",0)>=30000){
                 JSONObject projects=get("/projects");prefs.edit().putString("projects",projects.toString()).putLong("projectsCheckedAt",System.currentTimeMillis()).apply();

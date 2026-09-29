@@ -9,7 +9,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
-import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.Insets;
 import android.graphics.drawable.ColorDrawable;
@@ -18,7 +17,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.provider.OpenableColumns;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.InputType;
@@ -48,6 +46,7 @@ public class ShareActivity extends StyledActivity {
     Store store;FrameLayout root,stage;Capped holder;LinearLayout sheet,projectList,panel;ScrollView scroll;Ui.Dots dots;ImageButton back,gauge;
     EditText search,note;TextView gaugeText,sendTitle,status,badge;Ui.PlaneView plane;Ui.Glass dialog;ColorDrawable scrim;ValueAnimator panelAnimator;
     AlertDialog discardDialog;
+    ShareImport incoming;Runnable importObserver;Bundle restoredState;
     String shared="",last="",selected="",model="",effort="",query="",draft="";JSONArray attachments=new JSONArray();
     List<JSONObject> recentProjects=Collections.emptyList();
     int step=-1;boolean receiving=true,showAll=false,panelOpen=false,busy=false,closing=false,sent=false;
@@ -57,24 +56,36 @@ public class ShareActivity extends StyledActivity {
         Intent intent=getIntent();CharSequence text=intent.getCharSequenceExtra(Intent.EXTRA_TEXT);shared=text==null?"":text.toString();
         build();
         if(state!=null&&state.getBoolean("sent")){sent=true;receiving=false;close();return;}
-        if(state!=null&&state.containsKey("attachments")){
-            try{attachments=new JSONArray(state.getString("attachments"));}catch(JSONException e){fatal(e);return;}
+        if(state!=null){
             shared=state.getString("shared",shared);selected=state.getString("selected","");draft=state.getString("draft","");query=state.getString("query","");showAll=state.getBoolean("showAll");
-            receiving=false;
-            if(store.paired()){start();model=state.getString("model",model);effort=state.getString("effort",effort);if(state.getInt("step")==1&&Store.projectEnabled(store.project(selected)))go(1,1);}
-            else unpaired();return;
+            restoredState=state;
         }
+        try{
+            incoming=(ShareImport)getLastNonConfigurationInstance();
+            boolean retained=incoming!=null;
+            if(!retained)incoming=new ShareImport(store,intent,state==null?null:state.getString("importId"),state==null?null:state.getString("importScope"));
+            if(incoming.transferred){sent=true;receiving=false;close();return;}
+            if(!incoming.store.scope.equals(store.scope))incoming.bind(store);
+            importObserver=()->{
+                if(!receiving||!incoming.finished||gone())return;
+                if(incoming.error!=null){fatal(incoming.error);return;}
+                try{attachments=incoming.attachments();received();}catch(Exception e){fatal(e);}
+            };
+            incoming.observer=importObserver;
+            if(incoming.finished){importObserver.run();return;}
+            if(!retained)io.execute(incoming);
+        }catch(Exception e){fatal(e);return;}
         // Only a slow copy (a large video) shows the receiving notice; text shares go straight to step 1.
         handler.postDelayed(()->{if(receiving&&!gone())Ui.swap(stage,notice(L.t("Receiving shared material…","正在接收分享…")),1);},200);
-        io.execute(()->{
-            try{receive(intent);runOnUiThread(this::received);}
-            catch(Exception e){runOnUiThread(()->fatal(e));}
-        });
     }
     void received(){
         receiving=false;if(gone()){discardAttachments();return;}
         if(shared.trim().isEmpty()&&attachments.length()==0){fatal(new IOException(L.t("Share a link, text or file.","请分享链接、文字或文件")));return;}
-        if(store.paired())start();else unpaired();
+        if(store.paired()){
+            start();
+            if(restoredState!=null&&restoredState.getInt("step",-1)>=0){model=restoredState.getString("model",model);effort=restoredState.getString("effort",effort);if(restoredState.getInt("step")==1&&Store.projectEnabled(store.project(selected)))go(1,1);}
+        }else unpaired();
+        restoredState=null;
     }
     @Override protected void onActivityResult(int request,int result,Intent data){
         super.onActivityResult(request,result,data);
@@ -86,15 +97,18 @@ public class ShareActivity extends StyledActivity {
     }
     @Override protected void onDestroy(){
         handler.removeCallbacksAndMessages(null);io.shutdown();
+        if(incoming!=null&&incoming.observer==importObserver)incoming.observer=null;
         if(discardDialog!=null)discardDialog.dismiss();
         if(!sent&&isFinishing())discardAttachments();
         super.onDestroy();
     }
-    void discardAttachments(){for(int n=0;n<attachments.length();n++){JSONObject a=attachments.optJSONObject(n);if(a!=null)new File(a.optString("path")).delete();}}
+    void discardAttachments(){if(incoming!=null)incoming.cancel();}
+    @Override public Object onRetainNonConfigurationInstance(){return incoming;}
     @Override protected void onSaveInstanceState(Bundle state){
         super.onSaveInstanceState(state);state.putBoolean("sent",sent);
         state.putString("query",query);state.putBoolean("showAll",showAll);
-        if(!receiving){state.putString("attachments",attachments.toString());state.putString("shared",shared);state.putString("selected",selected);state.putString("draft",note==null?draft:note.getText().toString());state.putString("model",model);state.putString("effort",effort);state.putInt("step",step);}
+        if(incoming!=null){state.putString("importId",incoming.id);state.putString("importScope",incoming.store.scope);}
+        state.putString("shared",shared);state.putString("selected",selected);state.putString("draft",note==null?draft:note.getText().toString());state.putString("model",model);state.putString("effort",effort);state.putInt("step",step);
     }
     int dp(int value){return Ui.dp(this,value);}
     boolean gone(){return closing||isFinishing()||isDestroyed();}
@@ -159,26 +173,6 @@ public class ShareActivity extends StyledActivity {
     void fatal(Exception e){receiving=false;if(gone())return;new AlertDialog.Builder(this).setTitle(L.t("Could not complete this action","暂时无法完成")).setMessage(e.getMessage()).setPositiveButton(L.t("Got it","知道了"),null).setOnDismissListener(d->close()).show();}
 
     // ---- receiving the share --------------------------------------------------------------------
-    void receive(Intent intent)throws Exception{
-        ArrayList<Uri> uris=new ArrayList<>();
-        if(Intent.ACTION_SEND_MULTIPLE.equals(intent.getAction())){ArrayList<Uri> list=intent.getParcelableArrayListExtra(Intent.EXTRA_STREAM);if(list!=null)uris.addAll(list);}
-        else{Uri single=intent.getParcelableExtra(Intent.EXTRA_STREAM);if(single!=null)uris.add(single);}
-        if(uris.isEmpty()&&intent.getClipData()!=null)for(int n=0;n<intent.getClipData().getItemCount();n++){Uri u=intent.getClipData().getItemAt(n).getUri();if(u!=null&&"content".equals(u.getScheme()))uris.add(u);}
-        JSONArray received=new JSONArray();
-        try{
-            for(Uri uri:uris){
-                if(!"content".equals(uri.getScheme()))throw new IOException(L.t("Send files using the system share menu.","请通过系统分享发送文件。"));
-                if(received.length()>=8)throw new IOException(L.t("Share up to 8 attachments at a time.","一次最多 8 个附件"));
-                String mime=getContentResolver().getType(uri);if(mime==null)mime=intent.getType();if(mime==null)mime="application/octet-stream";
-                String name="shared-file";try(Cursor c=getContentResolver().query(uri,null,null,null,null)){if(c!=null&&c.moveToFirst()){int index=c.getColumnIndex(OpenableColumns.DISPLAY_NAME);if(index>=0&&c.getString(index)!=null)name=c.getString(index);}}
-                File dir=store.attachments();File file=new File(dir,UUID.randomUUID().toString());long size=0;
-                try(InputStream in=getContentResolver().openInputStream(uri);OutputStream out=new FileOutputStream(file)){byte[] buffer=new byte[65536];int n;while((n=in.read(buffer))!=-1){size+=n;if(size>50L*1024*1024)throw new IOException(L.t("An attachment exceeds the 50 MB limit.","附件超过 50 MB"));out.write(buffer,0,n);}}
-                catch(Exception e){file.delete();throw e;}
-                received.put(new JSONObject().put("path",file.getAbsolutePath()).put("name",name).put("mime",mime));
-            }
-        }catch(Exception e){for(int n=0;n<received.length();n++)new File(received.getJSONObject(n).getString("path")).delete();throw e;}
-        attachments=received;
-    }
     void unpaired(){
         dots.setVisibility(View.INVISIBLE);LinearLayout column=Ui.vertical(this);
         column.addView(Ui.title(this,L.t("Connect your computer first","先连接电脑"),20));
@@ -187,7 +181,7 @@ public class ShareActivity extends StyledActivity {
         Ui.swap(stage,column,1);
     }
     void start(){
-        try{for(int n=0;n<attachments.length();n++){JSONObject item=attachments.getJSONObject(n);File previous=new File(item.getString("path"));if(!previous.getCanonicalFile().getParentFile().equals(store.attachments().getCanonicalFile())){if(!previous.getCanonicalPath().startsWith(getFilesDir().getCanonicalPath()+File.separator))throw new IOException("Invalid saved attachment.");File next=new File(store.attachments(),UUID.randomUUID().toString());java.nio.file.Files.move(previous.toPath(),next.toPath());item.put("path",next.getAbsolutePath());}}}catch(Exception e){fatal(e);return;}
+        try{incoming.bind(store);attachments=incoming.attachments();}catch(Exception e){fatal(e);return;}
         dots.setVisibility(View.VISIBLE);last=store.prefs.getString("lastProject","");model=store.defaultModel();effort=store.defaultEffort(model);
         go(0,1);
         String before=store.projects().toString()+store.activity();
@@ -390,9 +384,9 @@ public class ShareActivity extends StyledActivity {
         try{
             String message=note.getText().toString();
             String title=TaskPresentation.clip(message.isEmpty()?material:message,80);
-            JSONObject task=new JSONObject().put("id",UUID.randomUUID().toString()).put("projectId",selected).put("projectName",project.optString("name")).put("content",material).put("message",message).put("title",title).put("localFiles",attachments).put("assets",new JSONArray());
+            JSONObject task=new JSONObject().put("id",incoming.id).put("projectId",selected).put("projectName",project.optString("name")).put("content",material).put("message",message).put("title",title).put("localFiles",attachments).put("assets",new JSONArray());
             if(!model.isEmpty())task.put("model",model);if(!effort.isEmpty())task.put("effort",effort);
-            store.save(task);sent=true;store.prefs.edit().putString("lastProject",selected).apply();
+            incoming.save(task);sent=true;store.prefs.edit().putString("lastProject",selected).apply();
             if(Build.VERSION.SDK_INT>=30)sheet.performHapticFeedback(android.view.HapticFeedbackConstants.CONFIRM);else sheet.performHapticFeedback(android.view.HapticFeedbackConstants.VIRTUAL_KEY);
             SyncJob.soon(this);
             TaskSyncService.start(this);

@@ -13,23 +13,30 @@ posting is authorized. New campaign assets remain deferred until the agreed gate
 
 ## Completed this pass
 
-- Added a debug-only `/held-input` source. It writes4096 bytes, then waits while
-  cache/synthetic-import.hold exists. This gate survives the receiving process,
-  allowing the host to kill it and release the next process without fake lifecycle.
-- Reproduced a real orphan: PID15049 was killed while stopped mid-copy; original
-  task2642 resumed in PID15246 and completed a new262144-byte file. The old4096-byte
-  copy persisted. Normal Close removed only the full copy. This remains UNFIXED.
-- The receive path assigns attachment metadata only after all copying finishes;
-  saved Activity state omits attachments while receiving. The partial file has no
-  restored cleanup owner. Do not call this a passing interruption case.
-- Recorded XML and structured observations. Removed only this probe's known
-  partial64d71ad9-4c1a-4bb0-b6ae-016ba3fafd1e and synthetic source after recording.
-  The older unknown file remained untouched. Manual cleanup is not a product fix.
-- Debug/instrumentation build passed; three existing attachment cases pass5.974s.
-  No production source or signed APK changed. No full54-case rerun for this small
-  fixture extension; previous full results belong to the preceding code pass.
-- No preference changes, real submission, public deployment or campaign assets.
-  Debug app stopped, emulator shut down; no running workers/markers remain.
+- Fixed the orphan reproduced in `ecf0173`. ShareImport now persists an atomic
+  instance-scoped UUID journal before copying, validates source identity and
+  completed-byte receipts, retains one operation across recreation, and overwrites
+  only its own partial on process restoration. Close cannot delete another share
+  or outbox-owned files. First pairing can adopt an unpaired draft; paired instances
+  cannot exchange drafts. Contract updated with ownership and transfer rules.
+- Outbox uses the receive UUID; restoration detects an already saved task. Both
+  restoration and outbox cleanup handle a leftover journal after the save boundary.
+  Completion callbacks are consumed once, protecting a restored note from a late
+  duplicate callback. Legacy flat attachment paths remain supported.
+- Ten native attachment cases now include copy reuse, interruption, recreation,
+  journal recovery, source/instance isolation, outbox ownership, first pairing,
+  byte modification, mid-copy close and independent drafts.
+- Full native suites passed61/61 on both APIs. The final callback guard and direct
+  receive-UUID assignment were then verified by ten focused cases on each API,
+  with API35 at200%. JVM12, debug lint and signed build passed. Signed local APK
+  refreshed; previous candidate preserved. Exact evidence/hash belongs in release record.
+- Actual API35 process probe passed: task2766/PID16929 killed with first196608-byte
+  copy complete and second4096-byte partial; first source deleted; PID17051 resumed
+  the same directory, retained first bytes and finished second262144 bytes. Both
+  hashes matched. Normal Close removed the entire owned folder; no manual attachment
+  cleanup needed. Unknown older6d908a45-e442-428d-aac7-b9eace8e1705 untouched.
+- Synthetic source/hold files removed; preferences restored; both emulators stopped.
+  No live submission, remote mutation, public deployment or campaign assets.
 
 Previous code pass `88ce635` fixed touch viewport jumps and added three attachment
 cases. Its full native suites passed54/54 on both APIs, two viewport cases at200%
@@ -53,8 +60,10 @@ and `share-choice-api{26,35}-large-{light,dark}.png`. Text process probe uses
 `process-share-{before,after,material}.xml` and `process-share-after.png`.
 File process probe uses `attachment-process-{before,after}.xml` and
 `attachment-process-after.png` in the same folder.
-Interrupted-copy evidence: `import-held-{before,restored}.xml` and
-`import-interruption-observations.json`. The latter explicitly records failure.
+Interrupted-copy failing evidence remains `import-held-{before,restored}.xml` and
+`import-interruption-observations.json`. Passing ownership evidence is
+`import-owned-{before,restored,closed}.xml`, `import-owned-restored.png`, and
+`import-ownership-observations.json` in the same local folder.
 Synthetic fixtures are not
 actual agent work. Node's preceding 198-case pass and Windows manifest evidence
 remain in the release record; Node/Windows did not change this pass.
@@ -96,17 +105,18 @@ Git author: Thomas Deng <150266369+MrMaii@users.noreply.github.com>.
 
 ## Single recommended next action
 
-Fix the confirmed interrupted-copy orphan with explicit per-share file ownership
-that survives process recovery. Preserve completed copies, validate instance/source
-identity, distinguish partial from completed bytes, and prevent a closing old
-Activity from deleting another Activity's adopted copy or an outbox-owned file.
-Inspect receiver lifecycle before choosing the smallest implementation; blindly
-sweeping attachments or merely moving the orphan into cache is not the fix.
-Re-run the held-source process probe and the three existing attachment cases.
-Older unknown6d908a45-e442-428d-aac7-b9eace8e1705 remains; do not delete it without
-ownership evidence. No real provider, remote submission or Codex execution.
+Complete the inbound receive-failure UX using the new ownership records. The
+existing provider-failure path still deletes the batch and shows a fatal-dismiss
+dialog; the original requirement asks for retained material plus visible retry
+and cancel. Preserve verified complete copies when a later source fails, make the
+failure state recoverable without duplicate writes, and show accurate source-loss
+wording using private providers only. Examine abandoned journals whose Activity is
+never restored before claiming the whole draft lifecycle is closed. Do not sweep
+unknown files. The older6d908a45-e442-428d-aac7-b9eace8e1705 remains unowned by this
+work. Real provider, remote submission and Codex execution remain out of scope.
 
 ## Files involved
 
-DemoImportProvider, UI matrix, UX release record and this handoff. Ignored local
-process-probe XML/observations. Production code and signed APK remain unchanged.
+ShareImport (new), ShareActivity, Store, ShareAttachmentTest, DemoImportProvider,
+DemoShareActivity, CONTRACTS, UI matrix, UX release record and this handoff.
+Ignored local probe XML/PNG/observations and refreshed signed candidate APK.
