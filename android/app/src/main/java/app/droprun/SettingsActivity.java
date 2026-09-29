@@ -35,15 +35,16 @@ public class SettingsActivity extends StyledActivity {
         io.execute(()->{
             try{JSONObject data=store.get("/projects");store.prefs.edit().putString("projects",data.toString()).apply();}catch(Exception ignored){}
             try{store.getSettings();}catch(Exception ignored){}
+            try{JSONObject policy=store.get("/device/retention");store.prefs.edit().putString("retention",policy.toString()).apply();}catch(Exception ignored){}
             runOnUiThread(()->{if(!isDestroyed()&&!snapshot().equals(before))render();});
         });
     }
-    String snapshot(){JSONObject data=store.projectsData();return data.optString("name")+store.computerOnline()+data.optJSONArray("projects")+data.optJSONArray("models")+store.directExecution()+store.prefs.getString("settingsError","");}
+    String snapshot(){JSONObject data=store.projectsData();return data.optString("name")+store.computerOnline()+data.optJSONArray("projects")+data.optJSONArray("models")+store.directExecution()+store.prefs.getString("settingsError","")+store.prefs.getString("retention","");}
     /** Rebuilds the sections in place: the ScrollView around them keeps its position and nothing re-animates. */
     void render(){
         noticeView.setText(notice);noticeView.setVisibility(notice.isEmpty()?View.GONE:View.VISIBLE);
         body.removeAllViews();
-        computerSection();appearanceSection();modeSection();modelSection();accessSection();aboutSection();disconnectSection();
+        computerSection();appearanceSection();modeSection();modelSection();accessSection();retentionSection();aboutSection();disconnectSection();
     }
     LinearLayout section(String label){body.addView(Ui.label(this,label));LinearLayout card=Ui.card(this);body.addView(card,Ui.cardParams(this));return card;}
     LinearLayout.LayoutParams trailing(){LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(-2,-2);params.setMarginStart(dp(10));return params;}
@@ -170,6 +171,19 @@ public class SettingsActivity extends StyledActivity {
             try{store.setProjectPermission(id,enabled);runOnUiThread(()->{if(isDestroyed())return;switching.remove(id);render();});}
             catch(Exception e){runOnUiThread(()->{if(isDestroyed())return;switching.remove(id);render();error(e);});}
         });
+    }
+
+    void retentionSection(){
+        LinearLayout card=section(L.t("Data retention","数据保留"));
+        JSONObject policy=new JSONObject();try{policy=new JSONObject(store.prefs.getString("retention","{}"));}catch(JSONException ignored){}
+        int raw=policy.optInt("rawDays"),artifacts=policy.optInt("artifactDays");
+        if(raw>=1&&raw<=365&&artifacts>=1&&artifacts<=365){
+            card.addView(Ui.text(this,L.t("Last synced Relay policy","上次同步的中转策略"),15,Ui.TEXT));
+            card.addView(Ui.caption(this,L.t("Original uploads · ","原始上传 · ")+raw+L.t(" days after a task ends"," 天（任务结束后）")));
+            card.addView(Ui.caption(this,L.t("Screenshots & files · ","截图与文件 · ")+artifacts+L.t(" days after a task ends"," 天（任务结束后）")));
+        }else card.addView(Ui.caption(this,L.t("Connect and reopen Settings to load your Relay’s retention policy.","联网后重新打开设置，获取你的中转服务保留策略。")));
+        card.addView(Ui.caption(this,L.t("Reports stay until you delete them. Preview links and snapshots have separate expiry times. Cleanup runs periodically and does not delete your computer’s project files or backups.","报告保留至你删除。预览链接与快照另有有效期。清理定期运行，不会删除电脑上的项目文件或备份。")),Ui.margins(this,10,0));
+        card.addView(Ui.caption(this,L.t("Change retention in your Relay deployment settings. This cached policy may be outdated while offline. Saved handoffs on this phone stay until sent or removed from project history.","在中转部署配置中修改保留期限。离线时，缓存的策略可能已过时。手机上的待发送副本保留至发送成功，或在项目历史中手动移除。")),Ui.margins(this,8,0));
     }
 
     // ---- 关于 -----------------------------------------------------------------------------------

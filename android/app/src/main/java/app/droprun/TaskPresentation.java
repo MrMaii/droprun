@@ -63,7 +63,7 @@ final class TaskPresentation {
             case "queued_execution" -> L.t("Plan approved. Waiting for your computer to begin.","计划已批准，等待电脑开始执行。");
             case "waiting_for_approval" -> L.t("Waiting for your command decision. Review the request above.","正在等你批准一条命令，请核对上面的请求。");
             case "queued" -> L.t("Submitted. Waiting for your computer; it will stay queued while the computer is offline.","已提交，等待电脑接收。电脑离线时会排队。");
-            case "reading" -> L.t("Retrieving available material. The report will say which text, audio or frames were actually obtained.","正在下载并提取材料：视频、文字稿、关键帧。");
+            case "reading" -> L.t("Retrieving available material. The report will say which text, audio or frames were actually obtained.","正在提取可获取的材料。报告会说明实际读到了文字、音频还是画面。");
             case "running" -> L.t("Codex is working in your project. Follow along on your computer; the report will arrive here.","Codex 正在项目里工作。可以去电脑的 Codex 看进展；完成后报告会显示在这里。");
             default -> L.t("Waiting for an update.","等待状态更新。");
         };

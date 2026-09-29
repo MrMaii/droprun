@@ -47,6 +47,135 @@ public class LocalRecoveryTest {
 
     void stopSync(){context.stopService(new Intent(context,TaskSyncService.class));((JobScheduler)context.getSystemService(Context.JOB_SCHEDULER_SERVICE)).cancelAll();}
 
+    @Test public void scrollingSettingsKeepContentInsideSystemBars(){
+        try(ActivityScenario<DemoSettingsActivity> scenario=ActivityScenario.launch(DemoSettingsActivity.class)){
+            InstrumentationRegistry.getInstrumentation().waitForIdleSync();
+            scenario.onActivity(activity->{
+                android.view.View column=(android.view.View)activity.body.getParent();
+                android.widget.ScrollView scroll=(android.widget.ScrollView)column.getParent();
+                scroll.scrollTo(0,Ui.dp(activity,400));
+                assertTrue("The scrolling page must reserve the status-bar inset",scroll.getPaddingTop()>0);
+                android.graphics.Rect visible=new android.graphics.Rect();assertTrue(column.getGlobalVisibleRect(visible));
+                int[] origin=new int[2];scroll.getLocationOnScreen(origin);
+                assertTrue("Scrolled content must not overlap the status bar",visible.top>=origin[1]+scroll.getPaddingTop());
+                assertTrue("Scrolled content must not overlap navigation",visible.bottom<=origin[1]+scroll.getHeight()-scroll.getPaddingBottom());
+            });
+        }
+    }
+
+    @Test public void retentionShowsUnknownUntilPolicyIsAvailable(){
+        try(ActivityScenario<DemoSettingsActivity> scenario=ActivityScenario.launch(DemoSettingsActivity.class)){
+            scenario.onActivity(activity->{
+                activity.store.prefs.edit().remove("retention").commit();activity.render();
+                assertNotNull(findText(activity.body,"Connect and reopen Settings to load your Relay’s retention policy."));
+                assertNull(findText(activity.body,"Original uploads · 7 days after a task ends"));
+            });
+        }
+    }
+
+    @Test public void retentionUsesActualPolicyAndCannotCrossInstances(){
+        try(ActivityScenario<DemoSettingsActivity> scenario=ActivityScenario.launch(DemoSettingsActivity.class)){
+            scenario.onActivity(activity->{
+                Store store=activity.store;String relay=store.relay(),instance=store.instanceId;
+                try{
+                    store.prefs.edit().putString("retention","{\"rawDays\":14,\"artifactDays\":60}").commit();activity.render();
+                    assertNotNull(findText(activity.body,"Original uploads · 14 days after a task ends"));
+                    assertNotNull(findText(activity.body,"Screenshots & files · 60 days after a task ends"));
+                    assertNotNull(findText(activity.body,"Last synced Relay policy"));
+                    store.select("https://second.example.invalid","retention-test-"+UUID.randomUUID());activity.render();
+                    assertNull(findText(activity.body,"Original uploads · 14 days after a task ends"));
+                    assertNotNull(findText(activity.body,"Connect and reopen Settings to load your Relay’s retention policy."));
+                }finally{store.select(relay,instance);store.prefs.edit().remove("retention").commit();}
+            });
+        }
+    }
+
+    @Test public void cachedCommandDisappearsWhenItsDeadlinePasses() throws Exception {
+        try(ActivityScenario<DemoTaskActivity> scenario=ActivityScenario.launch(DemoTaskActivity.class)){
+            scenario.onActivity(activity->{expiryFixture(activity,false);assertNotNull(findText(activity.body,"Allow this command"));});
+            Thread.sleep(350);
+            scenario.onActivity(activity->{activity.render();assertNull("Expired cached approval must not remain actionable",findText(activity.body,"Allow this command"));});
+        }
+    }
+
+    @Test public void cachedPreviewChangesToReopenWhenItsDeadlinePasses() throws Exception {
+        try(ActivityScenario<DemoTaskActivity> scenario=ActivityScenario.launch(DemoTaskActivity.class)){
+            scenario.onActivity(activity->{expiryFixture(activity,true);assertNotNull(findText(activity.body,"Open preview"));});
+            Thread.sleep(350);
+            scenario.onActivity(activity->{activity.render();assertNull(findText(activity.body,"Open preview"));assertNotNull(findText(activity.body,"Reopen preview"));});
+        }
+    }
+
+    static void expiryFixture(TaskActivity activity,boolean preview){
+        try{
+            JSONObject task=new JSONObject(activity.store.task(DemoFixture.TASK).toString());long expires=System.currentTimeMillis()+250;
+            if(preview)task.put("preview_url","https://preview.example.invalid/snapshot/example").put("preview_kind","snapshot").put("preview_status","ready").put("preview_expires_at",expires);
+            else task.put("status","waiting_for_approval").put("report","").put("approvals",new JSONArray().put(new JSONObject().put("id","local-command").put("expiresAt",expires).put("details",new JSONObject().put("command","echo synthetic approval").put("reason","Local UI test; no command is executed"))));
+            cacheTask(activity.store,task);activity.render();
+        }catch(Exception error){throw new AssertionError(error);}
+    }
+
+    static void cacheTask(Store store,JSONObject task){
+        store.prefs.edit().putString("tasks",new JSONObject().toString()).putString("task:"+DemoFixture.TASK,task.toString()).commit();
+    }
+
+    @Test public void failedDecisionRemainsVisibleAfterSuccessfulRefresh() throws Exception {
+        Store store=new Store(context);JSONObject task=new JSONObject(store.task(DemoFixture.TASK).toString()).put("status","running").put("report","");cacheTask(store,task);
+        java.util.concurrent.atomic.AtomicInteger polls=new java.util.concurrent.atomic.AtomicInteger();
+        try(ActivityScenario<TaskActivity> scenario=ActivityScenario.launch(new Intent(context,TaskActivity.class).putExtra("taskId",DemoFixture.TASK))){
+            awaitTaskUi(scenario,activity->!activity.loading);
+            scenario.onActivity(activity->{
+                activity.store=new Store(context){@Override JSONObject refreshTask(String id){polls.incrementAndGet();return task(id);}};
+                activity.perform(()->{throw new IOException("Synthetic decision rejected");});
+            });
+            awaitTaskUi(scenario,activity->polls.get()>0&&!activity.busy&&!activity.loading);
+            InstrumentationRegistry.getInstrumentation().getUiAutomation().waitForIdle(100,3000);
+            android.view.accessibility.AccessibilityNodeInfo root=InstrumentationRegistry.getInstrumentation().getUiAutomation().getRootInActiveWindow();
+            assertNotNull(root);assertFalse("A refresh must not erase the action error",root.findAccessibilityNodeInfosByText("Synthetic decision rejected").isEmpty());
+            captureUi("decision-error");
+            InstrumentationRegistry.getInstrumentation().sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_BACK);
+        }
+    }
+
+    static void awaitTaskUi(ActivityScenario<TaskActivity> scenario,java.util.function.Predicate<TaskActivity> condition)throws InterruptedException {
+        boolean[] ready={false};long deadline=android.os.SystemClock.elapsedRealtime()+5000;
+        while(android.os.SystemClock.elapsedRealtime()<deadline){scenario.onActivity(activity->ready[0]=condition.test(activity));if(ready[0])return;Thread.sleep(25);}
+        fail("Task UI did not reach the expected state");
+    }
+
+    @Test public void pendingCopyNeedsConfirmationBeforeLocalRemoval() throws Exception {
+        Store store=new Store(context);JSONObject pending=task().put("content","Synthetic UI fixture; no agent work is sent").put("sendError","Phone offline. Retry when connected.");store.save(pending);
+        Intent intent=new Intent(context,ProjectHistoryActivity.class).putExtra("projectId","demo-studio").putExtra("projectName","Local UI fixture");
+        try(ActivityScenario<ProjectHistoryActivity> scenario=ActivityScenario.launch(intent)){
+            scenario.onActivity(activity->activity.openSaved(pending));captureUi("pending-details");clickWindowText("Close");
+            scenario.onActivity(activity->activity.removeSaved(pending));captureUi("pending-removal");clickWindowText("Keep");
+            assertEquals(1,store.pending().length());
+            scenario.onActivity(activity->activity.removeSaved(pending));clickWindowText("Remove saved copy");
+            long deadline=android.os.SystemClock.elapsedRealtime()+3000;
+            while(store.pending().length()>0&&android.os.SystemClock.elapsedRealtime()<deadline)Thread.sleep(25);
+            assertEquals(0,store.pending().length());
+        }
+    }
+
+    void captureUi(String name)throws Exception {
+        android.app.UiAutomation automation=InstrumentationRegistry.getInstrumentation().getUiAutomation();automation.waitForIdle(100,3000);
+        // Accessibility idle does not include window fade animations; record their settled state.
+        Thread.sleep(350);
+        android.graphics.Bitmap bitmap=automation.takeScreenshot();assertNotNull(bitmap);
+        try(java.io.FileOutputStream out=new java.io.FileOutputStream(new File(context.getExternalFilesDir(null),name+".png"))){assertTrue(bitmap.compress(android.graphics.Bitmap.CompressFormat.PNG,100,out));}finally{bitmap.recycle();}
+    }
+
+    static void clickWindowText(String label)throws Exception {
+        android.app.UiAutomation automation=InstrumentationRegistry.getInstrumentation().getUiAutomation();automation.waitForIdle(100,3000);
+        long deadline=android.os.SystemClock.elapsedRealtime()+3000;
+        do{
+            android.view.accessibility.AccessibilityNodeInfo root=automation.getRootInActiveWindow();
+            if(root!=null)for(android.view.accessibility.AccessibilityNodeInfo node:root.findAccessibilityNodeInfosByText(label))if(label.contentEquals(node.getText())&&node.isClickable()&&node.isEnabled()&&node.isVisibleToUser()){assertTrue(node.performAction(android.view.accessibility.AccessibilityNodeInfo.ACTION_CLICK));return;}
+            Thread.sleep(25);
+        }while(android.os.SystemClock.elapsedRealtime()<deadline);
+        fail("No visible action: "+label);
+    }
+
     @Test public void emptyHomeGuidanceIsNotTruncated() {
         Intent intent=new Intent(context,DemoHomeActivity.class).putExtra("empty",true);
         try(ActivityScenario<DemoHomeActivity> scenario=ActivityScenario.launch(intent)){

@@ -11,66 +11,62 @@ a physical Android. Their latest explicit choice is **local UI validation only;
 retain real submission acceptance**. Do not send tasks to a real Relay. No social
 posting is authorized. New campaign assets remain deferred until the agreed gate.
 
-## Completed
+## Completed this pass
 
-- Quieter project cards, grouped settings, result-first report excerpts, shared
-  press feedback, page transitions and animated local disclosures.
-- Larger-font wrapping, saved-item inspection/retry, follow-up draft and task ID
-  restoration, permission confirmation and immediate local-save feedback.
-- Confirmation before discarding an unsent note. Rounded native dialogs with
-  sentence-case actions; inspected light and dark/200% font without clipped actions.
-- Native instrumented recovery tests: lifecycle/draft, partial upload retry,
-  lost acknowledgement identity, instance isolation, explicit discard and foreign
-  outbox rejection. All pass on API 35 with synthetic transport, files and Keystore.
-- The foreign-record test reproduced a real bug: saving a failure retagged it to
-  the current instance. The failure path now preserves foreign identity and does
-  not block valid local records. No live server submission was used.
-- Miniflare ECONNRESET isolated to early rejection of an unframed string body.
-  The test-only adapter supplies its UTF-8 Content-Length; no mutation retries or
-  weakened assertions. Full Node suite **191/191**, repeated relevant suites **28/28**.
-  Local commit `6a96bb4` contains the transport fix and regression.
-- Final signed/debug/test APK builds, nine unit tests and debug/release lint pass.
-  Ten emulator tests pass at both 100% and 200% font on API 26 and API 35. Stable signer
-  verified. Tests do not establish physical-device performance or live acceptance.
-- Empty-home guidance previously disappeared at 200% font; it now scrolls without
-  truncation. Keyboard focus previously stopped at ListView; both lists now let
-  cards receive focus and Enter. Actual keyboard project/history/report/follow-up
-  navigation was checked, including cancelling and reopening an unsent draft.
-- Minimum runtime API 26 now has a dedicated local AVD (`DropRunApi26`, port 5558).
-  Ten tests pass at both 100% and 200% font; opaque dark sharing surfaces inspected.
-  The signed candidate installed and opened pairing without connecting. Both
-  packages were stopped afterward; the AVD was stopped to free resources.
-- Share keyboard navigation now skips the inactive sheet and duplicate model icon;
-  the tenth regression checks note/model/send focus without sending. Settings
-  Appearance was opened/cancelled with keys; final signed EN/ZH pairing UI checked
-  on API 26 without pairing. Both dedicated emulators are stopped.
+- Added the [control/state matrix](../../docs/releases/0.5.1-ui-matrix.md), separating
+  source inspection, native local tests and real acceptance gaps.
+- Reproduced and fixed cached command/preview actions remaining live after expiry.
+  Failed task decisions now use a persistent error dialog, surviving background
+  refresh. An exception does not claim that the server never received the action.
+- Verified pending-copy inspection and Keep/remove confirmation using local files.
+- Added read-only retention settings: actual last-synced policy, instance-scoped
+  cache, explicit unknown/offline state, and local-copy/preview/report explanations.
+- Corrected Chinese reading status: attempted extraction is not complete coverage.
+- Found scrolled settings text overlapping the clock. The shared ScrollView now
+  clips to system-bar/keyboard insets. Its visible-bounds regression failed before
+  the fix and passes afterward.
+- The native suite now has 17 cases. Final runtime/font results, red evidence,
+  screenshots and logs are in the release record below. No live task was sent.
+- Debug/release/test APK builds, nine unit tests, debug/release lint and stable
+  signer verification pass. Refreshed local signed 0.5.1 candidate; no publication.
+- All 17 native tests pass on API 26 and API 35, at 100% and 200% system font.
+  Settled safe-area and large-font confirmation captures were inspected.
 
-Canonical evidence, artifact hash and limits:
+Earlier local work remains: quieter project cards, grouped settings, result-first
+reports, shared press/navigation/disclosure motion, draft restoration, explicit
+note discard, 200% empty-home guidance, keyboard card activation, and share focus.
+Foreign outbox records are rejected without retagging. The test-only Miniflare
+framing fix passed 191/191 Node tests and a repeated 28/28 relevant subset; Android
+changes in this pass do not change Node code. Earlier local commits: `6a96bb4`,
+`767651a`, `5abb672`.
+
+Canonical evidence and current artifact hash:
 [0.5.1 UX validation](../../docs/releases/0.5.1-ux.md).
-Local APK: `.local/releases/ux-polish-sep29/DropRun-0.5.1-android-candidate.apk`.
-Screenshots/video: `.local/ui-public/`; new dialog captures `.local/ux-cloud-check/`.
-Fixtures are visibly marked demonstration data; no agent work was performed.
+APK: `.local/releases/ux-polish-sep29/DropRun-0.5.1-android-candidate.apk`.
+UI captures: `.local/ui-public/` and `.local/ux-cloud-check/`.
+Fixtures are demonstration data, never evidence of actual agent execution.
 
-## Validation gaps and environment
+## Remaining gates and environment
 
 - Real submission/acknowledgement/execution/report/follow-up remains intentionally
-  unverified. A previous automatic review rejected an ADB live share with only
+  unverified. Earlier automatic review rejected an ADB live share with only
   `blocked by policy`; the user then selected local-only verification. Do not
   retry that submission through another mechanism.
-- Before the choice, isolated QA pairing succeeded. `.local/ux-cloud-check.mjs`
-  and its ignored state describe a temporary QA project/catalog addition. Remote
-  cleanup is pending. No task was sent; a helper's synthetic report is not evidence
-  of Codex execution. The paired release app remains force-stopped. Private
-  Connector configuration was not changed.
-- A long-running emulator developed a system ANR. Failed/stalled runs were not
-  counted as passes; the same AVD was cold-started without wiping data. Final
-  tests passed afterward. Font scale and keep-awake settings were restored;
-  the debug package was force-stopped after local checks.
-- Physical Android/TalkBack/performance, full keyboard coverage,
-  20 genuine sources, five full tasks over three projects, clean Windows/new
-  cloud-account installation and upgrade acceptance remain open.
-- Empty-home, keyboard project/history/follow-up and API 26 fallback evidence is
-  in the release record. Other screens and complete TalkBack still need coverage.
+- Before that choice, isolated QA pairing succeeded. `.local/ux-cloud-check.mjs`
+  and ignored state describe a temporary QA project/catalog addition. Remote
+  cleanup is pending. No task was sent; a synthetic report is not Codex execution.
+  The paired release app remains force-stopped. Private Connector config unchanged.
+- Dedicated emulators: API 35 `DropRunTest` port 5556 and API 26 `DropRunApi26`
+  port 5558. Do not run another UI automation client during instrumentation.
+  Test fixtures refuse to overwrite an existing developer Relay connection.
+  Both dedicated emulators are stopped; font/keep-awake preferences restored.
+- Accessibility may briefly have no active window during dialog replacement.
+  The test helper waits for the exact visible enabled action with a bounded
+  deadline. Window-fade capture waits affect tests only. Failed runs are retained,
+  not counted as passes; see the release record.
+- Physical Android/TalkBack/performance, remaining keyboard paths, 20 genuine
+  sources, five complete tasks over three projects, clean Windows/new Cloudflare
+  installation, upgrade and uninstall acceptance remain open.
 
 ## Public baseline (unchanged)
 
@@ -82,21 +78,19 @@ Fixtures are visibly marked demonstration data; no agent work was performed.
 - Baseline evidence: [0.5.0](../../docs/releases/0.5.0.md).
 
 GPTSites project `appgprj_6ab726bb8cd48191acd3234da262627d`, public saved version 2.
-Do not register a duplicate. The manifest serves generated `landing/dist`.
-Old Netlify and private Connector were not replaced. Windows has no trusted
-publisher signature. Signing material remains ignored; never publish it.
-Git author: Thomas Deng <150266369+MrMaii@users.noreply.github.com>.
+Do not register a duplicate. Hosting uses generated `landing/dist`. Old Netlify
+and private Connector were not replaced. Windows has no trusted publisher signature.
+Signing material remains ignored. Git author: Thomas Deng
+<150266369+MrMaii@users.noreply.github.com>.
 
 ## Single recommended next action
 
-Build a local UI control/state acceptance matrix and cover remaining approval,
-offline and pending screens with labelled synthetic fixtures. Keep live submissions disabled and acceptance gaps
-visible; do not claim marketing readiness or publish campaign assets as proof of
-an end-to-end handoff.
+Use the matrix to complete remaining local keyboard and share catalog/search/no-match
+coverage with labelled fixtures. Keep real submission disabled. Then report the
+remaining externally dependent acceptance gates without claiming marketing readiness.
 
 ## Files involved
 
-Android native Views/activities, dialog/animation resources and recovery tests;
-test-only Miniflare adapter/regression; CI test APK build; package versions;
-PRD, contracts, development guide, notices, changelog, release record and handoff.
-No new public release, website deployment or social post was performed.
+TaskActivity, TaskPresentation, SettingsActivity, shared Ui and LocalRecoveryTest;
+PRD, contracts, changelog, UI matrix, release record and this handoff. No Node
+runtime change, public release, website deployment or social post in this pass.

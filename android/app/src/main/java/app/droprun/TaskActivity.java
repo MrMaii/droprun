@@ -21,7 +21,7 @@ public class TaskActivity extends StyledActivity {
     final Handler handler=new Handler(Looper.getMainLooper());
     Store store;String taskId,snapshot="";LinearLayout body;TextView notice;boolean foreground,busy,loading,thumbnailRequested;
     android.graphics.Bitmap thumbnail;String thumbnailError="";final java.util.Set<String> expanded=new java.util.HashSet<>();
-    AlertDialog followupDialog;EditText followupInput;String followupDraft="",followupId=UUID.randomUUID().toString();
+    AlertDialog followupDialog,actionErrorDialog;EditText followupInput;String followupDraft="",followupId=UUID.randomUUID().toString();
     final Runnable refresh=this::load;
     interface Work { void run() throws Exception; }
 
@@ -39,7 +39,7 @@ public class TaskActivity extends StyledActivity {
     @Override protected void onResume(){super.onResume();foreground=true;if(store!=null)load();}
     @Override protected void onPause(){foreground=false;handler.removeCallbacks(refresh);super.onPause();}
     @Override protected void onSaveInstanceState(Bundle state){super.onSaveInstanceState(state);state.putStringArrayList("expanded",new java.util.ArrayList<>(expanded));state.putString("followupId",followupId);state.putString("followupDraft",followupInput==null?followupDraft:followupInput.getText().toString());if(followupDialog!=null&&followupDialog.isShowing())state.putBoolean("followupOpen",true);}
-    @Override protected void onDestroy(){handler.removeCallbacksAndMessages(null);if(followupDialog!=null)followupDialog.dismiss();io.shutdown();super.onDestroy();}
+    @Override protected void onDestroy(){handler.removeCallbacksAndMessages(null);if(followupDialog!=null)followupDialog.dismiss();if(actionErrorDialog!=null)actionErrorDialog.dismiss();io.shutdown();super.onDestroy();}
     void load(){
         handler.removeCallbacks(refresh);if(!foreground||busy||loading)return;loading=true;
         io.execute(()->{
@@ -64,7 +64,11 @@ public class TaskActivity extends StyledActivity {
         body.addView(group,Ui.margins(this,8,0));
     }
     void render(){
-        JSONObject task=store.task(taskId);String next=(task==null?"missing":task.toString())+busy+(thumbnail!=null)+thumbnailError;
+        JSONObject task=store.task(taskId);long now=System.currentTimeMillis();int liveApprovals=0;
+        JSONArray approvals=task==null?null:task.optJSONArray("approvals");
+        for(int n=0;approvals!=null&&n<approvals.length();n++){JSONObject approval=approvals.optJSONObject(n);if(approval!=null&&approval.optLong("expiresAt")>now&&approval.optJSONObject("details")!=null)liveApprovals++;}
+        String previewState=task==null?"":TaskPresentation.previewStatus(text(task,"preview_status"),text(task,"preview_url"),task.optLong("preview_expires_at"),now);
+        String next=(task==null?"missing":task.toString())+busy+(thumbnail!=null)+thumbnailError+liveApprovals+previewState;
         if(snapshot.equals(next))return;snapshot=next;body.removeAllViews();
         if(task==null){block(L.t("Handoff unavailable","任务暂不可用"),L.t("Refresh when connected. This handoff may have been deleted.","请联网刷新；任务也可能已被删除。"));return;}
         String status=text(task,"status"),plan=text(task,"plan_report"),report=text(task,"report");
@@ -81,16 +85,15 @@ public class TaskActivity extends StyledActivity {
                 button(L.t("Reject plan","拒绝计划"),false,()->confirm(L.t("Reject this plan?","拒绝这个计划？"),L.t("This handoff will not proceed to execution.","本次任务不会进入执行。"),()->store.decidePlan(taskId,version,false)));
             }
         }
-        JSONArray approvals=task.optJSONArray("approvals");
         for(int n=0;approvals!=null&&n<approvals.length();n++){
-            JSONObject approval=approvals.optJSONObject(n);if(approval==null||approval.optLong("expiresAt")<=System.currentTimeMillis())continue;
+            JSONObject approval=approvals.optJSONObject(n);if(approval==null||approval.optLong("expiresAt")<=now)continue;
             JSONObject details=approval.optJSONObject("details");if(details==null)continue;
             String id=approval.optString("id"),command=text(details,"command");
             block(L.t("Command approval","命令审批"),command+"\n"+text(details,"cwd")+"\n"+text(details,"reason"));
             button(L.t("Allow this command","允许这条命令"),true,()->confirm(L.t("Allow this command?","允许这条命令？"),command,()->store.decideApproval(taskId,id,true)));
             button(L.t("Deny this command","拒绝这条命令"),false,()->perform(()->store.decideApproval(taskId,id,false)));
         }
-        if(report.isEmpty())block(L.t("What's happening","当前进展"),TaskPresentation.noReport(status,!plan.isEmpty()));
+        if(report.isEmpty())block(L.t("What's happening","当前进展"),status.equals("waiting_for_approval")&&liveApprovals==0?L.t("This command request expired or is no longer available. Reconnect to refresh the task's status.","这条命令请求已过期或失效。请联网查看任务的最新状态。"):TaskPresentation.noReport(status,!plan.isEmpty()));
         else {LinearLayout outcome=Ui.card(this);TextView label=Ui.label(this,L.t("THE RESULT","交付结果"));label.setPadding(0,0,0,Ui.dp(this,8));outcome.addView(label);String summary=TaskPresentation.resultSummary(report);outcome.addView(Ui.text(this,summary,16,Ui.TEXT));body.addView(outcome,Ui.margins(this,18,6));}
         if(Store.finished(status)){
             if(thumbnail!=null){ImageView picture=new ImageView(this);picture.setImageBitmap(thumbnail);picture.setAdjustViewBounds(true);picture.setScaleType(ImageView.ScaleType.FIT_CENTER);picture.setContentDescription(L.t("Verified screenshot from this handoff. Open all delivery files.","本次交办的已校验截图。打开全部交付文件。"));picture.setBackground(Ui.surface(this,Ui.SURFACE));picture.setClipToOutline(true);picture.setFocusable(true);picture.setOnClickListener(v->openDeliverables());Ui.bindPress(picture);body.addView(picture,Ui.margins(this,14,8));}
@@ -130,7 +133,7 @@ public class TaskActivity extends StyledActivity {
     void perform(Work work){
         if(busy)return;busy=true;notice(L.t("Saving your decision…","正在保存你的决定…"));render();
         io.execute(()->{String error="";try{work.run();}catch(Exception e){error=e.getMessage();}String message=error;
-            runOnUiThread(()->{if(isDestroyed())return;busy=false;notice(message.isEmpty()?L.t("Saved.","已保存。"):message);if(message.isEmpty())Toast.makeText(this,L.t("Decision saved","决定已保存"),Toast.LENGTH_SHORT).show();render();if(foreground)load();});});
+            runOnUiThread(()->{if(isDestroyed())return;busy=false;notice(message.isEmpty()?L.t("Saved.","已保存。"):message);if(message.isEmpty())Toast.makeText(this,L.t("Decision saved","决定已保存"),Toast.LENGTH_SHORT).show();else actionErrorDialog=new AlertDialog.Builder(this).setTitle(L.t("Could not confirm this action","暂时无法确认操作结果")).setMessage(message).setPositiveButton(L.t("Got it","知道了"),null).show();render();if(foreground)load();});});
     }
     void followup(){
         EditText input=new EditText(this);followupInput=input;Ui.styleInput(input);input.setHint(L.t("Continue this handoff…","继续这个任务…"));input.setMinLines(3);input.setText(followupDraft);input.setSelection(input.length());

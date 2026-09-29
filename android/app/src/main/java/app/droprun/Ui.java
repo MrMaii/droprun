@@ -121,7 +121,7 @@ public final class Ui {
     // ---- roots ----------------------------------------------------------------------------------
     /** Scrolling page. Returns the content column (20dp side padding). */
     public static LinearLayout page(Activity activity){
-        ScrollView scroll=new ScrollView(activity);scroll.setFillViewport(true);scroll.setClipToPadding(false);scroll.setBackground(ground());scroll.setVerticalScrollBarEnabled(false);
+        ScrollView scroll=new ScrollView(activity);scroll.setFillViewport(true);scroll.setClipToPadding(true);scroll.setBackground(ground());scroll.setVerticalScrollBarEnabled(false);
         LinearLayout column=new LinearLayout(activity);column.setOrientation(LinearLayout.VERTICAL);column.setPadding(dp(activity,20),dp(activity,6),dp(activity,20),dp(activity,28));
         scroll.addView(column,new ViewGroup.LayoutParams(-1,-2));activity.setContentView(scroll);applyInsets(scroll,true);
         return column;

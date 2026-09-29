@@ -14,6 +14,12 @@
 - Scrollable empty-home guidance at large font sizes; keyboard focus and Enter
   activation for project and task cards.
 - Share keyboard navigation skips the passive sheet surface and duplicate model icon.
+- Cached command and preview actions expire correctly; failed decisions stay visible
+  after background refresh. Reading status describes attempted material access.
+- Settings show the last synced, instance-scoped Relay retention policy, with an
+  explicit unknown state before first retrieval and offline-cache guidance.
+- Scrolling pages clip content to system-bar insets, avoiding text over the clock
+  and navigation controls.
 - Reject foreign saved tasks without adopting their instance identity on failure.
 - Fixed-length string bodies in the local Miniflare test transport avoid Windows
   resets on early rejection; production Worker authentication is unchanged.

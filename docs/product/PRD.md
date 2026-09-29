@@ -35,6 +35,10 @@ in [0.5.0](../releases/0.5.0.md).
   disclosure changes have feedback with a motion-off path. Destructive or
   permission-expanding decisions require confirmation; ordinary selections show
   their selected value without an extra confirmation dialog.
+- Scrolling text stays outside system bars. Decision errors remain visible after
+  polling; expired cached approvals and previews offer accurate next steps.
+  Data settings show the last known policy for the selected Relay, distinguish
+  unknown/offline values, and explain local pending copies and server retention.
 
 
 状态：目标需求，含已采纳的 0.3.0 增量  
