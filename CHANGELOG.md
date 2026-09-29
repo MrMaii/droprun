@@ -2,6 +2,10 @@
 
 ## 0.5.1 — unreleased UX candidate
 
+- Setup actions immediately show progress and prevent duplicate clicks; errors
+  survive status polling. Lost acknowledgements require a status check, without
+  automatically repeating an action. Release checks provide bilingual waiting,
+  retry and result feedback.
 - Windows setup shows a read-only project inventory with IDs, local folders and
   availability. Complete pagination, bilingual recovery and keyboard access help
   match same-name phone projects; paths stay in the protected local setup page.

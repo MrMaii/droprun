@@ -48,6 +48,10 @@ in [0.5.0](../releases/0.5.0.md).
 - Windows setup lets users match phone project IDs to local folders in a read-only
   inventory. Empty, unavailable and failed checks have clear recovery; partial
   inventories must not be presented as complete. Paths remain local.
+- Setup actions show immediate waiting feedback and prevent conflicting or duplicate
+  clicks. Errors remain readable after polling. Unknown status blocks further
+  mutations until recovery; an uncertain acknowledgement must not trigger an
+  automatic retry. Read-only release checks have their own waiting/retry feedback.
 
 
 状态：目标需求，含已采纳的 0.3.0 增量  

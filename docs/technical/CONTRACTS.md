@@ -35,6 +35,12 @@ plan-version, per-command approval and report-evidence checks remain in force.
   Partial/failed or signed-out checks omit the inventory. Account details and
   project instructions are never returned. CLI/deployment diagnostics omit paths;
   normal Relay project synchronization still sends only identity and availability.
+- Local setup action acknowledgement is not completion. The browser locks login,
+  deployment, media installation and Connector start while a request is pending,
+  the server is busy, or status is unknown. It reads status after either success
+  or failed acknowledgement and never automatically repeats a mutation. Older
+  status reads cannot replace newer state; periodic polling waits for pending
+  reads. Local action errors survive polls until a new intentional action.
 - `GET /device/retention` returns rawDays/artifactDays. Owners configure
   RAW_RETENTION_DAYS (7) and ARTIFACT_RETENTION_DAYS (30), bounds 1–365, by redeploying
   their configuration. The phone reads policy; it does not silently edit it.

@@ -3,9 +3,41 @@ history.replaceState(null, '', location.pathname);
 let language = navigator.language.startsWith('zh') ? 'zh' : 'en';
 const el = id => document.getElementById(id);
 function translate() { document.documentElement.lang = language === 'zh' ? 'zh-CN' : 'en'; document.querySelectorAll('[data-en]').forEach(node => { const value = node.dataset[language]; if (node.tagName === 'H1') node.innerHTML = value; else node.textContent = value; }); el('language').textContent = language === 'zh' ? 'English' : '中文'; }
-el('language').onclick = () => { language = language === 'en' ? 'zh' : 'en'; translate(); renderDoctor(); };
-async function api(path, body) { const response = await fetch('/api/' + path, { method: body === undefined ? 'GET' : 'POST', headers: { 'X-DropRun-Setup': token, 'Content-Type': 'application/json' }, body: body === undefined ? undefined : JSON.stringify(body) }); const result = await response.json(); if (!response.ok) throw new Error(result.error); return result; }
-async function act(path, body = {}) { try { await api(path, body); await refresh(); } catch (error) { el('error').textContent = error.message; } }
+el('language').onclick = () => { language = language === 'en' ? 'zh' : 'en'; translate(); renderDoctor(); renderActions(); renderRelease(); };
+async function api(path, body) { const response = await fetch('/api/' + path, { method: body === undefined ? 'GET' : 'POST', cache: 'no-store', headers: { 'X-DropRun-Setup': token, 'Content-Type': 'application/json' }, body: body === undefined ? undefined : JSON.stringify(body), signal: AbortSignal.timeout(path === 'doctor' ? 30000 : path === 'status' ? 5000 : 20000) }); const result = await response.json(); if (!response.ok) throw new Error(result.error); return result; }
+let pendingAction = '', activeAction = '', actionError = '', statusError = '', serverBusy = false, statusReady = false, lastState = null, statusRequest = 0, statusReads = 0, restored = false;
+function renderActions() {
+  const locked = !!pendingAction || serverBusy || !statusReady;
+  const labels = { login: ['Connecting…', '连接中…'], tools: ['Installing…', '安装中…'], deploy: ['Preparing Relay…', '正在准备 Relay…'], start: ['Starting…', '启动中…'] };
+  for (const id of Object.keys(labels)) {
+    const button = el(id), working = pendingAction === id || (serverBusy && activeAction === id);
+    button.disabled = locked; button.setAttribute('aria-busy', String(working));
+    button.textContent = working ? words(...labels[id]) : id === 'deploy' && restored ? words('Resume setup / verify connection', '继续安装 / 检查连接') : button.dataset[language];
+  }
+  for (const id of ['account', 'name', 'cost']) el(id).disabled = !!pendingAction || serverBusy;
+  el('step').textContent = pendingAction ? words(...labels[pendingAction]) : lastState?.step || '';
+  el('error').textContent = [actionError, statusError].filter(Boolean).join(' ') || lastState?.error || '';
+  el('error').hidden = !el('error').textContent;
+}
+async function act(path, body = {}) {
+  if (pendingAction || serverBusy || !statusReady) return;
+  pendingAction = path; actionError = ''; ++statusRequest;
+  el(path).after(el('error'));
+  if (lastState) lastState = { ...lastState, error: null };
+  renderActions();
+  try {
+    await api(path, body); activeAction = path; serverBusy = true;
+  } catch (error) {
+    actionError = error.message;
+  } finally {
+    // A failed acknowledgement may still have started work. Read status before
+    // allowing another action; never retry a mutation automatically.
+    statusReady = false; await refresh(); pendingAction = '';
+    if (!serverBusy) activeAction = '';
+    renderActions();
+    if (actionError) el('error').scrollIntoView({ block: 'nearest' });
+  }
+}
 let diagnostic = null, diagnosticError = '', checking = false;
 const words = (en, zh) => language === 'zh' ? zh : en;
 function renderDoctor() {
@@ -44,12 +76,40 @@ async function doctor() {
   try { diagnostic = await api('doctor'); } catch (error) { diagnosticError = error.message; }
   finally { checking = false; renderDoctor(); }
 }
-let restored = false;
-async function refresh() { try { const state = await api('status'); el('step').textContent = state.step; el('error').textContent = state.error || ''; el('messages').textContent = state.messages.join('\n'); ['login', 'deploy', 'start'].forEach(id => { el(id).disabled = state.busy; }); el('accounts').replaceChildren(...state.accounts.map(value => { const option = document.createElement('option'); option.value = value; return option; })); if (state.accounts.length === 1 && !el('account').value) el('account').value = state.accounts[0]; if (!restored && state.saved) { el('name').value = state.saved.name; el('account').value = state.saved.accountId; el('deploy').textContent = language === 'zh' ? '继续安装 / 检查连接' : 'Resume setup / verify connection'; restored = true; } } catch (error) { el('error').textContent = error.message; } }
+async function refresh() {
+  const request = ++statusRequest; statusReads++;
+  try {
+    const state = await api('status'); if (request !== statusRequest) return;
+    lastState = state; statusReady = true; statusError = ''; serverBusy = !!state.busy;
+    if (!serverBusy && !pendingAction) activeAction = '';
+    el('messages').textContent = state.messages.join('\n');
+    el('accounts').replaceChildren(...state.accounts.map(value => { const option = document.createElement('option'); option.value = value; return option; }));
+    if (state.accounts.length === 1 && !el('account').value) el('account').value = state.accounts[0];
+    if (!restored && state.saved) { el('name').value = state.saved.name; el('account').value = state.saved.accountId; restored = true; }
+  } catch (error) {
+    if (request !== statusRequest) return;
+    statusReady = false; statusError = words('Cannot check setup status: ', '无法检查配置状态：') + error.message;
+  } finally { statusReads--; if (request === statusRequest) renderActions(); }
+}
 el('check').onclick = doctor;
 el('login').onclick = () => act('login');
 el('tools').onclick = () => act('tools');
 el('deploy').onclick = () => act('deploy', { accountId: el('account').value.trim(), name: el('name').value.trim(), costAccepted: el('cost').checked });
 el('start').onclick = () => act('start');
-el('updates').onclick = async () => { try { const result = await api('updates'); el('release').replaceChildren(document.createTextNode(`${result.current} → ${result.latest?.tag || '—'} `)); const link = document.createElement('a'); link.href = result.downloadUrl; link.target = '_blank'; link.rel = 'noreferrer'; link.textContent = language === 'zh' ? '发布说明与下载 ↗' : 'Release notes & downloads ↗'; el('release').append(link); } catch (error) { el('release').textContent = error.message; } };
-translate(); doctor(); refresh(); setInterval(refresh, 2500);
+let checkingUpdates = false, releaseResult = null, releaseError = '';
+function renderRelease() {
+  el('updates').disabled = checkingUpdates; el('updates').setAttribute('aria-busy', String(checkingUpdates));
+  el('updates').textContent = checkingUpdates ? words('Checking…', '检查中…') : el('updates').dataset[language];
+  el('release').textContent = checkingUpdates ? words('Checking releases…', '正在检查版本…') : releaseError;
+  if (!checkingUpdates && releaseResult) {
+    el('release').replaceChildren(document.createTextNode(`${releaseResult.current} → ${releaseResult.latest?.tag || '—'} `));
+    const link = document.createElement('a'); link.href = releaseResult.downloadUrl; link.target = '_blank'; link.rel = 'noreferrer'; link.textContent = words('Release notes & downloads ↗', '发布说明与下载 ↗'); el('release').append(link);
+  }
+}
+el('updates').onclick = async () => {
+  if (checkingUpdates) return;
+  checkingUpdates = true; releaseResult = null; releaseError = ''; renderRelease();
+  try { releaseResult = await api('updates'); } catch (error) { releaseError = error.message; }
+  finally { checkingUpdates = false; renderRelease(); }
+};
+translate(); renderActions(); doctor(); refresh(); setInterval(() => { if (!statusReads) refresh(); }, 2500);

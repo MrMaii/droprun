@@ -13,21 +13,25 @@ posting is authorized. New campaign assets remain deferred until the agreed gate
 
 ## Completed this pass
 
-- Windows setup now exposes a read-only local project inventory: full IDs, local
-  root paths and availability. This closes the phone's same-name identity lookup.
-- Codex diagnostics now traverse all pages, not only the first 100 projects.
-  Failed/partial or signed-out checks do not expose an inventory. Account details
-  and project instructions stay excluded; CLI/default diagnostics remain path-free.
-- The inventory remains behind the existing loopback/Host/Origin/session boundary.
-  Relay synchronization remains unchanged; no local root paths are sent to it.
-- Bilingual loading, empty, unavailable and error recovery states are implemented.
-  Checks clear stale rows; diagnostic errors persist across ordinary status polls.
-- 13 setup contract tests pass. Full Node regression: 194/194, no skips. The real
-  browser fixture covers 101 rows, long paths, safe text rendering, keyboard
-  disclosure/focus, narrow layout, 200% zoom, dark/reduced motion and retry states.
-- Windows candidate installer and portable ZIP built successfully. Package hashes
-  and verification are recorded in the release record. Public release and website
-  remain unchanged.
+- Windows setup mutations now lock immediately, show localized waiting labels,
+  and recheck server status after success or failed acknowledgement. No automatic
+  mutation retry; unknown status keeps controls locked.
+- Older responses cannot unlock newer work. Timer polling does not overlap a
+  pending read; requests bypass cache and have bounded timeouts.
+- Action errors survive polls and display next to their triggering button. A
+  simultaneous status failure remains visible too. Release checks have separate
+  waiting/retry/result state, updated when language changes.
+- Full Node suite: 198/198, no skips. Final inline-error placement passed all five
+  setup browser cases. All new requests went to synthetic local fixture servers;
+  no real installation, deployment, Connector start or task submission occurred.
+- Final Windows installer/ZIP built; 2,019 manifest files, changed setup sources
+  and artifact hashes verified. The earlier ux-actions build lacks inline errors
+  and is superseded. Packages were not installed or published.
+
+The preceding Windows pass (`61c4870`) added a protected read-only inventory of
+full project IDs, local root paths and availability, including all project pages.
+Account details/project instructions are excluded; CLI diagnostics stay path-free.
+Its Node suite passed 194/194. Public website/release remain unchanged.
 
 The preceding Android pass (`ac5d284`) fixed recent ordering, same-name identity
 labels and unavailable-target guards. Its 24 native cases and 11 JVM cases pass
@@ -56,7 +60,7 @@ Node validation is recorded above. Earlier local commits: `6a96bb4`,
 Canonical evidence and current artifact hash:
 [0.5.1 UX validation](../../docs/releases/0.5.1-ux.md).
 APK: `.local/releases/ux-polish-sep29/DropRun-0.5.1-android-candidate.apk`.
-Windows installer/ZIP: `.local/releases/ux-polish-sep29-windows/`.
+Windows installer/ZIP: `.local/releases/ux-actions-sep29-windows-final/`.
 UI captures: `.local/ui-public/` and `.local/ux-cloud-check/`.
 Fixtures are demonstration data, never evidence of actual agent execution.
 
@@ -99,14 +103,13 @@ Signing material remains ignored. Git author: Thomas Deng
 
 ## Single recommended next action
 
-Verify Windows setup action recovery locally: media-tool/update controls currently
-lack consistent pending state, and ordinary status polling can erase action errors.
-Reproduce with synthetic local responses, then fix feedback without starting real
-deployment, installation, Connector execution or task submission.
+Close the remaining local delivery-file UI gap in the Android matrix. Inspect
+DeliverablesActivity and add native fixture checks for list/loading/failure/retry,
+verified preview restoration and save cancellation before making any fixes.
+Use only synthetic private-cache files and fake responses; do not launch the
+paired release app, send real tasks or claim a genuine download/save acceptance.
 
 ## Files involved
 
-scripts/setup.mjs, installer/setup.html/setup-ui.js/setup.css, setup contract and
-browser tests; PRD, contracts, bilingual self-hosting guides, changelog, release
-record and this handoff. Android source/artifact unchanged. No public deployment
-or social posting in this pass.
+installer/setup-ui.js, tests/setup-actions.test.mjs; PRD, contracts, changelog,
+release record and this handoff. No Android source or public deployment change.
