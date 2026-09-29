@@ -28,6 +28,12 @@ plan-version, per-command approval and report-evidence checks remain in force.
   saved-row restoration; transient status changes must not change those IDs.
   Home's list has a stable View ID so Activity state restores its reading position
   on recreation, including when returning after an appearance preference change.
+  Settings saves its project-access disclosure state in the Activity Bundle and
+  assigns stable IDs to its scroll container and appearance/language controls for
+  native scroll/focus restoration. After layout, a restored keyboard preference
+  control is revealed if translated content has moved it outside the viewport.
+  This restores presentation, not authorization;
+  it never replays permission or execution-mode writes.
 - Fresh installs apply migrations-fresh/0001-baseline.sql only. Existing instances
   apply the compatibility upgrade; never apply consolidated schema and duplicate
   historical ALTER migrations to the same new database.

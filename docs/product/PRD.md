@@ -14,6 +14,9 @@ in [0.5.0](../releases/0.5.0.md).
   Home contains Recent handoffs and settings, with only used or pending projects.
   Returning to Home or recreating it after an appearance change preserves the
   visible project and reading offset; routine updates do not reset the list.
+  Settings recreation preserves scroll position and expanded project access.
+  Keyboard users keep focus on the appearance/language control they just changed,
+  with that control visible in the selected theme and language.
 - Project totals count retained independent root tasks and accepted dispatches,
   including follow-ups. Retries never count; local pending shares are separate.
 - Project history is paginated. Saved outbox entries become immediately visible,

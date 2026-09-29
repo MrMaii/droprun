@@ -46,6 +46,11 @@ public class LocalRecoveryTest {
     }
 
     void stopSync(){context.stopService(new Intent(context,TaskSyncService.class));((JobScheduler)context.getSystemService(Context.JOB_SCHEDULER_SERVICE)).cancelAll();}
+    void testRotation(int rotation,int orientation)throws Exception{
+        assertTrue(InstrumentationRegistry.getInstrumentation().getUiAutomation().setRotation(rotation));long deadline=android.os.SystemClock.elapsedRealtime()+5000;
+        while(context.getResources().getConfiguration().orientation!=orientation&&android.os.SystemClock.elapsedRealtime()<deadline)Thread.sleep(25);
+        assertEquals("Wait for the requested test orientation before launching a screen",orientation,context.getResources().getConfiguration().orientation);
+    }
 
     void seedHomeList(ActivityScenario<DemoHomeActivity> scenario){
         stopSync();scenario.onActivity(activity->{try{
@@ -100,11 +105,13 @@ public class LocalRecoveryTest {
             seedHomeList(scenario);String[] before=homePosition(scenario);
             scenario.onActivity(activity->{focusDescription(activity,"Settings");assertTrue(activity.getCurrentFocus().performClick());});
             SettingsActivity opened=(SettingsActivity)settings.waitForActivityWithTimeout(5000);assertNotNull("Settings button must open the real settings Activity",opened);
+            awaitSettingsWindow(opened);
             instrumentation.runOnMainSync(()->{focusDescription(opened,"Appearance, Light");opened.getCurrentFocus().requestRectangleOnScreen(new android.graphics.Rect(0,0,1,opened.getCurrentFocus().getHeight()),true);});
             instrumentation.waitForIdleSync();instrumentation.sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_ENTER);captureUi("settings-appearance-local");instrumentation.sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_DPAD_DOWN);instrumentation.sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_ENTER);
             SettingsActivity[] changed={null};long deadline=android.os.SystemClock.elapsedRealtime()+5000;
             do{instrumentation.runOnMainSync(()->{for(android.app.Activity activity:androidx.test.runner.lifecycle.ActivityLifecycleMonitorRegistry.getInstance().getActivitiesInStage(androidx.test.runner.lifecycle.Stage.RESUMED))if(activity instanceof SettingsActivity&&activity!=opened)changed[0]=(SettingsActivity)activity;});if(changed[0]!=null)break;Thread.sleep(25);}while(android.os.SystemClock.elapsedRealtime()<deadline);
             assertNotNull("Appearance choice must resume a newly themed Settings Activity",changed[0]);
+            awaitSettingsWindow(changed[0]);
             instrumentation.runOnMainSync(()->{assertEquals("dark",changed[0].store.preferences.getString("appearance",""));focusDescription(changed[0],"Back");assertTrue(changed[0].getCurrentFocus().performClick());});
             instrumentation.waitForIdleSync();stopSync();assertArrayEquals("Settings controls must return to the same project and offset",before,homePosition(scenario));
         }finally{
@@ -331,6 +338,47 @@ public class LocalRecoveryTest {
             assertFalse(new File(cached[0]).exists());
             captureUi("delivery-corrupt-cache-local");clickWindowText("Got it");
         }finally{DemoDeliverablesActivity.reset();}
+    }
+
+    android.widget.ScrollView settingsScroll(SettingsActivity activity){return (android.widget.ScrollView)activity.body.getParent().getParent();}
+    void awaitSettingsWindow(SettingsActivity activity)throws Exception{
+        android.app.Instrumentation instrumentation=InstrumentationRegistry.getInstrumentation();long deadline=android.os.SystemClock.elapsedRealtime()+5000;boolean[] ready={false};
+        do{instrumentation.runOnMainSync(()->ready[0]=activity.hasWindowFocus()&&activity.body.getAlpha()==1f&&activity.body.getTranslationY()==0f);if(ready[0])return;Thread.sleep(25);}while(android.os.SystemClock.elapsedRealtime()<deadline);
+        captureUi("settings-window-timeout");String[] detail={""};instrumentation.runOnMainSync(()->detail[0]="focus="+activity.hasWindowFocus()+" alpha="+activity.body.getAlpha()+" translation="+activity.body.getTranslationY()+" destroyed="+activity.isDestroyed());
+        fail("Settings did not obtain a settled focused window: "+detail[0]);
+    }
+    @Test public void settingsRecreationRetainsExpandedAccessAndScroll()throws Exception{
+        try(ActivityScenario<DemoSettingsActivity> scenario=ActivityScenario.launch(DemoSettingsActivity.class)){
+            scenario.onActivity(activity->{android.view.View header=(android.view.View)findText(activity.body,"3 projects · manage access").getParent();assertTrue(header.performClick());assertTrue(activity.showAccess);});
+            captureUi("settings-expanded-local");int[] before={0};scenario.onActivity(activity->{settingsScroll(activity).scrollTo(0,Ui.dp(activity,1000));before[0]=settingsScroll(activity).getScrollY();assertTrue(before[0]>0);});
+            scenario.recreate();InstrumentationRegistry.getInstrumentation().waitForIdleSync();
+            scenario.onActivity(activity->{assertTrue("Project access must remain expanded",activity.showAccess);assertEquals("Recreation must preserve the scroll offset",before[0],settingsScroll(activity).getScrollY());assertTrue(findText(activity.body,"Studio website").isShown());});
+        }
+    }
+    void awaitSettingsRecreation(ActivityScenario<DemoSettingsActivity> scenario,DemoSettingsActivity previous)throws Exception{
+        long deadline=android.os.SystemClock.elapsedRealtime()+5000;boolean[] changed={false};
+        DemoSettingsActivity[] current={null};
+        do{scenario.onActivity(activity->{changed[0]=activity!=previous;current[0]=activity;});if(changed[0]){awaitSettingsWindow(current[0]);return;}Thread.sleep(25);}while(android.os.SystemClock.elapsedRealtime()<deadline);
+        fail("The settings preference did not recreate its page");
+    }
+    @Test public void settingsAppearanceAndLanguageKeepTheChosenControlFocused()throws Exception{checkSettingsChoiceFocus(false);}
+    @Test public void settingsLandscapeLanguageKeepsTheWholeFocusedControlVisible()throws Exception{
+        checkSettingsChoiceFocus(true);
+    }
+    void checkSettingsChoiceFocus(boolean landscape)throws Exception{
+        android.app.Instrumentation instrumentation=InstrumentationRegistry.getInstrumentation();
+        try(ActivityScenario<DemoSettingsActivity> scenario=ActivityScenario.launch(DemoSettingsActivity.class)){
+            try{
+            if(landscape)testRotation(android.app.UiAutomation.ROTATION_FREEZE_90,android.content.res.Configuration.ORIENTATION_LANDSCAPE);
+            DemoSettingsActivity[] initial={null};scenario.onActivity(activity->initial[0]=activity);awaitSettingsWindow(initial[0]);instrumentation.sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_TAB);
+            for(String[] choice:new String[][]{{"Appearance, Light","Appearance, Dark","appearance","dark"},{"Language, English","语言, 简体中文","language","zh"}}){
+                DemoSettingsActivity[] previous={null};scenario.onActivity(activity->{previous[0]=activity;focusDescription(activity,choice[0]);});
+                instrumentation.waitForIdleSync();instrumentation.sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_ENTER);captureUi("settings-choice-local");instrumentation.sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_DPAD_DOWN);instrumentation.sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_ENTER);awaitSettingsRecreation(scenario,previous[0]);captureUi("settings-"+choice[2]+"-restored-local");
+                scenario.onActivity(activity->{assertEquals(choice[3],activity.store.preferences.getString(choice[2],""));android.view.View focused=activity.getCurrentFocus();assertNotNull(focused);assertEquals("The changed choice must keep keyboard focus",choice[1],String.valueOf(focused.getContentDescription()));android.graphics.Rect visible=new android.graphics.Rect();assertTrue("The changed choice must stay visible",focused.getGlobalVisibleRect(visible));assertTrue("The complete focused control must fit outside the system bars: "+choice[1]+" visible="+visible+" height="+focused.getHeight(),visible.height()>=focused.getHeight());});
+            }
+            captureUi("settings-zh-dark-restored-local");
+            }finally{if(landscape)testRotation(android.app.UiAutomation.ROTATION_FREEZE_0,android.content.res.Configuration.ORIENTATION_PORTRAIT);}
+        }
     }
 
     @Test public void scrollingSettingsKeepContentInsideSystemBars(){

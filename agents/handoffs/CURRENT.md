@@ -13,22 +13,26 @@ posting is authorized. New campaign assets remain deferred until the agreed gate
 
 ## Completed this pass
 
-- Reproduced Home resetting project 40 to project 0 during recreation and after
-  appearance changes. Added a stable native ListView ID and nonnegative adapter
-  IDs, allowing Android to restore the original project and exact pixel offset.
-- Four new local tests cover an 80-project list: status/pending changes,
-  touch/keyboard recreation, ordinary return, appearance-change resume and the
-  actual Settings button / keyboard Dark selection / Back route.
-- The first three extend both API 26/35 full suites to 45/45 at 100% font; they
-  pass at 200% on both. The additional actual-control case passes separately on
-  both runtimes at 100%/200%. 12 JVM cases, debug lint and signed release build pass.
-- Test-only failures are preserved: native radio rows are not standalone clickable
-  nodes, and ActivityMonitor can return an earlier lifecycle notification. The
-  final test uses keyboard selection and awaits the newly resumed Settings instance.
-- Refreshed the locally signed candidate APK, with unchanged certificate. Final
-  evidence/hash are in the UX release record. No new ANR; old SyncJob incident
-  remains unresolved. No real submissions, public deployment or campaign assets.
+- Settings now retains its project-access disclosure and native scroll position
+  across recreation; stable appearance/language IDs retain keyboard focus.
+- Reproduced a real landscape issue: switching to Chinese left only 54px of a
+  63px focused Language row visible. After layout, Settings now reveals the current
+  keyboard preference control; touch reading offsets remain unchanged.
+- Added three native cases for scroll/expanded-state restoration and actual
+  appearance/language keyboard choices in portrait and landscape. Final full
+  suites pass 49/49 on API 26/35 at 100%; three new cases pass on both at 200%.
+  Twelve JVM tests, debug lint, debug/instrumentation/release builds pass.
+- Failure evidence is retained: API 26 emulator goldfish_pipe kernel panic/reboot;
+  API 35 focused-window timeouts and rotation/test interference; mid-transition
+  visibility checks and one stale instrumentation install. Final runs use matching
+  test APK hashes. None of those failed/interrupted runs are counted as acceptance.
+- Updated signed local APK with unchanged certificate. Final DropBox snapshots
+  show no new app ANR; older SyncJob incident remains open. No real submissions,
+  public deployment, Windows package changes or campaign generation.
 
+The preceding pass (`b7a1a09`) preserved Home project/offset across recreation
+and appearance changes, with 45 full cases plus a separate actual Settings
+round-trip case. Those cases are included in the final 49-test runs above.
 The preceding pass (`6024cbb`) fixed negative stable task IDs causing history
 recreation to jump to the top. Its 240-row tests preserve task/offset and cached
 pages through status updates, pending changes and touch/keyboard recreation.
@@ -132,14 +136,14 @@ Signing material remains ignored. Git author: Thomas Deng
 
 ## Single recommended next action
 
-Verify settings-page reading continuity locally: its ScrollView currently has no
-stable View ID, and appearance/language choices recreate the Activity. Reproduce
-whether the chosen section and expanded project-access state survive before
-changing code. Keep real permission/setting submissions disabled; use synthetic
-fixtures and local appearance/language controls only.
+Check local default model/effort controls with keyboard input. Unlike appearance
+and language, their selection calls render() and replaces the section views in
+place; reproduce whether focus and reading position survive before changing code.
+Use the synthetic model catalog only. Do not submit permissions, execution modes
+or tasks to a real Relay; real delivery/physical-device gates remain pending.
 
 ## Files involved
 
-MainActivity, DemoHomeActivity, LocalRecoveryTest, PRD, CONTRACTS, UI matrix, UX
-release record and this handoff. Refreshed ignored signed APK. No website, Windows
-package, public release or private Connector change in this pass.
+SettingsActivity, resource IDs, DemoSettingsActivity, LocalRecoveryTest, PRD,
+CONTRACTS, UI matrix, UX release record and this handoff. Refreshed ignored signed
+APK. Public website/release, Windows packages and private Connector unchanged.

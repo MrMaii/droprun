@@ -21,7 +21,8 @@ public class SettingsActivity extends StyledActivity {
 
     @Override protected void onCreate(Bundle state){
         super.onCreate(state);store=new Store(this);Ui.configureWindow(this);
-        LinearLayout page=Ui.page(this);
+        showAccess=state!=null&&state.getBoolean("showAccess");
+        LinearLayout page=Ui.page(this);((View)page.getParent()).setId(R.id.settings_scroll);
         ImageButton back=Ui.iconButton(this,R.drawable.ic_chevron_left,L.t("Back","返回"));back.setOnClickListener(v->finish());
         Ui.topBar(this,page,back,L.t("Settings","设置"),false,null);
         noticeView=Ui.text(this,"",12,Ui.AMBER);noticeView.setVisibility(View.GONE);page.addView(noticeView);
@@ -198,10 +199,20 @@ public class SettingsActivity extends StyledActivity {
 
     void appearanceSection(){
         LinearLayout card=section(L.t("Make it yours","外观与语言"));String mode=store.preferences.getString("appearance","light");String[] values={"light","dark","system"};String[] labels={L.t("Light","浅色"),L.t("Dark","深色"),L.t("System","跟随系统")};int selected=java.util.Arrays.asList(values).indexOf(mode);
-        card.addView(Ui.setting(this,L.t("Appearance","外观"),labels[Math.max(0,selected)],()->new AlertDialog.Builder(this).setTitle(L.t("Appearance","外观")).setSingleChoiceItems(labels,Math.max(0,selected),(dialog,index)->{store.preferences.edit().putString("appearance",values[index]).apply();dialog.dismiss();recreate();}).setNegativeButton(L.t("Cancel","取消"),null).show()));
+        LinearLayout appearance=Ui.setting(this,L.t("Appearance","外观"),labels[Math.max(0,selected)],()->new AlertDialog.Builder(this).setTitle(L.t("Appearance","外观")).setSingleChoiceItems(labels,Math.max(0,selected),(dialog,index)->{store.preferences.edit().putString("appearance",values[index]).apply();dialog.dismiss();recreate();}).setNegativeButton(L.t("Cancel","取消"),null).show());appearance.setId(R.id.settings_appearance);card.addView(appearance);
         card.addView(Ui.divider(this));
-        card.addView(Ui.setting(this,L.t("Language","语言"),L.chinese()?"简体中文":"English",()->new AlertDialog.Builder(this).setTitle(L.t("Language","语言")).setSingleChoiceItems(new String[]{"English","简体中文"},L.chinese()?1:0,(dialog,index)->{store.preferences.edit().putString("language",index==0?"en":"zh").apply();dialog.dismiss();recreate();}).setNegativeButton(L.t("Cancel","取消"),null).show()));
+        LinearLayout language=Ui.setting(this,L.t("Language","语言"),L.chinese()?"简体中文":"English",()->new AlertDialog.Builder(this).setTitle(L.t("Language","语言")).setSingleChoiceItems(new String[]{"English","简体中文"},L.chinese()?1:0,(dialog,index)->{store.preferences.edit().putString("language",index==0?"en":"zh").apply();dialog.dismiss();recreate();}).setNegativeButton(L.t("Cancel","取消"),null).show());language.setId(R.id.settings_language);card.addView(language);
     }
 
+    @Override protected void onSaveInstanceState(Bundle state){state.putBoolean("showAccess",showAccess);super.onSaveInstanceState(state);}
+    @Override protected void onRestoreInstanceState(Bundle state){
+        super.onRestoreInstanceState(state);
+        body.getViewTreeObserver().addOnPreDrawListener(new android.view.ViewTreeObserver.OnPreDrawListener(){public boolean onPreDraw(){
+            body.getViewTreeObserver().removeOnPreDrawListener(this);View focused=getCurrentFocus();
+            if(focused!=null&&!focused.isInTouchMode()&&(focused.getId()==R.id.settings_appearance||focused.getId()==R.id.settings_language))
+                focused.requestRectangleOnScreen(new android.graphics.Rect(0,0,focused.getWidth(),focused.getHeight()),true);
+            return true;
+        }});
+    }
     @Override protected void onDestroy(){io.shutdown();super.onDestroy();}
 }
