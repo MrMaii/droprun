@@ -13,24 +13,26 @@ posting is authorized. New campaign assets remain deferred until the agreed gate
 
 ## Completed this pass
 
-- Reproduced search/expanded-catalog loss on share Activity recreation. Both now
-  restore; matching ignores surrounding whitespace and case. Nine-project native
-  fixtures cover filtering, no match and clearing the search.
-- Reproduced an unreachable Cancel action in the share permission overlay at
-  200% font. Its content now scrolls within a fixed rounded surface and stays
-  above system navigation. Older Android uses an opaque surface.
-- Reproduced keyboard Tab escaping to the underlying Close button. The modal
-  blocks background keyboard focus and restores the prior policy on dismissal.
-- Two synthetic authorization failures keep the same step, re-enable the actions,
-  and reveal the error. Cancel closes the panel without creating an outbox item.
-  No permission request or task was sent to a real Relay.
-- The native suite now has 21 cases. Runtime/font results and screenshots are in
-  the release record. Final debug/release/test builds, nine unit tests, both lint
-  variants and stable signer verification pass; the signed candidate is refreshed.
-- All 21 tests pass on API 26/API 35 at 100% and 200% font. Actual normal/large
-  permission screenshots were inspected, including error visibility and Cancel.
-- The debug share fixture seeds only on first creation, preserving its catalog
-  across recreation. Release packages contain no demonstration activities.
+- Three native regressions reproduced share order ignoring older recent projects,
+  identical same-name labels, and unavailable projects entering the editor.
+- Share targets now use all cached project summaries plus deduplicated local
+  pending timestamps. Current choice stays first; last-used without summary is a
+  fallback. Unused projects retain catalog order; removed targets stay excluded.
+- Identical names now carry distinguishable ID prefixes, extended on collision,
+  across home/share/authorization/history/task UI. Raw names, IDs and totals stay
+  unchanged. Batched rows reuse parsed catalog data.
+- Unavailable targets explain recovery, remain outside the editor and are checked
+  again before local share persistence. Material/draft state is retained.
+- A 200% screenshot revealed a truncated generic error title. The shorter
+  Project unavailable title and recovery message passed targeted verification.
+- The suite now has 24 native cases and 11 JVM cases. Runtime/font logs and actual
+  screenshots are in the release record below. Final APK builds, both lint
+  variants and stable signer verification pass. Local candidate refreshed.
+
+The previous pass (`f486599`) preserved share search/catalog expansion across
+recreation, made permission surfaces scroll, contained keyboard focus, and exposed
+synthetic grant errors without advancing. Its 21 native tests passed on both
+runtimes at both font scales. No real grant or task was sent.
 
 Previous local pass (`a97658c`) added the control/state matrix, fixed cached
 approval/preview expiry and persistent decision errors, added instance-scoped
@@ -91,12 +93,13 @@ Signing material remains ignored. Git author: Thomas Deng
 
 ## Single recommended next action
 
-Audit share-project ordering and duplicate-name selection using complete activity
-summaries and labelled local fixtures. Share ordering currently promotes only the
-selected/last project, then retains catalog order. Keep real submissions disabled.
+Close the local project-identity loop in Windows setup: its current doctor UI only
+shows project count, so users cannot match a phone's same-name ID to a local folder.
+Inspect the existing protected doctor/project data, then add a read-only inventory
+and verify with synthetic local UI data. Keep paths local and real submissions disabled.
 
 ## Files involved
 
-ShareActivity, DemoShareActivity, shared Ui and LocalRecoveryTest;
+ProjectPresentation/Store and affected Android views, native and JVM tests;
 PRD, contracts, changelog, UI matrix, release record and this handoff. No Node
 runtime change, public release, website deployment or social post in this pass.

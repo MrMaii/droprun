@@ -2,6 +2,9 @@
 
 ## 0.5.1 — unreleased Android UX candidate
 
+- Share catalogs prioritize all recent projects, including local pending work.
+  Same-name projects show distinct short identifiers across selection and history;
+  unavailable projects explain how to reconnect instead of entering the editor.
 - Share search and expanded catalogs survive Activity recreation; search ignores
   surrounding whitespace. Permission dialogs scroll at large font sizes, keep
   keyboard focus inside, and reveal failed authorization messages for retry.

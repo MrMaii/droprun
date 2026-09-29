@@ -49,6 +49,7 @@ public class ShareActivity extends StyledActivity {
     EditText search,note;TextView gaugeText,sendTitle,status,badge;Ui.PlaneView plane;Ui.Glass dialog;ColorDrawable scrim;ValueAnimator panelAnimator;
     AlertDialog discardDialog;
     String shared="",last="",selected="",model="",effort="",query="",draft="";JSONArray attachments=new JSONArray();
+    List<JSONObject> recentProjects=Collections.emptyList();
     int step=-1;boolean receiving=true,showAll=false,panelOpen=false,busy=false,closing=false,sent=false;
 
     @Override protected void onCreate(Bundle state){
@@ -189,13 +190,14 @@ public class ShareActivity extends StyledActivity {
         try{for(int n=0;n<attachments.length();n++){JSONObject item=attachments.getJSONObject(n);File previous=new File(item.getString("path"));if(!previous.getCanonicalFile().getParentFile().equals(store.attachments().getCanonicalFile())){if(!previous.getCanonicalPath().startsWith(getFilesDir().getCanonicalPath()+File.separator))throw new IOException("Invalid saved attachment.");File next=new File(store.attachments(),UUID.randomUUID().toString());java.nio.file.Files.move(previous.toPath(),next.toPath());item.put("path",next.getAbsolutePath());}}}catch(Exception e){fatal(e);return;}
         dots.setVisibility(View.VISIBLE);last=store.prefs.getString("lastProject","");model=store.defaultModel();effort=store.defaultEffort(model);
         go(0,1);
-        String before=store.projects().toString();
+        String before=store.projects().toString()+store.activity();
         io.execute(()->{
             try{JSONObject data=store.get("/projects");store.prefs.edit().putString("projects",data.toString()).apply();}catch(Exception ignored){}
+            try{JSONObject data=store.get("/projects/activity");store.prefs.edit().putString("activity",data.toString()).apply();}catch(Exception ignored){}
             runOnUiThread(()->{
                 if(gone())return;
                 if(model.isEmpty()){model=store.defaultModel();effort=store.defaultEffort(model);updateGauge();}
-                if(step==0&&!store.projects().toString().equals(before))renderProjects();
+                if(step==0&&!(store.projects().toString()+store.activity()).equals(before)){recentProjects=ProjectPresentation.merge(store.activity(),store.pending(),store.tasks());renderProjects();}
             });
         });
     }
@@ -207,7 +209,7 @@ public class ShareActivity extends StyledActivity {
         dots.setActive(target,true);back.setVisibility(target==1?View.VISIBLE:View.INVISIBLE);scroll.scrollTo(0,0);
         if(target==2)fly();
     }
-    String projectName(){JSONObject project=store.project(selected);return project==null?"":project.optString("name");}
+    String projectName(){JSONObject project=store.project(selected);return project==null?"":store.projectLabel(project);}
 
     // ---- the shared material --------------------------------------------------------------------
     TextView materialChip(){
@@ -230,6 +232,7 @@ public class ShareActivity extends StyledActivity {
 
     // ---- step 1: project and authorization ------------------------------------------------------
     View stepProject(){
+        recentProjects=ProjectPresentation.merge(store.activity(),store.pending(),store.tasks());
         LinearLayout column=Ui.vertical(this);
         column.addView(Ui.title(this,L.t("Where should this idea go?","转发给哪个项目？"),20));
         LinearLayout.LayoutParams chipParams=new LinearLayout.LayoutParams(-2,-2);chipParams.setMargins(0,dp(4),0,dp(12));column.addView(materialChip(),chipParams);
@@ -244,41 +247,42 @@ public class ShareActivity extends StyledActivity {
     }
     void renderProjects(){
         if(projectList==null)return;projectList.removeAllViews();
-        JSONArray projects=store.projects();
+        JSONArray projects=store.projects(),history=store.activity();
         search.setVisibility(projects.length()>6||!query.isEmpty()?View.VISIBLE:View.GONE);
         if(projects.length()==0){projectList.addView(notice(L.t("Waiting for projects. Check that DropRun Connector is running on your computer.","等待电脑同步项目。请确认电脑上的 DropRun Connector 已启动。")));return;}
-        // The chosen (else last-used) project first; long catalogs collapse behind "show all" unless searching.
+        // Preserve the current choice; otherwise put retained recent activity before unused projects.
         String filter=query.trim().toLowerCase(Locale.ROOT);
-        String first=selected.isEmpty()?last:selected;ArrayList<JSONObject> ordered=new ArrayList<>();
-        for(int n=0;n<projects.length();n++){JSONObject p=projects.optJSONObject(n);if(p==null)continue;if(p.optString("id").equals(first))ordered.add(0,p);else ordered.add(p);}
+        List<JSONObject> ordered=ProjectPresentation.sharing(projects,recentProjects,selected,last);
         int shown=0,hidden=0;
         for(JSONObject p:ordered){
             if(!filter.isEmpty()&&!p.optString("name").toLowerCase(Locale.ROOT).contains(filter))continue;
             if(filter.isEmpty()&&!showAll&&shown>=6){hidden++;continue;}
             if(shown>0){LinearLayout.LayoutParams line=new LinearLayout.LayoutParams(-1,Math.max(1,dp(1)));line.setMargins(dp(12),0,dp(12),0);projectList.addView(Ui.divider(this),line);}
-            projectList.addView(projectRow(p),Ui.fill());shown++;
+            projectList.addView(projectRow(p,projects,history),Ui.fill());shown++;
         }
         if(shown==0)projectList.addView(notice(L.t("No matching projects","没有匹配的项目")));
         if(hidden>0){TextView more=Ui.linkButton(this,L.t("Show all ","显示全部 ")+projects.length()+L.t(" projects"," 个项目"));more.setOnClickListener(v->{showAll=true;renderProjects();});LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(-2,-2);params.setMargins(dp(6),dp(6),0,dp(2));projectList.addView(more,params);}
     }
-    View projectRow(JSONObject project){
-        String id=project.optString("id"),name=project.optString("name");boolean enabled=Store.projectEnabled(project),chosen=id.equals(selected);
+    View projectRow(JSONObject project,JSONArray catalog,JSONArray history){
+        String id=project.optString("id"),name=ProjectPresentation.label(id,project.optString("name"),catalog,history);boolean available=project.optBoolean("available",true),enabled=Store.projectEnabled(project),chosen=id.equals(selected);
         LinearLayout row=Ui.row(this);row.setPadding(dp(12),dp(11),dp(12),dp(11));row.setMinimumHeight(dp(52));
         if(chosen)row.setBackground(Ui.outlined(this,Ui.LIME_SOFT,0,10,0));
         TextView label=Ui.text(this,name,15,chosen?Ui.ACCENT:Ui.TEXT);label.setPadding(0,0,0,0);if(chosen)label.setTypeface(Ui.medium());row.addView(label,Ui.grow());
-        Ui.space(row,10);row.addView(Ui.pill(this,enabled?L.t("Allowed","已授权"):L.t("Allow access","需授权"),enabled?Ui.ACCENT:Ui.MUTED));
-        row.setClickable(true);row.setFocusable(true);row.setContentDescription(name+(enabled?L.t(", allowed","，已授权"):L.t(", permission required","，需授权"))+(chosen?L.t(", selected","，已选择"):""));Ui.bindPress(row);
+        Ui.space(row,10);row.addView(Ui.pill(this,!available?L.t("Unavailable","暂不可用"):enabled?L.t("Allowed","已授权"):L.t("Allow access","需授权"),available&&enabled?Ui.ACCENT:Ui.MUTED));
+        row.setClickable(true);row.setFocusable(true);row.setContentDescription(name+(!available?L.t(", unavailable","，暂不可用"):enabled?L.t(", allowed","，已授权"):L.t(", permission required","，需授权"))+(chosen?L.t(", selected","，已选择"):""));Ui.bindPress(row);
         row.setOnClickListener(v->pick(project));
         return row;
     }
     void pick(JSONObject project){
         if(busy||step!=0)return;
+        if(!project.optBoolean("available",true)){unavailableProject();return;}
         if(!Store.projectEnabled(project)){authorize(project);return;}
         selected=project.optString("id");renderProjects();busy=true;
         handler.postDelayed(()->{busy=false;if(!gone()&&step==0)go(1,1);},160);
     }
+    void unavailableProject(){new AlertDialog.Builder(this).setTitle(L.t("Project unavailable","项目暂不可用")).setMessage(L.t("Choose another project, or reconnect this one in DropRun setup on your computer.","请选择其他项目，或在电脑的 DropRun 配置页重新连接这个项目。" )).setPositiveButton(L.t("Got it","知道了"),null).show();}
     void authorize(JSONObject project){
-        String id=project.optString("id"),name=project.optString("name");hideKeyboard();
+        String id=project.optString("id"),name=store.projectLabel(project);hideKeyboard();
         Ui.Glass glass=Ui.glass(this,root,sheet);dialog=glass;glass.overlay.setOnClickListener(v->{if(!busy)closeDialog(null);});
         LinearLayout card=glass.card;
         card.addView(Ui.title(this,L.t("“","「")+name+L.t("” needs permission","」需要授权"),18));
@@ -370,7 +374,7 @@ public class ShareActivity extends StyledActivity {
     boolean submit(){
         if(step!=1||sent)return false;
         String material=shared.trim();JSONObject project=store.project(selected);
-        if(project==null){selected="";error(new IOException(L.t("The project list changed. Choose a project again.","项目列表已变化，请重新选择")));go(0,-1);return false;}
+        if(project==null||!project.optBoolean("available",true)){selected="";unavailableProject();go(0,-1);return false;}
         if(!Store.projectEnabled(project)){go(0,-1);authorize(project);return false;}
         try{
             String message=note.getText().toString();

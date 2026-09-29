@@ -84,6 +84,8 @@ public class Store {
     // ---- cached state -------------------------------------------------------------------------
     JSONObject projectsData(){try{return new JSONObject(prefs.getString("projects","{}"));}catch(Exception e){return new JSONObject();}}
     JSONArray projects(){JSONArray a=projectsData().optJSONArray("projects");return a==null?new JSONArray():a;}
+    String projectLabel(JSONObject project){return projectLabel(project.optString("id"),project.optString("name"));}
+    String projectLabel(String id,String name){return ProjectPresentation.label(id,name,projects(),activity());}
     JSONArray models(){JSONArray a=projectsData().optJSONArray("models");return a==null?new JSONArray():a;}
     String computerName(){return projectsData().optString("name",L.t("Computer","电脑"));}
     boolean computerOnline(){JSONObject d=projectsData();return d.optBoolean("online")&&System.currentTimeMillis()-d.optLong("lastSeen")<90000;}

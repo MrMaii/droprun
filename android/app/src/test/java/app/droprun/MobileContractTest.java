@@ -30,6 +30,20 @@ public class MobileContractTest {
         JSONObject summary=new JSONObject().put("task_count",3).put("dispatch_count",5);L.language("en");assertEquals("3 tasks · 5 dispatches",ProjectPresentation.counts(summary));assertEquals("Review your plan",TaskPresentation.status("awaiting_plan_approval"));L.language("zh");assertEquals("3 项任务 · 5 次交办",ProjectPresentation.counts(summary));assertEquals(5,summary.getInt("dispatch_count"));L.language("en");
     }
     @Test public void immutableSnapshotsAreNeverLabeledAsLive(){assertTrue(TaskPresentation.snapshot("snapshot"));assertTrue(TaskPresentation.snapshot("static"));assertFalse(TaskPresentation.snapshot("live"));assertFalse(TaskPresentation.snapshot(""));}
+    @Test public void shareOrderingUsesCompleteSummariesAndKeepsCatalogIdentity()throws Exception {
+        JSONArray catalog=new JSONArray().put(new JSONObject().put("id","unused")).put(new JSONObject().put("id","old")).put(new JSONObject().put("id","recent"));
+        JSONArray summaries=new JSONArray().put(new JSONObject().put("id","old").put("dispatch_count",201).put("last_dispatch_at",1)).put(new JSONObject().put("id","recent").put("dispatch_count",301).put("last_dispatch_at",2)).put(new JSONObject().put("id","removed").put("dispatch_count",1).put("last_dispatch_at",3));
+        List<JSONObject> recent=ProjectPresentation.merge(summaries,new JSONArray(),new JSONArray());List<JSONObject> ordered=ProjectPresentation.sharing(catalog,recent,"","old");
+        assertEquals(3,ordered.size());assertSame(catalog.getJSONObject(2),ordered.get(0));assertEquals("old",ordered.get(1).getString("id"));assertEquals("unused",ordered.get(2).getString("id"));
+        assertEquals("unused",ProjectPresentation.sharing(catalog,recent,"unused","old").get(0).getString("id"));assertEquals("unused",catalog.getJSONObject(0).getString("id"));
+    }
+    @Test public void duplicateProjectLabelsExtendCollidingIdsAndRetainHistoricalIdentity()throws Exception {
+        JSONArray catalog=new JSONArray().put(new JSONObject().put("id","01234567-aaaa").put("name","Studio")).put(new JSONObject().put("id","01234567-bbbb").put("name","Studio"));
+        assertEquals("Studio · 01234567-a",ProjectPresentation.label("01234567-aaaa","Studio",catalog,null));assertEquals("Studio · 01234567-b",ProjectPresentation.label("01234567-bbbb","Studio",catalog,null));
+        assertEquals("Renamed",ProjectPresentation.label("01234567-aaaa","Renamed",catalog,null));
+        JSONArray historical=new JSONArray().put(new JSONObject().put("id","removed-project").put("name","Archive")).put(new JSONObject().put("id","kept-project").put("name","Archive"));
+        assertEquals("Archive · removed-",ProjectPresentation.label("removed-project","Archive",new JSONArray(),historical));assertEquals("Archive",ProjectPresentation.label("removed-project","Archive",null,new JSONArray().put(historical.getJSONObject(0))));
+    }
     @Test public void existingCacheAndExecutionContractsStillHold()throws Exception {
         L.language("zh");try{TaskCacheTest.main(new String[0]);TaskPresentationTest.main(new String[0]);TaskWatchPolicyTest.main(new String[0]);}finally{L.language("en");}
     }

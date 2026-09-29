@@ -68,13 +68,14 @@ public class TaskActivity extends StyledActivity {
         JSONArray approvals=task==null?null:task.optJSONArray("approvals");
         for(int n=0;approvals!=null&&n<approvals.length();n++){JSONObject approval=approvals.optJSONObject(n);if(approval!=null&&approval.optLong("expiresAt")>now&&approval.optJSONObject("details")!=null)liveApprovals++;}
         String previewState=task==null?"":TaskPresentation.previewStatus(text(task,"preview_status"),text(task,"preview_url"),task.optLong("preview_expires_at"),now);
-        String next=(task==null?"missing":task.toString())+busy+(thumbnail!=null)+thumbnailError+liveApprovals+previewState;
+        String projectLabel=task==null?"":store.projectLabel(text(task,"project_id"),text(task,"project_name"));
+        String next=(task==null?"missing":task.toString())+busy+(thumbnail!=null)+thumbnailError+liveApprovals+previewState+projectLabel;
         if(snapshot.equals(next))return;snapshot=next;body.removeAllViews();
         if(task==null){block(L.t("Handoff unavailable","任务暂不可用"),L.t("Refresh when connected. This handoff may have been deleted.","请联网刷新；任务也可能已被删除。"));return;}
         String status=text(task,"status"),plan=text(task,"plan_report"),report=text(task,"report");
         body.addView(Ui.title(this,MainActivity.name(task),24));
         LinearLayout statusLine=Ui.row(this);statusLine.addView(Ui.pill(this,TaskPresentation.status(status),TaskPresentation.statusColor(status)));body.addView(statusLine,Ui.margins(this,8,8));
-        body.addView(Ui.caption(this,text(task,"project_name")+" · "+TaskPresentation.mode(text(task,"execution_mode"))));
+        body.addView(Ui.caption(this,projectLabel+" · "+TaskPresentation.mode(text(task,"execution_mode"))));
         body.addView(Ui.caption(this,L.t("Shared ","交办于 ")+TaskPresentation.elapsed(task.optLong("created_at"),System.currentTimeMillis())));
         block(L.t("Needs attention","需要处理"),text(task,"error"));
         if(!plan.isEmpty()){

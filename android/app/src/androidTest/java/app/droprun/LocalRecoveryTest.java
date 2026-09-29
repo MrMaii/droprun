@@ -246,6 +246,50 @@ public class LocalRecoveryTest {
         }catch(Exception error){throw new AssertionError(error);}
     }
 
+    @Test public void shareOrdersPendingAndAllRecentProjectsBeforeUnused(){
+        try(ActivityScenario<DemoShareActivity> scenario=ActivityScenario.launch(new Intent(context,DemoShareActivity.class).setAction(Intent.ACTION_SEND).setType("text/plain"))){
+            scenario.onActivity(activity->{
+                shareCatalog(activity);
+                try{
+                    JSONArray recent=new JSONArray();
+                    for(String id:new String[]{"extra-5","extra-3","demo-studio"})recent.put(new JSONObject().put("id",id).put("name",activity.store.project(id).getString("name")).put("dispatch_count",1).put("last_dispatch_at",500-recent.length()*100));
+                    activity.store.prefs.edit().putString("activity",new JSONObject().put("projects",recent).toString()).commit();
+                    activity.store.save(new JSONObject().put("id",UUID.randomUUID().toString()).put("projectId","extra-4").put("projectName","Extra project 4").put("createdAt",600));
+                }catch(Exception error){throw new AssertionError(error);}
+                activity.go(0,1);
+                assertNotNull("Newest local handoff precedes older server history",findText(activity.projectList.getChildAt(0),"Extra project 4"));
+                assertNotNull(findText(activity.projectList.getChildAt(2),"Extra project 5"));
+                assertNotNull(findText(activity.projectList.getChildAt(4),"Extra project 3"));
+                activity.selected="demo-journal";activity.go(0,-1);
+                assertNotNull(findText(activity.projectList.getChildAt(0),"Field notes"));
+            });
+        }
+    }
+
+    @Test public void shareUnavailableProjectDoesNotEnterTheEditor()throws Exception {
+        try(ActivityScenario<DemoShareActivity> scenario=ActivityScenario.launch(new Intent(context,DemoShareActivity.class).setAction(Intent.ACTION_SEND).setType("text/plain"))){
+            scenario.onActivity(activity->{
+                JSONObject project=activity.store.project("demo-studio");try{project.put("available",false);}catch(Exception error){throw new AssertionError(error);}
+                activity.pick(project);assertFalse("Unavailable project must not start a selection transition",activity.busy);assertEquals("",activity.selected);assertEquals(0,activity.step);assertNull(activity.dialog);assertEquals(0,activity.store.pending().length());
+            });
+            captureUi("project-unavailable-local");clickWindowText("Got it");
+        }
+    }
+
+    @Test public void shareSameNameProjectsShowDistinctLabelsAndKeepTheirIds()throws Exception {
+        try(ActivityScenario<DemoShareActivity> scenario=ActivityScenario.launch(new Intent(context,DemoShareActivity.class).setAction(Intent.ACTION_SEND).setType("text/plain"))){
+            scenario.onActivity(activity->{
+                try{JSONObject data=activity.store.projectsData();data.getJSONArray("projects").put(new JSONObject().put("id","duplicate-studio").put("name","Studio website").put("permission",new JSONObject().put("enabled",true)));activity.store.prefs.edit().putString("projects",data.toString()).commit();}catch(Exception error){throw new AssertionError(error);}
+                activity.go(0,1);assertNotNull(findText(activity.projectList,"Studio website · demo-stu"));assertNotNull(findText(activity.projectList,"Studio website · duplicat"));
+            });
+            captureUi("duplicate-project-choice-local");
+            scenario.onActivity(activity->{android.widget.TextView duplicate=findText(activity.projectList,"Studio website · duplicat");((android.view.View)duplicate.getParent()).performClick();});
+            long deadline=android.os.SystemClock.elapsedRealtime()+5000;boolean[] entered={false};
+            do{scenario.onActivity(activity->entered[0]=activity.step==1);if(!entered[0])Thread.sleep(25);}while(!entered[0]&&android.os.SystemClock.elapsedRealtime()<deadline);
+            assertTrue(entered[0]);scenario.onActivity(activity->{assertEquals("duplicate-studio",activity.selected);assertNotNull(findText(activity.stage,"For “Studio website · duplicat”"));assertEquals(0,activity.store.pending().length());});
+        }
+    }
+
     @Test public void shareSearchAndExpandedCatalogSurviveRecreation(){
         try(ActivityScenario<DemoShareActivity> scenario=ActivityScenario.launch(new Intent(context,DemoShareActivity.class).setAction(Intent.ACTION_SEND).setType("text/plain"))){
             scenario.onActivity(activity->{

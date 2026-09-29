@@ -144,15 +144,15 @@ public class SettingsActivity extends StyledActivity {
     // ---- 项目授权 -------------------------------------------------------------------------------
     void accessSection(){
         LinearLayout container=section(L.t("Project access","项目授权"));LinearLayout card=Ui.vertical(this);
-        JSONArray projects=store.projects();
+        JSONArray projects=store.projects(),history=store.activity();
         container.addView(Ui.disclosure(this,projects.length()+L.t(" projects · manage access"," 个项目 · 管理授权"),card,showAccess,open->showAccess=open));
         if(projects.length()==0)card.addView(Ui.caption(this,L.t("No projects have synced yet. Check that your Connector is running.","电脑还没有同步项目。请确认 Connector 已启动。")));
         for(int n=0;n<projects.length();n++){
             JSONObject p=projects.optJSONObject(n);if(p==null)continue;
-            boolean enabled=Store.projectEnabled(p);String id=p.optString("id"),name=p.optString("name");
+            boolean enabled=Store.projectEnabled(p);String id=p.optString("id"),name=ProjectPresentation.label(id,p.optString("name"),projects,history);
             if(card.getChildCount()>0)card.addView(Ui.divider(this));
             LinearLayout line=Ui.row(this);line.setPadding(0,dp(6),0,dp(6));line.setMinimumHeight(dp(48));
-            TextView title=Ui.text(this,name,15,Ui.TEXT);title.setMaxLines(2);title.setEllipsize(TextUtils.TruncateAt.END);line.addView(title,Ui.grow());
+            TextView title=Ui.text(this,name,15,Ui.TEXT);title.setMaxLines(name.equals(p.optString("name"))?2:Integer.MAX_VALUE);title.setEllipsize(TextUtils.TruncateAt.END);line.addView(title,Ui.grow());
             boolean pending=switching.contains(id);
             TextView toggle=Ui.chip(this,pending?L.t("Updating","更改中"):enabled?L.t("Allowed","已允许"):L.t("Not allowed","未允许"),enabled);
             toggle.setEnabled(!pending&&!busy);toggle.setAlpha(pending?0.5f:1f);

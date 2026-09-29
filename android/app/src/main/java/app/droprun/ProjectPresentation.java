@@ -5,6 +5,21 @@ import java.util.*;
 
 /** Server totals are authoritative; pending work remains distinct until it is acknowledged. */
 final class ProjectPresentation {
+    static List<JSONObject> sharing(JSONArray catalog,List<JSONObject> recent,String selected,String last){
+        Map<String,Integer> rank=new HashMap<>();for(int n=0;n<recent.size();n++)rank.put(recent.get(n).optString("id"),n);
+        if(!last.isEmpty()&&!rank.containsKey(last))rank.put(last,-1);
+        if(!selected.isEmpty())rank.put(selected,-2);
+        List<JSONObject> result=new ArrayList<>();for(int n=0;n<catalog.length();n++){JSONObject project=catalog.optJSONObject(n);if(project!=null)result.add(project);}
+        result.sort(Comparator.comparingInt(p->rank.getOrDefault(p.optString("id"),Integer.MAX_VALUE)));return result;
+    }
+    /** Only ambiguous names need an identity hint. Extend a colliding prefix rather than guessing. */
+    static String label(String id,String name,JSONArray catalog,JSONArray history){
+        Set<String> others=new HashSet<>();String key=name.trim().toLowerCase(Locale.ROOT);
+        for(JSONArray group:new JSONArray[]{catalog,history})for(int n=0;group!=null&&n<group.length();n++){JSONObject project=group.optJSONObject(n);if(project!=null&&!id.equals(project.optString("id"))&&key.equals(project.optString("name").trim().toLowerCase(Locale.ROOT)))others.add(project.optString("id"));}
+        if(others.isEmpty())return name;
+        int length=Math.min(8,id.length());for(String other:others)while(length<id.length()&&other.startsWith(id.substring(0,length)))length++;
+        return name+" · "+id.substring(0,length);
+    }
     static List<JSONObject> merge(JSONArray summaries,JSONArray pending,JSONArray acknowledged){
         Map<String,JSONObject> projects=new LinkedHashMap<>();Set<String> known=new HashSet<>();
         for(int n=0;acknowledged!=null&&n<acknowledged.length();n++)known.add(acknowledged.optJSONObject(n).optString("id"));
