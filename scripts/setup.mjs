@@ -13,26 +13,36 @@ import { provision, setupState, command, redact, wranglerPath } from './setup-co
 import { installMediaTools } from './setup-tools.mjs';
 
 const root = resolve(import.meta.dirname, '..');
-export async function diagnoseCodex({ create = () => new Codex(), timeout = 10000 } = {}) {
+export async function diagnoseCodex({ create = () => new Codex(), timeout = 10000, includeProjects = false } = {}) {
   let client, timer, stage = 'start';
   const result = { installed: false, signedIn: false, projectApi: false, projectCount: 0, ready: false, status: 'missing' };
   try {
     client = create();
-    await Promise.race([
+    const inventory = await Promise.race([
       (async () => {
         await client.start(); result.installed = true;
         stage = 'account';
         const account = await client.call('account/read', {}, timeout);
         result.signedIn = !!account.account;
         stage = 'projects';
-        const page = await client.call('project/list', { limit: 100 }, timeout);
-        result.projectApi = Array.isArray(page.data);
-        result.projectCount = Array.isArray(page.data) ? page.data.length : 0;
-        result.ready = result.projectApi && (result.signedIn || account.requiresOpenaiAuth === false);
-        result.status = !result.projectApi ? 'unsupported' : result.ready ? 'ready' : 'login-required';
+        const projects = [], cursors = new Set(); let cursor;
+        do {
+          const page = await client.call('project/list', { limit: 100, cursor }, timeout);
+          if (!Array.isArray(page.data)) throw new Error('Unsupported project list');
+          projects.push(...page.data); cursor = page.nextCursor;
+          if (cursor && cursors.has(cursor)) throw new Error('Repeated project cursor');
+          if (cursor) cursors.add(cursor);
+        } while (cursor);
+        const ready = result.signedIn || account.requiresOpenaiAuth === false;
+        return { projectApi: true, projectCount: projects.length, ready, status: ready ? 'ready' : 'login-required',
+          ...(includeProjects && ready ? { projects: projects.map(project => {
+            const roots = (project.roots || []).map(root => ({ path: root.path, available: existsSync(root.path) }));
+            return { id: project.id, name: project.name, roots, available: roots.some(root => root.available) };
+          }) } : {}) };
       })(),
       new Promise((_, reject) => { timer = setTimeout(() => reject(new Error('diagnostic-timeout')), timeout); })
     ]);
+    Object.assign(result, inventory);
   } catch (error) {
     result.ready = false;
     result.status = error.message === 'diagnostic-timeout' ? 'timeout' : error.code === 'ENOENT' ? 'missing' : stage === 'start' ? 'app-server-failed' : 'unsupported';
@@ -40,10 +50,10 @@ export async function diagnoseCodex({ create = () => new Codex(), timeout = 1000
   return result;
 }
 
-export async function diagnose(installRoot = root, dataDir = defaultDataDir()) {
+export async function diagnose(installRoot = root, dataDir = defaultDataDir(), { includeProjects = false } = {}) {
   let git = false;
   try { await command('git', ['--version'], { timeout: 10000 }); git = true; } catch {}
-  const codexStatus = await diagnoseCodex();
+  const codexStatus = await diagnoseCodex({ includeProjects });
   let connection = null;
   try { const response = await fetch('http://127.0.0.1:47493', { signal: AbortSignal.timeout(1500) }); connection = await response.json(); } catch {}
   return { node: process.version, git, codex: codexStatus.ready, codexStatus, browser: !!findBrowser({}), wrangler: existsSync(wranglerPath(installRoot)), configured: existsSync(join(dataDir, 'config.json')), connection: connection ? { version: connection.version, online: connection.online, active: !!connection.activeTask, instanceId: connection.instanceId } : null, media: { ytDlp: existsSync(join(dataDir, 'tools/yt-dlp.exe')), ffmpeg: existsSync(join(dataDir, 'tools/ffmpeg.exe')), ffprobe: existsSync(join(dataDir, 'tools/ffprobe.exe')) } };
@@ -84,7 +94,7 @@ export async function serveSetup({ installRoot = root, dataDir = defaultDataDir(
         const saved = await setupState(dataDir);
         return json(res, 200, { ...state, saved: saved ? { name: saved.name, accountId: saved.accountId, completed: saved.completed, relay: saved.relay } : null });
       }
-      if (path === '/api/doctor' && req.method === 'GET') return json(res, 200, await diagnose(installRoot, dataDir));
+      if (path === '/api/doctor' && req.method === 'GET') return json(res, 200, await diagnose(installRoot, dataDir, { includeProjects: true }));
       if (path === '/api/updates' && req.method === 'GET') {
         const current = JSON.parse(await readFile(join(installRoot, 'package.json'), 'utf8')).version;
         const response = await fetch('https://api.github.com/repos/MrMaii/droprun/releases?per_page=5', { headers: { Accept: 'application/vnd.github+json', 'User-Agent': 'DropRun/' + current }, signal: AbortSignal.timeout(15000) });

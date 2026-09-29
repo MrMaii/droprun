@@ -32,6 +32,12 @@ provisioning can resume. Do not change the instance name to recover a failed ste
 retry the original setup first. Cloudflare management credentials belong to setup,
 not the Android app or normal Connector task execution.
 
+In the 0.5.1 candidate, expand **Projects on this computer** after the check to
+match a phone's project ID to its local folders. This read-only list includes all
+project pages and marks missing folders. Open the folder in Codex and check again
+to recover an unavailable project. Folder paths stay in the protected local setup
+page; phone access is still granted separately in the Android app.
+
 Start the Connector from the guide. It runs after Windows sign-in; the computer
 must remain awake and online to execute tasks. An offline computer does not lose
 handoffs already accepted by its Relay.

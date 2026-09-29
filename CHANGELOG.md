@@ -1,6 +1,10 @@
 # Changelog
 
-## 0.5.1 — unreleased Android UX candidate
+## 0.5.1 — unreleased UX candidate
+
+- Windows setup shows a read-only project inventory with IDs, local folders and
+  availability. Complete pagination, bilingual recovery and keyboard access help
+  match same-name phone projects; paths stay in the protected local setup page.
 
 - Share catalogs prioritize all recent projects, including local pending work.
   Same-name projects show distinct short identifiers across selection and history;

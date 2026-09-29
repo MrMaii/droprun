@@ -41,6 +41,8 @@ test('browser setup needs its private session token; no unauthenticated action s
   const url = `http://127.0.0.1:${port}`;
   assert.equal((await fetch(url)).status, 200);
   assert.equal((await fetch(url + '/api/status')).status, 403);
+  assert.equal((await fetch(url + '/api/doctor')).status, 403);
+  assert.equal((await fetch(url + '/api/doctor', { headers: { 'X-DropRun-Setup': token, Origin: 'https://evil.test' } })).status, 403);
   assert.equal((await fetch(url + '/api/login', { method: 'POST', body: '{}' })).status, 403);
   assert.equal((await fetch(url + '/api/status', { headers: { 'X-DropRun-Setup': token, Origin: 'https://evil.test' } })).status, 403);
   const response = await fetch(url + '/api/status', { headers: { 'X-DropRun-Setup': token } });
@@ -56,6 +58,36 @@ test('Codex readiness checks authentication and the project API without returnin
   assert.equal((await diagnoseCodex({ create: () => fake({ account: {} }, {}) })).status, 'unsupported');
   assert.equal((await diagnoseCodex({ create: () => { throw Object.assign(new Error('missing'), { code: 'ENOENT' }); } })).status, 'missing');
   assert.equal((await diagnoseCodex({ create: () => ({ start: () => new Promise(() => {}), close() {} }), timeout: 5 })).status, 'timeout');
+});
+test('local setup inventory includes every page and only project identity and directory availability', async t => {
+  const dir = await fixture(t), missing = join(dir, 'removed');
+  const calls = [];
+  const projects = Array.from({ length: 100 }, (_, n) => ({ id: `project-${n}`, name: 'Studio', roots: [{ path: dir, secret: 'root-secret' }], instructions: 'private-project-notes' }));
+  const create = () => ({ start: async () => {}, close() {}, call: async (method, params) => {
+    if (method === 'account/read') return { account: { email: 'private@example.test' } };
+    calls.push(params);
+    return params.cursor ? { data: [{ id: 'project-last', name: 'Studio', roots: [{ path: missing }] }], nextCursor: null } : { data: projects, nextCursor: 'next-page' };
+  } });
+  const result = await diagnoseCodex({ create, includeProjects: true });
+  assert.equal(result.projectCount, 101); assert.equal(result.ready, true);
+  assert.deepEqual(calls.map(call => call.cursor), [undefined, 'next-page']);
+  assert.deepEqual(result.projects[0], { id: 'project-0', name: 'Studio', roots: [{ path: dir, available: true }], available: true });
+  assert.deepEqual(result.projects.at(-1), { id: 'project-last', name: 'Studio', roots: [{ path: missing, available: false }], available: false });
+  assert.doesNotMatch(JSON.stringify(result), /private@example|root-secret|private-project-notes/);
+  const summary = await diagnoseCodex({ create });
+  assert.equal(summary.projectCount, 101); assert.equal(summary.projects, undefined);
+  assert.ok(!JSON.stringify(summary).includes(dir));
+});
+test('failed or signed-out diagnostics never present a partial project inventory', async () => {
+  const create = signedIn => ({ start: async () => {}, close() {}, call: async (method, params) => {
+    if (method === 'account/read') return { account: signedIn ? {} : null, requiresOpenaiAuth: true };
+    if (params.cursor) throw new Error('second page unavailable');
+    return { data: [{ id: 'first', name: 'Studio', roots: [] }], nextCursor: signedIn ? 'next' : null };
+  } });
+  for (const signedIn of [true, false]) {
+    const result = await diagnoseCodex({ create: () => create(signedIn), includeProjects: true });
+    assert.equal(result.ready, false); assert.equal(result.projects, undefined);
+  }
 });
 test('Cloudflare setup resumes resource creation and keeps credentials off disk in plaintext', async t => {
   const root = await fixture(t), dataDir = join(root, 'data');

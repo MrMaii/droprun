@@ -45,6 +45,9 @@ in [0.5.0](../releases/0.5.0.md).
 - Share selection prioritizes recent server and local activity; identical names
   remain visibly distinguishable without merging their IDs, counts or permissions.
   Unavailable projects explain recovery and cannot create a new handoff.
+- Windows setup lets users match phone project IDs to local folders in a read-only
+  inventory. Empty, unavailable and failed checks have clear recovery; partial
+  inventories must not be presented as complete. Paths remain local.
 
 
 状态：目标需求，含已采纳的 0.3.0 增量  

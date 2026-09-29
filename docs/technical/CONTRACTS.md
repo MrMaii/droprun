@@ -28,6 +28,13 @@ plan-version, per-command approval and report-evidence checks remain in force.
   historical ALTER migrations to the same new database.
 - Runtime Connector tokens cannot invoke admin migration, release or cleanup
   controls. Admin endpoints require the separate ADMIN_HASH; setup uses owner CLI.
+- Local setup `GET /api/doctor` requires the same loopback/Host/Origin checks and
+  private `X-DropRun-Setup` session token as other setup APIs. A ready Codex check
+  includes the complete paginated `codexStatus.projects` inventory: `id`, `name`,
+  `roots: [{path, available}]`, and aggregate `available` (any root exists).
+  Partial/failed or signed-out checks omit the inventory. Account details and
+  project instructions are never returned. CLI/deployment diagnostics omit paths;
+  normal Relay project synchronization still sends only identity and availability.
 - `GET /device/retention` returns rawDays/artifactDays. Owners configure
   RAW_RETENTION_DAYS (7) and ARTIFACT_RETENTION_DAYS (30), bounds 1–365, by redeploying
   their configuration. The phone reads policy; it does not silently edit it.

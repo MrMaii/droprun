@@ -1,7 +1,7 @@
 # Current Handoff
 
-Updated 2026-09-29. Public self-hosted preview remains online; Android 0.5.1 is a
-local signed UX candidate. **Do not claim stable/marketing readiness.**
+Updated 2026-09-29. Public self-hosted preview remains online; Android and Windows
+0.5.1 are local UX candidates. **Do not claim stable/marketing readiness.**
 
 ## Current user scope
 
@@ -13,21 +13,26 @@ posting is authorized. New campaign assets remain deferred until the agreed gate
 
 ## Completed this pass
 
-- Three native regressions reproduced share order ignoring older recent projects,
-  identical same-name labels, and unavailable projects entering the editor.
-- Share targets now use all cached project summaries plus deduplicated local
-  pending timestamps. Current choice stays first; last-used without summary is a
-  fallback. Unused projects retain catalog order; removed targets stay excluded.
-- Identical names now carry distinguishable ID prefixes, extended on collision,
-  across home/share/authorization/history/task UI. Raw names, IDs and totals stay
-  unchanged. Batched rows reuse parsed catalog data.
-- Unavailable targets explain recovery, remain outside the editor and are checked
-  again before local share persistence. Material/draft state is retained.
-- A 200% screenshot revealed a truncated generic error title. The shorter
-  Project unavailable title and recovery message passed targeted verification.
-- The suite now has 24 native cases and 11 JVM cases. Runtime/font logs and actual
-  screenshots are in the release record below. Final APK builds, both lint
-  variants and stable signer verification pass. Local candidate refreshed.
+- Windows setup now exposes a read-only local project inventory: full IDs, local
+  root paths and availability. This closes the phone's same-name identity lookup.
+- Codex diagnostics now traverse all pages, not only the first 100 projects.
+  Failed/partial or signed-out checks do not expose an inventory. Account details
+  and project instructions stay excluded; CLI/default diagnostics remain path-free.
+- The inventory remains behind the existing loopback/Host/Origin/session boundary.
+  Relay synchronization remains unchanged; no local root paths are sent to it.
+- Bilingual loading, empty, unavailable and error recovery states are implemented.
+  Checks clear stale rows; diagnostic errors persist across ordinary status polls.
+- 13 setup contract tests pass. Full Node regression: 194/194, no skips. The real
+  browser fixture covers 101 rows, long paths, safe text rendering, keyboard
+  disclosure/focus, narrow layout, 200% zoom, dark/reduced motion and retry states.
+- Windows candidate installer and portable ZIP built successfully. Package hashes
+  and verification are recorded in the release record. Public release and website
+  remain unchanged.
+
+The preceding Android pass (`ac5d284`) fixed recent ordering, same-name identity
+labels and unavailable-target guards. Its 24 native cases and 11 JVM cases pass
+with exact runtime/font evidence in the release record. The signed APK is unchanged
+in this Windows-only pass.
 
 The previous pass (`f486599`) preserved share search/catalog expansion across
 recreation, made permission surfaces scroll, contained keyboard focus, and exposed
@@ -44,13 +49,14 @@ Earlier local work remains: quieter project cards, grouped settings, result-firs
 reports, shared press/navigation/disclosure motion, draft restoration, explicit
 note discard, 200% empty-home guidance, keyboard card activation, and share focus.
 Foreign outbox records are rejected without retagging. The test-only Miniflare
-framing fix passed 191/191 Node tests and a repeated 28/28 relevant subset; Android
-changes in this pass do not change Node code. Earlier local commits: `6a96bb4`,
+framing fix passed 191/191 Node tests and a repeated 28/28 relevant subset; current
+Node validation is recorded above. Earlier local commits: `6a96bb4`,
 `767651a`, `5abb672`.
 
 Canonical evidence and current artifact hash:
 [0.5.1 UX validation](../../docs/releases/0.5.1-ux.md).
 APK: `.local/releases/ux-polish-sep29/DropRun-0.5.1-android-candidate.apk`.
+Windows installer/ZIP: `.local/releases/ux-polish-sep29-windows/`.
 UI captures: `.local/ui-public/` and `.local/ux-cloud-check/`.
 Fixtures are demonstration data, never evidence of actual agent execution.
 
@@ -93,13 +99,14 @@ Signing material remains ignored. Git author: Thomas Deng
 
 ## Single recommended next action
 
-Close the local project-identity loop in Windows setup: its current doctor UI only
-shows project count, so users cannot match a phone's same-name ID to a local folder.
-Inspect the existing protected doctor/project data, then add a read-only inventory
-and verify with synthetic local UI data. Keep paths local and real submissions disabled.
+Verify Windows setup action recovery locally: media-tool/update controls currently
+lack consistent pending state, and ordinary status polling can erase action errors.
+Reproduce with synthetic local responses, then fix feedback without starting real
+deployment, installation, Connector execution or task submission.
 
 ## Files involved
 
-ProjectPresentation/Store and affected Android views, native and JVM tests;
-PRD, contracts, changelog, UI matrix, release record and this handoff. No Node
-runtime change, public release, website deployment or social post in this pass.
+scripts/setup.mjs, installer/setup.html/setup-ui.js/setup.css, setup contract and
+browser tests; PRD, contracts, bilingual self-hosting guides, changelog, release
+record and this handoff. Android source/artifact unchanged. No public deployment
+or social posting in this pass.
