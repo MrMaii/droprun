@@ -250,7 +250,13 @@ public final class Ui {
         view.setPadding(dp(context,12),dp(context,10),dp(context,12),dp(context,10));view.setMinHeight(dp(context,48));
         styleChip(view,selected);bindPress(view);view.setFocusable(true);view.setClickable(true);return view;
     }
-    public static void styleChip(TextView view,boolean selected){Context context=view.getContext();view.setTextColor(selected?ACCENT:TEXT);view.setBackground(outlined(context,selected?LIME_SOFT:SURFACE_2,selected?LIME_LINE:LINE_STRONG,RADIUS,1));view.setSelected(selected);}
+    public static void styleChip(TextView view,boolean selected){Context context=view.getContext();view.setTextColor(selected?ACCENT:TEXT);view.setBackground(choiceSurface(context,selected?LIME_SOFT:SURFACE_2,selected?LIME_LINE:LINE_STRONG,RADIUS));view.setSelected(selected);}
+    private static StateListDrawable choiceSurface(Context context,int fill,int stroke,int radius){
+        StateListDrawable states=new StateListDrawable();
+        states.addState(new int[]{-android.R.attr.state_enabled},outlined(context,fill,stroke,radius,stroke==0?0:1));
+        states.addState(new int[]{android.R.attr.state_focused},outlined(context,fill,ACCENT,radius,2));
+        states.addState(new int[]{},outlined(context,fill,stroke,radius,stroke==0?0:1));return states;
+    }
     /** Wrapping chip container built from rows. */
     public static LinearLayout chipGroup(Context context){return vertical(context);}
     public static void addChip(LinearLayout group,View chip,int perRow){
@@ -265,7 +271,7 @@ public final class Ui {
         for(int n=0;n<labels.size();n++){
             final int index=n;TextView item=new TextView(context);item.setText(labels.get(n));item.setTextSize(13);item.setTypeface(medium());item.setGravity(Gravity.CENTER);
             item.setPadding(dp(context,6),dp(context,10),dp(context,6),dp(context,10));item.setMinHeight(dp(context,48));
-            boolean on=n==selected;item.setSelected(on);item.setTextColor(on?ACCENT:MUTED);item.setBackground(on?outlined(context,SURFACE,LINE_STRONG,14,1):null);
+            boolean on=n==selected;item.setSelected(on);item.setTextColor(on?ACCENT:MUTED);item.setBackground(choiceSurface(context,on?SURFACE:Color.TRANSPARENT,on?LINE_STRONG:0,14));
             item.setClickable(true);item.setFocusable(true);item.setContentDescription(labels.get(n)+(on?L.t(", selected","，已选择"):""));
             item.setOnClickListener(v->onSelect.accept(index));bindPress(item);
             LinearLayout.LayoutParams params=grow();if(n>0)params.setMarginStart(dp(context,3));group.addView(item,params);
@@ -274,7 +280,7 @@ public final class Ui {
     }
     /** Option row with title, optional detail and a trailing check when selected (GPT-style picker). */
     public static LinearLayout optionRow(Context context,CharSequence title,CharSequence detail,boolean selected){
-        LinearLayout row=row(context);row.setPadding(dp(context,14),dp(context,11),dp(context,12),dp(context,11));row.setBackground(outlined(context,selected?LIME_SOFT:SURFACE_2,selected?LIME_LINE:LINE,RADIUS,1));
+        LinearLayout row=row(context);row.setPadding(dp(context,14),dp(context,11),dp(context,12),dp(context,11));row.setBackground(choiceSurface(context,selected?LIME_SOFT:SURFACE_2,selected?LIME_LINE:LINE,RADIUS));
         LinearLayout words=vertical(context);TextView heading=text(context,title,15,selected?ACCENT:TEXT);heading.setTypeface(medium());heading.setPadding(0,0,0,0);words.addView(heading);
         if(detail!=null&&detail.length()>0){TextView sub=text(context,detail,12,MUTED);sub.setPadding(0,dp(context,2),0,0);words.addView(sub);}
         row.addView(words,grow());

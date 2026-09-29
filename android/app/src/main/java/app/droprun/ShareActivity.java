@@ -351,21 +351,32 @@ public class ShareActivity extends StyledActivity {
         panelAnimator=animator;animator.start();
     }
     void renderPanel(){
+        View previous=panel.findFocus();Object focusTag=previous!=null&&!previous.isInTouchMode()?previous.getTag():null;
         panel.removeAllViews();JSONArray catalog=store.models();
         TextView modelLabel=Ui.label(this,L.t("Model","模型"));modelLabel.setPadding(0,dp(6),0,dp(6));panel.addView(modelLabel);
         for(int n=0;n<catalog.length();n++){
             JSONObject m=catalog.optJSONObject(n);if(m==null)continue;String id=m.optString("id");
             LinearLayout row=Ui.optionRow(this,m.optString("displayName",id),m.optBoolean("isDefault")?L.t("Default on your computer","电脑上的默认模型"):null,id.equals(model));
+            row.setTag("model:"+id);
             row.setOnClickListener(v->{model=id;effort=store.defaultEffort(id);renderPanel();updateGauge();});panel.addView(row,Ui.margins(this,0,6));
         }
         JSONObject chosen=store.model(model);JSONArray efforts=chosen==null?null:chosen.optJSONArray("efforts");
-        if(efforts==null||efforts.length()==0)return;
+        if(efforts==null||efforts.length()==0){restorePanelFocus(focusTag);return;}
         List<String> labels=new ArrayList<>();for(int n=0;n<efforts.length();n++)labels.add(efforts.optString(n));
         panel.addView(Ui.label(this,L.t("Reasoning effort","推理强度")));
-        panel.addView(Ui.segmented(this,labels,labels.indexOf(effort),index->{effort=labels.get(index);renderPanel();updateGauge();}),Ui.fill());
+        LinearLayout choices=Ui.segmented(this,labels,labels.indexOf(effort),index->{effort=labels.get(index);renderPanel();updateGauge();});
+        for(int n=0;n<labels.size();n++)choices.getChildAt(n).setTag("effort:"+labels.get(n));
+        panel.addView(choices,Ui.fill());
         StringBuilder hint=new StringBuilder();
         for(String label:labels){String meaning=effortHint(label);if(meaning.isEmpty())continue;if(hint.length()>0)hint.append(" · ");hint.append(label).append(' ').append(meaning);}
         if(hint.length()>0)panel.addView(Ui.caption(this,hint.toString()),Ui.margins(this,6,0));
+        restorePanelFocus(focusTag);
+    }
+    void restorePanelFocus(Object tag){
+        if(tag==null)return;View replacement=panel.findViewWithTag(tag);
+        if(replacement!=null&&replacement.requestFocus())replacement.post(()->{
+            if(replacement.hasFocus())replacement.requestRectangleOnScreen(new android.graphics.Rect(0,0,replacement.getWidth(),replacement.getHeight()),true);
+        });
     }
     static String effortHint(String id){
         return switch(id){case "minimal"->L.t("Fastest","最快");case "low"->L.t("Fast","快");case "medium"->L.t("Balanced","均衡");case "high"->L.t("Thorough","深入");case "xhigh"->L.t("Most thorough","最深");default->"";};

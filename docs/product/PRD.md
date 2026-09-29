@@ -44,8 +44,8 @@ in [0.5.0](../releases/0.5.0.md).
   disclosure changes have feedback with a motion-off path. Destructive or
   permission-expanding decisions require confirmation; ordinary selections show
   their selected value without an extra confirmation dialog.
-  Shared action and icon buttons show a distinct keyboard-focus outline in both
-  themes, without changing their layout or activating the action.
+  Shared actions, icons, chips and model/effort options show a distinct keyboard-
+  focus outline in both themes, without changing layout or activating the action.
 - Scrolling text stays outside system bars. Decision errors remain visible after
   polling; expired cached approvals and previews offer accurate next steps.
   Data settings show the last known policy for the selected Relay, distinguish
@@ -53,6 +53,9 @@ in [0.5.0](../releases/0.5.0.md).
 - Share search and catalog expansion survive recreation. Permission explanations
   and actions remain reachable at 200% font; keyboard focus stays inside the
   open dialog. Failed permission changes remain retryable without advancing.
+  Selecting a model or effort in the share editor preserves keyboard focus on
+  that option and keeps it visible. These choices do not change Settings defaults
+  or create a handoff before Send.
 - Share selection prioritizes recent server and local activity; identical names
   remain visibly distinguishable without merging their IDs, counts or permissions.
   Unavailable projects explain recovery and cannot create a new handoff.

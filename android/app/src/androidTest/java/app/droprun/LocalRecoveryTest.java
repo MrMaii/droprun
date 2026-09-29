@@ -738,6 +738,33 @@ public class LocalRecoveryTest {
         }
     }
 
+    @Test public void shareModelAndEffortChoicesKeepKeyboardFocus()throws Exception {
+        checkShareChoiceFocus("light");checkShareChoiceFocus("dark");
+    }
+    void checkShareChoiceFocus(String appearance)throws Exception {
+        android.app.Instrumentation instrumentation=InstrumentationRegistry.getInstrumentation();
+        Intent share=new Intent(context,DemoShareActivity.class).setAction(Intent.ACTION_SEND).setType("text/plain").putExtra("appearance",appearance);
+        try(ActivityScenario<DemoShareActivity> scenario=ActivityScenario.launch(share)){
+            captureUi("share-choice-start-local");
+            scenario.onActivity(activity->{try{
+                JSONObject data=activity.store.projectsData();data.getJSONArray("models").put(new JSONObject().put("id","local-second-model").put("displayName","Local second model").put("defaultEffort","low").put("efforts",new JSONArray().put("low").put("high")));
+                activity.store.prefs.edit().putString("projects",data.toString()).commit();activity.store.saveDefaults("example-model","medium");activity.model="example-model";activity.effort="medium";activity.selected="demo-studio";activity.go(1,1);activity.togglePanel();
+            }catch(Exception error){throw new AssertionError(error);}});
+            captureUi("share-choice-panel-local");instrumentation.sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_TAB);
+            for(String[] choice:new String[][]{{"Local second model","Local second model, selected"},{"high","high, selected"}}){
+                scenario.onActivity(activity->focusDescription(activity,choice[0]));
+                instrumentation.sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_ENTER);captureUi("share-choice-result-"+appearance);
+                scenario.onActivity(activity->{
+                    android.view.View focused=activity.getCurrentFocus();assertNotNull(focused);
+                    assertEquals("A choice must retain focus on its replacement control",choice[1],String.valueOf(focused.getContentDescription()));
+                    android.graphics.Rect visible=new android.graphics.Rect();assertTrue(focused.getGlobalVisibleRect(visible));assertTrue("Selected control stays fully visible",visible.height()>=focused.getHeight());
+                    assertEquals("local-second-model",activity.model);assertEquals(0,activity.store.pending().length());
+                });
+            }
+            scenario.onActivity(activity->{assertEquals("high",activity.effort);assertEquals("example-model",activity.store.defaultModel());});
+        }
+    }
+
     @Test public void shareKeyboardSkipsDecorativeAndDuplicateStops() {
         android.app.Instrumentation instrumentation=InstrumentationRegistry.getInstrumentation();
         Intent share=new Intent(context,DemoShareActivity.class).setAction(Intent.ACTION_SEND).setType("text/plain");
