@@ -60,7 +60,10 @@ public class MainActivity extends StyledActivity {
         notice.setText(line);notice.setVisibility(line.isEmpty()?View.GONE:View.VISIBLE);
         boolean notificationNotice=error.isEmpty()&&store.computerOnline()&&receiver.isEmpty()&&!TaskNotifications.allowed(this);
         notice.setOnClickListener(v->{if(notificationNotice){if(Build.VERSION.SDK_INT>=33&&checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS)!=PackageManager.PERMISSION_GRANTED)requestPermissions(new String[]{android.Manifest.permission.POST_NOTIFICATIONS},10);else startActivity(new Intent(android.provider.Settings.ACTION_APP_NOTIFICATION_SETTINGS).putExtra(android.provider.Settings.EXTRA_APP_PACKAGE,getPackageName()));}else load();});
+        int first=list.getFirstVisiblePosition(),offset=list.getChildCount()>0?list.getChildAt(0).getTop()-list.getPaddingTop():0;
+        String anchor=list.isInTouchMode()&&list.getChildCount()>0&&first<items.size()?items.get(first).optString("id"):null;
         items.clear();items.addAll(ProjectPresentation.merge(store.activity(),store.pending(),store.tasks()));adapter.notifyDataSetChanged();
+        if(anchor!=null)for(int n=0;n<items.size();n++)if(anchor.equals(items.get(n).optString("id"))){list.setSelectionFromTop(n,offset);break;}
     }
     int dp(int value){return Ui.dp(this,value);}
     static String text(JSONObject object,String key){return object.isNull(key)?"":object.optString(key);}

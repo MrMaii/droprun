@@ -68,6 +68,8 @@ public class LocalRecoveryTest {
     }
     @Test public void homeRefreshAndPendingChangesKeepReadingPosition()throws Exception{
         try(ActivityScenario<DemoHomeActivity> scenario=ActivityScenario.launch(DemoHomeActivity.class)){
+            boolean[] wasTouch={false};scenario.onActivity(activity->wasTouch[0]=activity.list.isInTouchMode());
+            try{for(boolean touch:new boolean[]{true,false}){InstrumentationRegistry.getInstrumentation().setInTouchMode(touch);
             seedHomeList(scenario);String[] before=homePosition(scenario);
             scenario.onActivity(activity->{try{JSONArray projects=activity.store.activity();projects.getJSONObject(40).put("active_count",1);activity.store.prefs.edit().putString("activity",new JSONObject().put("projects",projects).toString()).commit();activity.show();}catch(Exception error){throw new AssertionError(error);}});
             assertArrayEquals("Status refresh must retain the visible project and offset",before,homePosition(scenario));
@@ -75,6 +77,7 @@ public class LocalRecoveryTest {
             assertArrayEquals("A new pending project must not move the reader",before,homePosition(scenario));scenario.onActivity(activity->assertEquals(81,activity.items.size()));
             scenario.onActivity(activity->{try{activity.store.cancelPending(id);activity.show();}catch(Exception error){throw new AssertionError(error);}});
             assertArrayEquals(before,homePosition(scenario));scenario.onActivity(activity->{assertEquals(80,activity.items.size());assertEquals(1,activity.items.get(activity.list.getFirstVisiblePosition()).optInt("active_count"));});
+            }}finally{InstrumentationRegistry.getInstrumentation().setInTouchMode(wasTouch[0]);}
         }
     }
     @Test public void homeRecreationRestoresProjectAndOffset(){
@@ -141,11 +144,14 @@ public class LocalRecoveryTest {
     }
     @Test public void historyPendingChangesAboveViewportDoNotMoveReadingPosition()throws Exception{
         seedPagedHistory();try(ActivityScenario<ProjectHistoryActivity> scenario=historyScenario()){
+            boolean[] wasTouch={false};scenario.onActivity(activity->wasTouch[0]=activity.list.isInTouchMode());
+            try{for(boolean touch:new boolean[]{true,false}){InstrumentationRegistry.getInstrumentation().setInTouchMode(touch);
             scrollHistory(scenario);String[] before=historyPosition(scenario);String id=UUID.randomUUID().toString();
             scenario.onActivity(activity->{try{activity.store.save(new JSONObject().put("id",id).put("projectId","demo-studio").put("content","Synthetic pending history item"));activity.refresh.run();}catch(Exception error){throw new AssertionError(error);}});
             assertArrayEquals("A new pending item above the viewport must not move the reader",before,historyPosition(scenario));
             scenario.onActivity(activity->{try{assertEquals(241,activity.rows.size());activity.store.cancelPending(id);activity.refresh.run();}catch(Exception error){throw new AssertionError(error);}});
             assertArrayEquals("Removing the pending item must not move the reader",before,historyPosition(scenario));
+            }}finally{InstrumentationRegistry.getInstrumentation().setInTouchMode(wasTouch[0]);}
         }
     }
     @Test public void historyRecreationRestoresOlderPageAndOffset()throws Exception{
@@ -320,8 +326,9 @@ public class LocalRecoveryTest {
         DemoDeliverablesActivity.reset();String[] cached={null};
         try(ActivityScenario<DemoDeliverablesActivity> scenario=ActivityScenario.launch(DemoDeliverablesActivity.class)){
             openLocalDelivery(scenario);scenario.onActivity(activity->{cached[0]=activity.currentFile.getPath();activity.onActivityResult(20,android.app.Activity.RESULT_CANCELED,null);assertNotNull(findText(activity.page,"Save to phone"));assertTrue(activity.currentFile.isFile());});
+            int readsBeforeRestore=DemoDeliverablesActivity.reads.get();assertTrue("Initial preview requires a file listing",readsBeforeRestore>0);
             scenario.recreate();awaitDelivery(scenario,DemoDeliverablesActivity.CONTENT);
-            scenario.onActivity(activity->{assertEquals(cached[0],activity.currentFile.getPath());assertNotNull(findText(activity.page,"Save to phone"));});assertEquals(1,DemoDeliverablesActivity.reads.get());
+            scenario.onActivity(activity->{assertEquals(cached[0],activity.currentFile.getPath());assertNotNull(findText(activity.page,"Save to phone"));});assertEquals("Restoring the verified preview must not reload the file list",readsBeforeRestore,DemoDeliverablesActivity.reads.get());
             InstrumentationRegistry.getInstrumentation().waitForIdleSync();
             scenario.onActivity(activity->{android.widget.TextView save=findText(activity.page,"Save to phone");save.requestRectangleOnScreen(new android.graphics.Rect(0,0,save.getWidth(),save.getHeight()),true);});
             captureUi("delivery-restored-local");

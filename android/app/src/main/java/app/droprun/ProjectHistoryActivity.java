@@ -42,11 +42,16 @@ public class ProjectHistoryActivity extends StyledActivity {
             runOnUiThread(()->{busy=false;if(isDestroyed()||!foreground)return;if(message.isEmpty()&&append)paged=true;notice.setText(message);notice.setVisibility(message.isEmpty()?View.GONE:View.VISIBLE);more.setEnabled(true);render();handler.postDelayed(refresh,7000);});});
     }
     void render(){
-        JSONObject history=store.history(projectId);JSONArray tasks=history.optJSONArray("tasks"),pending=store.pending();String next=history.toString()+pending+store.tasks();if(next.equals(snapshot))return;snapshot=next;cursor=MainActivity.text(history,"nextCursor");rows.clear();pendingIds.clear();Set<String> known=new HashSet<>();
+        JSONObject history=store.history(projectId);JSONArray tasks=history.optJSONArray("tasks"),pending=store.pending();String next=history.toString()+pending+store.tasks();if(next.equals(snapshot))return;snapshot=next;cursor=MainActivity.text(history,"nextCursor");
+        int first=list.getFirstVisiblePosition(),offset=list.getChildCount()>0?list.getChildAt(0).getTop()-list.getPaddingTop():0;
+        String anchor=list.isInTouchMode()&&list.getChildCount()>0&&first<rows.size()?rows.get(first).optString("id"):null;
+        rows.clear();pendingIds.clear();Set<String> known=new HashSet<>();
         for(int n=0;tasks!=null&&n<tasks.length();n++)known.add(tasks.optJSONObject(n).optString("id"));
         for(int n=0;n<pending.length();n++){JSONObject task=pending.optJSONObject(n);if(!projectId.equals(task.optString("projectId"))||known.contains(task.optString("id")))continue;rows.add(task);pendingIds.add(task.optString("id"));}
         for(int n=0;tasks!=null&&n<tasks.length();n++){JSONObject task=tasks.optJSONObject(n),current=store.task(task.optString("id"));rows.add(current!=null&&current.optLong("updated_at")>=task.optLong("updated_at")?current:task);}
-        adapter.notifyDataSetChanged();more.setVisibility(cursor.isEmpty()?View.GONE:View.VISIBLE);empty.setVisibility(rows.isEmpty()?View.VISIBLE:View.GONE);list.setVisibility(rows.isEmpty()?View.GONE:View.VISIBLE);if(restoredScroll!=null){list.onRestoreInstanceState(restoredScroll);restoredScroll=null;}
+        adapter.notifyDataSetChanged();more.setVisibility(cursor.isEmpty()?View.GONE:View.VISIBLE);empty.setVisibility(rows.isEmpty()?View.VISIBLE:View.GONE);list.setVisibility(rows.isEmpty()?View.GONE:View.VISIBLE);
+        if(restoredScroll!=null){list.onRestoreInstanceState(restoredScroll);restoredScroll=null;}
+        else if(anchor!=null)for(int n=0;n<rows.size();n++)if(anchor.equals(rows.get(n).optString("id"))){list.setSelectionFromTop(n,offset);break;}
     }
     void removeSaved(JSONObject task){
         new AlertDialog.Builder(this).setTitle(L.t("Remove this saved copy?","移除这份已保存副本？")).setMessage(L.t("This removes the phone's retry copy. If the Relay already received it, work may continue on your computer; check the online history to stop that task.","这会移除手机上的重试副本。如果中转服务已收到任务，电脑可能仍在工作；请联网查看历史并停止相应任务。" )).setNegativeButton(L.t("Keep","保留"),null).setPositiveButton(L.t("Remove saved copy","移除已保存副本"),(d,w)->io.execute(()->{try{store.cancelPending(task.optString("id"));runOnUiThread(()->{if(isDestroyed())return;snapshot="";render();});}catch(Exception e){runOnUiThread(()->{notice.setText(e.getMessage());notice.setVisibility(View.VISIBLE);});}})).show();

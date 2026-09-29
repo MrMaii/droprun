@@ -14,6 +14,8 @@ in [0.5.0](../releases/0.5.0.md).
   Home contains Recent handoffs and settings, with only used or pending projects.
   Returning to Home or recreating it after an appearance change preserves the
   visible project and reading offset; routine updates do not reset the list.
+  Inserting/removing pending entries preserves the record and offset in both
+  touch and keyboard mode, with the reading position captured before data changes.
   Settings recreation preserves scroll position and expanded project access.
   Keyboard users keep focus on the appearance, language, model or effort control
   they just changed, with that control visible. Cancel preserves the selected
