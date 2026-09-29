@@ -11,5 +11,17 @@ export class Miniflare extends WorkerRuntime {
       options = { ...rest, modules: [scriptPath, ...siblings.map(name => join(dirname(scriptPath), name)).filter(path => path.replaceAll('\\', '/') !== scriptPath.replaceAll('\\', '/'))].map(path => ({ type: 'ESModule', path })) };
     }
     super(convertV4MiniflareOptions(options));
+    const dispatch=this.dispatchFetch;
+    this.dispatchFetch=(input,init)=>{
+      // Known string bodies need explicit framing: an early 4xx with an unread
+      // chunked body can reset workerd's local connection on Windows. Do not
+      // retry mutations or consume authentication failures inside the Worker.
+      if(typeof init?.body==='string'){
+        const headers=new Headers(init.headers);
+        if(!headers.has('Content-Length'))headers.set('Content-Length',String(Buffer.byteLength(init.body)));
+        init={...init,headers};
+      }
+      return dispatch(input,init);
+    };
   }
 }
