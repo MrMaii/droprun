@@ -1,0 +1,161 @@
+{
+  "checkedAt": "2026-09-30T03:21:52.197Z",
+  "authenticated": false,
+  "localHead": "e0bf1161908890c8fae442914f92b19e2ffb5c9d",
+  "localCandidateVersion": "0.5.1",
+  "publicCommit": "1fc878f4a8025566ba2240bd7e5153799ac459f2",
+  "publicSourceVersion": "0.5.0",
+  "localCommitsAhead": 33,
+  "repository": {
+    "private": false,
+    "defaultBranch": "main",
+    "visibility": "public",
+    "url": "https://github.com/MrMaii/droprun"
+  },
+  "pages": [
+    {
+      "url": "https://droprun.dengmaizi0802.chatgpt.site/",
+      "status": 200,
+      "title": "DropRun — Give inspiration a next step.",
+      "documentTitle": null,
+      "previewLabel": true
+    },
+    {
+      "url": "https://droprun.dengmaizi0802.chatgpt.site/zh/",
+      "status": 200,
+      "title": "DropRun — 你转发，它开工。",
+      "documentTitle": null,
+      "previewLabel": true
+    },
+    {
+      "url": "https://raw.githubusercontent.com/MrMaii/droprun/main/docs/technical/SELF_HOSTING.md",
+      "status": 200,
+      "title": null,
+      "documentTitle": "# Self-host DropRun",
+      "previewLabel": null
+    },
+    {
+      "url": "https://raw.githubusercontent.com/MrMaii/droprun/main/docs/technical/SELF_HOSTING.zh-CN.md",
+      "status": 200,
+      "title": null,
+      "documentTitle": "# 自部署 DropRun",
+      "previewLabel": null
+    }
+  ],
+  "release": "https://github.com/MrMaii/droprun/releases/tag/v0.5.0-rc.1",
+  "prerelease": true,
+  "assets": [
+    {
+      "name": "DropRun-0.5.0-android.apk",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.0-rc.1/DropRun-0.5.0-android.apk",
+      "status": 200,
+      "bytes": 1651356,
+      "sha256": "551d22ef41e3ab48c134b015b9966553c885af5d858d3275ee92d720f9659c7e",
+      "apiDigestMatches": true,
+      "bytesMatch": true,
+      "releaseChecksumMatches": true
+    },
+    {
+      "name": "DropRun-0.5.0-launch-kit.zip",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.0-rc.1/DropRun-0.5.0-launch-kit.zip",
+      "status": 200,
+      "bytes": 2262873,
+      "sha256": "150c284fc7640a29ef1a6b4b2d8406a170aba25f4c109e667a20735884107e7e",
+      "apiDigestMatches": true,
+      "bytesMatch": true,
+      "releaseChecksumMatches": true
+    },
+    {
+      "name": "DropRun-0.5.0-windows-x64-setup.exe",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.0-rc.1/DropRun-0.5.0-windows-x64-setup.exe",
+      "status": 200,
+      "bytes": 76561719,
+      "sha256": "1593484e3a5fc02c1925d4adbda96be11d236cd0fb36c31bcc07a70f32f22c25",
+      "apiDigestMatches": true,
+      "bytesMatch": true,
+      "releaseChecksumMatches": true
+    },
+    {
+      "name": "DropRun-0.5.0-windows-x64.zip",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.0-rc.1/DropRun-0.5.0-windows-x64.zip",
+      "status": 200,
+      "bytes": 111342939,
+      "sha256": "7e29ea11226898b604b366114d1e2ea1a105cd4f691c8bd7cd14f3525e2408fa",
+      "apiDigestMatches": true,
+      "bytesMatch": true,
+      "releaseChecksumMatches": true
+    },
+    {
+      "name": "SHA256SUMS.txt",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.0-rc.1/SHA256SUMS.txt",
+      "status": 200,
+      "bytes": 389,
+      "sha256": "cd0654415c5021cb37a99fd8d0873d3364baba3081768a91f08dd3c8b91e94a8",
+      "apiDigestMatches": true,
+      "bytesMatch": true,
+      "releaseChecksumMatches": null
+    }
+  ],
+  "resources": [
+    {
+      "url": "https://droprun.dengmaizi0802.chatgpt.site/styles.css",
+      "status": 200,
+      "contentType": "text/css",
+      "bytes": null
+    },
+    {
+      "url": "https://droprun.dengmaizi0802.chatgpt.site/app.js",
+      "status": 200,
+      "contentType": "text/javascript",
+      "bytes": null
+    },
+    {
+      "url": "https://droprun.dengmaizi0802.chatgpt.site/brand-logo.png",
+      "status": 200,
+      "contentType": "image/png",
+      "bytes": null
+    },
+    {
+      "url": "https://droprun.dengmaizi0802.chatgpt.site/media/home.png",
+      "status": 200,
+      "contentType": "image/png",
+      "bytes": null
+    },
+    {
+      "url": "https://droprun.dengmaizi0802.chatgpt.site/media/home-zh.png",
+      "status": 200,
+      "contentType": "image/png",
+      "bytes": null
+    },
+    {
+      "url": "https://droprun.dengmaizi0802.chatgpt.site/media/settings.png",
+      "status": 200,
+      "contentType": "image/png",
+      "bytes": null
+    },
+    {
+      "url": "https://droprun.dengmaizi0802.chatgpt.site/media/demo.mp4",
+      "status": 200,
+      "contentType": "video/mp4",
+      "bytes": null
+    },
+    {
+      "url": "https://droprun.dengmaizi0802.chatgpt.site/media/demo-en.vtt",
+      "status": 200,
+      "contentType": "text/vtt",
+      "bytes": null
+    },
+    {
+      "url": "https://droprun.dengmaizi0802.chatgpt.site/media/demo-zh.vtt",
+      "status": 200,
+      "contentType": "text/vtt",
+      "bytes": null
+    },
+    {
+      "url": "https://droprun.dengmaizi0802.chatgpt.site/media/social.png",
+      "status": 200,
+      "contentType": "image/png",
+      "bytes": null
+    }
+  ]
+}
