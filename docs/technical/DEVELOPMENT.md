@@ -31,7 +31,9 @@ the APK, matching committed Android source ZIP, licenses, certificate/source/fil
 metadata in `BUILD-MANIFEST.json`, and `SHA256SUMS`. Distribute these together.
 The source ZIP includes the Gradle wrapper and Android project; it excludes local
 SDKs, signing material and build outputs. Packaging does not establish acceptance
-or publish a release. `tests/android-package.test.mjs` checks export failures with
+or publish a release. Source export follows committed LF/CRLF attributes rather
+than the build machine's `core.autocrlf` setting.
+`tests/android-package.test.mjs` checks export failures with
 fake compiler/signer tools; actual signing must also pass on the release machine.
 
 The Android application, local Connector and private Relay are independent

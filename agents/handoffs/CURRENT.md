@@ -3,7 +3,8 @@
 Updated 2026-09-29. Public self-hosted preview remains online; stable release and
 marketing readiness remain unproven. Local candidate now includes recoverable
 shares (commit45f71a2) and the verified keyboard-history anchor fix (c0a7969).
-This pass investigated retained ANR evidence; no runtime or artifact changed.
+This pass fixed Android distribution packaging and verified a signed export with
+source/notices/checksums. The APK bytes and Android runtime remain unchanged.
 
 ## Current authorization
 
@@ -21,8 +22,9 @@ fixture origin, back up its preferences, insert240 synthetic cached tasks and op
 MainActivity. The user explicitly answered “允许这项本地恢复验证”; the same command
 was retried once with that authorization and rejected again, only `blocked by policy`.
 Do not ask again or route the rejected operation through a wrapper/other tool. This
-is the first goal turn with this specific unresolved tool block. The goal remains
-active because independent evidence analysis made progress. No question is pending.
+is the second goal turn with this unresolved tool block; no further retry occurred.
+Independent release-tool work made progress, so the goal remains active. No question
+is pending. Do not manufacture more approval questions for the same rejection.
 
 ## Previously completed and verified
 
@@ -49,6 +51,19 @@ active because independent evidence analysis made progress. No question is pendi
 
 ## Local candidate and environment
 
+- New verified distribution `.local/releases/android-distribution-sep29-final/`
+  includes `DropRun-0.5.1-android.apk`, matching Android source ZIP, license/notice
+  files, BUILD-MANIFEST.json and SHA256SUMS. APK matches the named candidate below.
+  Export source commit9f75ae1bf3ea3397a4d784f2f31898d765424cc3; all8 inventory files
+  and77 archived source files verified. The archive honors declared batch-file
+  CRLF; other source bytes compare directly with Git blobs. No source mismatch.
+  `.local/android-distribution-verification.json` records the local result.
+- Scripts now read built version instead of hardcoded0.5.0, refuse existing output,
+  require clean committed source and verify signatures. Global archive newline
+  behavior is fixed independently of machine autocrlf. Real build passed11s;
+  packaging integration tests3/3 in5.624s use fake build/sign tools. Real signing
+  was independently checked. Earlier preliminary export is retained as evidence;
+  use only the `-final` directory. No public upload or native test rerun this pass.
 - `.local/releases/ux-polish-sep29/DropRun-0.5.1-android-candidate.apk`, SHA256
   `f7699308aac696a609e8bcc076a367eaacdd2a9a3876ed207b9bf7b4a07a0eae`.
   Version0.5.1/code14, package `app.droprun.mobile`. Stable certificate SHA256
@@ -67,7 +82,7 @@ active because independent evidence analysis made progress. No question is pendi
 - Public package on API35 is paired and force-stopped: use `.debug` only. Never run
   instrumentation and another UI automation client on the same device concurrently.
 
-## This pass: narrowed ANR evidence
+## Prior pass: narrowed ANR evidence
 
 - The original ANR at18:10:24.485 UTC was a20,002ms service-execution timeout;
   app PID8676 had27 Java threads. Main was in nativePollOnce; instrumentation was
@@ -85,12 +100,12 @@ active because independent evidence analysis made progress. No question is pendi
 
 ## Single recommended next action
 
-The history process-death probe is authorized but tool-blocked; resume only after
-that execution restriction is resolved, preserving task/offset and all240 cached
-records. No fixture was written and no process-death result exists. Independently,
-the next useful ANR evidence is a trace beginning before ordinary local startup,
-including service bind/callback timing; post-ANR logcat and fake-scheduler passes
-cannot establish the cause. Do not rerun existing UI suites without new changes.
+Check the existing Windows candidate's actual ZIP/installer against its file
+manifest and source identity, bringing its distribution evidence to the same
+standard. Inspect before changing packaging. The history process-death probe
+remains authorized but tool-blocked; no fixture was written or result obtained.
+Do not retry it through another route. ANR diagnosis still needs a pre-start
+timeline; post-event logs and fake-scheduler passes cannot establish its cause.
 
 ## Open release gates
 
@@ -111,7 +126,8 @@ Git author Thomas Deng <150266369+MrMaii@users.noreply.github.com>.
 
 ## Environment and files this pass
 
-Only UX release record and this handoff changed. DropRunTest was started normally
-after correcting a nonexistent AVD-directory override, then stopped. No debug App
-process started, no settings changed and no fixture backup/seed file was created.
-Candidate SHA256 was rechecked unchanged. No build, test or emulator remains running.
+Commitsde23c1d/9f75ae1 change scripts/build-android.ps1, add Android license files,
+packaging tests and update THIRD_PARTY_NOTICES, DEVELOPMENT, PRD and CONTRACTS.
+Final test refinement covers explicit CRLF attributes as well as machine defaults;
+release record and this handoff contain the evidence. No emulator was started this
+pass. Candidate SHA256 rechecked unchanged. No build/test/emulator remains running.

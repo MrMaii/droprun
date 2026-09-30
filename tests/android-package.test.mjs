@@ -21,7 +21,8 @@ async function fixture(t) {
   for (const dir of ['scripts', 'licenses/android', 'android/app/build/outputs/apk/release', '.local/sdk/build-tools/35.0.0']) await mkdir(join(root, dir), { recursive: true });
   await cp(new URL('../scripts/build-android.ps1', import.meta.url), join(root, 'scripts/build-android.ps1'));
   await writeFile(join(root, '.gitignore'), '.local/\nandroid/app/build/\n');
-  await writeFile(join(root, '.gitattributes'), '* text=auto\n');
+  await writeFile(join(root, '.gitattributes'), '* text=auto\n*.bat text eol=crlf\n');
+  await writeFile(join(root, 'android/build.gradle'), '// Synthetic Gradle source\n');
   for (const file of ['LICENSE', 'NOTICE', 'THIRD_PARTY_NOTICES.md', 'licenses/android/ZXing-LICENSE.txt']) await writeFile(join(root, file), 'Synthetic license fixture\n');
   const compiler = join(root, 'android/gradlew.bat');
   await writeFile(compiler, '@exit /b 0\r\n');
@@ -45,13 +46,15 @@ test('Android export uses built version and includes verified inventory, source 
   assert.equal(manifest.certificateSha256, 'a'.repeat(64));
   assert(manifest.files.some(file => file.path === 'DropRun-9.8.7-android-source.zip'));
   assert(manifest.files.some(file => file.path === 'licenses/android/ZXing-LICENSE.txt'));
-  const archived = spawnSync('pwsh', ['-NoProfile', '-Command', '$zip=[IO.Compression.ZipFile]::OpenRead($env:FIXTURE_ARCHIVE); $stream=$zip.GetEntry("android/gradlew.bat").Open(); $buffer=[IO.MemoryStream]::new(); $stream.CopyTo($buffer); [Console]::Write([Convert]::ToBase64String($buffer.ToArray())); $stream.Dispose(); $zip.Dispose()'], {
-    encoding: 'utf8', env: { ...process.env, FIXTURE_ARCHIVE: join(f.output, 'DropRun-9.8.7-android-source.zip') },
-  });
-  assert.equal(archived.status, 0, archived.stderr);
-  const committed = spawnSync('git', ['-C', f.root, 'show', 'HEAD:android/gradlew.bat']);
-  assert.equal(committed.status, 0);
-  assert.deepEqual(Buffer.from(archived.stdout, 'base64'), committed.stdout, 'Source ZIP must preserve committed bytes despite local autocrlf');
+  for (const file of ['android/gradlew.bat', 'android/build.gradle']) {
+    const archived = spawnSync('pwsh', ['-NoProfile', '-Command', '$zip=[IO.Compression.ZipFile]::OpenRead($env:FIXTURE_ARCHIVE); $stream=$zip.GetEntry($env:FIXTURE_ENTRY).Open(); $buffer=[IO.MemoryStream]::new(); $stream.CopyTo($buffer); [Console]::Write([Convert]::ToBase64String($buffer.ToArray())); $stream.Dispose(); $zip.Dispose()'], {
+      encoding: 'utf8', env: { ...process.env, FIXTURE_ARCHIVE: join(f.output, 'DropRun-9.8.7-android-source.zip'), FIXTURE_ENTRY: file },
+    });
+    assert.equal(archived.status, 0, archived.stderr);
+    const committed = spawnSync('git', ['-C', f.root, '-c', 'core.autocrlf=false', '-c', 'core.eol=lf', 'cat-file', '--filters', 'HEAD:' + file]);
+    assert.equal(committed.status, 0);
+    assert.deepEqual(Buffer.from(archived.stdout, 'base64'), committed.stdout, 'Source export must follow committed attributes, not machine autocrlf');
+  }
   for (const file of manifest.files) {
     const bytes = await readFile(join(f.output, file.path));
     assert.equal(file.bytes, bytes.length); assert.equal(file.sha256, createHash('sha256').update(bytes).digest('hex'));
