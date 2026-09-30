@@ -60,6 +60,12 @@ plan-version, per-command approval and report-evidence checks remain in force.
   commit, certificate SHA-256 and file hashes; SHA256SUMS also covers the manifest.
   Matching Android source and dependency notices accompany the APK. This local
   packaging operation neither publishes a release nor certifies acceptance gates.
+- Windows packaging also requires clean committed source. Project payload paths
+  come from Git's tracked-file inventory; local ignored files are not copied.
+  BUILD-MANIFEST.json covers every payload file except itself and binds the source
+  commit/archive hash. Portable ZIP, source ZIP and installer get SHA-256 sidecars;
+  existing artifact paths are rejected before packaging. The installer is compiled
+  from the packaged recipe. These checks do not imply trusted Windows signing.
 - Local setup `GET /api/doctor` requires the same loopback/Host/Origin checks and
   private `X-DropRun-Setup` session token as other setup APIs. A ready Codex check
   includes the complete paginated `codexStatus.projects` inventory: `id`, `name`,

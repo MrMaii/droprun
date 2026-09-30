@@ -36,6 +36,20 @@ than the build machine's `core.autocrlf` setting.
 `tests/android-package.test.mjs` checks export failures with
 fake compiler/signer tools; actual signing must also pass on the release machine.
 
+For Windows x64, package a clean commit with Node.js 24 and Inno Setup:
+
+```powershell
+node scripts/package-windows.mjs --output .local/releases/windows-candidate --iscc 'C:/Program Files (x86)/Inno Setup 6/ISCC.exe'
+```
+
+Use the compiler path installed on your machine. Only tracked project files enter
+the runtime package; ignored local files stay outside it. The portable ZIP and
+installer share a complete payload inventory in `BUILD-MANIFEST.json` (excluding
+the manifest itself). It records the source commit and matching full source ZIP.
+Each exported ZIP/EXE has its own SHA-256 sidecar. Existing files are never replaced.
+The installer is unsigned unless separately signed by a trusted publisher; building
+it does not prove clean-machine install, upgrade or uninstall acceptance.
+
 The Android application, local Connector and private Relay are independent
 components. Read [CONTRACTS.md](CONTRACTS.md) before changing their interfaces.
 Tests using Miniflare have synthetic state; they do not prove source-platform
