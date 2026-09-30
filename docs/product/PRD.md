@@ -56,6 +56,8 @@ in [0.5.0](../releases/0.5.0.md).
 - Public candidate may ship with named test gaps. Stable release requires clean
   Windows/cloud setup, physical Android validation, at least 3 correct project
   mappings, 5 continuous full tasks and 20 real-source samples with honest coverage.
+- Android distribution names must match the built version, retain existing exports,
+  and accompany the signed APK with checksums, source identity and dependency notices.
 - Accessibility: 48dp targets, 200% font, TalkBack, motion off, API26 fallback.
   Physical-device performance targets: <5% overdue frames, no >700ms frozen frame,
   p95 press feedback <100ms. These are goals, not measured results.

@@ -19,6 +19,21 @@ On Windows use `gradlew.bat`. Never use a debug signature for a public release.
 Release signing uses `DROPRUN_KEYSTORE`, `DROPRUN_KEYSTORE_PASSWORD`,
 `DROPRUN_KEY_ALIAS`, and `DROPRUN_KEY_PASSWORD`; keep them outside Git.
 
+For a signed distribution, use PowerShell 7 with Android build-tools 35.0.0:
+
+```powershell
+pwsh -File scripts/build-android.ps1 -OutputDirectory .local/releases/android-candidate
+```
+
+Start from a clean Git commit. The script reads the built APK's version, verifies
+its signature and refuses an existing output directory. The directory contains
+the APK, matching committed Android source ZIP, licenses, certificate/source/file
+metadata in `BUILD-MANIFEST.json`, and `SHA256SUMS`. Distribute these together.
+The source ZIP includes the Gradle wrapper and Android project; it excludes local
+SDKs, signing material and build outputs. Packaging does not establish acceptance
+or publish a release. `tests/android-package.test.mjs` checks export failures with
+fake compiler/signer tools; actual signing must also pass on the release machine.
+
 The Android application, local Connector and private Relay are independent
 components. Read [CONTRACTS.md](CONTRACTS.md) before changing their interfaces.
 Tests using Miniflare have synthetic state; they do not prove source-platform

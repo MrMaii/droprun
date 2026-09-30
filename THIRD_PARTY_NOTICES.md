@@ -20,6 +20,10 @@ download must preserve the license, upstream source/version and corresponding
 source availability for its exact build. Do not label a third-party binary
 Apache-2.0 merely because the DropRun source uses that license.
 
+The Android distribution includes versioned ZXing license/notice copies from
+[`licenses/android`](licenses/android/README.md), alongside DropRun's LICENSE and
+NOTICE. Preserve them when redistributing the APK.
+
 DropRun's existing raster brand asset is included unchanged. System fonts are
 used; Apple fonts and SF Symbols are not redistributed. Demo source and images
 must be owned by the project or explicitly licensed for redistribution.

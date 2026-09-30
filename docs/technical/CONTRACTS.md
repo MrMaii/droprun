@@ -54,6 +54,12 @@ plan-version, per-command approval and report-evidence checks remain in force.
   historical ALTER migrations to the same new database.
 - Runtime Connector tokens cannot invoke admin migration, release or cleanup
   controls. Admin endpoints require the separate ADMIN_HASH; setup uses owner CLI.
+- Android packaging requires a clean source commit, reads the single release APK's
+  Gradle output metadata and verifies its signature before export. It refuses an
+  existing output directory. BUILD-MANIFEST.json binds version/application ID,
+  commit, certificate SHA-256 and file hashes; SHA256SUMS also covers the manifest.
+  Matching Android source and dependency notices accompany the APK. This local
+  packaging operation neither publishes a release nor certifies acceptance gates.
 - Local setup `GET /api/doctor` requires the same loopback/Host/Origin checks and
   private `X-DropRun-Setup` session token as other setup APIs. A ready Codex check
   includes the complete paginated `codexStatus.projects` inventory: `id`, `name`,
