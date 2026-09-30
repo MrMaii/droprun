@@ -49,7 +49,8 @@ public class ProjectHistoryActivity extends StyledActivity {
     void render(){
         JSONObject history=store.history(projectId);JSONArray tasks=history.optJSONArray("tasks"),pending=store.pending();String next=history.toString()+pending+store.tasks();if(next.equals(snapshot))return;snapshot=next;cursor=MainActivity.text(history,"nextCursor");
         View visible=list.getChildAt(0);int offset=visible==null?0:visible.getTop()-list.getPaddingTop();
-        String anchor=list.isInTouchMode()&&visible!=null&&visible.getTag() instanceof Holder?((Holder)visible.getTag()).id:null;
+        // A pending keyboard selection is not a laid-out anchor yet.
+        String anchor=(list.isInTouchMode()||list.getSelectedView()==null)&&visible!=null&&visible.getTag() instanceof Holder?((Holder)visible.getTag()).id:null;
         rows.clear();pendingIds.clear();Set<String> known=new HashSet<>();
         for(int n=0;tasks!=null&&n<tasks.length();n++)known.add(tasks.optJSONObject(n).optString("id"));
         for(int n=0;n<pending.length();n++){JSONObject task=pending.optJSONObject(n);if(!projectId.equals(task.optString("projectId"))||known.contains(task.optString("id")))continue;rows.add(task);pendingIds.add(task.optString("id"));}

@@ -144,6 +144,12 @@ public class LocalRecoveryTest {
         scenario.onActivity(activity->{int first=activity.list.getFirstVisiblePosition();assertNotNull(activity.list.getChildAt(0));position[0]=activity.rows.get(first).optString("id");position[1]=String.valueOf(activity.list.getChildAt(0).getTop());});return position;
     }
     void scrollHistory(ActivityScenario<ProjectHistoryActivity> scenario){scenario.onActivity(activity->activity.list.setSelectionFromTop(170,-17));InstrumentationRegistry.getInstrumentation().waitForIdleSync();scenario.onActivity(activity->assertEquals(170,activity.list.getFirstVisiblePosition()));}
+    String historyFrame(ProjectHistoryActivity activity){
+        android.view.View first=activity.list.getChildAt(0),focus=activity.getCurrentFocus();int position=activity.list.getFirstVisiblePosition();
+        String bound=first!=null&&first.getTag() instanceof ProjectHistoryActivity.Holder?((ProjectHistoryActivity.Holder)first.getTag()).id:"none";
+        String row=position>=0&&position<activity.rows.size()?activity.rows.get(position).optString("id"):"none";
+        return "touch="+activity.list.isInTouchMode()+", windowFocus="+activity.hasWindowFocus()+", listFocus="+activity.list.hasFocus()+", layoutRequested="+activity.list.isLayoutRequested()+", first="+position+", bound="+bound+", row="+row+", top="+(first==null?"none":first.getTop())+", selected="+activity.list.getSelectedItemPosition()+"/"+activity.list.getSelectedItemId()+", focusedView="+(focus==null?"none":focus.getClass().getSimpleName()+"@"+System.identityHashCode(focus))+", lifecycle="+androidx.test.runner.lifecycle.ActivityLifecycleMonitorRegistry.getInstance().getLifecycleStageOf(activity);
+    }
     @Test public void historyStatusRefreshKeepsOlderPagesAndReadingPosition()throws Exception{
         seedPagedHistory();try(ActivityScenario<ProjectHistoryActivity> scenario=historyScenario()){
             scrollHistory(scenario);String[] before=historyPosition(scenario);
@@ -179,10 +185,13 @@ public class LocalRecoveryTest {
             boolean[] wasTouch={false};scenario.onActivity(a->wasTouch[0]=a.list.isInTouchMode());
             try{for(boolean touch:new boolean[]{true,false,true,false,true,false,true,false}){
                 InstrumentationRegistry.getInstrumentation().setInTouchMode(touch);scrollHistory(scenario);String[] before=historyPosition(scenario);String one=UUID.randomUUID().toString(),two=UUID.randomUUID().toString();
-                scenario.onActivity(a->{try{for(String id:new String[]{one,two}){a.store.save(new JSONObject().put("id",id).put("projectId","demo-studio").put("content","Local burst fixture"));a.render();}}catch(Exception e){throw new AssertionError(e);}});
-                assertArrayEquals("Two updates before layout retain the visible row, touch="+touch,before,historyPosition(scenario));
-                scenario.onActivity(a->{try{for(String id:new String[]{one,two}){a.store.cancelPending(id);a.render();}}catch(Exception e){throw new AssertionError(e);}});
-                assertArrayEquals(before,historyPosition(scenario));
+                StringBuilder trace=new StringBuilder();
+                scenario.onActivity(a->{try{trace.append("\nBefore insert: ").append(historyFrame(a));for(String id:new String[]{one,two}){a.store.save(new JSONObject().put("id",id).put("projectId","demo-studio").put("content","Local burst fixture"));a.render();trace.append("\nAfter insert: ").append(historyFrame(a));}}catch(Exception e){throw new AssertionError(e);}});
+                String[] inserted=historyPosition(scenario);scenario.onActivity(a->trace.append("\nAfter insert layout: ").append(historyFrame(a)));
+                assertArrayEquals("Two updates before layout retain the visible row, touch="+touch+trace,before,inserted);
+                scenario.onActivity(a->{try{for(String id:new String[]{one,two}){a.store.cancelPending(id);a.render();trace.append("\nAfter removal: ").append(historyFrame(a));}}catch(Exception e){throw new AssertionError(e);}});
+                String[] removed=historyPosition(scenario);scenario.onActivity(a->trace.append("\nAfter removal layout: ").append(historyFrame(a)));
+                assertArrayEquals("Two removals retain the visible row, touch="+touch+trace,before,removed);
             }}finally{InstrumentationRegistry.getInstrumentation().setInTouchMode(wasTouch[0]);}
         }
     }
@@ -197,6 +206,59 @@ public class LocalRecoveryTest {
                 assertArrayEquals(before,homePosition(scenario));
             }}finally{InstrumentationRegistry.getInstrumentation().setInTouchMode(wasTouch[0]);}
         }
+    }
+    @Test public void keyboardHeaderFocusKeepsTheVisibleHistoryDuringUpdates()throws Exception{
+        seedPagedHistory();android.app.Instrumentation instrumentation=InstrumentationRegistry.getInstrumentation();
+        try(ActivityScenario<ProjectHistoryActivity> scenario=historyScenario()){
+            boolean[] wasTouch={false};scenario.onActivity(a->wasTouch[0]=a.list.isInTouchMode());
+            try{
+                android.view.View[] headerFocus={null};instrumentation.setInTouchMode(false);
+                scenario.onActivity(a->headerFocus[0]=focusHeaderAcrossTouchMode(a,"Back to projects"));
+                instrumentation.setInTouchMode(true);scrollHistory(scenario);instrumentation.setInTouchMode(false);scenario.onActivity(a->headerFocus[0].setFocusableInTouchMode(false));
+                String[] before=historyPosition(scenario);StringBuilder trace=new StringBuilder();
+                scenario.onActivity(a->{trace.append("\nBefore: ").append(historyFrame(a));assertFalse(a.list.isInTouchMode());assertFalse(a.list.hasFocus());android.util.Log.i("DropRunFocusFixture","History "+trace+", selectedView="+a.list.getSelectedView());if(android.os.Build.VERSION.SDK_INT>=35)assertNull("Exercise keyboard mode without a laid-out selected row"+trace,a.list.getSelectedView());});
+                String one=UUID.randomUUID().toString(),two=UUID.randomUUID().toString();
+                scenario.onActivity(a->{try{for(String id:new String[]{one,two}){a.store.save(new JSONObject().put("id",id).put("projectId","demo-studio").put("content","Local header-focus fixture"));a.render();trace.append("\nAfter insert: ").append(historyFrame(a));}}catch(Exception e){throw new AssertionError(e);}});
+                String[] inserted=historyPosition(scenario);scenario.onActivity(a->trace.append("\nAfter layout: ").append(historyFrame(a)));
+                assertArrayEquals("Keyboard header focus must not permit a positional history jump"+trace,before,inserted);
+                scenario.onActivity(a->{assertSame(headerFocus[0],a.getCurrentFocus());try{for(String id:new String[]{one,two}){a.store.cancelPending(id);a.render();}}catch(Exception e){throw new AssertionError(e);}});
+                assertArrayEquals(before,historyPosition(scenario));scenario.onActivity(a->assertSame(headerFocus[0],a.getCurrentFocus()));
+            }finally{instrumentation.setInTouchMode(wasTouch[0]);}
+        }
+    }
+    @Test public void keyboardSettingsFocusKeepsTheVisibleHomeProjectDuringUpdates()throws Exception{
+        android.app.Instrumentation instrumentation=InstrumentationRegistry.getInstrumentation();
+        try(ActivityScenario<DemoHomeActivity> scenario=ActivityScenario.launch(DemoHomeActivity.class)){
+            boolean[] wasTouch={false};scenario.onActivity(a->wasTouch[0]=a.list.isInTouchMode());
+            try{
+                android.view.View[] headerFocus={null};instrumentation.setInTouchMode(false);
+                scenario.onActivity(a->headerFocus[0]=focusHeaderAcrossTouchMode(a,"Settings"));
+                instrumentation.setInTouchMode(true);seedHomeList(scenario);instrumentation.setInTouchMode(false);scenario.onActivity(a->headerFocus[0].setFocusableInTouchMode(false));String[] before=homePosition(scenario);
+                scenario.onActivity(a->{assertFalse(a.list.isInTouchMode());assertFalse(a.list.hasFocus());android.util.Log.i("DropRunFocusFixture","Home selected="+a.list.getSelectedItemPosition()+", selectedView="+a.list.getSelectedView());if(android.os.Build.VERSION.SDK_INT>=35)assertNull("Exercise keyboard mode without a laid-out selected project",a.list.getSelectedView());});
+                String one=UUID.randomUUID().toString(),two=UUID.randomUUID().toString();
+                scenario.onActivity(a->{try{for(String id:new String[]{one,two}){a.store.save(new JSONObject().put("id",id).put("projectId","local-header-"+id).put("projectName","Local header-focus project").put("content","Synthetic only"));a.show();}}catch(Exception e){throw new AssertionError(e);}});
+                assertArrayEquals("Settings focus must not permit a positional project jump",before,homePosition(scenario));
+                scenario.onActivity(a->{assertSame(headerFocus[0],a.getCurrentFocus());try{for(String id:new String[]{one,two}){a.store.cancelPending(id);a.show();}}catch(Exception e){throw new AssertionError(e);}});
+                assertArrayEquals(before,homePosition(scenario));scenario.onActivity(a->assertSame(headerFocus[0],a.getCurrentFocus()));
+            }finally{instrumentation.setInTouchMode(wasTouch[0]);}
+        }
+    }
+    @Test public void focusedHistoryCardStillOpensTheSameTaskAfterUpdates()throws Exception{
+        seedPagedHistory();android.app.Instrumentation instrumentation=InstrumentationRegistry.getInstrumentation();Intent[] opened={null};
+        android.app.Instrumentation.ActivityMonitor destination=new android.app.Instrumentation.ActivityMonitor(){@Override public android.app.Instrumentation.ActivityResult onStartActivity(Intent intent){if(intent.getComponent()!=null&&TaskActivity.class.getName().equals(intent.getComponent().getClassName())){opened[0]=intent;return new android.app.Instrumentation.ActivityResult(android.app.Activity.RESULT_CANCELED,null);}return null;}};instrumentation.addMonitor(destination);
+        try(ActivityScenario<ProjectHistoryActivity> scenario=historyScenario()){
+            boolean[] wasTouch={false};scenario.onActivity(a->wasTouch[0]=a.list.isInTouchMode());
+            try{
+                instrumentation.setInTouchMode(true);scrollHistory(scenario);instrumentation.setInTouchMode(false);String[] focusedId={null};
+                scenario.onActivity(a->{ProjectHistoryActivity.Holder holder=(ProjectHistoryActivity.Holder)a.list.getChildAt(0).getTag();focusedId[0]=holder.id;assertTrue(holder.card.requestFocus());});String[] before=historyPosition(scenario);
+                String one=UUID.randomUUID().toString(),two=UUID.randomUUID().toString();
+                scenario.onActivity(a->{try{for(String id:new String[]{one,two}){a.store.save(new JSONObject().put("id",id).put("projectId","demo-studio").put("content","Local focused-card fixture"));a.render();}}catch(Exception e){throw new AssertionError(e);}});
+                assertArrayEquals(before,historyPosition(scenario));
+                scenario.onActivity(a->{android.view.View focused=a.getCurrentFocus();assertNotNull(focused);assertTrue(focused.getParent() instanceof android.view.View);Object tag=((android.view.View)focused.getParent()).getTag();assertTrue(tag instanceof ProjectHistoryActivity.Holder);assertEquals(focusedId[0],((ProjectHistoryActivity.Holder)tag).id);});
+                instrumentation.sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_ENTER);instrumentation.waitForIdleSync();assertNotNull("Enter must still open task details",opened[0]);assertEquals(focusedId[0],opened[0].getStringExtra("taskId"));
+                scenario.onActivity(a->{try{for(String id:new String[]{one,two}){a.store.cancelPending(id);a.render();}}catch(Exception e){throw new AssertionError(e);}});assertArrayEquals(before,historyPosition(scenario));
+            }finally{instrumentation.setInTouchMode(wasTouch[0]);}
+        }finally{instrumentation.removeMonitor(destination);}
     }
     @Test public void pendingRemovalDoesNotWaitForHistoryRead()throws Exception{
         seedPagedHistory();Store store=new Store(context);JSONObject pending=task().put("content","Local blocked-read fixture");store.save(pending);
@@ -676,6 +738,12 @@ public class LocalRecoveryTest {
         }finally{instrumentation.removeMonitor(destination);}
     }
 
+    static android.view.View focusHeaderAcrossTouchMode(android.app.Activity activity,String description){
+        ArrayList<android.view.View> matches=new ArrayList<>();
+        activity.getWindow().getDecorView().findViewsWithText(matches,description,android.view.View.FIND_VIEWS_WITH_CONTENT_DESCRIPTION);
+        assertEquals(1,matches.size());android.view.View header=matches.get(0);
+        header.setFocusableInTouchMode(true);assertTrue(header.requestFocus());return header;
+    }
     static void focusDescription(android.app.Activity activity,String description){
         ArrayList<android.view.View> matches=new ArrayList<>();
         activity.getWindow().getDecorView().findViewsWithText(matches,description,android.view.View.FIND_VIEWS_WITH_CONTENT_DESCRIPTION);

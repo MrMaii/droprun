@@ -26,7 +26,8 @@ plan-version, per-command approval and report-evidence checks remain in force.
   Cached project-history pages remain available across Activity recreation.
   Home/history adapter stable IDs must be nonnegative for Android's native
   saved-row restoration; transient status changes must not change those IDs.
-  Touch-mode refresh anchors use the identity bound to the visible View, not an
+  Refresh anchors in touch mode or without a laid-out native selection use the
+  identity bound to the visible View, not an
   index into data that a preceding pre-layout update may already have replaced.
   History GETs run outside the outbox lock; a per-project, instance-scoped request
   token permits only the latest started request to publish its page. History
@@ -116,7 +117,7 @@ plan-version, per-command approval and report-evidence checks remain in force.
 - 同一个接收记录同时只由一个编辑页面持有；列表返回已有编辑页，不复制正在接收的材料。原页结束后可以继续同一接收操作；进程重新启动后按原长度／哈希核验副本，再恢复编辑状态。转交 outbox 或确认放弃后，延迟编辑写入不得重建记录。
 - 配对前草稿需确认电脑名称及 Relay 来源，确认前不改变归属；恢复不自动交办，也不扩大项目授权。撤权／移除的项目仍需在既有选择流程重新判断。损坏接收记录可明确放弃其可核验归属的副本；不能静默清扫无关或旧平铺文件。outbox 接管间隙遗留的接收记录在同步／取消时一并清理，避免文本草稿重新出现。
 - 空首页在大字号下允许滚动读取完整分享引导；首页和项目历史的列表允许卡片获得键盘焦点，Enter 与点按打开同一个项目或任务。
-- 首页和项目历史在触控模式下先记录可见记录 ID 和相对顶部内边距的偏移，再替换列表数据并定位同一记录；键盘模式沿用 ListView 稳定 ID 恢复。待发送项插入／移除不能改变阅读记录和偏移，Activity 已保存的恢复状态优先。
+- 首页和项目历史在触控模式或没有已布局的原生选中视图时，先记录可见记录 ID 和相对顶部内边距的偏移，再替换列表数据并定位同一记录；已有已布局键盘选中项时沿用 ListView 稳定 ID 恢复。待布局的选中位置不等于已布局选中视图，连续刷新仍需保持可见记录身份。顶栏按钮及卡片焦点不能被刷新抢走，Enter 仍打开原任务。待发送项插入／移除不能改变阅读记录和偏移，Activity 已保存的恢复状态优先。
 - 分享浮层的无操作面板不接受键盘焦点；模型整行作为单个焦点入口，图标保留点按但不形成重复键盘停靠点。
 - 分享页选择模型或推理强度时，重建选项通过模型 ID／强度值恢复原键盘焦点，并显示完整控件；点按不强制抢焦点。选项保留选中状态，同时以独立边框标记键盘焦点。
 - 命令审批和预览有效期参与页面更新判断；即使缓存 JSON 未改变，到期后的下一次刷新也必须移除批准或直接打开入口。失效审批提示联网查看最新状态。

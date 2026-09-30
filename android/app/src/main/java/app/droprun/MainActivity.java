@@ -63,7 +63,8 @@ public class MainActivity extends StyledActivity {
         boolean notificationNotice=error.isEmpty()&&store.computerOnline()&&receiver.isEmpty()&&!TaskNotifications.allowed(this);
         notice.setOnClickListener(v->{if(notificationNotice){if(Build.VERSION.SDK_INT>=33&&checkSelfPermission(android.Manifest.permission.POST_NOTIFICATIONS)!=PackageManager.PERMISSION_GRANTED)requestPermissions(new String[]{android.Manifest.permission.POST_NOTIFICATIONS},10);else startActivity(new Intent(android.provider.Settings.ACTION_APP_NOTIFICATION_SETTINGS).putExtra(android.provider.Settings.EXTRA_APP_PACKAGE,getPackageName()));}else load();});
         View visible=list.getChildAt(0);int offset=visible==null?0:visible.getTop()-list.getPaddingTop();
-        String anchor=list.isInTouchMode()&&visible!=null&&visible.getTag() instanceof HomeHolder?((HomeHolder)visible.getTag()).id:null;
+        // A pending keyboard selection is not a laid-out anchor yet.
+        String anchor=(list.isInTouchMode()||list.getSelectedView()==null)&&visible!=null&&visible.getTag() instanceof HomeHolder?((HomeHolder)visible.getTag()).id:null;
         items.clear();items.addAll(ProjectPresentation.merge(store.activity(),store.pending(),store.tasks()));adapter.notifyDataSetChanged();
         if(anchor!=null)for(int n=0;n<items.size();n++)if(anchor.equals(items.get(n).optString("id"))){list.setSelectionFromTop(n,offset);break;}
     }

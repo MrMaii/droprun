@@ -28,6 +28,9 @@ in [0.5.0](../releases/0.5.0.md).
   entry motion. Activity recreation restores the reading position in retained
   older pages for both touch and keyboard browsing.
   Consecutive updates before the next frame must preserve the same visible record.
+  This also applies when keyboard focus is on a header action and the list has no
+  selected row. Refresh must preserve that focus; a focused task card must still
+  open the same task when Enter is pressed after updates.
   Removing a saved copy shows immediate progress, survives rotation as one
   operation, and does not wait for a project-history network read. Failure remains
   visible after polling and rotation; interruption never claims successful removal.
