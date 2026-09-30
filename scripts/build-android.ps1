@@ -33,7 +33,7 @@ Copy-Item -LiteralPath (Join-Path $release $apk.outputFile) -Destination (Join-P
 foreach ($file in @('LICENSE','NOTICE','THIRD_PARTY_NOTICES.md')) { Copy-Item -LiteralPath (Join-Path $repo $file) -Destination $OutputDirectory }
 New-Item -ItemType Directory -Path (Join-Path $OutputDirectory 'licenses') | Out-Null
 Copy-Item -LiteralPath (Join-Path $repo 'licenses/android') -Destination (Join-Path $OutputDirectory 'licenses/android') -Recurse
-& git -C $repo archive --format=zip "--output=$(Join-Path $OutputDirectory "$name-source.zip")" $sourceCommit -- android
+& git -C $repo -c core.autocrlf=false -c core.eol=lf archive --format=zip "--output=$(Join-Path $OutputDirectory "$name-source.zip")" $sourceCommit -- android
 if ($LASTEXITCODE -ne 0) { throw 'Android source archive failed; do not distribute this incomplete directory.' }
 $files = @(Get-ChildItem -LiteralPath $OutputDirectory -File -Recurse | ForEach-Object {
     [ordered]@{path=[IO.Path]::GetRelativePath((Resolve-Path $OutputDirectory).Path,$_.FullName).Replace('\','/'); bytes=$_.Length; sha256=(Get-FileHash -LiteralPath $_.FullName -Algorithm SHA256).Hash.ToLowerInvariant()}

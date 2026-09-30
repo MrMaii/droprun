@@ -21,6 +21,7 @@ async function fixture(t) {
   for (const dir of ['scripts', 'licenses/android', 'android/app/build/outputs/apk/release', '.local/sdk/build-tools/35.0.0']) await mkdir(join(root, dir), { recursive: true });
   await cp(new URL('../scripts/build-android.ps1', import.meta.url), join(root, 'scripts/build-android.ps1'));
   await writeFile(join(root, '.gitignore'), '.local/\nandroid/app/build/\n');
+  await writeFile(join(root, '.gitattributes'), '* text=auto\n');
   for (const file of ['LICENSE', 'NOTICE', 'THIRD_PARTY_NOTICES.md', 'licenses/android/ZXing-LICENSE.txt']) await writeFile(join(root, file), 'Synthetic license fixture\n');
   const compiler = join(root, 'android/gradlew.bat');
   await writeFile(compiler, '@exit /b 0\r\n');
@@ -29,7 +30,7 @@ async function fixture(t) {
   await writeFile(join(release, 'output-metadata.json'), JSON.stringify({ applicationId: 'app.droprun.mobile', variantName: 'release', elements: [{ versionName: '9.8.7', versionCode: 987, outputFile: 'app-release.apk' }] }));
   const signer = join(root, '.local/sdk/build-tools/35.0.0/apksigner.bat');
   await writeFile(signer, '@echo Signer #1 certificate SHA-256 digest: ' + 'a'.repeat(64) + '\r\n@exit /b 0\r\n');
-  git('init', '-q'); git('add', '.'); git('-c', 'user.name=Fixture', '-c', 'user.email=fixture@example.invalid', 'commit', '-qm', 'Fixture');
+  git('init', '-q'); git('config', 'core.autocrlf', 'true'); git('add', '.'); git('-c', 'user.name=Fixture', '-c', 'user.email=fixture@example.invalid', 'commit', '-qm', 'Fixture');
   const output = join(root, '.local/output');
   const run = () => spawnSync('pwsh', ['-NoProfile', '-File', join(root, 'scripts/build-android.ps1'), '-OutputDirectory', '.local/output'], {
     cwd: root, encoding: 'utf8', env: { ...process.env, ANDROID_HOME: join(root, '.local/sdk'), DROPRUN_KEYSTORE: 'fixture', DROPRUN_KEYSTORE_PASSWORD: 'fixture', DROPRUN_KEY_ALIAS: 'fixture', DROPRUN_KEY_PASSWORD: 'fixture' },
@@ -44,6 +45,13 @@ test('Android export uses built version and includes verified inventory, source 
   assert.equal(manifest.certificateSha256, 'a'.repeat(64));
   assert(manifest.files.some(file => file.path === 'DropRun-9.8.7-android-source.zip'));
   assert(manifest.files.some(file => file.path === 'licenses/android/ZXing-LICENSE.txt'));
+  const archived = spawnSync('pwsh', ['-NoProfile', '-Command', '$zip=[IO.Compression.ZipFile]::OpenRead($env:FIXTURE_ARCHIVE); $stream=$zip.GetEntry("android/gradlew.bat").Open(); $buffer=[IO.MemoryStream]::new(); $stream.CopyTo($buffer); [Console]::Write([Convert]::ToBase64String($buffer.ToArray())); $stream.Dispose(); $zip.Dispose()'], {
+    encoding: 'utf8', env: { ...process.env, FIXTURE_ARCHIVE: join(f.output, 'DropRun-9.8.7-android-source.zip') },
+  });
+  assert.equal(archived.status, 0, archived.stderr);
+  const committed = spawnSync('git', ['-C', f.root, 'show', 'HEAD:android/gradlew.bat']);
+  assert.equal(committed.status, 0);
+  assert.deepEqual(Buffer.from(archived.stdout, 'base64'), committed.stdout, 'Source ZIP must preserve committed bytes despite local autocrlf');
   for (const file of manifest.files) {
     const bytes = await readFile(join(f.output, file.path));
     assert.equal(file.bytes, bytes.length); assert.equal(file.sha256, createHash('sha256').update(bytes).digest('hex'));
