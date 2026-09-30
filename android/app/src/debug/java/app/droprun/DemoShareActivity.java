@@ -12,5 +12,6 @@ public final class DemoShareActivity extends ShareActivity {
         if(getIntent().getType()==null)getIntent().setType("text/plain");getIntent().putExtra(android.content.Intent.EXTRA_TEXT,"https://example.com/design-inspiration");super.onCreate(state);sheet.addView(Ui.caption(this,DemoFixture.NOTICE),0);
     }
     @Override void start(){dots.setVisibility(android.view.View.VISIBLE);last="demo-studio";model=store.defaultModel();effort=store.defaultEffort(model);go(0,1);}
+    @Override void received(){super.received();if(getIntent().getBooleanExtra("draftRecoveryProbe",false)&&step==0){selected="demo-studio";go(1,1);note.setText("Keep this local process-recovery note.");effort="high";updateGauge();}}
     @Override boolean submit(){android.widget.Toast.makeText(this,"UI preview only. No handoff was sent.",android.widget.Toast.LENGTH_LONG).show();return false;}
 }

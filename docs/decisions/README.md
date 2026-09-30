@@ -38,3 +38,4 @@
 
 - [0015: Public self-hosted distribution](0015-public-selfhost-release.md)
 - [0016: Project-first light UX](0016-project-first-light-ux.md)
+- [0017: Recoverable local shares](0017-recoverable-local-shares.md)

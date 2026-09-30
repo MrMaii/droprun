@@ -13,9 +13,9 @@ import java.util.concurrent.*;
 public class PairActivity extends StyledActivity {
     static final int SCAN=30,CAMERA=31;
     final ExecutorService io=Executors.newSingleThreadExecutor();
-    Store store;Button scan,manual;TextView notice;boolean busy;int failures;AlertDialog manualDialog;EditText[] manualFields;
+    Store store;Button scan,manual,drafts;TextView notice;boolean busy;int failures;AlertDialog manualDialog;EditText[] manualFields;
     @Override protected void onCreate(Bundle state){super.onCreate(state);store=new Store(this);Ui.configureWindow(this);failures=state==null?0:state.getInt("failures");build();String link=getIntent().getStringExtra("pairingLink");if(state==null&&link!=null)confirm(link);if(state!=null&&state.getBoolean("manualOpen")){manualEntry();String[] values=state.getStringArray("manualValues");if(values!=null)for(int n=0;n<Math.min(values.length,manualFields.length);n++)manualFields[n].setText(values[n]);}}
-    @Override protected void onResume(){super.onResume();if(store.paired()){setResult(RESULT_OK);finish();}}
+    @Override protected void onResume(){super.onResume();drafts.setVisibility(ShareDrafts.list(store).isEmpty()?View.GONE:View.VISIBLE);if(store.paired()){setResult(RESULT_OK);finish();}}
     @Override protected void onSaveInstanceState(Bundle out){super.onSaveInstanceState(out);out.putInt("failures",failures);if(manualDialog!=null&&manualDialog.isShowing()){out.putBoolean("manualOpen",true);String[] values=new String[manualFields.length];for(int n=0;n<values.length;n++)values[n]=manualFields[n].getText().toString();out.putStringArray("manualValues",values);}}
     void build(){
         LinearLayout page=Ui.page(this);LinearLayout top=Ui.row(this);TextView brand=Ui.text(this,"DropRun",17,Ui.TEXT);brand.setTypeface(Ui.medium());top.addView(brand,Ui.grow());
@@ -29,6 +29,7 @@ public class PairActivity extends StyledActivity {
         notice=Ui.text(this,"",14,Ui.AMBER);notice.setVisibility(View.GONE);notice.setAccessibilityLiveRegion(View.ACCESSIBILITY_LIVE_REGION_POLITE);page.addView(notice,Ui.margins(this,12,0));
         scan=Ui.button(this,L.t("Scan to connect","扫码连接"),true);scan.setOnClickListener(v->startScan());page.addView(scan,Ui.margins(this,24,0));
         manual=Ui.button(this,L.t("Use a pairing link or code","使用配对链接或配对码"),false);manual.setOnClickListener(v->manualEntry());page.addView(manual,Ui.margins(this,10,0));
+        drafts=Ui.button(this,L.t("Unfinished shares on this phone","手机上未完成的分享"),false);drafts.setOnClickListener(v->startActivity(new Intent(this,ShareDraftsActivity.class)));page.addView(drafts,Ui.margins(this,10,0));
         page.addView(Ui.caption(this,L.t("No DropRun account. Your Relay carries shared material and reports; Codex credentials stay on your computer. Transcription uses only the provider you configure.","无需 DropRun 账户。材料与报告经你自己的中转服务传递，Codex 凭证留在电脑；转写仅使用你配置的服务。")),Ui.margins(this,20,0));Ui.enter(page);
     }
     void startScan(){if(checkSelfPermission(android.Manifest.permission.CAMERA)!=PackageManager.PERMISSION_GRANTED){requestPermissions(new String[]{android.Manifest.permission.CAMERA},CAMERA);return;}startActivityForResult(new Intent(this,ScanActivity.class),SCAN);}

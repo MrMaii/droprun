@@ -20,7 +20,7 @@ public class MainActivity extends StyledActivity {
     final ExecutorService io=Executors.newSingleThreadExecutor();final Handler handler=new Handler(Looper.getMainLooper());
     final List<JSONObject> items=new ArrayList<>();final HomeAdapter adapter=new HomeAdapter();
     JSONArray catalog=new JSONArray();
-    Store store;LinearLayout root;TextView notice;ListView list;String snapshot="";boolean foreground,busy;
+    Store store;LinearLayout root;TextView notice,draftsNotice;ListView list;String snapshot="";boolean foreground,busy;
     final Runnable refresh=this::load;
     @Override public void onCreate(Bundle state){super.onCreate(state);store=new Store(this);Ui.configureWindow(this);SyncJob.schedule(this);handleIntent(getIntent());}
     @Override protected void onNewIntent(Intent intent){super.onNewIntent(intent);setIntent(intent);handleIntent(intent);}
@@ -45,6 +45,7 @@ public class MainActivity extends StyledActivity {
         ImageButton gear=Ui.iconButton(this,R.drawable.ic_gear,L.t("Settings","设置"));gear.setOnClickListener(v->startActivity(new Intent(this,SettingsActivity.class)));header.addView(gear,Ui.square(this,48));root.addView(header);
         TextView intro=Ui.text(this,L.t("Good ideas, moving forward.","让好想法，接着往前走。"),14,Ui.MUTED);intro.setPadding(dp(24),0,dp(24),dp(18));root.addView(intro);
         notice=Ui.text(this,"",13,Ui.AMBER);notice.setPadding(dp(24),dp(10),dp(24),dp(10));notice.setMinHeight(dp(48));notice.setFocusable(true);Ui.bindPress(notice);notice.setAccessibilityLiveRegion(View.ACCESSIBILITY_LIVE_REGION_POLITE);root.addView(notice);
+        draftsNotice=Ui.linkButton(this,"");draftsNotice.setPadding(dp(24),dp(10),dp(24),dp(10));draftsNotice.setOnClickListener(v->startActivity(new Intent(this,ShareDraftsActivity.class)));LinearLayout.LayoutParams draftMargins=Ui.margins(this,0,12);draftMargins.setMargins(dp(20),0,dp(20),dp(12));root.addView(draftsNotice,draftMargins);
         FrameLayout stage=new FrameLayout(this);root.addView(stage,new LinearLayout.LayoutParams(-1,0,1));
         list=new ListView(this);list.setId(android.R.id.list);list.setAdapter(adapter);list.setItemsCanFocus(true);list.setDivider(null);list.setSelector(android.R.color.transparent);list.setVerticalScrollBarEnabled(false);list.setClipToPadding(false);list.setPadding(dp(20),0,dp(20),dp(28));stage.addView(list,new FrameLayout.LayoutParams(-1,-1));
         ScrollView emptyScroll=new ScrollView(this);emptyScroll.setFillViewport(true);emptyScroll.setVerticalScrollBarEnabled(false);
@@ -54,7 +55,8 @@ public class MainActivity extends StyledActivity {
         TextView hint=Ui.text(this,L.t("Share a link, photo or video from another app. Pick a project. Its progress will find a home here.","在其他 App 分享链接、图片或视频，选择一个项目。它的进展，会出现在这里。"),15,Ui.MUTED);hint.setGravity(Gravity.CENTER);empty.addView(hint,Ui.margins(this,10,0));emptyScroll.addView(empty,new ScrollView.LayoutParams(-1,-2));stage.addView(emptyScroll,new FrameLayout.LayoutParams(-1,-1));list.setEmptyView(emptyScroll);Ui.enter(root);
     }
     void show(){
-        if(root==null)build();catalog=store.projects();String next=String.valueOf(store.activity())+catalog+store.pending()+store.prefs.getString("syncError","")+store.prefs.getString("receiverNotice","")+store.computerOnline()+TaskNotifications.allowed(this)+(System.currentTimeMillis()/60000);if(next.equals(snapshot))return;snapshot=next;
+        if(root==null)build();int drafts=ShareDrafts.list(store).size();draftsNotice.setText(L.t(drafts+(drafts==1?" unfinished share · continue":" unfinished shares · continue"),drafts+" 份未完成的分享 · 继续"));draftsNotice.setVisibility(drafts==0?View.GONE:View.VISIBLE);
+        catalog=store.projects();String next=String.valueOf(store.activity())+catalog+store.pending()+store.prefs.getString("syncError","")+store.prefs.getString("receiverNotice","")+store.computerOnline()+TaskNotifications.allowed(this)+(System.currentTimeMillis()/60000);if(next.equals(snapshot))return;snapshot=next;
         String error=store.prefs.getString("syncError",""),receiver=store.prefs.getString("receiverNotice","");
         String line=!error.isEmpty()?error:!store.computerOnline()?L.t("Computer offline · saved handoffs will wait.","电脑离线 · 已保存的交办会等待连接。"):!receiver.isEmpty()?receiver:!TaskNotifications.allowed(this)?L.t("Turn on notifications for deliveries and decisions.","开启通知，及时收到交付与待确认事项。"):"";
         notice.setText(line);notice.setVisibility(line.isEmpty()?View.GONE:View.VISIBLE);

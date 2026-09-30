@@ -40,8 +40,10 @@ in [0.5.0](../releases/0.5.0.md).
   200% font. Rotation does not restart a failed provider or change share identity.
   An interrupted unsent share must remain discoverable after its original page is
   gone, with its material, note and target choices intact. Recovery is scoped to
-  the intended instance and never sends automatically. This recovery entry remains
-  an open acceptance item; a material journal alone does not meet it.
+  the intended instance and never sends automatically. Home and pre-pairing setup
+  expose unfinished shares separately from project history. Saving, saved and failed
+  states must be distinguishable; discard requires an explicit choice. A draft saved
+  before pairing requires confirmation of the target computer and Relay before use.
 - Reports prioritize required action and verifiable deliverables, preserve full
   approval context, and correctly disclose original-directory execution.
 - Screenshots/files are baseline delivery; compatible static exports have cloud

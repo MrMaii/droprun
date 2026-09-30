@@ -47,6 +47,7 @@ public class ShareActivity extends StyledActivity {
     EditText search,note;TextView gaugeText,sendTitle,status,badge;Ui.PlaneView plane;Ui.Glass dialog;ColorDrawable scrim;ValueAnimator panelAnimator;
     AlertDialog discardDialog;
     ShareImport incoming;Runnable importObserver;Bundle restoredState;
+    TextView draftStatus;Button retryDraft;boolean discardOnFinish;
     LinearLayout receiveActions,receiveContent;
     String shared="",last="",selected="",model="",effort="",query="",draft="";JSONArray attachments=new JSONArray();
     List<JSONObject> recentProjects=Collections.emptyList();
@@ -54,7 +55,8 @@ public class ShareActivity extends StyledActivity {
 
     @Override protected void onCreate(Bundle state){
         super.onCreate(state);store=new Store(this);Ui.configureOverlay(this);overridePendingTransition(0,0);
-        Intent intent=getIntent();CharSequence text=intent.getCharSequenceExtra(Intent.EXTRA_TEXT);shared=text==null?"":text.toString();
+        try{state=recoveryState(state);}catch(Exception e){build();fatal(e);return;}
+        Intent intent=importIntent();CharSequence text=intent.getCharSequenceExtra(Intent.EXTRA_TEXT);shared=text==null?"":text.toString();
         build();
         if(state!=null&&state.getBoolean("sent")){sent=true;receiving=false;close();return;}
         if(state!=null){
@@ -62,9 +64,8 @@ public class ShareActivity extends StyledActivity {
             restoredState=state;
         }
         try{
-            incoming=(ShareImport)getLastNonConfigurationInstance();
-            boolean retained=incoming!=null;
-            if(!retained)incoming=new ShareImport(store,intent,state==null?null:state.getString("importId"),state==null?null:state.getString("importScope"));
+            ShareImport retained=(ShareImport)getLastNonConfigurationInstance();
+            incoming=ShareImport.open(store,intent,retained!=null?retained.id:state==null?null:state.getString("importId"),retained!=null?retained.store.scope:state==null?null:state.getString("importScope"),this);
             if(incoming.transferred){sent=true;receiving=false;close();return;}
             if(!incoming.store.scope.equals(store.scope))incoming.bind(store);
             importObserver=()->{
@@ -73,22 +74,31 @@ public class ShareActivity extends StyledActivity {
                 try{attachments=incoming.attachments();received();}catch(Exception e){fatal(e);}
             };
             incoming.observer=importObserver;
+            incoming.editorObserver=this::draftFeedback;
             if(incoming.finished){importObserver.run();return;}
-            if(!retained)io.execute(incoming);
+            if(!incoming.started){incoming.started=true;io.execute(incoming);}
         }catch(Exception e){fatal(e);return;}
         // Only a slow copy (a large video) shows the receiving notice; text shares go straight to step 1.
         handler.postDelayed(()->{if(receiving&&!gone())Ui.swap(stage,notice(L.t("Receiving shared material…","正在接收分享…")),1);},200);
     }
     void received(){
-        receiving=false;if(gone()){discardAttachments();return;}
+        receiving=false;if(gone()){if(discardOnFinish)discardAttachments();return;}
         clearReceiveActions();
         if(shared.trim().isEmpty()&&attachments.length()==0){fatal(new IOException(L.t("Share a link, text or file.","请分享链接、文字或文件")));return;}
         if(store.paired()){
             start();
             if(restoredState!=null&&restoredState.getInt("step",-1)>=0){model=restoredState.getString("model",model);effort=restoredState.getString("effort",effort);if(restoredState.getInt("step")==1&&Store.projectEnabled(store.project(selected)))go(1,1);}
         }else unpaired();
-        restoredState=null;
+        restoredState=null;checkpoint();
     }
+    Bundle recoveryState(Bundle state)throws Exception{return state;}
+    Intent importIntent(){return getIntent();}
+    void checkpoint(){
+        if(incoming==null||sent||discardOnFinish||restoredState!=null||receiving)return;
+        try{incoming.checkpoint(new JSONObject().put("selected",selected).put("draft",note==null?draft:note.getText().toString()).put("model",model).put("effort",effort).put("query",query).put("showAll",showAll).put("step",Math.min(1,step)));draftFeedback();}catch(Exception e){error(e);}
+    }
+    void draftFeedback(){if(draftStatus==null||incoming==null||gone())return;boolean failed=incoming.editorError!=null;draftStatus.setText(failed?L.t("Draft not saved. Keep this page open and retry.","草稿未保存，请保持页面打开并重试。"):incoming.editorSaving?L.t("Saving draft…","正在保存草稿…"):L.t("Draft saved on this phone","草稿已保存在手机"));draftStatus.setTextColor(failed?Ui.AMBER:Ui.MUTED);retryDraft.setVisibility(failed?View.VISIBLE:View.GONE);}
+    @Override protected void onPause(){checkpoint();super.onPause();}
     @Override protected void onActivityResult(int request,int result,Intent data){
         super.onActivityResult(request,result,data);
         if(request==PAIR){store=new Store(this);if(result==RESULT_OK&&store.paired())start();else close();}
@@ -100,9 +110,9 @@ public class ShareActivity extends StyledActivity {
     }
     @Override protected void onDestroy(){
         handler.removeCallbacksAndMessages(null);io.shutdown();
-        if(incoming!=null&&incoming.observer==importObserver)incoming.observer=null;
+        if(incoming!=null&&incoming.observer==importObserver){incoming.observer=null;incoming.editorObserver=null;incoming.release(this);}
         if(discardDialog!=null)discardDialog.dismiss();
-        if(!sent&&isFinishing())discardAttachments();
+        if(!sent&&discardOnFinish)discardAttachments();
         super.onDestroy();
     }
     void discardAttachments(){if(incoming!=null)incoming.cancel();}
@@ -159,7 +169,7 @@ public class ShareActivity extends StyledActivity {
     void close(){
         if(closing)return;
         String message=note==null?draft:note.getText().toString();
-        boolean failed=receiveActions!=null||(incoming!=null&&incoming.error!=null);
+        boolean failed=this instanceof RecoveredShareActivity||receiveActions!=null||(incoming!=null&&incoming.error!=null);
         if(!sent&&(!message.trim().isEmpty()||failed)){
             if(discardDialog!=null&&discardDialog.isShowing())return;
             discardDialog=new AlertDialog.Builder(this).setTitle(failed?L.t("Discard this share?","放弃这次分享？"):L.t("Discard your note?","放弃这段留言？")).setMessage(failed?L.t("Nothing has been handed off. This removes this share's saved copies and note. Your original files stay in the source app.","这次分享尚未交办。将移除本次保存的副本和留言，来源 App 中的原文件不受影响。"):L.t("Nothing has been handed off. Closing will remove your note.","这次分享尚未交办。关闭后，这段留言将被丢弃。")).setNegativeButton(failed?L.t("Keep share","保留分享"):L.t("Keep editing","继续编辑"),null).setPositiveButton(L.t("Discard","放弃"),(d,w)->finishShare()).show();
@@ -168,14 +178,14 @@ public class ShareActivity extends StyledActivity {
         finishShare();
     }
     void finishShare(){
-        if(closing)return;closing=true;hideKeyboard();closeDialog(null);
+        if(closing)return;discardOnFinish=!sent;closing=true;hideKeyboard();closeDialog(null);
         dim(false);Ui.slideDown(holder,()->{finish();overridePendingTransition(0,0);});
     }
     void hideKeyboard(){View focus=getCurrentFocus();if(focus==null)return;((InputMethodManager)getSystemService(INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(focus.getWindowToken(),0);focus.clearFocus();}
     TextView notice(String value){TextView view=Ui.text(this,value,13,Ui.MUTED);view.setGravity(Gravity.CENTER);view.setPadding(dp(10),dp(14),dp(10),dp(14));return view;}
     void error(Exception e){if(gone())return;new AlertDialog.Builder(this).setTitle(L.t("Could not complete this action","暂时无法完成")).setMessage(e.getMessage()).setPositiveButton(L.t("Got it","知道了"),null).show();}
     /** Nothing to show after this error: the overlay closes once the message is dismissed. */
-    void fatal(Exception e){receiving=false;if(gone())return;new AlertDialog.Builder(this).setTitle(L.t("Could not complete this action","暂时无法完成")).setMessage(e.getMessage()).setPositiveButton(L.t("Got it","知道了"),null).setOnDismissListener(d->close()).show();}
+    void fatal(Exception e){receiving=false;if(gone())return;new AlertDialog.Builder(this).setTitle(L.t("Could not complete this action","暂时无法完成")).setMessage(e.getMessage()).setPositiveButton(L.t("Got it","知道了"),null).setOnDismissListener(d->{if(incoming==null)finishShare();else close();}).show();}
 
     // ---- receiving the share --------------------------------------------------------------------
     void clearReceiveActions(){if(receiveActions!=null){sheet.removeView(receiveActions);receiveActions=null;receiveContent=null;scroll.setLayoutParams(Ui.fill());scroll.setVerticalScrollBarEnabled(false);}}
@@ -243,6 +253,7 @@ public class ShareActivity extends StyledActivity {
         hideKeyboard();step=target;
         Ui.swap(stage,target==0?stepProject():target==1?stepNote():stepSend(),direction);
         dots.setActive(target,true);back.setVisibility(target==1?View.VISIBLE:View.INVISIBLE);scroll.scrollTo(0,0);
+        checkpoint();
         if(target==2)fly();
     }
     String projectName(){JSONObject project=store.project(selected);return project==null?"":store.projectLabel(project);}
@@ -351,6 +362,7 @@ public class ShareActivity extends StyledActivity {
         TextView target=Ui.caption(this,L.t("For “","转发到「")+projectName()+L.t("”","」"));column.addView(target);
         note=new EditText(this);note.setHint(L.t("Optional. Leave this blank and let Codex find the useful part.","可选。留空让 Codex 自己判断怎么用。"));note.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_FLAG_MULTI_LINE|InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
         note.setMinLines(3);note.setMaxLines(6);note.setFilters(new InputFilter[]{new InputFilter.LengthFilter(15000)});note.setText(draft);Ui.styleInput(note);
+        note.addTextChangedListener(new TextWatcher(){public void beforeTextChanged(CharSequence s,int start,int count,int after){}public void onTextChanged(CharSequence s,int start,int before,int count){draft=s.toString();checkpoint();}public void afterTextChanged(Editable value){}});
         column.addView(note,Ui.margins(this,8,10));
         gauge=null;gaugeText=null;panel=null;panelOpen=false;
         if(store.models().length()>0){
@@ -363,10 +375,11 @@ public class ShareActivity extends StyledActivity {
             updateGauge();
         }
         Button send=Ui.button(this,L.t("Hand off to Codex","交给 Codex"),true);send.setOnClickListener(v->{if(submit())go(2,1);});column.addView(send,Ui.margins(this,16,0));
-        TextView hint=Ui.caption(this,L.t("A note is optional","留言可以留空"));hint.setGravity(Gravity.CENTER);column.addView(hint,Ui.margins(this,4,0));
+        draftStatus=Ui.caption(this,"");draftStatus.setGravity(Gravity.CENTER);draftStatus.setAccessibilityLiveRegion(View.ACCESSIBILITY_LIVE_REGION_POLITE);column.addView(draftStatus,Ui.margins(this,4,0));retryDraft=Ui.button(this,L.t("Retry saving draft","重试保存草稿"),false);retryDraft.setOnClickListener(v->checkpoint());column.addView(retryDraft,Ui.margins(this,6,0));draftFeedback();
         return column;
     }
     void updateGauge(){
+        checkpoint();
         if(gaugeText==null)return;JSONObject chosen=store.model(model);String summary=(chosen==null?model:chosen.optString("displayName",model))+(effort.isEmpty()?"":" · "+effort);
         gaugeText.setText(summary);gaugeText.setTextColor(panelOpen?Ui.TEXT:Ui.MUTED);gauge.setImageTintList(ColorStateList.valueOf(panelOpen?Ui.ACCENT:Ui.TEXT));
         ((View)gaugeText.getParent()).setContentDescription(L.t("Model & effort, ","模型强度，")+summary+(panelOpen?L.t(", tap to collapse","，点按收起"):L.t(", tap to expand","，点按展开")));

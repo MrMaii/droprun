@@ -26,7 +26,7 @@ public class ShareAttachmentTest {
         source=new byte[256*1024];for(int n=0;n<source.length;n++)source[n]=(byte)(n%251);Files.write(DemoImportProvider.file(context).toPath(),source);
         DemoImportProvider.opens.set(0);DemoImportProvider.firstChunk=new CountDownLatch(1);DemoImportProvider.resume=new CountDownLatch(0);
     }
-    @After public void cleanup(){DemoImportProvider.resume.countDown();DemoImportProvider.file(context).delete();}
+    @After public void cleanup()throws Exception{DemoImportProvider.resume.countDown();DemoImportProvider.file(context).delete();awaitCleanup();}
     Set<String> files(){String[] names=store.attachments().list();return new HashSet<>(names==null?Collections.emptyList():Arrays.asList(names));}
     Intent share(String... paths){
         Intent intent=new Intent(context,DemoShareActivity.class).setType("application/octet-stream");ArrayList<Uri> uris=new ArrayList<>();
@@ -39,6 +39,7 @@ public class ShareAttachmentTest {
         do{scenario.onActivity(a->receiving[0]=a.receiving);if(!receiving[0])return;Thread.sleep(25);}while(android.os.SystemClock.elapsedRealtime()<end);fail("Synthetic input did not finish");
     }
     void awaitCleanup()throws Exception{
+        for(String id:files())if(!before.contains(id)&&ShareDrafts.uuid(id)){ShareImport live=ShareImport.live(id);if(live!=null)live.cancel();else ShareDrafts.discard(store,ShareDrafts.find(store,store.scope,id));}
         long end=android.os.SystemClock.elapsedRealtime()+5000;while(!files().equals(before)&&android.os.SystemClock.elapsedRealtime()<end)Thread.sleep(25);assertEquals("Unsent copies are cleaned, preexisting files untouched",before,files());
     }
     void awaitSheet(ActivityScenario<DemoShareActivity> scenario)throws Exception{
@@ -141,8 +142,8 @@ public class ShareAttachmentTest {
     }
     @Test public void closingDuringCopyCleansItsOwnedPartial()throws Exception{
         DemoImportProvider.resume=new CountDownLatch(1);
-        try(ActivityScenario<DemoShareActivity> scenario=ActivityScenario.launch(share("paused-input"))){assertTrue(DemoImportProvider.firstChunk.await(5,TimeUnit.SECONDS));}
-        finally{DemoImportProvider.resume.countDown();}awaitCleanup();assertEquals(0,store.pending().length());
+        File[] owned={null};try(ActivityScenario<DemoShareActivity> scenario=ActivityScenario.launch(share("paused-input"))){assertTrue(DemoImportProvider.firstChunk.await(5,TimeUnit.SECONDS));scenario.onActivity(a->{owned[0]=a.incoming.directory;a.close();});}
+        finally{DemoImportProvider.resume.countDown();}long end=android.os.SystemClock.elapsedRealtime()+3000;while(owned[0].exists()&&android.os.SystemClock.elapsedRealtime()<end)Thread.sleep(25);assertFalse("Explicit Close discards without test cleanup",owned[0].exists());awaitCleanup();assertEquals(0,store.pending().length());
     }
     @Test public void independentSharesDoNotCleanEachOthersCopies()throws Exception{
         Intent intent=share("local-input");ShareImport first=new ShareImport(store,intent,null,null),second=new ShareImport(store,intent,null,null);

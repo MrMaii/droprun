@@ -40,6 +40,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".ProjectHistoryActivity" android:exported="false" />
+        <activity android:name=".ShareDraftsActivity" android:exported="false" />
+        <activity android:name=".RecoveredShareActivity" android:exported="false" android:theme="@style/ShareTheme" android:taskAffinity="" android:excludeFromRecents="true" android:configChanges="orientation|screenSize|keyboardHidden" android:windowSoftInputMode="adjustResize" />
         <activity android:name=".TaskActivity" android:exported="false" android:windowSoftInputMode="adjustResize" />
         <activity android:name=".PairActivity" android:exported="false" android:windowSoftInputMode="adjustResize" />
         <activity android:name=".ScanActivity" android:exported="false" android:screenOrientation="portrait" />

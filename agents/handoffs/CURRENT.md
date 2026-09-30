@@ -6,73 +6,96 @@ Updated 2026-09-29. Public self-hosted preview remains online. Android/Windows
 ## Current user scope
 
 Further UX polish, then marketing handoff and posters after the UX loop is verified.
-A physical Android is unavailable; the user accepted candidate work. Latest explicit
-choice: **local UI validation only; retain real submission acceptance**. No real Relay
-tasks, permission grants, Codex execution or social posts. Campaign assets remain
-behind the agreed gate. Do not retry the previously blocked live share by another
-mechanism. Automatic review gave only `blocked by policy`; the user chose local-only.
+Physical Android unavailable; candidate work accepted. Latest explicit choice:
+**local UI validation only; retain real submission acceptance**. No real Relay
+submissions, grants, cleanup, Codex execution or social posts. Do not retry the
+previously blocked live share by another mechanism. Automatic review previously
+reported only `blocked by policy`; the user chose local-only. Campaign assets stay
+behind the agreed gate. Continue local work without requesting that permission again.
 
 ## Completed this pass
 
-- Reproduced short-landscape failure UI at200%: stacked actions plus86% height cap
-  left less than72dp of readable explanation. Initial test inherited the launcher's
-  portrait orientation; using the local fullscreen Home as backdrop made it valid.
-- Compact screens(available height<=400dp) now use available height. Failure actions
-  are parallel in landscape and stacked in portrait. Landscape hides the decorative
-  title and shows the failure cause before counts/files; content remains scrollable.
-  Rotation preserves one import, kept bytes, no outbox entry and no provider replay.
-- Full native suites pass73/73 per API at200%. After the final cause-first adjustment,
-  all15 attachment cases pass on each API at200%. JVM12, lint and signed build pass.
-  Stable native captures inspected; prior captures caught system rotation frames,
-  so final screenshot capture waits for those transforms as well as View animation.
-- Candidate refreshed locally. No Node/Windows changes or external mutation.
-- Recovery source inspection found the next gap: journals retain material but not
-  note/project/model choices; those only have an Activity Bundle. No Home entry
-  opens a never-restored journal. onDestroy also discards whenever isFinishing(),
-  which does not distinguish explicit discard from other reasons a page ends.
-  PRD now names this still-unmet recovery acceptance. No recovery UI implemented.
+- Implemented discoverable unfinished shares, preserving material, note, project,
+  model/effort and navigation state in the atomic import journal. Home/setup entry
+  stays separate from history/outbox. Saving/saved/error feedback and retry added.
+- Private recovery route, one active editor/copy, explicit discard, first-pairing
+  target confirmation, instance isolation and late-write/transfer cleanup covered.
+  System page destruction no longer implies the user chose to discard.
+- Native200% review: recovery heading wraps, empty status uses no space, Home link
+  aligns with cards. Actual API35 background process loss recovers through Home
+  after the original synthetic file is removed; note/target/model/effort and exact
+  retained67200-byte hash agree. Keep and confirmed Discard tested; no submission.
+- JVM12/lint/debug/test/signed release build pass. All11 draft cases pass within both
+  final full native runs. API26 complete84/84; API35 complete83/84 with one existing
+  history burst/keyboard failure. Earlier83-case complete runs passed per API.
+- Initial test harness launch-Intent, accessibility-window and teardown races were
+  fixed; failed logs retained. Known test-created leftover files were inspected and
+  removed by exact path. Unknown older material remains untouched.
+- ADR0017, PRD, contracts, UI matrix and canonical UX record updated. No Node/Windows
+  source changes or external mutations. New APK is a separate review artifact.
 
-Canonical evidence, hashes and exact logs:
+Canonical logs, timings, hashes and process evidence:
 [0.5.1 UX record](../../docs/releases/0.5.1-ux.md).
-Control coverage and unmet gates: [UI matrix](../../docs/releases/0.5.1-ui-matrix.md).
+Control coverage: [UI matrix](../../docs/releases/0.5.1-ui-matrix.md).
+
+## New unresolved local regression
+
+API35 complete run `.local/share-drafts-complete-api35.log` fails
+`historyBackToBackUpdatesKeepTheVisibleRecord`, non-touch mode. Two pending inserts
+before layout change visible history item170 to168 (IDs a991084d... to4f77a651...).
+Full run83/84,137.207s. API26 full84/84,98.231s. All draft cases pass in those runs.
+Isolated original history case1/1,5.28s; strengthened four touch/keyboard cycles
+1/1,6.459s. Logs `share-drafts-history-isolated-api35.log` and
+`share-drafts-history-stress-api35.log`. Those passes do not prove the bug fixed.
+The stronger test is retained; no speculative production history change was made.
+
+Likely area to inspect, not a proven diagnosis: non-touch native ListView stable-ID
+synchronization around repeated adapter notifications before layout. Touch mode
+already records the actual visible View's bound ID; keyboard mode relies on native
+sync. Preserve both reading offset and keyboard selection/focus if changing it.
+Avoid making the test wait for an expected row or weakening its assertion. Native
+pre-draw synchronization already exists in `awaitFrame`; capture actual lifecycle,
+window focus, selected ID, bound visible ID and pending layout to distinguish a
+product anchor issue from a fixture/window transition. No external service needed.
 
 ## Artifacts and environment
 
-- Current signed APK `.local/releases/ux-polish-sep29/DropRun-0.5.1-android-candidate.apk`:
+- New review APK `.local/releases/ux-polish-sep29/DropRun-0.5.1-share-drafts-review.apk`:
+  SHA256 `27b3de21eec09e69687ff47faf57fa271abf0defad4e4c917ca61ffcd2d0044d`.
+  Version0.5.1/code14; package `app.droprun.mobile`; stable certificate unchanged.
+  Recovery Activities are non-exported; no Demo fixture in release manifest.
+- Named candidate remains `.local/releases/ux-polish-sep29/DropRun-0.5.1-android-candidate.apk`:
   SHA256 `d2c8084e7b76dbda8f173f9777498f90023c755f378e68b43e710ca6e65e3b51`.
-  Version0.5.1/code14, package `app.droprun.mobile`, same stable certificate.
-  Previousfefbe4... candidate saved as `DropRun-0.5.1-before-short-landscape.apk`.
-  The earlier `DropRun-0.5.1-import-retry-review.apk` remains separate.
-- Windows artifacts unchanged: `.local/releases/ux-actions-sep29-windows-final/`.
-  No trusted publisher signature. Signing material stays ignored.
-- New screenshots `.local/ux-cloud-check/receive-failure-{landscape,portrait}-api{26,35}-large.png`
-  show native200% UI with synthetic data. Older actual process-recovery evidence
-  and all failed logs remain linked in the UX record.
-- Both emulators stopped; API35 DropRunTest/5556 restored font2.0, keep-awake3,
-  auto-rotation1/user-rotation0. API26 DropRunApi26/5558 restored font1.0,
-  keep-awake0, auto-rotation1/user-rotation absent. Check before changing next time.
-  Outbox cleanup passed; older unknown6d908a45-e442-428d-aac7-b9eace8e1705 remains.
-- Release package on API35 remains paired and force-stopped. Use `.debug` only.
-  Never run two UI automation clients on one emulator. Wait for terminal Gradle
-  success before APK install; instrumentation requires `OK (N tests)`, not exit0.
+  Not overwritten because complete API35 regression is unresolved.
+- Windows unchanged `.local/releases/ux-actions-sep29-windows-final/`, no trusted
+  publisher signature. Signing material and local runtime data remain ignored.
+- Native screenshots/XML `.local/ux-cloud-check/draft-{home,list,resumed}-final.*`,
+  `draft-confirm-final.xml`; synthetic private-provider data, no genuine delivery.
+- Both emulators stopped. Restored API35 DropRunTest/5556 font2.0, keep-awake3,
+  auto-rotation1/user0; API26 DropRunApi26/5558 font1.0, keep-awake0,
+  auto-rotation1/user absent. Verify before changes. Debug outboxes/journals empty;
+  API35 older unknown6d908a45-e442-428d-aac7-b9eace8e1705 remains.
+- Public package on API35 stays paired and force-stopped. Use `.debug` only. Wait
+  for terminal Gradle build before install. Never automate an emulator concurrently
+  with instrumentation. Require `OK (N tests)`, not merely shell exit0.
+- No running tests/builds remain. Last build after signed release changes tests
+  only; the separate review APK includes all current production source.
 
 ## Remaining gates
 
-- Real submissions/receipt/execution/report/follow-up intentionally unverified.
-  Earlier isolated QA pairing/catalog addition is described in ignored
-  `.local/ux-cloud-check.mjs`; remote cleanup remains pending. Private Connector
-  untouched. No task sent; do not mutate the Relay under current local-only scope.
-- Physical Android/TalkBack/performance,20 genuine source samples,five complete
-  tasks over three projects,clean Windows/fresh Cloudflare installation,upgrade
-  and uninstall remain open. Emulator timing does not establish device performance.
-- ShareImport now preserves verified files/failure state and supports explicit
-  retry across process restoration. Never-restored incoming journals have no
-  recovery surface yet. Real provider URI loss and storage-full/max-size
-  require further coverage. See prior process evidence in UX record.
-- Original API35 SyncJob ANR(2026-09-29 18:10:25) still has no proven root cause;
-  earlier API26 emulator crashes and test failures remain recorded.
+- Real submission/receipt/execution/report/follow-up intentionally unverified.
+  Earlier isolated QA pairing/catalog mutation is described in ignored
+  `.local/ux-cloud-check.mjs`; remote cleanup is not authorized now. No task sent;
+  private Connector untouched. Do not mutate the Relay under local-only scope.
+- Physical Android/TalkBack/performance,20 genuine sources,five full tasks over
+  three projects,clean Windows/fresh Cloudflare installation,upgrade/uninstall.
+  Emulator test duration does not establish physical-device frame/press performance.
+- Real provider URI loss and storage-full/maximum-size still need bounded evidence.
+  New draft-write failure is injected, not a claim of actual full-device storage.
+- Original API35 SyncJob ANR(2026-09-29 18:10:25) root cause remains unproven;
+  earlier emulator crashes/test failures remain in the canonical release record.
 
-## Public baseline (unchanged; historical evidence in 0.5.0 record)
+## Public baseline (unchanged; historical evidence)
 
 Website https://droprun.dengmaizi0802.chatgpt.site (`/zh/`).
 Repository https://github.com/MrMaii/droprun .
@@ -85,28 +108,15 @@ Git author Thomas Deng <150266369+MrMaii@users.noreply.github.com>.
 
 ## Single recommended next action
 
-Implement recoverable, instance-scoped unsent shares with local fixtures. Retaining
-files alone is insufficient: preserve the note, project and model choices alongside
-material; show a recovery entry after the original page is gone, and require an
-explicit choice before discarding. Never auto-submit or imply server receipt.
-
-Implementation proposal, not an adopted architecture: keep editor snapshots with
-the existing atomic import journal, serialize writes off the UI thread, and guard
-late writes after transfer/discard and across recreation. Add a non-exported recovery
-route rather than trusting recovery IDs passed to the exported share target. Handle
-an active editor/copy without concurrent owners of the same files. Show only the
-current instance's drafts; explicitly handle unpaired drafts at first pairing,
-never adopt another paired instance's material. Exclude pending/outbox-owned IDs.
-Do not treat isFinishing() alone as evidence the user confirmed deletion. Corrupt
-or legacy material cannot be silently swept; unknown6d908a45... remains untouched.
-
-Verify real background process loss with private fixtures, restored note/material
-identity, explicit discard/Keep, duplicate-open prevention, two-instance isolation
-and no submission. Latest authorization remains local-only; no real sources, Relay
-mutation or Codex execution. All formal device/provider/install gates remain open.
+Diagnose and resolve the intermittent API35 keyboard history jump described above,
+using local fixtures. Preserve selection and reading position; rerun the affected
+history/Home/keyboard cases on both APIs, then refresh the named candidate only
+when relevant verification is clean. User authorization remains local-only.
 
 ## Files involved
 
-ShareActivity, ShareAttachmentTest, PRD, CONTRACTS, UI matrix, UX release record and
-this handoff. Ignored logs/screenshots/signed APK. Previous history fixes remain
-committed in fa1c8bf; their evidence is in the canonical UX record.
+ShareImport, ShareActivity, ShareDrafts, ShareDraftsActivity, RecoveredShareActivity,
+MainActivity, PairActivity, Store, manifest, DemoShareActivity; LocalRecoveryTest,
+ShareAttachmentTest, ShareDraftRecoveryTest; ADR0017/index, PRD, CONTRACTS, UI matrix,
+UX release record and this handoff. Ignored logs/screenshots/review APK. Previous
+5016695 short-landscape and fa1c8bf history fixes remain intact.

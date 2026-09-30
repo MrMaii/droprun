@@ -26,6 +26,7 @@ import static org.junit.Assert.*;
 /** Runs real Views, Keystore and outbox files, with synthetic data and no live Relay. */
 public class LocalRecoveryTest {
     Context context;
+    final java.util.Set<String> originalDrafts=new java.util.HashSet<>();
 
     @Before public void seed() throws Exception {
         context=InstrumentationRegistry.getInstrumentation().getTargetContext();
@@ -37,6 +38,7 @@ public class LocalRecoveryTest {
         Store store=new Store(context);
         assertEquals("https://preview.example.invalid",store.relay());
         for(JSONArray pending=store.pending();pending.length()>0;pending=store.pending())store.cancelPending(pending.getJSONObject(0).getString("id"));
+        for(ShareDrafts.Entry entry:ShareDrafts.list(store))originalDrafts.add(entry.scope+entry.id);
     }
 
     @After public void cleanup() throws Exception {
@@ -45,6 +47,7 @@ public class LocalRecoveryTest {
         assertEquals("https://preview.example.invalid",store.relay());
         JSONArray pending=store.pending();
         for(int n=0;n<pending.length();n++)store.cancelPending(pending.getJSONObject(n).getString("id"));
+        for(ShareDrafts.Entry entry:ShareDrafts.list(store))if(!originalDrafts.contains(entry.scope+entry.id))ShareDrafts.discard(store,entry);
     }
 
     void stopSync(){context.stopService(new Intent(context,TaskSyncService.class));((JobScheduler)context.getSystemService(Context.JOB_SCHEDULER_SERVICE)).cancelAll();}
@@ -174,7 +177,7 @@ public class LocalRecoveryTest {
     @Test public void historyBackToBackUpdatesKeepTheVisibleRecord()throws Exception{
         seedPagedHistory();try(ActivityScenario<ProjectHistoryActivity> scenario=historyScenario()){
             boolean[] wasTouch={false};scenario.onActivity(a->wasTouch[0]=a.list.isInTouchMode());
-            try{for(boolean touch:new boolean[]{true,false}){
+            try{for(boolean touch:new boolean[]{true,false,true,false,true,false,true,false}){
                 InstrumentationRegistry.getInstrumentation().setInTouchMode(touch);scrollHistory(scenario);String[] before=historyPosition(scenario);String one=UUID.randomUUID().toString(),two=UUID.randomUUID().toString();
                 scenario.onActivity(a->{try{for(String id:new String[]{one,two}){a.store.save(new JSONObject().put("id",id).put("projectId","demo-studio").put("content","Local burst fixture"));a.render();}}catch(Exception e){throw new AssertionError(e);}});
                 assertArrayEquals("Two updates before layout retain the visible row, touch="+touch,before,historyPosition(scenario));

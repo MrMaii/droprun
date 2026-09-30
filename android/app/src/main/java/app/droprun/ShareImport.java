@@ -16,6 +16,8 @@ import java.util.*;
 /** Owns one share's private copies until an outbox entry takes ownership. */
 final class ShareImport implements Runnable {
     static final String UNPAIRED=Store.scope("","");
+    static final Map<String,java.lang.ref.WeakReference<ShareImport>> live=new HashMap<>();
+    static final java.util.concurrent.ExecutorService drafts=java.util.concurrent.Executors.newSingleThreadExecutor();
     final String id;
     final JSONArray sources;
     final String mime;
@@ -26,9 +28,40 @@ final class ShareImport implements Runnable {
     volatile boolean finished,cancelled,transferred;
     volatile Exception error;
     volatile Runnable observer;
+    volatile Runnable editorObserver;
+    volatile Exception editorError;
+    volatile boolean editorSaving,started;
+    private long editorRevision;
+    JSONObject editorSnapshot;
+    private java.lang.ref.WeakReference<Object> owner=new java.lang.ref.WeakReference<>(null);
     private boolean retryRequested;
     int failureIndex=-1;
     private InputStream input;
+
+    static synchronized ShareImport live(String id){java.lang.ref.WeakReference<ShareImport> ref=live.get(id);ShareImport item=ref==null?null:ref.get();if(item==null)live.remove(id);return item;}
+    static synchronized ShareImport open(Store store,Intent intent,String id,String scope,Object owner)throws Exception{
+        live.entrySet().removeIf(entry->entry.getValue().get()==null);
+        ShareImport item=id==null?null:live(id);
+        if(item==null||item.cancelled||item.transferred)item=new ShareImport(store,intent,id,scope);
+        else{
+            if(!item.store.scope.equals(store.scope)&&!UNPAIRED.equals(item.store.scope))throw changed();
+            if(!item.sources.toString().equals(sources(intent).toString())||!item.mime.equals(intent.getType())||!item.record.getString("text").equals(String.valueOf(intent.getCharSequenceExtra(Intent.EXTRA_TEXT))))throw invalid();
+        }
+        synchronized(item){if(item.owner.get()!=null&&item.owner.get()!=owner)throw new IOException(L.t("This share is already open. Return to its editor first.","这份分享已经打开，请先返回原编辑页面。"));item.owner=new java.lang.ref.WeakReference<>(owner);}
+        live.put(item.id,new java.lang.ref.WeakReference<>(item));return item;
+    }
+    synchronized boolean hasOwner(){return owner.get()!=null;}
+    synchronized Object currentOwner(){return owner.get();}
+    synchronized void release(Object value){if(owner.get()==value)owner.clear();}
+    synchronized void checkpoint(JSONObject editor){
+        if(!finished||cancelled||transferred)return;
+        try{editorSnapshot=new JSONObject(editor.toString());record.put("editor",editorSnapshot);}catch(JSONException impossible){throw new IllegalArgumentException(impossible);}
+        long revision=++editorRevision;editorSaving=true;editorError=null;
+        drafts.execute(()->{
+            synchronized(this){if(revision!=editorRevision||cancelled||transferred)return;if(!finished){editorSaving=false;return;}try{write();editorError=null;}catch(Exception e){editorError=e;}editorSaving=false;}
+            new Handler(Looper.getMainLooper()).post(()->{Runnable callback=editorObserver;if(callback!=null)callback.run();});
+        });
+    }
 
     ShareImport(Store current,Intent intent,String savedId,String savedScope)throws Exception{
         sources=sources(intent);mime=intent.getType()==null?"application/octet-stream":intent.getType();
@@ -44,7 +77,7 @@ final class ShareImport implements Runnable {
         journal=new AtomicFile(new File(directory,"import.json"));
         if(savedId==null){
             if(!directory.mkdir())throw new IOException(L.t("Could not save this share on your phone. Check free space and try again.","无法在手机保存这次分享，请检查剩余空间后重试。"));
-            record=new JSONObject().put("sources",sources).put("mime",mime).put("text",String.valueOf(intent.getCharSequenceExtra(Intent.EXTRA_TEXT))).put("files",new JSONArray());
+            record=new JSONObject().put("sources",sources).put("mime",mime).put("text",String.valueOf(intent.getCharSequenceExtra(Intent.EXTRA_TEXT))).put("hasText",intent.hasExtra(Intent.EXTRA_TEXT)&&intent.getCharSequenceExtra(Intent.EXTRA_TEXT)!=null).put("files",new JSONArray());
             try{write();}catch(Exception e){directory.delete();throw e;}
         }else{
             // Covers process death between atomic outbox persistence and journal removal.
@@ -54,6 +87,7 @@ final class ShareImport implements Runnable {
             if(!sources.toString().equals(record.getJSONArray("sources").toString())||!mime.equals(record.getString("mime"))||!String.valueOf(intent.getCharSequenceExtra(Intent.EXTRA_TEXT)).equals(record.getString("text")))throw invalid();
             if(record.getJSONArray("files").length()>sources.length())throw invalid();
         }
+        editorSnapshot=record.optJSONObject("editor");
     }
     static JSONArray sources(Intent intent)throws IOException{
         ArrayList<Uri> uris=new ArrayList<>();
@@ -77,7 +111,7 @@ final class ShareImport implements Runnable {
             default->L.t("Copying was interrupted. Check free space and try again.","复制中断了，请检查剩余空间后重试。");
         });this.kind=kind;}
     }
-    void write()throws IOException{
+    synchronized void write()throws IOException{
         FileOutputStream output=null;
         try{output=journal.startWrite();output.write(record.toString().getBytes(StandardCharsets.UTF_8));journal.finishWrite(output);}
         catch(IOException e){if(output!=null)journal.failWrite(output);throw e;}
@@ -97,6 +131,7 @@ final class ShareImport implements Runnable {
     }
     int completeCount(){int count=0;JSONArray files=record.optJSONArray("files");for(int n=0;files!=null&&n<files.length();n++){JSONObject item=files.optJSONObject(n);if(item!=null&&item.optBoolean("complete"))count++;}return count;}
     @Override public void run(){
+        started=true;
         try{
             if(retryRequested){retryRequested=false;record.remove("failure");write();}
             JSONArray files=record.getJSONArray("files");
@@ -153,13 +188,13 @@ final class ShareImport implements Runnable {
         return result;
     }
     /** Only a previously unpaired share may follow an explicitly confirmed first pairing. */
-    void bind(Store current)throws IOException{
+    synchronized void bind(Store current)throws IOException{
         if(store.scope.equals(current.scope))return;
         if(!UNPAIRED.equals(store.scope)||!finished||error!=null||cancelled||transferred)throw changed();
         File next=new File(current.attachments(),id);if(!directory.renameTo(next))throw invalid();
         directory=next;journal=new AtomicFile(new File(directory,"import.json"));store=current;
     }
-    void save(JSONObject task)throws Exception{
+    synchronized void save(JSONObject task)throws Exception{
         if(!finished||error!=null||cancelled||transferred)throw invalid();
         if(!store.scope.equals(new Store(store.context).scope))throw changed();
         task.put("id",id).put("localFiles",attachments());store.save(task);
@@ -169,9 +204,9 @@ final class ShareImport implements Runnable {
     void cancel(){
         cancelled=true;
         synchronized(this){if(input!=null)try{input.close();}catch(IOException ignored){}}
-        if(finished)discard();
+        if(finished||!started)discard();
     }
-    void discard(){
+    synchronized void discard(){
         if(transferred)return;
         // Never enumerate/delete unrelated attachments, including legacy flat files.
         for(int index=0;index<sources.length();index++)file(index).delete();
