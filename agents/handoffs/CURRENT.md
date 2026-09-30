@@ -3,8 +3,8 @@
 Updated 2026-09-29. Public self-hosted preview remains online; stable release and
 marketing readiness remain unproven. Local candidate now includes recoverable
 shares (commit45f71a2) and the verified keyboard-history anchor fix (c0a7969).
-This pass fixed Android distribution packaging and verified a signed export with
-source/notices/checksums. The APK bytes and Android runtime remain unchanged.
+This pass fixed Windows distribution provenance/inventory and verified a new
+installer, portable ZIP and source ZIP. Runtime payload files remain unchanged.
 
 ## Current authorization
 
@@ -22,8 +22,8 @@ fixture origin, back up its preferences, insert240 synthetic cached tasks and op
 MainActivity. The user explicitly answered “允许这项本地恢复验证”; the same command
 was retried once with that authorization and rejected again, only `blocked by policy`.
 Do not ask again or route the rejected operation through a wrapper/other tool. This
-is the second goal turn with this unresolved tool block; no further retry occurred.
-Independent release-tool work made progress, so the goal remains active. No question
+is the third goal turn with this unresolved tool block; no further retry occurred.
+Independent Windows release-tool work made progress, so the goal remains active. No question
 is pending. Do not manufacture more approval questions for the same rejection.
 
 ## Previously completed and verified
@@ -72,8 +72,16 @@ is pending. Do not manufacture more approval questions for the same rejection.
   in that directory, SHA256
   `d2c8084e7b76dbda8f173f9777498f90023c755f378e68b43e710ca6e65e3b51`.
   Older review files/backups remain. Private signing material is ignored.
-- Windows unchanged `.local/releases/ux-actions-sep29-windows-final/`, unsigned by a
-  trusted publisher. No upload/deploy/public artifact replacement this pass.
+- New Windows distribution `.local/releases/windows-distribution-sep29/`, built
+  from43f3e00d628d547adc9bb8b1ba763a28761e51b9 with Inno7.1.0; Authenticode NotSigned.
+  The manifest now covers2020 payload files, including the formerly unlisted ZIP
+  helper, and binds source commit/archive hash. All2021 portable entries and272
+  source files verified; all three artifact sidecars match. All previous payload
+  files are unchanged; the added inventory entry already existed in the old ZIP.
+  Exact artifacts/hashes are in the latest UX record and
+  `.local/windows-distribution-verification.json`. Earlier Windows packages remain.
+  Two packaging tests pass2/2 in8.172s; no runtime/native/full Node suite rerun.
+  No upload, installation, deployment or public artifact replacement this pass.
 - Both debug apps force-stopped. Outboxes/import journals empty; preexisting unknown
   6d908a45... attachment preserved. No live Relay task or Codex operation started.
 - Emulator baselines restored and both stopped: API35 DropRunTest/5556 font2.0,
@@ -100,12 +108,14 @@ is pending. Do not manufacture more approval questions for the same rejection.
 
 ## Single recommended next action
 
-Check the existing Windows candidate's actual ZIP/installer against its file
-manifest and source identity, bringing its distribution evidence to the same
-standard. Inspect before changing packaging. The history process-death probe
-remains authorized but tool-blocked; no fixture was written or result obtained.
-Do not retry it through another route. ANR diagnosis still needs a pre-start
-timeline; post-event logs and fake-scheduler passes cannot establish its cause.
+Audit the public delivery boundary read-only: actual website download targets,
+repository/release visibility and which published version users receive versus
+these local candidates. Identify remaining launch gates from current evidence;
+do not silently publish or relabel candidates as stable. The history process-death
+probe remains authorized but tool-blocked; do not retry it through another route.
+ANR diagnosis still needs a pre-start timeline. If no independent meaningful work
+remains, the persistent block has reached the three-turn audit threshold; set the
+goal blocked instead of repeating status-only turns. Progress this pass was real.
 
 ## Open release gates
 
@@ -126,8 +136,8 @@ Git author Thomas Deng <150266369+MrMaii@users.noreply.github.com>.
 
 ## Environment and files this pass
 
-Commitsde23c1d/9f75ae1 change scripts/build-android.ps1, add Android license files,
-packaging tests and update THIRD_PARTY_NOTICES, DEVELOPMENT, PRD and CONTRACTS.
-Final test refinement covers explicit CRLF attributes as well as machine defaults;
-release record and this handoff contain the evidence. No emulator was started this
-pass. Candidate SHA256 rechecked unchanged. No build/test/emulator remains running.
+Commit43f3e00 changes scripts/package-windows.mjs, adds windows-package.test.mjs,
+and updates DEVELOPMENT/PRD/CONTRACTS. This handoff and the UX release record store
+final artifact verification. Android candidate unchanged. No emulator was started.
+No build/test/compiler remains running. Prior Android distribution source9f75ae1
+and its8-file/77-source verification remain valid for that unchanged APK.
