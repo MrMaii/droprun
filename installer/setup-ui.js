@@ -98,7 +98,7 @@ function renderDoctor() {
   const status = diagnostic?.codexStatus;
   el('project-inventory').hidden = !status?.ready;
   if (!diagnostic) { el('doctor-note').textContent = checking ? words('Checking Codex and local projects…', '正在检查 Codex 和本地项目…') : diagnosticError; return; }
-  for (const [name, value] of [['Node', true], ['Git', diagnostic.git], ['Codex', diagnostic.codex], [words('Browser', '浏览器'), diagnostic.browser], ['Wrangler', diagnostic.wrangler], [words('Media tools', '媒体工具'), Object.values(diagnostic.media).every(Boolean)]]) {
+  for (const [name, value] of [['Node', true], ['Git', diagnostic.git], ['Codex', diagnostic.codex], [words('Browser', '浏览器'), diagnostic.browser], ['Wrangler', diagnostic.wrangler], [words('Media tools · optional', '媒体工具 · 可选'), Object.values(diagnostic.media).every(Boolean)]]) {
     const badge = document.createElement('span'); badge.className = 'check' + (value ? '' : ' missing'); badge.textContent = `${value ? '✓' : '○'} ${name}`; el('doctor').append(badge);
   }
   const hints = { 'missing': ['Install Codex desktop, then sign in.', '请安装 Codex 桌面版并登录。'], 'login-required': ['Sign in to Codex, then check again.', '请登录 Codex 后重新检查。'], 'unsupported': ['Update Codex desktop: this version does not support the required project API.', '请更新 Codex 桌面版：当前版本不支持所需项目接口。'], 'app-server-failed': ['Codex app server could not start. Open Codex and try again.', 'Codex 服务未启动。请先打开 Codex 后重试。'], 'timeout': ['Codex did not respond within 10 seconds. Open Codex and check again.', 'Codex 在 10 秒内没有响应。请打开 Codex 后重新检查。'] };

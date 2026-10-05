@@ -5,7 +5,7 @@
 This section overrides conflicting historical defaults below. Existing execution,
 plan-version, per-command approval and report-evidence checks remain in force.
 
-- `GET /health`: source version (currently 0.5.3), protocolVersion=2, schemaVersion=11, instanceId and ready;
+- `GET /health`: source version (currently 0.5.4), protocolVersion=2, schemaVersion=11, instanceId and ready;
   public health must not expose project contents, credentials or paired users.
 - Pairing carries relayOrigin and instanceId plus the one-time code. The phone
   verifies health and obtains explicit server confirmation before binding. Tokens,
@@ -154,6 +154,7 @@ plan-version, per-command approval and report-evidence checks remain in force.
 - 整页滚动根容器与分享根容器保留键盘焦点能力，但关闭系统默认整页焦点高亮，不能改变正文或表面的颜色。按钮自身的焦点边框与键盘激活保持有效。
 - 设置内容刷新后，外观、语言、模型与强度这四个已有稳定 ID 的控件恢复原键盘焦点，并使完整控件保持可见。
 - 设置保存执行偏好期间，两项执行选择均禁用且不可键盘聚焦；保留已确认的选中值与现有保存提示。请求结束后恢复可用，既有服务端确认与错误流程不变。
+- 执行偏好的配置重建保留同一个操作并由新 Activity 观察成功或失败，不重发；成功播报去重。回调核验当前操作、存活页面及实时实例范围；连接改变时结束旧观察并提示重新打开，断开连接反馈不能被旧保存结果覆盖。该保留不扩展到进程死亡，也不把开启直接执行放入 outbox。
 - 手动配对的格式错误在表单末尾完整显示并滚动至可见区域，保留全部输入；校验失败不关闭表单、不发送配对请求，有效格式仍须经过来源确认。
 - 分享保存成功立即显示“已保存在手机”，短动效后返回来源。此反馈仍不表示服务端确认。
 - 分享落定时重新读取联网和通知状态；离线标题明确等待联网，通知关闭时优先说明主动查看入口。两类说明基础停留 4000ms，关闭动画仍保留阅读时间，沿用系统无障碍推荐时限；普通状态保持原短反馈。关闭、返回和背景点击仍可立即退出已保存页，不要求放弃确认。

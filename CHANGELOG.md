@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Keep execution-setting progress and its result through page recreation without
+  replaying the operation. Show it beside the choices, ignore stale feedback and
+  announce success once.
+- Separate required computer checks from optional media tools in the bilingual
+  Windows setup guide, with a clear later-install option and unchanged actions.
 - Keep home sync failures compact, with the original cause in historical details.
   Manual checks show immediate accessible progress and reuse an in-flight home
   check. Explicit checks also work while the live receiver is running.

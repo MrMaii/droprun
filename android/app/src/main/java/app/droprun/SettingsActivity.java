@@ -11,13 +11,15 @@ import android.widget.*;
 import org.json.*;
 import java.util.*;
 import java.util.concurrent.*;
+import java.lang.ref.WeakReference;
 
 /** The one settings screen: computer link, execution mode, default model strength, project access, about. */
 public class SettingsActivity extends StyledActivity {
     final ExecutorService io=Executors.newSingleThreadExecutor();
     /** Project ids whose permission change is still in flight; their chip reads 更改中 and ignores taps. */
     final Set<String> switching=new HashSet<>();
-    Store store;LinearLayout body;TextView noticeView;String notice="";boolean busy=false,showAccess=false;
+    Store store;LinearLayout body;TextView noticeView,modeNoticeView;String notice="",modeMessage="";boolean busy=false,showAccess=false;
+    ModeChange modeChange,shownModeResult;
 
     @Override protected void onCreate(Bundle state){
         super.onCreate(state);store=new Store(this);Ui.configureWindow(this);
@@ -27,7 +29,9 @@ public class SettingsActivity extends StyledActivity {
         Ui.topBar(this,page,back,L.t("Settings","设置"),false,null);
         noticeView=Ui.text(this,"",12,Ui.AMBER);noticeView.setVisibility(View.GONE);page.addView(noticeView);
         body=Ui.vertical(this);page.addView(body,Ui.fill());
-        render();Ui.enter(body);refresh();
+        ModeChange retained=(ModeChange)getLastNonConfigurationInstance();
+        if(retained!=null&&sameModeScope(retained)){modeChange=retained;retained.observer=new WeakReference<>(this);showModeChange(retained);}else render();
+        Ui.enter(body);refresh();
     }
     int dp(int value){return Ui.dp(this,value);}
     /** Projects and the execution mode are re-read from the relay each time the screen opens; the sections rebuild only if something changed. */
@@ -73,6 +77,7 @@ public class SettingsActivity extends StyledActivity {
         card.addView(disconnect,Ui.margins(this,10,0));
     }
     void disconnect(){
+        clearModeChange();
         busy=true;notice=L.t("Disconnecting…","正在断开…");render();
         io.execute(()->{
             try{
@@ -88,6 +93,7 @@ public class SettingsActivity extends StyledActivity {
     // ---- 执行模式 -------------------------------------------------------------------------------
     void modeSection(){
         LinearLayout card=section(L.t("Execution","执行模式"));
+        modeNoticeView=Ui.text(this,modeMessage,12,Ui.AMBER);modeNoticeView.setVisibility(modeMessage.isEmpty()?View.GONE:View.VISIBLE);card.addView(modeNoticeView,Ui.margins(this,0,10));
         boolean direct=store.directExecution();
         card.addView(option(L.t("Act on the idea","直接执行"),L.t("Codex works directly in the original project","转发后立刻在项目里开工"),direct,()->changeMode(true)));
         Ui.space(card,8);
@@ -106,11 +112,33 @@ public class SettingsActivity extends StyledActivity {
         else saveMode(false);
     }
     void saveMode(boolean direct){
-        busy=true;notice=L.t("Saving…","正在保存…");render();
-        io.execute(()->{
-            try{store.setDirectExecution(direct);runOnUiThread(()->{if(isDestroyed())return;busy=false;notice=L.t("Execution preference saved.","执行偏好已保存。");render();noticeView.announceForAccessibility(notice);});}
-            catch(Exception e){runOnUiThread(()->{if(isDestroyed())return;busy=false;notice=e.getMessage();render();});}
-        });
+        ModeChange operation=new ModeChange(store.scope,modeWork(direct));modeChange=operation;operation.observer=new WeakReference<>(this);
+        showModeChange(operation);io.execute(operation);
+    }
+    Callable<Void> modeWork(boolean direct){
+        Store target=store;return ()->{target.setDirectExecution(direct);return null;};
+    }
+    boolean sameModeScope(ModeChange operation){
+        return operation.scope.equals(store.scope)&&operation.scope.equals(Store.scope(store.preferences.getString("relay",""),store.preferences.getString("instanceId","")));
+    }
+    void showModeChange(ModeChange operation){
+        if(modeChange!=operation||isDestroyed()||isFinishing())return;
+        if(!sameModeScope(operation)){clearModeChange();busy=false;modeMessage=L.t("The connection changed. Reopen this screen.","连接已改变，请重新打开此页面。");render();return;}
+        if(operation.isDone()&&shownModeResult==operation)return;
+        busy=!operation.isDone();boolean saved=false;
+        if(busy)modeMessage=L.t("Saving…","正在保存…");
+        else try{operation.get();modeMessage=L.t("Execution preference saved.","执行偏好已保存。");saved=true;}
+        catch(Exception error){Throwable cause=error instanceof ExecutionException&&error.getCause()!=null?error.getCause():error;modeMessage=cause.getMessage();if(modeMessage==null||modeMessage.isEmpty())modeMessage=L.t("Could not save the execution preference.","执行偏好保存失败。");}
+        if(!busy)shownModeResult=operation;render();
+        if(saved)modeNoticeView.post(()->{if(modeChange==operation&&!isDestroyed()&&!isFinishing()&&sameModeScope(operation)&&!operation.announced&&modeNoticeView.isAttachedToWindow()){operation.announced=true;modeNoticeView.announceForAccessibility(modeMessage);}});
+    }
+    void clearModeChange(){
+        if(modeChange!=null&&modeChange.observer.get()==this)modeChange.observer.clear();modeChange=null;shownModeResult=null;modeMessage="";
+    }
+    static final class ModeChange extends FutureTask<Void>{
+        final String scope;WeakReference<SettingsActivity> observer=new WeakReference<>(null);boolean announced;
+        ModeChange(String scope,Callable<Void> work){super(work);this.scope=scope;}
+        @Override protected void done(){new android.os.Handler(android.os.Looper.getMainLooper()).post(()->{SettingsActivity activity=observer.get();if(activity!=null)activity.showModeChange(this);});}
     }
 
     // ---- 默认模型强度 ---------------------------------------------------------------------------
@@ -220,5 +248,6 @@ public class SettingsActivity extends StyledActivity {
             return true;
         }});
     }
-    @Override protected void onDestroy(){io.shutdown();super.onDestroy();}
+    @Override public Object onRetainNonConfigurationInstance(){return modeChange;}
+    @Override protected void onDestroy(){clearModeChange();io.shutdown();super.onDestroy();}
 }

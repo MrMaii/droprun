@@ -34,6 +34,9 @@ input:disabled { opacity: .6; }
 .field-help, .field-error { font-size: 13px; margin: 8px 0 0; }
 .field-error { color: var(--error); }
 #cost-error { margin-bottom: 12px; }
+.optional-tools { margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--line); }
+.optional-tools h3 { margin: 0; font-size: 16px; line-height: 1.5; font-weight: 600; letter-spacing: -.015em; }
+.optional-tools .note { margin: 10px 0 14px; }
 .note, footer { font-size: 13px; color: var(--muted); line-height: 1.65; }
 .checks { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; }
 .check { padding: 7px 12px; background: var(--soft); border-radius: 12px; font-size: 13px; line-height: 1.4; }

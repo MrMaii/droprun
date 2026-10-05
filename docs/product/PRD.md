@@ -33,6 +33,12 @@ in [the current candidate record](../releases/0.5.3-rc.1.md).
   The Codex label remains complete at 200% font. Pending execution-setting
   choices report disabled state and cannot take keyboard focus; they become
   available again when the request settles.
+  A configuration recreation continues observing the same pending mode change,
+  including its eventual success or failure, without starting it again. Already
+  displayed success is not announced again after recreation. Old completions
+  cannot replace a newer decision, disconnect feedback or another connection.
+  Mode-change progress and results appear beside the affected choices, so viewing
+  those choices does not scroll their feedback out of the safe area.
 - Project totals count retained independent root tasks and accepted dispatches,
   including follow-ups. Retries never count; local pending shares are separate.
 - Project history is paginated. Saved outbox entries become immediately visible,
@@ -76,6 +82,9 @@ in [the current candidate record](../releases/0.5.3-rc.1.md).
   snapshots. Live previews are optional owner-managed infrastructure. Absence of
   preview is explicitly reported, never described as verified preview completion.
 - Install, resume deployment, pair, revoke, update and recover are first-class UX.
+  The Windows guide distinguishes required computer readiness from optional
+  source-extraction tools. Their installation remains visible and can happen later;
+  unsupported sources still disclose their actual reading limits.
   Update and uninstall refuse while work is being acquired or executed, and wait
   for the Connector process to exit before replacing files or removing startup.
   Unknown shutdown results retain the current installation for an explicit retry.

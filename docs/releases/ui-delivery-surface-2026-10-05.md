@@ -131,3 +131,12 @@ It emits the current fixed stage on failure and rethrows the original error;
 13 assertions, eight requests/body reads and one awaited dispose are retained.
 That successful local run does not identify the earlier CI failure's stage or
 prove its underlying cause has been corrected. No blind CI retry was performed.
+
+The diagnostic source `f68f051c205996da244b71dc0f5944c4729d714e` subsequently
+passed its first [matching CI run](https://github.com/MrMaii/droprun/actions/runs/37384524584):
+all three jobs succeeded, core210/210 and browser14/14, with zero failures,
+cancellations or skips. Android build/JVM/lint, audit, site generation,
+public-source359 and Windows packaging also passed. The earlier two recorded
+connection-reset failures remain unresolved; a later green run does not establish
+their cause or prove they cannot recur. This diagnostic changes no Android UI or
+Relay behavior, and no download, tag or website was replaced.
