@@ -84,11 +84,25 @@ user's local-only validation boundary.
   130earlier host files/10devicePNGs/106red files/settings/crash buffer remain in
   .local/ux-oct5-delivery-surface/. The red1/1 structure failure and host-record
   mtime assumption failure are preserved. No device clock anomaly is inferred.
+  Task surface/README are public at593baf6278458255c983c923d7f50d27207a45fe.
+  Sealed94Android sources match Git blobs (83exact/11CRLF-only); anonymous7docs/
+  4PNG resources match exactly. CI37382652168 Android/browser14 passed, but
+  core209/210 repeated local brand terminated/ECONNRESET. Downstream core audit/
+  site/package checks were skipped. Original failure/log remains; no blind rerun.
 - README headers now surface candidate platform downloads and prerequisites.
   Setup remains the main CTA; installation follows the workflow. The short GIF
   stays directly visible with dated Demo attribution. Unreleased/source and
   unchanged0.5.3-rc.1 downloads are explicit. No README media changed; static
-  EN/ZH candidate/media22hash checks pass. Fresh public rendering is pending.
+  EN/ZH candidate/media22hash checks pass. Actual signed-out GitHub EN/ZH renders
+  at1280x720 and390x844 show complete wrapped header links, no whole-document
+  overflow,220x440 workflow images and240x480 direct GIF. Language-navigation
+  early EN capture remains separate from final accepted ZH. No dark/full narrow
+  gallery claim. Private records/screens: .local/ux-oct5-readme-rhythm/.
+- Brand CI now has a narrow test-only stage diagnostic for each request, body
+  read and assertion; failure emits a fixed label then throws the original error.
+  Requests,13assertions/8body reads/one dispose/timeouts and Relay are unchanged.
+  Local1/1 passed2.7753351s/test (host7.3025816s), no skips/cancellations.
+  CI's underlying repeated connection-reset cause is still unknown.
 - Earlier native color/focus, share feedback/editor, settings busy controls,
   manual-pair errors and README diagrams remain separately documented in
   [UI follow-through](../../docs/releases/ui-followthrough-2026-10-05.md).
@@ -101,13 +115,18 @@ user's local-only validation boundary.
 
 ## Work prepared next
 
-Settings source review finds mode busy/notice are Activity-local and not retained
-when appearance/language calls recreate or configuration changes. Current tests
-cover one instance/render only. A readonly red test is being prepared; no native
-reproduction or production fix yet. Store.SYNC_LOCK serializes settings requests:
-do not infer actual concurrent RPCs or a permanently wrong server preference.
-The bounded next scope is the pending-mode feedback/request observation through
-recreation, with no real save, preferences write or permission expansion.
+Settings readonly red1/1 failed1.95s: recreated page lost Saving/busy and both
+choices became enabled/focusable. The old Activity was destroyed, original
+simulated-handler count1/new0 and confirmed cache unchanged. The fixture overrides
+all saveMode, so this proves UI-state loss only, not actual request/completion.
+Redbuild24s/JVM24/24/lint0errors30warnings, app SHA identical to Task surface.
+Originalsettings/crash buffer/388old host files/22device PNGs unchanged;231files
+frozen in .local/ux-oct5-settings-recreation/. No production fix applied yet.
+Store.SYNC_LOCK serializes real settings requests: no concurrent-RPC or wrong
+server-preference claim. Preparing a local mode-operation retention proposal and
+independent memory fixture exercising actual production save/observe completion.
+No real save, preference edit or permission expansion. Do not turn the legacy
+entire-save override red test into a false green proof.
 
 ## Authorization and blocking conditions
 
@@ -139,11 +158,11 @@ recreation, with no real save, preferences write or permission expansion.
 
 ## Single recommended next action
 
-Curate/publish the verified Task surface and README rhythm, check exact-source CI
-and fresh public README rendering, then reproduce the Settings pending-mode
-recreation path with an independent readonly probe. Preserve existing complete
-normal geometry/200%reachability and all frozen/failed evidence. Root owns
-docs/Git/publication; only one agent builds Android or operates the device.
+Finish the brand diagnostic's exact-source CI without blind retry or speculative
+Relay changes, then apply the reviewed minimal execution-mode lifecycle fix and
+independent readonly success/failure/recreation checks. Preserve prior complete
+normal geometry/200%reachability and all frozen/failed evidence. Root owns docs/
+Git/publication; only one agent builds Android or operates the device.
 
 ## Files this pass
 

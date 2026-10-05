@@ -97,3 +97,37 @@ reset, setting change or test rerun was used to hide this record error.
 Physical Android, TalkBack, real IME, motion-off, performance, real thumbnail/
 preview, genuine Relay/Codex delivery and installation gates remain open. This
 local grouping is not a stable-launch or marketing-readiness claim.
+
+## Public source and README inspection
+
+The scoped source and four raw PNGs are public at
+`593baf6278458255c983c923d7f50d27207a45fe`. All94 sealed Android sources match
+those Git blobs:83 exactly and11 by CRLF/LF alone. Seven documents and four PNGs
+were anonymously retrieved and matched their immutable blobs. Packages, tag and
+website were not replaced.
+
+The same publication improves the bilingual README's reading order. Setup stays
+the primary CTA; current platform downloads and prerequisites are in the header.
+Installation follows the three-screen workflow, before the still-visible short
+GIF. The dated0.5.1 Demo attribution and source/download distinction remain.
+All22 existing media hashes are unchanged. Actual signed-out GitHub pages were
+inspected in English and Chinese at1280×720 and390×844. The header links wrap
+within the narrow viewport; document widths1265/375 do not exceed those viewports.
+The workflow images load at220×440, and the direct GIF at240×480. These checks
+do not establish dark-theme rendering, the entire narrow-screen gallery or
+genuine product execution. A capture taken during language navigation still
+showed English; it remains separate from the accepted final Chinese capture.
+
+[Exact-source CI](https://github.com/MrMaii/droprun/actions/runs/37382652168)
+passed Android builds/JVM/lint and browser14/14, with no test skips/cancellations.
+Core209/210 failed again in the existing brand test with local Miniflare/Undici
+`terminated` / `ECONNRESET`. Downstream core audit/site/package steps did not run.
+The full original log is retained. Its failed stage remains unidentified; no
+root cause or all-green CI is claimed. A narrow test-stage diagnostic is being
+prepared without changing requests, assertions, timeouts or Relay behavior.
+
+The diagnostic has now passed one local brand test in2.7753351s (host7.3025816s).
+It emits the current fixed stage on failure and rethrows the original error;
+13 assertions, eight requests/body reads and one awaited dispose are retained.
+That successful local run does not identify the earlier CI failure's stage or
+prove its underlying cause has been corrected. No blind CI retry was performed.
