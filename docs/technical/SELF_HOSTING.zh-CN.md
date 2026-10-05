@@ -1,6 +1,6 @@
 # 自部署 DropRun
 
-[English](SELF_HOSTING.md) · [发布说明](../releases/0.5.0.md)
+[English](SELF_HOSTING.md) · [发布说明](../releases/0.5.1-rc.1.md)
 
 当前为公开预览版。重要项目使用前请阅读验证缺口。一套 Relay 对应一个所有者和
 一台 Windows Connector，可配对多个手机；没有官方注册账号。

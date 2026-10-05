@@ -1,6 +1,6 @@
 # Self-host DropRun
 
-[简体中文](SELF_HOSTING.zh-CN.md) · [Release notes](../releases/0.5.0.md)
+[简体中文](SELF_HOSTING.zh-CN.md) · [Release notes](../releases/0.5.1-rc.1.md)
 
 This is a public preview. Read the release's validation gaps before using it on
 important projects. One Relay belongs to one owner and one Windows Connector;
@@ -112,7 +112,7 @@ to `%LOCALAPPDATA%/DropRun-backups/<id>/`. Only a backup with `backup.json` cont
 `complete: true` is ready for recovery. A backup failure stops replacement.
 These private backups are not uploaded. Keep a previous installer as well.
 
-The pending 0.5.1 update requires verified Connector shutdown: queue checks,
+The 0.5.1 candidate update requires verified Connector shutdown: queue checks,
 task execution and media login must finish, and the worker process must exit
 before backup or replacement. A live older worker without this capability is
 refused. Finish active work, stop its existing Connector/scheduled supervisor

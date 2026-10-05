@@ -5,7 +5,7 @@
   <p><a href="https://droprun.dengmaizi0802.chatgpt.site/zh/">官网</a> · <a href="https://github.com/MrMaii/droprun/releases">下载</a> · <a href="docs/technical/SELF_HOSTING.zh-CN.md">自部署指南</a> · <a href="README.md">English</a></p>
 </div>
 
-> **公开预览版。** [当前验证记录](docs/releases/0.5.1-ux.md)列出实际验证与尚未通过的门槛。
+> **公开预览版 0.5.1-rc.1。** [当前验证记录](docs/releases/0.5.1-rc.1.md)列出实际验证与尚未通过的门槛。
 > 真机、真实来源与完整可靠性验证不能由截图代替。
 
 ## 看看实际界面
@@ -13,6 +13,8 @@
 <p align="center"><img src="landing/media/demo.gif" width="256" alt="DropRun actual Android UI tour"></p>
 
 真实 Android 客户端，使用明确标注的演示数据。本段展示界面，不冒充真实来源到 Codex 的完整任务。
+
+动图来自较早预览版；下方截图来自 9 月 27 日的本地 0.5.1 原生客户端，使用演示数据。
 
 <p align="center"><img src="landing/media/home.png" width="220" alt="Project home"> <img src="landing/media/share.png" width="220" alt="Android share sheet"> <img src="landing/media/task.png" width="220" alt="Task report"></p>
 

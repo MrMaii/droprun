@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.5.1 — unreleased UX candidate
+## 0.5.1-rc.1 — public self-hosted preview
 
 - Confirmed deletion clears paged history and blocks stale responses or saved
   UUID retries from recreating a task. Uncertain deletion retains the cached
@@ -58,7 +58,8 @@
   resets on early rejection; production Worker authentication is unchanged.
 
 Local validation and remaining gates: [UX record](docs/releases/0.5.1-ux.md).
-This candidate has not replaced the public release or completed real handoff acceptance.
+Published candidate evidence: [0.5.1-rc.1](docs/releases/0.5.1-rc.1.md).
+Stable launch and real handoff acceptance remain open.
 
 ## 0.5.0-rc.1 — public self-hosted preview
 
