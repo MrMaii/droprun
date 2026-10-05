@@ -8,6 +8,10 @@
 - Let enlarged project names wrap fully so shared prefixes do not hide their
   distinguishing suffixes.
 - Explain local Codex work in both README workflows before project statistics.
+- Make inspecting a delivery the primary result-page action: open a ready
+  preview, otherwise view screenshots/files. Follow-up is secondary. Missing
+  and unavailable previews explain the next step without implying expiration
+  or pointing to an absent files entry.
 
 ## 0.5.3-rc.1 — native feedback refinement
 

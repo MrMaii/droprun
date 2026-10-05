@@ -77,6 +77,24 @@ Private originals, immutable APKs, hashes, logs, captures and readonly diagnosti
 are under `.local/ux-oct5-home-recovery/`. Device size, density, font and animation
 settings were unchanged throughout this Home work.
 
+## Public source and README rendering
+
+The Home/README source is public at
+`ebb0f74797183114c1dac95aeec8c6719d43cf6a`.
+[Matching CI](https://github.com/MrMaii/droprun/actions/runs/37373157705)
+passed Android, core and browser jobs: core210/browser14, no failed, skipped or
+cancelled tests; Android builds/JVM/lint, public-source347 and Windows packaging.
+Both READMEs and this record were anonymously read and matched their exact
+immutable Git blobs. The original comparison predates this added publication note.
+
+Fresh public GitHub desktop captures show all three workflow images and captions
+in English and Chinese at1280×720. Earlier captures cut the table bottom; separate
+complete captures are accepted. All six native images loaded at720×1440. This
+verifies current Markdown rendering, not mobile GitHub layout, later native UI or
+genuine execution. The displayed media remains labelled0.5.1 development Demo.
+Private raw JPEG hashes and observed table bounds are in
+`.local/ux-oct5-home-recovery/readme-browser-verification.json`.
+
 ## Remaining scope
 
 The independent real-keyboard probe compiled and installed but did not reach

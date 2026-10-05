@@ -106,6 +106,11 @@ in [the current candidate record](../releases/0.5.3-rc.1.md).
   focus outline in both themes, without changing layout or activating the action.
 - Scrolling text stays outside system bars. Decision errors remain visible after
   polling; expired cached approvals and previews offer accurate next steps.
+  A terminal handoff distinguishes a missing preview from an unavailable or
+  expired one. Recovery guidance points to delivery files only when that entry
+  exists. The primary action helps inspect this delivery: a ready preview, or
+  screenshots/files when no preview is ready. Follow-up remains available as a
+  secondary action; emphasis does not change permissions or reopen conditions.
   Data settings show the last known policy for the selected Relay, distinguish
   unknown/offline values, and explain local pending copies and server retention.
 - Share search and catalog expansion survive recreation. Permission explanations

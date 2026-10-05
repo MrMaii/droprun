@@ -110,8 +110,8 @@ public class TaskActivity extends StyledActivity {
             if(!thumbnailRequested)loadThumbnail();
         }
         preview(task);
-        if(!report.isEmpty()||Store.finished(status))button(L.t("Screenshots & delivery files","截图与交付文件"),false,this::openDeliverables);
-        if(Store.finished(status)&&!text(task,"thread_id").isEmpty())button(L.t("Follow up","继续追问"),true,this::followup);
+        if(!report.isEmpty()||Store.finished(status))button(L.t("Screenshots & delivery files","截图与交付文件"),Store.finished(status)&&!previewState.equals("ready"),this::openDeliverables);
+        if(Store.finished(status)&&!text(task,"thread_id").isEmpty())button(L.t("Follow up","继续追问"),false,this::followup);
         if(!report.isEmpty())disclosure(L.t("Full report & evidence","完整报告与证据"),report);
         disclosure(L.t("Your note","你的留言"),text(task,"message"));disclosure(L.t("Original material","原始材料"),text(task,"content"));
         if(!Store.finished(status))button(L.t("Stop handoff","停止任务"),false,()->confirm(L.t("Stop this handoff?","停止任务？"),L.t("A stop request will be sent. Changes already made to your project will not be undone.","发送停止请求；已发生的项目改动不会回滚。"),()->store.cancelTask(taskId)));
@@ -132,15 +132,16 @@ public class TaskActivity extends StyledActivity {
     }
     void preview(JSONObject task){
         String url=text(task,"preview_url"),state=TaskPresentation.previewStatus(text(task,"preview_status"),url,task.optLong("preview_expires_at"),System.currentTimeMillis());
-        if(state.isEmpty())return;
-        block(L.t("Preview","预览"),TaskPresentation.snapshot(text(task,"preview_kind"))?L.t("Snapshot from this handoff · ","本次交付快照 · ")+text(task,"preview_version"):L.t("Live project preview. Later changes may alter what you see.","当前项目预览；后续修改可能改变内容。"));
+        if(state.isEmpty()){if(Store.finished(text(task,"status")))block(L.t("Preview","预览"),L.t("No preview is attached to this handoff. Check screenshots and delivery files below.","本次交办未附预览，可查看下方的截图与交付文件。"));return;}
+        if(state.equals("unavailable"))block(L.t("Preview","预览"),Store.finished(text(task,"status"))||!text(task,"report").isEmpty()?L.t("A preview isn't available right now. Check screenshots and delivery files below.","预览暂不可用，可查看下方的截图与交付文件。"):L.t("A preview isn't available right now.","预览暂不可用。"));
+        else block(L.t("Preview","预览"),TaskPresentation.snapshot(text(task,"preview_kind"))?L.t("Snapshot from this handoff · ","本次交付快照 · ")+text(task,"preview_version"):L.t("Live project preview. Later changes may alter what you see.","当前项目预览；后续修改可能改变内容。"));
         if(state.equals("ready"))button(L.t("Open preview","打开预览"),true,()->{
             Uri uri=Uri.parse(url);
             if("https".equals(uri.getScheme())&&uri.getHost()!=null)startActivity(new Intent(Intent.ACTION_VIEW,uri));
             else notice(L.t("Invalid preview address.","预览地址无效。"));
         });
         else if(state.equals("reopening"))block(L.t("Preview status","预览状态"),TaskPresentation.snapshot(text(task,"preview_kind"))?L.t("Renewing the saved snapshot link.","正在更新已保存快照的链接。"):L.t("Reopening. Waiting for your computer to provide a new address.","正在重开，等待电脑返回新地址。"));
-        else {block(L.t("Preview status","预览状态"),L.t("This preview expired or stopped.","预览已失效或停止。"));if(Store.finished(text(task,"status"))&&!url.isEmpty()&&task.optInt("cancel_requested")==0)button(L.t("Reopen preview","重开预览"),false,()->perform(()->{store.reopenPreview(taskId);TaskSyncService.start(this);}));}
+        else {if(!state.equals("unavailable"))block(L.t("Preview status","预览状态"),L.t("This preview expired or stopped.","预览已失效或停止。"));if(Store.finished(text(task,"status"))&&!url.isEmpty()&&task.optInt("cancel_requested")==0)button(L.t("Reopen preview","重开预览"),false,()->perform(()->{store.reopenPreview(taskId);TaskSyncService.start(this);}));}
     }
     void confirm(String title,String message,Work work){new AlertDialog.Builder(this).setTitle(title).setMessage(message).setNegativeButton(L.t("Cancel","取消"),null).setPositiveButton(L.t("Confirm","确认"),(d,w)->perform(work)).show();}
     void notice(String message){notice.setText(message);notice.setVisibility(View.VISIBLE);}
