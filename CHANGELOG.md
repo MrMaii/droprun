@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased — native UI and product presentation
+## 0.5.2-rc.1 — native UI and product presentation
 
 Warm neutral surfaces, clearer project identity/count/state hierarchy, contextual
 share steps and result-first delivery refine the native Java Views client.
@@ -15,13 +15,18 @@ label describes phone persistence rather than receipt by Codex.
 
 English/Chinese website and README use actual labelled native screens, with
 theme-aware images, a clearer handoff story and explicit download prerequisites.
-This development UI is not yet included in the published 0.5.1-rc.2 packages.
+The published0.5.2-rc.1 packages include this visual pass. Captures remain dated
+0.5.1 development UI; labelled Demo data does not establish genuine execution.
 
 Windows setup and phone pairing use the same neutral surfaces, system appearance
 and 48px controls. Invalid deployment fields stay local with focused errors;
 saved configuration is distinguished from the last verified deployment. Expired
 pairing pages hide invitations, and failed clipboard writes offer manual copying.
 The existing local confirmation/token and Relay pairing boundaries remain intact.
+
+Source CI and complete anonymous downloads of all eight files passed. Stable
+device, installation and genuine-handoff acceptance remain open. Current evidence:
+[0.5.2-rc.1](docs/releases/0.5.2-rc.1.md).
 
 ## 0.5.1-rc.2 — Windows startup and preview shutdown
 

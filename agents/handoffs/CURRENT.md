@@ -1,6 +1,6 @@
 # Current Handoff
 
-Updated 2026-10-05 UTC. **v0.5.1-rc.2 is publicly available.**
+Updated 2026-10-05 UTC. **v0.5.2-rc.1 is publicly available.**
 Stable launch and marketing handover are not achieved. Preserve the complete
 Android+Windows self-hosted goal and the user's local-only validation boundary.
 
@@ -28,8 +28,19 @@ Android+Windows self-hosted goal and the user's local-only validation boundary.
   confirmation/token, escape handling, clipboard failure and expiry priority.
   A separate read-only fixture server was visually inspected; no owner commands.
 - Sites version4 is public from source b8b515ef1c749d6f30b17b5a823456a6db56a1b6,
-  deployed 2026-10-05T06:26:46Z. Both pages still disclose rc.2's earlier UI.
-  Current main source, README and 0.5.2-rc.1 packages await publication below.
+  deployed 2026-10-05T06:26:46Z. Its two pages still point to rc.2; new0.5.2
+  pointers have been built and verified but await Sites publication.
+- Curated source07eb357361e0086c02e848f4f66a08932e49c03f is public. Source CI
+  [37272891984](https://github.com/MrMaii/droprun/actions/runs/37272891984) passed
+  both jobs, including Node224/224/no skips and Windows package construction.
+  A clean managed checkout installed74 packages/0vulnerabilities, then built
+  signed Android0.5.2/code15 and Windows0.5.2 without product installation.
+- Independent complete inventories, ZIPs and source blobs match07eb. Android
+  stable certificate unchanged; public APK has no Demo entries/debuggable flag.
+  Windows installer NotSigned remains disclosed. All eight0.5.2-rc.1 assets were
+  anonymously downloaded and matched exact bytes/API digests at
+  2026-10-05T06:41:44.766Z. [Current record](../../docs/releases/0.5.2-rc.1.md)
+  owns package hashes and the remaining acceptance gates.
 - The dedicated emulator remains running. Original size/density/font/animation
   values were restored/read back (320×640,160dpi,2.0/null/1/1). No true pairing,
   Relay submission, Codex work, owner cloud change or process-loss probe occurred.
@@ -98,11 +109,11 @@ Android+Windows self-hosted goal and the user's local-only validation boundary.
 
 ## Single recommended next action
 
-Publish the curated, verified UI source and build a source-bound 0.5.2-rc.1
-candidate in a clean checkout. Verify signatures, inventories, CI and complete
-anonymous downloads before changing public download pointers. Keep the original
-film edits separate. Genuine acceptance remains open; continue independent UX
-work rather than treating unavailable environments as a reason to stop.
+Publish the prepared0.5.2 website download pointers through the existing public
+Sites project; verify both languages and new links, then retain the final public
+audit and clean up the owned build checkout. Keep the original film separate.
+Genuine acceptance remains open; continue independent UX work when an observed
+problem can be resolved rather than stopping solely for unavailable environments.
 
 ## Files this pass
 

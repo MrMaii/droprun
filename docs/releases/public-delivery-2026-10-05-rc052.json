@@ -1,0 +1,77 @@
+{
+  "checkedAt": "2026-10-05T06:41:44.766Z",
+  "authenticated": false,
+  "repository": "https://github.com/MrMaii/droprun",
+  "release": "https://github.com/MrMaii/droprun/releases/tag/v0.5.2-rc.1",
+  "prerelease": true,
+  "sourceCommit": "07eb357361e0086c02e848f4f66a08932e49c03f",
+  "releaseTagCommit": "07eb357361e0086c02e848f4f66a08932e49c03f",
+  "assets": [
+    {
+      "name": "DropRun-0.5.2-android-BUILD-MANIFEST.json",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.2-rc.1/DropRun-0.5.2-android-BUILD-MANIFEST.json",
+      "bytes": 1772,
+      "sha256": "9f2023f9185dc3a8a824f3f119620d3abe20a2538fd0c37feb6c8e35fbd2e054",
+      "apiDigest": "sha256:9f2023f9185dc3a8a824f3f119620d3abe20a2538fd0c37feb6c8e35fbd2e054",
+      "verified": true
+    },
+    {
+      "name": "DropRun-0.5.2-android-distribution.zip",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.2-rc.1/DropRun-0.5.2-android-distribution.zip",
+      "bytes": 3324708,
+      "sha256": "2a5ec19ff80c20de638fbcb42060ed53dbb8c4020ab61e39814076014a8005d5",
+      "apiDigest": "sha256:2a5ec19ff80c20de638fbcb42060ed53dbb8c4020ab61e39814076014a8005d5",
+      "verified": true
+    },
+    {
+      "name": "DropRun-0.5.2-android.apk",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.2-rc.1/DropRun-0.5.2-android.apk",
+      "bytes": 1684604,
+      "sha256": "c29b36c8eb50839c2080b898f2123abad10d6c34b2f1744635eabe3966780af8",
+      "apiDigest": "sha256:c29b36c8eb50839c2080b898f2123abad10d6c34b2f1744635eabe3966780af8",
+      "verified": true
+    },
+    {
+      "name": "DropRun-0.5.2-windows-x64-BUILD-MANIFEST.json",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.2-rc.1/DropRun-0.5.2-windows-x64-BUILD-MANIFEST.json",
+      "bytes": 375696,
+      "sha256": "a39772b6f12ae2be59ea8ae4bf461b297060c89fd713654b2e5a4831cafa93f2",
+      "apiDigest": "sha256:a39772b6f12ae2be59ea8ae4bf461b297060c89fd713654b2e5a4831cafa93f2",
+      "verified": true
+    },
+    {
+      "name": "DropRun-0.5.2-windows-x64-setup.exe",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.2-rc.1/DropRun-0.5.2-windows-x64-setup.exe",
+      "bytes": 76710484,
+      "sha256": "3dcfae1ecf4ed27114954e248c8aa03f40266ecd5288f6b2130058a1abbe41f8",
+      "apiDigest": "sha256:3dcfae1ecf4ed27114954e248c8aa03f40266ecd5288f6b2130058a1abbe41f8",
+      "verified": true
+    },
+    {
+      "name": "DropRun-0.5.2-windows-x64-source.zip",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.2-rc.1/DropRun-0.5.2-windows-x64-source.zip",
+      "bytes": 22696340,
+      "sha256": "a5d77ea0a27c5ce9350b20963022f00524351f7393c0ad9a3f8dc6deda5bce46",
+      "apiDigest": "sha256:a5d77ea0a27c5ce9350b20963022f00524351f7393c0ad9a3f8dc6deda5bce46",
+      "verified": true
+    },
+    {
+      "name": "DropRun-0.5.2-windows-x64.zip",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.2-rc.1/DropRun-0.5.2-windows-x64.zip",
+      "bytes": 111574455,
+      "sha256": "e579b01f820d77a8c119682f63480fee888a51c5d745b275bd5d5e2ab7e11b03",
+      "apiDigest": "sha256:e579b01f820d77a8c119682f63480fee888a51c5d745b275bd5d5e2ab7e11b03",
+      "verified": true
+    },
+    {
+      "name": "SHA256SUMS.txt",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.2-rc.1/SHA256SUMS.txt",
+      "bytes": 725,
+      "sha256": "edd86dea2280ac0d6dbaca9c452947df0f58b6c862a6d1f1ab1f5b99a6cd1912",
+      "apiDigest": "sha256:edd86dea2280ac0d6dbaca9c452947df0f58b6c862a6d1f1ab1f5b99a6cd1912",
+      "verified": true
+    }
+  ],
+  "checksumsVerified": true,
+  "stableLaunchAcceptance": false
+}
