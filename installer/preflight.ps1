@@ -1,4 +1,4 @@
-param([string]$InstallRoot)
+param([string]$InstallRoot, [string]$StopHelper = (Join-Path (Split-Path $PSScriptRoot -Parent) 'connector/shutdown.mjs'))
 $ErrorActionPreference = 'Stop'
 $taskData = Join-Path $env:LOCALAPPDATA 'DropRun'
 $taskFile = Join-Path $taskData 'config.json'
@@ -15,13 +15,15 @@ if (Test-Path -LiteralPath $taskFile) {
   }
   $taskHealth = $null
   try { $taskHealth = Invoke-RestMethod 'http://127.0.0.1:47493' -TimeoutSec 3 } catch {}
-  if ($taskHealth -and $taskHealth.instanceId -eq $taskConfig.instanceId) {
+  $task = Get-ScheduledTask -TaskName ('DropRun Connector ' + $taskConfig.instanceId) -ErrorAction SilentlyContinue
+  if (-not $taskHealth -and $task -and $task.State -eq 'Running') { throw 'The running Connector could not be verified. Keep the current installation and try again.' }
+  if ($taskHealth -and ($taskHealth.service -ne 'DropRun Connector' -or $taskHealth.instanceId -ne $taskConfig.instanceId)) { throw 'A different service or DropRun instance is running. Keep the current installation.' }
+  if ($taskHealth) {
     if ($taskHealth.activeTask) { throw 'Finish or cancel the active DropRun task before installing.' }
-    $task = Get-ScheduledTask -TaskName ('DropRun Connector ' + $taskConfig.instanceId) -ErrorAction SilentlyContinue
-    if ($task) { Stop-ScheduledTask -TaskName $task.TaskName }
-    & (Join-Path $taskInstall 'runtime/node.exe') (Join-Path $taskInstall 'scripts/setup.mjs') stop --data-dir $taskData
-    if ($LASTEXITCODE -ne 0) { throw 'The Connector could not be stopped safely.' }
   }
+  & (Join-Path $taskInstall 'runtime/node.exe') $StopHelper $taskInstall $taskData
+  if ($LASTEXITCODE -ne 0) { throw 'The Connector could not be stopped safely.' }
+  if ($task) { Stop-ScheduledTask -TaskName $task.TaskName }
 }
 $taskBackup = Join-Path (Join-Path $env:LOCALAPPDATA 'DropRun-backups') ([Guid]::NewGuid().ToString())
 if ($taskBackup.StartsWith($taskInstall.TrimEnd('\') + '\', [StringComparison]::OrdinalIgnoreCase)) {

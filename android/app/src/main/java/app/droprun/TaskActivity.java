@@ -21,7 +21,7 @@ public class TaskActivity extends StyledActivity {
     final Handler handler=new Handler(Looper.getMainLooper());
     Store store;String taskId,snapshot="";LinearLayout body;TextView notice;boolean foreground,busy,loading,thumbnailRequested;
     android.graphics.Bitmap thumbnail;String thumbnailError="";final java.util.Set<String> expanded=new java.util.HashSet<>();
-    AlertDialog followupDialog,actionErrorDialog;EditText followupInput;String followupDraft="",followupId=UUID.randomUUID().toString();
+    AlertDialog followupDialog,actionErrorDialog,localRemovalDialog;EditText followupInput;String followupDraft="",followupId=UUID.randomUUID().toString();
     final Runnable refresh=this::load;
     interface Work { void run() throws Exception; }
 
@@ -35,12 +35,13 @@ public class TaskActivity extends StyledActivity {
         notice=Ui.text(this,"",13,Ui.AMBER);notice.setVisibility(View.GONE);notice.setAccessibilityLiveRegion(View.ACCESSIBILITY_LIVE_REGION_POLITE);page.addView(notice);
         body=Ui.vertical(this);page.addView(body,Ui.fill());render();Ui.enter(body);
         if(state!=null&&state.getBoolean("followupOpen"))followup();
+        if(state!=null&&state.getBoolean("localRemovalOpen")&&store.canClearUnavailableTask(taskId))confirmLocalRemoval();
     }
     Store createStore(){return new Store(this);}
     @Override protected void onResume(){super.onResume();foreground=true;if(store!=null)load();}
     @Override protected void onPause(){foreground=false;handler.removeCallbacks(refresh);super.onPause();}
-    @Override protected void onSaveInstanceState(Bundle state){super.onSaveInstanceState(state);state.putStringArrayList("expanded",new java.util.ArrayList<>(expanded));state.putString("followupId",followupId);state.putString("followupDraft",followupInput==null?followupDraft:followupInput.getText().toString());if(followupDialog!=null&&followupDialog.isShowing())state.putBoolean("followupOpen",true);}
-    @Override protected void onDestroy(){handler.removeCallbacksAndMessages(null);if(followupDialog!=null)followupDialog.dismiss();if(actionErrorDialog!=null)actionErrorDialog.dismiss();io.shutdown();super.onDestroy();}
+    @Override protected void onSaveInstanceState(Bundle state){super.onSaveInstanceState(state);state.putStringArrayList("expanded",new java.util.ArrayList<>(expanded));state.putString("followupId",followupId);state.putString("followupDraft",followupInput==null?followupDraft:followupInput.getText().toString());if(followupDialog!=null&&followupDialog.isShowing())state.putBoolean("followupOpen",true);if(localRemovalDialog!=null&&localRemovalDialog.isShowing())state.putBoolean("localRemovalOpen",true);}
+    @Override protected void onDestroy(){handler.removeCallbacksAndMessages(null);if(followupDialog!=null)followupDialog.dismiss();if(actionErrorDialog!=null)actionErrorDialog.dismiss();if(localRemovalDialog!=null)localRemovalDialog.dismiss();io.shutdown();super.onDestroy();}
     void load(){
         handler.removeCallbacks(refresh);if(!foreground||busy||loading)return;loading=true;
         io.execute(()->{
@@ -70,7 +71,8 @@ public class TaskActivity extends StyledActivity {
         for(int n=0;approvals!=null&&n<approvals.length();n++){JSONObject approval=approvals.optJSONObject(n);if(approval!=null&&approval.optLong("expiresAt")>now&&approval.optJSONObject("details")!=null)liveApprovals++;}
         String previewState=task==null?"":TaskPresentation.previewStatus(text(task,"preview_status"),text(task,"preview_url"),task.optLong("preview_expires_at"),now);
         String projectLabel=task==null?"":store.projectLabel(text(task,"project_id"),text(task,"project_name"));
-        String next=(task==null?"missing":task.toString())+busy+(thumbnail!=null)+thumbnailError+liveApprovals+previewState+projectLabel;
+        boolean unavailableDelete=store.canClearUnavailableTask(taskId);
+        String next=(task==null?"missing":task.toString())+busy+(thumbnail!=null)+thumbnailError+liveApprovals+previewState+projectLabel+unavailableDelete;
         if(snapshot.equals(next))return;snapshot=next;body.removeAllViews();
         if(task==null){block(L.t("Handoff unavailable","任务暂不可用"),L.t("Refresh when connected. This handoff may have been deleted.","请联网刷新；任务也可能已被删除。"));return;}
         String status=text(task,"status"),plan=text(task,"plan_report"),report=text(task,"report");
@@ -79,6 +81,7 @@ public class TaskActivity extends StyledActivity {
         body.addView(Ui.caption(this,projectLabel+" · "+TaskPresentation.mode(text(task,"execution_mode"))));
         body.addView(Ui.caption(this,L.t("Shared ","交办于 ")+TaskPresentation.elapsed(task.optLong("created_at"),System.currentTimeMillis())));
         block(L.t("Needs attention","需要处理"),text(task,"error"));
+        if(unavailableDelete)block(L.t("Relay record inaccessible","无法访问中转记录"),L.t("Cloud deletion could not be confirmed. You can clear the phone's cached copy. The record may return if your Relay makes it available again.","尚未确认云端已删除。可以清除手机上的缓存副本；若中转服务再次提供此记录，它可能重新出现。"));
         if(!plan.isEmpty()){
             if(status.equals("awaiting_plan_approval"))block(L.t("Understanding & plan","理解与计划"),plan);else disclosure(L.t("Earlier plan","之前的计划"),plan);
             if(status.equals("awaiting_plan_approval")&&!text(task,"plan_version").isEmpty()){
@@ -109,6 +112,11 @@ public class TaskActivity extends StyledActivity {
         disclosure(L.t("Your note","你的留言"),text(task,"message"));disclosure(L.t("Original material","原始材料"),text(task,"content"));
         if(!Store.finished(status))button(L.t("Stop handoff","停止任务"),false,()->confirm(L.t("Stop this handoff?","停止任务？"),L.t("A stop request will be sent. Changes already made to your project will not be undone.","发送停止请求；已发生的项目改动不会回滚。"),()->store.cancelTask(taskId)));
         else button(L.t("Delete record & material","删除记录与材料"),false,()->confirm(L.t("Delete this handoff?","删除这条任务？"),L.t("The Relay task, material and report will be deleted permanently. Your project files stay on your computer.","云端任务、材料与报告将删除，无法撤销。电脑上的项目文件不变。"),()->{store.deleteTask(taskId);runOnUiThread(this::finish);}));
+        if(unavailableDelete)button(L.t("Clear cached copy on this phone","清除这台手机上的缓存副本"),false,this::confirmLocalRemoval);
+    }
+    void confirmLocalRemoval(){
+        if(busy||!store.canClearUnavailableTask(taskId)||localRemovalDialog!=null&&localRemovalDialog.isShowing())return;
+        localRemovalDialog=new AlertDialog.Builder(this).setTitle(L.t("Clear this phone's cached copy?","清除这台手机上的缓存副本？")).setMessage(L.t("Cloud deletion could not be confirmed. This clears the phone's cached report, history entry and retry copy. It sends no deletion request. The record may return if your Relay makes it available again.","尚未确认云端已删除。这会清除手机缓存的报告、历史记录和重试副本，不会发送删除请求。若中转服务再次提供此记录，它可能重新出现。" )).setNegativeButton(L.t("Keep cached copy","保留缓存副本"),null).setPositiveButton(L.t("Clear cached copy","清除缓存副本"),(dialog,which)->perform(()->{store.clearUnavailableTask(taskId);runOnUiThread(this::finish);})).show();
     }
     void openDeliverables(){startActivity(new Intent(this,DeliverablesActivity.class).putExtra("taskId",taskId));}
     void loadThumbnail(){

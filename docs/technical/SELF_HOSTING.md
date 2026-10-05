@@ -112,6 +112,14 @@ to `%LOCALAPPDATA%/DropRun-backups/<id>/`. Only a backup with `backup.json` cont
 `complete: true` is ready for recovery. A backup failure stops replacement.
 These private backups are not uploaded. Keep a previous installer as well.
 
+The pending 0.5.1 update requires verified Connector shutdown: queue checks,
+task execution and media login must finish, and the worker process must exit
+before backup or replacement. A live older worker without this capability is
+refused. Finish active work, stop its existing Connector/scheduled supervisor
+manually, then retry. Do not force-stop active work. A timeout or unknown result
+does not authorize replacement. Uninstall uses the same check and keeps local
+data, projects and cloud resources.
+
 Recovery is manual: stop Connector and close setup, retain the failed installation,
 reinstall the previous version, then restore the backup's `data` contents to the
 same data directory under the same Windows account (DPAPI is account-bound).

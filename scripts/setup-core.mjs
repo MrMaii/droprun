@@ -5,7 +5,7 @@ import { randomBytes, randomUUID, createHash } from 'node:crypto';
 import { spawn } from 'node:child_process';
 import { atomicJson, protectSecret, relayOrigin } from '../connector/config.mjs';
 
-export const WRANGLER_VERSION = '4.141.0';
+export const WRANGLER_VERSION = '4.144.0';
 export function validateSetup(input) {
   if (!/^[a-f0-9]{32}$/i.test(input.accountId || '')) throw new Error('Choose a Cloudflare account ID (32 hexadecimal characters).');
   if (!/^[a-z][a-z0-9-]{2,43}$/.test(input.name || '')) throw new Error('Instance name must be 3–44 lowercase letters, numbers or hyphens.');

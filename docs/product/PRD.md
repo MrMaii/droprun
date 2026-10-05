@@ -34,6 +34,14 @@ in [0.5.0](../releases/0.5.0.md).
   Removing a saved copy shows immediate progress, survives rotation as one
   operation, and does not wait for a project-history network read. Failure remains
   visible after polling and rotation; interruption never claims successful removal.
+  Confirmed server deletion immediately removes the record from retained history
+  and detail caches. Late reads cannot restore it; a failed count refresh does not
+  present the deletion as failed. Other history rows and paging remain available.
+  If a deletion acknowledgement is lost, keep the cached result for an explicit
+  retry, while preventing the same saved UUID from being submitted again.
+  An inaccessible server record can offer an explicitly confirmed local-cache
+  clearing action. Explain that cloud deletion is unconfirmed and an accessible
+  server record may return; cancellation retains the phone's saved report.
 - Incoming-file failure keeps verified complete copies and identifies missing
   material. Restoring the failure does not retry a provider automatically. Retry
   copies only missing files; repeat taps cannot start concurrent copies. Incomplete
@@ -53,6 +61,9 @@ in [0.5.0](../releases/0.5.0.md).
   snapshots. Live previews are optional owner-managed infrastructure. Absence of
   preview is explicitly reported, never described as verified preview completion.
 - Install, resume deployment, pair, revoke, update and recover are first-class UX.
+  Update and uninstall refuse while work is being acquired or executed, and wait
+  for the Connector process to exit before replacing files or removing startup.
+  Unknown shutdown results retain the current installation for an explicit retry.
 - Public candidate may ship with named test gaps. Stable release requires clean
   Windows/cloud setup, physical Android validation, at least 3 correct project
   mappings, 5 continuous full tasks and 20 real-source samples with honest coverage.

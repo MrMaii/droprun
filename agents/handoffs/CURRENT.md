@@ -1,8 +1,31 @@
 # Current Handoff
 
-Updated2026-09-29 local /2026-09-30 UTC. Completion audit: **stable launch and
-marketing handover are not achieved**. Goal is to be marked blocked after saving
-this audit. Preserve the full original Android+Windows self-hosted product goal.
+Updated2026-10-04 local /2026-10-05 UTC. Local implementation resumed.
+**Stable launch and marketing handover are not achieved.** Preserve the full
+Android+Windows self-hosted product goal and the local-only validation boundary.
+
+## Latest session 2026-10-04: deletion, shutdown and dependency repair
+
+- Fixed acknowledged deletion leaving paged history and replayable outbox copies.
+  Requested/confirmed markers serialize with sync, retain uncertain reports and
+  prevent the same UUID from recreating a deleted task. DELETE404 offers separately
+  confirmed phone-cache clearing; it never claims cloud deletion.
+- Fixed stop/acquisition and installer races. New shutdown capability/verifier
+  waits for the original PID, refuses legacy/unknown/busy workers, and keeps the
+  supervisor from restarting an intentionally stopped Connector.
+- Updated the smallest compatible Cloudflare/dependency security fixes; audit is
+  clean. Final evidence belongs to [the UX record](../../docs/releases/0.5.1-ux.md):
+  Node212/212, JVM23/23, native89/89 per API26/35 at200% font, lint0errors/28warnings.
+- No real Relay/Codex submission, product installation, cloud change, social post
+  or retry of the rejected240-row process-loss command. Emulators stopped with
+  original settings restored. Existing promo-film changes were preserved.
+- Next: build source-bound candidate distributions from this clean commit, then
+  publish reviewed candidate source/packages with explicit remaining gates.
+  Real submissions, physical-device metrics, clean owner installation and the
+  unresolved ANR remain required before stable release/marketing handover.
+- Files: Android Store/Task/share recovery and local tests; Connector shutdown,
+  setup/supervisor/installer and tests; dependency pins; PRD/contracts/guides,
+  changelog/readmes and current UX evidence. Author Thomas Deng as configured.
 
 ## Authorization and blocking conditions
 
@@ -21,7 +44,7 @@ this audit. Preserve the full original Android+Windows self-hosted product goal.
   another fixture pass or preview publication into a claim of real UX closure.
 - No pending user question, running test/build/compiler/emulator or child agent.
 
-## Current verified evidence
+## Prior verified evidence (2026-09-30)
 
 Canonical [UX record](../../docs/releases/0.5.1-ux.md), latest final public-boundary
 audit; [UI matrix](../../docs/releases/0.5.1-ui-matrix.md). The audit maps each
@@ -81,10 +104,10 @@ Do not issue repetitive approval questions or label candidates as formally launc
 
 ## Single recommended next action
 
-Wait for an actual device, environment, authorization or tool-policy change that
-unblocks these required gates, then resume the corresponding acceptance step.
-The block has met the three-turn threshold. Mark goal blocked, never complete;
-do not keep generating status-only continuation turns or unrelated polishing.
+Build and verify the updated candidate distributions, then publish candidate
+source/packages and inspect public CI. Keep formal release and marketing gated on
+the genuine device/environment/submission evidence above. The goal was resumed;
+do not carry the old blocked-turn count into this new run or mark it complete.
 
 ## Files this pass
 

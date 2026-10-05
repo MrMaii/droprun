@@ -2,6 +2,14 @@
 
 ## 0.5.1 — unreleased UX candidate
 
+- Confirmed deletion clears paged history and blocks stale responses or saved
+  UUID retries from recreating a task. Uncertain deletion retains the cached
+  report; an inaccessible record offers separately confirmed phone-cache clearing.
+- Windows update/uninstall wait for verified worker exit, refuse in-flight
+  queue work and legacy shutdown protocols, and keep the supervisor from restarting
+  an intentionally stopped Connector. Upgrades use the new bundled verifier.
+- Update the pinned Cloudflare tools and affected transitive dependencies to
+  their smallest compatible security fixes; validation remains candidate-only.
 - File saving shows inline progress/results, prevents duplicate picker/write
   requests, and survives page recreation without repeating a write. Interrupted
   state explains uncertainty; failed saves retain a retryable preview. Leaving

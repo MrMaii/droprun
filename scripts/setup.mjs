@@ -11,6 +11,8 @@ import { findBrowser } from '../connector/browser.mjs';
 import { Codex } from '../connector/codex.mjs';
 import { provision, setupState, command, redact, wranglerPath } from './setup-core.mjs';
 import { installMediaTools } from './setup-tools.mjs';
+import { stopConnector } from '../connector/shutdown.mjs';
+export { stopConnector } from '../connector/shutdown.mjs';
 
 const root = resolve(import.meta.dirname, '..');
 export async function diagnoseCodex({ create = () => new Codex(), timeout = 10000, includeProjects = false } = {}) {
@@ -154,12 +156,7 @@ if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1]
     else if (action === 'deploy') console.log(JSON.stringify(await provision({ root, dataDir, input: { accountId: get('--account'), name: get('--name'), costAccepted: process.argv.includes('--accept-cloud-costs') }, progress: event => console.log(event.step ? event.step + ': ' + event.status : event.message) })));
     else if (action === 'stop') {
       const { config } = await loadRuntimeConfig(root, { ...process.env, DROPRUN_DATA_DIR: dataDir });
-      let health;
-      try { health = await (await fetch('http://127.0.0.1:47493', { signal: AbortSignal.timeout(2000) })).json(); } catch { process.exit(0); }
-      if (health.instanceId !== config.instanceId) throw new Error('A different DropRun instance is running. It will not be stopped.');
-      if (health.activeTask) throw new Error('Finish or cancel the active task before updating.');
-      const response = await fetch('http://127.0.0.1:47493/management/stop', { method: 'POST', headers: { Authorization: 'Bearer ' + config.connectorToken }, signal: AbortSignal.timeout(5000) });
-      if (!response.ok) throw new Error('The Connector could not be stopped safely.');
+      await stopConnector(config);
     }
     else if (action === 'open' || action === 'serve') await serveSetup({ dataDir, open: action === 'open' });
     else throw new Error('Use setup.mjs open, doctor, login, or deploy --account ID --name NAME --accept-cloud-costs.');

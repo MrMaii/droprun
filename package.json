@@ -13,8 +13,8 @@
   "devDependencies": {
     "@electron/asar": "^4.3.0",
     "@resvg/resvg-js": "2.6.2",
-    "miniflare": "5.20260925.0-alpha",
-    "wrangler": "4.141.0"
+    "miniflare": "5.20260926.1-alpha",
+    "wrangler": "4.144.0"
   },
   "dependencies": {
     "cloudflared": "^0.7.3",

@@ -29,7 +29,7 @@ final class ShareDrafts {
         if(!ShareImport.UNPAIRED.equals(current.scope))try{stores.add(scoped(current,ShareImport.UNPAIRED));}catch(IOException ignored){}
         for(Store store:stores){File[] dirs=store.attachments().listFiles();if(dirs==null)continue;for(File dir:dirs){
             String id=dir.getName();if(!uuid(id)||!dir.isDirectory()||(!new File(dir,"import.json").isFile()&&!new File(dir,"import.json.bak").isFile()))continue;
-            if(new File(store.outbox(),id+".json").exists()||store.task(id)!=null)continue;
+            if(Store.deletionRequested(store.prefs,id)||new File(store.outbox(),id+".json").exists()||store.task(id)!=null)continue;
             try{if(!dir.getCanonicalFile().getParentFile().equals(store.attachments().getCanonicalFile()))continue;}catch(IOException e){continue;}
             entries.add(new Entry(store,dir));
         }}

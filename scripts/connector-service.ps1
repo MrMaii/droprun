@@ -17,6 +17,9 @@ while ($true) {
         if ($taskHealth.service -eq 'DropRun Connector') { exit 0 }
     } catch {}
     $taskWorker = Start-Process -FilePath $taskNode -ArgumentList 'connector/main.mjs' -WorkingDirectory $taskRepo -WindowStyle Hidden -PassThru -RedirectStandardOutput (Join-Path $taskLogs 'connector.stdout.log') -RedirectStandardError (Join-Path $taskLogs 'connector.stderr.log')
+    # Retain the handle so Windows PowerShell can read ExitCode after the child exits.
+    $taskWorker.Handle | Out-Null
     $taskWorker.WaitForExit()
+    if ($taskWorker.ExitCode -eq 0) { exit 0 }
     Start-Sleep -Seconds 10
 }

@@ -32,6 +32,26 @@ plan-version, per-command approval and report-evidence checks remain in force.
   History GETs run outside the outbox lock; a per-project, instance-scoped request
   token permits only the latest started request to publish its page. History
   rows cannot replace a newer cached task receipt by `updated_at`.
+  A confirmed task DELETE removes its detail, latest-feed entry and retained
+  project-history rows in the current instance, and invalidates pending history
+  reads so a pre-delete response cannot restore it. Other rows and pagination
+  cursors remain intact. A failed subsequent sync cannot undo or report failure
+  of the acknowledged deletion; aggregate counts remain last-known server values
+  until a successful refresh.
+  Before DELETE, the phone durably records an instance-scoped deletion request
+  and serializes it with outbox sync. An unknown/failed acknowledgement retains
+  cached results and requires explicit deletion retry, but suppresses the same
+  UUID's outbox or draft replay. Confirmation advances that marker and evicts
+  caches. Cleanup failure cannot resubmit a deleted task; retained follow-ups
+  keep their own IDs and are unaffected. Deletion requests never replay themselves.
+  An authenticated DELETE 404 means no record is accessible to the current device;
+  it is not proof of global deletion. Only this typed response offers a separate,
+  confirmed phone-cache clearing action. Cancelling retains the report. Clearing
+  records `local-only`, keeps UUID replay blocked and makes no server mutation;
+  an authorized fresh record can reappear later. Other errors do not offer this
+  action or silently clear cached material.
+  A later successful task GET removes a stale 404 offer. The undecided local
+  confirmation survives Activity recreation and never applies itself.
   Local pending removal uses its own worker, shows progress, blocks duplicate
   removal and retains that operation across configuration changes. Action errors
   take priority over history-read errors and survive polling/recreation. If process
@@ -66,6 +86,18 @@ plan-version, per-command approval and report-evidence checks remain in force.
   commit/archive hash. Portable ZIP, source ZIP and installer get SHA-256 sidecars;
   existing artifact paths are rejected before packaging. The installer is compiled
   from the packaged recipe. These checks do not imply trusted Windows signing.
+- Connector shutdown refuses while task acquisition, execution or other protected
+  work is in flight. An accepted owner stop prevents new work from starting.
+  Local setup verifies the service, instance and process identity, then waits for
+  that process to exit; acknowledgement alone does not permit file replacement.
+  Unknown health or an exit timeout fails the operation. Installation backs up
+  and replaces files only after confirmed exit; uninstall removes the scheduled
+  entry only after the same check, and never force-stops a claimed task first.
+  Local health advertises `shutdownProtocolVersion=1` for this barrier. A live
+  legacy worker without that capability is refused; it must be stopped explicitly
+  before upgrade. Upgrade runs its bundled shutdown verifier rather than trusting
+  the installed older setup helper. This capability belongs to local management,
+  not the public Relay protocol.
 - Local setup `GET /api/doctor` requires the same loopback/Host/Origin checks and
   private `X-DropRun-Setup` session token as other setup APIs. A ready Codex check
   includes the complete paginated `codexStatus.projects` inventory: `id`, `name`,

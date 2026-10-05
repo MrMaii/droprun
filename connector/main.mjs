@@ -26,6 +26,7 @@ import { matchesTargetRoute } from './routes.mjs';
 import { loadRuntimeConfig, pairingLink } from './config.mjs';
 import { trustedLocalRequest, matchesLocalToken } from './local-boundary.mjs';
 import { publishSnapshot } from './selfhost-preview.mjs';
+import { ConnectorWork } from './shutdown.mjs';
 
 const root = resolve(import.meta.dirname, '..');
 const { config, dataDir, legacy } = await loadRuntimeConfig(root);
@@ -45,6 +46,8 @@ const previews = new Previews({ cloudflaredBin, publishSnapshot: config.instance
 } });
 // Binding before App Server startup prevents two local workers from running together.
 let activeTask = null, activeCwd = null, activeState = null, visualBusy = false, lastSync = 0, modelCatalog = [], loginJob = null;
+let running = true, activeRunner, catalogDown = false, codex;
+const work = new ConnectorWork();
 const readJson = request => new Promise((resolve, reject) => { let body = ''; request.on('data', chunk => { body += chunk; if (body.length > 20000) reject(new Error('too large')); }); request.on('end', () => { try { resolve(body ? JSON.parse(body) : {}); } catch (error) { reject(error); } }); });
 const reply = (response, status, data) => { response.statusCode = status; response.setHeader('Content-Type', 'application/json'); response.end(JSON.stringify(data)); };
 const html = (response, body, status = 200) => { response.statusCode = status; response.setHeader('Content-Type', 'text/html;charset=utf-8'); response.setHeader('Cache-Control', 'no-store'); response.end(body); };
@@ -56,15 +59,17 @@ const health = createServer(async (request, response) => {
   response.setHeader('Content-Security-Policy', "frame-ancestors 'none'");
   if (!trustedLocalRequest(request, 47493)) return reply(response, 403, { error: 'Local requests only.' });
   const url = new URL(request.url, 'http://127.0.0.1');
+  const localAction = (['/pair', '/login'].includes(url.pathname) && request.method === 'POST') || ['/screenshot', '/verify-visual'].includes(url.pathname) || (url.pathname === '/preview' && request.method !== 'GET');
+  if (localAction && !work.begin()) return reply(response, 409, { error: 'The Connector is stopping. Reopen setup after it has stopped.' });
   let ownsVisualLock = false;
   const taskId = activeTask, taskCwd = activeCwd, taskState = activeState, taskTurnId = activeState?.turnId;
   const stillExecuting = () => { if (activeTask !== taskId || activeState !== taskState || taskState?.stage !== 'execution' || taskState?.turnId !== taskTurnId) throw new Error('执行回合已结束，未保存过期浏览器结果。'); };
   try {
     if (url.pathname === '/management/stop' && request.method === 'POST') {
       if (!matchesLocalToken(request.headers.authorization, 'Bearer ' + config.connectorToken)) return reply(response, 403, { error: 'Local owner credential required.' });
-      if (activeTask) return reply(response, 409, { error: 'Finish or cancel the active task before updating or uninstalling.' });
+      if (activeTask || loginJob || !work.requestStop()) return reply(response, 409, { error: 'The Connector is still finishing work or checking the queue. Close any media login window, wait and try again before updating or uninstalling.' });
       reply(response, 202, { stopping: true });
-      running = false; codex.close(); health.close();
+      running = false; codex?.close(); health.close();
       return;
     }
     if (['/preview', '/screenshot', '/verify-visual'].includes(url.pathname) && !(url.pathname === '/preview' && request.method === 'GET')) {
@@ -95,7 +100,7 @@ const health = createServer(async (request, response) => {
               await new Promise(r => setTimeout(r, 5000));
               try { const result = await exportCookies({ executable: browserExecutable, profileDir: browserProfile, domains: ['instagram.com', 'x.com', 'twitter.com', 'youtube.com', 'google.com', 'bilibili.com', 'tiktok.com'], file: cookiesFile, port: browser.port }); job.result = result; if (result.loggedIn) { config.cookiesFile = cookiesFile; job.done = true; break; } } catch {}
             }
-            setTimeout(() => browser.close(), 3000); loginJob = null;
+            await new Promise(resolve => setTimeout(resolve, 3000)); browser.close(); loginJob = null;
           })();
           return job;
         }).catch(error => { loginJob = null; throw error; });
@@ -146,13 +151,12 @@ const health = createServer(async (request, response) => {
       return reply(response, 200, { ok: true, url: result.url, localUrl, kind: result.mode, version: result.revision, expiresAt: result.expiresAt, note: `预览链接 ${result.minutes} 分钟内有效，交付后重新计时。用完整 localUrl 验证目标页面。` });
     }
     if (url.pathname === '/preview' && request.method === 'GET') return reply(response, 200, { preview: activeTask ? previews.get(activeTask) : null });
-    reply(response, 200, { service: 'DropRun Connector', version: '0.5.0', protocolVersion: 2, instanceId: config.instanceId || null, pid: process.pid, activeTask, online: Date.now() - lastSync < 90000, pairUrl: 'http://127.0.0.1:47493/pair', loginUrl: 'http://127.0.0.1:47493/login', screenshots: !!browserExecutable, previews: !!config.instanceId || !!cloudflaredBin, cookies: !!config.cookiesFile });
+    reply(response, 200, { service: 'DropRun Connector', version: '0.5.0', protocolVersion: 2, shutdownProtocolVersion: 1, instanceId: config.instanceId || null, pid: process.pid, activeTask, online: Date.now() - lastSync < 90000, pairUrl: 'http://127.0.0.1:47493/pair', loginUrl: 'http://127.0.0.1:47493/login', screenshots: !!browserExecutable, previews: !!config.instanceId || !!cloudflaredBin, cookies: !!config.cookiesFile });
   } catch (error) { reply(response, 500, { error: error.message }); }
-  finally { if (ownsVisualLock) visualBusy = false; }
+  finally { if (ownsVisualLock) visualBusy = false; if (localAction) work.end(); }
 });
 await new Promise((resolve, reject) => { health.once('error', reject); health.listen(47493, '127.0.0.1', resolve); });
 for (const level of ['log', 'error']) { const original = console[level].bind(console); console[level] = (...args) => original(new Date().toISOString(), ...args); }
-let running = true, activeRunner, catalogDown = false;
 // The Codex desktop app occasionally restarts every codex.exe on the machine; the catalog session is simply reopened.
 async function startCatalog() {
   const instance = await new Codex(config.codexExecutable).start();
@@ -161,7 +165,7 @@ async function startCatalog() {
   instance.on('disconnected', code => { catalogDown = true; console.error('codex app-server exited (' + code + '); it will be reopened before the next task'); });
   return instance;
 }
-let codex = await startCatalog();
+codex = await work.run(startCatalog);
 for (const signal of ['SIGINT', 'SIGTERM']) process.on(signal, () => { running = false; activeRunner?.close(); codex.close(); health.close(); });
 process.on('exit', code => console.log('connector exit ' + code + (activeTask ? ' while task ' + activeTask : '')));
 const sleep = ms => new Promise(r => setTimeout(r, ms));
@@ -443,19 +447,23 @@ async function processTask(task, recovery = false) {
 }
 console.log('DropRun Connector starting' + (browserExecutable ? ' · screenshots ready' : ' · no browser found') + (cloudflaredBin ? ' · previews ready' : ' · no cloudflared'));
 for (const signal of ['SIGINT', 'SIGTERM']) process.on(signal, () => { previews.stopAll().catch(() => {}); });
-while (running) { try { await sync(); break; } catch (e) { console.error('Waiting for network: ' + e.message); await sleep(10000); } }
-if (legacy) { try { const migrated = await api('/connector/migrate', {}); if (migrated.added?.length) console.log('relay columns added: ' + migrated.added.join(', ')); } catch (e) { console.error('migrate: ' + e.message); } }
-const heartbeat = setInterval(() => { if (!catalogDown) sync().catch(e => console.error(e.message)); refreshPreviewRequests().catch(e => console.error(e.message)); }, 30000);
+while (running) { try { await work.run(sync); break; } catch (e) { console.error('Waiting for network: ' + e.message); await sleep(10000); } }
+if (legacy && running) { try { const migrated = await work.run(() => api('/connector/migrate', {})); if (migrated.added?.length) console.log('relay columns added: ' + migrated.added.join(', ')); } catch (e) { console.error('migrate: ' + e.message); } }
+const heartbeat = setInterval(() => { if (!catalogDown) work.run(sync).catch(e => console.error(e.message)); work.run(refreshPreviewRequests).catch(e => console.error(e.message)); }, 30000);
 let needsRecovery = true;
 while (running) {
+  let delay = 0;
   try {
-    if (catalogDown) { codex = await startCatalog(); console.log('codex app-server reopened'); await sync(); }
-    if (needsRecovery) { for (const task of (await api('/connector/recover')).tasks) { while (checkingPreviews) await sleep(100); await processTask(task, true); } needsRecovery = false; }
-    if (checkingPreviews) { await sleep(1000); continue; }
-    const { task } = await api('/connector/claim', {}, 'POST'); if (task) { while (checkingPreviews) await sleep(100); await processTask(task); } else await sleep(5000);
+    await work.run(async () => {
+      if (catalogDown) { codex = await startCatalog(); console.log('codex app-server reopened'); await sync(); }
+      if (needsRecovery) { for (const task of (await api('/connector/recover')).tasks) { while (checkingPreviews) await sleep(100); await processTask(task, true); } needsRecovery = false; }
+      if (checkingPreviews) { delay = 1000; return; }
+      const { task } = await api('/connector/claim', {}, 'POST'); if (task) { while (checkingPreviews) await sleep(100); await processTask(task); } else delay = 5000;
+    });
   }
-  catch (e) { needsRecovery = true; console.error(e.message); await sleep(10000); }
+  catch (e) { needsRecovery = true; console.error(e.message); delay = 10000; }
+  if (running && delay) await sleep(delay);
 }
 clearInterval(heartbeat); codex.close(); health.close();
 await previews.stopAll();
-process.exit(1);
+process.exit(work.stopping ? 0 : 1);

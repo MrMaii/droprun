@@ -649,6 +649,40 @@ public class LocalRecoveryTest {
         fail("Task UI did not reach the expected state");
     }
 
+    ActivityScenario<TaskActivity> unavailableDeletionScenario(){
+        DemoDeletionActivity.deletes.set(0);DemoDeletionActivity.reads.set(0);DemoDeletionActivity.freshRecord=false;
+        return ActivityScenario.launch(new Intent(context,DemoDeletionActivity.class).putExtra("taskId",DemoFixture.TASK));
+    }
+    void requestUnavailableDelete(ActivityScenario<TaskActivity> scenario)throws Exception{
+        awaitTaskUi(scenario,activity->!activity.loading);
+        scenario.onActivity(activity->assertTrue(findText(activity.body,"Delete record & material").performClick()));clickWindowText("Confirm");
+        awaitTaskUi(scenario,activity->!activity.busy&&activity.store.canClearUnavailableTask(activity.taskId)&&activity.actionErrorDialog!=null&&activity.actionErrorDialog.isShowing());clickWindowText("Got it");
+    }
+    void clearDeletionFixture()throws Exception{
+        DemoDeletionActivity.freshRecord=false;Store store=new Store(context);store.cancelPending(DemoFixture.TASK);store.prefs.edit().remove("deletion:"+DemoFixture.TASK).remove("deleteUnavailable:"+DemoFixture.TASK).commit();DemoFixture.seed(context,new Intent());
+    }
+    @Test public void inaccessibleTaskLocalCleanupNeedsConfirmationAcrossRotationAndPolling()throws Exception{
+        String report=new Store(context).task(DemoFixture.TASK).optString("report");
+        try(ActivityScenario<TaskActivity> scenario=unavailableDeletionScenario()){
+            requestUnavailableDelete(scenario);
+            scenario.onActivity(activity->{assertEquals(report,activity.store.task(activity.taskId).optString("report"));assertTrue(findText(activity.body,"Clear cached copy on this phone").performClick());assertTrue(activity.localRemovalDialog.isShowing());});
+            scenario.recreate();awaitTaskUi(scenario,activity->!activity.loading);int reads=DemoDeletionActivity.reads.get();scenario.onActivity(TaskActivity::load);awaitTaskUi(scenario,activity->!activity.loading&&DemoDeletionActivity.reads.get()>reads);
+            scenario.onActivity(activity->{assertTrue(activity.localRemovalDialog.isShowing());assertEquals(report,activity.store.task(activity.taskId).optString("report"));assertEquals("requested",activity.store.prefs.getString("deletion:"+activity.taskId,""));activity.localRemovalDialog.getButton(AlertDialog.BUTTON_NEGATIVE).performClick();});
+            scenario.recreate();awaitTaskUi(scenario,activity->!activity.loading);
+            scenario.onActivity(activity->{assertTrue(activity.localRemovalDialog==null||!activity.localRemovalDialog.isShowing());assertTrue(activity.store.canClearUnavailableTask(activity.taskId));assertEquals(report,activity.store.task(activity.taskId).optString("report"));});assertEquals(1,DemoDeletionActivity.deletes.get());
+            DemoDeletionActivity.freshRecord=true;scenario.onActivity(TaskActivity::load);awaitTaskUi(scenario,activity->!activity.loading&&!activity.store.canClearUnavailableTask(activity.taskId));
+            scenario.onActivity(activity->{assertNull(findText(activity.body,"Clear cached copy on this phone"));assertEquals(report,activity.store.task(activity.taskId).optString("report"));assertEquals("requested",activity.store.prefs.getString("deletion:"+activity.taskId,""));});assertEquals(1,DemoDeletionActivity.deletes.get());
+        }finally{clearDeletionFixture();}
+    }
+    @Test public void inaccessibleTaskCanClearItsLocalCopyWithoutAnotherDelete()throws Exception{
+        Store store=new Store(context);store.save(new JSONObject().put("id",DemoFixture.TASK).put("projectId","demo-studio").put("content","Synthetic acknowledged retry copy").put("localFiles",new JSONArray()).put("assets",new JSONArray()));File retry=new File(store.outbox(),DemoFixture.TASK+".json");
+        try(ActivityScenario<TaskActivity> scenario=unavailableDeletionScenario()){
+            requestUnavailableDelete(scenario);assertTrue(retry.exists());scenario.onActivity(activity->{assertTrue(findText(activity.body,"Clear cached copy on this phone").performClick());assertTrue(activity.localRemovalDialog.isShowing());activity.localRemovalDialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick();});
+            long deadline=android.os.SystemClock.elapsedRealtime()+5000;while(scenario.getState()!=androidx.lifecycle.Lifecycle.State.DESTROYED&&android.os.SystemClock.elapsedRealtime()<deadline)Thread.sleep(25);assertEquals(androidx.lifecycle.Lifecycle.State.DESTROYED,scenario.getState());
+            assertEquals("local-only",store.prefs.getString("deletion:"+DemoFixture.TASK,""));assertFalse(store.canClearUnavailableTask(DemoFixture.TASK));assertNull(store.task(DemoFixture.TASK));assertEquals(0,store.history("demo-studio").getJSONArray("tasks").length());assertFalse(retry.exists());assertEquals(1,DemoDeletionActivity.deletes.get());assertThrows(IOException.class,()->store.save(new JSONObject().put("id",DemoFixture.TASK)));
+        }finally{clearDeletionFixture();}
+    }
+
     @Test public void pendingCopyNeedsConfirmationBeforeLocalRemoval() throws Exception {
         Store store=new Store(context);JSONObject pending=task().put("content","Synthetic UI fixture; no agent work is sent").put("sendError","Phone offline. Retry when connected.");store.save(pending);
         Intent intent=new Intent(context,ProjectHistoryActivity.class).putExtra("projectId","demo-studio").putExtra("projectName","Local UI fixture");

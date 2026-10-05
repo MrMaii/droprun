@@ -50,6 +50,10 @@ public class Store {
         if(!scope.equals(scope(preferences.getString("relay",""),preferences.getString("instanceId",""))))throw new IOException("The connection changed. Reopen this screen.");
         return request(relay,path,method,body,mime,filename,credential());
     }
+    static final class HttpFailure extends IOException {
+        final int status;
+        HttpFailure(int status,String message){super(message);this.status=status;}
+    }
     JSONObject request(String origin,String path,String method,byte[] body,String mime,String filename,String token)throws Exception {
         HttpURLConnection conn=(HttpURLConnection)new URL(origin+path).openConnection();
         conn.setInstanceFollowRedirects(false);
@@ -59,8 +63,8 @@ public class Store {
         int code=conn.getResponseCode();
         InputStream in=code<400?conn.getInputStream():conn.getErrorStream();
         String text; try(in){ByteArrayOutputStream bytes=new ByteArrayOutputStream();if(in!=null){byte[] buffer=new byte[8192];int n;while((n=in.read(buffer))!=-1)bytes.write(buffer,0,n);}text=bytes.toString("UTF-8");} finally {conn.disconnect();}
-        JSONObject result; try {result=new JSONObject(text);}catch(Exception e){throw new IOException(L.t("Service unavailable (","服务暂不可用 (")+code+")");}
-        if(code<200||code>=300)throw new IOException(result.optString("error", L.t("Network error ","网络错误 ")+code));
+        JSONObject result; try {result=new JSONObject(text);}catch(Exception e){String message=L.t("Service unavailable (","服务暂不可用 (")+code+")";if(code<200||code>=300)throw new HttpFailure(code,message);throw new IOException(message);}
+        if(code<200||code>=300)throw new HttpFailure(code,result.optString("error", L.t("Network error ","网络错误 ")+code));
         return result;
     }
     JSONObject get(String path)throws Exception{return api(path,"GET",null,null,null);}
@@ -168,7 +172,7 @@ public class Store {
 
     // ---- tasks ---------------------------------------------------------------------------------
     JSONObject refreshTask(String taskId)throws Exception{
-        synchronized(SYNC_LOCK){JSONObject task=get("/tasks/"+taskId);prefs.edit().putString("task:"+taskId,task.toString()).apply();JSONObject cached=tasksData();JSONArray tasks=cached.optJSONArray("tasks");for(int n=0;tasks!=null&&n<tasks.length();n++)if(tasks.getJSONObject(n).optString("id").equals(taskId))tasks.put(n,task);prefs.edit().putString("tasks",cached.toString()).apply();return task;}
+        synchronized(SYNC_LOCK){JSONObject task=get("/tasks/"+taskId);prefs.edit().putString("task:"+taskId,task.toString()).remove("deleteUnavailable:"+taskId).apply();JSONObject cached=tasksData();JSONArray tasks=cached.optJSONArray("tasks");for(int n=0;tasks!=null&&n<tasks.length();n++)if(tasks.getJSONObject(n).optString("id").equals(taskId))tasks.put(n,task);prefs.edit().putString("tasks",cached.toString()).apply();return task;}
     }
     JSONObject decidePlan(String taskId,String planVersion,boolean approve)throws Exception{
         if(!online())throw new IOException(L.t("Connect to approve or reject a plan. This decision has not been sent.","批准或拒绝计划需要联网；本次决定未发送。"));
@@ -186,13 +190,78 @@ public class Store {
         }
     }
     void cancelTask(String id)throws Exception{post("/tasks/"+id+"/cancel",new JSONObject());sync();}
-    void deleteTask(String id)throws Exception{api("/tasks/"+id,"DELETE",null,null,null);prefs.edit().remove("task:"+id).apply();((android.app.NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE)).cancel(id.hashCode());sync();}
+    void deleteTask(String id)throws Exception{
+        synchronized(SYNC_LOCK){
+            deleteCachedTask(prefs,id,()->api("/tasks/"+id,"DELETE",null,null,null));
+            try{cancelPending(id);}catch(Exception cleanup){prefs.edit().putString("syncError",L.t("The task was deleted. Some phone copies could not be removed; they will not be sent again.","任务已删除。部分手机副本未能移除；它们不会再次发送。")).apply();}
+        }
+        ((android.app.NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE)).cancel(id.hashCode());
+        // The DELETE receipt is final; aggregate refresh happens independently.
+        try{SyncJob.soon(context);}catch(RuntimeException ignored){}
+    }
+    static boolean deletionRequested(android.content.SharedPreferences prefs,String id){return prefs.contains("deletion:"+id);}
+    boolean canClearUnavailableTask(String id){return canClearUnavailableTask(prefs,id);}
+    static boolean canClearUnavailableTask(android.content.SharedPreferences prefs,String id){return deletionRequested(prefs,id)&&prefs.getBoolean("deleteUnavailable:"+id,false);}
+    void clearUnavailableTask(String id)throws Exception{
+        if(!scope.equals(new Store(context).scope))throw ShareImport.changed();
+        synchronized(SYNC_LOCK){
+            clearUnavailableTask(prefs,id);
+            try{cancelPending(id);}catch(Exception cleanup){prefs.edit().putString("syncError",L.t("The cached report was cleared. Some phone files could not be removed; the retry copy will not be sent again.","缓存报告已清除。部分手机文件未能移除；重试副本不会再次发送。")).apply();}
+        }
+        ((android.app.NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE)).cancel(id.hashCode());
+    }
+    static void clearUnavailableTask(android.content.SharedPreferences prefs,String id)throws Exception{
+        synchronized(SYNC_LOCK){if(!canClearUnavailableTask(prefs,id))throw new IOException(L.t("Refresh this handoff before clearing its cached copy.","请先刷新这条任务，再清除缓存副本。"));evictTask(prefs,id,"local-only");}
+    }
+    static void requireUndeletedTask(android.content.SharedPreferences prefs,String id)throws IOException{
+        if(deletionRequested(prefs,id))throw new IOException(L.t("Deletion was requested for this handoff. Its saved copy cannot be sent again.","这条任务已请求删除，不能再次发送其保存副本。"));
+    }
+    static void deleteCachedTask(android.content.SharedPreferences prefs,String id,java.util.concurrent.Callable<?> request)throws Exception{
+        synchronized(SYNC_LOCK){
+            android.content.SharedPreferences.Editor edit=prefs.edit().putString("deletion:"+id,"requested").remove("deleteUnavailable:"+id);
+            // A later full sync may omit the inaccessible row; keep its last visible report until a decision.
+            try{JSONArray tasks=new JSONObject(prefs.getString("tasks","{}")).optJSONArray("tasks");for(int n=0;tasks!=null&&n<tasks.length();n++){JSONObject task=tasks.optJSONObject(n);if(task!=null&&id.equals(task.optString("id"))){edit.putString("task:"+id,task.toString());break;}}}catch(JSONException ignored){}
+            if(!edit.commit())throw new IOException(L.t("Could not save the deletion request on this phone. Nothing was sent; free up space and try again.","无法在手机保存删除请求。请求尚未发送；请释放空间后重试。"));
+            try{request.call();}catch(HttpFailure error){if(error.status==404&&!prefs.edit().putBoolean("deleteUnavailable:"+id,true).commit())throw new IOException(L.t("The record is inaccessible, but this phone could not save the local cleanup option. Free up space and retry.","无法访问记录，但手机未能保存本地清理选项。请释放空间后重试。"));throw error;}
+            evictDeletedTask(prefs,id);
+        }
+    }
+    static void evictDeletedTask(android.content.SharedPreferences prefs,String id)throws Exception{
+        evictTask(prefs,id,"confirmed");
+    }
+    private static void evictTask(android.content.SharedPreferences prefs,String id,String marker)throws Exception{
+        synchronized(SYNC_LOCK){
+            android.content.SharedPreferences.Editor edit=prefs.edit().putString("deletion:"+id,marker).remove("deleteUnavailable:"+id).remove("task:"+id).remove("previewRequested:"+id);
+            for(Map.Entry<String,?> entry:prefs.getAll().entrySet()){
+                String key=entry.getKey();
+                // Even an uncached page can have been read before the confirmed deletion.
+                if(key.startsWith("historyRequest:")){edit.remove(key);continue;}
+                if(!key.equals("tasks")&&!key.startsWith("history:"))continue;
+                JSONObject data;try{data=new JSONObject((String)entry.getValue());}catch(Exception invalid){continue;}
+                boolean changed=false;
+                for(String field:new String[]{"tasks","taskIds"}){
+                    JSONArray old=data.optJSONArray(field);if(old==null)continue;JSONArray kept=new JSONArray();
+                    for(int n=0;n<old.length();n++){Object row=old.get(n);String rowId=row instanceof JSONObject?((JSONObject)row).optString("id"):String.valueOf(row);if(id.equals(rowId))changed=true;else kept.put(row);}
+                    data.put(field,kept);
+                }
+                if(changed)edit.putString(key,data.toString());
+            }
+            if(!edit.commit())throw new IOException(marker.equals("confirmed")?L.t("The Relay deleted this task, but the phone could not save the updated history. Its retry copy remains blocked. Free up space and refresh.","中转服务已删除任务，但手机未能保存更新后的历史。重试副本仍禁止发送；请释放空间后刷新。"):L.t("This phone could not save the updated cache. Cloud deletion is still unconfirmed; the retry copy remains blocked. Free up space and try again.","手机未能保存更新后的缓存。尚未确认云端删除；重试副本仍禁止发送。请释放空间后重试。"));
+        }
+    }
+    static void clearRevokedCache(android.content.SharedPreferences prefs)throws IOException{
+        synchronized(SYNC_LOCK){
+            android.content.SharedPreferences.Editor edit=prefs.edit().clear();
+            for(Map.Entry<String,?> entry:prefs.getAll().entrySet())if(entry.getKey().startsWith("deletion:")&&entry.getValue() instanceof String)edit.putString(entry.getKey(),(String)entry.getValue());
+            if(!edit.commit())throw new IOException(L.t("The Relay disconnected this phone, but its local cache could not be cleared. Try forgetting the connection on this phone.","中转服务已断开这台手机，但本地缓存未能清理。请尝试仅在手机忘记连接。"));
+        }
+    }
     void revoke()throws Exception{
         synchronized(SYNC_LOCK){
             post("/device/revoke",new JSONObject());
-            JSONArray pending=pending();
-            for(int i=0;i<pending.length();i++){JSONObject task=pending.getJSONObject(i);JSONArray files=task.optJSONArray("localFiles");for(int n=0;files!=null&&n<files.length();n++){File file=new File(files.getJSONObject(n).getString("path"));if(file.getCanonicalPath().startsWith(context.getFilesDir().getCanonicalPath()+File.separator))deleteAttachment(file);}new File(outbox(),task.getString("id")+".json").delete();}
-            vault.clear();prefs.edit().clear().commit();preferences.edit().remove("relay").remove("instanceId").commit();
+            JSONArray pending=pending(true);
+            for(int i=0;i<pending.length();i++)cancelPending(pending.getJSONObject(i).getString("id"));
+            vault.clear();clearRevokedCache(prefs);preferences.edit().remove("relay").remove("instanceId").commit();
             ((android.app.NotificationManager)context.getSystemService(Context.NOTIFICATION_SERVICE)).cancelAll();
         }
     }
@@ -228,10 +297,12 @@ public class Store {
         }
     }
     File outbox(){File f=new File(instanceFiles(),"outbox");f.mkdirs();return f;}
-    synchronized void save(JSONObject task)throws Exception{task.put("instanceId",instanceId);if(!task.has("createdAt"))task.put("createdAt",System.currentTimeMillis());android.util.AtomicFile f=new android.util.AtomicFile(new File(outbox(),task.getString("id")+".json"));FileOutputStream out=null;try{out=f.startWrite();out.write(task.toString().getBytes(StandardCharsets.UTF_8));f.finishWrite(out);}catch(Exception e){if(out!=null)f.failWrite(out);throw e;}}
+    synchronized void save(JSONObject task)throws Exception{requireUndeletedTask(prefs,task.getString("id"));task.put("instanceId",instanceId);if(!task.has("createdAt"))task.put("createdAt",System.currentTimeMillis());android.util.AtomicFile f=new android.util.AtomicFile(new File(outbox(),task.getString("id")+".json"));FileOutputStream out=null;try{out=f.startWrite();out.write(task.toString().getBytes(StandardCharsets.UTF_8));f.finishWrite(out);}catch(Exception e){if(out!=null)f.failWrite(out);throw e;}}
     void clearImportJournal(String id)throws IOException{if(!ShareDrafts.uuid(id))return;File dir=new File(attachments(),id);if(!dir.getCanonicalFile().getParentFile().equals(attachments().getCanonicalFile()))throw new IOException("Invalid saved share directory");android.util.AtomicFile journal=new android.util.AtomicFile(new File(dir,"import.json"));journal.delete();if(journal.getBaseFile().exists()||new File(dir,"import.json.bak").exists())throw new IOException(L.t("Could not remove the saved share journal.","未能移除保存的分享记录。"));dir.delete();}
-    void cancelPending(String id)throws Exception {synchronized(SYNC_LOCK){for(int n=0;n<pending().length();n++){JSONObject task=pending().getJSONObject(n);if(!id.equals(task.optString("id")))continue;clearImportJournal(id);JSONArray files=task.optJSONArray("localFiles");for(int j=0;files!=null&&j<files.length();j++){File f=new File(files.getJSONObject(j).getString("path"));if(f.getCanonicalPath().startsWith(instanceFiles().getCanonicalPath()+File.separator))deleteAttachment(f);}new File(outbox(),id+".json").delete();return;}}}
-    JSONArray pending(){JSONArray a=new JSONArray();File[] files=outbox().listFiles((d,n)->n.endsWith(".json"));if(files!=null)for(File f:files)try{a.put(new JSONObject(new String(Files.readAllBytes(f.toPath()),StandardCharsets.UTF_8)));}catch(Exception ignored){}return a;}
+    void cancelPending(String id)throws Exception {synchronized(SYNC_LOCK){JSONArray all=pending(true);for(int n=0;n<all.length();n++){JSONObject task=all.getJSONObject(n);if(!id.equals(task.optString("id")))continue;clearImportJournal(id);JSONArray files=task.optJSONArray("localFiles");for(int j=0;files!=null&&j<files.length();j++){File f=new File(files.getJSONObject(j).getString("path"));if(f.getCanonicalPath().startsWith(instanceFiles().getCanonicalPath()+File.separator))deleteAttachment(f);}File record=new File(outbox(),id+".json");if(!record.delete()&&record.exists())throw new IOException(L.t("Could not remove the saved retry copy. Try again.","未能移除保存的重试副本，请重试。"));return;}}}
+    JSONArray pending(){return pending(false);}
+    JSONArray pending(boolean includeDeleted){return pending(outbox(),prefs,includeDeleted);}
+    static JSONArray pending(File directory,android.content.SharedPreferences prefs,boolean includeDeleted){JSONArray a=new JSONArray();File[] files=directory.listFiles((d,n)->n.endsWith(".json"));if(files!=null)for(File f:files)try{JSONObject task=new JSONObject(new String(Files.readAllBytes(f.toPath()),StandardCharsets.UTF_8));if(includeDeleted||!deletionRequested(prefs,task.optString("id")))a.put(task);}catch(Exception ignored){}return a;}
     boolean online(){android.net.ConnectivityManager manager=(android.net.ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);android.net.Network network=manager.getActiveNetwork();android.net.NetworkCapabilities capabilities=manager.getNetworkCapabilities(network);return capabilities!=null&&capabilities.hasCapability(android.net.NetworkCapabilities.NET_CAPABILITY_VALIDATED);}
     /** Server order is authoritative; unchanged reports stay cached and deleted tasks disappear. */
     static JSONObject mergeTasks(JSONObject cached,JSONObject response)throws Exception{
@@ -254,9 +325,11 @@ public class Store {
             if(!paired())return;
             if(Thread.currentThread().isInterrupted())throw new InterruptedIOException(L.t("Receiving ended. Unsent handoffs are still saved.","接收已结束，未发送的任务仍保留。"));
             try{
-            JSONArray all=pending();String pendingError=null;List<JSONObject> acceptedTasks=new ArrayList<>();
+            JSONArray all=pending(true);String pendingError=null;List<JSONObject> acceptedTasks=new ArrayList<>();
             for(int i=0;i<all.length();i++){
                 if(Thread.currentThread().isInterrupted())throw new InterruptedIOException(L.t("Receiving ended. Unsent handoffs are still saved.","接收已结束，未发送的任务仍保留。"));
+                JSONObject saved=all.getJSONObject(i);
+                if(deletionRequested(prefs,saved.optString("id"))){try{cancelPending(saved.optString("id"));}catch(Exception cleanup){pendingError=cleanup.getMessage();}continue;}
                 try{
                 JSONObject t=all.getJSONObject(i);if(!instanceId.equals(t.optString("instanceId")))throw new IOException("This saved task belongs to another Relay.");JSONArray local=t.optJSONArray("localFiles");JSONArray uploaded=t.optJSONArray("assets");if(uploaded==null)uploaded=new JSONArray();
                 if(local!=null)for(int j=uploaded.length();j<local.length();j++){

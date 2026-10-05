@@ -8,9 +8,9 @@ try { $taskHealth = Invoke-RestMethod 'http://127.0.0.1:47493' -TimeoutSec 3 } c
 if ($taskHealth -and $taskHealth.instanceId -eq $taskConfig.instanceId -and $taskHealth.activeTask) { throw 'Finish or cancel the active task before uninstalling DropRun.' }
 $taskName = 'DropRun Connector ' + $taskConfig.instanceId
 $task = Get-ScheduledTask -TaskName $taskName -ErrorAction SilentlyContinue
+if (-not $taskHealth -and $task -and $task.State -eq 'Running') { throw 'The running Connector could not be verified. Keep the current installation and try again.' }
+if ($taskHealth -and ($taskHealth.service -ne 'DropRun Connector' -or $taskHealth.instanceId -ne $taskConfig.instanceId)) { throw 'A different service or DropRun instance is running. Keep the current installation.' }
+& (Join-Path $taskRoot 'runtime/node.exe') (Join-Path $taskRoot 'connector/shutdown.mjs') $taskRoot $DataDir
+if ($LASTEXITCODE -ne 0) { throw 'Could not stop this Connector safely.' }
 if ($task) { Stop-ScheduledTask -TaskName $taskName; Unregister-ScheduledTask -TaskName $taskName -Confirm:$false }
-if ($taskHealth -and $taskHealth.instanceId -eq $taskConfig.instanceId) {
-    & (Join-Path $taskRoot 'runtime/node.exe') (Join-Path $taskRoot 'scripts/setup.mjs') stop --data-dir $DataDir
-    if ($LASTEXITCODE -ne 0) { throw 'Could not stop this Connector safely.' }
-}
 # Keep credentials, history and user cloud resources. Uninstall never deletes projects or cloud data.

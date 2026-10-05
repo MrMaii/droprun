@@ -5,7 +5,7 @@
   <p><a href="https://droprun.dengmaizi0802.chatgpt.site/zh/">官网</a> · <a href="https://github.com/MrMaii/droprun/releases">下载</a> · <a href="docs/technical/SELF_HOSTING.zh-CN.md">自部署指南</a> · <a href="README.md">English</a></p>
 </div>
 
-> **公开预览版。** [发布记录](docs/releases/0.5.0.md)列出实际验证与尚未通过的门槛。
+> **公开预览版。** [当前验证记录](docs/releases/0.5.1-ux.md)列出实际验证与尚未通过的门槛。
 > 真机、真实来源与完整可靠性验证不能由截图代替。
 
 ## 看看实际界面

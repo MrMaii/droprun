@@ -27,6 +27,7 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Files]
 Source: "{#PackageDir}\installer\preflight.ps1"; Flags: dontcopy
+Source: "{#PackageDir}\connector\shutdown.mjs"; Flags: dontcopy
 Source: "{#PackageDir}\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Icons]
@@ -50,7 +51,8 @@ begin
   Result := '';
   if FileExists(ExpandConstant('{app}\runtime\node.exe')) then begin
     ExtractTemporaryFile('preflight.ps1');
-    if not Exec('powershell.exe', '-NoProfile -NonInteractive -WindowStyle Hidden -File "' + ExpandConstant('{tmp}\preflight.ps1') + '" -InstallRoot "' + ExpandConstant('{app}') + '"', '', SW_HIDE, ewWaitUntilTerminated, Code) or (Code <> 0) then
+    ExtractTemporaryFile('shutdown.mjs');
+    if not Exec('powershell.exe', '-NoProfile -NonInteractive -WindowStyle Hidden -File "' + ExpandConstant('{tmp}\preflight.ps1') + '" -InstallRoot "' + ExpandConstant('{app}') + '" -StopHelper "' + ExpandConstant('{tmp}\shutdown.mjs') + '"', '', SW_HIDE, ewWaitUntilTerminated, Code) or (Code <> 0) then
       Result := 'Update checks or backup failed. Finish active work, close setup, and verify Relay compatibility and free disk space. Your application files have not been replaced.';
   end;
 end;

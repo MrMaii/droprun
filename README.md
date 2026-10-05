@@ -7,7 +7,7 @@
 </div>
 
 > **Public preview.** This is the first self-hosted release candidate.
-> Read the [validation record](docs/releases/0.5.0.md), including the remaining
+> Read the [current validation record](docs/releases/0.5.1-ux.md), including the remaining
 > real-device and source-access gates. A polished UI is not proof of reliable execution.
 
 ## See the app
