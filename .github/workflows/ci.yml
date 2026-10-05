@@ -4,6 +4,10 @@ on:
   pull_request:
 permissions:
   contents: read
+env:
+  DROPRUN_CI_BROWSER_TESTS: >-
+    tests/browser.test.mjs tests/relay-selfhost-browser.test.mjs
+    tests/setup-actions.test.mjs tests/setup-ui.test.mjs
 jobs:
   core:
     runs-on: windows-latest
@@ -16,7 +20,17 @@ jobs:
       - name: Install media test tools
         run: choco install ffmpeg -y --no-progress
       - run: npm ci
-      - run: npm test
+      - name: Test core without concurrent browser processes
+        shell: pwsh
+        run: |
+          $browserTests = $env:DROPRUN_CI_BROWSER_TESTS -split '\s+'
+          $allTests = @(Get-ChildItem -LiteralPath tests -Filter '*.test.mjs' | ForEach-Object { "tests/$($_.Name)" })
+          if (@($browserTests | Where-Object { $_ -notin $allTests }).Count) { throw 'A configured browser test file is missing.' }
+          $coreTests = @($allTests | Where-Object { $_ -notin $browserTests })
+          if ($coreTests.Count + $browserTests.Count -ne $allTests.Count) { throw 'Every test file must belong to exactly one job.' }
+          Write-Host "Core: $($coreTests.Count) files; browser: $($browserTests.Count) files; total: $($allTests.Count) files."
+          node --test --test-concurrency=4 @coreTests
+          if ($LASTEXITCODE -ne 0) { throw 'Core tests failed.' }
       - run: npm audit --audit-level=high
       - run: npm run site:build
         env:
@@ -45,6 +59,31 @@ jobs:
             .local/releases/ci/*.exe
             .local/releases/ci/*.zip
             .local/releases/ci/*.sha256
+  browser:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - run: npm ci
+      - name: Record selected browser and runner resources
+        shell: pwsh
+        run: |
+          $browserPath = node --input-type=module -e "import { findBrowser } from './connector/browser.mjs'; const path = findBrowser(); if (!path) process.exit(1); console.log(path);"
+          if ($LASTEXITCODE -ne 0) { throw 'A real browser is required for CI.' }
+          $browserFile = Get-Item -LiteralPath $browserPath
+          Write-Host "Browser: $browserPath ($($browserFile.VersionInfo.ProductVersion))"
+          $cores = (Get-CimInstance Win32_Processor | Measure-Object -Property NumberOfLogicalProcessors -Sum).Sum
+          $memory = Get-CimInstance Win32_OperatingSystem
+          Write-Host "Runner: $cores logical cores; $([math]::Round($memory.TotalVisibleMemorySize / 1024)) MB total / $([math]::Round($memory.FreePhysicalMemory / 1024)) MB free."
+      - name: Test real browsers in isolation
+        shell: pwsh
+        run: |
+          $browserTests = $env:DROPRUN_CI_BROWSER_TESTS -split '\s+'
+          node --test --test-concurrency=1 @browserTests
+          if ($LASTEXITCODE -ne 0) { throw 'Browser tests failed.' }
   android:
     runs-on: ubuntu-latest
     steps:
