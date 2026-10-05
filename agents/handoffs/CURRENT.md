@@ -49,7 +49,21 @@ user's local-only validation boundary.
   late. Its independent attachBaseContext correction then passed fourth3/3;
   that four-PNG baseline predates final hierarchy. Sealed originals and final
   60-file inventory remain in .local/ux-oct5-task-preview/. These Task source
-  changes are not in downloadable0.5.3 or dated public media; publication follows.
+  changes are public at eb2dce8d33b5e54bee698ff8f4e2469eb790114a. Matching
+  CI37378369508 passed all3jobs/core210/browser14/no skips or cancellations;
+  anonymous5documents match immutable blobs. Eleven tested/public source files
+  match exactly or by CRLF/LF alone. Not in downloadable0.5.3 or dated media.
+- Share permission-success feedback now checks the original dialog, generation,
+  selection, step and page at animation/delay/dismiss boundaries. Original native
+  red1/1 reproduced closing a later Glass; final5/5 ENZH10scenes passed26.905s,
+  guard0, unchanged settings/sources and no new ANR/crash. Build42s/JVM24/24/
+  lint0errors30warnings. Initial debugAPI28/min26 lint failure is retained;
+  the guard correction precedes the first native red. Permission requests and
+  successful/failed server flow are unchanged. Direct onBackPressed is only a
+  handler check, not real Back/IME acceptance. Canonical scope:
+  [Permission motion](../../docs/releases/ui-permission-motion-2026-10-05.md).
+  Private66-file inventory and threeAPKpairs are frozen in
+  .local/ux-oct5-permission-motion/. No actual permission was requested.
 - Earlier native color/focus, share feedback/editor, settings busy controls,
   manual-pair errors and README diagrams remain separately documented in
   [UI follow-through](../../docs/releases/ui-followthrough-2026-10-05.md).
@@ -62,14 +76,15 @@ user's local-only validation boundary.
 
 ## Work prepared next
 
-Source review found a Share permission-success animation callback may dismiss a
-later dialog or advance after selection/destruction. A minimal generation/identity
-guard and independent memory-only simulated-success probe are drafted under
-.local/ux-oct5-permission-motion/. No Allow, permission request, import, save,
-pair, outbox or Relay action is allowed. Start with a single original red, retain
-it, then apply the minimal fix and scoped bilingual matrix. It is not implemented
-or verified yet. Separate readonly visual review of the new Task screenshots is
-preparing the next product-specific visual improvement.
+Fresh Task screenshot review found result, Preview and inspection controls still
+split across separate visual regions. A minimal single-outcome-surface draft is
+prepared under .local/ux-oct5-delivery-surface/. It reuses the existing result card,
+routes summary/thumbnail/preview/files into that local container and keeps
+approvals, Follow up/report outside. No copy, callback, font or permission change.
+Not applied/built/verified yet. Preserve the existing320dp normal full-region
+geometry checks; extend only independent theme/structure/large-text evidence.
+Apple Materials/Motion official page content was read2026-10-05; its local design
+basis is recorded without claiming Android implements native Liquid Glass.
 
 Settings pending state across recreation is a separate source-review hypothesis;
 not implemented. Do not claim concurrent conflicting requests without evidence.
@@ -104,10 +119,10 @@ not implemented. Do not claim concurrent conflicting requests without evidence.
 
 ## Single recommended next action
 
-Publish the scoped Task result source/records with a curated index, verify exact
-matching CI, then complete the permission-success animation red/green regression
-without any actual permission request. Use the fresh Task screenshots to choose
-the next visible refinement. Root owns docs/Git/publication; only one agent builds
+Curate/publish the verified permission callback source with its exact CI, then
+complete the Task single-surface visual refinement and fresh bilingual/light/dark
+native captures. Keep full-region normal geometry and200% reachability, existing
+actions and readonly guards. Root owns docs/Git/publication; only one agent builds
 Android or operates the device. Preserve frozen evidence and all failed attempts.
 
 ## Files this pass
@@ -116,5 +131,9 @@ TaskActivity.java, two independent debug Task Activities/manifest, native
 TaskPreviewFeedbackTest, PRD/contracts/changelog, dated delivery record, added
 Home-publication evidence and this handoff. Private originals:
 .local/ux-oct5-task-preview/ and .local/ux-oct5-home-recovery/.
+
+Latest ShareActivity, non-exported permission probe/manifest, PermissionMotionTest,
+PRD/contracts/changelog, dated permission-motion record and handoff. Private
+originals .local/ux-oct5-permission-motion/; next visual draft remains local only.
 
 Git author Thomas Deng <150266369+MrMaii@users.noreply.github.com>.

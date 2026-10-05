@@ -116,6 +116,9 @@ in [the current candidate record](../releases/0.5.3-rc.1.md).
 - Share search and catalog expansion survive recreation. Permission explanations
   and actions remain reachable at 200% font; keyboard focus stays inside the
   open dialog. Failed permission changes remain retryable without advancing.
+  Permission-success feedback may be closed without letting its old animation
+  dismiss a later dialog or advance a different project. Closing that feedback
+  does not revoke a permission already confirmed by the server.
   Selecting a model or effort in the share editor preserves keyboard focus on
   that option and keeps it visible. These choices do not change Settings defaults
   or create a handoff before Send.

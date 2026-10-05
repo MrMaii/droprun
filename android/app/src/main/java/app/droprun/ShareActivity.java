@@ -48,7 +48,7 @@ public class ShareActivity extends StyledActivity {
     LinearLayout receiveActions,receiveContent;
     String shared="",last="",selected="",model="",effort="",query="",draft="";JSONArray attachments=new JSONArray();
     List<JSONObject> recentProjects=Collections.emptyList();
-    int step=-1;boolean receiving=true,showAll=false,panelOpen=false,busy=false,closing=false,sent=false;
+    int step=-1,permissionGeneration;boolean receiving=true,showAll=false,panelOpen=false,busy=false,closing=false,sent=false;
 
     @Override protected void onCreate(Bundle state){
         super.onCreate(state);store=new Store(this);Ui.configureOverlay(this);overridePendingTransition(0,0);
@@ -331,6 +331,7 @@ public class ShareActivity extends StyledActivity {
     void unavailableProject(){new AlertDialog.Builder(this).setTitle(L.t("Project unavailable","项目暂不可用")).setMessage(L.t("Choose another project, or reconnect this one in DropRun setup on your computer.","请选择其他项目，或在电脑的 DropRun 配置页重新连接这个项目。" )).setPositiveButton(L.t("Got it","知道了"),null).show();}
     void authorize(JSONObject project){
         String id=project.optString("id"),name=store.projectLabel(project);hideKeyboard();
+        permissionGeneration++;
         Ui.Glass glass=Ui.glass(this,root,sheet);dialog=glass;glass.overlay.setOnClickListener(v->{if(!busy)closeDialog(null);});
         LinearLayout card=glass.card;
         card.addView(Ui.title(this,L.t("“","「")+name+L.t("” needs permission","」需要授权"),18));
@@ -348,11 +349,19 @@ public class ShareActivity extends StyledActivity {
         });
     }
     void authorized(Ui.Glass glass){
+        if(gone()||dialog!=glass||step!=0)return;
+        String project=selected;int generation=permissionGeneration;
         LinearLayout card=glass.card;card.removeAllViews();
         Ui.CheckView check=new Ui.CheckView(this);check.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
         LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(-2,-2);params.gravity=Gravity.CENTER_HORIZONTAL;params.topMargin=dp(8);card.addView(check,params);
         TextView done=Ui.title(this,L.t("Allowed","已授权"),16);done.setGravity(Gravity.CENTER);card.addView(done,Ui.margins(this,12,4));
-        check.play(()->handler.postDelayed(()->closeDialog(()->{if(!gone()&&step==0)go(1,1);}),320));
+        check.play(()->{
+            if(gone()||dialog!=glass||step!=0||generation!=permissionGeneration||!selected.equals(project))return;
+            handler.postDelayed(()->{
+                if(gone()||dialog!=glass||step!=0||generation!=permissionGeneration||!selected.equals(project))return;
+                closeDialog(()->{if(!gone()&&dialog==null&&step==0&&generation==permissionGeneration&&selected.equals(project))go(1,1);});
+            },320);
+        });
     }
     void closeDialog(Runnable end){Ui.Glass open=dialog;dialog=null;if(open!=null)open.dismiss(end);else if(end!=null)end.run();}
 

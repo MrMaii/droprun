@@ -12,6 +12,9 @@
   preview, otherwise view screenshots/files. Follow-up is secondary. Missing
   and unavailable previews explain the next step without implying expiration
   or pointing to an absent files entry.
+- Keep dismissed project-permission feedback from closing a later dialog or
+  advancing another selection. The permission request and confirmation remain
+  unchanged.
 
 ## 0.5.3-rc.1 — native feedback refinement
 

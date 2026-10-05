@@ -68,9 +68,26 @@ hashes and readonly copies were unchanged through build/native verification.
 | Debug APK | `8813534efa3d7f474cb5caa97db9421a02580d17d451448b6d149e88740f6cef` |
 | Test APK | `7330a66e8cf05904d251fabb7dd76c619b955c3169d6b67a62cc2c7a74f95ee6` |
 
+Source hashes above refer to the saved tested bytes. Comparing all eleven sealed
+sources with the published Git blobs found seven exact matches and four differing
+only by CRLF/LF normalization; no other normalization is accepted.
+
 Private originals are under `.local/ux-oct5-task-preview/`: final build/native
 records, readonly source/APKs, all six screenshots, the prior four baseline
 screenshots and the 60-file hash index. The baseline files remain unchanged.
+
+## Public source verification
+
+The scoped source is public at
+`eb2dce8d33b5e54bee698ff8f4e2469eb790114a`.
+[Matching CI](https://github.com/MrMaii/droprun/actions/runs/37378369508) passed
+all three jobs: core210/browser14, zero failed/skipped/cancelled tests, Android
+builds/JVM/lint, public-source351, generated site and Windows packaging.
+Five documents were anonymously read and matched their immutable Git blobs:
+this record, the Home recovery record, PRD, contracts and changelog. That
+comparison predates this added publication note. Private raw logs/counts and
+the anonymous comparison remain with the local evidence. Public source and CI
+do not update the existing candidate package or establish genuine execution.
 
 ## Preserved failures and limits
 
