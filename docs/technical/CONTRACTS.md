@@ -5,7 +5,7 @@
 This section overrides conflicting historical defaults below. Existing execution,
 plan-version, per-command approval and report-evidence checks remain in force.
 
-- `GET /health`: version, protocolVersion=2, schemaVersion=11, instanceId and ready;
+- `GET /health`: release version (currently 0.5.1), protocolVersion=2, schemaVersion=11, instanceId and ready;
   public health must not expose project contents, credentials or paired users.
 - Pairing carries relayOrigin and instanceId plus the one-time code. The phone
   verifies health and obtains explicit server confirmation before binding. Tokens,

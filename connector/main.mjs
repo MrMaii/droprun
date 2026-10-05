@@ -151,7 +151,7 @@ const health = createServer(async (request, response) => {
       return reply(response, 200, { ok: true, url: result.url, localUrl, kind: result.mode, version: result.revision, expiresAt: result.expiresAt, note: `预览链接 ${result.minutes} 分钟内有效，交付后重新计时。用完整 localUrl 验证目标页面。` });
     }
     if (url.pathname === '/preview' && request.method === 'GET') return reply(response, 200, { preview: activeTask ? previews.get(activeTask) : null });
-    reply(response, 200, { service: 'DropRun Connector', version: '0.5.0', protocolVersion: 2, shutdownProtocolVersion: 1, instanceId: config.instanceId || null, pid: process.pid, activeTask, online: Date.now() - lastSync < 90000, pairUrl: 'http://127.0.0.1:47493/pair', loginUrl: 'http://127.0.0.1:47493/login', screenshots: !!browserExecutable, previews: !!config.instanceId || !!cloudflaredBin, cookies: !!config.cookiesFile });
+    reply(response, 200, { service: 'DropRun Connector', version: '0.5.1', protocolVersion: 2, shutdownProtocolVersion: 1, instanceId: config.instanceId || null, pid: process.pid, activeTask, online: Date.now() - lastSync < 90000, pairUrl: 'http://127.0.0.1:47493/pair', loginUrl: 'http://127.0.0.1:47493/login', screenshots: !!browserExecutable, previews: !!config.instanceId || !!cloudflaredBin, cookies: !!config.cookiesFile });
   } catch (error) { reply(response, 500, { error: error.message }); }
   finally { if (ownsVisualLock) visualBusy = false; if (localAction) work.end(); }
 });

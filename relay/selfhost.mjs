@@ -12,7 +12,7 @@ export async function health(request, env) {
     storage = true;
   } catch {}
   const ready = schemaVersion === 11 && storage && !!env.CONNECTOR_HASH && !!env.INSTANCE_ID;
-  return json({ ok: ready, service: 'DropRun', version: '0.5.0', ...identity(request, env), schemaVersion, ready }, ready ? 200 : 503);
+  return json({ ok: ready, service: 'DropRun', version: '0.5.1', ...identity(request, env), schemaVersion, ready }, ready ? 200 : 503);
 }
 
 export async function presentTasks(db, tasks) {

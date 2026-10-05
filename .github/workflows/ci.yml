@@ -19,6 +19,8 @@ jobs:
       - run: npm test
       - run: npm audit --audit-level=high
       - run: npm run site:build
+        env:
+          DROPRUN_SITE_URL: https://droprun.dengmaizi0802.chatgpt.site
       - run: npm run check:public
       - name: Install package compiler
         run: choco install innosetup -y --no-progress
