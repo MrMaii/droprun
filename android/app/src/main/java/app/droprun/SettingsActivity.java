@@ -47,7 +47,7 @@ public class SettingsActivity extends StyledActivity {
         noticeView.setText(notice);noticeView.setVisibility(notice.isEmpty()?View.GONE:View.VISIBLE);
         body.removeAllViews();
         computerSection();appearanceSection();modeSection();modelSection();accessSection();retentionSection();aboutSection();disconnectSection();
-        if(focusId==R.id.settings_model||focusId==R.id.settings_effort){View replacement=body.findViewById(focusId);if(replacement!=null){replacement.requestFocus();revealPreferenceAfterLayout();}}
+        if(focusId==R.id.settings_appearance||focusId==R.id.settings_language||focusId==R.id.settings_model||focusId==R.id.settings_effort){View replacement=body.findViewById(focusId);if(replacement!=null){replacement.requestFocus();revealPreferenceAfterLayout();}}
     }
     LinearLayout section(String label){body.addView(Ui.label(this,label));LinearLayout card=Ui.card(this);body.addView(card,Ui.cardParams(this));return card;}
     LinearLayout.LayoutParams trailing(){LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(-2,-2);params.setMarginStart(dp(10));return params;}

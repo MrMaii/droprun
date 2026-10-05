@@ -13,6 +13,8 @@ Windows Connector 把参考与意图交给本地 Codex。回来查看进度、�
 
 ## 分享、归项目、看交付
 
+**仅演示界面：** 没有向 agent 发送任务，报告使用明确标注的示例数据。
+
 <p align="center"><img src="assets/brand/readme-ui-tour-zh.gif" width="280" alt="12 秒原生 Android 开发界面动图：选项目、编辑留言、模型选项、关闭确认与继续编辑、设置和标注的演示报告"></p>
 
 [12 秒原生界面视频](https://droprun.dengmaizi0802.chatgpt.site/media/ui-tour-zh.mp4) · [字幕](landing/media/ui-tour-zh.vtt)
@@ -36,7 +38,6 @@ Windows Connector 把参考与意图交给本地 Codex。回来查看进度、�
 </table>
 
 截图来自 2026 年 10 月 5 日的 0.5.1 原生开发界面。0.5.2-rc.1 候选包已包含本轮界面重构。
-**仅演示界面：** 没有向 agent 发送任务，报告使用明确标注的示例数据。
 [媒体来源说明](assets/brand/readme-media.md)。
 
 <details>

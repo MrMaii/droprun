@@ -22,6 +22,10 @@ in [the current candidate record](../releases/0.5.1-rc.2.md).
   Keyboard users keep focus on the appearance, language, model or effort control
   they just changed, with that control visible. Cancel preserves the selected
   values and reading position; local model/effort choices survive recreation.
+  Background settings refresh also retains the focused appearance or language
+  control. Structural page focus must not tint the entire content surface.
+  Manual pairing validation keeps entered values and shows a complete, visible
+  form error; format checking never sends a pairing request.
 - Project totals count retained independent root tasks and accepted dispatches,
   including follow-ups. Retries never count; local pending shares are separate.
 - Project history is paginated. Saved outbox entries become immediately visible,

@@ -4,7 +4,34 @@ Updated 2026-10-05 UTC. **v0.5.2-rc.1 is publicly available.**
 Stable launch and marketing handover are not achieved. Preserve the complete
 Android+Windows self-hosted goal and the user's local-only validation boundary.
 
-## Latest session: continued UI, brand and README refinement
+## Latest session: focus, pairing and README follow-through
+
+- Diagnosed the earlier large-text green tint: Android's default focus highlight
+  covered the whole focused ScrollView/share root, not a font-specific palette.
+  Ui.page/frame now suppress that container highlight while keeping keyboard
+  focus, button rings and Enter activation. Original PNGs remain untouched.
+- Background Settings render now restores its existing appearance/language IDs
+  alongside model/effort. Manual pairing errors appear after the fields, scroll
+  fully into view, retain entries and never submit invalid input. Strict parsing
+  and source confirmation remain unchanged.
+- Independent debug probes do not seed fixtures, write settings/outbox, pair or
+  call a Relay. Native API35 font200/320dp/motion-off passed8/8. A separate4/4
+  capture run at720×1440/density360 produced six raw PNGs; Settings and EN/ZH
+  error views were inspected. Surface samples are #F7F7F2 and #FFFFFF, without
+  whole-page lime. JVM24/24; release lint0errors/28warnings; builds passed.
+  Reproduced failures and initial probe corrections remain in
+  `.local/ux-oct5-color-audit/`. Source/APK hashes and scope:
+  [UI follow-through](../../docs/releases/ui-followthrough-2026-10-05.md).
+- README's existing demo label precedes its tall tour; the English home description
+  now includes saved shares. PRD/contracts/changelog track the exact behavior.
+- These fixes are newer than downloadable0.5.2-rc.1; no release package/tag/site
+  media was replaced. Curated source publication and matching CI are checked
+  separately. No rejected command, draft removal or genuine submission occurred.
+- Original emulator size/density/font/animation values restored/read back:
+  320×640,160dpi,2.0/null/1/1. Only internal PNGs were added. Original uncommitted
+  film/LAUNCH_KIT and their handoff section remain separate and unpublished.
+
+## Previous session: native UI, brand and README refinement
 
 - The user explicitly rejected stopping independent product work on unavailable
   real-environment acceptance. Continue actual UI/UX, brand, website and README
@@ -50,6 +77,8 @@ Android+Windows self-hosted goal and the user's local-only validation boundary.
   passed; log `.local/ux-rc052-test-sync-node-final.log`. No product files or
   released-source/package provenance changed. The failed CI stays historical;
   the subsequent matching-main run is recorded under `.local/ux-rc052-test-sync-ci*`.
+  Final test-fix commitce404486b6ff2987add4658b80713d4c40d719cb passed both jobs in
+  [37276025057](https://github.com/MrMaii/droprun/actions/runs/37276025057).
   A clean managed checkout installed74 packages/0vulnerabilities, then built
   signed Android0.5.2/code15 and Windows0.5.2 without product installation.
 - Independent complete inventories, ZIPs and source blobs match07eb. Android
@@ -130,13 +159,22 @@ Android+Windows self-hosted goal and the user's local-only validation boundary.
 
 ## Single recommended next action
 
-Continue the independent UI/UX audit from the existing design record and native
-state/control matrix; fix observed usability problems with focused verification.
-Do not repeat already passed package/download checks or stop solely for unavailable
-real environments. Genuine acceptance remains open and the original film stays
-separate. Current package/public evidence belongs to the 0.5.2 candidate record.
+Review share-success feedback readability. ShareActivity.landed() currently
+reveals the detailed outcome for100ms with motion off, or280ms including a220ms
+fade when enabled. Determine whether offline/notification instructions can be
+read, then apply the smallest verified improvement while retaining immediate
+Close and prompt return for routine saves. Validate only an independent local
+UI path; do not send tasks, clear the retained draft, navigate normal Pair or
+repeat the rejected process-loss probe. Genuine acceptance remains open; current
+download evidence belongs to0.5.2-rc.1 and the original film remains separate.
 
 ## Files this pass
+
+Current refinement: Ui.java, SettingsActivity.java, PairActivity.java, three
+debug-only independent probes and three native test classes, debug manifest,
+bilingual README, PRD/contracts/changelog, UI follow-through record and handoff.
+Local evidence: `.local/ux-oct5-color-audit/` (original red logs, green logs,
+source/build hashes, pixel analysis, raw screenshots and restored settings).
 
 Current work: native visual hierarchy and onboarding/history, shared feedback,
 long-status typography, landing build source/CSS/JS, bilingual README/native media,

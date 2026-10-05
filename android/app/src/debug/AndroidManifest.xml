@@ -1,5 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application>
+        <activity android:name="app.droprun.DemoFocusActivity" android:exported="false" />
+        <activity android:name="app.droprun.DemoSettingsFocusActivity" android:exported="false" />
+        <activity android:name="app.droprun.DemoManualPairActivity" android:exported="false" />
         <provider android:name="app.droprun.DemoExportProvider" android:authorities="${applicationId}.export-fixture" android:exported="false" />
         <provider android:name="app.droprun.DemoImportProvider" android:authorities="${applicationId}.import-fixture" android:exported="false" />
         <activity android:name="app.droprun.DemoHomeActivity" android:exported="true" />

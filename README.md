@@ -15,6 +15,9 @@ and evidence of what changed.
 
 ## Share. Choose. Inspect.
 
+**UI demonstration only:** nothing was sent to an agent, and the report uses
+labelled sample data.
+
 <p align="center"><img src="assets/brand/readme-ui-tour.gif" width="280" alt="Nine-second native Android development UI tour: project selection, note editing, model options, settings and a labelled demonstration report"></p>
 
 [9-second native UI video](https://droprun.dengmaizi0802.chatgpt.site/media/ui-tour-en.mp4) · [Captions](landing/media/ui-tour-en.vtt)
@@ -38,8 +41,7 @@ and evidence of what changed.
 </table>
 
 Native 0.5.1 development UI, October 5, 2026. The 0.5.2-rc.1 candidate includes this UI pass.
-**UI demonstration only:** nothing was sent to an agent, and the report uses
-labelled sample data. [Capture notes](assets/brand/readme-media.md).
+[Capture notes](assets/brand/readme-media.md).
 
 <details>
 <summary><strong>Earlier preview tour and longer walkthrough</strong></summary>
@@ -57,7 +59,7 @@ source-to-Codex task.
 
 - **Keep the intent.** Your note leads the task. Each independent share starts a
   new Codex conversation; a follow-up continues the same one.
-- **Stay oriented.** Home shows projects you have used, not the whole catalog.
+- **Stay oriented.** Home shows only projects with handoff history or locally saved shares.
   Task and dispatch counts exclude network retries.
 - **Decide how work starts.** Choose direct execution or plan review. Project
   permissions and approval for high-risk actions remain separate.

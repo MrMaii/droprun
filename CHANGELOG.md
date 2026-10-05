@@ -1,5 +1,18 @@
 # Changelog
 
+## Unreleased — focus and manual-pairing refinement
+
+- Structural keyboard focus preserves page colors; button focus rings and Enter
+  activation remain visible and available.
+- Background settings updates retain the focused appearance or language control.
+- Invalid manual pairing shows a complete form error, retains entries and sends
+  no request. Both input methods still require source confirmation.
+- README places the existing demonstration label before the tour and aligns the
+  English home description with locally saved shares.
+
+These changes are newer than the downloadable0.5.2-rc.1 packages.
+[Local verification](docs/releases/ui-followthrough-2026-10-05.md).
+
 ## 0.5.2-rc.1 — native UI and product presentation
 
 Warm neutral surfaces, clearer project identity/count/state hierarchy, contextual

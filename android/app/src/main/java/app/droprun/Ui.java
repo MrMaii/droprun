@@ -133,7 +133,7 @@ public final class Ui {
                 int limit=Math.max(0,getChildAt(0).getBottom()+getPaddingBottom()-getHeight());
                 return Math.max(0,Math.min(target,limit))-getScrollY();
             }
-        };scroll.setFillViewport(true);scroll.setClipToPadding(true);scroll.setBackground(ground());scroll.setVerticalScrollBarEnabled(false);
+        };scroll.setDefaultFocusHighlightEnabled(false);scroll.setFillViewport(true);scroll.setClipToPadding(true);scroll.setBackground(ground());scroll.setVerticalScrollBarEnabled(false);
         LinearLayout column=new LinearLayout(activity);column.setOrientation(LinearLayout.VERTICAL);column.setPadding(dp(activity,20),dp(activity,6),dp(activity,20),dp(activity,28));
         scroll.addView(column,new ViewGroup.LayoutParams(-1,-2));activity.setContentView(scroll);applyInsets(scroll,true);
         return column;
@@ -145,7 +145,7 @@ public final class Ui {
     }
     /** Free-form root for overlays and camera screens. */
     public static FrameLayout frame(Activity activity,boolean opaque){
-        FrameLayout root=new FrameLayout(activity);if(opaque)root.setBackgroundColor(BG);
+        FrameLayout root=new FrameLayout(activity);root.setDefaultFocusHighlightEnabled(false);if(opaque)root.setBackgroundColor(BG);
         activity.setContentView(root);applyInsets(root,true);return root;
     }
     /** Bottom sheet surface with rounded top corners, used by the share overlay. */
