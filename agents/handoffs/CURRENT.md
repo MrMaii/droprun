@@ -44,9 +44,17 @@ Android+Windows self-hosted goal and the user's local-only validation boundary.
   Automatic approval review still rejected the command with only `blocked by policy`.
   It remains unexecuted. Do not ask again, retry via another tool/wrapper, or claim
   that a fixture backup/cache or process-death result exists.
-- This resumed run made substantial independent progress. Do not carry the earlier
-  run's blocked-turn count over. After three consecutive resumed goal turns with
-  the same external blocker and no useful independent work left, mark blocked.
+- The previous goal turn was progress: runtime fixes, rc.2 publication, complete
+  anonymous downloads and final main CI37265035932 (both jobs passed,218 tests).
+- The same stable-acceptance blocker has now recurred for three consecutive goal
+  turns in this resumed run. Read-only revalidation at2026-10-05 04:53 UTC found
+  zero connected ADB devices, no running VM/emulator and none of six checked
+  Windows guest-management commands. No live build or acceptance task is waiting.
+  Real-submission scope remains local-only. No independent necessary product work
+  was identified after correcting the UX record current-candidate pointer. The
+  blocked audit is satisfied; set the goal blocked, never complete. Earlier-run
+  counts were not carried into this audit. Resume only after external conditions
+  change; do not add substitute synthetic passes or repeat approval questions.
 - The original SyncJob ANR at 2026-09-29 18:10:24.485 UTC remains unexplained; retained
   logcat begins 3.996s later. The scheduler change is not proof of resolution.
 - Mandatory open gates: genuine 3-project/5-consecutive-handoff/20-source reading
@@ -67,6 +75,9 @@ stable launch and marketing handover are not. Do not replace the gates with more
 synthetic passes or another preview release.
 
 ## Files this pass
+
+Latest pass: UX record current pointer corrected to rc.2; this handoff records
+the third resumed-turn blocked audit. No runtime, package or campaign change.
 
 Windows installer/launch/service/setup/media tools and focused tests; preview
 lifecycle and native cleanup tests; contracts, PRD, self-hosting guides, changelog,
