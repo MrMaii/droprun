@@ -1,0 +1,149 @@
+{
+  "checkedAt": "2026-10-05T04:45:48.202Z",
+  "authenticated": false,
+  "repository": "https://github.com/MrMaii/droprun",
+  "release": "https://github.com/MrMaii/droprun/releases/tag/v0.5.1-rc.2",
+  "prerelease": true,
+  "sourceCommit": "a16c178a6f43d336e2695e03de95bea7c3a0c272",
+  "releaseTagCommit": "a16c178a6f43d336e2695e03de95bea7c3a0c272",
+  "assets": [
+    {
+      "name": "DropRun-0.5.1-android-BUILD-MANIFEST.json",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.1-rc.2/DropRun-0.5.1-android-BUILD-MANIFEST.json",
+      "bytes": 1588,
+      "sha256": "f09b9e67613e8bb2237a1586e1cc4ec37de5abe2652c67ca05439933419e7ed0",
+      "verified": true
+    },
+    {
+      "name": "DropRun-0.5.1-android-distribution.zip",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.1-rc.2/DropRun-0.5.1-android-distribution.zip",
+      "bytes": 3314424,
+      "sha256": "7ac552cb48cda612beaeda6ace939e15cf3e8cbcf2e43e78d46f13e9ef9b4dae",
+      "verified": true
+    },
+    {
+      "name": "DropRun-0.5.1-android.apk",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.1-rc.2/DropRun-0.5.1-android.apk",
+      "bytes": 1683120,
+      "sha256": "8a6f41bd2d48888411c894e407027872830ed0156ac7b1d3ff70ed4f3593d2d4",
+      "verified": true
+    },
+    {
+      "name": "DropRun-0.5.1-windows-x64-BUILD-MANIFEST.json",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.1-rc.2/DropRun-0.5.1-windows-x64-BUILD-MANIFEST.json",
+      "bytes": 375536,
+      "sha256": "8b4ede4fe8ac4dc632879991c30ccb1d98346409f4029c872f9d8f95362034ae",
+      "verified": true
+    },
+    {
+      "name": "DropRun-0.5.1-windows-x64-setup.exe",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.1-rc.2/DropRun-0.5.1-windows-x64-setup.exe",
+      "bytes": 76698007,
+      "sha256": "e67f4fc856d446ad9c2775cdd198707ae20d1de173f1be73d4f89aee41dbbee8",
+      "verified": true
+    },
+    {
+      "name": "DropRun-0.5.1-windows-x64-source.zip",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.1-rc.2/DropRun-0.5.1-windows-x64-source.zip",
+      "bytes": 8796626,
+      "sha256": "669603d96014bb3407052c87c9932d89a5be9a05dff66b34da80a2712ddfe51d",
+      "verified": true
+    },
+    {
+      "name": "DropRun-0.5.1-windows-x64.zip",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.1-rc.2/DropRun-0.5.1-windows-x64.zip",
+      "bytes": 111567775,
+      "sha256": "6c8745ba5a0507ef995bff80f279a18cf5f1590c90235d99a5de7570328421ff",
+      "verified": true
+    },
+    {
+      "name": "SHA256SUMS.txt",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.1-rc.2/SHA256SUMS.txt",
+      "bytes": 725,
+      "sha256": "e68e74ea3ccf9f86eb7bd424cc393132f01aa95b579be1272d51195cae4e60b6",
+      "verified": true
+    }
+  ],
+  "docs": [
+    {
+      "path": "README.md",
+      "status": 200,
+      "currentCandidateLink": true
+    },
+    {
+      "path": "README.zh-CN.md",
+      "status": 200,
+      "currentCandidateLink": true
+    },
+    {
+      "path": "docs/technical/SELF_HOSTING.md",
+      "status": 200,
+      "currentCandidateLink": true
+    },
+    {
+      "path": "docs/technical/SELF_HOSTING.zh-CN.md",
+      "status": 200,
+      "currentCandidateLink": true
+    },
+    {
+      "path": "docs/releases/0.5.1-rc.2.md",
+      "status": 200,
+      "currentCandidateLink": true
+    }
+  ],
+  "pages": [
+    {
+      "url": "https://droprun.dengmaizi0802.chatgpt.site/",
+      "status": 200,
+      "downloadLink": true
+    },
+    {
+      "url": "https://droprun.dengmaizi0802.chatgpt.site/zh/",
+      "status": 200,
+      "downloadLink": true
+    }
+  ],
+  "resources": [
+    {
+      "path": "/styles.css",
+      "status": 200
+    },
+    {
+      "path": "/app.js",
+      "status": 200
+    },
+    {
+      "path": "/brand-logo.png",
+      "status": 200
+    },
+    {
+      "path": "/media/home.png",
+      "status": 200
+    },
+    {
+      "path": "/media/share.png",
+      "status": 200
+    },
+    {
+      "path": "/media/task.png",
+      "status": 200
+    },
+    {
+      "path": "/media/settings.png",
+      "status": 200
+    },
+    {
+      "path": "/media/demo.mp4",
+      "status": 200
+    },
+    {
+      "path": "/media/walkthrough.mp4",
+      "status": 200
+    },
+    {
+      "path": "/media/social.png",
+      "status": 200
+    }
+  ],
+  "stableLaunchAcceptance": false
+}
