@@ -42,6 +42,14 @@ Android+Windows self-hosted goal and the user's local-only validation boundary.
   both jobs, including Node224/224/no skips and Windows package construction.
   The documentation/pointer commit912017c also passed both CI jobs in
   [37274120930](https://github.com/MrMaii/droprun/actions/runs/37274120930).
+  Final publication commit374faf0 CI37275265534 passed Android but Node223/224:
+  one setup-language test asserted before its asynchronous status read completed.
+  Original log retained as `.local/ux-rc052-final-ci-failed.log`. Only the test was
+  corrected to await refresh before the language click, preserving all assertions.
+  Focused browser case1/1 and subsequent full local Node224/224, no skips,31.800s
+  passed; log `.local/ux-rc052-test-sync-node-final.log`. No product files or
+  released-source/package provenance changed. The failed CI stays historical;
+  the subsequent matching-main run is recorded under `.local/ux-rc052-test-sync-ci*`.
   A clean managed checkout installed74 packages/0vulnerabilities, then built
   signed Android0.5.2/code15 and Windows0.5.2 without product installation.
 - Independent complete inventories, ZIPs and source blobs match07eb. Android

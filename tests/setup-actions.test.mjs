@@ -196,7 +196,8 @@ test('setup distinguishes saved and verified connections and keeps pairing unava
   assert.match(await f.run('document.getElementById("next-step").textContent'), /resume setup.*verify your Relay/i);
   f.state.completed = { relay: 'https://relay.invalid', instanceId: 'fixture-instance', previewOrigin: 'https://preview.invalid' };
   f.state.busy = true; f.state.step = 'database';
-  await f.run('refresh();document.getElementById("language").click()');
+  await f.run('refresh()');
+  await f.run('document.getElementById("language").click()');
   assert.equal(await f.run('document.getElementById("relay-status").textContent'), '上次验证的配置');
   assert.equal(await f.run('document.getElementById("relay-instance").textContent'), 'fixture-instance');
   assert.equal(await f.run('document.getElementById("step").textContent'), '正在准备数据表');
