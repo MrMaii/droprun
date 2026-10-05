@@ -1,0 +1,143 @@
+{
+  "checkedAt": "2026-10-05T04:02:59.432Z",
+  "authenticated": false,
+  "repository": "https://github.com/MrMaii/droprun",
+  "release": "https://github.com/MrMaii/droprun/releases/tag/v0.5.1-rc.1",
+  "prerelease": true,
+  "sourceCommit": "305c27ec608a0319f3c9d8eed8e7b2ea652ebf00",
+  "assets": [
+    {
+      "name": "DropRun-0.5.1-android-BUILD-MANIFEST.json",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.1-rc.1/DropRun-0.5.1-android-BUILD-MANIFEST.json",
+      "bytes": 1588,
+      "sha256": "eee1a078e37bcde133a76f9a3d377612727972ebc12ba0178b92d697519a62f4",
+      "verified": true
+    },
+    {
+      "name": "DropRun-0.5.1-android-distribution.zip",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.1-rc.1/DropRun-0.5.1-android-distribution.zip",
+      "bytes": 3314427,
+      "sha256": "7925b3cf3d103f60b35d011325d8d6387639ee5de56e565ab5e63c0ba141ea40",
+      "verified": true
+    },
+    {
+      "name": "DropRun-0.5.1-android.apk",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.1-rc.1/DropRun-0.5.1-android.apk",
+      "bytes": 1683120,
+      "sha256": "011f9dd5e74dc3da627c0fdd92ed054b8ddb7d62ba963cd8bd7a71fb4a266ea2",
+      "verified": true
+    },
+    {
+      "name": "DropRun-0.5.1-windows-x64-BUILD-MANIFEST.json",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.1-rc.1/DropRun-0.5.1-windows-x64-BUILD-MANIFEST.json",
+      "bytes": 375535,
+      "sha256": "a16a0e1452c410065c8041681205ce721221d4abb3304432226b8213ee5fc195",
+      "verified": true
+    },
+    {
+      "name": "DropRun-0.5.1-windows-x64-setup.exe",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.1-rc.1/DropRun-0.5.1-windows-x64-setup.exe",
+      "bytes": 76695950,
+      "sha256": "c12145899ebfb84effece40527a1833d821a8d1d4f6426451b207b4ee4a3dda8",
+      "verified": true
+    },
+    {
+      "name": "DropRun-0.5.1-windows-x64-source.zip",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.1-rc.1/DropRun-0.5.1-windows-x64-source.zip",
+      "bytes": 8814959,
+      "sha256": "d94878470b4017daec01a6018f5ace53c1f868216a074ba121e93dc41972823f",
+      "verified": true
+    },
+    {
+      "name": "DropRun-0.5.1-windows-x64.zip",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.1-rc.1/DropRun-0.5.1-windows-x64.zip",
+      "bytes": 111567271,
+      "sha256": "c7baa97531196bf2d193b943b8afa723684bbcb4436c70d4f242e717c28ea776",
+      "verified": true
+    },
+    {
+      "name": "SHA256SUMS.txt",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.1-rc.1/SHA256SUMS.txt",
+      "bytes": 725,
+      "sha256": "9b6171098b56e2109512039d53dafcbd4490d3c56bd6793a3629d9fce1b3e47b",
+      "verified": true
+    }
+  ],
+  "docs": [
+    {
+      "path": "README.md",
+      "status": 200
+    },
+    {
+      "path": "README.zh-CN.md",
+      "status": 200
+    },
+    {
+      "path": "docs/technical/SELF_HOSTING.md",
+      "status": 200
+    },
+    {
+      "path": "docs/technical/SELF_HOSTING.zh-CN.md",
+      "status": 200
+    },
+    {
+      "path": "docs/releases/0.5.1-rc.1.md",
+      "status": 200
+    }
+  ],
+  "pages": [
+    {
+      "url": "https://droprun.dengmaizi0802.chatgpt.site/",
+      "status": 200,
+      "downloadLink": true
+    },
+    {
+      "url": "https://droprun.dengmaizi0802.chatgpt.site/zh/",
+      "status": 200,
+      "downloadLink": true
+    }
+  ],
+  "resources": [
+    {
+      "path": "/styles.css",
+      "status": 200
+    },
+    {
+      "path": "/app.js",
+      "status": 200
+    },
+    {
+      "path": "/brand-logo.png",
+      "status": 200
+    },
+    {
+      "path": "/media/home.png",
+      "status": 200
+    },
+    {
+      "path": "/media/share.png",
+      "status": 200
+    },
+    {
+      "path": "/media/task.png",
+      "status": 200
+    },
+    {
+      "path": "/media/settings.png",
+      "status": 200
+    },
+    {
+      "path": "/media/demo.mp4",
+      "status": 200
+    },
+    {
+      "path": "/media/walkthrough.mp4",
+      "status": 200
+    },
+    {
+      "path": "/media/social.png",
+      "status": 200
+    }
+  ],
+  "stableLaunchAcceptance": false
+}

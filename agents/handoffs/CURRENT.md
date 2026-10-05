@@ -1,8 +1,32 @@
 # Current Handoff
 
-Updated2026-10-04 local /2026-10-05 UTC. Local implementation resumed.
+Updated2026-10-05 UTC. Public candidate delivered.
 **Stable launch and marketing handover are not achieved.** Preserve the full
 Android+Windows self-hosted product goal and the local-only validation boundary.
+
+## Latest session 2026-10-05: public candidate delivered
+
+- Published v0.5.1-rc.1 as a non-draft prerelease, with eight signed/unsigned
+  distributions, manifests and checksum assets. Runtime/source commit305c27e;
+  cloud CI37260974607 passed both jobs. Complete current evidence belongs to
+  [the candidate record](../../docs/releases/0.5.1-rc.1.md), not the older snapshots.
+- Verified all eight anonymous full downloads against local bytes and API digests.
+  English/Chinese site, documentation and ten resources were publicly available.
+  [Public audit](../../docs/releases/public-delivery-2026-10-05.json) owns hashes.
+- Rebuilt source-bound Android and Windows packages; stable Android certificate
+  retained, Windows NotSigned disclosed. Exact inventories/source blobs verified.
+  Files/logs are under .local/releases/closure-oct4-published-{android,windows}.
+- Updated Sites version3 at the original public URL, exact pushed Site source
+  fef350d6abb002f98e38fcf134119b08ceab43b4. Refreshed five genuine native PNGs in
+  README/website from dated September27 local0.5.1 demonstration captures. Tour
+  GIF/videos remain the earlier preview; no genuine execution claim. Both320px
+  languages, keyboard install/FAQ/focus and screenshot loading checked.
+- No real Relay/Codex submission, new owner deployment or product installation.
+  No social posts, final posters or unreviewed film publication. The approved
+  240-row history process-loss probe remains unexecuted after automatic rejection;
+  it was not retried or bypassed. Stable/marketing gates remain open.
+- Updated current release/changelog/readmes/guides/roadmap/context and public
+  image dimensions. Existing dirty promo-film/launch-kit changes preserved.
 
 ## Latest session 2026-10-04: deletion, shutdown and dependency repair
 
@@ -75,7 +99,7 @@ original requirement group to evidence and missing proof.
 - Older artifacts remain. No public-package installation or private data cleanup.
   Debug outboxes/import journals last verified empty; unknown6d908a45... retained.
 
-## Public state, verified anonymously2026-09-30T03:21:52Z
+## Prior public snapshot, verified anonymously2026-09-30T03:21:52Z
 
 [Audit JSON](../../docs/releases/public-delivery-2026-09-30.json) is authoritative
 for this snapshot. English/Chinese GPTSites pages, self-hosting docs and repository
@@ -104,10 +128,11 @@ Do not issue repetitive approval questions or label candidates as formally launc
 
 ## Single recommended next action
 
-Build and verify the updated candidate distributions, then publish candidate
-source/packages and inspect public CI. Keep formal release and marketing gated on
-the genuine device/environment/submission evidence above. The goal was resumed;
-do not carry the old blocked-turn count into this new run or mark it complete.
+Resume genuine acceptance only when the required device, owner environment and
+real-submission authorization become available. Candidate publication is complete;
+stable launch and marketing handover are not. Do not replace these gates with
+another synthetic pass or bypass the rejected history operation. This resumed run
+made substantial progress; do not carry its predecessor's blocked-turn count over.
 
 ## Files this pass
 
