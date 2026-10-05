@@ -334,7 +334,7 @@ public class ShareActivity extends StyledActivity {
         Ui.Glass glass=Ui.glass(this,root,sheet);dialog=glass;glass.overlay.setOnClickListener(v->{if(!busy)closeDialog(null);});
         LinearLayout card=glass.card;
         card.addView(Ui.title(this,L.t("“","「")+name+L.t("” needs permission","」需要授权"),18));
-        card.addView(Ui.text(this,L.t("Allow handoffs from this phone to read and edit the original project and run commands, subject to your execution setting. You can revoke this in Settings.","授权后，从这台手机转发到这个项目的任务，Codex 会直接在这个项目目录里读写文件和运行命令。可以在设置里随时关闭。"),14,Ui.MUTED),Ui.margins(this,4,12));
+        card.addView(Ui.text(this,L.t("Allow handoffs from this phone to read and edit the original project and run commands, subject to your execution setting. You can revoke this in Settings.","授权后，Codex 可按你的执行设置，在原项目中读写文件并运行命令。可在设置中撤销授权。"),14,Ui.MUTED),Ui.margins(this,4,12));
         TextView problem=Ui.text(this,"",13,Ui.AMBER);problem.setAccessibilityLiveRegion(View.ACCESSIBILITY_LIVE_REGION_POLITE);problem.setVisibility(View.GONE);card.addView(problem,Ui.margins(this,0,8));
         Button ok=Ui.button(this,L.t("Allow & continue","授权并继续"),true);card.addView(ok,Ui.fill());
         Button cancel=Ui.button(this,L.t("Cancel","取消"),false);Ui.styleGhost(cancel);card.addView(cancel,Ui.margins(this,6,0));
@@ -377,13 +377,24 @@ public class ShareActivity extends StyledActivity {
             panel=Ui.vertical(this);panel.setVisibility(View.GONE);column.addView(panel,Ui.margins(this,4,0));
             updateGauge();
         }
-        Button send=Ui.button(this,L.t("Hand off to Codex","交给 Codex"),true);send.setOnClickListener(v->{if(submit())go(2,1);});column.addView(send,Ui.margins(this,16,0));
+        column.addView(executionSettingNotice(),Ui.margins(this,12,0));
+        Button send=Ui.button(this,L.t("Hand off to Codex","交给 Codex"),true);send.setTag("share-send");send.setOnClickListener(v->{if(submit())go(2,1);});column.addView(send,Ui.margins(this,12,0));
         draftStatus=Ui.caption(this,"");draftStatus.setGravity(Gravity.CENTER);draftStatus.setAccessibilityLiveRegion(View.ACCESSIBILITY_LIVE_REGION_POLITE);column.addView(draftStatus,Ui.margins(this,4,0));retryDraft=Ui.button(this,L.t("Retry saving draft","重试保存草稿"),false);retryDraft.setOnClickListener(v->checkpoint());column.addView(retryDraft,Ui.margins(this,6,0));draftFeedback();
         return column;
     }
+    boolean executionSettingConfirmed(){return store.prefs.getBoolean("settingsKnown",false)&&store.prefs.getString("settingsError","").isEmpty();}
+    View executionSettingNotice(){
+        boolean confirmed=executionSettingConfirmed(),direct=store.directExecution();
+        LinearLayout notice=Ui.vertical(this);notice.setTag("share-execution-setting");notice.setPadding(dp(14),dp(10),dp(14),dp(10));notice.setBackground(Ui.outlined(this,Ui.SURFACE_2,Ui.LINE,14,1));
+        String title=confirmed?(direct?L.t("Saved setting · Direct execution","已保存设置 · 直接执行"):L.t("Saved setting · Plan review","已保存设置 · 先看计划")):L.t("Execution setting not confirmed","执行设置尚未确认");
+        TextView heading=Ui.text(this,title,13,confirmed?Ui.TEXT:Ui.AMBER);heading.setTypeface(Ui.medium());heading.setTag("share-execution-title");notice.addView(heading,Ui.fill());
+        String detail=confirmed?(direct?L.t("Can edit project files and run commands.","可修改项目文件并运行命令。"):L.t("Approve a plan before edits begin.","批准计划后才开始修改。")):L.t("Check DropRun Settings before sending.","发送前，请在 DropRun 设置中查看。");
+        detail+=" "+L.t("Your Relay's setting applies when it first accepts this handoff.","Relay 首次接收交办时采用当时的设置。");
+        TextView explanation=Ui.caption(this,detail);explanation.setTag("share-execution-detail");notice.addView(explanation,Ui.margins(this,2,0));return notice;
+    }
     void updateGauge(){
         checkpoint();
-        if(gaugeText==null)return;JSONObject chosen=store.model(model);String summary=(chosen==null?model:chosen.optString("displayName",model))+(effort.isEmpty()?"":" · "+effort);
+        if(gaugeText==null)return;JSONObject chosen=store.model(model);String meaning=effortHint(effort),summary=(chosen==null?model:chosen.optString("displayName",model))+(effort.isEmpty()?"":" · "+(meaning.isEmpty()?effort:meaning));
         gaugeText.setText(summary);gaugeText.setTextColor(panelOpen?Ui.TEXT:Ui.MUTED);gauge.setImageTintList(ColorStateList.valueOf(panelOpen?Ui.ACCENT:Ui.TEXT));
         ((View)gaugeText.getParent()).setContentDescription(L.t("Model & effort, ","模型强度，")+summary+(panelOpen?L.t(", tap to collapse","，点按收起"):L.t(", tap to expand","，点按展开")));
     }
@@ -458,9 +469,7 @@ public class ShareActivity extends StyledActivity {
     String outcome(){
         if(!store.online())return L.t("You're offline. Saved safely; it will send when connected.","手机离线，已保存。联网后自动发送。");
         if(!notificationsAllowed())return L.t("Notifications are off. Check DropRun or Codex for updates.","通知未开启，请在 App 或 Codex 查看后续。");
-        String mode=store.directExecution()?L.t("Codex will read the available material and work on your request.","Codex 收到后会读取可获取的材料，并直接处理需求。"):L.t("Codex will read the available material and prepare a plan for your approval.","Codex 收到后会读取可获取的材料，先给方案，等你批准后执行。");
-        String updates=L.t("We'll notify you when results or decisions are ready. You can also check DropRun or Codex.","结果或需确认时会通知你，也可在 App 或 Codex 查看。");
-        return mode+" "+updates;
+        return L.t("Check DropRun for progress, results and decisions.","在 DropRun 查看进度、结果和待确认事项。");
     }
     boolean notificationsAllowed(){return TaskNotifications.allowed(this);}
     void fly(){

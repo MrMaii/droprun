@@ -147,3 +147,67 @@ Its test now allows 90s for the lifecycle, with all six 1280×900 captures and
 interaction assertions intact, and logs capture timing. Production limits did
 not change. Local browser tests passed 6/6 and Node 224/224, no skips/cancellations,
 33.531s. The exact CI stage that was slow is unknown; the failed log is retained.
+
+Source 93bc0b4 is public. [CI37348279030](https://github.com/MrMaii/droprun/actions/runs/37348279030)
+passed Android and the browser verification (six captures, 12.989s). Core had
+223 passes, one failure, no cancellations or skips: the brand fixture's second
+PUT reported Miniflare `read ECONNRESET`. Its exact cause is not established.
+The original log is retained privately; this is a separate failure from the
+previous browser deadline and is being investigated without skipping assertions.
+
+## Pre-send clarity and README architecture
+
+The real editor previously omitted execution settings before Send. A noninteractive
+notice now distinguishes a saved direct/review preference from an unconfirmed
+setting (`settingsKnown` and no `settingsError`), describes its consequence or
+Settings recovery, and explains that the Relay's setting on first acceptance
+determines the task mode. It neither changes settings nor prevents local saving.
+The short ordinary saved feedback no longer promises a cached mode. Chinese
+project permission copy now retains the English execution-setting qualifier.
+Collapsed model summaries use localized effort meanings; request values remain exact.
+
+An independent non-exported editor probe uses only in-memory project/model samples,
+no import, preferences writes, API, task save, pairing or outbox access. It labels
+the note as unsaved and never activates Send. Baseline checks had two passes and
+one missing-cue failure. Initial/Send PNGs were identical despite the old visibility
+check: pre-draw alone was too early for screenshot evidence. Those original PNGs
+are retained and rejected as Send proof. Capture now waits two native frame
+callbacks and idle; visibility intersects the physical screen, root and scroll
+viewports, and current captures visibly include Send.
+
+Final API35/320×640dp/200% font matrix: 18/18 motion-off (37.070s), 10/10 affected
+motion-on (47.581s). Normal-text matrix: 1/1 with six EN/ZH known/unknown variants,
+9.264s. All six normal-text Send PNGs were inspected; 52 unchanged PNGs retained.
+The editor checks typing, model/effort selection, disclosure, exact values and
+scrolling. JVM24/24, release lint0errors/28warnings and builds passed. Original
+device settings were restored/read back and compared. These tests do not prove
+real persistence, receipt, IME/TalkBack behavior or physical performance.
+Private evidence: `.local/ux-oct5-share-editor/` (audit, originals, logs, hashes).
+Final debug APK SHA-256: `24bf90b85c0c3ec4d74ca2ae904d5f747da595ba39f6bc7050604ad91c946c6a`;
+ShareActivity: `768f2738728234c2db22c10fb087205917b0c9f65994e8899adf010f15fd57e1`.
+
+Anonymous GitHub README inspection confirmed the new three-step order in both
+languages. The English Mermaid embed failed in that session while Chinese
+rendered; this is not a claim of invalid Mermaid syntax. Both now use original
+system-font SVG diagrams with EN/ZH light/dark palettes, alt text and visible
+text mappings. All four were rendered and inspected. No native media was edited;
+the diagrams are schematic, not real task evidence.
+
+### CI follow-through
+
+The brand fixture left status-only response bodies unconsumed. Miniflare's own
+body-consumption check reproduced that defect; consuming responses preserved all
+original payload, authorization, exact-byte and privacy assertions. Local224/224
+passed. Source4a71f43 [CI37349705478](https://github.com/MrMaii/droprun/actions/runs/37349705478)
+passed brand and Android but had three real-browser20s DevTools startup failures
+(221/224, no skips/cancellations). The precise OS/resource cause remains unproven.
+
+CI now assigns the four real-browser files to a dedicated Windows runner at one
+file at a time; the remaining34 are enumerated dynamically at four. Missing or
+duplicate file assignments fail; browser availability/version and runner resources
+are recorded. No production timeout, screenshot or assertion changed. Source7b7ffee
+[CI37351685649](https://github.com/MrMaii/droprun/actions/runs/37351685649) passed
+core210/210 and browser14/14 with zero skips/cancellations, Android builds/tests/lint,
+audit, generated-site/public checks and Windows installer/portable construction.
+This run predates the current editor/diagram source publication; their matching
+run is recorded separately. The downloadable0.5.2-rc.1 remains unchanged.

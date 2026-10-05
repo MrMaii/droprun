@@ -81,15 +81,10 @@ DropRun 没有官方账号或订阅。Cloudflare、可选转写和 Codex 使用�
 
 ## 你的手机、电脑与 Relay
 
-```mermaid
-flowchart LR
-  A[Android 分享浮层] --> R[自己的 Cloudflare Relay]
-  R <--> W[自己的 Windows Connector]
-  W <--> C[本地 Codex 与项目]
-  W --> E[报告、截图与文件]
-  E --> R
-  R --> A
-```
+<picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/readme-architecture-zh-dark.svg"><img src="assets/brand/readme-architecture-zh.svg" alt="自部署架构：Android 经自己的 Cloudflare Relay、Windows Connector 连接本地 Codex；项目代码和 Codex 登录留在电脑。"></picture>
+
+参考材料与留言：Android → 自己的 Relay → Windows Connector → 本地 Codex。
+进度、报告与交付文件：Connector → Relay → Android。
 
 项目代码和 Codex 登录留在电脑。提交的材料、报告与上传产物进入你自己的 Cloudflare。
 一套 Relay 对应一个所有者与一台 Connector，可配对多个手机。官网提供产品说明与下载。

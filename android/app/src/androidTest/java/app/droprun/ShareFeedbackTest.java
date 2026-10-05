@@ -106,6 +106,7 @@ public class ShareFeedbackTest {
         assertTrue("Routine feedback returns without adding the four-second attention delay",activity.closedSignal.await(recommended+1500L,TimeUnit.MILLISECONDS));
         assertTrue("Do not shorten the actual system-recommended timeout",activity.closedAt-activity.landedAt>=recommended);assertEquals(1,activity.closeRequests);
         assertEquals(language.equals("zh")?"已保存，自动发送":"Saved. We'll take it from here.",activity.landedTitle);
+        assertEquals("Routine feedback does not promise a cached execution mode",language.equals("zh")?"在 DropRun 查看进度、结果和待确认事项。":"Check DropRun for progress, results and decisions.",activity.landedStatus);
         assertTrue(activity.destroyedSignal.await(2,TimeUnit.SECONDS));assertSafe(activity);
     }
     static void assertCompleteAndVisible(TextView text){

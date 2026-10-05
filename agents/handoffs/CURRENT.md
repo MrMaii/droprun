@@ -4,7 +4,35 @@ Updated 2026-10-05 UTC. **v0.5.2-rc.1 is publicly available.**
 Stable launch and marketing handover are not achieved. Preserve the complete
 Android+Windows self-hosted goal and the user's local-only validation boundary.
 
-## Latest session: readable share feedback and pending controls
+## Latest session: pre-send decision clarity and dependable README visuals
+
+- Share editor now shows a saved direct/plan preference or unconfirmed setting
+  before Send, plus the first-receipt boundary. No setting/network/save behavior
+  changed. Ordinary feedback is neutral; Chinese permission copy retains mode
+  constraints. Effort summaries show localized meaning without changing values.
+- Independent editor probe is non-exported/in-memory and never imports, writes
+  preferences, pairs, accesses outbox, saves or activates Send. Original red3/1
+  retained. Original duplicate initial/Send PNGs rejected; capture now waits two
+  native frames/idle, visibility intersects screen/root/scroll. Final200% checks:
+  motion-off18/18, affected motion-on10/10; normal-text1/1 includes6EN/ZH variants.
+  All6normal Send views inspected;52PNGs retained. Builds/JVM24/lint0errors28warnings
+  passed. Settings restored/read back. No real persistence, IME/TalkBack or physical
+  performance claim. Canonical evidence: [UI follow-through](../../docs/releases/ui-followthrough-2026-10-05.md),
+  private `.local/ux-oct5-share-editor/`.
+- README three-step layouts verified anonymously in EN/ZH. A session-specific
+  Mermaid failure prompted4original EN/ZH/light/dark SVG diagrams plus accessible
+  text maps. All4rendered/inspected; logo/native media unchanged.
+- Brand fixture body-consumption defect reproduced/fixed, original assertions
+  retained. Next CI passed brand but three20s browser startup failures. Dedicated
+  Windows browser job keeps4files/14tests apart from34corefiles/210tests; no timeout,
+  screenshot or assertion weakened. Source7b7ffee CI37351685649 succeeded all3jobs,
+  zero skipped/cancelled tests, Windows packaging and audit/site/public checks.
+  Precise previous OS/resource cause remains unproven. Current editor/diagram
+  source publication and matching CI are tracked separately.
+- Downloadable0.5.2-rc.1/source07eb357 is unchanged. No real submission, owner cloud,
+  original film/launch-kit publication or marketing handover occurred.
+
+## Previous session: readable share feedback and pending controls
 
 - Kept independent UI/brand work moving under the user's local-only boundary.
   Offline/notifications-off saved feedback now has a4000ms base reading window,
@@ -35,6 +63,10 @@ Android+Windows self-hosted goal and the user's local-only validation boundary.
   Only that test now permits90s; six1280×900 captures/all assertions remain, with
   timing diagnostics. Browser6/6 and local Node224/224/no skips/cancellations,
   33.531s passed. Exact slow CI stage remains unknown; original log retained.
+- Curated source93bc0b4 is public. CI37348279030 passed Android and the six-image
+  browser case (12.989s); core223/224, no cancellations/skips. Brand fixture
+  line19 reports Miniflare read ECONNRESET; exact cause not established. Original
+  failure retained; independent UI and README work continues alongside diagnosis.
 - These source refinements are newer than0.5.2-rc.1 downloads. No package, tag,
   owner cloud configuration, site media or original unpublished film was changed.
   Curated source publication and matching CI are recorded separately.
@@ -202,18 +234,21 @@ Android+Windows self-hosted goal and the user's local-only validation boundary.
 
 ## Single recommended next action
 
-Finish matching-source CI and inspect the published bilingual README. Then
-review whether the saved execution preference is clear before the share's Send
-action: routine post-save mode instructions still disappear with the short
-feedback. Check the real editor first and improve only demonstrated ambiguity,
-using an independent local UI path with no task/import/prefs/outbox writes.
+Finish current editor/diagram source publication, anonymous README render check
+and exact-source CI. Then refresh candidate distribution from the curated new
+UI source with matching version/signature/source/checksums and explicit open
+real-environment gates. Do not claim these refinements are already in0.5.2-rc.1.
 Do not clear the retained draft, navigate normal Pair or repeat the rejected
-process-loss probe. Genuine acceptance remains open; download evidence belongs
-to0.5.2-rc.1 and the original film remains separate.
+process-loss probe. No genuine Relay submission; original film stays separate.
 
 ## Files this pass
 
-Current refinement: Ui.java, SettingsActivity.java, PairActivity.java, three
+Current editor pass: ShareActivity.java, debug editor probe/manifest, native editor
+ and neutral-feedback tests, four SVGs/brand notes, bilingual README, PRD/contracts,
+ changelog, follow-through record and handoff. CI workflow/brand test published
+ separately; local evidence .local/ux-oct5-share-editor/.
+
+Prior refinement: Ui.java, SettingsActivity.java, PairActivity.java, three
 debug-only independent probes and three native test classes, debug manifest,
 bilingual README, PRD/contracts/changelog, UI follow-through record and handoff.
 Local evidence: `.local/ux-oct5-color-audit/` (original red logs, green logs,

@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 320" role="img" aria-labelledby="title description">
+  <title id="title">Self-hosted DropRun architecture</title>
+  <desc id="description">References and notes go from Android through your Cloudflare Relay and Windows Connector to local Codex. Progress, reports and files return through the Connector and Relay. Project code and Codex login stay on your computer.</desc>
+  <rect width="1000" height="320" rx="24" fill="#F7F7F2"/>
+  <g font-family="Segoe UI, Microsoft YaHei, sans-serif">
+    <circle cx="38" cy="34" r="6" fill="#B8EF73"/>
+    <text x="54" y="40" font-size="18" fill="#616A63">Share a reference + note →</text>
+    <rect x="526" y="58" width="464" height="206" rx="20" fill="#EFF4E8" stroke="#DDE5D4"/>
+    <text x="548" y="87" font-size="16" font-weight="600" fill="#616A63">YOUR COMPUTER · code + Codex login stay here</text>
+    <g fill="#FFFFFF" stroke="#E1E5DD" stroke-width="1.5">
+      <rect x="28" y="112" width="180" height="130" rx="18"/>
+      <rect x="272" y="112" width="208" height="130" rx="18"/>
+      <rect x="544" y="112" width="188" height="130" rx="18"/>
+      <rect x="796" y="112" width="176" height="130" rx="18"/>
+    </g>
+    <g fill="#191D1A" font-size="23" font-weight="600" text-anchor="middle">
+      <text x="118" y="159">Android</text>
+      <text x="376" y="154">Your Cloudflare</text>
+      <text x="376" y="182">Relay</text>
+      <text x="638" y="154">Windows</text>
+      <text x="638" y="182">Connector</text>
+      <text x="884" y="159">Local Codex</text>
+    </g>
+    <g fill="#616A63" font-size="16" text-anchor="middle">
+      <text x="118" y="192">Share sheet</text>
+      <text x="376" y="214">Workers · D1 · R2</text>
+      <text x="638" y="214">Runs on your PC</text>
+      <text x="884" y="192">Existing project</text>
+    </g>
+    <g fill="none" stroke="#616A63" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M228 177H252 M234 171L228 177L234 183 M246 171L252 177L246 183"/>
+      <path d="M500 177H524 M506 171L500 177L506 183 M518 171L524 177L518 183"/>
+      <path d="M752 177H776 M758 171L752 177L758 183 M770 171L776 177L770 183"/>
+    </g>
+    <text x="28" y="298" font-size="18" fill="#616A63">← Progress, reports + delivery files return through your Relay</text>
+  </g>
+</svg>

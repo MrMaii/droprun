@@ -108,6 +108,11 @@ in [the current candidate record](../releases/0.5.2-rc.1.md).
   Selecting a model or effort in the share editor preserves keyboard focus on
   that option and keeps it visible. These choices do not change Settings defaults
   or create a handoff before Send.
+  Before Send, the editor shows the saved execution preference and its consequence,
+  or explicitly says it is unconfirmed. It explains that the Relay's setting on
+  first receipt determines the task's mode; a cached preference is not a promise.
+  The notice and Send remain readable by scrolling at 200% font. Model summaries
+  use localized effort meanings, retaining unknown values and the exact request.
 - Share selection prioritizes recent server and local activity; identical names
   remain visibly distinguishable without merging their IDs, counts or permissions.
   Unavailable projects explain recovery and cannot create a new handoff.

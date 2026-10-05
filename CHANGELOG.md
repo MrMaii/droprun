@@ -2,6 +2,12 @@
 
 ## Unreleased — native feedback refinement
 
+- Show the saved or unconfirmed execution preference before sharing, with the
+  receipt-time boundary and localized effort summaries. Simplify routine saved
+  feedback; align Chinese project permission copy with the execution setting.
+- Replace README architecture embeds with bilingual theme-aware SVGs and text
+  descriptions, keeping self-hosted boundaries readable without a rich renderer.
+
 - Structural keyboard focus preserves page colors; button focus rings and Enter
   activation remain visible and available.
 - Background settings updates retain the focused appearance or language control.

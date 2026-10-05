@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 320" role="img" aria-labelledby="title description">
+  <title id="title">DropRun 自部署架构</title>
+  <desc id="description">参考材料和留言从 Android 经自己的 Cloudflare Relay、Windows Connector 到本地 Codex。进度、报告和文件经 Connector、Relay 返回手机。项目代码和 Codex 登录留在电脑。</desc>
+  <rect width="1000" height="320" rx="24" fill="#F7F7F2"/>
+  <g font-family="Segoe UI, Microsoft YaHei, sans-serif">
+    <circle cx="38" cy="34" r="6" fill="#B8EF73"/>
+    <text x="54" y="40" font-size="18" fill="#616A63">分享参考材料与留言 →</text>
+    <rect x="526" y="58" width="464" height="206" rx="20" fill="#EFF4E8" stroke="#DDE5D4"/>
+    <text x="548" y="87" font-size="16" font-weight="600" fill="#616A63">自己的电脑 · 项目代码与 Codex 登录留在这里</text>
+    <g fill="#FFFFFF" stroke="#E1E5DD" stroke-width="1.5">
+      <rect x="28" y="112" width="180" height="130" rx="18"/>
+      <rect x="272" y="112" width="208" height="130" rx="18"/>
+      <rect x="544" y="112" width="188" height="130" rx="18"/>
+      <rect x="796" y="112" width="176" height="130" rx="18"/>
+    </g>
+    <g fill="#191D1A" font-size="23" font-weight="600" text-anchor="middle">
+      <text x="118" y="159">Android</text>
+      <text x="376" y="154">自己的 Cloudflare</text>
+      <text x="376" y="182">Relay</text>
+      <text x="638" y="154">Windows</text>
+      <text x="638" y="182">Connector</text>
+      <text x="884" y="159">本地 Codex</text>
+    </g>
+    <g fill="#616A63" font-size="16" text-anchor="middle">
+      <text x="118" y="192">分享浮层</text>
+      <text x="376" y="214">Workers · D1 · R2</text>
+      <text x="638" y="214">在自己的电脑运行</text>
+      <text x="884" y="192">已有项目</text>
+    </g>
+    <g fill="none" stroke="#616A63" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M228 177H252 M234 171L228 177L234 183 M246 171L252 177L246 183"/>
+      <path d="M500 177H524 M506 171L500 177L506 183 M518 171L524 177L518 183"/>
+      <path d="M752 177H776 M758 171L752 177L758 183 M770 171L776 177L770 183"/>
+    </g>
+    <text x="28" y="298" font-size="18" fill="#616A63">← 进度、报告与交付文件经自己的 Relay 返回手机</text>
+  </g>
+</svg>

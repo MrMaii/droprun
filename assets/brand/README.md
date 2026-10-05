@@ -10,3 +10,8 @@ font is bundled. Current design decision: [ADR 0016](../../docs/decisions/0016-p
 
 The logo is intentionally absent from the mobile home header. It remains useful
 for the app icon, website, README and public release materials.
+
+`readme-architecture*.svg` are original diagrams in English/Chinese and light/dark
+palettes. They show the self-hosted flow and computer boundary, not a task result.
+They use system fonts, contain no scripts or remote assets, and have text
+equivalents in both READMEs. The selected logo and native captures are unchanged.

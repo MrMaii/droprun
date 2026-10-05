@@ -92,15 +92,10 @@ different signing identities cannot silently replace each other.
 
 ## Your phone. Your computer. Your Relay.
 
-```mermaid
-flowchart LR
-  A[Android share sheet] --> R[Your Cloudflare Relay]
-  R <--> W[Your Windows Connector]
-  W <--> C[Local Codex and your project]
-  W --> E[Reports, screenshots and files]
-  E --> R
-  R --> A
-```
+<picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/readme-architecture-dark.svg"><img src="assets/brand/readme-architecture.svg" alt="Self-hosted architecture: Android connects through your Cloudflare Relay and Windows Connector to local Codex; project code and Codex login stay on your computer."></picture>
+
+References and notes: Android → your Relay → Windows Connector → local Codex.
+Progress, reports and delivery files: Connector → Relay → Android.
 
 Project code and Codex login stay on your computer. Shared material, reports and
 uploaded artifacts pass through your own Cloudflare instance. Each Relay belongs
