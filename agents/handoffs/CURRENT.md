@@ -64,6 +64,31 @@ user's local-only validation boundary.
   [Permission motion](../../docs/releases/ui-permission-motion-2026-10-05.md).
   Private66-file inventory and threeAPKpairs are frozen in
   .local/ux-oct5-permission-motion/. No actual permission was requested.
+  Public source26bc86fa9fc94982070b247af1c65a3cb1096b27 has matching
+  CI37380000020 attempt2 green: core210/browser14/no failures/skips/cancellations,
+  original successful Android job, public-source354/site/Windows packaging.
+  Only failed core/browser jobs were rerun once, without source/assertion/timeout
+  changes. Attempt1's local ECONNRESET and first-browser readiness timeout remain;
+  no root cause is established. Anonymous5documents and10sealed sources match
+  immutable blobs (8exact/2CRLF-only). Publication note is added this pass.
+- Task result/preview/files now reuse one outcome card; follow-up, approvals and
+  full report stay outside. No text, font, action eligibility or callback change.
+  Native5/5 passed27.65s/host28.6324866s, JVM24/24, lint0errors/30warnings.
+  Original4methods/frame/geometry helpers are unchanged. New24theme/language/
+  text/state combinations check24summaries,12normal complete action regions and
+  40font2 detail/action targets. All12raw320x640PNGs inspected; only delivery
+  regions, not full pages or actual tasks. Four byte-identical ready PNGs are
+  curated public evidence with visible memory/no-work markers, not README tours.
+  [Single surface](../../docs/releases/ui-delivery-surface-2026-10-05.md) owns scope.
+  Private262-file readonly inventory,94source equality, twoAPK hashes, unchanged
+  130earlier host files/10devicePNGs/106red files/settings/crash buffer remain in
+  .local/ux-oct5-delivery-surface/. The red1/1 structure failure and host-record
+  mtime assumption failure are preserved. No device clock anomaly is inferred.
+- README headers now surface candidate platform downloads and prerequisites.
+  Setup remains the main CTA; installation follows the workflow. The short GIF
+  stays directly visible with dated Demo attribution. Unreleased/source and
+  unchanged0.5.3-rc.1 downloads are explicit. No README media changed; static
+  EN/ZH candidate/media22hash checks pass. Fresh public rendering is pending.
 - Earlier native color/focus, share feedback/editor, settings busy controls,
   manual-pair errors and README diagrams remain separately documented in
   [UI follow-through](../../docs/releases/ui-followthrough-2026-10-05.md).
@@ -76,18 +101,13 @@ user's local-only validation boundary.
 
 ## Work prepared next
 
-Fresh Task screenshot review found result, Preview and inspection controls still
-split across separate visual regions. A minimal single-outcome-surface draft is
-prepared under .local/ux-oct5-delivery-surface/. It reuses the existing result card,
-routes summary/thumbnail/preview/files into that local container and keeps
-approvals, Follow up/report outside. No copy, callback, font or permission change.
-Not applied/built/verified yet. Preserve the existing320dp normal full-region
-geometry checks; extend only independent theme/structure/large-text evidence.
-Apple Materials/Motion official page content was read2026-10-05; its local design
-basis is recorded without claiming Android implements native Liquid Glass.
-
-Settings pending state across recreation is a separate source-review hypothesis;
-not implemented. Do not claim concurrent conflicting requests without evidence.
+Settings source review finds mode busy/notice are Activity-local and not retained
+when appearance/language calls recreate or configuration changes. Current tests
+cover one instance/render only. A readonly red test is being prepared; no native
+reproduction or production fix yet. Store.SYNC_LOCK serializes settings requests:
+do not infer actual concurrent RPCs or a permanently wrong server preference.
+The bounded next scope is the pending-mode feedback/request observation through
+recreation, with no real save, preferences write or permission expansion.
 
 ## Authorization and blocking conditions
 
@@ -119,11 +139,11 @@ not implemented. Do not claim concurrent conflicting requests without evidence.
 
 ## Single recommended next action
 
-Curate/publish the verified permission callback source with its exact CI, then
-complete the Task single-surface visual refinement and fresh bilingual/light/dark
-native captures. Keep full-region normal geometry and200% reachability, existing
-actions and readonly guards. Root owns docs/Git/publication; only one agent builds
-Android or operates the device. Preserve frozen evidence and all failed attempts.
+Curate/publish the verified Task surface and README rhythm, check exact-source CI
+and fresh public README rendering, then reproduce the Settings pending-mode
+recreation path with an independent readonly probe. Preserve existing complete
+normal geometry/200%reachability and all frozen/failed evidence. Root owns
+docs/Git/publication; only one agent builds Android or operates the device.
 
 ## Files this pass
 
@@ -134,6 +154,10 @@ Home-publication evidence and this handoff. Private originals:
 
 Latest ShareActivity, non-exported permission probe/manifest, PermissionMotionTest,
 PRD/contracts/changelog, dated permission-motion record and handoff. Private
-originals .local/ux-oct5-permission-motion/; next visual draft remains local only.
+originals .local/ux-oct5-permission-motion/.
+
+Latest TaskActivity/debug fixture/native test, four curated raw PNGs, README ENZH,
+PRD/contracts/changelog, single-surface record, permission-publication note and
+handoff. Private .local/ux-oct5-delivery-surface/ and .local/ux-oct5-readme-rhythm/.
 
 Git author Thomas Deng <150266369+MrMaii@users.noreply.github.com>.

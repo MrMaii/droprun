@@ -37,7 +37,7 @@ public class DemoTaskPreviewActivity extends TaskActivity {
     }
     @Override public void onCreate(Bundle state){
         previousLanguage=L.chinese()?"zh":"en";
-        boolean chinese="zh".equals(getIntent().getStringExtra("language"));global.put("language",chinese?"zh":"en");global.put("appearance","light");
+        boolean chinese="zh".equals(getIntent().getStringExtra("language"));global.put("language",chinese?"zh":"en");global.put("appearance","dark".equals(getIntent().getStringExtra("appearance"))?"dark":"light");
         try{sample=new JSONObject().put("id",ID).put("title",chinese?"本地预览示例":"Local preview sample").put("project_id","preview-ui-project").put("project_name",chinese?"本地示例项目":"Local sample project").put("status","completed").put("execution_mode","direct").put("thread_id","ui-preview-thread").put("created_at",System.currentTimeMillis()).put("report",chinese?"## 交付结果\n仅展示内存中的示例结果，没有执行任务。":"## The result\nThis in-memory sample shows a result. No task was executed.");}catch(Exception error){throw new AssertionError(error);}
         getIntent().putExtra("taskId",ID);super.onCreate(state);
     }

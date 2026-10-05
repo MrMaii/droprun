@@ -51,15 +51,17 @@ public class TaskActivity extends StyledActivity {
         });
     }
     String text(JSONObject task,String key){return task.isNull(key)?"":task.optString(key);}
-    void block(String heading,String value){
-        if(value.isEmpty())return;body.addView(Ui.label(this,heading));
+    void block(String heading,String value){block(body,heading,value);}
+    void block(LinearLayout target,String heading,String value){
+        if(value.isEmpty())return;target.addView(Ui.label(this,heading));
         TextView content=Ui.text(this,ReportText.render(value),15,Ui.TEXT);content.setTextIsSelectable(true);
-        body.addView(content,Ui.margins(this,0,16));
+        target.addView(content,Ui.margins(this,0,16));
     }
-    void button(String label,boolean primary,Runnable action){
+    void button(String label,boolean primary,Runnable action){button(body,label,primary,action);}
+    void button(LinearLayout target,String label,boolean primary,Runnable action){
         Button button=Ui.button(this,label,primary);
         if(label.equals(L.t("Delete record & material","删除记录与材料"))||label.equals(L.t("Stop handoff","停止任务")))Ui.styleDanger(button);
-        button.setEnabled(!busy);button.setOnClickListener(v->action.run());body.addView(button,Ui.margins(this,8,0));
+        button.setEnabled(!busy);button.setOnClickListener(v->action.run());target.addView(button,Ui.margins(this,8,0));
     }
     void disclosure(String heading,String value){
         if(value.isEmpty())return;
@@ -102,15 +104,16 @@ public class TaskActivity extends StyledActivity {
             button(L.t("Allow this command","允许这条命令"),true,()->confirm(L.t("Allow this command?","允许这条命令？"),command,()->store.decideApproval(taskId,id,true)));
             button(L.t("Deny this command","拒绝这条命令"),false,()->perform(()->store.decideApproval(taskId,id,false)));
         }
+        LinearLayout delivery=body;
         if(report.isEmpty())block(L.t("What's happening","当前进展"),status.equals("waiting_for_approval")&&liveApprovals==0?L.t("This command request expired or is no longer available. Reconnect to refresh the task's status.","这条命令请求已过期或失效。请联网查看任务的最新状态。"):TaskPresentation.noReport(status,!plan.isEmpty()));
-        else {LinearLayout outcome=Ui.card(this);outcome.setPadding(Ui.dp(this,22),Ui.dp(this,22),Ui.dp(this,22),Ui.dp(this,22));TextView label=Ui.title(this,L.t("The result","交付结果"),17);label.setPadding(0,0,0,Ui.dp(this,12));outcome.addView(label);String summary=TaskPresentation.resultSummary(report);outcome.addView(Ui.text(this,summary,16,Ui.TEXT));body.addView(outcome,Ui.margins(this,18,10));}
+        else {delivery=Ui.card(this);TextView label=Ui.title(this,L.t("The result","交付结果"),17);label.setPadding(0,0,0,Ui.dp(this,12));delivery.addView(label);String summary=TaskPresentation.resultSummary(report);delivery.addView(Ui.text(this,summary,16,Ui.TEXT));body.addView(delivery,Ui.margins(this,18,10));}
         if(Store.finished(status)){
-            if(thumbnail!=null){ImageView picture=new ImageView(this);picture.setImageBitmap(thumbnail);picture.setAdjustViewBounds(true);picture.setScaleType(ImageView.ScaleType.FIT_CENTER);picture.setContentDescription(L.t("Verified screenshot from this handoff. Open all delivery files.","本次交办的已校验截图。打开全部交付文件。"));picture.setBackground(Ui.surface(this,Ui.SURFACE));picture.setClipToOutline(true);picture.setFocusable(true);picture.setOnClickListener(v->openDeliverables());Ui.bindPress(picture);body.addView(picture,Ui.margins(this,14,8));}
-            else if(!thumbnailError.isEmpty())body.addView(Ui.caption(this,thumbnailError),Ui.margins(this,10,0));
+            if(thumbnail!=null){ImageView picture=new ImageView(this);picture.setImageBitmap(thumbnail);picture.setAdjustViewBounds(true);picture.setScaleType(ImageView.ScaleType.FIT_CENTER);picture.setContentDescription(L.t("Verified screenshot from this handoff. Open all delivery files.","本次交办的已校验截图。打开全部交付文件。"));picture.setBackground(Ui.surface(this,Ui.SURFACE));picture.setClipToOutline(true);picture.setFocusable(true);picture.setOnClickListener(v->openDeliverables());Ui.bindPress(picture);delivery.addView(picture,Ui.margins(this,14,8));}
+            else if(!thumbnailError.isEmpty())delivery.addView(Ui.caption(this,thumbnailError),Ui.margins(this,10,0));
             if(!thumbnailRequested)loadThumbnail();
         }
-        preview(task);
-        if(!report.isEmpty()||Store.finished(status))button(L.t("Screenshots & delivery files","截图与交付文件"),Store.finished(status)&&!previewState.equals("ready"),this::openDeliverables);
+        preview(task,delivery);
+        if(!report.isEmpty()||Store.finished(status))button(delivery,L.t("Screenshots & delivery files","截图与交付文件"),Store.finished(status)&&!previewState.equals("ready"),this::openDeliverables);
         if(Store.finished(status)&&!text(task,"thread_id").isEmpty())button(L.t("Follow up","继续追问"),false,this::followup);
         if(!report.isEmpty())disclosure(L.t("Full report & evidence","完整报告与证据"),report);
         disclosure(L.t("Your note","你的留言"),text(task,"message"));disclosure(L.t("Original material","原始材料"),text(task,"content"));
@@ -130,18 +133,18 @@ public class TaskActivity extends StyledActivity {
             android.graphics.Bitmap image=bitmap;String message=error;runOnUiThread(()->{if(isDestroyed()){if(image!=null)image.recycle();return;}thumbnail=image;thumbnailError=message;snapshot="";render();});
         });
     }
-    void preview(JSONObject task){
+    void preview(JSONObject task,LinearLayout target){
         String url=text(task,"preview_url"),state=TaskPresentation.previewStatus(text(task,"preview_status"),url,task.optLong("preview_expires_at"),System.currentTimeMillis());
-        if(state.isEmpty()){if(Store.finished(text(task,"status")))block(L.t("Preview","预览"),L.t("No preview is attached to this handoff. Check screenshots and delivery files below.","本次交办未附预览，可查看下方的截图与交付文件。"));return;}
-        if(state.equals("unavailable"))block(L.t("Preview","预览"),Store.finished(text(task,"status"))||!text(task,"report").isEmpty()?L.t("A preview isn't available right now. Check screenshots and delivery files below.","预览暂不可用，可查看下方的截图与交付文件。"):L.t("A preview isn't available right now.","预览暂不可用。"));
-        else block(L.t("Preview","预览"),TaskPresentation.snapshot(text(task,"preview_kind"))?L.t("Snapshot from this handoff · ","本次交付快照 · ")+text(task,"preview_version"):L.t("Live project preview. Later changes may alter what you see.","当前项目预览；后续修改可能改变内容。"));
-        if(state.equals("ready"))button(L.t("Open preview","打开预览"),true,()->{
+        if(state.isEmpty()){if(Store.finished(text(task,"status")))block(target,L.t("Preview","预览"),L.t("No preview is attached to this handoff. Check screenshots and delivery files below.","本次交办未附预览，可查看下方的截图与交付文件。"));return;}
+        if(state.equals("unavailable"))block(target,L.t("Preview","预览"),Store.finished(text(task,"status"))||!text(task,"report").isEmpty()?L.t("A preview isn't available right now. Check screenshots and delivery files below.","预览暂不可用，可查看下方的截图与交付文件。"):L.t("A preview isn't available right now.","预览暂不可用。"));
+        else block(target,L.t("Preview","预览"),TaskPresentation.snapshot(text(task,"preview_kind"))?L.t("Snapshot from this handoff · ","本次交付快照 · ")+text(task,"preview_version"):L.t("Live project preview. Later changes may alter what you see.","当前项目预览；后续修改可能改变内容。"));
+        if(state.equals("ready"))button(target,L.t("Open preview","打开预览"),true,()->{
             Uri uri=Uri.parse(url);
             if("https".equals(uri.getScheme())&&uri.getHost()!=null)startActivity(new Intent(Intent.ACTION_VIEW,uri));
             else notice(L.t("Invalid preview address.","预览地址无效。"));
         });
-        else if(state.equals("reopening"))block(L.t("Preview status","预览状态"),TaskPresentation.snapshot(text(task,"preview_kind"))?L.t("Renewing the saved snapshot link.","正在更新已保存快照的链接。"):L.t("Reopening. Waiting for your computer to provide a new address.","正在重开，等待电脑返回新地址。"));
-        else {if(!state.equals("unavailable"))block(L.t("Preview status","预览状态"),L.t("This preview expired or stopped.","预览已失效或停止。"));if(Store.finished(text(task,"status"))&&!url.isEmpty()&&task.optInt("cancel_requested")==0)button(L.t("Reopen preview","重开预览"),false,()->perform(()->{store.reopenPreview(taskId);TaskSyncService.start(this);}));}
+        else if(state.equals("reopening"))block(target,L.t("Preview status","预览状态"),TaskPresentation.snapshot(text(task,"preview_kind"))?L.t("Renewing the saved snapshot link.","正在更新已保存快照的链接。"):L.t("Reopening. Waiting for your computer to provide a new address.","正在重开，等待电脑返回新地址。"));
+        else {if(!state.equals("unavailable"))block(target,L.t("Preview status","预览状态"),L.t("This preview expired or stopped.","预览已失效或停止。"));if(Store.finished(text(task,"status"))&&!url.isEmpty()&&task.optInt("cancel_requested")==0)button(target,L.t("Reopen preview","重开预览"),false,()->perform(()->{store.reopenPreview(taskId);TaskSyncService.start(this);}));}
     }
     void confirm(String title,String message,Work work){new AlertDialog.Builder(this).setTitle(title).setMessage(message).setNegativeButton(L.t("Cancel","取消"),null).setPositiveButton(L.t("Confirm","确认"),(d,w)->perform(work)).show();}
     void notice(String message){notice.setText(message);notice.setVisibility(View.VISIBLE);}

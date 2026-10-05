@@ -2,11 +2,13 @@
   <img src="assets/brand/mark.png" width="96" alt="DropRun">
   <h1>DropRun</h1>
   <p><strong>手机里的好参考，交给电脑里的项目。</strong></p>
-  <p>从 Android 分享材料，让 Windows 上的本地 Codex 接着做。<br>部署在自己的 Cloudflare，回来查看结果与证据。</p>
+  <p>选已有项目，可选留一句话，回来检查交付。<br>Android 8+ · Windows x64 · 已登录 Codex · 自己的 Cloudflare</p>
   <p><a href="docs/technical/SELF_HOSTING.zh-CN.md"><strong>开始安装 →</strong></a> &nbsp; · &nbsp; <a href="https://droprun.dengmaizi0802.chatgpt.site/zh/">官网</a> &nbsp; · &nbsp; <a href="https://github.com/MrMaii/droprun/releases/tag/v0.5.3-rc.1">下载</a> &nbsp; · &nbsp; <a href="README.md">English</a></p>
+  <p>候选版下载：<a href="https://github.com/MrMaii/droprun/releases/download/v0.5.3-rc.1/DropRun-0.5.3-windows-x64-setup.exe">Windows 安装包</a> &nbsp; · &nbsp; <a href="https://github.com/MrMaii/droprun/releases/download/v0.5.3-rc.1/DropRun-0.5.3-windows-x64.zip">便携 ZIP</a> &nbsp; · &nbsp; <a href="https://github.com/MrMaii/droprun/releases/download/v0.5.3-rc.1/DropRun-0.5.3-android.apk">Android APK</a></p>
 </div>
 
 > **公开预览 · 0.5.3-rc.1。** [实际验证记录与待通过的验收门槛](docs/releases/0.5.3-rc.1.md)。
+> 下载对应 0.5.3-rc.1。[Unreleased](CHANGELOG.md#unreleased) 列出的后续源码改进尚未包含在这个包中。
 
 手机里看到有用的交互、截图或文章，分享到 DropRun，选一个已有项目，可选留一句话。
 Windows Connector 把参考与意图交给本地 Codex。回来查看进度、报告和改动证据。
@@ -36,6 +38,30 @@ Windows Connector 把参考与意图交给本地 Codex。回来查看进度、�
   </tr>
 </table>
 
+## 从自己的环境开始
+
+| 电脑 | 手机 | 中转 |
+| --- | --- | --- |
+| Windows x64、Git、已登录 Codex、Chrome 或 Edge | Android 8 或更新版本 | 自己的 Cloudflare 账号，启用 Workers、D1、R2 |
+
+1. **安装电脑端。** 下载 [Windows 安装包](https://github.com/MrMaii/droprun/releases/download/v0.5.3-rc.1/DropRun-0.5.3-windows-x64-setup.exe)或[便携 ZIP](https://github.com/MrMaii/droprun/releases/download/v0.5.3-rc.1/DropRun-0.5.3-windows-x64.zip)。
+   便携版解压到固定位置后，运行 `DropRun.cmd`。
+2. **部署自己的 Relay。** 打开本机浏览器向导，检查环境，部署到自己的 Cloudflare 账号。
+3. **配对手机。** 安装 [Android APK](https://github.com/MrMaii/droprun/releases/download/v0.5.3-rc.1/DropRun-0.5.3-android.apk)，扫码确认电脑与服务器，再授权项目。
+4. **发出第一项交办。** 分享参考，跟进接收、执行、审批与报告。“已保存”表示手机已保存，
+   不表示任务已完成。
+
+**[完整安装、恢复和升级指南 →](docs/technical/SELF_HOSTING.zh-CN.md)**
+
+DropRun 没有官方账号或订阅。Cloudflare、可选转写和 Codex 使用你自己的账号，
+**用量可能产生费用**。Windows 包未签名，可能提示未知发布者，请对照发布的
+[校验值](https://github.com/MrMaii/droprun/releases/download/v0.5.3-rc.1/SHA256SUMS.txt)。
+公共 Android 版与历史私人/debug 版并行安装，不尝试跨签名覆盖。
+
+## 原生界面动效
+
+0.5.1 开发界面 · 2026 年 10 月 5 日 · Demo 演示数据。没有发送任务。
+
 <p align="center"><img src="assets/brand/readme-ui-tour-zh.gif" width="240" alt="12 秒原生 Android 开发界面动图：选项目、编辑留言、模型选项、关闭确认与继续编辑、设置和标注的演示报告"></p>
 
 [12 秒原生界面视频](https://droprun.dengmaizi0802.chatgpt.site/media/ui-tour-zh.mp4) · [字幕](landing/media/ui-tour-zh.vtt)
@@ -59,26 +85,6 @@ Windows Connector 把参考与意图交给本地 Codex。回来查看进度、�
 - **决定怎么开工。** 直接执行或先看计划；项目权限与高风险动作的审批各自独立。
 - **检查实际发生了什么。** 报告区分材料读取范围、项目改动与验证。交付可包含截图、文件
   和支持的静态快照；实时预览按需配置。
-
-## 从自己的环境开始
-
-| 电脑 | 手机 | 中转 |
-| --- | --- | --- |
-| Windows x64、Git、已登录 Codex、Chrome 或 Edge | Android 8 或更新版本 | 自己的 Cloudflare 账号，启用 Workers、D1、R2 |
-
-1. **安装电脑端。** 下载 [Windows 安装包](https://github.com/MrMaii/droprun/releases/download/v0.5.3-rc.1/DropRun-0.5.3-windows-x64-setup.exe)或[便携 ZIP](https://github.com/MrMaii/droprun/releases/download/v0.5.3-rc.1/DropRun-0.5.3-windows-x64.zip)。
-   便携版解压到固定位置后，运行 `DropRun.cmd`。
-2. **部署自己的 Relay。** 打开本机浏览器向导，检查环境，部署到自己的 Cloudflare 账号。
-3. **配对手机。** 安装 [Android APK](https://github.com/MrMaii/droprun/releases/download/v0.5.3-rc.1/DropRun-0.5.3-android.apk)，扫码确认电脑与服务器，再授权项目。
-4. **发出第一项交办。** 分享参考，跟进接收、执行、审批与报告。“已保存”表示手机已保存，
-   不表示任务已完成。
-
-**[完整安装、恢复和升级指南 →](docs/technical/SELF_HOSTING.zh-CN.md)**
-
-DropRun 没有官方账号或订阅。Cloudflare、可选转写和 Codex 使用你自己的账号，
-**用量可能产生费用**。Windows 包未签名，可能提示未知发布者，请对照发布的
-[校验值](https://github.com/MrMaii/droprun/releases/download/v0.5.3-rc.1/SHA256SUMS.txt)。
-公共 Android 版与历史私人/debug 版并行安装，不尝试跨签名覆盖。
 
 ## 你的手机、电脑与 Relay
 

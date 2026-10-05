@@ -111,6 +111,10 @@ in [the current candidate record](../releases/0.5.3-rc.1.md).
   exists. The primary action helps inspect this delivery: a ready preview, or
   screenshots/files when no preview is ready. Follow-up remains available as a
   secondary action; emphasis does not change permissions or reopen conditions.
+  When a report exists, its summary, existing screenshot, preview state and
+  inspection actions share one stable content surface. Follow-up, approvals and
+  the full report remain separate. Missing reports keep their actual progress
+  state; the layout does not fabricate a result or preview.
   Data settings show the last known policy for the selected Relay, distinguish
   unknown/offline values, and explain local pending copies and server retention.
 - Share search and catalog expansion survive recreation. Permission explanations

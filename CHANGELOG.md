@@ -8,10 +8,16 @@
 - Let enlarged project names wrap fully so shared prefixes do not hide their
   distinguishing suffixes.
 - Explain local Codex work in both README workflows before project statistics.
+- Put platform downloads in both README headers and installation directly after
+  the workflow. Keep the native GIF visible and distinguish Unreleased source
+  from the current downloadable candidate.
 - Make inspecting a delivery the primary result-page action: open a ready
   preview, otherwise view screenshots/files. Follow-up is secondary. Missing
   and unavailable previews explain the next step without implying expiration
   or pointing to an absent files entry.
+- Group the result, existing screenshot, preview state and inspection actions
+  on one content surface. Keep follow-up and approvals separate, with readable
+  layouts in both themes and enlarged text.
 - Keep dismissed project-permission feedback from closing a later dialog or
   advancing another selection. The permission request and confirmation remain
   unchanged.

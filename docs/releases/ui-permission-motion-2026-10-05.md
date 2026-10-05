@@ -76,3 +76,23 @@ Source hashes refer to saved tested bytes, before Git line-ending normalization.
 The independently verified Task source and earlier evidence stayed unchanged.
 Real authorization persistence, motion-off, physical accessibility/performance
 and the complete share-to-delivery flow remain separate acceptance work.
+
+## Public source verification
+
+The scoped source is public at
+`26bc86fa9fc94982070b247af1c65a3cb1096b27`.
+[Matching CI, attempt 2](https://github.com/MrMaii/droprun/actions/runs/37380000020/attempts/2)
+passed core210/browser14 with zero failed, skipped or cancelled tests, alongside
+the original successful Android build/JVM/lint job, public-source354, generated
+site and Windows packaging. Only the two failed jobs were rerun once; source,
+assertions and timeouts were unchanged. Attempt1 remains visible: core209/210
+had a local Miniflare/Undici `terminated` / `ECONNRESET`, and browser13/14 had a
+first-launch DevTools-readiness timeout before any screenshot. Neither log
+establishes a root cause or an external-network fault; no speculative fix was
+made. Private logs preserve both attempts and the static diagnosis.
+
+Ten sealed tested sources match the public Git blobs: eight exactly and two by
+CRLF/LF alone. Five documents were anonymously read and matched immutable blobs:
+this record, the delivery record, PRD, contracts and changelog. That comparison
+predates this publication note. These source checks do not update the existing
+candidate package or prove actual authorization or end-to-end execution.
