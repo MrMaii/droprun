@@ -5,7 +5,7 @@
 This section overrides conflicting historical defaults below. Existing execution,
 plan-version, per-command approval and report-evidence checks remain in force.
 
-- `GET /health`: release version (currently 0.5.1), protocolVersion=2, schemaVersion=11, instanceId and ready;
+- `GET /health`: source version (currently 0.5.2), protocolVersion=2, schemaVersion=11, instanceId and ready;
   public health must not expose project contents, credentials or paired users.
 - Pairing carries relayOrigin and instanceId plus the one-time code. The phone
   verifies health and obtains explicit server confirmation before binding. Tokens,
@@ -267,6 +267,7 @@ Android 从分享/追问或可见操作启动 `TaskSyncService`，前台通知�
 
 - `devices.direct_execution` 的数据库兼容默认值仍为 `0`，但当前 `/pair` 创建新手机显式写入 `1`；因此新配对默认直接执行，已有手机设置不迁移。该默认行为按 ADR 0011 更新；设置属于手机，对其全部已允许项目生效，不影响其他手机。
 - `tasks.execution_mode` 数据库兼容默认值为 `legacy-isolated`，保留旧记录。新任务及追问由服务器在首次接受提交时写为 `review` 或 `direct`，客户端不能指定；相同 id 重试保留原模式。
+- 客户端的执行模式标签描述配置，不表示仍有待审批动作；待审批由任务状态单独表示。仅明确的 `legacy-isolated` 可显示隔离副本，缺失或未知模式显示待确认，不推断执行位置。
 - 新增 `plan_report`、`plan_turn_id`、`plan_version`、`plan_decision`、`plan_decided_at`。计划报告单独保存，不能写成最终完成交付；计划与执行回合分开记录。
 - `GET /device/settings`：所属手机读取 `{directExecution:boolean}`。
 - `POST /device/settings`：`{directExecution:boolean}`；开启必须额外传 `riskAccepted:true`，Android 必须联网展示风险并由用户确认。不能把开启请求放入离线 outbox。设置改变仅影响之后首次提交成功的任务（含追问），不改变已有任务模式、不批准已有计划、不重跑终态任务。
@@ -319,6 +320,7 @@ direct: queued → reading → running → completed
 - `POST /pair`，正文 `{code}`：成功仍返回 `{token, deviceId}`，Android 原表单兼容。归一化码后，D1 条件消费与设备插入同一 batch；并发只有一个成功。过期/已用/撤销/换码/旧静态码返回统一 403。
 - migration 0004 新建单槽 pairing_codes；旧设备 token、任务、报告和项目授权保留。新设备没有默认项目授权。
 - 不允许客户端指定有效期。响应丢失后重试不会再次返回 token，需电脑重新签发；完整配对幂等恢复尚未实现。
+- 本机配对页按 `expiresAt` 显示倒计时；本机时间到期后隐藏二维码和邀请内容、禁用复制并提示重新取码。这是界面反馈，服务端的消费、撤销和过期检查仍是权威。复制不签发或兑换邀请；获取新码先进入现有本机确认页，再由带 `X-DropRun-Local` 的 POST 签发。复制失败提供可聚焦的原文和手动复制提示，不能报告复制成功。
 
 边界与验证见 [ADR 0006](../decisions/0006-single-use-pairing.md)。
 

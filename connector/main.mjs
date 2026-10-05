@@ -23,7 +23,8 @@ import { findBrowser, screenshot, verifyVisual, exportCookies, launchBrowser } f
 import { Previews } from './preview.mjs';
 import { VisualStore } from './visual-store.mjs';
 import { matchesTargetRoute } from './routes.mjs';
-import { loadRuntimeConfig, pairingLink } from './config.mjs';
+import { loadRuntimeConfig } from './config.mjs';
+import { renderPairPage, renderLocalActionPage, renderMediaLoginPage } from './pair-page.mjs';
 import { trustedLocalRequest, matchesLocalToken } from './local-boundary.mjs';
 import { publishSnapshot } from './selfhost-preview.mjs';
 import { ConnectorWork } from './shutdown.mjs';
@@ -52,7 +53,7 @@ const readJson = request => new Promise((resolve, reject) => { let body = ''; re
 const reply = (response, status, data) => { response.statusCode = status; response.setHeader('Content-Type', 'application/json'); response.end(JSON.stringify(data)); };
 const html = (response, body, status = 200) => { response.statusCode = status; response.setHeader('Content-Type', 'text/html;charset=utf-8'); response.setHeader('Cache-Control', 'no-store'); response.end(body); };
 const localToken = randomBytes(32).toString('hex');
-const localActionPage = (action, title) => `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title} · DropRun</title><style>body{font:17px/1.6 system-ui;max-width:560px;margin:12vh auto;padding:24px;background:#f4f6f2;color:#172019}button{font:inherit;padding:16px 24px;border:0;border-radius:18px;background:#c7f878;cursor:pointer}p{color:#586257}</style><h1>${title}</h1><p>This connects only to your own Relay. 手机将连接到你自己的 Relay。</p><button id="action">${title}</button><p id="error" role="alert"></p><script>document.getElementById('action').onclick=async()=>{const b=document.getElementById('action');b.disabled=true;try{const r=await fetch(${JSON.stringify(action)},{method:'POST',headers:{'X-DropRun-Local':${JSON.stringify(localToken)}}});const body=await r.text();if(!r.ok)throw new Error(body);document.open();document.write(body);document.close();}catch(e){document.getElementById('error').textContent=e.message;b.disabled=false;}};</script></html>`;
+const localActionPage = (action, title) => renderLocalActionPage(action, title, localToken);
 const health = createServer(async (request, response) => {
   response.setHeader('Cache-Control', 'no-store');
   response.setHeader('X-Content-Type-Options', 'nosniff');
@@ -106,7 +107,7 @@ const health = createServer(async (request, response) => {
         }).catch(error => { loginJob = null; throw error; });
       }
       await loginJob;
-      return html(response, `<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>登录 · DropRun</title><style>body{margin:0;background:#111914;color:#f5f7f2;font:17px/1.7 system-ui;padding:48px 24px;max-width:560px;margin:auto}h1{font-size:28px}p{color:#c9d9cb}.n{font-size:14px;color:#aabcae}</style><h1>在弹出的浏览器窗口里登录</h1><p>这是 DropRun 自己的浏览器身份，和你日常用的浏览器分开。登录 Instagram 成功后窗口会自动关闭，之后转发 Instagram 视频就能直接下载。</p><p class="n">登录状态只保存在这台电脑的 .local/browser-profile 与 .local/cookies.txt，不会上传。以后需要换账号，重新打开本页即可。</p>`);
+      return html(response, renderMediaLoginPage());
     }
     if (url.pathname === '/screenshot' && request.method === 'GET') {
       if (!activeTask || !activeCwd) return reply(response, 409, { error: '现在没有正在执行的任务，截图只在任务进行中可用。' });
@@ -151,7 +152,7 @@ const health = createServer(async (request, response) => {
       return reply(response, 200, { ok: true, url: result.url, localUrl, kind: result.mode, version: result.revision, expiresAt: result.expiresAt, note: `预览链接 ${result.minutes} 分钟内有效，交付后重新计时。用完整 localUrl 验证目标页面。` });
     }
     if (url.pathname === '/preview' && request.method === 'GET') return reply(response, 200, { preview: activeTask ? previews.get(activeTask) : null });
-    reply(response, 200, { service: 'DropRun Connector', version: '0.5.1', protocolVersion: 2, shutdownProtocolVersion: 1, instanceId: config.instanceId || null, pid: process.pid, activeTask, online: Date.now() - lastSync < 90000, pairUrl: 'http://127.0.0.1:47493/pair', loginUrl: 'http://127.0.0.1:47493/login', screenshots: !!browserExecutable, previews: !!config.instanceId || !!cloudflaredBin, cookies: !!config.cookiesFile });
+    reply(response, 200, { service: 'DropRun Connector', version: '0.5.2', protocolVersion: 2, shutdownProtocolVersion: 1, instanceId: config.instanceId || null, pid: process.pid, activeTask, online: Date.now() - lastSync < 90000, pairUrl: 'http://127.0.0.1:47493/pair', loginUrl: 'http://127.0.0.1:47493/login', screenshots: !!browserExecutable, previews: !!config.instanceId || !!cloudflaredBin, cookies: !!config.cookiesFile });
   } catch (error) { reply(response, 500, { error: error.message }); }
   finally { if (ownsVisualLock) visualBusy = false; if (localAction) work.end(); }
 });
@@ -228,16 +229,6 @@ async function sync() {
   await api('/connector/sync', { name: hostname(), projects: projects.map(p => ({ id: p.id, name: p.name, available: p.roots.some(r => existsSync(r.path)) })), models: modelCatalog });
   lastSync = Date.now();
   return projects;
-}
-async function renderPairPage(relay, pairing) {
-  const { default: QRCode } = await import('qrcode');
-  const link = pairing.instanceId ? pairingLink(relay, pairing.instanceId, pairing.code) : relay + '/pair#code=' + pairing.code;
-  const svg = await QRCode.toString(link, { type: 'svg', margin: 1, width: 320 });
-  const escape = value => String(value).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-  return `<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>连接手机 · DropRun</title>
-<style>*{box-sizing:border-box}body{margin:0;background:#111914;color:#f5f7f2;font:17px/1.7 system-ui,-apple-system,sans-serif}main{max-width:560px;margin:auto;padding:48px 24px;text-align:center}h1{font-size:30px;letter-spacing:-.03em;margin:0 0 8px}p{color:#c9d9cb;margin:8px 0}.qr{display:inline-block;padding:18px;background:#fff;border-radius:24px;margin:22px 0 10px}.qr svg{display:block;width:280px;height:280px}code{display:block;margin:14px auto;padding:12px 16px;border-radius:14px;background:#1d2821;font:20px ui-monospace,monospace;letter-spacing:.08em;max-width:420px;user-select:all}.note{font-size:14px;color:#aabcae}a{color:#b8ef73}</style></head>
-<body><main><h1>Connect your phone · 连接手机</h1><p>Open DropRun on Android and scan this code.<br>打开安卓 DropRun，选择「扫码连接电脑」。</p><div class="qr">${svg}</div><p class="note">Your Relay / 你的 Relay：${escape(relay)}</p><p class="note">Instance / 实例：${escape(pairing.instanceId || 'Private legacy instance')}</p><p class="note">Manual pairing / 手动配对码：</p><code>${escape(pairing.code)}</code><p class="note">Or copy the full pairing link / 或复制完整配对链接：</p><code style="font-size:12px;letter-spacing:0;overflow-wrap:anywhere">${escape(link)}</code><p class="note" id="expiry">Valid once for 10 minutes / 十分钟内有效，只能使用一次。</p><p class="note"><a href="/pair">Create another code / 生成新码</a></p><p class="note"><a href="https://github.com/MrMaii/droprun/releases">Download Android / 下载安卓版 ↗</a></p></main>
-<script>const expiresAt=${Number(pairing.expiresAt)};setInterval(()=>{if(Date.now()>=expiresAt)document.getElementById('expiry').textContent='配对码已过期，刷新本页生成新码。';},1000);</script></body></html>`;
 }
 async function uploadDeliverable(taskId, file, bytes) {
   const response=await fetchWithRetry(config.relay+'/connector/tasks/'+taskId+'/deliverables/'+file.id,{method:'PUT',headers:{Authorization:'Bearer '+config.connectorToken,'Content-Type':'application/octet-stream','X-Filename':encodeURIComponent(file.name),'X-Kind':file.kind,'X-Sha256':file.sha256,'X-Size':String(file.size)},body:bytes,signal:AbortSignal.timeout(120000)},'Upload '+file.name);

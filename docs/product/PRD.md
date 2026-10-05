@@ -59,6 +59,8 @@ in [the current candidate record](../releases/0.5.1-rc.2.md).
   before pairing requires confirmation of the target computer and Relay before use.
 - Reports prioritize required action and verifiable deliverables, preserve full
   approval context, and correctly disclose original-directory execution.
+  The execution-mode label describes configuration, not a pending decision.
+  Missing or unknown modes do not imply approval is required or isolated execution.
 - Screenshots/files are baseline delivery; compatible static exports have cloud
   snapshots. Live previews are optional owner-managed infrastructure. Absence of
   preview is explicitly reported, never described as verified preview completion.

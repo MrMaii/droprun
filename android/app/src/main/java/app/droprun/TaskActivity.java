@@ -57,7 +57,9 @@ public class TaskActivity extends StyledActivity {
         body.addView(content,Ui.margins(this,0,16));
     }
     void button(String label,boolean primary,Runnable action){
-        Button button=Ui.button(this,label,primary);button.setEnabled(!busy);button.setOnClickListener(v->action.run());body.addView(button,Ui.margins(this,8,0));
+        Button button=Ui.button(this,label,primary);
+        if(label.equals(L.t("Delete record & material","删除记录与材料"))||label.equals(L.t("Stop handoff","停止任务")))Ui.styleDanger(button);
+        button.setEnabled(!busy);button.setOnClickListener(v->action.run());body.addView(button,Ui.margins(this,8,0));
     }
     void disclosure(String heading,String value){
         if(value.isEmpty())return;
@@ -76,10 +78,12 @@ public class TaskActivity extends StyledActivity {
         if(snapshot.equals(next))return;snapshot=next;body.removeAllViews();
         if(task==null){block(L.t("Handoff unavailable","任务暂不可用"),L.t("Refresh when connected. This handoff may have been deleted.","请联网刷新；任务也可能已被删除。"));return;}
         String status=text(task,"status"),plan=text(task,"plan_report"),report=text(task,"report");
-        body.addView(Ui.title(this,MainActivity.name(task),24));
-        LinearLayout statusLine=Ui.row(this);statusLine.addView(Ui.pill(this,TaskPresentation.status(status),TaskPresentation.statusColor(status)));body.addView(statusLine,Ui.margins(this,8,8));
-        body.addView(Ui.caption(this,projectLabel+" · "+TaskPresentation.mode(text(task,"execution_mode"))));
-        body.addView(Ui.caption(this,L.t("Shared ","交办于 ")+TaskPresentation.elapsed(task.optLong("created_at"),System.currentTimeMillis())));
+        body.addView(Ui.title(this,MainActivity.name(task),27));
+        body.addView(Ui.caption(this,projectLabel+" · "+TaskPresentation.mode(text(task,"execution_mode"))),Ui.margins(this,6,0));
+        boolean largeText=getResources().getConfiguration().fontScale>=1.5f;
+        LinearLayout statusLine=largeText?Ui.vertical(this):Ui.row(this);statusLine.addView(Ui.pill(this,TaskPresentation.status(status),TaskPresentation.statusColor(status)),new LinearLayout.LayoutParams(-2,-2));
+        TextView sharedAt=Ui.caption(this,L.t("Shared ","交办于 ")+TaskPresentation.elapsed(task.optLong("created_at"),System.currentTimeMillis()));sharedAt.setGravity(largeText?android.view.Gravity.START:android.view.Gravity.END);
+        if(largeText)statusLine.addView(sharedAt,Ui.margins(this,6,0));else{Ui.space(statusLine,12);statusLine.addView(sharedAt,Ui.grow());}body.addView(statusLine,Ui.margins(this,12,6));
         block(L.t("Needs attention","需要处理"),text(task,"error"));
         if(unavailableDelete)block(L.t("Relay record inaccessible","无法访问中转记录"),L.t("Cloud deletion could not be confirmed. You can clear the phone's cached copy. The record may return if your Relay makes it available again.","尚未确认云端已删除。可以清除手机上的缓存副本；若中转服务再次提供此记录，它可能重新出现。"));
         if(!plan.isEmpty()){
@@ -99,7 +103,7 @@ public class TaskActivity extends StyledActivity {
             button(L.t("Deny this command","拒绝这条命令"),false,()->perform(()->store.decideApproval(taskId,id,false)));
         }
         if(report.isEmpty())block(L.t("What's happening","当前进展"),status.equals("waiting_for_approval")&&liveApprovals==0?L.t("This command request expired or is no longer available. Reconnect to refresh the task's status.","这条命令请求已过期或失效。请联网查看任务的最新状态。"):TaskPresentation.noReport(status,!plan.isEmpty()));
-        else {LinearLayout outcome=Ui.card(this);TextView label=Ui.label(this,L.t("THE RESULT","交付结果"));label.setPadding(0,0,0,Ui.dp(this,8));outcome.addView(label);String summary=TaskPresentation.resultSummary(report);outcome.addView(Ui.text(this,summary,16,Ui.TEXT));body.addView(outcome,Ui.margins(this,18,6));}
+        else {LinearLayout outcome=Ui.card(this);outcome.setPadding(Ui.dp(this,22),Ui.dp(this,22),Ui.dp(this,22),Ui.dp(this,22));TextView label=Ui.title(this,L.t("The result","交付结果"),17);label.setPadding(0,0,0,Ui.dp(this,12));outcome.addView(label);String summary=TaskPresentation.resultSummary(report);outcome.addView(Ui.text(this,summary,16,Ui.TEXT));body.addView(outcome,Ui.margins(this,18,10));}
         if(Store.finished(status)){
             if(thumbnail!=null){ImageView picture=new ImageView(this);picture.setImageBitmap(thumbnail);picture.setAdjustViewBounds(true);picture.setScaleType(ImageView.ScaleType.FIT_CENTER);picture.setContentDescription(L.t("Verified screenshot from this handoff. Open all delivery files.","本次交办的已校验截图。打开全部交付文件。"));picture.setBackground(Ui.surface(this,Ui.SURFACE));picture.setClipToOutline(true);picture.setFocusable(true);picture.setOnClickListener(v->openDeliverables());Ui.bindPress(picture);body.addView(picture,Ui.margins(this,14,8));}
             else if(!thumbnailError.isEmpty())body.addView(Ui.caption(this,thumbnailError),Ui.margins(this,10,0));

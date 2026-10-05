@@ -8,6 +8,7 @@ executable distributed alongside it. Dependency licenses must accompany releases
 | Node.js | Windows runtime | [MIT and bundled notices](https://github.com/nodejs/node/blob/main/LICENSE) |
 | node-qrcode | Pairing QR codes | [MIT](https://github.com/soldair/node-qrcode/blob/master/license) |
 | ZXing core | Android QR decoding | [Apache-2.0](https://github.com/zxing/zxing/blob/master/LICENSE) |
+| Google Material Design icons | Android computer icon, adapted to VectorDrawable | [Apache-2.0](https://github.com/google/material-design-icons/blob/master/LICENSE) |
 | AndroidX Test | Development-only device test runner and ActivityScenario | [Apache-2.0](https://github.com/android/android-test/blob/main/LICENSE) |
 | resvg-js | Development-only SVG campaign rendering | [MPL-2.0](https://github.com/yisibl/resvg-js/blob/main/LICENSE) |
 | Wrangler | User-controlled Cloudflare deployment | [Apache-2.0 / MIT](https://github.com/cloudflare/workers-sdk) |
@@ -22,7 +23,7 @@ Apache-2.0 merely because the DropRun source uses that license.
 
 The Android distribution includes versioned ZXing license/notice copies from
 [`licenses/android`](licenses/android/README.md), alongside DropRun's LICENSE and
-NOTICE. Preserve them when redistributing the APK.
+NOTICE, plus the Material icon license. Preserve them when redistributing the APK.
 
 DropRun's existing raster brand asset is included unchanged. System fonts are
 used; Apple fonts and SF Symbols are not redistributed. Demo source and images

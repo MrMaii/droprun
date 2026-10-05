@@ -43,6 +43,12 @@ public class MobileContractTest {
         JSONObject summary=new JSONObject().put("task_count",3).put("dispatch_count",5);L.language("en");assertEquals("3 tasks · 5 dispatches",ProjectPresentation.counts(summary));assertEquals("Review your plan",TaskPresentation.status("awaiting_plan_approval"));L.language("zh");assertEquals("3 项任务 · 5 次交办",ProjectPresentation.counts(summary));assertEquals(5,summary.getInt("dispatch_count"));L.language("en");
     }
     @Test public void immutableSnapshotsAreNeverLabeledAsLive(){assertTrue(TaskPresentation.snapshot("snapshot"));assertTrue(TaskPresentation.snapshot("static"));assertFalse(TaskPresentation.snapshot("live"));assertFalse(TaskPresentation.snapshot(""));}
+    @Test public void executionModeIsNotAPendingDecisionOrAnInferredWorkspace(){
+        try{
+            L.language("en");assertEquals("Plan review",TaskPresentation.mode("review"));assertFalse(TaskPresentation.mode("").contains("isolated"));assertFalse(TaskPresentation.mode("future-mode").contains("isolated"));assertTrue(TaskPresentation.mode("legacy-isolated").contains("isolated"));assertEquals("Review your plan",TaskPresentation.status("awaiting_plan_approval"));
+            L.language("zh");assertEquals("计划审阅",TaskPresentation.mode("review"));assertFalse(TaskPresentation.mode("").contains("隔离"));assertFalse(TaskPresentation.mode("future-mode").contains("隔离"));assertTrue(TaskPresentation.mode("legacy-isolated").contains("隔离"));assertEquals("等你批准计划",TaskPresentation.status("awaiting_plan_approval"));
+        }finally{L.language("en");}
+    }
     @Test public void shareOrderingUsesCompleteSummariesAndKeepsCatalogIdentity()throws Exception {
         JSONArray catalog=new JSONArray().put(new JSONObject().put("id","unused")).put(new JSONObject().put("id","old")).put(new JSONObject().put("id","recent"));
         JSONArray summaries=new JSONArray().put(new JSONObject().put("id","old").put("dispatch_count",201).put("last_dispatch_at",1)).put(new JSONObject().put("id","recent").put("dispatch_count",301).put("last_dispatch_at",2)).put(new JSONObject().put("id","removed").put("dispatch_count",1).put("last_dispatch_at",3));

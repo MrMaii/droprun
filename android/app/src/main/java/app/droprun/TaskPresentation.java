@@ -48,8 +48,9 @@ final class TaskPresentation {
     static String mode(String value) {
         return switch(value) {
             case "direct" -> L.t("Act on the idea","直接执行");
-            case "review" -> L.t("Plan approval required","先计划后批准");
-            default -> L.t("Legacy task · isolated copy","历史任务 · 隔离副本");
+            case "review" -> L.t("Plan review","计划审阅");
+            case "legacy-isolated" -> L.t("Legacy task · isolated copy","历史任务 · 隔离副本");
+            default -> L.t("Execution mode unavailable","执行方式待确认");
         };
     }
     static String noReport(String status,boolean hasPlan) {

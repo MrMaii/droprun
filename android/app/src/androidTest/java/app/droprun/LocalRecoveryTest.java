@@ -1036,6 +1036,7 @@ public class LocalRecoveryTest {
                 shown[0]=activity;
                 activity.selected="demo-studio";activity.go(1,1);activity.note.setText("Do not lose this note");
                 activity.close();assertTrue(activity.discardDialog.isShowing());assertFalse(activity.closing);
+                assertEquals("Nothing has been handed off. This removes this share's saved copies and note. Your original files stay in the source app.",((android.widget.TextView)activity.discardDialog.findViewById(android.R.id.message)).getText().toString());
                 activity.discardDialog.getButton(AlertDialog.BUTTON_NEGATIVE).performClick();
             });
             scenario.onActivity(activity->{

@@ -14,23 +14,32 @@ public class PairActivity extends StyledActivity {
     static final int SCAN=30,CAMERA=31;
     final ExecutorService io=Executors.newSingleThreadExecutor();
     Store store;Button scan,manual,drafts;TextView notice;boolean busy;int failures;AlertDialog manualDialog;EditText[] manualFields;
-    @Override protected void onCreate(Bundle state){super.onCreate(state);store=new Store(this);Ui.configureWindow(this);failures=state==null?0:state.getInt("failures");build();String link=getIntent().getStringExtra("pairingLink");if(state==null&&link!=null)confirm(link);if(state!=null&&state.getBoolean("manualOpen")){manualEntry();String[] values=state.getStringArray("manualValues");if(values!=null)for(int n=0;n<Math.min(values.length,manualFields.length);n++)manualFields[n].setText(values[n]);}}
+    @Override protected void onCreate(Bundle state){super.onCreate(state);store=createStore();Ui.configureWindow(this);failures=state==null?0:state.getInt("failures");build();String link=getIntent().getStringExtra("pairingLink");if(state==null&&link!=null)confirm(link);if(state!=null&&state.getBoolean("manualOpen")){manualEntry();String[] values=state.getStringArray("manualValues");if(values!=null)for(int n=0;n<Math.min(values.length,manualFields.length);n++)manualFields[n].setText(values[n]);}}
+    Store createStore(){return new Store(this);}
     @Override protected void onResume(){super.onResume();drafts.setVisibility(ShareDrafts.list(store).isEmpty()?View.GONE:View.VISIBLE);if(store.paired()){setResult(RESULT_OK);finish();}}
     @Override protected void onSaveInstanceState(Bundle out){super.onSaveInstanceState(out);out.putInt("failures",failures);if(manualDialog!=null&&manualDialog.isShowing()){out.putBoolean("manualOpen",true);String[] values=new String[manualFields.length];for(int n=0;n<values.length;n++)values[n]=manualFields[n].getText().toString();out.putStringArray("manualValues",values);}}
     void build(){
-        LinearLayout page=Ui.page(this);LinearLayout top=Ui.row(this);TextView brand=Ui.text(this,"DropRun",17,Ui.TEXT);brand.setTypeface(Ui.medium());top.addView(brand,Ui.grow());
-        TextView language=Ui.linkButton(this,L.t("中文","English"));language.setOnClickListener(v->{store.preferences.edit().putString("language",L.chinese()?"en":"zh").apply();recreate();});top.addView(language);page.addView(top,Ui.margins(this,8,34));
-        page.addView(Ui.title(this,L.t("A small connection.\nA world of progress.","轻轻一连，\n让灵感开始工作。"),34));
-        page.addView(Ui.text(this,L.t("Your phone brings the idea. Your computer takes it from there.","手机带来灵感。电脑接着完成。"),16,Ui.MUTED),Ui.margins(this,10,24));
-        LinearLayout steps=Ui.card(this);steps.addView(Ui.label(this,L.t("ONE-TIME SETUP","只需连接一次")));
-        steps.addView(Ui.text(this,L.t("1   Run DropRun setup on your Windows computer.","1   在 Windows 电脑运行 DropRun setup。"),15,Ui.TEXT),Ui.margins(this,2,10));
-        steps.addView(Ui.text(this,L.t("2   Deploy your own Relay, then open Pair phone.","2   部署自己的中转服务，打开手机配对页。"),15,Ui.TEXT),Ui.margins(this,2,10));
-        steps.addView(Ui.text(this,L.t("3   Scan its QR code. You're ready to share.","3   扫描二维码，开始分享。"),15,Ui.TEXT));page.addView(steps);
+        LinearLayout page=Ui.page(this);LinearLayout top=Ui.row(this);top.addView(Ui.brandMark(this,28),Ui.square(this,28));Ui.space(top,10);TextView brand=Ui.text(this,"DropRun",17,Ui.TEXT);brand.setTypeface(Ui.medium());top.addView(brand,Ui.grow());
+        TextView language=Ui.linkButton(this,L.t("中文","English"));language.setOnClickListener(v->{store.preferences.edit().putString("language",L.chinese()?"en":"zh").apply();recreate();});top.addView(language);page.addView(top,Ui.margins(this,8,24));
+        page.addView(Ui.title(this,L.t("Connect your\ncomputer.","连上电脑，\n让灵感接着走。"),32));
+        page.addView(Ui.text(this,L.t("Share from your phone into the projects you choose on Windows.","把手机里的好参考，交给 Windows 上你选择的项目。"),17,Ui.MUTED),Ui.margins(this,10,18));
+        LinearLayout steps=Ui.card(this);
+        setupStep(steps,"1",L.t("Start on Windows","先在电脑准备"),L.t("Open DropRun setup on your computer.","在电脑打开 DropRun 安装向导。"));
+        steps.addView(Ui.divider(this));
+        setupStep(steps,"2",L.t("Use your own Relay","部署自己的中转服务"),L.t("Finish Cloudflare setup, then open Pair phone.","完成 Cloudflare 配置，打开手机配对页。"));
+        steps.addView(Ui.divider(this));
+        setupStep(steps,"3",L.t("Scan and confirm","扫码并核对"),L.t("Check the server address matches your computer.","确认服务器地址与电脑显示的一致。"));
         notice=Ui.text(this,"",14,Ui.AMBER);notice.setVisibility(View.GONE);notice.setAccessibilityLiveRegion(View.ACCESSIBILITY_LIVE_REGION_POLITE);page.addView(notice,Ui.margins(this,12,0));
-        scan=Ui.button(this,L.t("Scan to connect","扫码连接"),true);scan.setOnClickListener(v->startScan());page.addView(scan,Ui.margins(this,24,0));
+        scan=Ui.button(this,L.t("Scan to connect","扫码连接"),true);scan.setOnClickListener(v->startScan());page.addView(scan,Ui.margins(this,20,0));
         manual=Ui.button(this,L.t("Use a pairing link or code","使用配对链接或配对码"),false);manual.setOnClickListener(v->manualEntry());page.addView(manual,Ui.margins(this,10,0));
         drafts=Ui.button(this,L.t("Unfinished shares on this phone","手机上未完成的分享"),false);drafts.setOnClickListener(v->startActivity(new Intent(this,ShareDraftsActivity.class)));page.addView(drafts,Ui.margins(this,10,0));
+        page.addView(Ui.label(this,L.t("ONE-TIME SETUP","只需连接一次")),Ui.margins(this,24,0));page.addView(steps);
         page.addView(Ui.caption(this,L.t("No DropRun account. Your Relay carries shared material and reports; Codex credentials stay on your computer. Transcription uses only the provider you configure.","无需 DropRun 账户。材料与报告经你自己的中转服务传递，Codex 凭证留在电脑；转写仅使用你配置的服务。")),Ui.margins(this,20,0));Ui.enter(page);
+    }
+    void setupStep(LinearLayout parent,String number,String title,String detail){
+        LinearLayout row=Ui.row(this);row.setGravity(android.view.Gravity.TOP);row.setPadding(0,Ui.dp(this,12),0,Ui.dp(this,12));
+        TextView index=Ui.pill(this,number,Ui.ACCENT);index.setGravity(android.view.Gravity.CENTER);index.setMinimumHeight(Ui.dp(this,28));row.addView(index,new LinearLayout.LayoutParams(Ui.dp(this,32),-2));Ui.space(row,12);
+        LinearLayout words=Ui.vertical(this);words.addView(Ui.title(this,title,16));words.addView(Ui.text(this,detail,14,Ui.MUTED));row.addView(words,Ui.grow());parent.addView(row,Ui.fill());
     }
     void startScan(){if(checkSelfPermission(android.Manifest.permission.CAMERA)!=PackageManager.PERMISSION_GRANTED){requestPermissions(new String[]{android.Manifest.permission.CAMERA},CAMERA);return;}startActivityForResult(new Intent(this,ScanActivity.class),SCAN);}
     @Override public void onRequestPermissionsResult(int request,String[] permissions,int[] results){super.onRequestPermissionsResult(request,permissions,results);if(request==CAMERA){if(results.length>0&&results[0]==PackageManager.PERMISSION_GRANTED)startScan();else showNotice(L.t("Camera access is off. You can paste a pairing link instead.","相机权限未开启。也可以粘贴配对链接。"));}}

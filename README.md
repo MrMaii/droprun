@@ -1,93 +1,130 @@
 <div align="center">
-  <img src="assets/brand/mark.png" width="88" alt="DropRun">
-  <h1>A little inspiration. A real next step.</h1>
-  <p>Share from your phone. Hand it to your project. Inspect what changed.</p>
-  <p><a href="https://droprun.dengmaizi0802.chatgpt.site">Website</a> · <a href="https://github.com/MrMaii/droprun/releases">Downloads</a> · <a href="docs/technical/SELF_HOSTING.md">Self-host</a> · <a href="README.zh-CN.md">简体中文</a></p>
-  <p><img alt="License Apache-2.0" src="https://img.shields.io/badge/license-Apache--2.0-18291f?style=flat-square"> <img alt="Android and Windows" src="https://img.shields.io/badge/Android%20%2B%20Windows-self--hosted-b8ef73?style=flat-square&labelColor=18291f"></p>
+  <img src="assets/brand/mark.png" width="96" alt="DropRun">
+  <h1>DropRun</h1>
+  <p><strong>Share from your phone. Put local Codex to work.</strong></p>
+  <p>An Android share sheet for your existing projects on Windows.<br>Self-hosted on your Cloudflare. Results you can inspect.</p>
+  <p><a href="docs/technical/SELF_HOSTING.md"><strong>Get started →</strong></a> &nbsp; · &nbsp; <a href="https://droprun.dengmaizi0802.chatgpt.site">Website</a> &nbsp; · &nbsp; <a href="https://github.com/MrMaii/droprun/releases/tag/v0.5.1-rc.2">Downloads</a> &nbsp; · &nbsp; <a href="README.zh-CN.md">简体中文</a></p>
 </div>
 
-> **Public preview.** [0.5.1-rc.2](https://github.com/MrMaii/droprun/releases/tag/v0.5.1-rc.2) is a self-hosted release candidate.
-> Read the [current validation record](docs/releases/0.5.1-rc.2.md), including the remaining
-> real-device and source-access gates. A polished UI is not proof of reliable execution.
+> **Public preview · 0.5.1-rc.2.** [Validation record and open acceptance gates](docs/releases/0.5.1-rc.2.md).
 
-## See the app
+You find a useful interaction, screenshot or article on your phone. Share it to
+DropRun, choose a project, and optionally leave a note. Your Windows Connector
+hands the reference and intent to local Codex. Come back to progress, a report,
+and evidence of what changed.
 
-<p align="center"><img src="landing/media/demo.gif" width="256" alt="DropRun actual Android UI tour"></p>
+## Share. Choose. Inspect.
 
-Actual Android app, with labelled demonstration data. This UI tour does not claim a completed source-to-Codex task.
+<p align="center"><img src="assets/brand/readme-ui-tour.gif" width="280" alt="Nine-second native Android development UI tour: project selection, note editing, model options, settings and a labelled demonstration report"></p>
 
-The tour is from the earlier preview. The screenshots below are native local 0.5.1 captures from September 27, with demonstration data.
+[9-second native UI video](https://droprun.dengmaizi0802.chatgpt.site/media/ui-tour-en.mp4) · [Captions](landing/media/ui-tour-en.vtt)
 
-<p align="center"><img src="landing/media/home.png" width="220" alt="Project home"> <img src="landing/media/share.png" width="220" alt="Android share sheet"> <img src="landing/media/task.png" width="220" alt="Task report"></p>
+<table>
+  <tr>
+    <th align="center">01 · Share a reference</th>
+    <th align="center">02 · Keep it with the project</th>
+    <th align="center">03 · Inspect the delivery</th>
+  </tr>
+  <tr>
+    <td align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/readme-share-dark.png"><img src="assets/brand/readme-share.png" width="220" alt="Native Android share sheet with project choices and visible Demo data notice"></picture></td>
+    <td align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/readme-home-dark.png"><img src="assets/brand/readme-home.png" width="220" alt="Native Android project home with task and dispatch counts and visible Demo data notice"></picture></td>
+    <td align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/readme-task-dark.png"><img src="assets/brand/readme-task.png" width="220" alt="Native Android task detail with a labelled sample result, follow-up and evidence controls"></picture></td>
+  </tr>
+  <tr>
+    <td>Pick an existing project. Add a note when you have a specific change in mind.</td>
+    <td>See recent handoffs and counts by project, with tasks, follow-ups and pending shares kept clear.</td>
+    <td>See the result, required actions, screenshots and files. Open the full report when needed.</td>
+  </tr>
+</table>
+
+Native 0.5.1 development UI, October 5, 2026. The published rc.2 has an earlier UI.
+**UI demonstration only:** nothing was sent to an agent, and the report uses
+labelled sample data. [Capture notes](assets/brand/readme-media.md).
+
+<details>
+<summary><strong>Earlier preview tour and longer walkthrough</strong></summary>
+
+<p align="center"><img src="landing/media/demo.gif" width="256" alt="Earlier DropRun Android preview: an actual native interface tour using labelled demonstration data"></p>
+
+These videos and this animation are from the earlier preview. They show the interface, not a completed
+source-to-Codex task.
 
 [24-second video](https://droprun.dengmaizi0802.chatgpt.site/media/demo.mp4) · [64-second walkthrough](https://droprun.dengmaizi0802.chatgpt.site/media/walkthrough.mp4)
 
-## The short version
+</details>
 
-You see a useful interaction, screenshot or article on your phone. Share it to
-DropRun, pick an existing project, and optionally say what you want. Your Windows
-Connector hands it to local Codex. Your phone receives progress and evidence.
+## Made for a small handoff
 
-**Your code and Codex login stay on your computer.** Your own Cloudflare Relay
-handles the handoff and stored results. No DropRun account. No official subscription.
+- **Keep the intent.** Your note leads the task. Each independent share starts a
+  new Codex conversation; a follow-up continues the same one.
+- **Stay oriented.** Home shows projects you have used, not the whole catalog.
+  Task and dispatch counts exclude network retries.
+- **Decide how work starts.** Choose direct execution or plan review. Project
+  permissions and approval for high-risk actions remain separate.
+- **Inspect what happened.** Reports distinguish actual source coverage, project
+  changes and verification. Delivery can include screenshots, files and supported
+  static snapshots; live preview is optional.
 
-## A smaller handoff
+## Start with your own setup
 
-| Share | Work | Inspect |
+| Computer | Phone | Relay |
 | --- | --- | --- |
-| A compact Android share sheet. Pick a project and leave an optional note. | A new local Codex conversation per share. Follow-ups continue that conversation. | What was actually read, where it applied, what changed and how it was verified. |
+| Windows x64, Git, signed-in Codex, Chrome or Edge | Android 8 or newer | Your Cloudflare account with Workers, D1 and R2 |
 
-- **Project-first history.** Only projects you have used, with independent tasks,
-  dispatches and pending work. Retries never inflate the count.
-- **A quieter interface.** Light translucent surfaces, lime accents, dark mode,
-  accessible controls and motion that respects your settings.
-- **Visible boundaries.** Direct execution or plan review; high-risk actions need
-  separate approval. Cancelling does not undo changes already made.
-- **Evidence over promises.** Screenshots, files and supported static snapshots.
-  Live previews are optional and use your own domain/tunnel.
+1. **Install on Windows.** Get the [installer](https://github.com/MrMaii/droprun/releases/download/v0.5.1-rc.2/DropRun-0.5.1-windows-x64-setup.exe) or [portable ZIP](https://github.com/MrMaii/droprun/releases/download/v0.5.1-rc.2/DropRun-0.5.1-windows-x64.zip).
+2. **Set up your Relay.** Open the local browser guide, check prerequisites and
+   deploy to your own Cloudflare account.
+3. **Pair your phone.** Install the [Android APK](https://github.com/MrMaii/droprun/releases/download/v0.5.1-rc.2/DropRun-0.5.1-android.apk), scan the computer's code, confirm the server and authorize projects.
+4. **Make a handoff.** Share a reference, then follow receipt, execution and
+   approval through to the report. “Saved” means saved on your phone, not finished.
 
-## Get started
+**[Complete installation, recovery and upgrade guide →](docs/technical/SELF_HOSTING.md)**
 
-You need **Windows x64 + Codex + Git**, **Android 8+**, and **your own Cloudflare
-account**. Cloudflare, optional transcription and Codex usage may incur charges.
+DropRun has no official account or subscription. Cloudflare, optional
+transcription and Codex usage belong to your accounts and **may incur charges**.
+Windows packages are unsigned and may show an unknown-publisher prompt; compare
+the release [checksums](https://github.com/MrMaii/droprun/releases/download/v0.5.1-rc.2/SHA256SUMS.txt).
+The public Android app installs alongside the historical private/debug app;
+different signing identities cannot silently replace each other.
 
-1. Download the Windows installer or portable archive from [Releases](https://github.com/MrMaii/droprun/releases).
-2. Open the local setup guide. Check your tools and deploy your private Relay.
-3. Install the Android APK, scan the computer's code and authorize your projects.
-4. Share a reference. Check the real status and inspect the report.
-
-[Full setup and recovery guide →](docs/technical/SELF_HOSTING.md)
-
-Windows packages may show an unknown-publisher prompt. Compare published hashes.
-The public Android package installs alongside the old private app; it does not
-pretend to upgrade a different signing identity.
-
-## How it fits together
+## Your phone. Your computer. Your Relay.
 
 ```mermaid
 flowchart LR
   A[Android share sheet] --> R[Your Cloudflare Relay]
   R <--> W[Your Windows Connector]
   W <--> C[Local Codex and your project]
-  W --> E[Verified files and screenshots]
+  W --> E[Reports, screenshots and files]
   E --> R
   R --> A
 ```
 
-The website is an information/download surface, not the task backend. Each Relay
-belongs to one owner and one Connector. Multiple phones can pair with it.
+Project code and Codex login stay on your computer. Shared material, reports and
+uploaded artifacts pass through your own Cloudflare instance. Each Relay belongs
+to one owner and one Connector; multiple phones can pair with it. The public
+website provides information and downloads. [Data and privacy →](docs/technical/PRIVACY.md)
 
-## Honest limits
+## Know the boundaries
 
-- The computer must be online to execute; accepted work queues while it is away.
-- Video-platform access varies. A URL or cover image is not a fully read video.
-- Mobile background delivery follows Android's limits; notifications are not an
-  unlimited always-on push guarantee.
-- Static snapshots support compatible exports, not arbitrary backend-dependent
-  apps. Live preview needs a domain and managed tunnel you control.
-- Review the [release evidence](docs/releases/0.5.1-rc.2.md) before important projects.
+- **An online computer does the work.** Accepted handoffs queue while it is away.
+- **Source access varies.** A video URL, cover or transcript does not establish
+  full video coverage. Read the report's actual extraction scope.
+- **Android controls background delivery.** Notifications are not an unlimited
+  always-on push guarantee.
+- **Preview depends on the project.** Static snapshots need compatible exports.
+  Live preview needs your own domain, managed tunnel and online computer.
+- **Cancellation is not a rollback.** Cancelling a task or deleting its cloud
+  record does not undo changes already made to your project.
 
-## Build, contribute, understand
+This is a release candidate. Physical Android performance, clean Windows
+installation and the full real-source handoff workflow still have open acceptance
+gates. See the [dated validation record](docs/releases/0.5.1-rc.2.md) before using
+it on important projects. Screenshots and a UI tour do not establish those results.
+
+## Build and contribute
+
+Start with Node.js 24 and Git. Android development also needs JDK 17+ and Android
+SDK 35; the [development guide](docs/technical/DEVELOPMENT.md) covers builds and tools.
 
 ```sh
 npm ci
@@ -96,10 +133,8 @@ node scripts/setup.mjs doctor
 node scripts/setup.mjs open
 ```
 
-[Development](docs/technical/DEVELOPMENT.md) · [Architecture](docs/technical/ARCHITECTURE.md)
-· [Contracts](docs/technical/CONTRACTS.md) · [Privacy](docs/technical/PRIVACY.md)
+[Architecture](docs/technical/ARCHITECTURE.md) · [Contracts](docs/technical/CONTRACTS.md)
 · [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md)
 
-DropRun source is [Apache-2.0](LICENSE). Bundled and optional dependencies keep
-their own [licenses](THIRD_PARTY_NOTICES.md). Built for people who want a good
-reference to become something they can inspect in a real project.
+Source: [Apache-2.0](LICENSE). Bundled and optional dependencies retain their
+own [licenses](THIRD_PARTY_NOTICES.md).

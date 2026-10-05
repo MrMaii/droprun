@@ -1,9 +1,6 @@
 package app.droprun;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
-import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -44,7 +41,7 @@ public class ShareActivity extends StyledActivity {
     final ExecutorService io=Executors.newSingleThreadExecutor();
     final Handler handler=new Handler(Looper.getMainLooper());
     Store store;FrameLayout root,stage;Capped holder;LinearLayout sheet,projectList,panel;ScrollView scroll;Ui.Dots dots;ImageButton back,gauge;
-    EditText search,note;TextView gaugeText,sendTitle,status,badge;Ui.PlaneView plane;Ui.Glass dialog;ColorDrawable scrim;ValueAnimator panelAnimator;
+    EditText search,note;TextView gaugeText,sendTitle,status,badge;Ui.PlaneView plane;Ui.Glass dialog;ColorDrawable scrim;
     AlertDialog discardDialog;
     ShareImport incoming;Runnable importObserver;Bundle restoredState;
     TextView draftStatus;Button retryDraft;boolean discardOnFinish;
@@ -172,7 +169,7 @@ public class ShareActivity extends StyledActivity {
         boolean failed=this instanceof RecoveredShareActivity||receiveActions!=null||(incoming!=null&&incoming.error!=null);
         if(!sent&&(!message.trim().isEmpty()||failed)){
             if(discardDialog!=null&&discardDialog.isShowing())return;
-            discardDialog=new AlertDialog.Builder(this).setTitle(failed?L.t("Discard this share?","放弃这次分享？"):L.t("Discard your note?","放弃这段留言？")).setMessage(failed?L.t("Nothing has been handed off. This removes this share's saved copies and note. Your original files stay in the source app.","这次分享尚未交办。将移除本次保存的副本和留言，来源 App 中的原文件不受影响。"):L.t("Nothing has been handed off. Closing will remove your note.","这次分享尚未交办。关闭后，这段留言将被丢弃。")).setNegativeButton(failed?L.t("Keep share","保留分享"):L.t("Keep editing","继续编辑"),null).setPositiveButton(L.t("Discard","放弃"),(d,w)->finishShare()).show();
+            discardDialog=new AlertDialog.Builder(this).setTitle(L.t("Discard this share?","放弃这次分享？")).setMessage(L.t("Nothing has been handed off. This removes this share's saved copies and note. Your original files stay in the source app.","这次分享尚未交办。将移除本次保存的副本和留言，来源 App 中的原文件不受影响。")).setNegativeButton(failed?L.t("Keep share","保留分享"):L.t("Keep editing","继续编辑"),null).setPositiveButton(L.t("Discard","放弃"),(d,w)->finishShare()).show();
             return;
         }
         finishShare();
@@ -261,7 +258,7 @@ public class ShareActivity extends StyledActivity {
     // ---- the shared material --------------------------------------------------------------------
     TextView materialChip(){
         String label=materialLabel();TextView chip=new TextView(this);chip.setText(label);chip.setTextSize(13);chip.setTextColor(Ui.TEXT);chip.setTypeface(Ui.medium());chip.setGravity(Gravity.CENTER_VERTICAL);
-        chip.setPadding(dp(12),dp(7),dp(12),dp(7));chip.setMinHeight(dp(34));chip.setBackground(Ui.outlined(this,Ui.SURFACE_2,Ui.LINE_STRONG,Ui.RADIUS,1));Ui.oneLine(chip);
+        chip.setIncludeFontPadding(false);chip.setPadding(dp(14),dp(10),dp(14),dp(10));chip.setMinHeight(dp(40));chip.setBackground(Ui.outlined(this,Ui.SURFACE_2,Ui.LINE,14,1));Ui.oneLine(chip);
         chip.setContentDescription(L.t("Shared material: ","分享的材料：")+label);return chip;
     }
     String materialLabel(){
@@ -281,9 +278,11 @@ public class ShareActivity extends StyledActivity {
     View stepProject(){
         recentProjects=ProjectPresentation.merge(store.activity(),store.pending(),store.tasks());
         LinearLayout column=Ui.vertical(this);
-        column.addView(Ui.title(this,L.t("Where should this idea go?","转发给哪个项目？"),20));
-        LinearLayout.LayoutParams chipParams=new LinearLayout.LayoutParams(-2,-2);chipParams.setMargins(0,dp(4),0,dp(12));column.addView(materialChip(),chipParams);
+        column.addView(Ui.label(this,L.t("CHOOSE A PROJECT","选择项目")));
+        column.addView(Ui.title(this,L.t("Where should this idea go?","转发给哪个项目？"),22));
+        LinearLayout.LayoutParams chipParams=new LinearLayout.LayoutParams(-1,-2);chipParams.setMargins(0,dp(12),0,dp(18));column.addView(materialChip(),chipParams);
         LinearLayout box=Ui.card(this);box.setPadding(dp(6),dp(6),dp(6),dp(6));
+        box.setElevation(0);box.setBackground(Ui.outlined(this,Ui.SURFACE_2,Ui.LINE,Ui.RADIUS_CARD,1));
         search=new EditText(this);search.setHint(L.t("Find a project","搜索项目"));search.setSingleLine(true);search.setImeOptions(EditorInfo.IME_ACTION_DONE);search.setText(query);Ui.styleInput(search);
         box.addView(search,Ui.margins(this,2,6));
         projectList=Ui.vertical(this);box.addView(projectList,Ui.fill());
@@ -312,10 +311,12 @@ public class ShareActivity extends StyledActivity {
     }
     View projectRow(JSONObject project,JSONArray catalog,JSONArray history){
         String id=project.optString("id"),name=ProjectPresentation.label(id,project.optString("name"),catalog,history);boolean available=project.optBoolean("available",true),enabled=Store.projectEnabled(project),chosen=id.equals(selected);
-        LinearLayout row=Ui.row(this);row.setPadding(dp(12),dp(11),dp(12),dp(11));row.setMinimumHeight(dp(52));
-        if(chosen)row.setBackground(Ui.outlined(this,Ui.LIME_SOFT,0,10,0));
-        TextView label=Ui.text(this,name,15,chosen?Ui.ACCENT:Ui.TEXT);label.setPadding(0,0,0,0);if(chosen)label.setTypeface(Ui.medium());row.addView(label,Ui.grow());
-        Ui.space(row,10);row.addView(Ui.pill(this,!available?L.t("Unavailable","暂不可用"):enabled?L.t("Allowed","已授权"):L.t("Allow access","需授权"),available&&enabled?Ui.ACCENT:Ui.MUTED));
+        LinearLayout row=Ui.row(this);row.setPadding(dp(12),dp(13),dp(12),dp(13));row.setMinimumHeight(dp(64));
+        if(chosen)row.setBackground(Ui.outlined(this,Ui.LIME_SOFT,Ui.LIME_LINE,18,1));
+        row.addView(Ui.projectTile(this,name),Ui.square(this,40));Ui.space(row,12);
+        LinearLayout words=Ui.vertical(this);TextView label=Ui.title(this,name,17);label.setTextColor(chosen?Ui.ACCENT:Ui.TEXT);label.setPadding(0,0,0,0);words.addView(label);
+        words.addView(Ui.caption(this,!available?L.t("Unavailable","暂不可用"):enabled?L.t("Allowed","已授权"):L.t("Allow access","需授权")),Ui.margins(this,4,0));row.addView(words,Ui.grow());
+        Ui.space(row,8);ImageView arrow=new ImageView(this);arrow.setImageResource(chosen?R.drawable.ic_check:R.drawable.ic_chevron_left);arrow.setRotation(chosen?0:180);arrow.setImageTintList(ColorStateList.valueOf(chosen?Ui.ACCENT:Ui.DIM));arrow.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);row.addView(arrow,Ui.square(this,18));
         row.setClickable(true);row.setFocusable(true);row.setContentDescription(name+(!available?L.t(", unavailable","，暂不可用"):enabled?L.t(", allowed","，已授权"):L.t(", permission required","，需授权"))+(chosen?L.t(", selected","，已选择"):""));Ui.bindPress(row);
         row.setOnClickListener(v->pick(project));
         return row;
@@ -358,8 +359,10 @@ public class ShareActivity extends StyledActivity {
     // ---- step 2: note, model and effort ---------------------------------------------------------
     View stepNote(){
         LinearLayout column=Ui.vertical(this);
-        column.addView(Ui.title(this,L.t("What should Codex do?","想让 Codex 做什么？"),20));
+        column.addView(Ui.label(this,L.t("ADD YOUR INTENT","说说你的想法")));
+        column.addView(Ui.title(this,L.t("What should Codex do?","想让 Codex 做什么？"),22));
         TextView target=Ui.caption(this,L.t("For “","转发到「")+projectName()+L.t("”","」"));column.addView(target);
+        column.addView(materialChip(),Ui.margins(this,12,4));
         note=new EditText(this);note.setHint(L.t("Optional. Leave this blank and let Codex find the useful part.","可选。留空让 Codex 自己判断怎么用。"));note.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_FLAG_MULTI_LINE|InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
         note.setMinLines(3);note.setMaxLines(6);note.setFilters(new InputFilter[]{new InputFilter.LengthFilter(15000)});note.setText(draft);Ui.styleInput(note);
         note.addTextChangedListener(new TextWatcher(){public void beforeTextChanged(CharSequence s,int start,int count,int after){}public void onTextChanged(CharSequence s,int start,int before,int count){draft=s.toString();checkpoint();}public void afterTextChanged(Editable value){}});
@@ -386,19 +389,7 @@ public class ShareActivity extends StyledActivity {
     }
     void togglePanel(){if(panel==null)return;panelOpen=!panelOpen;if(panelOpen)renderPanel();reveal(panelOpen);updateGauge();}
     /** Expands or collapses the model panel with height and alpha together, so the button beneath slides instead of jumping. */
-    void reveal(boolean show){
-        if(panelAnimator!=null)panelAnimator.cancel();
-        ViewGroup.LayoutParams params=panel.getLayoutParams();
-        if(!Ui.motionEnabled(this)){params.height=-2;panel.setAlpha(1f);panel.setVisibility(show?View.VISIBLE:View.GONE);panel.requestLayout();return;}
-        View parent=(View)panel.getParent();int width=Math.max(0,parent.getWidth()-parent.getPaddingLeft()-parent.getPaddingRight());
-        panel.measure(View.MeasureSpec.makeMeasureSpec(width,View.MeasureSpec.EXACTLY),View.MeasureSpec.makeMeasureSpec(0,View.MeasureSpec.UNSPECIFIED));
-        int from=show?0:panel.getHeight(),to=show?panel.getMeasuredHeight():0;
-        if(show){panel.setVisibility(View.VISIBLE);panel.setAlpha(0f);}
-        ValueAnimator animator=ValueAnimator.ofInt(from,to);animator.setDuration(show?220:160);animator.setInterpolator(new DecelerateInterpolator());
-        animator.addUpdateListener(a->{params.height=(int)a.getAnimatedValue();panel.setAlpha(show?a.getAnimatedFraction():1f-a.getAnimatedFraction());panel.requestLayout();});
-        animator.addListener(new AnimatorListenerAdapter(){@Override public void onAnimationEnd(Animator a){params.height=-2;panel.setAlpha(1f);panel.setVisibility(show?View.VISIBLE:View.GONE);panel.requestLayout();panelAnimator=null;}});
-        panelAnimator=animator;animator.start();
-    }
+    void reveal(boolean show){Ui.expand(panel,show);}
     void renderPanel(){
         View previous=panel.findFocus();Object focusTag=previous!=null&&!previous.isInTouchMode()?previous.getTag():null;
         panel.removeAllViews();JSONArray catalog=store.models();

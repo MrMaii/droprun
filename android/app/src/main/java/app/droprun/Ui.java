@@ -52,33 +52,33 @@ import java.util.function.IntConsumer;
  */
 public final class Ui {
     // ---- tokens -------------------------------------------------------------------------------
-    public static int BG=0xFFF6F7F2, SURFACE=0xEFFFFFFF, SURFACE_2=0xFFF1F3ED, SURFACE_3=0xFFE6EBCF;
-    public static int LINE=0x180F211B, LINE_STRONG=0x300F211B;
-    public static int TEXT=0xFF17251E, MUTED=0xFF5B695F, DIM=0xFF69786C;
+    public static int BG=0xFFF7F7F2, SURFACE=0xFFFFFFFF, SURFACE_2=0xFFF0F1EC, SURFACE_3=0xFFE7EBDD;
+    public static int LINE=0x0C191D1A, LINE_STRONG=0x24191D1A;
+    public static int TEXT=0xFF191D1A, MUTED=0xFF616A63, DIM=0xFF687168;
     public static final int LIME=0xFFB8EF73, ON_LIME=0xFF172510;
     public static int LIME_SOFT=0xFFE5F3D7, LIME_LINE=0xFF71894D, ACCENT=0xFF365A24;
     public static int DANGER=0xFFAB342E, AMBER=0xFF826013, SCRIM=0x660F2018;
-    public static final int RADIUS=18, RADIUS_CARD=24, RADIUS_SHEET=30;
+    public static final int RADIUS=18, RADIUS_CARD=26, RADIUS_SHEET=34;
     static boolean dark;
     private Ui(){}
 
     public static int dp(Context context,int value){return Math.round(value*context.getResources().getDisplayMetrics().density);}
     public static float dpf(Context context,float value){return value*context.getResources().getDisplayMetrics().density;}
     public static Typeface regular(){return Typeface.create("sans-serif",Typeface.NORMAL);}
-    public static Typeface medium(){return Typeface.create("sans-serif-medium",Typeface.NORMAL);}
+    public static Typeface medium(){return Build.VERSION.SDK_INT>=28?Typeface.create(regular(),600,false):Typeface.create("sans-serif-medium",Typeface.NORMAL);}
     public static boolean motionEnabled(Context context){return ValueAnimator.areAnimatorsEnabled();}
     static String preferenceKey(Context context){android.content.SharedPreferences p=context.getSharedPreferences("droprun.preferences",Context.MODE_PRIVATE);return p.getString("appearance","light")+":"+p.getString("language","en")+":"+(context.getResources().getConfiguration().uiMode&android.content.res.Configuration.UI_MODE_NIGHT_MASK);}
     static void prepare(Activity activity,boolean overlay){
         android.content.SharedPreferences p=activity.getSharedPreferences("droprun.preferences",Context.MODE_PRIVATE);String mode=p.getString("appearance","light");
         dark=mode.equals("dark")||(mode.equals("system")&&(activity.getResources().getConfiguration().uiMode&android.content.res.Configuration.UI_MODE_NIGHT_MASK)==android.content.res.Configuration.UI_MODE_NIGHT_YES);
         L.language(p.getString("language","en"));
-        BG=dark?0xFF121614:0xFFF5F5F0;SURFACE=dark?0xFF202622:0xFFFFFFFF;SURFACE_2=dark?0xFF292F2B:0xFFF3F4EF;SURFACE_3=dark?0xFF374138:0xFFE8EDD9;
-        TEXT=dark?0xFFF3F5F0:0xFF1C2721;MUTED=dark?0xFFB8C2B8:0xFF606C62;DIM=dark?0xFFA1AEA1:0xFF69786C;
-        LINE=dark?0x24FFFFFF:0x180F211B;LINE_STRONG=dark?0x40FFFFFF:0x300F211B;LIME_SOFT=dark?0xFF2D4224:0xFFE5F3D7;LIME_LINE=dark?0xFF90B963:0xFF71894D;ACCENT=dark?LIME:0xFF365A24;
+        BG=dark?0xFF111512:0xFFF7F7F2;SURFACE=dark?0xFF202521:0xFFFFFFFF;SURFACE_2=dark?0xFF2B312C:0xFFF0F1EC;SURFACE_3=dark?0xFF394339:0xFFE7EBDD;
+        TEXT=dark?0xFFF4F5EF:0xFF191D1A;MUTED=dark?0xFFBEC6BD:0xFF616A63;DIM=dark?0xFFA8B3A7:0xFF687168;
+        LINE=dark?0x18FFFFFF:0x0C191D1A;LINE_STRONG=dark?0x40FFFFFF:0x24191D1A;LIME_SOFT=dark?0xFF2D4224:0xFFEAF5DD;LIME_LINE=dark?0xFF90B963:0xFF71894D;ACCENT=dark?LIME:0xFF365A24;
         DANGER=dark?0xFFFFB4A9:0xFFAB342E;AMBER=dark?0xFFEBD08A:0xFF826013;SCRIM=dark?0x99000000:0x660F2018;
         activity.setTheme(overlay?(dark?R.style.ShareThemeDark:R.style.ShareTheme):(dark?R.style.AppThemeDark:R.style.AppTheme));
     }
-    public static android.graphics.drawable.Drawable ground(){return new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM,dark?new int[]{0xFF19221B,BG,BG}:new int[]{0xFFF1F5E9,BG,0xFFFAF9F5});}
+    public static android.graphics.drawable.Drawable ground(){return new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM,dark?new int[]{0xFF171D18,BG,BG}:new int[]{0xFFFCFCF8,BG,0xFFF2F3ED});}
 
     // ---- window ---------------------------------------------------------------------------------
     /** Palette-aware system bars, drawn edge to edge. */
@@ -154,7 +154,7 @@ public final class Ui {
         sheet.setPadding(dp(context,20),dp(context,12),dp(context,20),dp(context,20));
         // Without cross-window blur, an opaque sheet prevents source-app text bleeding through.
         float r=dpf(context,RADIUS_SHEET);GradientDrawable shape=new GradientDrawable();shape.setColor(SURFACE|0xFF000000);shape.setCornerRadii(new float[]{r,r,r,r,0,0,0,0});shape.setStroke(dp(context,1),LINE);
-        sheet.setBackground(shape);sheet.setClickable(true);sheet.setFocusable(false);sheet.setClipToOutline(true);return sheet;
+        sheet.setBackground(shape);sheet.setElevation(dpf(context,18));sheet.setClickable(true);sheet.setFocusable(false);sheet.setClipToOutline(true);return sheet;
     }
 
     // ---- shapes ---------------------------------------------------------------------------------
@@ -167,7 +167,7 @@ public final class Ui {
     // ---- text -----------------------------------------------------------------------------------
     public static TextView text(Context context,CharSequence value,int size,int color){
         TextView view=new TextView(context);view.setText(value);view.setTextSize(size);view.setTextColor(color);view.setTypeface(regular());
-        view.setLineSpacing(dpf(context,2),1.05f);view.setPadding(0,dp(context,3),0,dp(context,3));return view;
+        view.setIncludeFontPadding(false);view.setLineSpacing(dpf(context,2),1.08f);view.setPadding(0,dp(context,3),0,dp(context,3));return view;
     }
     public static TextView title(Context context,CharSequence value,int size){
         TextView view=text(context,value,size,TEXT);view.setTypeface(medium());view.setLetterSpacing(-0.01f);
@@ -182,7 +182,7 @@ public final class Ui {
     /** Small status pill: tinted text on a translucent tint of the same color. */
     public static TextView pill(Context context,CharSequence value,int color){
         TextView view=new TextView(context);view.setText(value);view.setTextSize(11);view.setTextColor(color);view.setTypeface(medium());
-        view.setPadding(dp(context,9),dp(context,3),dp(context,9),dp(context,3));
+        view.setIncludeFontPadding(false);view.setPadding(dp(context,9),dp(context,5),dp(context,9),dp(context,5));
         GradientDrawable shape=new GradientDrawable();shape.setCornerRadius(dpf(context,999));shape.setColor((color&0x00ffffff)|0x1F000000);view.setBackground(shape);return view;
     }
     /** 8dp status dot. */
@@ -198,7 +198,12 @@ public final class Ui {
     public static LinearLayout.LayoutParams square(Context context,int dp){return new LinearLayout.LayoutParams(dp(context,dp),dp(context,dp));}
     public static LinearLayout.LayoutParams margins(Context context,int top,int bottom){LinearLayout.LayoutParams params=fill();params.setMargins(0,dp(context,top),0,dp(context,bottom));return params;}
     /** Card: hairline-bordered surface with 16dp padding. */
-    public static LinearLayout card(Context context){LinearLayout card=vertical(context);card.setPadding(dp(context,20),dp(context,18),dp(context,20),dp(context,18));card.setBackground(surface(context,SURFACE));return card;}
+    public static LinearLayout card(Context context){LinearLayout card=vertical(context);card.setPadding(dp(context,20),dp(context,20),dp(context,20),dp(context,20));card.setBackground(surface(context,SURFACE));card.setElevation(dpf(context,1));return card;}
+    /** A project's own initial gives related history and shares a recognizable anchor. */
+    public static String projectInitial(CharSequence name){return name.length()==0?"":new String(Character.toChars(Character.toUpperCase(Character.codePointAt(name,0))));}
+    public static TextView projectTile(Context context,CharSequence name){
+        TextView tile=text(context,projectInitial(name),17,ACCENT);tile.setTypeface(medium());tile.setGravity(Gravity.CENTER);tile.setPadding(0,0,0,0);tile.setBackground(outlined(context,LIME_SOFT,LINE,15,1));tile.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);return tile;
+    }
     public static LinearLayout.LayoutParams cardParams(Context context){return margins(context,8,2);}
 
     // ---- controls -------------------------------------------------------------------------------
@@ -217,11 +222,11 @@ public final class Ui {
     public static void styleGhost(Button view){styleAction(view,3);}
     private static void styleAction(Button view,int kind){
         Context context=view.getContext();view.setAllCaps(false);view.setTextSize(15);view.setTypeface(medium());view.setGravity(Gravity.CENTER);
-        view.setMinHeight(dp(context,50));view.setMinimumHeight(dp(context,50));view.setPadding(dp(context,18),dp(context,12),dp(context,18),dp(context,12));
-        view.setStateListAnimator(null);view.setElevation(0);
+        view.setMinHeight(dp(context,52));view.setMinimumHeight(dp(context,52));view.setPadding(dp(context,18),dp(context,14),dp(context,18),dp(context,14));
+        view.setStateListAnimator(null);view.setElevation(kind==1?dpf(context,2):0);
         int fill=kind==1?LIME:kind==2?(dark?0xFF38221F:0xFFFFE8E2):kind==3?Color.TRANSPARENT:SURFACE;
         int stroke=kind==1?LIME:kind==2?0x55FFB0A7:kind==3?Color.TRANSPARENT:LINE_STRONG;
-        int pressed=kind==1?0xFFA3D964:kind==2?0xFF382320:kind==3?0x14FFFFFF:SURFACE_3;
+        int pressed=kind==1?0xFFA3D964:kind==2?(dark?0xFF382320:0xFFFAD8CF):kind==3?(dark?0x14FFFFFF:0x0C191D1A):SURFACE_3;
         StateListDrawable states=new StateListDrawable();
         states.addState(new int[]{-android.R.attr.state_enabled},outlined(context,SURFACE,LINE,RADIUS,1));
         states.addState(new int[]{android.R.attr.state_pressed},outlined(context,pressed,stroke,RADIUS,1));
@@ -239,7 +244,7 @@ public final class Ui {
         states.addState(new int[]{-android.R.attr.state_enabled},circle(context,SURFACE_2,LINE));
         states.addState(new int[]{android.R.attr.state_pressed},circle(context,SURFACE_3,LINE_STRONG));
         states.addState(new int[]{android.R.attr.state_focused},focused);
-        states.addState(new int[]{},circle(context,SURFACE_2,LINE));
+        states.addState(new int[]{},circle(context,SURFACE,LINE));
         button.setBackground(states);bindPress(button);return button;
     }
     /** Compact text pill button for secondary header actions. */
@@ -307,7 +312,7 @@ public final class Ui {
         LinearLayout row=row(context);row.setMinimumHeight(dp(context,56));row.setPadding(0,dp(context,6),0,dp(context,6));
         if(left!=null){row.addView(left,square(context,48));space(row,10);}
         if(brand){row.addView(brandMark(context,28),square(context,28));space(row,10);}
-        TextView heading=title(context,title,18);heading.setPadding(0,0,0,0);oneLine(heading);row.addView(heading,grow());
+        TextView heading=title(context,title,17);heading.setPadding(0,0,0,0);oneLine(heading);row.addView(heading,grow());
         if(right!=null){space(row,10);row.addView(right,square(context,48));}
         if(parent!=null)parent.addView(row,fill());return row;
     }
@@ -321,7 +326,7 @@ public final class Ui {
             if(action==MotionEvent.ACTION_DOWN||action==MotionEvent.ACTION_UP||action==MotionEvent.ACTION_CANCEL){
                 target.animate().cancel();
                 boolean down=action==MotionEvent.ACTION_DOWN&&target.isEnabled();
-                if(motionEnabled(target.getContext()))target.animate().scaleX(down?0.982f:1f).scaleY(down?0.982f:1f).setDuration(down?80:160).setInterpolator(new DecelerateInterpolator()).start();
+                if(motionEnabled(target.getContext()))target.animate().scaleX(down?0.975f:1f).scaleY(down?0.975f:1f).setDuration(down?120:180).setInterpolator(new DecelerateInterpolator(1.8f)).start();
                 else{target.setScaleX(1f);target.setScaleY(1f);}
             }
             return false;
@@ -336,7 +341,7 @@ public final class Ui {
         header.setContentDescription(title+(open?L.t(", expanded",", 已展开"):L.t(", collapsed",", 已折叠")));
         content.setVisibility(open?View.VISIBLE:View.GONE);group.addView(header,fill());group.addView(content,fill());
         header.setTag(open);
-        header.setOnClickListener(v->{boolean show=!Boolean.TRUE.equals(header.getTag());header.setTag(show);change.accept(show);header.setContentDescription(title+(show?L.t(", expanded",", 已展开"):L.t(", collapsed",", 已折叠")));expand(content,show);chevron.animate().rotation(show?-90:180).setDuration(motionEnabled(context)?240:0).start();});
+        header.setOnClickListener(v->{boolean show=!Boolean.TRUE.equals(header.getTag());header.setTag(show);change.accept(show);header.setContentDescription(title+(show?L.t(", expanded",", 已展开"):L.t(", collapsed",", 已折叠")));expand(content,show);chevron.animate().rotation(show?-90:180).setDuration(motionEnabled(context)?180:0).start();});
         return group;
     }
     public static void expand(View content,boolean show){
@@ -346,7 +351,7 @@ public final class Ui {
         View parent=(View)content.getParent();int width=Math.max(1,parent.getWidth()-parent.getPaddingLeft()-parent.getPaddingRight());
         int from=content.getVisibility()==View.GONE?0:content.getHeight();content.measure(View.MeasureSpec.makeMeasureSpec(width,View.MeasureSpec.EXACTLY),View.MeasureSpec.makeMeasureSpec(0,View.MeasureSpec.UNSPECIFIED));
         int to=show?content.getMeasuredHeight():0;content.setVisibility(View.VISIBLE);
-        ValueAnimator animator=ValueAnimator.ofInt(from,to);content.setTag(R.id.expand_animation,animator);animator.setDuration(260);animator.setInterpolator(new DecelerateInterpolator(1.6f));
+        ValueAnimator animator=ValueAnimator.ofInt(from,to);content.setTag(R.id.expand_animation,animator);animator.setDuration(280);animator.setInterpolator(new DecelerateInterpolator(1.8f));
         animator.addUpdateListener(a->{params.height=(int)a.getAnimatedValue();content.setLayoutParams(params);content.setAlpha(show?0.4f+0.6f*a.getAnimatedFraction():1f-a.getAnimatedFraction());});
         animator.addListener(new AnimatorListenerAdapter(){boolean cancelled;@Override public void onAnimationCancel(Animator a){cancelled=true;}@Override public void onAnimationEnd(Animator a){if(cancelled)return;params.height=-2;content.setLayoutParams(params);content.setAlpha(1);content.setVisibility(show?View.VISIBLE:View.GONE);content.setTag(R.id.expand_animation,null);}});animator.start();
     }
@@ -355,19 +360,19 @@ public final class Ui {
         ImageView arrow=new ImageView(context);arrow.setImageResource(R.drawable.ic_chevron_left);arrow.setRotation(180);arrow.setImageTintList(ColorStateList.valueOf(MUTED));arrow.setLayoutParams(square(context,18));
         LinearLayout row=listRow(context,title,value,arrow);row.setContentDescription(title+", "+value);row.setOnClickListener(v->action.run());return row;
     }
-    /** Entrance for a freshly built screen: 200ms fade + 6dp rise. */
+    /** Entrance for a freshly built screen: 280ms fade + 6dp rise. */
     public static void enter(View view){
         view.animate().cancel();
         if(!motionEnabled(view.getContext())){view.setAlpha(1f);view.setTranslationY(0f);return;}
         view.setAlpha(0f);view.setTranslationY(dpf(view.getContext(),6));
-        view.animate().alpha(1f).translationY(0f).setDuration(200).setInterpolator(new DecelerateInterpolator()).start();
+        view.animate().alpha(1f).translationY(0f).setDuration(280).setInterpolator(new DecelerateInterpolator(1.8f)).start();
     }
     /** Slide a sheet up from the bottom edge. */
     public static void slideUp(View view){
         view.animate().cancel();
         if(!motionEnabled(view.getContext())){view.setAlpha(1f);view.setTranslationY(0f);return;}
         view.setAlpha(0f);view.setTranslationY(dpf(view.getContext(),48));
-        view.animate().alpha(1f).translationY(0f).setDuration(260).setInterpolator(new DecelerateInterpolator(1.6f)).start();
+        view.animate().alpha(1f).translationY(0f).setDuration(300).setInterpolator(new DecelerateInterpolator(1.8f)).start();
     }
     public static void slideDown(View view,Runnable end){
         view.animate().cancel();
@@ -389,7 +394,7 @@ public final class Ui {
         stage.addView(next,new FrameLayout.LayoutParams(-1,-2));
         if(!motionEnabled(context)){next.setAlpha(1f);next.setTranslationX(0f);return;}
         next.setAlpha(0f);next.setTranslationX(direction*dpf(context,24));
-        next.animate().alpha(1f).translationX(0f).setDuration(220).setStartDelay(60).setInterpolator(new DecelerateInterpolator()).start();
+        next.animate().alpha(1f).translationX(0f).setDuration(280).setInterpolator(new DecelerateInterpolator(1.8f)).start();
     }
     /** Tiny lime pulse used when something is confirmed inline. */
     public static void pulse(View view){if(!motionEnabled(view.getContext()))return;view.animate().cancel();view.setScaleX(0.92f);view.setScaleY(0.92f);view.animate().scaleX(1f).scaleY(1f).setDuration(260).setInterpolator(new DecelerateInterpolator(2f)).start();}
@@ -463,7 +468,7 @@ public final class Ui {
             super(context);trail.setStyle(Paint.Style.STROKE);trail.setStrokeWidth(dpf(context,2));trail.setColor(0x80B8EF73);trail.setStrokeCap(Paint.Cap.ROUND);
             trail.setPathEffect(new DashPathEffect(new float[]{dpf(context,5),dpf(context,6)},0f));
             plane.setColor(LIME);plane.setStyle(Paint.Style.FILL);fold.setColor(0x660B1409);fold.setStyle(Paint.Style.STROKE);fold.setStrokeWidth(dpf(context,1.5f));glow.setColor(LIME);
-            setContentDescription(L.t("Saving your handoff","正在发送到 Codex"));
+            setContentDescription(L.t("Handoff saved on your phone","交办已保存在手机"));
         }
         public void play(long duration,Runnable end){
             if(!motionEnabled(getContext())){progress=1f;invalidate();if(end!=null)postDelayed(end,150);return;}
@@ -518,8 +523,8 @@ public final class Ui {
         overlay.setDescendantFocusability(ViewGroup.FOCUS_AFTER_DESCENDANTS);
         overlay.setOnApplyWindowInsetsListener((target,insets)->{int bottom=Build.VERSION.SDK_INT>=30?insets.getInsets(WindowInsets.Type.systemBars()|WindowInsets.Type.displayCutout()).bottom:insets.getSystemWindowInsetBottom();target.setPadding(0,0,0,Math.max(0,bottom-root.getPaddingBottom()));return insets;});
         LinearLayout card=vertical(context);card.setPadding(dp(context,22),dp(context,22),dp(context,22),dp(context,18));
-        GradientDrawable shape=new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM,dark?new int[]{0xF0334136,0xFF202A22}:new int[]{0xF8FFFFFF,0xFFF0F5EA});shape.setCornerRadius(dpf(context,28));shape.setStroke(dp(context,1),LINE_STRONG);
-        if(Build.VERSION.SDK_INT<31)shape.setColors(dark?new int[]{0xFF334136,0xFF202A22}:new int[]{0xFFFFFFFF,0xFFF0F5EA});
+        GradientDrawable shape=new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM,dark?new int[]{0xF0303730,0xFF202521}:new int[]{0xF8FFFFFF,0xFFF3F5EF});shape.setCornerRadius(dpf(context,28));shape.setStroke(dp(context,1),LINE_STRONG);
+        if(Build.VERSION.SDK_INT<31)shape.setColors(dark?new int[]{0xFF303730,0xFF202521}:new int[]{0xFFFFFFFF,0xFFF3F5EF});
         card.setClickable(true);
         ScrollView viewport=new ScrollView(context);viewport.addView(card,new ScrollView.LayoutParams(-1,-2));
         FrameLayout surface=new FrameLayout(context);surface.setBackground(shape);surface.setElevation(dpf(context,12));surface.setClipToOutline(true);surface.addView(viewport,new FrameLayout.LayoutParams(-1,-2));

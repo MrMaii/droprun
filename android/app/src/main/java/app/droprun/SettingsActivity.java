@@ -56,12 +56,13 @@ public class SettingsActivity extends StyledActivity {
     // ---- 电脑 -----------------------------------------------------------------------------------
     void computerSection(){
         LinearLayout card=section(L.t("Computer","电脑"));
+        card.setBackground(Ui.outlined(this,Ui.dark?0xFF2B372C:0xFF222B24,0,Ui.RADIUS_CARD,0));card.setElevation(Ui.dpf(this,3));
         LinearLayout head=Ui.row(this);
-        TextView name=Ui.text(this,store.computerName(),17,Ui.TEXT);name.setTypeface(Ui.medium());name.setPadding(0,0,0,0);head.addView(name,Ui.grow());
+        ImageView computer=new ImageView(this);computer.setImageResource(R.drawable.ic_computer);computer.setImageTintList(ColorStateList.valueOf(Ui.LIME));computer.setPadding(dp(10),dp(10),dp(10),dp(10));computer.setBackground(Ui.outlined(this,0xFF354236,0,15,0));computer.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);head.addView(computer,Ui.square(this,44));Ui.space(head,12);
+        LinearLayout words=Ui.vertical(this);TextView name=Ui.title(this,store.computerName(),17);name.setTextColor(0xFFF4F6F0);name.setPadding(0,0,0,0);words.addView(name);words.addView(Ui.text(this,store.projects().length()+L.t(" Codex projects"," 个 Codex 项目"),12,0xFFC5CEC2),Ui.margins(this,5,0));head.addView(words,Ui.grow());
         boolean online=store.computerOnline();
-        head.addView(Ui.pill(this,online?L.t("Online","在线"):L.t("Offline","离线"),online?Ui.ACCENT:Ui.MUTED),trailing());
         card.addView(head);
-        card.addView(Ui.caption(this,store.projects().length()+L.t(" Codex projects · "," 个 Codex 项目 · ")+(online?L.t("Ready to receive handoffs","随时可以接收任务"):L.t("Handoffs wait safely while offline","离线时任务会排队等待"))));
+        LinearLayout connection=Ui.row(this);connection.addView(Ui.pill(this,online?L.t("Online","在线"):L.t("Offline","离线"),online?Ui.LIME:0xFFC5CEC2));Ui.space(connection,10);connection.addView(Ui.text(this,online?L.t("Ready to receive handoffs","随时可以接收任务"):L.t("Handoffs wait safely while offline","离线时任务会排队等待"),12,0xFFD3DACE),Ui.grow());card.addView(connection,Ui.margins(this,16,0));
     }
     void disconnectSection(){
         LinearLayout card=section(L.t("Connection management","连接管理"));

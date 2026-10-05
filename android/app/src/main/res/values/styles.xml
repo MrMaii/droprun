@@ -4,37 +4,46 @@
         <item name="android:colorAccent">#365A24</item>
         <item name="android:colorControlActivated">#365A24</item>
         <item name="android:colorControlHighlight">#33B8EF73</item>
-        <item name="android:textColorPrimary">#17251E</item>
-        <item name="android:textColorSecondary">#5B695F</item>
-        <item name="android:textColorHint">#69786C</item>
-        <item name="android:colorBackground">#F6F7F2</item>
+        <item name="android:textColorPrimary">#191D1A</item>
+        <item name="android:textColorSecondary">#616A63</item>
+        <item name="android:textColorHint">#687168</item>
+        <item name="android:colorBackground">#F7F7F2</item>
         <item name="android:colorBackgroundFloating">#FFFFFF</item>
         <item name="android:windowLightStatusBar">true</item>
-        <item name="android:statusBarColor">#F6F7F2</item>
-        <item name="android:navigationBarColor">#F6F7F2</item>
-        <item name="android:windowBackground">#F6F7F2</item>
+        <item name="android:statusBarColor">#F7F7F2</item>
+        <item name="android:navigationBarColor">#F7F7F2</item>
+        <item name="android:windowBackground">#F7F7F2</item>
         <item name="android:alertDialogTheme">@style/DialogTheme</item>
     </style>
     <style name="AppThemeDark" parent="android:style/Theme.Material.NoActionBar">
         <item name="android:fontFamily">sans-serif</item>
         <item name="android:colorAccent">#B8EF73</item>
-        <item name="android:textColorPrimary">#F1F5ED</item>
-        <item name="android:textColorSecondary">#B3C1B1</item>
-        <item name="android:colorBackground">#111812</item>
-        <item name="android:colorBackgroundFloating">#212B24</item>
+        <item name="android:colorControlActivated">#B8EF73</item>
+        <item name="android:colorControlHighlight">#33B8EF73</item>
+        <item name="android:textColorPrimary">#F4F5EF</item>
+        <item name="android:textColorSecondary">#BEC6BD</item>
+        <item name="android:textColorHint">#A8B3A7</item>
+        <item name="android:colorBackground">#111512</item>
+        <item name="android:colorBackgroundFloating">#202521</item>
         <item name="android:windowLightStatusBar">false</item>
-        <item name="android:windowBackground">#111812</item>
+        <item name="android:statusBarColor">#111512</item>
+        <item name="android:navigationBarColor">#111512</item>
+        <item name="android:windowBackground">#111512</item>
         <item name="android:alertDialogTheme">@style/DialogThemeDark</item>
     </style>
     <style name="DialogTheme" parent="android:style/Theme.Material.Light.Dialog.Alert">
         <item name="android:colorAccent">#365A24</item>
+        <item name="android:textColorPrimary">#191D1A</item>
+        <item name="android:textColorSecondary">#616A63</item>
         <item name="android:colorBackgroundFloating">#FFFFFF</item>
         <item name="android:windowBackground">@drawable/dialog_surface</item>
         <item name="android:buttonBarButtonStyle">@style/DialogButton</item>
     </style>
     <style name="DialogThemeDark" parent="android:style/Theme.Material.Dialog.Alert">
         <item name="android:colorAccent">#B8EF73</item>
-        <item name="android:colorBackgroundFloating">#212B24</item>
+        <item name="android:textColorPrimary">#F4F5EF</item>
+        <item name="android:textColorSecondary">#BEC6BD</item>
+        <item name="android:colorBackgroundFloating">#202521</item>
         <item name="android:windowBackground">@drawable/dialog_surface</item>
         <item name="android:buttonBarButtonStyle">@style/DialogButton</item>
     </style>
