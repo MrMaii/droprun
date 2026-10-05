@@ -18,10 +18,6 @@ and evidence of what changed.
 **UI demonstration only:** nothing was sent to an agent, and the report uses
 labelled sample data.
 
-<p align="center"><img src="assets/brand/readme-ui-tour.gif" width="280" alt="Nine-second native Android development UI tour: project selection, note editing, model options, settings and a labelled demonstration report"></p>
-
-[9-second native UI video](https://droprun.dengmaizi0802.chatgpt.site/media/ui-tour-en.mp4) · [Captions](landing/media/ui-tour-en.vtt)
-
 <table>
   <tr>
     <th align="center">01 · Share a reference</th>
@@ -35,13 +31,17 @@ labelled sample data.
   </tr>
   <tr>
     <td>Pick an existing project. Add a note when you have a specific change in mind.</td>
-    <td>See recent handoffs and counts by project, with tasks, follow-ups and pending shares kept clear.</td>
+    <td>Tasks count independent requests; dispatches count accepted shares and follow-ups. Network retries add neither.</td>
     <td>See the result, required actions, screenshots and files. Open the full report when needed.</td>
   </tr>
 </table>
 
 Native 0.5.1 development UI, October 5, 2026. The 0.5.2-rc.1 candidate includes this UI pass.
 [Capture notes](assets/brand/readme-media.md).
+
+<p align="center"><img src="assets/brand/readme-ui-tour.gif" width="240" alt="Nine-second native Android development UI tour: project selection, note editing, model options, settings and a labelled demonstration report"></p>
+
+[9-second native UI video](https://droprun.dengmaizi0802.chatgpt.site/media/ui-tour-en.mp4) · [Captions](landing/media/ui-tour-en.vtt)
 
 <details>
 <summary><strong>Earlier preview tour and longer walkthrough</strong></summary>
@@ -74,6 +74,7 @@ source-to-Codex task.
 | Windows x64, Git, signed-in Codex, Chrome or Edge | Android 8 or newer | Your Cloudflare account with Workers, D1 and R2 |
 
 1. **Install on Windows.** Get the [installer](https://github.com/MrMaii/droprun/releases/download/v0.5.2-rc.1/DropRun-0.5.2-windows-x64-setup.exe) or [portable ZIP](https://github.com/MrMaii/droprun/releases/download/v0.5.2-rc.1/DropRun-0.5.2-windows-x64.zip).
+   For the portable edition, extract to a permanent folder and open `DropRun.cmd`.
 2. **Set up your Relay.** Open the local browser guide, check prerequisites and
    deploy to your own Cloudflare account.
 3. **Pair your phone.** Install the [Android APK](https://github.com/MrMaii/droprun/releases/download/v0.5.2-rc.1/DropRun-0.5.2-android.apk), scan the computer's code, confirm the server and authorize projects.

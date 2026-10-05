@@ -99,7 +99,7 @@ public class SettingsActivity extends StyledActivity {
     }
     LinearLayout option(String title,String detail,boolean selected,Runnable action){
         LinearLayout row=Ui.optionRow(this,title,detail,selected);
-        row.setAlpha(busy?0.6f:1f);row.setOnClickListener(v->{if(!selected&&!busy)action.run();});return row;
+        row.setEnabled(!busy);row.setFocusable(!busy);row.setAlpha(busy?0.6f:1f);row.setOnClickListener(v->{if(!selected&&!busy)action.run();});return row;
     }
     void changeMode(boolean direct){
         if(direct)new AlertDialog.Builder(this).setTitle(L.t("Switch to direct execution?","改为直接执行？")).setMessage(L.t("Future handoffs will skip plan approval. Codex can edit the original project and run commands. Backups are not automatic.","之后转发的任务会跳过计划审批，Codex 直接修改电脑上的项目并运行命令，不自动备份。")).setNegativeButton(L.t("Cancel","取消"),null).setPositiveButton(L.t("Confirm","确认"),(d,w)->saveMode(true)).show();

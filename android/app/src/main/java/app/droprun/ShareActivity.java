@@ -448,8 +448,8 @@ public class ShareActivity extends StyledActivity {
         LinearLayout flight=Ui.row(this);
         TextView chip=materialChip();chip.setMaxWidth(dp(100));flight.addView(chip,new LinearLayout.LayoutParams(-2,-2));
         plane=new Ui.PlaneView(this);flight.addView(plane,new LinearLayout.LayoutParams(0,-2,1));
-        badge=new TextView(this);badge.setText("Codex");badge.setTextSize(11);badge.setTypeface(Ui.medium());badge.setTextColor(Ui.TEXT);badge.setGravity(Gravity.CENTER);
-        badge.setBackground(Ui.circle(this,Ui.SURFACE_2,Ui.LINE_STRONG));badge.setContentDescription(L.t("Codex on your computer","电脑上的 Codex"));flight.addView(badge,Ui.square(this,48));
+        badge=new TextView(this);badge.setText("Codex");badge.setTextSize(11);badge.setTypeface(Ui.medium());badge.setTextColor(Ui.TEXT);badge.setGravity(Gravity.CENTER);badge.setSingleLine(true);badge.setMinWidth(dp(48));badge.setPadding(dp(10),0,dp(10),0);
+        badge.setBackground(Ui.outlined(this,Ui.SURFACE_2,Ui.LINE_STRONG,24,1));badge.setContentDescription(L.t("Codex on your computer","电脑上的 Codex"));flight.addView(badge,new LinearLayout.LayoutParams(-2,dp(48)));
         column.addView(flight,Ui.margins(this,6,2));
         status=Ui.text(this,outcome(),14,Ui.TEXT);status.setGravity(Gravity.CENTER);status.setVisibility(View.INVISIBLE);status.setAccessibilityLiveRegion(View.ACCESSIBILITY_LIVE_REGION_POLITE);
         column.addView(status,Ui.margins(this,2,0));
@@ -457,19 +457,21 @@ public class ShareActivity extends StyledActivity {
     }
     String outcome(){
         if(!store.online())return L.t("You're offline. Saved safely; it will send when connected.","手机离线，已保存。联网后自动发送。");
+        if(!notificationsAllowed())return L.t("Notifications are off. Check DropRun or Codex for updates.","通知未开启，请在 App 或 Codex 查看后续。");
         String mode=store.directExecution()?L.t("Codex will read the available material and work on your request.","Codex 收到后会读取可获取的材料，并直接处理需求。"):L.t("Codex will read the available material and prepare a plan for your approval.","Codex 收到后会读取可获取的材料，先给方案，等你批准后执行。");
-        String updates=TaskNotifications.allowed(this)?L.t("We'll notify you when results or decisions are ready. You can also check DropRun or Codex.","结果或需确认时会通知你，也可在 App 或 Codex 查看。"):L.t("Notifications are off. Check DropRun or Codex for updates.","通知未开启，请在 App 或 Codex 查看后续。");
+        String updates=L.t("We'll notify you when results or decisions are ready. You can also check DropRun or Codex.","结果或需确认时会通知你，也可在 App 或 Codex 查看。");
         return mode+" "+updates;
     }
+    boolean notificationsAllowed(){return TaskNotifications.allowed(this);}
     void fly(){
         handler.postDelayed(()->{if(!gone())plane.play(360,this::landed);},50);
     }
     void landed(){
         if(gone())return;
-        sendTitle.setText(L.t("Saved. We'll take it from here.","已保存，自动发送"));
-        badge.setTextColor(Ui.ACCENT);badge.setBackground(Ui.circle(this,Ui.LIME_SOFT,Ui.LIME_LINE));Ui.pulse(badge);
-        status.setVisibility(View.VISIBLE);Ui.fadeIn(status,220);
-        int timeout=Ui.motionEnabled(this)?280:100;android.view.accessibility.AccessibilityManager accessibility=(android.view.accessibility.AccessibilityManager)getSystemService(ACCESSIBILITY_SERVICE);
+        sendTitle.setText(store.online()?L.t("Saved. We'll take it from here.","已保存，自动发送"):L.t("Saved. Waiting for connection.","已保存，等待联网"));
+        badge.setTextColor(Ui.ACCENT);badge.setBackground(Ui.outlined(this,Ui.LIME_SOFT,Ui.LIME_LINE,24,1));Ui.pulse(badge);
+        status.setText(outcome());status.setVisibility(View.VISIBLE);Ui.fadeIn(status,220);
+        int timeout=!store.online()||!notificationsAllowed()?4000:Ui.motionEnabled(this)?280:100;android.view.accessibility.AccessibilityManager accessibility=(android.view.accessibility.AccessibilityManager)getSystemService(ACCESSIBILITY_SERVICE);
         if(Build.VERSION.SDK_INT>=29)timeout=accessibility.getRecommendedTimeoutMillis(timeout,android.view.accessibility.AccessibilityManager.FLAG_CONTENT_TEXT|android.view.accessibility.AccessibilityManager.FLAG_CONTENT_CONTROLS);
         else if(accessibility.isTouchExplorationEnabled())timeout=8000;
         handler.postDelayed(this::close,timeout);

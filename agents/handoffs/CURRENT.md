@@ -4,7 +4,42 @@ Updated 2026-10-05 UTC. **v0.5.2-rc.1 is publicly available.**
 Stable launch and marketing handover are not achieved. Preserve the complete
 Android+Windows self-hosted goal and the user's local-only validation boundary.
 
-## Latest session: focus, pairing and README follow-through
+## Latest session: readable share feedback and pending controls
+
+- Kept independent UI/brand work moving under the user's local-only boundary.
+  Offline/notifications-off saved feedback now has a4000ms base reading window,
+  with existing accessibility extension and immediate Close. Ordinary return is
+  unchanged. Flight completion refreshes the copy; offline title names waiting
+  for connection. This still proves neither Relay receipt nor execution.
+- Current native screenshots exposed Codex wrapping/clipping at200% font. Its
+  capsule now measures text width. Original screenshots are retained separately.
+  Pending execution choices are truly disabled and cannot take keyboard focus;
+  the existing selection, notice, guard and server flow remain unchanged.
+- Independent debug probes never import, save, seed preferences, pair or submit.
+  Feedback red5tests/4failures, badge red1/1 and settings-busy red2/2 reproduced
+  each issue. Final API35/320dp/font200 native matrix passed15/15 motion-off and
+  affected7/7 motion-on. Four EN/ZH raw attention views inspected;8PNGs retained.
+  Nonempty in-memory note, actual plane callback, real auto-return/Close/destroy,
+  disabled accessibility state and keyboard skipping are covered. Settings
+  settlement models availability only, not a server-confirmed new preference.
+- Debug/test builds, JVM24/24 and release lint0errors/28warnings passed. Device
+  settings restored/read back320×640/160dpi/font2.0/animator null/window1/transition1.
+  Exact hashes, original failures and limits:
+  [UI follow-through](../../docs/releases/ui-followthrough-2026-10-05.md);
+  private evidence `.local/ux-oct5-share-feedback/`.
+- Bilingual README now explains three steps before the smaller240px native tour,
+  defines task/dispatch counts and names the portable DropRun.cmd entry. Existing
+  media, Demo markers and dated provenance are retained.
+- Previous CI37342682475 passed Android and preview retry; core223pass/1cancelled
+  on a browser fixture's45s outer budget, shorter than its20s start+30s load budgets.
+  Only that test now permits90s; six1280×900 captures/all assertions remain, with
+  timing diagnostics. Browser6/6 and local Node224/224/no skips/cancellations,
+  33.531s passed. Exact slow CI stage remains unknown; original log retained.
+- These source refinements are newer than0.5.2-rc.1 downloads. No package, tag,
+  owner cloud configuration, site media or original unpublished film was changed.
+  Curated source publication and matching CI are recorded separately.
+
+## Previous session: focus, pairing and README follow-through
 
 - Diagnosed the earlier large-text green tint: Android's default focus highlight
   covered the whole focused ScrollView/share root, not a font-specific palette.
@@ -34,7 +69,7 @@ Android+Windows self-hosted goal and the user's local-only validation boundary.
   exact gate handshake and rebuild/cleanup assertions remain. Production45s
   behavior is unchanged. Original failure retained as `source-ci-first-failed.log`;
   focused preview15/15/no skips and full local Node224/224/no skips,34.818s passed.
-  The matching-main CI follow-up remains to be recorded.
+  The following matching-main run and its distinct cancellation are recorded above.
 - Original emulator size/density/font/animation values restored/read back:
   320×640,160dpi,2.0/null/1/1. Only internal PNGs were added. Original uncommitted
   film/LAUNCH_KIT and their handoff section remain separate and unpublished.
@@ -167,17 +202,14 @@ Android+Windows self-hosted goal and the user's local-only validation boundary.
 
 ## Single recommended next action
 
-Review share-success feedback readability. ShareActivity.landed() currently
-reveals the detailed outcome for100ms with motion off, or280ms including a220ms
-fade when enabled. Determine whether offline/notification instructions can be
-read, then apply the smallest verified improvement while retaining immediate
-Close and prompt return for routine saves. Validate only an independent local
-UI path; do not send tasks, clear the retained draft, navigate normal Pair or
-repeat the rejected process-loss probe. Genuine acceptance remains open; current
-download evidence belongs to0.5.2-rc.1 and the original film remains separate.
-The concrete independent-probe proposal is `.local/ux-oct5-feedback-proposal.md`;
-it uses the restored-sent presentation branch before ShareImport.open, not a
-genuine save or submission. Finish the pending preview-test/core-CI check first.
+Finish matching-source CI and inspect the published bilingual README. Then
+review whether the saved execution preference is clear before the share's Send
+action: routine post-save mode instructions still disappear with the short
+feedback. Check the real editor first and improve only demonstrated ambiguity,
+using an independent local UI path with no task/import/prefs/outbox writes.
+Do not clear the retained draft, navigate normal Pair or repeat the rejected
+process-loss probe. Genuine acceptance remains open; download evidence belongs
+to0.5.2-rc.1 and the original film remains separate.
 
 ## Files this pass
 
@@ -186,6 +218,12 @@ debug-only independent probes and three native test classes, debug manifest,
 bilingual README, PRD/contracts/changelog, UI follow-through record and handoff.
 Local evidence: `.local/ux-oct5-color-audit/` (original red logs, green logs,
 source/build hashes, pixel analysis, raw screenshots and restored settings).
+
+Latest: ShareActivity.java, SettingsActivity.java, two independent debug probes
+and two native tests, debug manifest, README EN/ZH, PRD/contracts/changelog,
+UI follow-through and handoff; browser.test.mjs lifecycle budget/diagnostics.
+Local evidence `.local/ux-oct5-share-feedback/` and browser-ci-budget logs in
+`.local/ux-oct5-color-audit/`. No new public media or release file.
 
 Current work: native visual hierarchy and onboarding/history, shared feedback,
 long-status typography, landing build source/CSS/JS, bilingual README/native media,

@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased — focus and manual-pairing refinement
+## Unreleased — native feedback refinement
 
 - Structural keyboard focus preserves page colors; button focus rings and Enter
   activation remain visible and available.
@@ -9,6 +9,14 @@
   no request. Both input methods still require source confirmation.
 - README places the existing demonstration label before the tour and aligns the
   English home description with locally saved shares.
+- Offline and disabled-notification share feedback stays readable for at least
+  four seconds, with immediate Close and the existing accessibility timeout.
+  Flight completion refreshes the explanation; ordinary saves still return promptly.
+- The Codex label grows with text size instead of wrapping inside a fixed circle.
+  Pending execution-setting choices expose their disabled state to keyboard and
+  accessibility users, then become available when the request settles.
+- README leads with the three-step screenshots, then a smaller native tour;
+  project counts and the portable startup entry are explicit in both languages.
 
 These changes are newer than the downloadable 0.5.2-rc.1 packages.
 [Local verification](docs/releases/ui-followthrough-2026-10-05.md).

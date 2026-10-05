@@ -79,3 +79,71 @@ all handshake/rebuild/cleanup assertions remain. Production's 45s budget is unch
 The focused preview suite then passed 15/15, no skips, and the complete local
 Node suite passed 224/224, no skips, in 34.818s. The original CI failure remains
 recorded; runtime UI source and package provenance were not changed.
+
+## Share feedback, text scaling and pending settings
+
+Offline and disabled-notification explanations previously disappeared after
+100ms with motion off, or 280ms including a 220ms fade with motion on. They now
+have a 4000ms base reading window, extended by the existing accessibility timeout.
+Close, Back and backdrop clicks still leave saved feedback immediately. Ordinary
+saves keep their short return. The offline headline says it is waiting for a
+connection; the notification-off explanation leads with where to check updates.
+
+Flight completion recomputes the explanation. Native reproduction showed an
+earlier offline message surviving reconnection during flight. This change only
+describes phone persistence and future delivery; it does not acknowledge receipt.
+
+The 200% screenshots also exposed Codex wrapping and clipping inside its fixed
+48dp circle. A capsule now measures its width from the one-line label, retaining
+the same height and success pulse. Originals remain under
+`.local/ux-oct5-share-feedback/screens/`; new captures are recorded separately.
+
+Execution choices previously dimmed while saving but remained enabled and
+keyboard-focusable. The existing busy flag now disables both properties. The
+confirmed selection, notice, duplicate-action guard and server behavior are unchanged.
+
+README presents the three-step screenshots before a 240px-wide native tour;
+the existing Demo label and dated capture notes remain. Both languages define
+task/dispatch counts and name `DropRun.cmd` as the portable launch entry.
+
+Local reproduction and verification are retained in
+`.local/ux-oct5-share-feedback/`: the initial five feedback tests failed four
+times on timing/stale copy; the additional badge check failed on clipped lines;
+both pending-settings checks failed on enabled state. A later review strengthened
+Close coverage with a nonempty in-memory note. Final feedback tests use the real
+plane callback, text layout, system timeout, Close and Activity destruction.
+
+The independent debug activities do not import, save, submit, seed preferences
+or pair. The share probe takes the restored-sent presentation branch before
+`ShareImport.open()`; API, task save, pairing and draft/outbox access are forbidden.
+The settings probe only models busy/result states in memory and reads existing
+cache. Its success notice proves controls become available, not a server-confirmed
+preference change. Genuine saves and source-App return remain unverified here.
+
+Final native matrix: API35, 720×1440/density360 (320×640dp), 200% font,
+15/15 checks with motion off and 7/7 affected share/settings checks with motion
+on. Eight unmodified share PNGs are retained in `screens-final/`; all four EN/ZH
+motion-on attention views were inspected. The complete title, explanation and
+Codex label fit; Close remains reachable. The probe notice over the launcher's
+background is diagnostic content, not part of the product or marketing footage.
+The on/off runs also cover a real four-second return, immediate Close with a
+saved nonempty in-memory note, and simulated changes during the flight.
+
+Builds, JVM24/24 and release lint (0errors/28warnings) passed. Original size,
+density, font and animation settings were restored and read back. Final debug
+APK SHA-256: `a9693721d25250330f9b6707ee48b708c78aa0ad15782a21f4f400c9386b96be`.
+ShareActivity SHA-256: `6478dd4a333465164efc31889cebf2b37dbfaa373d06f1f4be502c669b5539e4`;
+SettingsActivity: `ef8fa8c59586b487593bc2029a0721d82c0c919f6e669b1707f0f7dfca83fe94`.
+These changes remain newer than the downloadable candidate; no release artifact
+or site media was replaced, and no blocked operation was repeated.
+
+### CI fixture follow-up
+
+[CI37342682475](https://github.com/MrMaii/droprun/actions/runs/37342682475), source
+72686fc, passed Android and the preview retry. Core had 223 passes and one
+cancelled browser positive after its 45s test deadline. The first browser case's
+outer budget was shorter than the existing 20s launch plus 30s load budgets.
+Its test now allows 90s for the lifecycle, with all six 1280×900 captures and
+interaction assertions intact, and logs capture timing. Production limits did
+not change. Local browser tests passed 6/6 and Node 224/224, no skips/cancellations,
+33.531s. The exact CI stage that was slow is unknown; the failed log is retained.

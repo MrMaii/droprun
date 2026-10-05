@@ -15,10 +15,6 @@ Windows Connector 把参考与意图交给本地 Codex。回来查看进度、�
 
 **仅演示界面：** 没有向 agent 发送任务，报告使用明确标注的示例数据。
 
-<p align="center"><img src="assets/brand/readme-ui-tour-zh.gif" width="280" alt="12 秒原生 Android 开发界面动图：选项目、编辑留言、模型选项、关闭确认与继续编辑、设置和标注的演示报告"></p>
-
-[12 秒原生界面视频](https://droprun.dengmaizi0802.chatgpt.site/media/ui-tour-zh.mp4) · [字幕](landing/media/ui-tour-zh.vtt)
-
 <table>
   <tr>
     <th align="center">01 · 分享参考</th>
@@ -32,13 +28,17 @@ Windows Connector 把参考与意图交给本地 Codex。回来查看进度、�
   </tr>
   <tr>
     <td>选已有项目。有明确想法时，留一句希望完成的改动。</td>
-    <td>按项目查看最近交办与统计，分清任务、追问与待发送记录。</td>
+    <td>任务统计独立任务；交办统计已接收的分享与追问。网络重试不增加统计。</td>
     <td>先看结果、需要处理的动作、截图和文件，再按需展开报告。</td>
   </tr>
 </table>
 
 截图来自 2026 年 10 月 5 日的 0.5.1 原生开发界面。0.5.2-rc.1 候选包已包含本轮界面重构。
 [媒体来源说明](assets/brand/readme-media.md)。
+
+<p align="center"><img src="assets/brand/readme-ui-tour-zh.gif" width="240" alt="12 秒原生 Android 开发界面动图：选项目、编辑留言、模型选项、关闭确认与继续编辑、设置和标注的演示报告"></p>
+
+[12 秒原生界面视频](https://droprun.dengmaizi0802.chatgpt.site/media/ui-tour-zh.mp4) · [字幕](landing/media/ui-tour-zh.vtt)
 
 <details>
 <summary><strong>较早预览版动图与完整界面导览</strong></summary>
@@ -66,6 +66,7 @@ Windows Connector 把参考与意图交给本地 Codex。回来查看进度、�
 | Windows x64、Git、已登录 Codex、Chrome 或 Edge | Android 8 或更新版本 | 自己的 Cloudflare 账号，启用 Workers、D1、R2 |
 
 1. **安装电脑端。** 下载 [Windows 安装包](https://github.com/MrMaii/droprun/releases/download/v0.5.2-rc.1/DropRun-0.5.2-windows-x64-setup.exe)或[便携 ZIP](https://github.com/MrMaii/droprun/releases/download/v0.5.2-rc.1/DropRun-0.5.2-windows-x64.zip)。
+   便携版解压到固定位置后，运行 `DropRun.cmd`。
 2. **部署自己的 Relay。** 打开本机浏览器向导，检查环境，部署到自己的 Cloudflare 账号。
 3. **配对手机。** 安装 [Android APK](https://github.com/MrMaii/droprun/releases/download/v0.5.2-rc.1/DropRun-0.5.2-android.apk)，扫码确认电脑与服务器，再授权项目。
 4. **发出第一项交办。** 分享参考，跟进接收、执行、审批与报告。“已保存”表示手机已保存，

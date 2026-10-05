@@ -6,7 +6,7 @@ This edition supersedes earlier hosted/pricing assumptions and ADR 0014's visual
 layout. Decisions: [self-hosting](../decisions/0015-public-selfhost-release.md) and
 [project-first UX](../decisions/0016-project-first-light-ux.md). Historical sections
 below describe the original product goals; release evidence is maintained only
-in [the current candidate record](../releases/0.5.1-rc.2.md).
+in [the current candidate record](../releases/0.5.2-rc.1.md).
 
 - Android + Windows x64; each owner deploys a private Cloudflare Relay. No official
   registration, subscription or multitenant service. GPTSites is the public website.
@@ -26,6 +26,13 @@ in [the current candidate record](../releases/0.5.1-rc.2.md).
   control. Structural page focus must not tint the entire content surface.
   Manual pairing validation keeps entered values and shows a complete, visible
   form error; format checking never sends a pairing request.
+  Share-save feedback gives offline or disabled-notification instructions a
+  readable window, including when animations are off; Close stays immediate.
+  It reflects connection/notification state when the flight finishes. Ordinary
+  saves retain prompt return; phone persistence never implies Relay receipt.
+  The Codex label remains complete at 200% font. Pending execution-setting
+  choices report disabled state and cannot take keyboard focus; they become
+  available again when the request settles.
 - Project totals count retained independent root tasks and accepted dispatches,
   including follow-ups. Retries never count; local pending shares are separate.
 - Project history is paginated. Saved outbox entries become immediately visible,

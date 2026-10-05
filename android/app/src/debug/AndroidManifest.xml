@@ -2,7 +2,9 @@
     <application>
         <activity android:name="app.droprun.DemoFocusActivity" android:exported="false" />
         <activity android:name="app.droprun.DemoSettingsFocusActivity" android:exported="false" />
+        <activity android:name="app.droprun.DemoSettingsBusyActivity" android:exported="false" />
         <activity android:name="app.droprun.DemoManualPairActivity" android:exported="false" />
+        <activity android:name="app.droprun.DemoShareFeedbackActivity" android:exported="false" android:theme="@style/ShareTheme" android:taskAffinity="" android:excludeFromRecents="true" android:configChanges="orientation|screenSize|keyboardHidden" android:windowSoftInputMode="adjustResize" />
         <provider android:name="app.droprun.DemoExportProvider" android:authorities="${applicationId}.export-fixture" android:exported="false" />
         <provider android:name="app.droprun.DemoImportProvider" android:authorities="${applicationId}.import-fixture" android:exported="false" />
         <activity android:name="app.droprun.DemoHomeActivity" android:exported="true" />

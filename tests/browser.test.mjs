@@ -34,7 +34,8 @@ test('visual verification rejects remote targets and arbitrary evaluation action
   await assert.rejects(verifyVisual({ url: 'http://localhost:3000/', steps: [{ action: 'assert', selector: 'body', text: ' ', computedStyle: {} }] }), /效果断言/);
 });
 
-test('real browser verifies target route, hover transition, click state and scrolling with screenshots', { skip: !executable, timeout: 45000 }, async t => {
+// Cover the existing 20s cold-start and 30s load budgets, six captures and cleanup.
+test('real browser verifies target route, hover transition, click state and scrolling with screenshots', { skip: !executable, timeout: 90000 }, async t => {
   const fixtureData = await fixture(t);
   const result = await verifyVisual({ ...fixtureData, steps: [
     { action: 'hover', selector: '#card', wait: 150 },
@@ -43,6 +44,7 @@ test('real browser verifies target route, hover transition, click state and scro
     { action: 'assert', selector: '#result', text: 'Expanded', wait: 0 },
     { action: 'scroll', y: 700, wait: 150 }
   ] });
+  t.diagnostic(JSON.stringify({ durationMs: result.finishedAt - result.startedAt, screenshots: result.screenshots.map(shot => ({ name: shot.name, elapsedMs: shot.capturedAt - result.startedAt })) }));
   assert.equal(result.passed, true, JSON.stringify(result.errors));
   assert.equal(result.title, 'Portfolio effects'); assert.equal(result.path, '/portfolio'); assert.equal(result.status, 200);
   assert.equal(result.screenshots.length, 6); assert.equal(result.steps.length, 5);
