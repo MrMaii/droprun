@@ -4,13 +4,16 @@ import { mkdtemp, mkdir, writeFile, rm, readdir, symlink, readFile } from 'node:
 import { EventEmitter } from 'node:events';
 import { createServer } from 'node:http';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { join, resolve } from 'node:path';
 import { Previews, resolveServerCommand, waitForPublicPreview } from '../connector/preview.mjs';
 import { freePort } from '../connector/browser.mjs';
 
 async function site(t) {
   const root = await mkdtemp(join(tmpdir(), 'droprun-preview-'));
-  t.after(() => rm(root, { recursive: true, force: true }));
+  t.after(async () => {
+    assert(resolve(root).startsWith(resolve(tmpdir()) + '\\droprun-preview-') || resolve(root).startsWith(resolve(tmpdir()) + '/droprun-preview-'));
+    await rm(root, { recursive: true, force: true, maxRetries: 3, retryDelay: 100 });
+  });
   await mkdir(join(root, 'dist'));
   await writeFile(join(root, 'dist', 'index.html'), '<!doctype html><h1>hello from preview</h1>');
   await writeFile(join(root, 'package.json'), JSON.stringify({ scripts: { dev: 'node server.js', build: 'echo build' } }));
@@ -179,14 +182,21 @@ test('live previews stop before same-project edits and reopen with a distinct ru
     await writeFile(join(root, 'server.js'), "require('node:http').createServer((request,response)=>response.end('live demo')).listen(Number(process.env.PORT),'127.0.0.1');");
     const request = { script: 'dev', port: await freePort(), path: '/demo' };
     const saved = { ...await previews.start('live', root, request), cwd: root, request };
+    const firstChild = previews.active.get('live').processes[0];
     const staticPreview = await previews.start('snapshot', root, { static: 'dist' });
     assert.equal(saved.mode, 'live'); assert.equal(typeof saved.revision, 'string'); assert.equal(saved.snapshotPath, null);
     await previews.stopLiveForCwd(root);
     assert.equal(previews.get('live'), null); assert.equal(previews.get('snapshot').revision, staticPreview.revision);
     assert.equal(events[0].reason, 'project-changing');
+    assert.throws(() => process.kill(firstChild.pid, 0), { code: 'ESRCH' });
+    await assert.rejects(fetch(saved.localUrl));
     const restored = await previews.restore('live', saved);
     assert.equal(restored.mode, 'live'); assert.notEqual(restored.revision, saved.revision);
     assert.equal(await (await fetch(restored.localUrl)).text(), 'live demo');
+    const restoredChild = previews.active.get('live').processes[0];
+    await previews.stopAll();
+    assert.throws(() => process.kill(restoredChild.pid, 0), { code: 'ESRCH' });
+    await assert.rejects(fetch(restored.localUrl));
   } finally { await previews.stopAll(); }
 });
 

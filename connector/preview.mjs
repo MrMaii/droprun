@@ -12,6 +12,35 @@ const scripts = new Set(['dev', 'start', 'preview', 'serve', 'storybook', 'docs'
 const mime = { '.html': 'text/html;charset=utf-8', '.css': 'text/css', '.js': 'text/javascript', '.mjs': 'text/javascript', '.json': 'application/json', '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.svg': 'image/svg+xml', '.webp': 'image/webp', '.ico': 'image/x-icon', '.woff2': 'font/woff2', '.woff': 'font/woff', '.txt': 'text/plain;charset=utf-8', '.map': 'application/json' };
 const inside = (root, path) => { const part = relative(root, path); return !isAbsolute(part) && part !== '..' && !part.startsWith('..\\') && !part.startsWith('../'); };
 const privateFile = name => /^(?:\.git|node_modules|\.env(?:\..*)?|\.npmrc|\.yarnrc.*|\.netrc|\.local|\.ssh|\.aws|cookies.*|credentials.*|secrets?.*|service[-_]account.*|id_rsa.*|id_ed25519.*)$/i.test(name) || /\.(?:pem|key|p12|pfx)$/i.test(name);
+const processClosures = new WeakMap();
+function spawnOwned(...args) {
+  const child = spawn(...args), state = { closed: false };
+  state.promise = new Promise(resolve => child.once('close', () => { state.closed = true; resolve(); }));
+  processClosures.set(child, state);
+  return child;
+}
+
+async function stopOwned(child) {
+  if (!child.pid) { child.kill(); return; }
+  const state = processClosures.get(child);
+  if (!state) throw new Error('无法确认预览进程的退出状态');
+  if (state.closed) return;
+  let timer;
+  try {
+    await Promise.race([
+      (async () => {
+        if (child.exitCode === null && child.signalCode === null) {
+          if (process.platform === 'win32') {
+            const killer = spawn('taskkill', ['/pid', String(child.pid), '/T', '/F'], { windowsHide: true, stdio: 'ignore' });
+            await new Promise((resolve, reject) => { killer.once('error', reject); killer.once('close', code => code === 0 || state.closed ? resolve() : reject(new Error('预览进程终止失败（' + code + '）'))); });
+          } else if (!child.kill() && !state.closed) throw new Error('预览进程终止失败');
+        }
+        await state.promise;
+      })(),
+      new Promise((_, reject) => { timer = setTimeout(() => reject(new Error('预览进程 5 秒内未确认退出，请重试关闭')), 5000); }),
+    ]);
+  } finally { clearTimeout(timer); }
+}
 
 async function snapshot(source, destination) {
   let files = 0, bytes = 0;
@@ -107,9 +136,10 @@ function gatedProxy(targetPort, token) {
   });
 }
 
-function startTunnel(port, bin) {
+function startTunnel(port, bin, onSpawn = () => {}) {
   return new Promise((resolve, reject) => {
-    const child = spawn(bin, ['tunnel', '--url', `http://127.0.0.1:${port}`, '--no-autoupdate'], { windowsHide: true });
+    const child = spawnOwned(bin, ['tunnel', '--url', `http://127.0.0.1:${port}`, '--no-autoupdate'], { windowsHide: true });
+    onSpawn(child);
     let output = '', settled = false;
     const timer = setTimeout(() => { if (!settled) { settled = true; child.kill(); reject(new Error('隧道 60 秒内没有就绪：' + output.slice(-300))); } }, 60000);
     const look = chunk => {
@@ -176,7 +206,7 @@ export class Previews {
         if (!Number.isInteger(port) || port < 1024 || port > 65535) throw new Error('请提供 dev server 监听的 port（1024–65535）');
         const probe = createServer();
         await new Promise((resolve, reject) => { probe.once('error', () => reject(new Error('预览端口已被占用，请选择其他 port：' + port))); probe.listen(port, '127.0.0.1', () => probe.close(resolve)); });
-        const child = spawn(plan.executable, plan.args, { cwd, windowsHide: true, env: { ...process.env, BROWSER: 'none', CI: '1', PORT: String(port), FORCE_COLOR: '0' }, shell: process.platform === 'win32' });
+        const child = spawnOwned(plan.executable, plan.args, { cwd, windowsHide: true, env: { ...process.env, BROWSER: 'none', CI: '1', PORT: String(port), FORCE_COLOR: '0' }, shell: process.platform === 'win32' });
         child.stdout.on('data', chunk => { entry.output = (entry.output + chunk).slice(-3000); }); child.stderr.on('data', chunk => { entry.output = (entry.output + chunk).slice(-3000); });
         child.on('error', error => { entry.output += '\n' + error.message; });
         entry.processes.push(child);
@@ -200,23 +230,23 @@ export class Previews {
         if (this.livePreviewOrigin) {
           const origin = new URL(this.livePreviewOrigin);
           if (origin.protocol !== 'https:' || origin.pathname !== '/' || origin.search || origin.hash || !this.tunnelToken || !this.bin) throw new Error('Managed live preview configuration is incomplete.');
-          const child = spawn(this.bin, ['tunnel', '--no-autoupdate', 'run'], { windowsHide: true, env: { ...process.env, TUNNEL_TOKEN: this.tunnelToken }, stdio: 'ignore' });
+          const child = spawnOwned(this.bin, ['tunnel', '--no-autoupdate', 'run'], { windowsHide: true, env: { ...process.env, TUNNEL_TOKEN: this.tunnelToken }, stdio: 'ignore' });
           child.on('error', error => this.log('Managed tunnel: ' + error.message));
           tunnel = { child, url: origin.origin };
         } else {
           if (!this.allowQuickTunnels) throw new Error('Quick Tunnels are disabled for installed instances.');
-          tunnel = await this.tunnel(gatePort, this.bin);
+          tunnel = await this.tunnel(gatePort, this.bin, child => entry.processes.push(child));
         }
-        entry.processes.push(tunnel.child);
+        if (!entry.processes.includes(tunnel.child)) entry.processes.push(tunnel.child);
         const publicUrl = new URL(path, tunnel.url); publicUrl.searchParams.set('k', token);
-        const alive = () => this.active.get(taskId) === entry && (tunnel.child.exitCode === undefined || tunnel.child.exitCode === null);
+        const alive = () => this.active.get(taskId) === entry && !entry.stopping && (tunnel.child.exitCode === undefined || tunnel.child.exitCode === null);
         try {
           await this.publicReady(publicUrl.href, token, alive);
           if (!alive()) throw new Error('预览启动已停止');
           entry.url = publicUrl.href;
           break;
         } catch (error) {
-          tunnel.child.kill(); entry.processes.pop();
+          await stopOwned(tunnel.child); entry.processes.pop();
           if (attempt === 1 || this.active.get(taskId) !== entry) throw error;
           this.log('公网预览未就绪，自动重建隧道一次：' + error.message);
         }
@@ -230,7 +260,7 @@ export class Previews {
     } catch (error) { await this.stop(taskId, 'startup-failed'); throw error; }
   }
 
-  get(taskId) { const entry = this.active.get(taskId); return entry?.url ? { url: entry.url, localUrl: entry.localUrl, path: entry.path, expiresAt: entry.expiresAt, mode: entry.mode, revision: entry.revision || null, snapshotPath: entry.snapshot || null, createdAt: entry.createdAt || null } : null; }
+  get(taskId) { const entry = this.active.get(taskId); return entry?.url && !entry.stopping ? { url: entry.url, localUrl: entry.localUrl, path: entry.path, expiresAt: entry.expiresAt, mode: entry.mode, revision: entry.revision || null, snapshotPath: entry.snapshot || null, createdAt: entry.createdAt || null } : null; }
 
   async restore(taskId, saved) {
     if (saved?.mode === 'live') {
@@ -281,7 +311,7 @@ export class Previews {
   }
 
   renew(taskId) {
-    const entry = this.active.get(taskId); if (!entry?.url) return null;
+    const entry = this.active.get(taskId); if (!entry?.url || entry.stopping) return null;
     clearTimeout(entry.timer);
     entry.expiresAt = Date.now() + this.minutes * 60000;
     entry.timer = setTimeout(() => this.stop(taskId, 'expired').catch(error => this.log(error.message)), this.minutes * 60000); entry.timer.unref?.();
@@ -290,7 +320,7 @@ export class Previews {
 
   async renewPublished(taskId) {
     const entry = this.active.get(taskId);
-    if (!entry) return null;
+    if (!entry || entry.stopping) return null;
     if (!this.publishSnapshot || entry.mode !== 'snapshot') return this.renew(taskId);
     const published = await this.publishSnapshot(entry);
     if (!published.url || published.version !== entry.revision || published.expiresAt <= Date.now()) throw new Error('The Relay did not renew the delivered snapshot.');
@@ -302,19 +332,17 @@ export class Previews {
 
   async stop(taskId, reason = 'stopped') {
     const entry = this.active.get(taskId); if (!entry) return;
-    this.active.delete(taskId);
+    if (entry.stopPromise) return entry.stopPromise;
+    entry.stopping = true;
     clearTimeout(entry.timer);
-    for (const server of entry.servers) { server.closeAllConnections?.(); await new Promise(r => server.close(r)); }
-    for (const child of entry.processes) {
-      try {
-        if (process.platform === 'win32' && child.pid) {
-          const killer = spawn('taskkill', ['/pid', String(child.pid), '/T', '/F'], { windowsHide: true, stdio: 'ignore' });
-          await new Promise(resolve => { const timer = setTimeout(resolve, 5000); killer.once('exit', () => { clearTimeout(timer); resolve(); }); killer.once('error', () => { clearTimeout(timer); resolve(); }); });
-        } else child.kill();
-      } catch {}
-    }
-    if (reason === 'startup-failed' && entry.createdSnapshot) await this.removeSnapshot(entry.snapshot);
-    if (entry.url) await this.onStop({ taskId, url: entry.url, mode: entry.mode, revision: entry.revision || null, expiresAt: Date.now(), reason });
+    const stopping = entry.stopPromise = Promise.resolve().then(async () => {
+      for (const server of entry.servers) { server.closeAllConnections?.(); await new Promise(r => server.close(r)); }
+      for (const child of entry.processes) await stopOwned(child);
+      if (reason === 'startup-failed' && entry.createdSnapshot) await this.removeSnapshot(entry.snapshot);
+      this.active.delete(taskId);
+      if (entry.url) await this.onStop({ taskId, url: entry.url, mode: entry.mode, revision: entry.revision || null, expiresAt: Date.now(), reason });
+    });
+    try { await stopping; } finally { if (entry.stopPromise === stopping) entry.stopPromise = null; }
   }
 
   async stopAll() { for (const id of [...this.active.keys()]) await this.stop(id); }
