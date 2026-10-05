@@ -21,6 +21,14 @@ jobs:
       - run: npm run site:build
         env:
           DROPRUN_SITE_URL: https://droprun.dengmaizi0802.chatgpt.site
+      - name: Verify generated pages and refresh Windows line-ending metadata
+        shell: pwsh
+        run: |
+          git diff --exit-code -- landing/index.html landing/zh/index.html landing/robots.txt landing/sitemap.xml
+          if ($LASTEXITCODE -ne 0) { throw 'Generated site differs from committed source.' }
+          git add -- landing/index.html landing/zh/index.html landing/robots.txt landing/sitemap.xml
+          git diff --cached --exit-code
+          if ($LASTEXITCODE -ne 0) { throw 'Generated site changed the source index.' }
       - run: npm run check:public
       - name: Install package compiler
         run: choco install innosetup -y --no-progress
