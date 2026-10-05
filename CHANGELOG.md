@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased
+
+- Keep home sync failures compact, with the original cause in historical details.
+  Manual checks show immediate accessible progress and reuse an in-flight home
+  check. Explicit checks also work while the live receiver is running.
+- Let enlarged project names wrap fully so shared prefixes do not hide their
+  distinguishing suffixes.
+- Explain local Codex work in both README workflows before project statistics.
+
 ## 0.5.3-rc.1 — native feedback refinement
 
 - Show the saved or unconfirmed execution preference before sharing, with the

@@ -19,12 +19,52 @@ Android+Windows self-hosted goal and the user's local-only validation boundary.
   Website v6 succeeded at18:53:59Z from hosting source7fa967d. Anonymous2pages/
   10CTA/4resources passed; browser Start installing/language switch and visible
   downloads were checked. Unchanged media reuses dated public proof. Current
-  candidate document publication remains separately pending. Old0.5.2 assets/records and dated0.5.1dev Demo media
+  candidate docs41f9d7c passed6/6 anonymous exact Git-blob comparisons with28current
+  release links. Its CI37360205304 passed core210/browser14 and Android but failed
+  the generated-page check: root had generated the two HTML files without the
+  configured public origin. Original failure retained. Restored canonical metadata
+  matches all4published page/SEO files; source359c1cb CI37361333931 passed all3jobs,
+  core210/browser14/no skips or cancellations, Android and Windows package checks.
+  Old0.5.2 assets/records and dated0.5.1dev Demo media
   remain; the media does not represent this download or genuine execution.
 - Independent keyboard audit found an actual acceptance gap, not a confirmed bug:
   existing editor tests use setText/programmatic scrolling, without real IME.
   Next check must use a visible IME, real key/touch events and system Back before
   changing Insets/Back behavior. No real submission or rejected recovery retry.
+- The real IME probe compiled and installed. Initial2/2 checks failed before
+  typing because the keyboard never appeared; original-size single-case isolation
+  ended with instrumentation `Process crashed.` Two Gboard and one debug-App
+  startup ANRs, another Gboard service ANR and CPU pressure were retained. No
+  layout/Back root cause or passing IME/Chinese input result is inferred. All
+  device settings restored/read back exactly; no kill/reboot/default-IME change.
+  Private `.local/ux-oct5-ime/verification.json` owns20file hashes and original logs.
+- Main recovery UI now has a compact sync notice, historical exact-cause details,
+  explicit accessible check/progress/disabled state and real in-flight reuse.
+  Actual200% EN screenshots exposed hidden project-name suffixes; a native test
+  reproduced the height failure, then enlarged names were allowed to wrap fully.
+  Initial notice coordinate-fixture failure and title failure remain. Native4/4
+  EN/ZH passed16.985s; after title fix5/5 passed, but took2,680.552s/host2,700.019s.
+  No new ANR/crash was recorded in that interval; cause is unknown. This proves
+  scoped functionality, not normal duration or physical performance. Eight final
+  raw PNGs and immutable APKs map to Main d8e358a8. Baseline settings unchanged.
+  [Dated recovery record](../../docs/releases/ui-recovery-2026-10-05.md) owns scope.
+- Independent review then found a cache-only/background-receiver/manual-check
+  race. Completion now starts the requested check if the busy operation skipped
+  synchronization; a failed attempted sync is not automatically repeated. This
+  source is newer than the five-method matrix and0.5.3 downloads. Its dedicated
+  readonly native regression passed1/1 in1.542s/host2.528s, verifying the real
+  in-memory sync starts once, guard0, scroll/project retention and receiver-flag
+  restoration. No new ANR/crash event. Main b5d71e23 and separate immutable APKs
+  map to that case, not the older five-method matrix. No real submission.
+- Both READMEs now explain local Codex work in the middle workflow column;
+  full count definitions remain and dated media provenance precedes images.
+  Independent readonly review confirmed parity and unchanged media/download URLs.
+- Result-page review identified missing preview guidance and misleading
+  unavailable/expired wording. Future correction must preserve legal reopen for
+  unavailable+URL and cloud-snapshot renewal without requiring an online computer.
+  That follow-up is not implemented or verified by this Home work.
+- Candidate build worktree is archived. Final artifacts, complete downloaded
+  copies and verification logs remain outside it in `.local`.
 
 ## Previous session: pre-send decision clarity and dependable README visuals
 
@@ -271,13 +311,21 @@ Android+Windows self-hosted goal and the user's local-only validation boundary.
 
 ## Single recommended next action
 
-Publish the prepared current candidate documents and verify their public pointers.
-Continue the independent editor check with actual IME, touch scrolling and system
-Back; retain its initial failure and establish the cause before any layout fix.
+Curate/publish the verified Home/README source and check its matching CI, then
+implement independent result-page preview guidance, preserving existing reopen
+rules. Preserve the anomalous final five-method duration and do not repeat that
+whole capture matrix.
+Do not repeat the failed IME run without a changed, evidenced condition; keyboard
+behavior remains open. Current0.5.3 package/source/site publication is verified above.
 Do not clear the retained draft, navigate normal Pair or repeat the rejected
 process-loss probe. No genuine Relay submission; original film stays separate.
 
 ## Files this pass
+
+Home recovery: MainActivity.java, independent debug Home probe/manifest and native
+test; new keyboard diagnostic test, bilingual README, PRD/contracts/changelog,
+dated recovery record and handoff. Private originals: .local/ux-oct5-home-recovery/
+and .local/ux-oct5-ime/. Original film changes remain separate.
 
 Candidate refresh: runtime/Android/installer/health versions, one health assertion,
 current README/setup/context/PRD/roadmap pointers, Landing generator/pages,

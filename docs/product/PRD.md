@@ -96,6 +96,12 @@ in [the current candidate record](../releases/0.5.3-rc.1.md).
   disclosure changes have feedback with a motion-off path. Destructive or
   permission-expanding decisions require confirmation; ordinary selections show
   their selected value without an extra confirmation dialog.
+  Home sync errors use a compact attention notice with the original cause in
+  details. Manual status checks show immediate, accessible progress, prevent
+  duplicate checks and return to the actual cached/connection state. They do not
+  promise that pending material was received or project work completed.
+  At 150% text size and above, project titles wrap fully instead of hiding the suffix
+  that identifies a project.
   Shared actions, icons, chips and model/effort options show a distinct keyboard-
   focus outline in both themes, without changing layout or activating the action.
 - Scrolling text stays outside system bars. Decision errors remain visible after

@@ -13,15 +13,18 @@ DropRun, choose a project, and optionally leave a note. Your Windows Connector
 hands the reference and intent to local Codex. Come back to progress, a report,
 and evidence of what changed.
 
-## Share. Choose. Inspect.
+## Share. Follow. Inspect.
 
 **UI demonstration only:** nothing was sent to an agent, and the report uses
 labelled sample data.
 
+Screens and tours show the 0.5.1 development UI captured October 5, 2026 with labelled demo data. They predate the later UX refinements and are not recordings of the 0.5.3-rc.1 download.
+[Capture notes](assets/brand/readme-media.md).
+
 <table>
   <tr>
     <th align="center">01 · Share a reference</th>
-    <th align="center">02 · Keep it with the project</th>
+    <th align="center">02 · Follow local Codex</th>
     <th align="center">03 · Inspect the delivery</th>
   </tr>
   <tr>
@@ -31,13 +34,10 @@ labelled sample data.
   </tr>
   <tr>
     <td>Pick an existing project. Add a note when you have a specific change in mind.</td>
-    <td>Tasks count independent requests; dispatches count accepted shares and follow-ups. Network retries add neither.</td>
+    <td>Codex works on your computer, in the chosen project. Follow progress and decisions in its history.</td>
     <td>See the result, required actions, screenshots and files. Open the full report when needed.</td>
   </tr>
 </table>
-
-Screens and tours show the 0.5.1 development UI captured October 5, 2026 with labelled demo data. They predate the later UX refinements and are not recordings of the 0.5.3-rc.1 download.
-[Capture notes](assets/brand/readme-media.md).
 
 <p align="center"><img src="assets/brand/readme-ui-tour.gif" width="240" alt="Nine-second native Android development UI tour: project selection, note editing, model options, settings and a labelled demonstration report"></p>
 
@@ -60,7 +60,8 @@ source-to-Codex task.
 - **Keep the intent.** Your note leads the task. Each independent share starts a
   new Codex conversation; a follow-up continues the same one.
 - **Stay oriented.** Home shows only projects with handoff history or locally saved shares.
-  Task and dispatch counts exclude network retries.
+  Tasks count independent requests; dispatches count accepted shares and follow-ups.
+  Network retries add neither.
 - **Decide how work starts.** Choose direct execution or plan review. Project
   permissions and approval for high-risk actions remain separate.
 - **Inspect what happened.** Reports distinguish actual source coverage, project
