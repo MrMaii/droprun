@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mkdtemp, mkdir, writeFile, readFile, rm, readdir } from 'node:fs/promises';
+import { mkdtemp, mkdir, writeFile, readFile, rm, readdir, copyFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join, resolve, relative } from 'node:path';
 import { execFileSync } from 'node:child_process';
@@ -21,6 +21,7 @@ async function fixture(t) {
     await mkdir(join(root, dir), { recursive: true }); await writeFile(join(root, dir, 'fixture.txt'), 'Committed source\n');
   }
   for (const name of ['setup.mjs', 'setup-core.mjs', 'setup-tools.mjs', 'connector-service.ps1', 'install-connector-service.ps1']) await writeFile(join(root, 'scripts', name), '// Fixture\n');
+  await copyFile(resolve('installer/droprun.iss'), join(root, 'installer/droprun.iss'));
   for (const name of ['qrcode', 'cloudflared', 'wrangler']) {
     await mkdir(join(root, 'node_modules', name), { recursive: true });
     await writeFile(join(root, 'node_modules', name, 'package.json'), JSON.stringify({ name, version: name === 'wrangler' ? WRANGLER_VERSION : '1.0.0' }));
@@ -38,6 +39,10 @@ test('Windows package inventories every payload file and ships only committed pr
   const f = await fixture(t), result = await packageWindows(f);
   const manifest = JSON.parse(await readFile(join(result.directory, 'BUILD-MANIFEST.json'), 'utf8'));
   assert.equal(manifest.sourceCommit, f.git('rev-parse', 'HEAD'));
+  assert.match(await readFile(join(result.directory, 'DropRun.cmd'), 'utf8'), /powershell\.exe -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File "%~dp0installer\\launch\.ps1"/);
+  const installerLaunches = (await readFile(join(result.directory, 'installer/droprun.iss'), 'utf8')).split(/\r?\n/).filter(line => line.includes('powershell.exe'));
+  assert.equal(installerLaunches.length, 4);
+  for (const line of installerLaunches) assert.match(line, /-ExecutionPolicy Bypass -File /);
   const diskFiles = (await readdir(result.directory, { recursive: true, withFileTypes: true })).filter(e => e.isFile()).map(e => relative(result.directory, join(e.parentPath, e.name)).replaceAll('\\', '/')).filter(p => p !== 'BUILD-MANIFEST.json').sort();
   assert.deepEqual(manifest.files.map(e => e.path).sort(), diskFiles);
   assert(diskFiles.includes('installer/zip-package.ps1')); assert(!diskFiles.includes('connector/private.env'));

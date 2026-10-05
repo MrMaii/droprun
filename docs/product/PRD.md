@@ -6,10 +6,12 @@ This edition supersedes earlier hosted/pricing assumptions and ADR 0014's visual
 layout. Decisions: [self-hosting](../decisions/0015-public-selfhost-release.md) and
 [project-first UX](../decisions/0016-project-first-light-ux.md). Historical sections
 below describe the original product goals; release evidence is maintained only
-in [0.5.0](../releases/0.5.0.md).
+in [the current candidate record](../releases/0.5.1-rc.1.md).
 
 - Android + Windows x64; each owner deploys a private Cloudflare Relay. No official
   registration, subscription or multitenant service. GPTSites is the public website.
+  Windows package scripts must start on an unmanaged Windows client with its
+  default script policy, without changing persistent user or machine policy.
 - Light translucent UI, lime actions, dark/system appearance, English/Chinese.
   Home contains Recent handoffs and settings, with only used or pending projects.
   Returning to Home or recreating it after an appearance change preserves the

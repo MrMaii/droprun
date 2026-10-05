@@ -26,7 +26,7 @@ export async function installMediaTools(directory, progress = () => {}, fetchImp
       // Fixed, checksum-verified upstream archive. Paths are arguments, never shell-built commands.
       const script = join(directory, 'extract.ps1');
       await writeFile(script, 'param([string]$Archive,[string]$Destination)\n$ErrorActionPreference="Stop"\nExpand-Archive -LiteralPath $Archive -DestinationPath $Destination -Force\n');
-      await command('powershell.exe', ['-NoProfile', '-NonInteractive', '-File', script, '-Archive', file, '-Destination', destination]);
+      await command('powershell.exe', ['-NoProfile', '-NonInteractive', '-ExecutionPolicy', 'Bypass', '-File', script, '-Archive', file, '-Destination', destination]);
       const dirs = await readdir(destination, { withFileTypes: true });
       const extracted = dirs.find(entry => entry.isDirectory());
       if (!extracted) throw new Error('FFmpeg archive layout changed.');

@@ -13,7 +13,7 @@ test('Windows update preserves old application/data and rejects invalid Relay be
   await mkdir(app); await mkdir(data, { recursive: true });
   await writeFile(join(app, 'old.txt'), 'previous application');
   await writeFile(join(data, 'state.json'), '{"retained":true}');
-  const run = () => promisify(execFile)('powershell.exe', ['-NoProfile', '-NonInteractive', '-File', resolve('installer/preflight.ps1'), '-InstallRoot', app], { env: { ...process.env, LOCALAPPDATA: local }, windowsHide: true });
+  const run = () => promisify(execFile)('powershell.exe', ['-NoProfile', '-NonInteractive', '-ExecutionPolicy', 'Bypass', '-File', resolve('installer/preflight.ps1'), '-InstallRoot', app], { env: { ...process.env, LOCALAPPDATA: local }, windowsHide: true });
   await run();
   const backups = await readdir(join(local, 'DropRun-backups'));
   assert.equal(backups.length, 1);
@@ -38,7 +38,7 @@ function Get-ScheduledTask { return $null }
 exit $LASTEXITCODE
 `);
   for (const [schemaVersion, expected] of [[10, /incompatible/], [11, /active DropRun task/]]) {
-    await assert.rejects(promisify(execFile)('powershell.exe', ['-NoProfile', '-NonInteractive', '-File', wrapper, '-Script', resolve('installer/preflight.ps1'), '-App', app], {
+    await assert.rejects(promisify(execFile)('powershell.exe', ['-NoProfile', '-NonInteractive', '-ExecutionPolicy', 'Bypass', '-File', wrapper, '-Script', resolve('installer/preflight.ps1'), '-App', app], {
       env: { ...process.env, LOCALAPPDATA: local, DROPRUN_TEST_RELAY: JSON.stringify({ instanceId: 'fixture', protocolVersion: 2, schemaVersion, ready: true }) }, windowsHide: true
     }), expected);
   }
@@ -92,7 +92,7 @@ exit $LASTEXITCODE
   let missingPid = 999999;
   for (;;) { try { process.kill(missingPid, 0); missingPid++; } catch (error) { if (error.code === 'ESRCH') break; throw error; } }
   const healthy = { service: 'DropRun Connector', instanceId: 'fixture', shutdownProtocolVersion: 1, pid: missingPid, activeTask: null };
-  const run = (kind, health, schedule = 'Ready', busy = false) => promisify(execFile)('powershell.exe', ['-NoProfile', '-NonInteractive', '-File', wrapper, '-Script', kind === 'update' ? resolve('installer/preflight.ps1') : join(app, 'installer/uninstall.ps1'), '-App', app, '-Data', data, '-Helper', helper, '-Kind', kind], {
+  const run = (kind, health, schedule = 'Ready', busy = false) => promisify(execFile)('powershell.exe', ['-NoProfile', '-NonInteractive', '-ExecutionPolicy', 'Bypass', '-File', wrapper, '-Script', kind === 'update' ? resolve('installer/preflight.ps1') : join(app, 'installer/uninstall.ps1'), '-App', app, '-Data', data, '-Helper', helper, '-Kind', kind], {
     env: { ...process.env, LOCALAPPDATA: local, DROPRUN_TEST_LOG: log, DROPRUN_TEST_HEALTH: typeof health === 'string' ? health : JSON.stringify(health), DROPRUN_TEST_SCHEDULE: schedule, DROPRUN_TEST_BUSY: String(busy) }, windowsHide: true
   });
   for (const kind of ['update', 'uninstall']) {
@@ -128,6 +128,6 @@ function Start-Sleep { throw 'An intentional successful stop must not restart' }
 & $Script -DataDir $Data -InstallRoot $App
 exit $LASTEXITCODE
 `);
-  await promisify(execFile)('powershell.exe', ['-NoProfile', '-NonInteractive', '-File', wrapper, '-Script', resolve('scripts/connector-service.ps1'), '-App', app, '-Data', data], { env: { ...process.env, DROPRUN_TEST_LOG: log }, windowsHide: true });
+  await promisify(execFile)('powershell.exe', ['-NoProfile', '-NonInteractive', '-ExecutionPolicy', 'Bypass', '-File', wrapper, '-Script', resolve('scripts/connector-service.ps1'), '-App', app, '-Data', data], { env: { ...process.env, DROPRUN_TEST_LOG: log }, windowsHide: true });
   assert.deepEqual((await readFile(log, 'utf8')).trim().split(/\r?\n/), ['worker-executed']);
 });

@@ -12,7 +12,7 @@ try {
     }
 } catch { if ($_.Exception.Message -like 'Another DropRun*') { throw } }
 $taskUser = [System.Security.Principal.WindowsIdentity]::GetCurrent().Name
-$taskAction = New-ScheduledTaskAction -Execute 'powershell.exe' -Argument ('-NoProfile -NonInteractive -WindowStyle Hidden -File "' + $taskScript + '" -DataDir "' + $DataDir + '" -InstallRoot "' + $InstallRoot + '"')
+$taskAction = New-ScheduledTaskAction -Execute 'powershell.exe' -Argument ('-NoProfile -NonInteractive -WindowStyle Hidden -ExecutionPolicy Bypass -File "' + $taskScript + '" -DataDir "' + $DataDir + '" -InstallRoot "' + $InstallRoot + '"')
 $taskTrigger = New-ScheduledTaskTrigger -AtLogOn -User $taskUser
 $taskSettings = New-ScheduledTaskSettingsSet -AllowStartIfOnBatteries -DontStopIfGoingOnBatteries -ExecutionTimeLimit ([TimeSpan]::Zero) -MultipleInstances IgnoreNew -RestartCount 3 -RestartInterval (New-TimeSpan -Minutes 1)
 $taskPrincipal = New-ScheduledTaskPrincipal -UserId $taskUser -LogonType Interactive -RunLevel Limited

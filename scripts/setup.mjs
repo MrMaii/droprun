@@ -132,7 +132,7 @@ export async function serveSetup({ installRoot = root, dataDir = defaultDataDir(
           state.step = 'Relay ready — start your Connector';
         } else {
           state.step = 'Starting Connector';
-          await command('powershell.exe', ['-NoProfile', '-NonInteractive', '-File', join(installRoot, 'scripts/install-connector-service.ps1'), '-DataDir', dataDir, '-InstallRoot', installRoot], { cwd: installRoot });
+          await command('powershell.exe', ['-NoProfile', '-NonInteractive', '-ExecutionPolicy', 'Bypass', '-File', join(installRoot, 'scripts/install-connector-service.ps1'), '-DataDir', dataDir, '-InstallRoot', installRoot], { cwd: installRoot });
           state.step = 'Connector started';
         }
       };

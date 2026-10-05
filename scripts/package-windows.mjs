@@ -26,7 +26,7 @@ export async function packageWindows({ root = resolve(import.meta.dirname, '..')
   }
   await cp(process.execPath, join(directory, 'runtime', 'node.exe'));
   await writeFile(join(directory, 'package.json'), JSON.stringify({ name: 'droprun', version: pkg.version, private: true, type: 'module' }, null, 2));
-  await writeFile(join(directory, 'DropRun.cmd'), '@echo off\r\npowershell.exe -NoProfile -WindowStyle Hidden -File "%~dp0installer\\launch.ps1"\r\n');
+  await writeFile(join(directory, 'DropRun.cmd'), '@echo off\r\npowershell.exe -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File "%~dp0installer\\launch.ps1"\r\n');
   const copied = new Set();
   async function copyPackage(name, parent = root, optional = false) {
     let search = parent, source;
@@ -62,7 +62,7 @@ export async function packageWindows({ root = resolve(import.meta.dirname, '..')
   async function inventory(dir) { for (const name of (await readdir(dir)).sort()) { const file = join(dir, name), info = await stat(file); if (info.isDirectory()) await inventory(file); else files.push({ path: relative(directory, file).replaceAll('\\', '/'), bytes: info.size, sha256: createHash('sha256').update(await readFile(file)).digest('hex') }); } }
   await inventory(directory);
   await writeFile(join(directory, 'BUILD-MANIFEST.json'), JSON.stringify({ version: pkg.version, sourceCommit, sourceArchive: { file: name + '-source.zip', sha256: sourceSha256 }, node: process.version, wrangler: WRANGLER_VERSION, builtAt: new Date().toISOString(), files }, null, 2));
-  await command('powershell.exe', ['-NoProfile', '-NonInteractive', '-File', zipScript, '-Source', directory, '-Destination', zip], { timeout: 300000 });
+  await command('powershell.exe', ['-NoProfile', '-NonInteractive', '-ExecutionPolicy', 'Bypass', '-File', zipScript, '-Source', directory, '-Destination', zip], { timeout: 300000 });
   await writeFile(zip + '.sha256', createHash('sha256').update(await readFile(zip)).digest('hex') + '  ' + name + '.zip\n');
   if (compiler) {
     await command(resolve(compiler), [`/DPackageDir=${directory}`, `/DAppVersion=${pkg.version}`, join(directory, 'installer/droprun.iss')], { timeout: 300000 });

@@ -25,6 +25,11 @@
    可交办的项目。配对邀请一次有效且会过期，不要公开真实二维码。
 6. 从其他 Android 应用分享材料，选项目并可选留言，观察真实处理与交付状态。
 
+应用以仅当前进程有效的执行策略启动随包 PowerShell 脚本，不修改用户或机器的
+永久策略。组织的组策略仍优先；受管理电脑若禁止未签名脚本，应联系管理员。
+依据：[Microsoft 执行策略范围与优先级](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-5.1#execution-policy-scope-and-precedence)，
+核查日期 2026-10-05。
+
 “已保存”只表示手机已可靠保存待发送内容。电脑离线时，已被 Relay 接收的任务会
 排队，电脑上线后才执行。独立分享创建新任务；追问复用会话；网络重试不增加次数。
 

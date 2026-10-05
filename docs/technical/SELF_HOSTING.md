@@ -26,6 +26,13 @@ The installer works per user. For the portable ZIP, extract to a permanent folde
 and open `DropRun.cmd`. The package contains Node; no global Node installation is
 needed. Configuration and runtime data live in `%LOCALAPPDATA%\DropRun`.
 
+The application launches its bundled PowerShell scripts with a process-only
+execution policy; it does not change your user or machine policy. Organization
+Group Policy still takes precedence. If your managed computer prohibits unsigned
+scripts, ask its administrator rather than changing that policy. See Microsoft's
+[execution-policy scope and precedence](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-5.1#execution-policy-scope-and-precedence)
+(checked 2026-10-05).
+
 The local browser guide checks prerequisites, opens Cloudflare login, selects
 your account and creates a private instance. It records progress so interrupted
 provisioning can resume. Do not change the instance name to recover a failed step:

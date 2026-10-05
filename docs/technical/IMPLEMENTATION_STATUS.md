@@ -1,8 +1,8 @@
 # Implementation status
 
-The current public candidate is 0.5.0. Implemented capabilities, executed checks,
+The current public candidate is 0.5.1-rc.1. Implemented capabilities, executed checks,
 remaining gates and public artifact links are maintained only in
-[the release record](../releases/0.5.0.md).
+[the release record](../releases/0.5.1-rc.1.md).
 
 The PRD describes requirements, not completed work. Documentation, synthetic
 fixtures, emulator screenshots and source-platform field testing provide different

@@ -31,16 +31,16 @@ Source: "{#PackageDir}\connector\shutdown.mjs"; Flags: dontcopy
 Source: "{#PackageDir}\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Icons]
-Name: "{userprograms}\DropRun"; Filename: "powershell.exe"; Parameters: "-NoProfile -WindowStyle Hidden -File ""{app}\installer\launch.ps1"""; WorkingDir: "{app}"
+Name: "{userprograms}\DropRun"; Filename: "powershell.exe"; Parameters: "-NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File ""{app}\installer\launch.ps1"""; WorkingDir: "{app}"
 
 [Run]
-Filename: "powershell.exe"; Parameters: "-NoProfile -WindowStyle Hidden -File ""{app}\installer\launch.ps1"""; Description: "Connect your own Relay"; Flags: postinstall nowait skipifsilent runhidden
+Filename: "powershell.exe"; Parameters: "-NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File ""{app}\installer\launch.ps1"""; Description: "Connect your own Relay"; Flags: postinstall nowait skipifsilent runhidden
 
 [Code]
 function InitializeUninstall(): Boolean;
 var Code: Integer;
 begin
-  Result := Exec('powershell.exe', '-NoProfile -NonInteractive -WindowStyle Hidden -File "' + ExpandConstant('{app}\installer\uninstall.ps1') + '"', '', SW_HIDE, ewWaitUntilTerminated, Code) and (Code = 0);
+  Result := Exec('powershell.exe', '-NoProfile -NonInteractive -WindowStyle Hidden -ExecutionPolicy Bypass -File "' + ExpandConstant('{app}\installer\uninstall.ps1') + '"', '', SW_HIDE, ewWaitUntilTerminated, Code) and (Code = 0);
   if not Result then
     MsgBox('DropRun could not stop safely. Finish the active task before uninstalling. Your installation has not changed.', mbError, MB_OK);
 end;
@@ -52,7 +52,7 @@ begin
   if FileExists(ExpandConstant('{app}\runtime\node.exe')) then begin
     ExtractTemporaryFile('preflight.ps1');
     ExtractTemporaryFile('shutdown.mjs');
-    if not Exec('powershell.exe', '-NoProfile -NonInteractive -WindowStyle Hidden -File "' + ExpandConstant('{tmp}\preflight.ps1') + '" -InstallRoot "' + ExpandConstant('{app}') + '" -StopHelper "' + ExpandConstant('{tmp}\shutdown.mjs') + '"', '', SW_HIDE, ewWaitUntilTerminated, Code) or (Code <> 0) then
+    if not Exec('powershell.exe', '-NoProfile -NonInteractive -WindowStyle Hidden -ExecutionPolicy Bypass -File "' + ExpandConstant('{tmp}\preflight.ps1') + '" -InstallRoot "' + ExpandConstant('{app}') + '" -StopHelper "' + ExpandConstant('{tmp}\shutdown.mjs') + '"', '', SW_HIDE, ewWaitUntilTerminated, Code) or (Code <> 0) then
       Result := 'Update checks or backup failed. Finish active work, close setup, and verify Relay compatibility and free disk space. Your application files have not been replaced.';
   end;
 end;
