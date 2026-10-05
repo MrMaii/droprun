@@ -13,7 +13,11 @@ test('public brand uses exact selected bytes; publishing is administrator-only a
     const db = await mf.getD1Database('DB');
     await db.prepare('CREATE TABLE devices(id TEXT,token_hash TEXT)').run();
     const bytes = await readFile('assets/brand/mark.png');
-    const put = (body, auth='') => mf.dispatchFetch('https://brand.test/connector/brand-logo', { method:'PUT', headers:{Authorization:'Bearer '+auth,'Content-Length':String(body.length)}, body });
+    const put = async (body, auth='') => {
+      const response = await mf.dispatchFetch('https://brand.test/connector/brand-logo', { method:'PUT', headers:{Authorization:'Bearer '+auth,'Content-Length':String(body.length)}, body });
+      await response.arrayBuffer();
+      return response;
+    };
     assert.equal((await put(bytes)).status,401);
     await db.prepare('INSERT INTO devices VALUES (?,?)').bind('phone',digest('phone-token')).run();
     assert.equal((await put(bytes,'phone-token')).status,403);
@@ -23,7 +27,8 @@ test('public brand uses exact selected bytes; publishing is administrator-only a
     const logo = await mf.dispatchFetch('https://brand.test/brand/droprun-v5.png');
     assert.equal(logo.status,200);assert.equal(logo.headers.get('content-type'),'image/png');
     assert.equal(digest(Buffer.from(await logo.arrayBuffer())),digest(bytes));
-    assert.equal((await mf.dispatchFetch('https://brand.test/brand/private.png')).status,401);
+    const privateObject = await mf.dispatchFetch('https://brand.test/brand/private.png');
+    assert.equal(privateObject.status,401);await privateObject.arrayBuffer();
     const page = await (await mf.dispatchFetch('https://brand.test/')).text();
     assert.match(page,/self-hosted/);assert.match(page,/prefers-reduced-motion/);assert.match(page,/droprun\/releases/);
     assert.doesNotMatch(page,new RegExp(token));
