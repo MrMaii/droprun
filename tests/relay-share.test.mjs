@@ -95,5 +95,5 @@ test('the pairing page and app links are public, while the code itself never rea
   assert.equal(page.status, 200); assert.match(page.data, /intent:\/\/pair/); assert.match(page.data, /download\.apk/);
   const links = await req('/.well-known/assetlinks.json', null, '');
   assert.equal(links.status, 200); assert.deepEqual(links.data, [], 'Self-hosting does not publish a private debug signing certificate');
-  assert.equal((await req('/health', null, '')).data.version, '0.5.0');
+  assert.equal((await req('/health', null, '')).data.version, JSON.parse(await readFile('package.json', 'utf8')).version);
 });
