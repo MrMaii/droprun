@@ -27,6 +27,14 @@ Android+Windows self-hosted goal and the user's local-only validation boundary.
 - These fixes are newer than downloadable0.5.2-rc.1; no release package/tag/site
   media was replaced. Curated source publication and matching CI are checked
   separately. No rejected command, draft removal or genuine submission occurred.
+- Curated sourcef2c8bfdf02551de31172929acad21b8acadbcf5f is public. CI37340478370
+  passed Android but core223/224: the preview retry positive fixture allowed only
+  40ms for its second, valid loopback handshake and reported TimeoutError code23.
+  Only that positive wait budget is adjusted to5000ms; the initial dead-port40ms,
+  exact gate handshake and rebuild/cleanup assertions remain. Production45s
+  behavior is unchanged. Original failure retained as `source-ci-first-failed.log`;
+  focused preview15/15/no skips and full local Node224/224/no skips,34.818s passed.
+  The matching-main CI follow-up remains to be recorded.
 - Original emulator size/density/font/animation values restored/read back:
   320×640,160dpi,2.0/null/1/1. Only internal PNGs were added. Original uncommitted
   film/LAUNCH_KIT and their handoff section remain separate and unpublished.
@@ -167,6 +175,9 @@ Close and prompt return for routine saves. Validate only an independent local
 UI path; do not send tasks, clear the retained draft, navigate normal Pair or
 repeat the rejected process-loss probe. Genuine acceptance remains open; current
 download evidence belongs to0.5.2-rc.1 and the original film remains separate.
+The concrete independent-probe proposal is `.local/ux-oct5-feedback-proposal.md`;
+it uses the restored-sent presentation branch before ShareImport.open, not a
+genuine save or submission. Finish the pending preview-test/core-CI check first.
 
 ## Files this pass
 

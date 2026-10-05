@@ -7,11 +7,11 @@ in its existing download files. Package evidence remains in the
 ## What changed
 
 Android's default keyboard-focus highlight tinted an entire focused ScrollView
-or share root. The earlier large-text screenshots contained approximately12%
+or share root. The earlier large-text screenshots contained approximately 12%
 lime over the content; Home's focused settings button did not recolor its page.
 Screenshot pixel samples and native focus XML agree with the
 [Android focus behavior](https://developer.android.com/about/versions/oreo/android-8.0-changes#input-and-navigation)
-(checked October5,2026). Font size does not select a different palette.
+(checked October 5, 2026). Font size does not select a different palette.
 
 `Ui.page()` and `Ui.frame()` now disable the default container highlight while
 retaining focusability. Controls keep their own focus rings and keyboard actions.
@@ -30,7 +30,7 @@ aligns English project-home wording with locally saved shares.
 
 ## Local verification
 
-- Native API35, dedicated DropRunTest emulator,200% font,320dp wide:8/8 focused
+- Native API 35, dedicated DropRunTest emulator,200% font, 320dp wide: 8/8 focused
   checks passed with animator/window/transition scales all zero. Three cover page
   colors, overlay-root colors and localized button focus plus actual Enter
   activation; two cover Settings focus/visibility; three cover manual pairing.
@@ -38,13 +38,13 @@ aligns English project-home wording with locally saved shares.
   retained input, complete visible error text and valid destination normalization.
   The independent fixture records valid destinations locally and forbids pairing
   and network requests. No connection confirmation was sent.
-- A further4/4 capture run at720×1440,density360 (320×640dp),200% font and motion
+- A further 4/4 capture run at 720×1440, density 360 (320×640dp), 200% font and motion
   off saved six unmodified native PNGs. Settings and EN/ZH validation views were
   visually inspected; these are internal probes, not public marketing media.
 - `assembleDebug`, `assembleDebugAndroidTest`, `testDebugUnitTest`, `lintRelease`
-  passed. JVM24/24, no failures/errors/skips; release lint0errors/28warnings.
-- Original device settings were restored and read back:320×640,160dpi,font2.0,
-  animator unset, window1, transition1. Existing share drafts were not removed.
+  passed. JVM 24/24, no failures/errors/skips; release lint 0 errors/28 warnings.
+- Original device settings were restored and read back: 320×640, 160dpi, font 2.0,
+  animator unset, window 1, transition 1. Existing share drafts were not removed.
 
 Reproduction evidence is retained under `.local/ux-oct5-color-audit/`:
 `native-before-keyboard.log` has the two original color failures;
@@ -70,3 +70,12 @@ These checks establish specific local rendering and input behavior. They do not
 establish physical-device performance, TalkBack completeness, clean installation
 or genuine handoff acceptance. The rejected normal-Pair/draft-discard command
 and process-loss probe were not retried. Stable launch gates remain open.
+
+Source f2c8bfd's [CI37340478370](https://github.com/MrMaii/droprun/actions/runs/37340478370)
+passed Android and failed core 223/224. The preview-retry positive fixture's second,
+valid loopback handshake timed out within its 40ms budget (TimeoutError code23).
+Only this positive test budget becomes 5000ms; its initial failure stays 40ms and
+all handshake/rebuild/cleanup assertions remain. Production's 45s budget is unchanged.
+The focused preview suite then passed 15/15, no skips, and the complete local
+Node suite passed 224/224, no skips, in 34.818s. The original CI failure remains
+recorded; runtime UI source and package provenance were not changed.

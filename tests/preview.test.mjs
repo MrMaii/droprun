@@ -33,7 +33,8 @@ test('unreachable public tunnel is rebuilt once before exposing a ready preview'
   let attempts = 0, killed = 0, checking = 0;
   const previews = new Previews({
     tunnel: async port => ({ child: { kill() { killed++; } }, url: 'http://127.0.0.1:' + (++attempts === 1 ? deadPort : port) }),
-    publicReady: async (...args) => { checking++; assert.equal(previews.get('retry'), null); await waitForPublicPreview(...args, 40); },
+    // Fail the dead port quickly; allow the real loopback handshake time under CI load.
+    publicReady: async (...args) => { checking++; assert.equal(previews.get('retry'), null); await waitForPublicPreview(...args, checking === 1 ? 40 : 5000); },
   });
   t.after(() => previews.stopAll());
   const result = await previews.start('retry', root, { static: 'dist' });

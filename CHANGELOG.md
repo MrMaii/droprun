@@ -10,7 +10,7 @@
 - README places the existing demonstration label before the tour and aligns the
   English home description with locally saved shares.
 
-These changes are newer than the downloadable0.5.2-rc.1 packages.
+These changes are newer than the downloadable 0.5.2-rc.1 packages.
 [Local verification](docs/releases/ui-followthrough-2026-10-05.md).
 
 ## 0.5.2-rc.1 — native UI and product presentation
