@@ -1,10 +1,32 @@
 # Current Handoff
 
-Updated 2026-10-05 UTC. **v0.5.2-rc.1 is publicly available.**
+Updated 2026-10-05 UTC. **v0.5.3-rc.1 is publicly available.**
 Stable launch and marketing handover are not achieved. Preserve the complete
 Android+Windows self-hosted goal and the user's local-only validation boundary.
 
-## Latest session: pre-send decision clarity and dependable README visuals
+## Latest session: verified 0.5.3 candidate distribution
+
+- Published eight prerelease assets from clean source
+  `615c3f0958e4c7ffdbfb52c9a86f9b8902ce3492`; annotated tag resolves to that source.
+  Matching CI37354680526 passed all3jobs, core210/browser14 with no skips/cancellations,
+  Android builds/JVM/lint, audit/site/public-source and Windows packaging.
+- Independent inventories/source ZIPs, APK manifest/DEX and stable certificate
+  passed. Android94 source blobs/no Demo/not debuggable; Windows341 source blobs,
+  2,022 inventory/2,023 ZIP files/54 application files/AMD64/NotSigned.
+  All8assets completely downloaded anonymously; hashes/API digests/7checksums match.
+  [Canonical record](../../docs/releases/0.5.3-rc.1.md) owns current evidence.
+- Current download/document pointers are prepared for0.5.3 after that proof.
+  Website v6 succeeded at18:53:59Z from hosting source7fa967d. Anonymous2pages/
+  10CTA/4resources passed; browser Start installing/language switch and visible
+  downloads were checked. Unchanged media reuses dated public proof. Current
+  candidate document publication remains separately pending. Old0.5.2 assets/records and dated0.5.1dev Demo media
+  remain; the media does not represent this download or genuine execution.
+- Independent keyboard audit found an actual acceptance gap, not a confirmed bug:
+  existing editor tests use setText/programmatic scrolling, without real IME.
+  Next check must use a visible IME, real key/touch events and system Back before
+  changing Insets/Back behavior. No real submission or rejected recovery retry.
+
+## Previous session: pre-send decision clarity and dependable README visuals
 
 - Current editor/diagram source `d1db90fe3c14064c8434739834247218f726fc71`
   is public. Matching CI37353003050 passed all3jobs on attempt2: core210/browser14,
@@ -234,6 +256,10 @@ Android+Windows self-hosted goal and the user's local-only validation boundary.
   local Demo draft and navigate normal Pair, with only `blocked by policy`.
   It was not executed or retried. The draft remains and final normal Pair capture
   is missing; final large-text Pair layout captures exist.
+- Automatic approval review rejected a compound cleanup of accidental nested
+  directories in the owned Sites checkout, with only `blocked by policy`. It did
+  not execute and was not retried. Both directories remain; anchored ignore rules
+  and the flat-file build selection keep them outside the published archive.
 - Mandatory open gates: genuine 3-project/5-consecutive-handoff/20-source reading
   evidence and recovery; physical Android accessibility/frame/press measurements;
   clean Windows/fresh owner Cloudflare/physical-phone install-deploy-pair-deliver-
@@ -245,14 +271,17 @@ Android+Windows self-hosted goal and the user's local-only validation boundary.
 
 ## Single recommended next action
 
-Finish current editor/diagram source publication, anonymous README render check
-and exact-source CI. Then refresh candidate distribution from the curated new
-UI source with matching version/signature/source/checksums and explicit open
-real-environment gates. Do not claim these refinements are already in0.5.2-rc.1.
+Publish the prepared current candidate documents and verify their public pointers.
+Continue the independent editor check with actual IME, touch scrolling and system
+Back; retain its initial failure and establish the cause before any layout fix.
 Do not clear the retained draft, navigate normal Pair or repeat the rejected
 process-loss probe. No genuine Relay submission; original film stays separate.
 
 ## Files this pass
+
+Candidate refresh: runtime/Android/installer/health versions, one health assertion,
+current README/setup/context/PRD/roadmap pointers, Landing generator/pages,
+0.5.3 release record/anonymous download JSON, changelog and handoff.
 
 Current editor pass: ShareActivity.java, debug editor probe/manifest, native editor
  and neutral-feedback tests, four SVGs/brand notes, bilingual README, PRD/contracts,

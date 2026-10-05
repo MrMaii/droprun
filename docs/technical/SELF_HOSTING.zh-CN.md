@@ -1,6 +1,6 @@
 # 自部署 DropRun
 
-[English](SELF_HOSTING.md) · [发布说明](../releases/0.5.2-rc.1.md)
+[English](SELF_HOSTING.md) · [发布说明](../releases/0.5.3-rc.1.md)
 
 当前为公开预览版。重要项目使用前请阅读验证缺口。一套 Relay 对应一个所有者和
 一台 Windows Connector，可配对多个手机；没有官方注册账号。
@@ -14,15 +14,15 @@
 
 ## 安装与连接
 
-1. 从 [0.5.2-rc.1](https://github.com/MrMaii/droprun/releases/tag/v0.5.2-rc.1) 下载
-   [Windows 安装包](https://github.com/MrMaii/droprun/releases/download/v0.5.2-rc.1/DropRun-0.5.2-windows-x64-setup.exe)或
-   [便携 ZIP](https://github.com/MrMaii/droprun/releases/download/v0.5.2-rc.1/DropRun-0.5.2-windows-x64.zip)，对照发布清单校验 SHA-256。Windows 可能提示未知发布者。
+1. 从 [0.5.3-rc.1](https://github.com/MrMaii/droprun/releases/tag/v0.5.3-rc.1) 下载
+   [Windows 安装包](https://github.com/MrMaii/droprun/releases/download/v0.5.3-rc.1/DropRun-0.5.3-windows-x64-setup.exe)或
+   [便携 ZIP](https://github.com/MrMaii/droprun/releases/download/v0.5.3-rc.1/DropRun-0.5.3-windows-x64.zip)，对照发布清单校验 SHA-256。Windows 可能提示未知发布者。
 2. 安装器按当前用户安装；便携版解压到固定位置后运行 `DropRun.cmd`。
    已包含 Node，数据保存在 `%LOCALAPPDATA%\DropRun`。
 3. 本机浏览器向导检查环境，打开 Cloudflare 官方登录，让你选择账号并创建私有
    Relay。所需媒体工具从上游单独下载，保持各自许可。
 4. 部署失败后重试原步骤；向导保留进度，不用换实例名重新创建。
-5. 启动 Connector，手机安装 [Android APK](https://github.com/MrMaii/droprun/releases/download/v0.5.2-rc.1/DropRun-0.5.2-android.apk)后扫码，确认电脑和 HTTPS 服务器地址，再授权
+5. 启动 Connector，手机安装 [Android APK](https://github.com/MrMaii/droprun/releases/download/v0.5.3-rc.1/DropRun-0.5.3-android.apk)后扫码，确认电脑和 HTTPS 服务器地址，再授权
    可交办的项目。配对邀请一次有效且会过期，不要公开真实二维码。
 6. 从其他 Android 应用分享材料，选项目并可选留言，观察真实处理与交付状态。
 
@@ -37,7 +37,7 @@
 公共版与旧私人/debug 包并行安装，不尝试跨签名覆盖。确认新连接正常前保留旧版。
 新配对的执行模式在设置中可见；直接执行与先看计划均保留既有权限边界。
 
-0.5.2 候选版检查完成后，可展开“这台电脑上的项目”，用手机显示的项目 ID 核对
+当前候选版检查完成后，可展开“这台电脑上的项目”，用手机显示的项目 ID 核对
 本地目录。只读清单包含全部分页，并标明不可用目录。请在 Codex 中重新打开目录，
 然后重新检查。路径只显示在受保护的本机配置页；手机访问权限仍在安卓 App 中授权。
 
@@ -79,7 +79,7 @@ Windows 安装器会检查已配置 Relay 的协议 2 / 数据库 11，活动任
 `%LOCALAPPDATA%/DropRun-backups/<id>/`；只有 `backup.json` 中 `complete: true`
 才代表备份完整。备份失败则停止安装，私人备份不会上传。请同时保留旧安装包。
 
-0.5.2 候选版要求核验停止：领取检查、任务执行和素材登录结束，且电脑进程真正
+当前候选版要求核验停止：领取检查、任务执行和素材登录结束，且电脑进程真正
 退出后才能备份与替换。运行中的旧版缺少这项能力时会拒绝升级；先等待活动任务
 结束，再手动停止原 Connector 及其计划任务后台脚本，然后重试。不要强制停止
 活动任务。超时或结果未知不能继续替换。卸载执行相同检查，保留本机数据、项目

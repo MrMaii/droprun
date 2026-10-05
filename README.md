@@ -3,10 +3,10 @@
   <h1>DropRun</h1>
   <p><strong>Share from your phone. Put local Codex to work.</strong></p>
   <p>An Android share sheet for your existing projects on Windows.<br>Self-hosted on your Cloudflare. Results you can inspect.</p>
-  <p><a href="docs/technical/SELF_HOSTING.md"><strong>Get started →</strong></a> &nbsp; · &nbsp; <a href="https://droprun.dengmaizi0802.chatgpt.site">Website</a> &nbsp; · &nbsp; <a href="https://github.com/MrMaii/droprun/releases/tag/v0.5.2-rc.1">Downloads</a> &nbsp; · &nbsp; <a href="README.zh-CN.md">简体中文</a></p>
+  <p><a href="docs/technical/SELF_HOSTING.md"><strong>Get started →</strong></a> &nbsp; · &nbsp; <a href="https://droprun.dengmaizi0802.chatgpt.site">Website</a> &nbsp; · &nbsp; <a href="https://github.com/MrMaii/droprun/releases/tag/v0.5.3-rc.1">Downloads</a> &nbsp; · &nbsp; <a href="README.zh-CN.md">简体中文</a></p>
 </div>
 
-> **Public preview · 0.5.2-rc.1.** [Validation record and open acceptance gates](docs/releases/0.5.2-rc.1.md).
+> **Public preview · 0.5.3-rc.1.** [Validation record and open acceptance gates](docs/releases/0.5.3-rc.1.md).
 
 You find a useful interaction, screenshot or article on your phone. Share it to
 DropRun, choose a project, and optionally leave a note. Your Windows Connector
@@ -36,7 +36,7 @@ labelled sample data.
   </tr>
 </table>
 
-Native 0.5.1 development UI, October 5, 2026. The 0.5.2-rc.1 candidate includes this UI pass.
+Screens and tours show the 0.5.1 development UI captured October 5, 2026 with labelled demo data. They predate the later UX refinements and are not recordings of the 0.5.3-rc.1 download.
 [Capture notes](assets/brand/readme-media.md).
 
 <p align="center"><img src="assets/brand/readme-ui-tour.gif" width="240" alt="Nine-second native Android development UI tour: project selection, note editing, model options, settings and a labelled demonstration report"></p>
@@ -73,11 +73,11 @@ source-to-Codex task.
 | --- | --- | --- |
 | Windows x64, Git, signed-in Codex, Chrome or Edge | Android 8 or newer | Your Cloudflare account with Workers, D1 and R2 |
 
-1. **Install on Windows.** Get the [installer](https://github.com/MrMaii/droprun/releases/download/v0.5.2-rc.1/DropRun-0.5.2-windows-x64-setup.exe) or [portable ZIP](https://github.com/MrMaii/droprun/releases/download/v0.5.2-rc.1/DropRun-0.5.2-windows-x64.zip).
+1. **Install on Windows.** Get the [installer](https://github.com/MrMaii/droprun/releases/download/v0.5.3-rc.1/DropRun-0.5.3-windows-x64-setup.exe) or [portable ZIP](https://github.com/MrMaii/droprun/releases/download/v0.5.3-rc.1/DropRun-0.5.3-windows-x64.zip).
    For the portable edition, extract to a permanent folder and open `DropRun.cmd`.
 2. **Set up your Relay.** Open the local browser guide, check prerequisites and
    deploy to your own Cloudflare account.
-3. **Pair your phone.** Install the [Android APK](https://github.com/MrMaii/droprun/releases/download/v0.5.2-rc.1/DropRun-0.5.2-android.apk), scan the computer's code, confirm the server and authorize projects.
+3. **Pair your phone.** Install the [Android APK](https://github.com/MrMaii/droprun/releases/download/v0.5.3-rc.1/DropRun-0.5.3-android.apk), scan the computer's code, confirm the server and authorize projects.
 4. **Make a handoff.** Share a reference, then follow receipt, execution and
    approval through to the report. “Saved” means saved on your phone, not finished.
 
@@ -86,7 +86,7 @@ source-to-Codex task.
 DropRun has no official account or subscription. Cloudflare, optional
 transcription and Codex usage belong to your accounts and **may incur charges**.
 Windows packages are unsigned and may show an unknown-publisher prompt; compare
-the release [checksums](https://github.com/MrMaii/droprun/releases/download/v0.5.2-rc.1/SHA256SUMS.txt).
+the release [checksums](https://github.com/MrMaii/droprun/releases/download/v0.5.3-rc.1/SHA256SUMS.txt).
 The public Android app installs alongside the historical private/debug app;
 different signing identities cannot silently replace each other.
 
@@ -116,7 +116,7 @@ website provides information and downloads. [Data and privacy →](docs/technica
 
 This is a release candidate. Physical Android performance, clean Windows
 installation and the full real-source handoff workflow still have open acceptance
-gates. See the [dated validation record](docs/releases/0.5.2-rc.1.md) before using
+gates. See the [dated validation record](docs/releases/0.5.3-rc.1.md) before using
 it on important projects. Screenshots and a UI tour do not establish those results.
 
 ## Build and contribute

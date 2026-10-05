@@ -1,5 +1,9 @@
 # UI follow-through — October 5, 2026
 
+These changes are now packaged in [0.5.3-rc.1](0.5.3-rc.1.md), with independently
+verified signatures, source archives and anonymous downloads. The evidence below
+retains its original dates and source/build hashes.
+
 These source changes follow the published **0.5.2-rc.1** candidate. They are not
 in its existing download files. Package evidence remains in the
 [candidate record](0.5.2-rc.1.md); no release tag or asset was replaced.

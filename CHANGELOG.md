@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.5.3-rc.1 — candidate preparation
+## 0.5.3-rc.1 — native feedback refinement
 
 - Show the saved or unconfirmed execution preference before sharing, with the
   receipt-time boundary and localized effort summaries. Simplify routine saved
@@ -24,8 +24,9 @@
 - README leads with the three-step screenshots, then a smaller native tour;
   project counts and the portable startup entry are explicit in both languages.
 
-Runtime 0.5.3 and Android code16 prepare the next candidate. The downloadable
-0.5.2-rc.1 packages remain current until independently verified assets are published.
+Runtime0.5.3/Android code16 is publicly available with the same Android signing
+certificate. All eight release assets were downloaded anonymously and verified.
+[Package/source evidence and open gates](docs/releases/0.5.3-rc.1.md).
 [Local verification](docs/releases/ui-followthrough-2026-10-05.md).
 
 ## 0.5.2-rc.1 — native UI and product presentation

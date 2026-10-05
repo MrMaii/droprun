@@ -1,6 +1,6 @@
 # Self-host DropRun
 
-[简体中文](SELF_HOSTING.zh-CN.md) · [Release notes](../releases/0.5.2-rc.1.md)
+[简体中文](SELF_HOSTING.zh-CN.md) · [Release notes](../releases/0.5.3-rc.1.md)
 
 This is a public preview. Read the release's validation gaps before using it on
 important projects. One Relay belongs to one owner and one Windows Connector;
@@ -17,9 +17,9 @@ several phones may pair with it. There is no official DropRun account.
 
 ## Install the computer package
 
-Download the [Windows installer](https://github.com/MrMaii/droprun/releases/download/v0.5.2-rc.1/DropRun-0.5.2-windows-x64-setup.exe)
-or [portable ZIP](https://github.com/MrMaii/droprun/releases/download/v0.5.2-rc.1/DropRun-0.5.2-windows-x64.zip) from
-[0.5.2-rc.1](https://github.com/MrMaii/droprun/releases/tag/v0.5.2-rc.1). Compare the file's
+Download the [Windows installer](https://github.com/MrMaii/droprun/releases/download/v0.5.3-rc.1/DropRun-0.5.3-windows-x64-setup.exe)
+or [portable ZIP](https://github.com/MrMaii/droprun/releases/download/v0.5.3-rc.1/DropRun-0.5.3-windows-x64.zip) from
+[0.5.3-rc.1](https://github.com/MrMaii/droprun/releases/tag/v0.5.3-rc.1). Compare the file's
 SHA-256 with the release manifest. Windows may identify the unsigned package as
 an unknown publisher; the project does not claim a trusted Windows signature.
 
@@ -40,7 +40,7 @@ provisioning can resume. Do not change the instance name to recover a failed ste
 retry the original setup first. Cloudflare management credentials belong to setup,
 not the Android app or normal Connector task execution.
 
-In the 0.5.2 candidate, expand **Projects on this computer** after the check to
+In the current candidate, expand **Projects on this computer** after the check to
 match a phone's project ID to its local folders. This read-only list includes all
 project pages and marks missing folders. Open the folder in Codex and check again
 to recover an unavailable project. Folder paths stay in the protected local setup
@@ -52,7 +52,7 @@ handoffs already accepted by its Relay.
 
 ## Pair Android
 
-Install the [release APK](https://github.com/MrMaii/droprun/releases/download/v0.5.2-rc.1/DropRun-0.5.2-android.apk), then scan the code shown by your computer. Confirm the
+Install the [release APK](https://github.com/MrMaii/droprun/releases/download/v0.5.3-rc.1/DropRun-0.5.3-android.apk), then scan the code shown by your computer. Confirm the
 computer and HTTPS Relay address before pairing. The invitation is single-use and
 expires. Manual pairing accepts the complete invitation or server/code fields.
 Never publish a screenshot of a real pairing code.
@@ -120,7 +120,7 @@ to `%LOCALAPPDATA%/DropRun-backups/<id>/`. Only a backup with `backup.json` cont
 `complete: true` is ready for recovery. A backup failure stops replacement.
 These private backups are not uploaded. Keep a previous installer as well.
 
-The 0.5.2 candidate update requires verified Connector shutdown: queue checks,
+The current candidate update requires verified Connector shutdown: queue checks,
 task execution and media login must finish, and the worker process must exit
 before backup or replacement. A live older worker without this capability is
 refused. Finish active work, stop its existing Connector/scheduled supervisor
