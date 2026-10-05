@@ -75,3 +75,22 @@ API 35；720 × 1440 像素，density 360，逻辑尺寸 320 × 640 dp。
 转换；没有剪切、重排、重绘界面或刻意变速。帧采样与 GIF 百分之一秒时间精度使
 动图时长为 9.08 秒和 12.16 秒；原视频分别为 9.084089 秒和 12.192133 秒。
 字幕只说明实际可见的界面操作，并明确为演示数据。文件校验值见上表。
+
+## Latest delivery region — October 5, 2026
+
+The third workflow image uses an unedited320×640 native memory-only probe,
+not the earlier0.5.1 tour. Its visible probe/sample marker remains. It shows
+only the delivery region; the task topbar is outside the capture. It does not
+execute work or open a genuine preview. The tested TaskActivity source is included
+in0.5.4; the capture predates its runtime version bump and is not a signed-package
+recording. [Source and raw capture evidence](../../docs/releases/ui-delivery-surface-2026-10-05.md).
+
+| Capture | SHA-256 |
+| --- | --- |
+| [source-delivery-en-light-20261005.png](source-delivery-en-light-20261005.png) | `12b0648d3786ee22175caa3d0dd8ad22aae957647c631417d9515cc34571330c` |
+| [source-delivery-en-dark-20261005.png](source-delivery-en-dark-20261005.png) | `daae52912ce1f8e6764f60e9193d24608578cd5452f86c00453bb57ac3653254` |
+| [source-delivery-zh-light-20261005.png](source-delivery-zh-light-20261005.png) | `9d6d0867848764b607ede84761abd139dc769946661f1acfd6fa6a3134a7a2c1` |
+| [source-delivery-zh-dark-20261005.png](source-delivery-zh-dark-20261005.png) | `547f5d721f7106f430188abc37ea2b0bb6ad2172e8319e949af1f33fc149a064` |
+
+第三步使用未经修图的原生内存验证截图，保留示例标记；只展示交付区域。
+不是旧版录屏，也不代表签名包录制、真实任务执行或真实预览验收。

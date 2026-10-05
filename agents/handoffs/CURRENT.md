@@ -1,58 +1,55 @@
 # Current Handoff
 
-Updated 2026-10-05 UTC. Public candidate v0.5.3-rc.1 remains available; stable
-launch and marketing handover remain open. Independent UI work continues.
+Updated2026-10-05 UTC. Public candidate0.5.4-rc.1 is available. Stable launch and
+marketing acceptance remain open; independent UI/brand work continues.
 
 ## Published product and source
 
-- Candidate/tag source615c3f0958e4c7ffdbfb52c9a86f9b8902ce3492; eight anonymous
-  assets/checksums, stable Android certificate, unsigned Windows and exact-source
-  CI are verified. Canonical provenance/open gates:
-  [0.5.3-rc.1](../../docs/releases/0.5.3-rc.1.md).
-- GPTSites version6 remains https://droprun.dengmaizi0802.chatgpt.site/ and /zh/.
-  Its dated0.5.1 development Demo media is not genuine Codex execution or a
-  recording of current downloads. Site/CTA/anonymous proof:
-  [public delivery](../../docs/releases/public-delivery-2026-10-05-rc053.json).
-- Public source f68f051c205996da244b71dc0f5944c4729d714e first matching
-  CI37384524584 passed all3jobs/core210/browser14/fail0/cancel0/skip0,
-  audit/site/public-source359/Windows packaging. Three anonymous documents and
-  94sealed Android sources match Git blobs (83exact/11CRLF-only). This source is
-  newer than the unchanged candidate. Prior brand ECONNRESET failures and the
-  earlier browser readiness timeout remain; their cause is not established.
+- Candidate/tag/source46ed914cda6dc24767feb54caacd8daa66de9db5, runtime0.5.4/code17.
+  Eight full anonymous downloads/API digests/seven checksums and annotated tag
+  match; stable Android certificate/noDemo/nondebuggable, WindowsNotSigned,
+  committed-source/package inventories verified. [Candidate record](../../docs/releases/0.5.4-rc.1.md)
+  owns provenance and open gates; old releases remain unchanged.
+- Exact-source CI37388827065 attempt1: all3jobs/35steps, core210/browser14,
+  fail/skip/cancel0; audit0/site20assets/public-source364/Windows2022 packaging
+  and Android build/JVM/lint. Independent nine-source comparison and four anonymous
+  source/doc GETs pass. Prior brand ECONNRESET/readiness failures remain unexplained.
+- GPTSites version7 succeeded23:43:20.304599Z from hosting source
+  0552e297ea86f68398d2fe459664b82f0af58b7c. Both languages/10CTA/4resources
+  and26 unchanged-media comparisons pass. Actual1280 Start installing/language
+  controls checked. [Anonymous delivery](../../docs/releases/public-delivery-2026-10-05-rc054.json)
+  separates package/site proof. The first Chinese screenshot preceded smooth-scroll
+  settlement; retained separately, not accepted. A settled capture passes.
+- First site packaging used missing WSL bash, then GNU tar mistook the drive colon
+  for a remote archive. Originals retained; process-only Git Bash PATH and
+  TAR_OPTIONS=--force-local resolved packaging without product changes or cleanup.
+- README/download/setup pointers now target the verified0.5.4 candidate. Third
+  workflow image uses the latest unedited native delivery-region probe. Its marker
+  stays visible; first two screens and tours remain dated0.5.1 Demo data. Neither
+  set is genuine execution or a signed-package recording. Public presentation
+  source/CI/README viewport verification follows this documentation publication.
 
-## Current UI work
+## Verified UX changes
 
-- Home compact sync feedback, reading retention and complete large project names:
-  [Home recovery](../../docs/releases/ui-recovery-2026-10-05.md).
-- Result/preview/files share one content card, inspection is primary and follow-up
-  separate. Native5/5,24new theme/language/text/state cases, JVM24/24 and lint pass.
-  Bilingual README places platform downloads and installation earlier; actual
-  public desktop/narrow renders were checked, with unchanged dated Demo media.
-  [Single delivery surface](../../docs/releases/ui-delivery-surface-2026-10-05.md)
-  owns source, captures, failed/green CI and rendering scope.
-- Share stale permission-success callbacks cannot close a later dialog or advance
-  another selection. Native5/5/guard0; requests and confirmation are unchanged.
-  [Permission feedback](../../docs/releases/ui-permission-motion-2026-10-05.md).
-- Windows setup now separates required checks and optional media extraction.
-  Existing browser7/7 and three GET-only EN/ZH/light/dark-zoom2 scenes passed.
-  Actual fonts are YaHei UI/local Noto Sans SC; no suspected serif fix applied.
-  Three installer files and the dated record are not committed yet.
-  [Setup hierarchy](../../docs/releases/ui-setup-hierarchy-2026-10-05.md).
-- Settings recreation originally lost pending UI (red1/1). Operation-specific
-  FutureTask/weak observer retention passed native9/9 in31.710s, with actual
-  once-only accessibility events, identity/scope/queued-completion checks and the
-  original two Busy methods unchanged. This simulates work, not server receipt.
-  Captures then exposed clipped global Saving feedback; strict visibility red1/1
-  failed3.071s. The local inline mode-caption fix is applied; full build45s,
-  JVM24/24/lint0errors30warnings pass. Final native regression is complete:
-  9/9 in45.058s/host46.710763s, four marked status captures and six
-  individual font2 targets pass; guard0. All earlier source/APKs/logs/unmarked
-  captures stay separate.
-  [Settings operation](../../docs/releases/ui-settings-operation-2026-10-05.md)
-  owns the final local record. Settings source/APKs are sealed; device lease
-  released. The inline caption stays visible beside both normal-text choices.
-- Earlier native focus, share editor, feedback and manual-pair work:
-  [Follow-through](../../docs/releases/ui-followthrough-2026-10-05.md).
+- [Home recovery](../../docs/releases/ui-recovery-2026-10-05.md): compact sync
+  feedback, reading retention and complete enlarged project names.
+- [Delivery](../../docs/releases/ui-delivery-surface-2026-10-05.md): one content
+  card for result/preview/files, inspection primary, follow-up separate; native5/5,
+  24new configurations/JVM24/lint pass. Four raw region images are public.
+- [Settings](../../docs/releases/ui-settings-operation-2026-10-05.md): same mode
+  operation survives recreation; inline Saving/result stays with the choices;
+  identity/live-scope/ownership checks and success-announcement dedup. Original
+  lifecycle red and clipping red preserved; final native9/9 in45.058s,12 EN/ZH
+  configurations, four normal marked captures and six font2 targets; guard0,
+  JVM24/lint0errors30warnings. Sources/APKs frozen, device lease released.
+- [Permission feedback](../../docs/releases/ui-permission-motion-2026-10-05.md):
+  dismissed success cannot close a later dialog or advance another selection;
+  native5/5/guard0, existing request and confirmation unchanged.
+- [Setup hierarchy](../../docs/releases/ui-setup-hierarchy-2026-10-05.md): required
+  readiness separate from optional tools; existing browser7/7 plus3 GET-only scenes.
+  Actual system fonts confirmed; no speculative serif correction applied.
+- [Earlier follow-through](../../docs/releases/ui-followthrough-2026-10-05.md)
+  owns share feedback, focus, invalid-pair and related dated evidence.
 
 ## Authorization and blocking conditions
 
@@ -77,19 +74,15 @@ launch and marketing handover remain open. Independent UI work continues.
 
 ## Single recommended next action
 
-Curate the verified UX batch and runtime0.5.4/code17 into an immutable source,
-then prepare0.5.4-rc.1 from a clean managed checkout.
-Validate matching CI, stable signing and packages before changing public CTAs.
-Root owns docs/Git/Sites; private rc054 preflight/build/verifier helpers are prepared
-and the minimal runtime version bump is prepared. No new worktree, package, tag,
-Release or site change has occurred.
+Finish exact presentation-source CI and actual public README layout checks;
+then continue the next bounded local UI audit. Genuine/physical gates remain
+separate. Do not replay rejected operations or announce marketing readiness.
 
 ## Files this pass
 
-SettingsActivity, non-exported recreation probes/debug manifest/native test;
-installer setup HTML/CSS/JS; PRD/contracts/changelog; dated Settings/setup/delivery
-records and this handoff. Brand diagnostic publication is already public.
-Private evidence: .local/ux-oct5-settings-recreation-proposal/,
-.local/ux-oct5-setup-audit/, .local/ux-oct5-brand-diagnostic/.
-
+SettingsActivity/non-exported debug probes/native test; installer setup HTML/CSS/JS;
+runtime0.5.4/code17 version entries; PRD/contracts/roadmap/changelog/current context;
+README/media notes/setup guides; candidate/anonymous/dated UX records; landing
+generator/pages and owned hosting checkout. Root owns Git/docs/Sites.
+Private evidence/builds are outside the managed checkout under .local/ux-rc054/.
 Git author Thomas Deng <150266369+MrMaii@users.noreply.github.com>.

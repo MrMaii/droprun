@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.5.4-rc.1 — clearer delivery and decisions
+
 - Keep execution-setting progress and its result through page recreation without
   replaying the operation. Show it beside the choices, ignore stale feedback and
   announce success once.

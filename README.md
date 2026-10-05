@@ -3,12 +3,12 @@
   <h1>DropRun</h1>
   <p><strong>Share from your phone. Put local Codex to work.</strong></p>
   <p>Choose an existing project. Add an optional note. Inspect the result.<br>Android 8+ · Windows x64 · signed-in Codex · your Cloudflare</p>
-  <p><a href="docs/technical/SELF_HOSTING.md"><strong>Get started →</strong></a> &nbsp; · &nbsp; <a href="https://droprun.dengmaizi0802.chatgpt.site">Website</a> &nbsp; · &nbsp; <a href="https://github.com/MrMaii/droprun/releases/tag/v0.5.3-rc.1">Downloads</a> &nbsp; · &nbsp; <a href="README.zh-CN.md">简体中文</a></p>
-  <p>Preview downloads: <a href="https://github.com/MrMaii/droprun/releases/download/v0.5.3-rc.1/DropRun-0.5.3-windows-x64-setup.exe">Windows installer</a> &nbsp; · &nbsp; <a href="https://github.com/MrMaii/droprun/releases/download/v0.5.3-rc.1/DropRun-0.5.3-windows-x64.zip">Portable ZIP</a> &nbsp; · &nbsp; <a href="https://github.com/MrMaii/droprun/releases/download/v0.5.3-rc.1/DropRun-0.5.3-android.apk">Android APK</a></p>
+  <p><a href="docs/technical/SELF_HOSTING.md"><strong>Get started →</strong></a> &nbsp; · &nbsp; <a href="https://droprun.dengmaizi0802.chatgpt.site">Website</a> &nbsp; · &nbsp; <a href="https://github.com/MrMaii/droprun/releases/tag/v0.5.4-rc.1">Downloads</a> &nbsp; · &nbsp; <a href="README.zh-CN.md">简体中文</a></p>
+  <p>Preview downloads: <a href="https://github.com/MrMaii/droprun/releases/download/v0.5.4-rc.1/DropRun-0.5.4-windows-x64-setup.exe">Windows installer</a> &nbsp; · &nbsp; <a href="https://github.com/MrMaii/droprun/releases/download/v0.5.4-rc.1/DropRun-0.5.4-windows-x64.zip">Portable ZIP</a> &nbsp; · &nbsp; <a href="https://github.com/MrMaii/droprun/releases/download/v0.5.4-rc.1/DropRun-0.5.4-android.apk">Android APK</a></p>
 </div>
 
-> **Public preview · 0.5.3-rc.1.** [Validation record and open acceptance gates](docs/releases/0.5.3-rc.1.md).
-> The downloads are 0.5.3-rc.1. Later source refinements listed under [Unreleased](CHANGELOG.md#unreleased) are not included in that package.
+> **Public preview · 0.5.4-rc.1.** [Validation record and open acceptance gates](docs/releases/0.5.4-rc.1.md).
+> Includes the latest home, delivery, settings and setup refinements. This remains a release candidate.
 
 You find a useful interaction, screenshot or article on your phone. Share it to
 DropRun, choose a project, and optionally leave a note. Your Windows Connector
@@ -20,7 +20,7 @@ and evidence of what changed.
 **UI demonstration only:** nothing was sent to an agent, and the report uses
 labelled sample data.
 
-Screens and tours show the 0.5.1 development UI captured October 5, 2026 with labelled demo data. They predate the later UX refinements and are not recordings of the 0.5.3-rc.1 download.
+Share/home screens and tours show the dated 0.5.1 development UI. The delivery region below shows the latest source UI in a memory-only native probe. All were captured October 5, 2026; none records this signed download or genuine Codex execution.
 [Capture notes](assets/brand/readme-media.md).
 
 <table>
@@ -32,7 +32,7 @@ Screens and tours show the 0.5.1 development UI captured October 5, 2026 with la
   <tr>
     <td align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/readme-share-dark.png"><img src="assets/brand/readme-share.png" width="220" alt="Native Android share sheet with project choices and visible Demo data notice"></picture></td>
     <td align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/readme-home-dark.png"><img src="assets/brand/readme-home.png" width="220" alt="Native Android project home with task and dispatch counts and visible Demo data notice"></picture></td>
-    <td align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/readme-task-dark.png"><img src="assets/brand/readme-task.png" width="220" alt="Native Android task detail with a labelled sample result, follow-up and evidence controls"></picture></td>
+    <td align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-delivery-en-dark-20261005.png"><img src="assets/brand/source-delivery-en-light-20261005.png" width="220" alt="Latest native delivery region: result, preview and files on one surface, with a visible memory-only probe marker"></picture></td>
   </tr>
   <tr>
     <td>Pick an existing project. Add a note when you have a specific change in mind.</td>
@@ -47,11 +47,11 @@ Screens and tours show the 0.5.1 development UI captured October 5, 2026 with la
 | --- | --- | --- |
 | Windows x64, Git, signed-in Codex, Chrome or Edge | Android 8 or newer | Your Cloudflare account with Workers, D1 and R2 |
 
-1. **Install on Windows.** Get the [installer](https://github.com/MrMaii/droprun/releases/download/v0.5.3-rc.1/DropRun-0.5.3-windows-x64-setup.exe) or [portable ZIP](https://github.com/MrMaii/droprun/releases/download/v0.5.3-rc.1/DropRun-0.5.3-windows-x64.zip).
+1. **Install on Windows.** Get the [installer](https://github.com/MrMaii/droprun/releases/download/v0.5.4-rc.1/DropRun-0.5.4-windows-x64-setup.exe) or [portable ZIP](https://github.com/MrMaii/droprun/releases/download/v0.5.4-rc.1/DropRun-0.5.4-windows-x64.zip).
    For the portable edition, extract to a permanent folder and open `DropRun.cmd`.
 2. **Set up your Relay.** Open the local browser guide, check prerequisites and
    deploy to your own Cloudflare account.
-3. **Pair your phone.** Install the [Android APK](https://github.com/MrMaii/droprun/releases/download/v0.5.3-rc.1/DropRun-0.5.3-android.apk), scan the computer's code, confirm the server and authorize projects.
+3. **Pair your phone.** Install the [Android APK](https://github.com/MrMaii/droprun/releases/download/v0.5.4-rc.1/DropRun-0.5.4-android.apk), scan the computer's code, confirm the server and authorize projects.
 4. **Make a handoff.** Share a reference, then follow receipt, execution and
    approval through to the report. “Saved” means saved on your phone, not finished.
 
@@ -60,7 +60,7 @@ Screens and tours show the 0.5.1 development UI captured October 5, 2026 with la
 DropRun has no official account or subscription. Cloudflare, optional
 transcription and Codex usage belong to your accounts and **may incur charges**.
 Windows packages are unsigned and may show an unknown-publisher prompt; compare
-the release [checksums](https://github.com/MrMaii/droprun/releases/download/v0.5.3-rc.1/SHA256SUMS.txt).
+the release [checksums](https://github.com/MrMaii/droprun/releases/download/v0.5.4-rc.1/SHA256SUMS.txt).
 The public Android app installs alongside the historical private/debug app;
 different signing identities cannot silently replace each other.
 
@@ -123,7 +123,7 @@ website provides information and downloads. [Data and privacy →](docs/technica
 
 This is a release candidate. Physical Android performance, clean Windows
 installation and the full real-source handoff workflow still have open acceptance
-gates. See the [dated validation record](docs/releases/0.5.3-rc.1.md) before using
+gates. See the [dated validation record](docs/releases/0.5.4-rc.1.md) before using
 it on important projects. Screenshots and a UI tour do not establish those results.
 
 ## Build and contribute
