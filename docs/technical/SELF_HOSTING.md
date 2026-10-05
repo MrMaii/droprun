@@ -1,6 +1,6 @@
 # Self-host DropRun
 
-[简体中文](SELF_HOSTING.zh-CN.md) · [Release notes](../releases/0.5.1-rc.1.md)
+[简体中文](SELF_HOSTING.zh-CN.md) · [Release notes](../releases/0.5.1-rc.2.md)
 
 This is a public preview. Read the release's validation gaps before using it on
 important projects. One Relay belongs to one owner and one Windows Connector;

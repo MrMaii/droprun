@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.5.1-rc.2 — Windows startup and preview shutdown
+
+Bundled Windows scripts start with a process-only policy. Preview shutdown waits
+for owned process closure; failed or unknown termination blocks project edits and
+retains handles for retry. Concurrent requests notify once; exited PIDs are not
+terminated again. Temporary preview-fixture cleanup uses bounded retries.
+
+Node218/218 and released-source CI passed. Source-bound packages retain Android's
+stable signing certificate and disclose the unsigned Windows installer. Real
+device, clean installation and genuine-handoff gates remain open. Current evidence:
+[0.5.1-rc.2](docs/releases/0.5.1-rc.2.md).
+
 ## 0.5.1-rc.1 — public self-hosted preview
 
 - Confirmed deletion clears paged history and blocks stale responses or saved

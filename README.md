@@ -6,8 +6,8 @@
   <p><img alt="License Apache-2.0" src="https://img.shields.io/badge/license-Apache--2.0-18291f?style=flat-square"> <img alt="Android and Windows" src="https://img.shields.io/badge/Android%20%2B%20Windows-self--hosted-b8ef73?style=flat-square&labelColor=18291f"></p>
 </div>
 
-> **Public preview.** [0.5.1-rc.1](https://github.com/MrMaii/droprun/releases/tag/v0.5.1-rc.1) is a self-hosted release candidate.
-> Read the [current validation record](docs/releases/0.5.1-rc.1.md), including the remaining
+> **Public preview.** [0.5.1-rc.2](https://github.com/MrMaii/droprun/releases/tag/v0.5.1-rc.2) is a self-hosted release candidate.
+> Read the [current validation record](docs/releases/0.5.1-rc.2.md), including the remaining
 > real-device and source-access gates. A polished UI is not proof of reliable execution.
 
 ## See the app
@@ -85,7 +85,7 @@ belongs to one owner and one Connector. Multiple phones can pair with it.
   unlimited always-on push guarantee.
 - Static snapshots support compatible exports, not arbitrary backend-dependent
   apps. Live preview needs a domain and managed tunnel you control.
-- Review the [release evidence](docs/releases/0.5.1-rc.1.md) before important projects.
+- Review the [release evidence](docs/releases/0.5.1-rc.2.md) before important projects.
 
 ## Build, contribute, understand
 

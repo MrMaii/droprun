@@ -6,7 +6,7 @@ This edition supersedes earlier hosted/pricing assumptions and ADR 0014's visual
 layout. Decisions: [self-hosting](../decisions/0015-public-selfhost-release.md) and
 [project-first UX](../decisions/0016-project-first-light-ux.md). Historical sections
 below describe the original product goals; release evidence is maintained only
-in [the current candidate record](../releases/0.5.1-rc.1.md).
+in [the current candidate record](../releases/0.5.1-rc.2.md).
 
 - Android + Windows x64; each owner deploys a private Cloudflare Relay. No official
   registration, subscription or multitenant service. GPTSites is the public website.
