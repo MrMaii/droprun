@@ -6,6 +6,17 @@ Android+Windows self-hosted goal and the user's local-only validation boundary.
 
 ## Latest session: pre-send decision clarity and dependable README visuals
 
+- Current editor/diagram source `d1db90fe3c14064c8434739834247218f726fc71`
+  is public. Matching CI37353003050 passed all3jobs on attempt2: core210/browser14,
+  zero skipped/cancelled; Android initially hit an official Gradle-download HTTP500
+  before compilation, then passed after retrying only that job. Local lintDebug
+  passed0errors/30warnings. Anonymous EN/ZH README diagrams visibly render.
+- Next candidate is prepared as runtime0.5.3/Android code16. Protocol2/schema11/
+  shutdown1 remain. Build from a new clean managed worktree, verify unchanged
+  Android certificate and all inventories/source archives, then publish new
+  prerelease assets and switch public pointers only after anonymous downloads pass.
+  Existing0.5.2 assets/media and original uncommitted film remain unchanged.
+
 - Share editor now shows a saved direct/plan preference or unconfirmed setting
   before Send, plus the first-receipt boundary. No setting/network/save behavior
   changed. Ordinary feedback is neutral; Chinese permission copy retains mode

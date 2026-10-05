@@ -211,3 +211,13 @@ core210/210 and browser14/14 with zero skips/cancellations, Android builds/tests
 audit, generated-site/public checks and Windows installer/portable construction.
 This run predates the current editor/diagram source publication; their matching
 run is recorded separately. The downloadable0.5.2-rc.1 remains unchanged.
+
+Source `d1db90fe3c14064c8434739834247218f726fc71` includes the editor and diagrams.
+[Matching CI37353003050](https://github.com/MrMaii/droprun/actions/runs/37353003050)
+passed all three jobs on attempt2. Attempt1 passed core210/210 and browser14/14,
+with no skips/cancellations; Android stopped before compilation when the official
+Gradle distribution download returned HTTP500. Only that failed job was retried;
+its build, debug/test APKs, JVM tests and lintDebug then passed. Original job logs
+remain separate. Local lintDebug also passed with0errors/30warnings. Both public
+README architecture views were inspected and saved after source publication.
+This verifies source checks, not installation, genuine delivery or physical UX.

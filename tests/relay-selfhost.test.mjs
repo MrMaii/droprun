@@ -47,6 +47,7 @@ after(async () => { await mf?.dispose(); });
 test('health checks actual schema and storage; pairing is bound to the scanned instance',async () => {
   const health = await req('/health');
   assert.equal(health.status,200); assert.equal(health.data.ready,true); assert.equal(health.data.instanceId,instanceId); assert.equal(health.data.schemaVersion,11); assert.equal(health.data.protocolVersion,2);
+  assert.equal(health.data.version,JSON.parse(await readFile('package.json','utf8')).version);
   const issued = await req('/connector/pairing-code',{},connector);
   assert.equal(issued.data.instanceId,instanceId); assert.equal(issued.data.relayUrl,'https://relay.test');
   assert.equal((await req('/pair',{code:issued.data.code,instanceId:randomUUID()})).status,409);

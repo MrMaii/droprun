@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased — native feedback refinement
+## 0.5.3-rc.1 — candidate preparation
 
 - Show the saved or unconfirmed execution preference before sharing, with the
   receipt-time boundary and localized effort summaries. Simplify routine saved
@@ -24,7 +24,8 @@
 - README leads with the three-step screenshots, then a smaller native tour;
   project counts and the portable startup entry are explicit in both languages.
 
-These changes are newer than the downloadable 0.5.2-rc.1 packages.
+Runtime 0.5.3 and Android code16 prepare the next candidate. The downloadable
+0.5.2-rc.1 packages remain current until independently verified assets are published.
 [Local verification](docs/releases/ui-followthrough-2026-10-05.md).
 
 ## 0.5.2-rc.1 — native UI and product presentation
