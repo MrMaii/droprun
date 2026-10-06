@@ -135,6 +135,9 @@ in [the current candidate record](../releases/0.5.10-rc.1.md).
   zero-record read confirms that no handoffs are present. Failure offers Refresh;
   null or blank error details use a useful localized message. Cached and pending
   rows stay visible, with failure feedback separate from the zero-record surface.
+  While a history read is pending, Refresh has a persistent disabled/dimmed state
+  and a localized refreshing description. Completion restores its usual state;
+  repeated clicks reuse the existing busy guard without extra reads or moving rows.
   Project identity has its own bounded heading, separate from Back and Refresh.
   A 48dp information entry exposes the complete name and ID when the heading is
   shortened; same-name and retained-history identity remain explicit. Recycled

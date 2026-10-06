@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Keep History Refresh visibly unavailable while reading, with an accurate
+  localized description; restore it on completion or foreground return.
+  Cached history stays readable and repeated requests add no reads.
+  [Bounded native checks](docs/releases/ui-history-refresh-feedback-2026-10-06.md).
+
 - Give Home projects distinct matte cards and decorative initials; reserve name
   width at large text while preserving state and stable reading on rebind.
   [Native checks and originals](docs/releases/ui-home-project-cards-2026-10-06.md).

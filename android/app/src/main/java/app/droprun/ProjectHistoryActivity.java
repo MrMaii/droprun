@@ -18,7 +18,7 @@ import java.util.concurrent.*;
 public class ProjectHistoryActivity extends StyledActivity {
     final ExecutorService io=Executors.newSingleThreadExecutor(),local=Executors.newSingleThreadExecutor();final Handler handler=new Handler(Looper.getMainLooper());
     final List<JSONObject> rows=new ArrayList<>();final Set<String> pendingIds=new HashSet<>();final HistoryAdapter adapter=new HistoryAdapter();
-    Store store;String projectId,projectName,cursor="",snapshot="";TextView notice,emptyTitle,emptyDetail;ListView list;Button more;LinearLayout empty;boolean busy,foreground,paged;Parcelable restoredScroll;int emptyReadState; // 0 checking, 1 checked, 2 failed
+    Store store;String projectId,projectName,cursor="",snapshot="";TextView notice,emptyTitle,emptyDetail;ListView list;Button more;ImageButton reload;LinearLayout empty;boolean busy,foreground,paged;Parcelable restoredScroll;int emptyReadState; // 0 checking, 1 checked, 2 failed
     Removal removal;final Runnable removalObserver=this::updateRemoval;String readError="",actionError="";
     final Runnable refresh=()->{if(paged){render();handler.postDelayed(this.refresh,7000);}else load(false);};
     @Override protected void onCreate(Bundle state){
@@ -26,7 +26,7 @@ public class ProjectHistoryActivity extends StyledActivity {
         removal=(Removal)getLastNonConfigurationInstance();if(removal!=null&&!removal.store.scope.equals(store.scope))removal=null;
         if(state!=null&&store.scope.equals(state.getString("actionScope",store.scope))){actionError=state.getString("actionError","");String interrupted=state.getString("removing","");if(removal==null&&!interrupted.isEmpty()){JSONArray pending=store.pending();for(int n=0;n<pending.length();n++)if(interrupted.equals(pending.optJSONObject(n).optString("id")))actionError=L.t("Removal was interrupted. The saved copy is still here; you can try again.","移除操作中断，已保存副本仍在，可以重试。");}}
         if(state!=null)restoredScroll=state.getParcelable("scroll");Ui.configureWindow(this);LinearLayout page=Ui.column(this);LinearLayout header=Ui.vertical(this);header.setPadding(dp(20),dp(4),dp(20),0);
-        ImageButton back=Ui.iconButton(this,R.drawable.ic_chevron_left,L.t("Back to projects","返回项目"));back.setOnClickListener(v->finish());ImageButton reload=Ui.iconButton(this,R.drawable.ic_refresh,L.t("Refresh project history","刷新项目历史"));reload.setOnClickListener(v->{paged=false;load(false);});Ui.topBar(this,header,back,L.t("Handoffs","交办"),false,reload);page.addView(header);
+        ImageButton back=Ui.iconButton(this,R.drawable.ic_chevron_left,L.t("Back to projects","返回项目"));back.setOnClickListener(v->finish());reload=Ui.iconButton(this,R.drawable.ic_refresh,L.t("Refresh project history","刷新项目历史"));reload.setOnClickListener(v->{paged=false;load(false);});Ui.topBar(this,header,back,L.t("Handoffs","交办"),false,reload);page.addView(header);
         LinearLayout identity=Ui.row(this);TextView name=Ui.title(this,projectName==null?projectId:projectName,24);name.setTag("history-project-name");name.setMaxLines(getResources().getConfiguration().fontScale>=1.5f?3:2);name.setEllipsize(android.text.TextUtils.TruncateAt.END);name.setContentDescription(name.getText());identity.addView(name,Ui.grow());
         ImageButton info=Ui.iconButton(this,R.drawable.ic_info,L.t("Project information","项目信息"));info.setTag("history-project-info");info.setOnClickListener(v->new AlertDialog.Builder(this).setTitle(L.t("Project information","项目信息")).setMessage(name.getText()+"\n\n"+L.t("Project ID: ","项目 ID：")+projectId).setPositiveButton(L.t("Close","关闭"),null).show());identity.addView(info,Ui.square(this,48));header.addView(identity,Ui.margins(this,8,4));
         if(projectName!=null){String label=store.projectLabel(projectId,projectName);if(!label.equals(projectName))header.addView(Ui.caption(this,L.t("Project · ","项目 · ")+label.substring(projectName.length()+3)));}
@@ -37,17 +37,21 @@ public class ProjectHistoryActivity extends StyledActivity {
         JSONArray cached=store.history(projectId).optJSONArray("tasks");paged=cached!=null&&cached.length()>50;render();
         if(removal!=null){removal.observer=removalObserver;if(removal.finished)actionError=removal.error;}showNotice();
     }
-    @Override protected void onResume(){super.onResume();foreground=true;if(paged){render();handler.postDelayed(refresh,7000);}else load(false);}
+    @Override protected void onResume(){super.onResume();foreground=true;updateRefresh();if(paged){render();handler.postDelayed(refresh,7000);}else load(false);}
     @Override protected void onPause(){foreground=false;handler.removeCallbacks(refresh);super.onPause();}
     @Override protected void onDestroy(){handler.removeCallbacksAndMessages(null);if(removal!=null&&removal.observer==removalObserver)removal.observer=null;io.shutdown();local.shutdown();super.onDestroy();}
     @Override public Object onRetainNonConfigurationInstance(){return removal;}
     @Override protected void onSaveInstanceState(Bundle state){if(list!=null)state.putParcelable("scroll",list.onSaveInstanceState());state.putString("actionScope",store.scope);state.putString("actionError",actionError);if(removing())state.putString("removing",removal.id);super.onSaveInstanceState(state);}
     int dp(int n){return Ui.dp(this,n);}
     Store createStore(){return new Store(this);}
+    void updateRefresh(){
+        if(reload==null)return;reload.setEnabled(!busy);reload.setAlpha(busy?0.5f:1f);
+        reload.setContentDescription(busy?L.t("Refreshing history…","正在刷新历史…"):L.t("Refresh project history","刷新项目历史"));
+    }
     void load(boolean append){
-        handler.removeCallbacks(refresh);if(busy||!foreground)return;busy=true;emptyReadState=0;updateEmptyCopy();more.setEnabled(false);String next=append?cursor:"";
+        handler.removeCallbacks(refresh);if(busy||!foreground)return;busy=true;updateRefresh();emptyReadState=0;updateEmptyCopy();more.setEnabled(false);String next=append?cursor:"";
         io.execute(()->{String error="";int outcome=2;try{store.loadHistory(projectId,next);outcome=1;}catch(Exception e){error=e.getMessage();}int result=outcome;String message=result==2&&(error==null||error.trim().isEmpty())?L.t("Couldn't refresh history. Use Refresh to try again.","暂时无法刷新历史，请点按刷新重试。"):error;
-            runOnUiThread(()->{busy=false;if(isDestroyed()||!foreground)return;emptyReadState=result;if(result==1&&append)paged=true;readError=message;showNotice();more.setEnabled(true);render();handler.postDelayed(refresh,7000);});});
+            runOnUiThread(()->{busy=false;if(isDestroyed()||!foreground)return;updateRefresh();emptyReadState=result;if(result==1&&append)paged=true;readError=message;showNotice();more.setEnabled(true);render();handler.postDelayed(refresh,7000);});});
     }
     void updateEmptyCopy(){
         String title=emptyReadState==0?L.t("Loading handoffs…","正在读取交办…"):emptyReadState==2?L.t("History could not load","暂时无法读取历史"):L.t("Nothing here yet","这里还没有交办");

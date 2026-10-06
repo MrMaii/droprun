@@ -10,16 +10,19 @@ genuine acceptance is unavailable. No stable launch or marketing handover.
   Anonymous assets/checksums and stable Android certificate were checked;
   Windows is NotSigned. Installer was not executed. The release record owns
   package evidence; later UI source is not claimed to be inside this candidate.
-- [GPTSites16](https://droprun.dengmaizi0802.chatgpt.site/) carries the new matte
-  native stills and larger responsive demo. Native publication succeeded;
-  public audience unchanged. [Website evidence](../../docs/releases/ui-website-demo-reading-2026-10-06.md)
-  owns source/archive/asset bindings and offline layout limits. No new hosted
+- [GPTSites17](https://droprun.dengmaizi0802.chatgpt.site/) carries the accepted
+  Home card images in both languages/themes. Native publication succeeded;
+  public audience unchanged. [Website/source evidence](../../docs/releases/ui-website-home-cards-2026-10-06.md)
+  owns91publicfiles/92archivefiles, source5ddd4ad5 and actual deployment. CSS,
+  JS, downloads and earlier demo keep their prior bindings. No new hosted
   JavaScript/playback acceptance is claimed.
-- Public sourcee315ad6: fifteen anonymous immutable file reads match, Thomas
-  author/committer and parent549b90c verified. Exact CI37504623475 attempt1 passed
-  all3jobs/35steps/10required/3checks: actualcore210/browser18/audit0/Androidbuild.
-  Complete326623B logebe4a877. Scoped sharp override retains Cloudflare versions.
-  [Dependency evidence](../../docs/releases/dependency-audit-2026-10-06.md).
+- Public sourcec2a07f3: thirty-three anonymous immutable file reads match, Thomas
+  author/committer and unique parent14b563a verified. Exact CI37510525606 attempt1
+  passed all3jobs/35steps/10required/3checks: actualcore210/browser18/audit0/
+  Androidbuild. Earlier14b563a omitted generated HTML and failed its own run's
+  page check; original complete log remains. c2 repairs only the two HTML files.
+  Scoped sharp override and [dependency evidence](../../docs/releases/dependency-audit-2026-10-06.md)
+  retain their prior source/audit records; e315's own CI also passed.
 
 ## Latest local UX — tested, ahead of signed candidate
 
@@ -69,9 +72,17 @@ owns the actual source/APK/output bindings, original failures and limitations.
 - [ADR0019](../../docs/decisions/0019-semantic-content-groups.md) records the
   useful-grouping trade-off and partial revision of ADR0018. No new network,
   permissions, navigation, OS/IME setting or genuine task was introduced.
-- Source and website selector changes await curated publication and exact CI.
-  GPTSites16 and signed10 still refer to their earlier source; never silently
-  relabel them. Model and Home tests have separate source/APK bindings.
+- This pass is public inc2a07f3, with its own successful CI and GPTSites17.
+  Signed10 still refers to its earlier source. Model and Home tests have separate
+  source/APK bindings.
+- [History Refresh feedback](../../docs/releases/ui-history-refresh-feedback-2026-10-06.md)
+  now has its own local source freeze6321e926: disabled/alpha0.5/accurate busy
+  description and idle restoration. Actual build42.5s/JVM27/lint0errors28warnings;
+  appa5ef6b39/testc2a715fc. Native1/1 7.91s,3full/DESTROYED,21actualguards0,
+  6memoryreads;27ADBchildren returned0, ten device properties/source exact.
+  Cached Infofocus/list/cache/ID/top and0notifications survive; six programmatic
+  repeats add no reads. Fixture unchanged; no cachedsuccess/pause/nativeIME/
+  motion claim. This further change awaits curated source publication/exact CI.
 
 ## Visual and README basis
 
@@ -82,8 +93,9 @@ Codex or signed-package demo is implied. Current work:
 [Share motion](../../docs/releases/ui-share-reading-motion-2026-10-06.md),
 [task reading position](../../docs/releases/ui-task-reading-position-2026-10-06.md).
 The bilingual README uses real native workflow stills before its Share GIF,
-with recording/provenance details. Its six local previews use approximate
-GitHub CSS; actual GitHub dark/fullmotion is not measured.
+with recording/provenance details. Its current eight-scene layout and separate
+two-scene Chinese wrap repair use approximate GitHub CSS; actual GitHub
+dark/fullmotion is not measured.
 
 The user's criticism drove the model group and Home card pass above. Continue
 useful grouping, hierarchy, navigation material and brand consistency from real
@@ -110,14 +122,15 @@ polish or stop useful UI work because genuine acceptance is unavailable.
 
 ## Single recommended next action
 
-Publish the verified Home/model/README source with exact-source CI, then carry
-the accepted Home images to GPTSites and a separate signed candidate. Continue
-the remaining UI states after that source passes; keep genuine gates
+Publish the verified History Refresh/source and Site17 records with exact CI,
+then prepare a separate signed candidate from verified source. Continue useful
+UI states and brand refinement; keep genuine gates
 visible. No real Relay/Codex or previously denied path; no marketing handover.
 
 ## Files this pass
 
-History/Share/Settings production source; one stableRefresh ID; two nonexported
-memory fixtures and two bounded tests; PRD/CONTRACTS/CHANGELOG; the recovery and
-dependency records; this handoff. Private launch originals remain uncommitted.
+Home/Settings/History production and four presentation assertions; twelve accepted
+PNG copies; bilingual README/media provenance; generated website Home selector;
+PRD/CONTRACTS/CHANGELOG/ADR0019; three local visual records and the website/CI
+publication and History Refresh records; this handoff. Private launch originals remain uncommitted.
 Author Thomas Deng <150266369+MrMaii@users.noreply.github.com>.
