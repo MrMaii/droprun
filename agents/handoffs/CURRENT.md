@@ -5,44 +5,28 @@ genuine acceptance is unavailable. No stable launch or marketing handover.
 
 ## Current public delivery
 
-- [Signed candidate0.5.12-rc.1](../../docs/releases/0.5.12-rc.1.md) binds
-  source22cc77d5/code25. Eight complete anonymous assets, seven checksums,
-  public API digests and annotated tag/source match. Stable Android certificate,
-  actual nondebuggable/noDemo manifest and DEX pass. Windows is NotSigned;
-  installer/Connector were not executed. The release record owns all package
-  evidence and source-archive EOL limitations.
-- Own sourceCI37533941303 attempt1 passes3jobs/35steps/10required/3checks:
-  actualcore210/browser18/Androidfourtasks/Windowspackaging. Full325493B
-  log SHA033e8374 retained. Independent source/artifact/export reviews passed.
-- Android build31.969s; two artifact verifiers pass, compiler-deprecation133B
-  stderr retained. Windows has one successful bounded npm-ci and two artifact
-  verifiers; actual native metadata/license/AMD64 and in-memory8×8PNG checks pass.
-  Original publisher uploaded8assets then its draft-by-tag inspection returned
-  HTTP404. Same observed draftID405160887 was checked and published via3known
-  returned commands; no creation/upload replay. Complete anonymous verification
-  passes. Candidate11 and all original failures remain immutable history.
-- GPTSites18 succeeded at the existing public address on2026-10-06T20:37:37Z;
-  hosting source830224a, version8077a939, deployment6ac55c09. Its91public files
-  include verified candidate11 download links and accepted Home cards. Own
-  documentation CI37527256869 atd891882 passes3jobs/35steps/10required, actual
-  core210/browser18. No hosted playback result is inferred.
-- GPTSites19 succeeded at2026-10-06T21:02:56Z: hosting source9af2ea3, version
-  0277ec17, deployment6ac561f8. Product sourcead543fb supplies95public files,
-  four new accepted raw Share images and two updated language pages. Exact
-  packaged96file inventory passes; public audience and all old media retained.
-  Its own sourceCI37530800757 atad543fb passes3jobs/35steps/10required, actual
-  core210/browser18; complete326964B log SHAb86394fb retained. This CI is build,
-  unit/browser/package validation, not a new genuine or physical-device result.
-- GPTSites20 succeeded at2026-10-06T21:45:54Z: hosting sourcee725ce4, saved
-  versionc8530daa, deployment6ac56c0a; product docs source0720cf0. Exact95public
-  files/96archive entries pass, only two language HTML files change, all earlier
-  media retained. Public audience stays unchanged. First native packaging failed
-  because explicit TMPDIR was missing; original commit/error preserved. Separate
-  preparation after creating that owned directory succeeded without source reset
-  or force push. Candidate12 downloads now appear in both language pages.
-  Own docsCI37535823985 attempt1 at0720cf0 passes3jobs/35steps/10required;
-  actualcore210/browser18. Complete326694B log SHA5b062195 retained. Original
-  pending snapshot stays preserved; no workflow trigger/rerun or borrowed CI.
+- [Signed candidate0.5.12-rc.1](../../docs/releases/0.5.12-rc.1.md) remains the
+  download: source22cc77d5/code25, eight anonymous assets/seven checksums,
+  stable Android certificate, actual nondebuggable/noDemo manifest and DEX.
+  Windows is NotSigned; installer/Connector were not executed. Its release
+  record owns package evidence and archive EOL limitations.
+- GPTSites21 succeeded at2026-10-06T22:33:08.863871Z at the existing public
+  address. Product source487d8479; hosting source10c37c2, version8bb416e4,
+  deployment6ac5771b. Exact103public files/104archive entries pass; Share-first
+  hero, four code26 native stills and dated code25 project-tour media are live.
+  Private film and unaccepted Delivery images are excluded, all earlier media
+  retained, public audience unchanged. Candidate12 links remain valid.
+- Source487d8479 own CI37540781309 attempt1 failed: core208/210, browser17/18;
+  Android build succeeded. Complete314906B log SHAa2ba7aa8 is retained under
+  `.local/ux-rc0513/source-ci/`; no rerun or borrowed pass. Intermediate13
+  packages at487 passed local artifact checks but are not publishable.
+- This correction synchronizes Relay health0.5.13 with package0.5.13 and fixes
+  the test-only Browser.close acknowledgement race. Production browser owner
+  is unchanged; closed endpoint, reused-port refusal and recovery checks remain.
+  Focused local Relay15/15 and browser2/2 pass with known returned children.
+  Build fresh final13 packages from the corrected immutable source, then verify
+  that source's own complete CI before export/publication. Final outputs use
+  separate `.local/ux-rc0513-final/`; original failed/intermediate evidence stays.
 
 ## UX and brand already included
 
@@ -65,7 +49,7 @@ genuine acceptance is unavailable. No stable launch or marketing handover.
   desktop Share300px/Home170px at1280px. Both widths have no horizontal overflow.
   Actual keyboard starts both original videos to their natural ends; arrow-key
   workflow selection/focus works. Fresh screenshots retained. Reduced-motion code
-  reviewed; its actual preference-off execution remains unmeasured. Not published yet.
+  reviewed; its actual preference-off execution remains unmeasured. Published as Site21.
 
 - [History notice feedback](../../docs/releases/ui-history-notice-feedback-2026-10-06.md):
   only real details are interactive; static/removing/retry/hidden notices clear
@@ -136,16 +120,14 @@ genuine acceptance is unavailable. No stable launch or marketing handover.
 
 ## Single recommended next action
 
-Commit the reviewed reading/brand source, publish the matching website and build
-candidate13 from that clean immutable commit. Preserve original media, private film
-and deny-list; keep genuine and physical acceptance gates open.
+Build and verify candidate13 from this corrected source, including its own CI,
+then publish the exact verified assets and update website downloads. Continue
+substantive visual/interaction work; genuine and physical gates stay open.
 
 ## Files this pass
 
-Candidate12 release record/JSON; README EN/ZH/current setup guides/roadmap/context;
-version download builder/generated HTML; retention scope wording and this handoff.
-Release12 source22cc77d, exact CI and anonymous assets are delivered. Website
-candidate12 Site20 is live; its own documentation CI passes. Private evidence
-is under `.local/ux-rc0512/` and `.local/ux-rc0512-drafts/`; original failures and
-retention debug bindings remain. Author Thomas Deng
-<150266369+MrMaii@users.noreply.github.com>.
+Relay health version, two direct Browser.close tests, corresponding contract and
+this handoff. Previous reading/brand source487d8479 is public and Site21 is live.
+Private evidence: `.local/ux-rc0513/`, `.local/ux-rc0513-final/` and prior UI
+records. No genuine task, device-setting change, installer execution or stable
+launch claim. Author Thomas Deng <150266369+MrMaii@users.noreply.github.com>.

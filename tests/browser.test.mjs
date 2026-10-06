@@ -35,6 +35,14 @@ async function endpointClosed(port) {
   return false;
 }
 
+async function requestWindowClose(page) {
+  try { await page.send('Browser.close'); return 'acknowledged'; }
+  catch (error) {
+    if (!(error instanceof Error) || error.message !== 'DevTools connection closed') throw error;
+    return 'connection-closed';
+  }
+}
+
 async function lifetimeFixture(t) {
   const profileDir = await mkdtemp(join(tmpdir(), 'droprun-lifetime-test-'));
   const server = createServer((request, response) => { response.setHeader('content-type', 'text/html'); response.end(demo); });
@@ -80,12 +88,13 @@ test('borrowed cookie port keeps its empty-profile browser alive until the owner
   assert.equal(browser.closed, false, 'borrower does not close the owner browser');
   const page = await firstPage(browser.port);
   try {
-    await page.send('Browser.close');
+    await requestWindowClose(page);
     const deadline = Date.now() + 3000;
     while (!browser.closed && Date.now() < deadline) await new Promise(resolve => setTimeout(resolve, 25));
     assert.equal(browser.closed, true, 'browser-level close event follows a user closing the window');
     await browser.close();
     assert.equal(await endpointClosed(browser.port), true);
+    assert.equal(page.pending.size, 0, 'closing the browser clears pending page requests');
   } finally { page.close(); }
 });
 
@@ -98,12 +107,21 @@ test('nonzero browser launcher exit still fails before the startup deadline', { 
 test('closed owner refuses a reused port and recovers after the replacement endpoint stops', { skip: !executable, timeout: 45000 }, async t => {
   const { browser } = await lifetimeFixture(t);
   const page = await firstPage(browser.port), calls = [];
+  const receive = page.socket.onmessage, closeId = page.serial + 1;
+  // Drop only this close command's successful reply; errors and events remain real.
+  page.socket.onmessage = event => {
+    const message = JSON.parse(String(event.data));
+    if (message.id !== closeId || message.error) receive(event);
+  };
   const replacement = createServer((request, response) => { calls.push({ method: request.method, url: request.url }); response.setHeader('content-type', 'application/json'); response.end('{"fixture":"replacement endpoint, not the owner browser"}'); });
   try {
-    await page.send('Browser.close');
+    const unrelated = new Error('Unexpected CDP error');
+    await assert.rejects(requestWindowClose({ send: () => Promise.reject(unrelated) }), error => error === unrelated);
+    assert.equal(await requestWindowClose(page), 'connection-closed', 'shutdown is verified even when Browser.close has no reply');
     const deadline = Date.now() + 3000;
     while (!browser.closed && Date.now() < deadline) await new Promise(resolve => setTimeout(resolve, 25));
     assert.equal(browser.closed, true); assert.equal(await endpointClosed(browser.port), true);
+    assert.equal(page.pending.size, 0, 'the unacknowledged close request is rejected and cleared');
     await new Promise((resolve, reject) => { replacement.once('error', reject); replacement.listen(browser.port, '127.0.0.1', resolve); });
     await assert.rejects(browser.close(), /DevTools 仍未停止/);
     assert.equal(replacement.listening, true, 'owner cleanup does not stop an unrelated endpoint reusing its port');
@@ -111,6 +129,7 @@ test('closed owner refuses a reused port and recovers after the replacement endp
     replacement.closeAllConnections(); await new Promise(resolve => replacement.close(resolve));
     await browser.close(); assert.equal(await endpointClosed(browser.port), true, 'failed cleanup can recheck the closed original endpoint');
   } finally {
+    page.socket.onmessage = receive;
     page.close();
     if (replacement.listening) { replacement.closeAllConnections(); await new Promise(resolve => replacement.close(resolve)); }
   }

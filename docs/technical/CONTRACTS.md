@@ -5,7 +5,7 @@
 This section overrides conflicting historical defaults below. Existing execution,
 plan-version, per-command approval and report-evidence checks remain in force.
 
-- `GET /health`: source version (currently 0.5.11), protocolVersion=2, schemaVersion=11, instanceId and ready;
+- `GET /health`: source package version, protocolVersion=2, schemaVersion=11, instanceId and ready;
   public health must not expose project contents, credentials or paired users.
 - Pairing carries relayOrigin and instanceId plus the one-time code. The phone
   verifies health and obtains explicit server confirmation before binding. Tokens,
@@ -134,7 +134,9 @@ plan-version, per-command approval and report-evidence checks remain in force.
   accepts only the matching loopback port and browser UUID within 20 seconds;
   a zero-exit compatibility launcher may still have a live successor browser.
   Close uses the retained browser socket and waits for endpoint refusal within
-  3 seconds. Failure preserves the profile and can recheck the same endpoint;
+  3 seconds. A `Browser.close` reply is not shutdown evidence and may be lost
+  when the command closes its own connection; ordinary page requests still
+  reject unexpected socket closure. Failure preserves the profile and can recheck the same endpoint;
   it never reconnects to a reused port to send a shutdown command. Borrowing a
   cookie-export port does not transfer ownership or close its browser.
 - Local setup `GET /api/doctor` requires the same loopback/Host/Origin checks and
