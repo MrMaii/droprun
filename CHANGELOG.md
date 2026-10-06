@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Update Miniflare's sharp child dependency to 0.35.5 with a scoped override;
+  retain the pinned Cloudflare tools. [Audit and local checks](docs/releases/dependency-audit-2026-10-06.md).
 - Preserve the reading position of an expanded report after in-process page
   recreation with unchanged content and layout.
   [Actual red/green check](docs/releases/ui-task-reading-position-2026-10-06.md).

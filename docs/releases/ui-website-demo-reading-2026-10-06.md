@@ -62,5 +62,27 @@ its resource guard incorrectly matched the `src` suffix in `data-local-src`.
 The corrected guard validates complete attribute names and exact bound PNG
 values. The failed original remains; it is not counted as 13 failed scenes.
 
-Public candidate downloads remain [0.5.10-rc.1](0.5.10-rc.1.md). This local
-record does not imply that the website or signed package has been updated.
+## Website publication
+
+The reviewed changes are now public on [GPTSites](https://droprun.dengmaizi0802.chatgpt.site/)
+and its [Chinese page](https://droprun.dengmaizi0802.chatgpt.site/zh/).
+Native version 16 deployed successfully at 2026-10-06T16:20:39.712014+00:00.
+Product source is `28e5f45baed4ab2cb4748b115da50f6476224454`; pushed hosting
+source is `ce5f0e94835aa004a89d037fb0a07fa2b8ebd0ab`. Public audience stayed
+unchanged. The source copy has 87 public files: eight added PNGs and eleven
+changed files. Existing media and unknown checkout paths were preserved.
+
+The actual archive contains those 87 byte-checked files plus its hosting
+manifest, with no private path or link member. Local gzip is 12,100,464 bytes,
+SHA-256 `6b44eaef4e674e570ebb546647a5ce85bcd927a2df0e8602134a03474f7681c3`.
+Native storage converted it to an 88-file, 13,137,920-byte tar, separately hashed
+`dc0e63e22b9b70802c49ea3d4d11b61c81cf256867afb7deab528a00aa2018c2`.
+The first workflow failed after the source push because PATH resolved the WSL
+bash shim. The unchanged workflow subsequently packaged successfully with
+process-local Git Bash PATH and TAR_OPTIONS. An initial read-only validator
+expected the wrong root layout; corrected validation checks the actual `dist/`
+layout and unchanged manifest. Originals remain; neither failure is hidden.
+
+Native publication and archive checks do not establish hosted JavaScript,
+playback or new screenshot rendering. Public candidate downloads remain
+[0.5.10-rc.1](0.5.10-rc.1.md); the signed package was not rebuilt in this pass.

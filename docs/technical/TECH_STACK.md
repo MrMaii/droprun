@@ -1,13 +1,18 @@
 # DropRun 技术栈
 
 状态：第 0 节记录当前代码技术栈；其余分节明确保留历史提议与目标要求。  
-更新时间：2026-09-07
+更新时间：2026-10-06
 
 ## 0. 当前代码采用的技术
 
 本轮静态读取确认：Android 原生 Java（Java 17 语言级别，compile/target SDK 35，min SDK 26）；Connector 为 Node.js ESM JavaScript；Relay 为 Cloudflare Worker JavaScript，绑定 D1、R2、Workers AI；媒体处理调用 yt-dlp、FFmpeg 和 Whisper；测试使用 Node test runner + Miniflare。
 
 这是已有代码的描述，不是本轮新增的架构决定，也不是部署成功证明。源码入口、限制见 [IMPLEMENTATION_STATUS.md](./IMPLEMENTATION_STATUS.md)。下方 Kotlin、TypeScript、Fastify、PostgreSQL 等为早期替代提案，不能要求后续 agent 无依据地重写现有原型。
+
+Wrangler 4.144.0 与 Miniflare 5.20260926.1-alpha 保持固定版本；针对
+Miniflare 精确依赖的 sharp 0.35.4，使用版本限定的子依赖 override 选择
+0.35.5。官方安全公告、锁文件范围及实际本地验证见
+[依赖审计记录](../releases/dependency-audit-2026-10-06.md)。后续升级上游时需重新核查该 override。
 
 ## 1. 选择原则
 

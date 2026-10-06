@@ -20,6 +20,11 @@
     "cloudflared": "^0.7.3",
     "qrcode": "^1.5.4"
   },
+  "overrides": {
+    "miniflare@5.20260926.1-alpha": {
+      "sharp": "0.35.5"
+    }
+  },
   "license": "Apache-2.0",
   "description": "Share inspiration from Android into an existing local Codex project.",
   "engines": {

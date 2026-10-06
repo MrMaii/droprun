@@ -18,13 +18,14 @@ No stable launch or marketing handover is claimed.
   actualcore210/browser18, fail/cancelled/skipped/todo0. Complete325438B log
   SHAb57f800b940bee7b64b288d10d39ca68640554cde2d50c33d716aa9cbb3f0139.
   All32 anonymous immutable source GETs match; Thomas author/committer verified.
-- GPTSites15 is live, hosting source c3c88cf43cd675ac587b99296461d875e53a27e1,
-  copied from 4caf7643c8fc977f31cb94741944fa598a0a7cf6. Native succeeded
-  2026-10-06T11:31:35.957154+00:00; public audience retained,79files copied,
-  4new stills/2changedpages, oldmedia/unknownpaths preserved. Native80files/
-  12697600B; localgzip11675609B; representations/digests recorded separately.
-  Fresh2pages/10CTAHEAD/22complete-resource GET/hash checks pass;22 inherited
-  dated HTTP responses/33local-only kept. No hosted browser/playback claim.
+- GPTSites16 is live, hosting source ce5f0e94835aa004a89d037fb0a07fa2b8ebd0ab,
+  copied from 28e5f45baed4ab2cb4748b115da50f6476224454. Native succeeded
+  2026-10-06T16:20:39.712014+00:00; public audience retained.87publicfiles,
+  8new matte native stills/11changedfiles; oldmedia/unknownpaths preserved.
+  Archive88files byte-checked/no private paths or link member. Localgzip12100464B
+  SHA6b44eaef; native tar13137920B/dc0e63e2 separately recorded.
+  [Website record](../../docs/releases/ui-website-demo-reading-2026-10-06.md).
+  Native succeeded; no new hosted-JS/playback or HTTP-resource claim.
 - Documentation4caf7643:14fresh anonymous immutable reads match; CI37456172442
   attempt1 all3jobs/35steps/10required/3checks, actualcore210/browser18 pass.
   Complete327067B log SHAe3f655e57b73c1a684bb46f8b77d21a307df14bdbf1664c0640068bda2abb5bd.
@@ -67,7 +68,7 @@ app61ad232d/testf93ba91f. SameAPKs installed/verified:Share1/1 23.964s sixclosed
 17devicefiles/device-hostSHA/source/devicebefore-after match. Root viewedall8
 originalPNG includingmarkers/systembars. Eightnewbrandcopies andREADMEprimary
 selections preservepixels. Source states/press remain; runtimepressnotmeasured.
-Signed10 andSites15 are unchanged.
+Signed10 is unchanged; Website publication is recorded above.
 
 Task reading-position fix is now locally verified: same fixed report and testAPK,
 red JUnit1failure4.513s/1062->0; accepted1/1 5.096s/1062->1062 and paragraph
@@ -82,7 +83,7 @@ EN/ZH320/375/768/781/820/1280light/reduce plusZH768dark. No overflow/network;
 skip-link obstruction, retained as framing limit, not a clean brand screenshot.
 Eightmatte website stills copied byte-exact; onebuilder selector and generated
 EN/ZH image paths only; allvisiblecopy/hrefs/video-section exact. No new render
-of replaced stills. Signed10/Sites15 remain unchanged until separate publication.
+of replaced stills. Sites16 now carries this curated pass; signed10 is unchanged.
 [Website record](../../docs/releases/ui-website-demo-reading-2026-10-06.md).
 
 Public f04330d4:17anonymous immutable GETs/Thomas author+committer/parent270a492
@@ -92,6 +93,23 @@ read ECONNRESET, not permission/hash assertion failure. Threepermission probes
 now use32B; fulladminLogo/hash unchanged. Localafter2/2; original also passed
 locally once, so no proven CIcause/fix claim. New-sourceCI required.
 [CI diagnosis](../../docs/releases/ci-brand-authorization-2026-10-06.md).
+
+
+Public28e5f45:26anonymous immutable GETs/Thomas author+committer/parentf043 match.
+Exact CI37493512308 attempt1 completed FAILURE: actualcore210/210/browser18/18,
+Android job success,27steps success/1failure/7skipped. Complete313427B log
+SHA2ec64cc6: npm audit reports sharp<0.35.5/GHSA-wq5f-xc86-pv6w via Miniflare/
+Wrangler. Brand authorization test passed; CI overall did not. No force downgrade,
+retry or rerun. Scoped Miniflare child override selects sharp0.35.5; actual
+clean npm ci installed74packages. Only27sharp/image lock entries change; Wrangler/
+Miniflare/workerd remain. Native SVG/pixel smoke confirms rsvg2.63.2; audit0;
+actualcore210/210, fail/cancel/skips/todo0. New-source CI still required.
+[Dependency record](../../docs/releases/dependency-audit-2026-10-06.md).
+
+Next UX source findings are concrete: empty history conflates loading/failure
+with no records; Settings has no model-list Retry; Share searches raw name while
+displaying ID-disambiguated labels. Minimal private proposals reviewed; guarded
+memory-fixture preparation proceeds. No source implementation/native pass yet.
 
 
 ## README visual pass
@@ -125,10 +143,10 @@ No candidate10 link or GIF/static-selector provenance changed.
 
 ## Single recommended next action
 
-Publish the reviewed website reading/native-still pass from the curated source,
-preserving existing audience and unknown paths. Observe the exact-source CI;
-only then prepare a separate signed candidate carrying the unreleased UI fixes.
-Continue the source-proven UX audit while genuine acceptance remains unavailable.
+Complete the reviewed History/Share/Settings recovery refinements with finite
+closed local UI checks. Fix the confirmed dependency audit using official upstream
+evidence, verify exact-source CI, then build a separate signed candidate carrying
+the unreleased UI work. Sites16 is already live. Genuine acceptance remains open.
 No real Relay/Codex or previously denied path; no marketing handover.
 
 ## Files this pass
