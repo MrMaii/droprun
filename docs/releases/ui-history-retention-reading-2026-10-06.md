@@ -73,8 +73,10 @@ Longest-state wrapping, Follow-up and pending errors remain protected by source
 constraints, not newly measured sample cases. Font2 readability checks are not
 font2 screenshots, physical accessibility or frame/press timing.
 
-Later retention typography has build/static evidence only. No retention device
-installation, known/unknown paragraph-reading or screenshot acceptance is
-claimed. Settings images retain their older separate binding. No genuine Relay,
+The earlier retention build above retains its original binding. A later
+[code 24 debug reading check](ui-settings-retention-reading-2026-10-06.md) supports
+unknown/cached-policy paragraph layout and first/last line reachability; it does
+not establish signed-package or retention screenshot acceptance. Settings images
+retain their older separate binding. No genuine Relay,
 Codex task, OS/IME change, old HistoryIdentity matrix/motion/dialog,240-row or
 process-loss test was invoked. Stable and marketing gates remain open.

@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Check Settings retention reading across six native memory-fixture windows,
+  including 200% text, unknown policy and cached 14/60-day policy.
+  [Actual scope and preserved post-processing failure](docs/releases/ui-settings-retention-reading-2026-10-06.md).
+
 - Match History notice press and keyboard feedback to its actual details action;
   keep static status readable and reset scale when its action disappears.
   [Bounded native accessibility/state checks](docs/releases/ui-history-notice-feedback-2026-10-06.md).

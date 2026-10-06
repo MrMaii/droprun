@@ -56,6 +56,24 @@ public class SettingsReadingPresentationTest {
                     for(boolean tail:new boolean[]{false,true}){scenario.onActivity(a->{TextView name=projectName(a,id);name.requestRectangleOnScreen(line(name,tail),true);});ready(scenario);scenario.onActivity(a->{TextView name=projectName(a,id);Rect shown=new Rect();assertTrue(name.getLocalVisibleRect(shown));assertTrue("Requested project line including ID fits its visible text area",shown.contains(line(name,tail)));safe(a);});}
                     scenario.onActivity(a->{TextView chip=projectChip(a,id);chip.requestRectangleOnScreen(new Rect(0,0,chip.getWidth(),chip.getHeight()),true);});ready(scenario);scenario.onActivity(a->SettingsRecreationTest.assertCompleteAndVisible(a,projectChip(a,id)));
                 }
+                if(accepted){
+                    boolean[] retentionHadKey={false},retentionChanged={false};Object[] retentionValue={null};Throwable retentionFailure=null;
+                    scenario.onActivity(a->{safe(a);retentionHadKey[0]=a.cached.containsKey("retention");retentionValue[0]=a.cached.get("retention");});
+                    try{for(boolean retentionValid:new boolean[]{false,true}){
+                        if(retentionValid){scenario.onActivity(a->{safe(a);retentionChanged[0]=true;a.cached.put("retention","{\"rawDays\":14,\"artifactDays\":60}");a.render();});ready(scenario);}
+                        String unknown=L.t("Connect, then use Refresh in Default model & effort to load your Relay’s retention policy.","联网后，在“默认模型强度”中点按刷新，获取中转服务保留策略。");
+                        String[] retentionTexts=retentionValid?new String[]{L.t("Last synced Relay policy","上次同步的中转策略"),L.t("Original uploads · 14 days after a task ends","原始上传 · 14 天（任务结束后）"),L.t("Screenshots & files · 60 days after a task ends","截图与文件 · 60 天（任务结束后）")}:new String[]{unknown};
+                        scenario.onActivity(a->{safe(a);if(retentionValid)assertNull(findText(a.body,unknown));else {assertNotNull(findText(a.body,unknown));assertNull(findText(a.body,L.t("Last synced Relay policy","上次同步的中转策略")));}});
+                        String[] retentionNotes={L.t("Reports stay until you delete them. Preview links and snapshots have separate expiry times. Cleanup runs periodically and does not delete your computer’s project files or backups.","报告保留至你删除。预览链接与快照另有有效期。清理定期运行，不会删除电脑上的项目文件或备份。"),L.t("Change retention in your Relay deployment settings. This cached policy may be outdated while offline. Saved handoffs on this phone stay until sent or removed from project history.","在中转部署配置中修改保留期限。离线时，缓存的策略可能已过时。手机上的待发送副本保留至发送成功，或在项目历史中手动移除。")};
+                        for(String[] retentionPart:new String[][]{retentionTexts,retentionNotes})for(String reading:retentionPart)for(boolean tail:new boolean[]{false,true}){
+                            scenario.onActivity(a->{safe(a);TextView note=findText(a.body,reading);assertNotNull(note);assertCompleteText(note);note.requestRectangleOnScreen(line(note,tail),true);});ready(scenario);
+                            scenario.onActivity(a->{TextView note=findText(a.body,reading);assertNotNull(note);assertCompleteText(note);Rect shown=new Rect();assertTrue(note.getLocalVisibleRect(shown));assertTrue("Requested retention paragraph line fits its visible text area",shown.contains(line(note,tail)));safe(a);});
+                        }
+                    }}catch(Throwable error){retentionFailure=error;throw error;}
+                    finally{if(retentionChanged[0])try{
+                        scenario.onActivity(a->{assertSame(retained[0],a);if(retentionHadKey[0])a.cached.put("retention",retentionValue[0]);else a.cached.remove("retention");a.render();assertEquals(retentionHadKey[0],a.cached.containsKey("retention"));assertSame(retentionValue[0],a.cached.get("retention"));safe(a);});ready(scenario);
+                    }catch(Throwable restoreError){if(retentionFailure!=null)retentionFailure.addSuppressed(restoreError);else throw restoreError;}}
+                }
                 int[] scroll={0},focus={View.NO_ID};String[] values={null};scenario.onActivity(a->{scroll[0]=((ScrollView)a.findViewById(R.id.settings_scroll)).getScrollY();View current=a.getCurrentFocus();if(current!=null&&!current.isInTouchMode())focus[0]=current.getId();values[0]=a.store.defaultModel()+"|"+a.store.defaultEffort(a.store.defaultModel());a.render();});ready(scenario);
                 scenario.onActivity(a->{assertTrue(a.showAccess);assertEquals(scroll[0],((ScrollView)a.findViewById(R.id.settings_scroll)).getScrollY());assertEquals(values[0],a.store.defaultModel()+"|"+a.store.defaultEffort(a.store.defaultModel()));if(focus[0]==R.id.settings_appearance||focus[0]==R.id.settings_language||focus[0]==R.id.settings_model||focus[0]==R.id.settings_effort)assertEquals(focus[0],a.getCurrentFocus().getId());safe(a);});
                 if(scale==1f&&directory!=null){capture(scenario,directory,nonce,phase,config[0],config[1]);captured++;}

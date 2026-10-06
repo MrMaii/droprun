@@ -42,7 +42,9 @@ genuine acceptance is unavailable. No stable launch or marketing handover.
   passes5.239s, original3windows/6memory reads/21guards;15new notice cases pass.
   Synthetic scale/AX-property checks, no real deletion or retry request. Build
   27.219s, actualJVM27pass/lint0errors28warnings;333B compiler deprecation stderr
-  preserved. Own new sourceCI is pending; no borrowed signed/sourceCI binding.
+  preserved. Own sourceCI37532235759 attempt1 atd0893fa passes3jobs/35steps/
+  10required, actualcore210/browser18; complete327066B log SHA8f76e191 retained.
+  No borrowed signed/sourceCI binding or inferred native acceptance.
 - [Share confirmation group](../../docs/releases/ui-share-confirmation-2026-10-06.md):
   complete destination and received material together; direct project-to-note
   transition and continuous reversed scrim color. Local3native methods each1/1
@@ -70,10 +72,15 @@ genuine acceptance is unavailable. No stable launch or marketing handover.
   one value heading, install link, short workflow and actual native examples.
   Original GIF/video scope stays dated. Approximate GitHub layout checks are
   not actual GitHub/fullmotion/TalkBack results.
-- Retention typography is included but remains build-only. Its private reading
-  proposal in `.local/ux-oct6-retention-reading-proposal/` is unapplied/unrun.
-  Prior native checks have separate debug source/APK bindings; no combined
-  signed11 native count or genuine-task recording is inferred.
+- [Settings retention reading](../../docs/releases/ui-settings-retention-reading-2026-10-06.md):
+  bounded native method1/1 passes11.524s in6closed English/Chinese light/dark
+  and200%windows; unknown and fixed14/60-day memory policies remain readable.
+  Native child returned0, but producer owner returned1 after overwriting a
+  postprocessor variable. Original failure remains; independent filesystem
+  verification and peer review match134/4source closure, APKs and27raw command
+  pairs without another device run. No captures/business actions or executor
+  termination claim; existing-key restore branch was not exercised.
+  Separate debug/code24 source bindings are not a signed12/native count.
 - [ADR0019](../../docs/decisions/0019-semantic-content-groups.md) owns the useful
   grouping/material trade-off. Continue from real visual comparisons, including
   navigation, state recovery, feedback and brand consistency. Incremental
@@ -98,15 +105,16 @@ genuine acceptance is unavailable. No stable launch or marketing handover.
 
 ## Single recommended next action
 
-Publish the verified History notice source/evidence and inspect its own CI.
-Then review the finite retention-reading proposal for the next local UI pass;
-preserve its build-only limit until run. Continue without replaying denied paths.
+Package source0.5.12/code25 with the published Share/History improvements and
+retention reading check. Verify its own CI and both actual distribution artifacts
+before publishing candidate12 or changing public download links. Candidate11
+and Site19 remain current until that completes. Do not replay denied paths.
 
 ## Files this pass
 
-ProjectHistoryActivity/HistoryShareStateTest; PRD/CONTRACTS/CHANGELOG; scoped
-History notice record; this handoff. Previous Share/README/website sourcead543fb
-and Site19 are delivered. New private actual evidence is under
-`.local/ux-oct6-history-notice/`; Share publication/ownCI under
-`.local/ux-oct6-share-site/`. Original failures remain. Author Thomas Deng
+SettingsReadingPresentationTest and scoped reading records; six version metadata
+paths and CHANGELOG; this handoff. Share/README/website sourcead543fb/Site19 and
+History source d0893fa with its own successful CI are delivered. New private
+actual evidence is under `.local/ux-oct6-retention-reading/`; candidate12 drafts
+under `.local/ux-rc0512-drafts/`. Original failures remain. Author Thomas Deng
 <150266369+MrMaii@users.noreply.github.com>.
