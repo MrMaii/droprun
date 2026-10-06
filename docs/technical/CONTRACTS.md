@@ -5,7 +5,7 @@
 This section overrides conflicting historical defaults below. Existing execution,
 plan-version, per-command approval and report-evidence checks remain in force.
 
-- `GET /health`: source version (currently 0.5.9), protocolVersion=2, schemaVersion=11, instanceId and ready;
+- `GET /health`: source version (currently 0.5.10), protocolVersion=2, schemaVersion=11, instanceId and ready;
   public health must not expose project contents, credentials or paired users.
 - Pairing carries relayOrigin and instanceId plus the one-time code. The phone
   verifies health and obtains explicit server confirmation before binding. Tokens,
@@ -158,7 +158,8 @@ plan-version, per-command approval and report-evidence checks remain in force.
 - 待发送记录保存最近一次 `sendError`，项目历史可查看材料、附件数量和失败原因，并触发既有同步重试。重试沿用原 UUID，不新增交办次数。
 - 错误记录持久化不能改写其他实例的 `instanceId`。错误归属的本机记录保留并拒绝发送，不影响合法记录继续同步。
 - 追问弹窗的草稿、打开状态和提交 UUID 随 Activity 状态保存；成功写入 outbox 后才清空草稿并生成下一次 UUID。关闭弹窗不等于提交。
-- 报告优先摘取已有结果段落；全文和证据始终可展开。不得生成报告中不存在的成果。
+- 报告优先摘取已有结果段落，保留该段落原有的列表换行；全文和证据始终可展开。不得生成报告中不存在的成果。交付结果使用正文阅读宽度与明确的标题层级；预览说明紧邻对应操作。
+- 任务操作的成功由执行是否抛出异常决定，不能由错误文字是否为空决定。失败时保留非空原始说明；null、空串或纯空白使用本地化提示，先核对任务最新状态再决定是否重试。失败不显示成功确认；回调仍恢复 busy 与现有控件，并刷新前台任务。
 - 原生页面切换、按压和局部展开有统一反馈；局部展开不重建整页。遵循系统关闭动画设置，轮询不重复播放入场动画。
 - 分享浮层在可用高度不超过 400dp 时使用完整可用高度，较高屏幕保留 14% 背景空间。接收失败操作在横屏并排、竖屏纵排，正文独立滚动；横屏隐藏装饰标题并先呈现失败原因；配置变化只重排操作，不重新读取来源或更换分享 UUID。
 - 通用操作按钮和图标按钮使用 2dp 键盘焦点边框；按主题调整边框颜色，青柠主按钮使用深色内边框。焦点只改变绘制，不改变布局或触发操作；禁用态优先于焦点态。

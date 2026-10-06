@@ -81,7 +81,7 @@ public class TaskActivity extends StyledActivity {
         if(snapshot.equals(next))return;snapshot=next;body.removeAllViews();
         if(task==null){block(L.t("Handoff unavailable","任务暂不可用"),L.t("Refresh when connected. This handoff may have been deleted.","请联网刷新；任务也可能已被删除。"));return;}
         String status=text(task,"status"),plan=text(task,"plan_report"),report=text(task,"report");
-        body.addView(Ui.title(this,MainActivity.name(task),27));
+        body.addView(Ui.title(this,MainActivity.name(task),24));
         body.addView(Ui.caption(this,projectLabel+" · "+TaskPresentation.mode(text(task,"execution_mode"))),Ui.margins(this,6,0));
         boolean largeText=getResources().getConfiguration().fontScale>=1.5f;
         LinearLayout statusLine=largeText?Ui.vertical(this):Ui.row(this);statusLine.addView(Ui.pill(this,TaskPresentation.status(status),TaskPresentation.statusColor(status)),new LinearLayout.LayoutParams(-2,-2));
@@ -107,7 +107,12 @@ public class TaskActivity extends StyledActivity {
         }
         LinearLayout delivery=body;
         if(report.isEmpty())block(L.t("What's happening","当前进展"),status.equals("waiting_for_approval")&&liveApprovals==0?L.t("This command request expired or is no longer available. Reconnect to refresh the task's status.","这条命令请求已过期或失效。请联网查看任务的最新状态。"):TaskPresentation.noReport(status,!plan.isEmpty()));
-        else {delivery=Ui.vertical(this);TextView label=Ui.title(this,L.t("The result","交付结果"),12);label.setTextColor(Ui.MUTED);label.setPadding(0,0,0,Ui.dp(this,12));delivery.addView(label);String summary=TaskPresentation.resultSummary(report);delivery.addView(Ui.text(this,summary,18,Ui.TEXT));body.addView(delivery,Ui.margins(this,18,10));}
+        else {
+            delivery=Ui.vertical(this);TextView label=Ui.title(this,L.t("The result","交付结果"),18);label.setPadding(0,0,0,Ui.dp(this,8));delivery.addView(label);
+            CharSequence summary=ReportText.render(TaskPresentation.resultSummary(report));
+            if(summary.length()>0&&summary.charAt(summary.length()-1)=='\n')summary=summary.subSequence(0,summary.length()-1);
+            delivery.addView(Ui.text(this,summary,18,Ui.TEXT));body.addView(delivery,Ui.margins(this,18,10));
+        }
         if(Store.finished(status)){
             if(thumbnail!=null){
                 ImageView picture=new ImageView(this);picture.setImageBitmap(thumbnail);picture.setAdjustViewBounds(true);picture.setScaleType(ImageView.ScaleType.FIT_CENTER);picture.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
@@ -144,7 +149,12 @@ public class TaskActivity extends StyledActivity {
         String url=text(task,"preview_url"),state=TaskPresentation.previewStatus(text(task,"preview_status"),url,task.optLong("preview_expires_at"),System.currentTimeMillis());
         if(state.isEmpty()){if(Store.finished(text(task,"status")))block(target,L.t("Preview","预览"),L.t("No preview is attached to this handoff. Check screenshots and delivery files below.","本次交办未附预览，可查看下方的截图与交付文件。"));return;}
         if(state.equals("unavailable"))block(target,L.t("Preview","预览"),Store.finished(text(task,"status"))||!text(task,"report").isEmpty()?L.t("A preview isn't available right now. Check screenshots and delivery files below.","预览暂不可用，可查看下方的截图与交付文件。"):L.t("A preview isn't available right now.","预览暂不可用。"));
-        else block(target,L.t("Preview","预览"),TaskPresentation.snapshot(text(task,"preview_kind"))?L.t("Fixed snapshot from this handoff.","本次交付的固定快照。"):L.t("Live project preview. Later changes may alter what you see.","当前项目预览；后续修改可能改变内容。"));
+        else {
+            String description=TaskPresentation.snapshot(text(task,"preview_kind"))?L.t("Fixed snapshot from this handoff.","本次交付的固定快照。"):L.t("Live project preview. Later changes may alter what you see.","当前项目预览；后续修改可能改变内容。");
+            if(state.equals("ready")){
+                target.addView(Ui.label(this,L.t("Preview","预览")));TextView explanation=Ui.text(this,description,15,Ui.TEXT);explanation.setTextIsSelectable(true);target.addView(explanation,Ui.margins(this,0,8));
+            }else block(target,L.t("Preview","预览"),description);
+        }
         if(state.equals("ready"))button(target,L.t("Open preview","打开预览"),true,()->{
             Uri uri=Uri.parse(url);
             if("https".equals(uri.getScheme())&&uri.getHost()!=null)startActivity(new Intent(Intent.ACTION_VIEW,uri));
@@ -157,8 +167,8 @@ public class TaskActivity extends StyledActivity {
     void notice(String message){notice.setText(message);notice.setVisibility(View.VISIBLE);}
     void perform(Work work){
         if(busy)return;busy=true;notice(L.t("Processing request…","正在处理请求…"));render();
-        io.execute(()->{String error="";try{work.run();}catch(Exception e){error=e.getMessage();}String message=error;
-            runOnUiThread(()->{if(isDestroyed())return;busy=false;notice(message.isEmpty()?L.t("Request confirmed.","请求已确认。"):message);if(message.isEmpty())Toast.makeText(this,L.t("Request confirmed","请求已确认"),Toast.LENGTH_SHORT).show();else actionErrorDialog=new AlertDialog.Builder(this).setTitle(L.t("Could not confirm this action","暂时无法确认操作结果")).setMessage(message).setPositiveButton(L.t("Got it","知道了"),null).show();render();if(foreground)load();});});
+        io.execute(()->{Exception failure=null;try{work.run();}catch(Exception e){failure=e;}boolean failed=failure!=null;String detail=failed?failure.getMessage():null;
+            runOnUiThread(()->{if(isDestroyed())return;busy=false;String message=failed?(detail==null||detail.trim().isEmpty()?L.t("Check the handoff's latest status before trying again.","请先查看任务的最新状态，再决定是否重试。"):detail):L.t("Request confirmed.","请求已确认。");notice(message);if(!failed)Toast.makeText(this,L.t("Request confirmed","请求已确认"),Toast.LENGTH_SHORT).show();else actionErrorDialog=new AlertDialog.Builder(this).setTitle(L.t("Could not confirm this action","暂时无法确认操作结果")).setMessage(message).setPositiveButton(L.t("Got it","知道了"),null).show();render();if(foreground)load();});});
     }
     void followup(){
         EditText input=new EditText(this);followupInput=input;Ui.styleInput(input);input.setHint(L.t("Continue this handoff…","继续这个任务…"));input.setMinLines(3);input.setText(followupDraft);input.setSelection(input.length());

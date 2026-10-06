@@ -48,6 +48,7 @@ public class TaskReadingHierarchyTest {
                     scenario.onActivity(a->{a.expanded.add(L.t("Full report & evidence","完整报告与证据"));a.snapshot="";a.render();});frames(scenario);
                     scenario.onActivity(a->{TextView full=find(a.body,ReportText.render(a.sample.optString("report")).toString());assertNotNull(full);assertTrue(full.isTextSelectable());revealLine(full,full.getLayout().getLineCount()-1);});frames(scenario);
                     scenario.onActivity(a->{TextView full=find(a.body,ReportText.render(a.sample.optString("report")).toString());assertSafeRect(a,lineBounds(full,full.getLayout().getLineCount()-1));assertEquals(original[0],a.sample.toString());});event(identity,"reading-completed");
+                    listReading(scenario,original[0]);event(identity,"list-reading-completed");
                     planEligibility(scenario,original[0]);event(identity,"plan-eligibility-completed");
                     scenario.onActivity(a->{safe(a,language,theme,2f);assertReading(a);assertEquals(original[0],a.sample.toString());});event(identity,"full-completed");
                 }catch(Throwable error){failure=error;throw error;}
@@ -62,23 +63,35 @@ public class TaskReadingHierarchyTest {
         assertEquals(L.t("UI probe · memory only · no work sent","界面验证 · 仅内存 · 未发送任务"),a.notice.getText().toString());assertTextComplete(a.notice);
         assertEquals("completed",a.sample.optString("status"));assertEquals(VERSION,a.sample.optString("preview_version"));assertEquals(DeliveryStableCaptureTest.URL,a.sample.optString("preview_url"));assertEquals("snapshot",a.sample.optString("preview_kind"));assertEquals("ready",a.sample.optString("preview_status"));assertEquals(Long.MAX_VALUE,a.sample.optLong("preview_expires_at"));
     }
+    static String summaryText(DemoTaskPreviewActivity a){String rendered=ReportText.render(TaskPresentation.resultSummary(a.sample.optString("report"))).toString();return rendered.endsWith("\n")?rendered.substring(0,rendered.length()-1):rendered;}
     static void assertReading(DemoTaskPreviewActivity a){
-        TextView label=find(a.body,L.t("The result","交付结果")),summary=find(a.body,TaskPresentation.resultSummary(a.sample.optString("report")));assertNotNull(label);assertNotNull(summary);ViewGroup reading=(ViewGroup)label.getParent();
+        TextView label=find(a.body,L.t("The result","交付结果")),summary=find(a.body,summaryText(a));assertNotNull(label);assertNotNull(summary);ViewGroup reading=(ViewGroup)label.getParent();
         assertNotSame(a.body,reading);assertSame(a.body,reading.getParent());assertSame(reading,summary.getParent());assertEquals(0,reading.getPaddingLeft());assertEquals(0,reading.getPaddingRight());assertEquals(0,reading.getPaddingTop());assertEquals(0,reading.getPaddingBottom());assertEquals(0f,reading.getElevation(),0f);assertNull(reading.getBackground());View viewport=(View)a.body.getParent().getParent();assertTrue(viewport.getBackground() instanceof GradientDrawable);int[] colors=((GradientDrawable)viewport.getBackground()).getColors();assertNotNull(colors);for(int color:colors)assertEquals(255,color>>>24);
-        assertEquals(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,12,a.getResources().getDisplayMetrics()),label.getTextSize(),.01f);assertEquals(Ui.MUTED,label.getCurrentTextColor());if(Build.VERSION.SDK_INT>=28)assertTrue(label.isAccessibilityHeading());
-        assertEquals(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,18,a.getResources().getDisplayMetrics()),summary.getTextSize(),.01f);assertEquals(Ui.TEXT,summary.getCurrentTextColor());assertEquals(TaskPresentation.resultSummary(a.sample.optString("report")),summary.getText().toString());assertNull(summary.getEllipsize());assertTextComplete(summary);
+        assertEquals(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,18,a.getResources().getDisplayMetrics()),label.getTextSize(),.01f);assertEquals(Ui.TEXT,label.getCurrentTextColor());if(Build.VERSION.SDK_INT>=28)assertTrue(label.isAccessibilityHeading());
+        assertEquals(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,18,a.getResources().getDisplayMetrics()),summary.getTextSize(),.01f);assertEquals(Ui.TEXT,summary.getCurrentTextColor());assertEquals(summaryText(a),summary.getText().toString());assertNull(summary.getEllipsize());assertTextComplete(summary);
         assertEquals(a.body.getWidth(),reading.getWidth());assertEquals(screenBounds(a.body).left,screenBounds(summary).left);assertEquals(screenBounds(a.body).right,screenBounds(summary).right);
         for(String text:new String[]{L.t("Preview","预览"),L.t("Open preview","打开预览"),L.t("Screenshots & delivery files","截图与交付文件")})assertSame(reading,find(a.body,text).getParent());
         for(String text:new String[]{L.t("Follow up","继续追问"),L.t("Full report & evidence","完整报告与证据"),L.t("Snapshot version","快照版本"),L.t("Delete record & material","删除记录与材料")}){View node=find(a.body,text);assertNotNull(node);for(android.view.ViewParent parent=node.getParent();parent instanceof View;parent=parent.getParent())assertNotSame(reading,parent);}
         TaskPreviewFeedbackTest.assertActions(a,true,false);assertNotNull(find(a.body,L.t("Fixed snapshot from this handoff.","本次交付的固定快照。")));
     }
     static void reachReading(ActivityScenario<DemoTaskPreviewActivity> scenario)throws Exception{
-        scenario.onActivity(a->{TextView summary=find(a.body,TaskPresentation.resultSummary(a.sample.optString("report")));revealLine(summary,0);});frames(scenario);scenario.onActivity(a->{TextView summary=find(a.body,TaskPresentation.resultSummary(a.sample.optString("report")));assertSafeRect(a,lineBounds(summary,0));revealLine(summary,summary.getLayout().getLineCount()-1);});frames(scenario);
-        scenario.onActivity(a->{TextView summary=find(a.body,TaskPresentation.resultSummary(a.sample.optString("report")));assertSafeRect(a,lineBounds(summary,summary.getLayout().getLineCount()-1));});
+        scenario.onActivity(a->{TextView summary=find(a.body,summaryText(a));revealLine(summary,0);});frames(scenario);scenario.onActivity(a->{TextView summary=find(a.body,summaryText(a));assertSafeRect(a,lineBounds(summary,0));revealLine(summary,summary.getLayout().getLineCount()-1);});frames(scenario);
+        scenario.onActivity(a->{TextView summary=find(a.body,summaryText(a));assertSafeRect(a,lineBounds(summary,summary.getLayout().getLineCount()-1));});
         for(String value:new String[]{L.t("Fixed snapshot from this handoff.","本次交付的固定快照。"),L.t("Open preview","打开预览"),L.t("Screenshots & delivery files","截图与交付文件"),L.t("Follow up","继续追问")}){
             scenario.onActivity(a->{TextView text=find(a.body,value);assertNotNull(text);text.requestRectangleOnScreen(new Rect(0,0,text.getWidth(),text.getHeight()),true);});frames(scenario);
             scenario.onActivity(a->{TextView text=find(a.body,value);assertTextComplete(text);assertSafeRect(a,screenBounds(text));if(text instanceof Button){assertTrue(text.isEnabled());assertTrue(text.isFocusable());assertTrue(text.getWidth()>=Ui.dp(a,48));assertTrue(text.getHeight()>=Ui.dp(a,48));}assertEquals(0,a.forbiddenActions.get());});
         }
+    }
+    static void listReading(ActivityScenario<DemoTaskPreviewActivity> scenario,String original)throws Exception{
+        String markdown=L.t("## The result\n- First result\n- Second result","## 交付结果\n- 第一项结果\n- 第二项结果"),expected=L.t("• First result\n• Second result","• 第一项结果\n• 第二项结果");int[] lines={0};
+        assertTrue(markdown.length()<200);
+        scenario.onActivity(a->{try{a.expanded.clear();a.sample.put("report",markdown);a.snapshot="";a.render();}catch(org.json.JSONException error){throw new AssertionError(error);}});frames(scenario);
+        scenario.onActivity(a->{assertReading(a);TextView summary=find(a.body,expected);assertNotNull(summary);assertEquals(expected,summary.getText().toString());assertEquals(expected,summaryText(a));assertTextComplete(summary);Layout layout=summary.getLayout();assertTrue(layout.getLineForOffset(expected.indexOf('\n')+1)>layout.getLineForOffset(0));lines[0]=layout.getLineCount();assertEquals(markdown,a.sample.optString("report"));assertEquals(0,a.forbiddenActions.get());});
+        for(int index=0;index<lines[0];index++){
+            final int line=index;scenario.onActivity(a->revealLine(find(a.body,expected),line));frames(scenario);
+            scenario.onActivity(a->{TextView summary=find(a.body,expected);assertEquals(expected,summary.getText().toString());assertSafeRect(a,lineBounds(summary,line));assertEquals(0,a.forbiddenActions.get());});
+        }
+        scenario.onActivity(a->{try{a.sample=new JSONObject(original);}catch(org.json.JSONException error){throw new AssertionError(error);}a.snapshot="";a.render();assertEquals(original,a.sample.toString());assertEquals(0,a.forbiddenActions.get());});frames(scenario);
     }
     static void planEligibility(ActivityScenario<DemoTaskPreviewActivity> scenario,String original)throws Exception{
         scenario.onActivity(a->{try{a.expanded.clear();a.sample.put("status","awaiting_plan_approval").put("report","").put("plan_report",L.t("Memory plan only. No command or edit will run.","仅内存计划；不会运行命令或修改。")).put("plan_version","memory-plan-version").put("preview_status","").put("preview_url","");a.snapshot="";a.render();assertNull(find(a.body,L.t("The result","交付结果")));}catch(org.json.JSONException error){throw new AssertionError(error);}});frames(scenario);

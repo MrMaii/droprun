@@ -56,7 +56,7 @@ GIF 为原生 320 × 640 的 25 fps 采样展示；MP4 保留原始时间顺序�
 <p align="center">
   <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-share-plain-zh-dark-20261006.png"><img src="assets/brand/source-share-plain-zh-light-20261006.png" width="220" alt="01 · 分享：原生 Android 留言步骤，展示可展开的收到材料、可选意图及模型强度入口，保留仅内存验证标记"></picture>
   <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-home-rows-zh-dark-20261006.png"><img src="assets/brand/source-home-rows-zh-light-20261006.png" width="220" alt="02 · 跟进：原生 Android 项目首页，项目名称、任务与交办次数沿页面阅读边缘对齐，保留仅内存验证与示例项目标记"></picture>
-  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-delivery-followup-zh-dark-20261006.png"><img src="assets/brand/source-delivery-followup-zh-light-20261006.png" width="220" alt="03 · 查看：原生交办页，交付结果、固定快照说明与交付入口，保留仅内存验证标记"></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-delivery-result-zh-dark-20261006.png"><img src="assets/brand/source-delivery-result-zh-light-20261006.png" width="220" alt="03 · 查看：原生交办页，清楚的结果标题、固定快照说明与交付入口，保留仅内存验证标记"></picture>
 </p>
 
 <details>

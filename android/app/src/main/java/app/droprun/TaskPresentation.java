@@ -3,7 +3,7 @@ package app.droprun;
 final class TaskPresentation {
     /** Prefer the actual outcome section over the report's source-analysis introduction. */
     static String resultSummary(String report){
-        String clean=report.replaceAll("(?s)```droprun\\s.*?```", "").trim();
+        String clean=report.replace("\r\n","\n").replace('\r','\n').replaceAll("(?s)```droprun\\s.*?```", "").trim();
         java.util.regex.Matcher section=java.util.regex.Pattern.compile("(?im)^#{1,6}\\s*(?:我做了什么|交付结果|结果|What changed|What I did|The result|Summary)\\s*[:：]?\\s*\\n").matcher(clean);
         if(section.find()){
             String remaining=clean.substring(section.end());java.util.regex.Matcher next=java.util.regex.Pattern.compile("(?m)^#{1,6}\\s").matcher(remaining);
@@ -11,7 +11,8 @@ final class TaskPresentation {
         }else clean=clean.replaceAll("(?m)^#{1,6}[^\\n]*\\n?", "");
         clean=clean.replace("**", "").trim();
         int paragraph=clean.indexOf("\n\n");if(paragraph>0)clean=clean.substring(0,paragraph);
-        return clip(clean,200);
+        clean=clean.replaceAll("[\\t ]+"," ").replaceAll(" *\\n *","\n").trim();
+        return clean.length()>200?clean.substring(0,200)+"…":clean;
     }
     static String status(String value) {
         return switch(value) {

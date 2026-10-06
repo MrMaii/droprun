@@ -1,7 +1,8 @@
 # Current Handoff
 
 Updated 2026-10-06 UTC. Signed 0.5.9/code22 is the public candidate.
-UI/brand/README work continues while genuine acceptance remains unavailable.
+Source 0.5.10/code23 is prepared after a further native UI pass; its packages
+are not published yet. UI/brand/README work continues while genuine acceptance remains unavailable.
 No stable launch or marketing handover is claimed.
 
 ## Current delivery
@@ -51,6 +52,26 @@ No stable launch or marketing handover is claimed.
   Downloads/docs now select verified09. Landing build22assets/canonical URL pass.
   No fresh README/hosted browser or signed-package capture claimed; HTTP checks above are separate.
 
+## New local UI pass
+
+- [Task results and action feedback](../../docs/releases/ui-task-results-feedback-2026-10-06.md)
+  owns the latest evidence: 27JVM/0fail/error/skips; lint0errors30warnings,
+  frozen123sources/4configs; actual debug0.5.9-dev/code22. Later metadata-only
+  version0.5.10/code23 is distinct. App e27434f0, test0ef7f972.
+- Actual closed failure callbacks:1/1 11.327s,8windows all known DESTROYED,
+  40guard snapshots0, Work8/memoryRefreshDelta8. Null/blank errors never confirm
+  success; controls restore and the failure dialog gives an actionable next step.
+  OriginalPreview perform denial remains unchanged. Static baseline only; noToast
+  measurement or genuine request. Independent review9d238cbc checks raw38160B
+  stdout cce4cb9b and24child exits/hashes. Its CRLF-reading false original and
+  unexecuted successor are retained; corrected read-only review passed.
+- Same APKs, no rebuild/reinstall:normal4captures1/1 12.274s and2font2 reading,
+  list and plan windows1/1 4.487s. All6knownDESTROYED,4raw+2final guards0.
+  Root/independent directly viewed4rawPNG;8brand/landing copies byte-exact.
+  Result title is clearer, original list lines stay separate, ready preview
+  explanation is close to its action. README/website source selects these stills;
+  canonical22asset build passes. HostedSite14 and signed09 remain unchanged.
+
 ## Authorization and blocking conditions
 
 - Local UI only. No genuine Relay/Codex task, owner Cloudflare change or social
@@ -72,16 +93,19 @@ No stable launch or marketing handover is claimed.
 
 ## Single recommended next action
 
-Fix TaskActivity action-feedback classification for null/empty exception text,
-then verify accurate failure/busy recovery with focused JVM/guarded local UI
-checks. The static finding also affects refresh null text; review scope before
-changing it. Do not weaken DemoTaskPreview.perform or replay denied fixtures.
-The settings failure-announcement finding is a separate next detail.
-Genuine acceptance and final marketing handover remain open.
+Commit the curated 0.5.10 source, verify its actual public CI, and build/sign
+Android plus Windows from a clean managed checkout. Publish the verified
+candidate, then update downloads/README and the owned website. Do not overwrite
+09 artifacts or label diagnostic screenshots as the signed package.
+Settings failure announcement and Task refresh null-error handling remain
+separate next UI details; private proposals are prepared. Genuine acceptance
+and final marketing handover remain open.
 
 ## Files this pass
 
-Main/Task/Settings, opt-in unique-name probe, source/version metadata; native
+Task result/summary and closed action-feedback fixture/test, native list checks,
+source0.5.10/version23, contract/PRD/changelog, new rawDelivery stills and README/
+landing selection; prior Main/Task/Settings, opt-in unique-name probe, source/version metadata; native
 Delivery stills and README/media evidence;09 package/export/public-download
 records; current README/installation/PRD/roadmap/context links, landing
 builder/HTML, CHANGELOG and this handoff; actual Sites14/HTTP/documentation

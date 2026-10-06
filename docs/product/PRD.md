@@ -83,9 +83,14 @@ in [the current candidate record](../releases/0.5.9-rc.1.md).
   Delivered screenshot links preserve the image ratio and have a touch target
   at least 48dp tall. Saving a decision disables their navigation and keyboard
   focus along with the delivery buttons; normal access returns when it settles.
-  A delivered result uses the page's reading width: a quiet section label,
-  readable summary and the existing preview actions in their original order.
+  A delivered result uses the page's reading width: a clear result heading,
+  readable summary with its original list lines and the existing preview actions
+  in their original order. The task title stays subordinate to the result's
+  reading area, and ready-preview explanation stays beside its action.
   Full reports and evidence remain available through their disclosures.
+  Task-action failures never become success confirmations because error text is
+  absent. Missing detail gives a localized next step: check the latest handoff
+  state before retrying. The controls become available when the callback settles.
   A static preview explains that it is a fixed snapshot. Its complete version is
   selectable in a separate collapsed section, with expansion state restored
   after page recreation; it does not fill the main result explanation.

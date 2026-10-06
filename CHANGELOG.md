@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- Bring delivery results into focus with clearer headings, preserved list lines
+  and preview explanations beside their actions. Refresh the bilingual workflow
+  screenshots from the actual native interface.
+- Keep failed task actions distinct from success even when exception text is
+  null or blank; restore controls and provide a useful next step.
+  [Local native checks and limits](docs/releases/ui-task-results-feedback-2026-10-06.md).
+
 ## 0.5.9-rc.1 — clearer reading and follow-up
 
 [Verified candidate and open acceptance](docs/releases/0.5.9-rc.1.md).

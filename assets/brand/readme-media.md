@@ -342,10 +342,21 @@ own this media's provenance. These are memory-only UI samples, not actual tasks.
 
 ## Quieter delivery follow-up
 
-The workflow's delivery stills now use four later EN/ZH light/dark normal-font
+The earlier workflow delivery stills used four EN/ZH light/dark normal-font
 captures. Preview remains lime, files outlined and follow-up uses the existing
 ghost style. All original PNGs were directly viewed and copied exactly to the
 brand and website sets; earlier reading captures remain historical. The probes
 use memory-only results and perform no business action.
 [Source identity, checks and boundaries](../../docs/releases/ui-first-use-followup-2026-10-06.md).
 The README's written example note is illustrative, separate from all recordings.
+
+## Clearer delivery results
+
+The current delivery stills select four subsequent native EN/ZH light/dark
+captures: a clearer result heading, quieter task title and a preview explanation
+closer to its action. Root and an independent reviewer directly viewed the raw
+PNGs; eight brand/landing copies retain their original bytes and memory marker.
+The two font2 reading windows also verified original list lines and plan actions.
+[Source identities and local verification](../../docs/releases/ui-task-results-feedback-2026-10-06.md).
+These captures are from the diagnostic debug build, not the signed download or
+a genuine Codex delivery. Earlier recordings and captures retain their dates.
