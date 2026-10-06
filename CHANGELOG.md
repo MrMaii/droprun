@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Give primary actions one matte lime surface, preserving their interaction
+  states; align task disclosure headings with the result reading edge.
+  [Raw native captures and actual checks](docs/releases/ui-primary-surface-2026-10-06.md).
 - Introduce the workflow and larger native screenshots before Share motion in
   both READMEs; keep recording parameters in a disclosure and provenance visible.
 - Make the selected Share destination easier to read, including complete long

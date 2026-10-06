@@ -223,7 +223,7 @@ public final class Ui {
     private static void styleAction(Button view,int kind){
         Context context=view.getContext();view.setAllCaps(false);view.setTextSize(15);view.setTypeface(medium());view.setGravity(Gravity.CENTER);
         view.setMinHeight(dp(context,52));view.setMinimumHeight(dp(context,52));view.setPadding(dp(context,18),dp(context,14),dp(context,18),dp(context,14));
-        view.setStateListAnimator(null);view.setElevation(kind==1?dpf(context,2):0);
+        view.setStateListAnimator(null);view.setElevation(0);
         int fill=kind==1?LIME:kind==2?(dark?0xFF38221F:0xFFFFE8E2):kind==3?Color.TRANSPARENT:SURFACE;
         int stroke=kind==1?LIME:kind==2?0x55FFB0A7:kind==3?Color.TRANSPARENT:LINE_STRONG;
         int pressed=kind==1?0xFFA3D964:kind==2?(dark?0xFF382320:0xFFFAD8CF):kind==3?(dark?0x14FFFFFF:0x0C191D1A):SURFACE_3;

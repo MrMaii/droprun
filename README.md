@@ -29,9 +29,9 @@ Network retries add neither.
 Current screenshots and the Share recording are labelled memory-only development UI, not signed-package or genuine Codex recordings. [Capture notes](assets/brand/readme-media.md).
 
 <p align="center">
-  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-share-destination-en-dark-20261006.png"><img src="assets/brand/source-share-destination-en-light-20261006.png" width="260" alt="01 · Share: native Android note step with expandable received material, optional intent and Model & effort controls; memory-only probe marker retained"></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-share-matte-en-dark-20261006.png"><img src="assets/brand/source-share-matte-en-light-20261006.png" width="260" alt="01 · Share: native Android note step with expandable received material, optional intent and Model & effort controls; memory-only probe marker retained"></picture>
   <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-home-rows-en-dark-20261006.png"><img src="assets/brand/source-home-rows-en-light-20261006.png" width="260" alt="02 · Follow: native Android project home with names, task and dispatch counts aligned at the page reading edge; memory-only and sample-project markers retained"></picture>
-  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-delivery-result-en-dark-20261006.png"><img src="assets/brand/source-delivery-result-en-light-20261006.png" width="260" alt="03 · Inspect: native handoff page with a clear result heading, fixed-snapshot explanation and delivery actions; visible memory-only marker"></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-delivery-matte-en-dark-20261006.png"><img src="assets/brand/source-delivery-matte-en-light-20261006.png" width="260" alt="03 · Inspect: native handoff page with a clear result heading, fixed-snapshot explanation and delivery actions; visible memory-only marker"></picture>
 </p>
 
 <details>

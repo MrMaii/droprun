@@ -54,6 +54,26 @@ No stable launch or marketing handover is claimed.
   [task-results](../../docs/releases/ui-task-results-feedback-2026-10-06.md)
   and [Share-motion](../../docs/releases/ui-share-reading-motion-2026-10-06.md).
 
+## Current visual refinement — local native pass complete
+
+The previous20-file source/README pass is committed/pushed270a492f, with Thomas
+author/committer and20actual anonymous immutable GETs verified. CI37484003195
+attempt1 completed success:3jobs/35steps/10required/3checks, metadata verified;
+no full-log or newtest-count inference.
+[Primary surfaces](../../docs/releases/ui-primary-surface-2026-10-06.md) owns the
+new127/4 freeze c6399210, actual1m26build/27JVM0fail/lint0error30warnings,
+app61ad232d/testf93ba91f. SameAPKs installed/verified:Share1/1 23.964s sixclosed,
+47actualeight-counter snapshots0;Delivery1/1 17.713s fourclosed/4actualguards0;
+17devicefiles/device-hostSHA/source/devicebefore-after match. Root viewedall8
+originalPNG includingmarkers/systembars. Eightnewbrandcopies andREADMEprimary
+selections preservepixels. Source states/press remain; runtimepressnotmeasured.
+Signed10 andSites15 are unchanged.
+
+Landing demo CSS now has four local reading-width changes, exact f58fe457;
+its finite local layout preview/publication is pending. Builder/HTML/app.js/media
+and candidate10links are unchanged. Task reading-position restore is a separate
+static finding/private closed-test proposal; no fix or native assertion yet.
+
 ## README visual pass
 
 Applied the accepted bilingual layout byte-exact after six actual local previews:
@@ -85,15 +105,16 @@ No candidate10 link or GIF/static-selector provenance changed.
 
 ## Single recommended next action
 
-Curate/review/commit the verified unreleased UI source, raw stills, README and
-contracts. Then continue the primary-button material refinement, preserving
-interaction states and reduced-motion behavior. Keep signed10 and Sites15
-immutable until a separate candidate package/site pass. Genuine acceptance and
-marketing handover remain open. No real Relay/Codex or previously denied path.
+Finish actual proof review and curate the verified primary-surface/native-gallery
+pass, excluding the pending landingCSS and private film. Then review/apply the
+closed Task reading-position regression and restore fix; run the finite local
+landing demo preview in parallel. Keep signed10/Sites15 unchanged until a separate
+candidate package/site pass. Genuine acceptance and marketing handover remain
+open. No real Relay/Codex or previously denied path.
 
 ## Files this pass
 
-Share/Settings/Task source, closed refresh fixture and three opt-in tests; debug
+Ui/Share/Settings/Task source, closed refresh fixture and three opt-in tests; debug
 manifest; PRD/CONTRACTS/CHANGELOG; new nativeShare source PNGs/media provenance;
 local UX record, applied bilingual README and this handoff. Private film/launch originals
 remain uncommitted and excluded from the public index.

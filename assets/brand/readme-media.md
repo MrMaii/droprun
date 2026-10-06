@@ -369,3 +369,13 @@ the .invalid link and empty note are disclosed. No material/model control or
 Send was activated. All four raw images were directly reviewed and copied
 without retouching. The separate Share GIF above retains its earlier source.
 [Source, hashes, checks and limits](../../docs/releases/ui-share-destination-feedback-2026-10-06.md).
+
+## October 6, 2026 — matte primary actions
+
+The current primary README Share/Delivery gallery uses eight `source-*-matte-*`
+raw native images, copied unchanged after all eight were directly reviewed.
+The [local source/run record](../../docs/releases/ui-primary-surface-2026-10-06.md)
+owns their hashes, frozen source, ten closed memory windows and limits. These
+are 0.5.10-dev/code23 captures, separate from the signed 0.5.10 candidate. Earlier
+GIFs, reduced-motion stills and expanded Settings/history examples keep their
+original source/provenance. No new motion or genuine handoff footage is claimed.

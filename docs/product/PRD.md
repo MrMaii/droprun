@@ -30,6 +30,9 @@ in [the current candidate record](../releases/0.5.10-rc.1.md).
   Windows package scripts must start on an unmanaged Windows client with its
   default script policy, without changing persistent user or machine policy.
 - Light translucent UI, lime actions, dark/system appearance, English/Chinese.
+  Primary actions use one matte lime surface; elevation belongs to containing
+  panels. Focus, press, disabled treatment and motion preferences remain distinct.
+  Task disclosure headings follow the same reading edge as the result and actions.
   Navigation gear/information icons share restrained round outlines; their 48dp
   targets, theme tint, focus, press feedback and action meaning remain distinct.
   Home contains Recent handoffs and settings, with only used or pending projects.

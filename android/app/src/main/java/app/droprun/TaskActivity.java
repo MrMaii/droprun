@@ -68,6 +68,7 @@ public class TaskActivity extends StyledActivity {
         if(value.isEmpty())return;
         TextView content=Ui.text(this,ReportText.render(value),15,Ui.TEXT);content.setTextIsSelectable(true);content.setPadding(0,0,0,Ui.dp(this,16));
         LinearLayout group=Ui.disclosure(this,heading,content,expanded.contains(heading),open->{if(open)expanded.add(heading);else expanded.remove(heading);});
+        group.getChildAt(0).setPadding(0,0,0,0);
         body.addView(group,Ui.margins(this,8,0));
     }
     void render(){
