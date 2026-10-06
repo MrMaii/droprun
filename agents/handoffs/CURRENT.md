@@ -5,7 +5,12 @@ remains open. Signed0.5.7/code20 candidate is available.
 Material inspection and README refinements are public source-only work. Project
 history, common disclosure motion and navigation icons have passed independent
 local review. Four current Home originals now replace older README references.
-Native Share motion capture is in draft review; signed07 remains immutable.
+History/icons source is public at d5f91f3 with green CI and twenty byte-matched
+anonymous source reads. Native Share EN/ZH captures and independent review pass;
+new sampled GIFs, README and website source are ready. File-preview disclosure
+passes independent local review. Settled Delivery originals are copied and
+independently checked. Home status/date native regression and independent source
+review pass. New0.5.8/code21 metadata is ready; signed07/site10 remain immutable.
 
 ## Current delivery
 
@@ -27,7 +32,73 @@ Native Share motion capture is in draft review; signed07 remains immutable.
 
 ## Latest completed work
 
-- [History and disclosure refinement](../../docs/releases/ui-project-history-identity-motion-2026-10-06.md), awaiting source publication:
+- Source d5f91f34e952707166d350cbca4444b221774d67 is public. CI37414723005 attempt1
+  all3jobs/35steps/10required/core210/browser18 pass; source scanner417 passes.
+  Twenty fresh anonymous immutable source reads match. PublicCurrent excludes
+  the private film block. Thomas author/committer verified; signed07/site10 unchanged.
+- Native Share EN one-take: source110 (old109 exact), app4cc4ebe3/test407f4fbc,
+  native1/1 19.275s/recorder0/native0/DONE/DESTROYED/static restore/guards0.
+  Four transfers match; raw8.528933s/127frames/320x640 retains native markers.
+  Owner145readonly plus run13readonly and independent49readonly are frozen.
+  SourcePTS strictly increasing; variable timing is not stable60fps or physical
+  performance. Root/peer inspected original samples, not continuous playback.
+  A failed earlier EN attempt never started a recorder; its parsing diagnostic
+  and native timeout remain. The new exact missing-file parser was separately
+  reviewed13offline cases before this fresh UUID single take. No denied replay.
+  ZH one-take native1/1 19.335s/exit0/recorder0/guards0/actual9.104911s118frames
+  passes independent20-keyframe review and demux-timebase decode. Owner138/run13/
+  peer40 readonly records preserve original image-output DTS warnings. Native
+  sourcePTS/DTS increase; no source-corruption claim. Project preset, note empty;
+  no effort click or task sent. [Public media record](../../docs/releases/ui-share-native-motion-2026-10-06.md).
+  Two25fps GIFs have native320x640 canvases: EN968052B/213frames/8.52s,
+  ZH947166B/228frames/9.12s; all441 composited frames have40ms delays. Sampling
+  holds/drops source frames, no interpolation, speed or added tail. OriginalMP4s
+  keep actual timing. README root edit independently passes185reference occurrences/
+  93local targets/18exact copies; older43brand and28landing media unchanged.
+- Twelve current raw Home/ShareMaterial/Delivery PNGs were copied byte-for-byte
+  to new dated landing/media filenames; twenty-eight older media stay unchanged.
+  New bilingual video/poster/captions and22-required-asset build pass. Local Edge
+  EN/ZH390/1280 four fresh profiles:24original PNGs directly viewed,56loopback GETs,
+  actual keyboard/FAQ/reduced-motion pass, no horizontal overflow. Two earlier
+  harness diagnostics remain failed/preserved; no hosted browser or playback claim.
+  These24 browser images precede the settled Delivery replacement below; they do
+  not establish a new browser capture of that replacement.
+  Site10 has not been refreshed. Existing native Site source was opened correctly;
+  no copy/push/save/deploy for this update has occurred yet.
+- [Settled Delivery media](../../docs/releases/ui-delivery-stable-media-2026-10-06.md):
+  capture-only1/1 12.527s, EN/ZH/light/dark font1, zero clicks or navigation;
+  four DESTROYED windows and9exact transfers. Two pre-draws plus actual~2s wait,
+  native memory markers and dark system glyphs retained. Original AVD/ACK harness
+  diagnostics are preserved; only their narrowly reviewed parser successor ran.
+  Owner277readonly,113source/old112exact/4Gradle exact. Four raw PNGs become8exact
+  brand/landing copies; README2/builder1 references change. Independent123local
+  references/52hash rows pass; old media stay byte-identical. No hosted update,
+  real delivery, full-page, physical or signed recording claim.
+- [Home status/date](../../docs/releases/ui-home-status-footer-2026-10-06.md):
+  production Main98/102 only; status text/fill bind together, font2 date below.
+  Firstred2fail2.705s contains one test-gravity defect; corrected-mask freshred2
+  targetfail2.596s. Green2/2 9.953s,8entered/8full/8DESTROYED; JVM24/lint0errors/
+  30warnings. Red2/green testAPK exact0236d1f2, appa63be969→c879773c. Final114sources,
+  original112exact and4Gradle unchanged at the green build. Owner549readonly;
+  independent review verifies every548payload hash, lifetime and exact114source.
+  Current Gradle's only exception is the subsequent0.5.8/code21 metadata change;
+  all7metadata files match their separately recorded values. README firstGIFs
+  now use native320width; three static workflow images remain280 per language.
+  Three guarded memory rows, no screenshots/business clicks/Store/network/OS.
+  Identity/counts/focus/anchor and individually reachable font2 dates pass;
+  normal pixel equality, TalkBack, keyboard, motion-off and physical gates stay open.
+- [File-preview disclosure](../../docs/releases/ui-delivery-file-verification-2026-10-06.md):
+  compact summary plus complete selectable SHA/explanation;4production hunks and
+  7business spans exact. Red1fail1.943s entered1/completed0; firstgreen1/1 16.568s;
+  final capture-only successor1/1 63.783s/8configurations/24PNG+24JSON/48exact transfers.
+  First media unaccepted; all final24 directly viewed,20whole-marker synthetic
+  fallback frames eligible,4large-font tails private. First/final production and
+  appAPK match; final only restored known2s capture wait. JVM24/lint0errors/30warnings
+  belong to firstgreen; final assembly passes. Independent112source/4Gradle review
+  passes. Only UI expansion survives ActivityScenario recreation; no real download,
+  verification, decoded content, cache/process restore, Save/picker or task work.
+
+- [History and disclosure refinement](../../docs/releases/ui-project-history-identity-motion-2026-10-06.md), included in public d5f91f3:
   bounded independent24sp identity/full-name-ID entry and recycled status tint;
   Ui exactly two -90→270 replacements. Red2fail9.338s; firstgreen1/2 13.819s
   dialog-coordinate test error; secondgreen1/2 23.428s SP-conversion test error;
@@ -158,20 +229,19 @@ Native Share motion capture is in draft review; signed07 remains immutable.
 
 ## Single recommended next action
 
-Curate the reviewed History/motion/icons/README source, excluding the private film.
-Complete native Share tour draft review before a fresh source/device lease: API
-compatibility, exact APK identity, confirmed-lifetime transfer barrier and smooth
-native scroll. Then compile and inspect one continuous memory-only take per language;
-any unknown lifetime stops continuation. Prepare a later bundled candidate from
-public immutable source. Small-window blur remains proposal-only. No real task,
-IME/process-loss retry or OS change is authorized. Root owns publication and private
-film exclusion; genuine acceptance and marketing handover stay open.
+Curate exact0.5.8/code21 UI/media/docs with the
+private film excluded, publish source and verify exact CI. Build a signed candidate
+from a clean managed checkout, verify all exports and anonymous downloads, then
+refresh the existing public Site through its native workflow. Small-window blur
+remains proposal-only. No real task, denied replay or OS change is authorized.
+Root owns publication; genuine acceptance and marketing handover stay open.
 
 ## Files this pass
 
-History identity/status, common Ui arrow endpoints, nonexported opt-in fixture
-and native tests; gear/info vectors; four dated Home PNGs, README installation
-paragraphs/gallery/media notes, PRD/changelog/verification records/current handoff.
-Native tour drafts and frozen evidence remain private.
+Home status/date two-statement patch and opt-in native test;
+file-preview UI preference/disclosure, nonexported opt-in fixture and native tests;
+native Share capture-only test, dated MP4/VTT/posters and sampled GIFs, bilingual
+README/gallery/media notes, landing builder/current images, PRD/changelog and
+verification records/current handoff. Frozen diagnostic evidence stays private.
 Private frozen evidence stays outside Git. Author Thomas Deng
 <150266369+MrMaii@users.noreply.github.com>.

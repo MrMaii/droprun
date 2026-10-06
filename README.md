@@ -12,23 +12,25 @@
 Codex works on your Windows computer. You deploy the Relay to your own Cloudflare account.
 DropRun brings progress, reports and evidence back to your phone.
 
-## Native UI tour
+## Inside the share sheet
 
-0.5.1 development UI · October 5, 2026 · labelled Demo data. No task is sent.
+Current native development UI · October 6, 2026 · memory-only samples.
+The project is preset; the optional note is empty. No task is sent.
 
-<p align="center"><picture><source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/brand/readme-share-dark.png"><source media="(prefers-reduced-motion: reduce)" srcset="assets/brand/readme-share.png"><img src="assets/brand/readme-ui-tour.gif" width="240" alt="Nine-second native Android development UI tour: project selection, note editing, model options, settings and a labelled demonstration report"></picture></p>
+<p align="center"><picture><source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/brand/source-share-material-en-dark-20261006.png"><source media="(prefers-reduced-motion: reduce)" srcset="assets/brand/source-share-material-en-light-20261006.png"><img src="assets/brand/native-share-en-20261006.gif" width="320" alt="Native Android share sheet: inspect received sample material, select another sample model, view its default Thorough effort and collapse the options; visible memory-only marker, no task sent"></picture></p>
 
-[9-second native UI video](https://droprun.dengmaizi0802.chatgpt.site/media/ui-tour-en.mp4) · [Captions](landing/media/ui-tour-en.vtt)
+[8.53-second original recording](landing/media/native-share-en-20261006.mp4) · [Captions](landing/media/native-share-en-20261006.vtt)
 
-[Light still](assets/brand/readme-share.png) · [Dark still](assets/brand/readme-share-dark.png). With reduced motion enabled, the image above is static.
+[Light still](assets/brand/source-share-material-en-light-20261006.png) · [Dark still](assets/brand/source-share-material-en-dark-20261006.png). Reduced motion shows a static image.
+The GIF is a 25 fps sampled display at native 320 × 640; the MP4 keeps the original timeline.
 
 <details>
-<summary><strong>Earlier preview tour and longer walkthrough</strong></summary>
+<summary><strong>Earlier UI tours and longer walkthrough</strong></summary>
 
-These earlier videos show the native interface with labelled demonstration data,
-not a completed source-to-Codex task.
+The October 5 tours use the 0.5.1 development UI with labelled demonstration data.
+They show interface navigation, not a completed source-to-Codex task.
 
-[24-second video](https://droprun.dengmaizi0802.chatgpt.site/media/demo.mp4) · [64-second walkthrough](https://droprun.dengmaizi0802.chatgpt.site/media/walkthrough.mp4)
+[Earlier 9-second tour](https://droprun.dengmaizi0802.chatgpt.site/media/ui-tour-en.mp4) · [24-second video](https://droprun.dengmaizi0802.chatgpt.site/media/demo.mp4) · [64-second walkthrough](https://droprun.dengmaizi0802.chatgpt.site/media/walkthrough.mp4)
 
 </details>
 
@@ -36,9 +38,8 @@ not a completed source-to-Codex task.
 
 ## Share. Follow. Inspect.
 
-Development captures with labelled sample data: tours use the 0.5.1 UI
-(October 5, 2026); home, share and delivery use memory-only native probes
-(October 6, 2026). These show the interface only, not the signed download or a
+Current screenshots and the Share recording use memory-only native samples
+(October 6, 2026). Earlier tours retain their original source dates. These show the interface only, not the signed download or a
 real Codex task. [Capture notes](assets/brand/readme-media.md).
 
 ### 01 · Share a reference
@@ -57,7 +58,7 @@ Codex works on your computer, in the chosen project. Follow progress and decisio
 
 See the result, required actions, screenshots and files. Open the full report when needed.
 
-<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-delivery-en-dark-20261006.png"><img src="assets/brand/source-delivery-en-light-20261006.png" width="280" alt="Latest native delivery region: result, preview and files on one surface, with a visible memory-only probe marker"></picture></p>
+<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-delivery-stable-en-dark-20261006.png"><img src="assets/brand/source-delivery-stable-en-light-20261006.png" width="280" alt="Native handoff page with result, fixed-snapshot explanation and delivery actions; visible memory-only marker"></picture></p>
 
 ## Start with your own setup
 

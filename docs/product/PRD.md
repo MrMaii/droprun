@@ -17,6 +17,9 @@ in [the current candidate record](../releases/0.5.7-rc.1.md).
   a static light/dark capture, with explicit still links and unchanged provenance.
   A localized installation link at the end of the tour lets ready readers leave
   for setup without scrolling through the full static gallery.
+  Current Share motion media show received-material disclosure, model choice and
+  its default effort, with the preset project and empty note disclosed. Native-size
+  sampled GIFs keep README loading light; original videos preserve the timeline.
   Workflow media use dated current native captures, with consistent light/dark
   language sets; older tours keep their source date and sample-data scope.
   The bilingual architecture diagram remains readable at phone width and separates
@@ -30,6 +33,9 @@ in [the current candidate record](../releases/0.5.7-rc.1.md).
   Home contains Recent handoffs and settings, with only used or pending projects.
   Project names, counts and status share the card content edge; a redundant
   initial tile does not take width from the full project identity.
+  Recycled Home cards update status text and its tint together. Large text puts
+  the date below the status, preserving natural wrapping and the project target;
+  normal text retains the compact horizontal footer.
   Returning to Home or recreating it after an appearance change preserves the
   visible project and reading offset; routine updates do not reset the list.
   Inserting/removing pending entries preserves the record and offset in both
@@ -76,6 +82,10 @@ in [the current candidate record](../releases/0.5.7-rc.1.md).
   A static preview explains that it is a fixed snapshot. Its complete version is
   selectable in a separate collapsed section, with expansion state restored
   after page recreation; it does not fill the main result explanation.
+  File previews put content before full technical evidence. A compact verified-file
+  disclosure retains the exact selectable SHA-256 and original non-execution
+  explanation. Its expansion preference survives Activity recreation; file
+  download, cache verification, decoding and Save/Back behavior stay unchanged.
   A configuration recreation continues observing the same pending mode change,
   including its eventual success or failure, without starting it again. Already
   displayed success is not announced again after recreation. Old completions

@@ -12,22 +12,25 @@
 Codex 在你的 Windows 电脑上工作，Relay 由你部署到自己的 Cloudflare 账号。
 进度、报告和改动证据，回到手机上查看。
 
-## 原生界面动效
+## 分享浮层里的动效
 
-0.5.1 开发界面 · 2026 年 10 月 5 日 · Demo 演示数据。没有发送任务。
+最新原生开发界面 · 2026 年 10 月 6 日 · 仅内存示例。
+项目为预置内容，留言留空。未发送任务。
 
-<p align="center"><picture><source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/brand/readme-share-zh-dark.png"><source media="(prefers-reduced-motion: reduce)" srcset="assets/brand/readme-share-zh.png"><img src="assets/brand/readme-ui-tour-zh.gif" width="240" alt="12 秒原生 Android 开发界面动图：选项目、编辑留言、模型选项、关闭确认与继续编辑、设置和标注的演示报告"></picture></p>
+<p align="center"><picture><source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/brand/source-share-material-zh-dark-20261006.png"><source media="(prefers-reduced-motion: reduce)" srcset="assets/brand/source-share-material-zh-light-20261006.png"><img src="assets/brand/native-share-zh-20261006.gif" width="320" alt="原生 Android 分享浮层：检查收到的示例材料、选中另一个示例模型、查看默认深入强度并收起选项；保留仅内存标记，未发送任务"></picture></p>
 
-[12 秒原生界面视频](https://droprun.dengmaizi0802.chatgpt.site/media/ui-tour-zh.mp4) · [字幕](landing/media/ui-tour-zh.vtt)
+[9.10 秒原始录屏](landing/media/native-share-zh-20261006.mp4) · [字幕](landing/media/native-share-zh-20261006.vtt)
 
-[浅色静态截图](assets/brand/readme-share-zh.png) · [深色静态截图](assets/brand/readme-share-zh-dark.png)。启用减少动画时，上方显示静态界面。
+[浅色静态截图](assets/brand/source-share-material-zh-light-20261006.png) · [深色静态截图](assets/brand/source-share-material-zh-dark-20261006.png)。启用减少动画时显示静态界面。
+GIF 为原生 320 × 640 的 25 fps 采样展示；MP4 保留原始时间顺序。
 
 <details>
-<summary><strong>较早预览版动图与完整界面导览</strong></summary>
+<summary><strong>较早界面导览与完整演示</strong></summary>
 
-以下较早视频展示原生界面与明确标注的演示数据，不代表真实来源到 Codex 的完整交办。
+10 月 5 日的较早导览使用 0.5.1 开发界面与标注的演示数据。
+它们展示界面操作，不代表真实来源到 Codex 的完整交办。
 
-[24 秒短演示](https://droprun.dengmaizi0802.chatgpt.site/media/demo.mp4) · [64 秒界面导览](https://droprun.dengmaizi0802.chatgpt.site/media/walkthrough.mp4)
+[较早 12 秒导览](https://droprun.dengmaizi0802.chatgpt.site/media/ui-tour-zh.mp4) · [24 秒短演示](https://droprun.dengmaizi0802.chatgpt.site/media/demo.mp4) · [64 秒界面导览](https://droprun.dengmaizi0802.chatgpt.site/media/walkthrough.mp4)
 
 </details>
 
@@ -35,8 +38,8 @@ Codex 在你的 Windows 电脑上工作，Relay 由你部署到自己的 Cloudfl
 
 ## 分享参考、跟进工作、查看交付
 
-原生开发截图与录屏均使用标注的示例数据：导览来自 0.5.1 界面
-（2026 年 10 月 5 日），首页、分享与交付截图来自原生内存验证（2026 年 10 月 6 日）。
+当前截图与分享录屏均来自原生内存示例（2026 年 10 月 6 日）。
+较早导览保留各自的原始来源日期。
 仅展示界面，不代表签名下载包录制或真实 Codex 任务。
 [媒体来源说明](assets/brand/readme-media.md)。
 
@@ -56,7 +59,7 @@ Codex 在你的电脑和所选项目中工作。按项目查看进展，处理�
 
 先看结果、需要处理的动作、截图和文件，再按需展开报告。
 
-<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-delivery-zh-dark-20261006.png"><img src="assets/brand/source-delivery-zh-light-20261006.png" width="280" alt="最新原生交付区域：结果、预览和文件共用一个表面，保留仅内存验证标记"></picture></p>
+<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-delivery-stable-zh-dark-20261006.png"><img src="assets/brand/source-delivery-stable-zh-light-20261006.png" width="280" alt="原生交办页：交付结果、固定快照说明与交付入口，保留仅内存验证标记"></picture></p>
 
 ## 从自己的环境开始
 

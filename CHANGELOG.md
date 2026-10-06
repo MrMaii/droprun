@@ -4,6 +4,15 @@
 
 Further UI refinements are separate from the current signed candidate.
 
+- Keep full file-verification evidence in a compact disclosure, bringing the
+  contents forward while retaining the selectable hash and original explanation.
+  [Local verification](docs/releases/ui-delivery-file-verification-2026-10-06.md).
+- Synchronize Home status text and background when cards are recycled; give
+  large-text dates a separate row without changing project counts or navigation.
+  [Local verification](docs/releases/ui-home-status-footer-2026-10-06.md).
+- Replace the opening README tour and website media with current native Share
+  recordings and coherent October 6 captures. Keep sample scope explicit and
+  native-size GIFs below 1 MB. [Recording evidence](docs/releases/ui-share-native-motion-2026-10-06.md).
 - Give project history a separate name heading and complete identity entry;
   synchronize recycled status-pill color and shorten common disclosure arrows
   to a reversible 90-degree turn. [Native verification](docs/releases/ui-project-history-identity-motion-2026-10-06.md).

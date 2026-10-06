@@ -98,9 +98,9 @@ recording. [Source and raw capture evidence](../../docs/releases/ui-delivery-sur
 第三步使用未经修图的原生内存验证截图，保留示例标记；只展示交付区域。
 不是旧版录屏，也不代表签名包录制、真实任务执行或真实预览验收。
 
-## Current result hierarchy — October 6, 2026
+## Earlier result hierarchy — October 6, 2026
 
-The third README step now uses four raw 320×640 normal-text native screenshots
+The third README step previously used four raw 320×640 normal-text native screenshots
 from the memory-only snapshot-version probe. The result and inspection actions
 are on the primary card; the full synthetic version is in the collapsed section
 below. Each image keeps its visible probe marker and sample report, without
@@ -120,7 +120,7 @@ separate provenance.
 | [source-delivery-zh-light-20261006.png](source-delivery-zh-light-20261006.png) | `b4125cea576fda36977705c65bfcc26623b6dd509153f8c9c51d7545b8734573` |
 | [source-delivery-zh-dark-20261006.png](source-delivery-zh-dark-20261006.png) | `b701cf1ecdc866c18db7db9d3fc736a066ad73dd4e5f92fef9d98707c2b3442b` |
 
-第三步更新为 10 月 6 日的原生内存示例：正常字号、保留完整验证标记，不修图或裁切。
+第三步曾更新为 10 月 6 日的原生内存示例：正常字号、保留完整验证标记，不修图或裁切。
 展示结果主卡与操作层级；底部部分控件不在画面内。不是签名包录制，也不表示真实交办
 或预览成功。旧截图与官网录屏保留各自来源。
 
@@ -221,3 +221,67 @@ this new coherent group is not assembled from different capture sessions.
 第二步已换成同一批次的四张原生首页图，名称、数量和状态对齐，设置入口使用细线
 图标。验证标记、系统栏与焦点环完整保留；不修图、不裁切。不是签名包录制或真实
 交办，旧图与旧动图仍按原日期解释。
+
+## Current native Share recordings — October 6, 2026
+
+The opening README tour now shows the current native Share configuration in both
+languages. Both use light appearance and normal text at the original 320 × 640
+canvas. The project is preset, the optional note is empty, and the sample model's
+Thorough/深入 effort is its default. Only material/model disclosure and the sample
+model choice are exercised. No task is sent or executed. The native memory-only
+marker, system bars and source-app underlay stay visible.
+
+The two original MP4s are byte-for-byte copies, with all 127/118 source frames and
+variable original timestamps. The GIFs use normal 25 fps time sampling and palette
+conversion, without resizing, visible cropping, interpolation, reordered actions
+or intentional speed changes. Sampling selects existing source frames and repeats
+held frames; it does not represent every source frame. English selects 59 distinct
+source frames and Chinese 65. GIFs have 213/228 frames with 40 ms delays and durations
+8.52/9.12 seconds, respectively −8.933/+15.089 ms from their originals.
+
+Standard transparent difference-frame encoding preserves the complete composited
+320 × 640 canvas while reducing each GIF below 1 MB. All 441 composited GIF frames
+retain that canvas and 40 ms timing; twelve keyframe PNGs are retained privately.
+Six optimized keyframes were directly reviewed by the media owner and root. This
+is sampled media verification, not continuous human playback or frame performance.
+The first, larger GIF conversion and the rejected all-source-frame timing proposal
+remain private originals; no old public asset is overwritten.
+
+The 40 ms GIF timing avoids Chromium's documented conversion of frame delays
+≤10 ms to100 ms. [Primary source](https://raw.githubusercontent.com/chromium/chromium/main/third_party/blink/renderer/platform/graphics/deferred_image_decoder.cc),
+checked October 6, 2026. This encoding choice does not establish identical cadence
+on every browser. The original MP4 is the authoritative timeline.
+
+| Media | Dimensions / duration | SHA-256 |
+| --- | --- | --- |
+| [native-share-en-20261006.gif](native-share-en-20261006.gif) | 320 × 640 · 8.52 s · 213 frames | `ae084ec3844d6cbcf803164569767caa63a3737b7e00b7d524b57aa7c1280f63` |
+| [native-share-zh-20261006.gif](native-share-zh-20261006.gif) | 320 × 640 · 9.12 s · 228 frames | `d1231f8414cd32c4ca08349494336b8039570cac798ce71c69dbcf7b8d07a6fd` |
+| [native-share-en-20261006.mp4](../../landing/media/native-share-en-20261006.mp4) | 320 × 640 · 8.528933 s | `ed08cb13f48452d62fa3d430532afd6c5360a21f24ce15d1c69b4c6860c9c313` |
+| [native-share-zh-20261006.mp4](../../landing/media/native-share-zh-20261006.mp4) | 320 × 640 · 9.104911 s | `c07f4b0b7841b6b624874623084455b5ab5635570dc22a7916855249954954e2` |
+| [English poster](../../landing/media/native-share-en-20261006-poster.png) | 320 × 640 · original first frame | `2d2a51c1f0b08cfd5a2364f0824ef9fb4d85f7a3856e901aa540676c844e5733` |
+| [中文封面](../../landing/media/native-share-zh-20261006-poster.png) | 320 × 640 · 原始首帧 | `be6520ea129814c211b009fc53ec6ec43ced31ad2659f572e6c12dec568ce476` |
+
+[Native capture verification and scope](../../docs/releases/ui-share-native-motion-2026-10-06.md)
+owns the source/APK identities, failed predecessor and accepted recordings.
+The website source now references byte-identical current Home, Share material
+and the settled Delivery PNGs linked below, plus these videos and first-frame
+posters. Its captions describe the actual sample flow. Older assets remain under
+their original filenames and retain their earlier provenance.
+
+README 首屏现为最新分享配置动图：两种语言均为浅色原生内存示例，项目预置、留言
+留空；展示材料展开、模型选择、默认深入强度与收起后的摘要。没有发送或执行任务。
+原始 MP4 保留全部源帧；GIF 按 25 fps 正常时间采样，40 ms 一帧，原生尺寸不变。
+透明差分属于编码压缩，合成画面仍完整，两个动图均小于 1 MB。官网源码已引用当前首页、
+分享与下述新交付原图，以及原始视频和首帧封面。旧图、旧视频与失败诊断均保留。上述素材不代表签名
+发行包录制、真机性能、真实来源读取或完整交办验收。
+
+## Current delivery viewports
+
+The third README image and website task step now use one fresh EN/ZH light/dark
+capture set. The existing memory marker, title, result and fixed-snapshot copy
+remain intact. Dark status glyphs are visibly white after settlement; no appearance
+code or pixels were changed. All four raw 320 × 640 originals were directly viewed
+by owner and root. Earlier delivery files and their hashes above remain historical.
+
+[Originals, hashes and capture boundaries](../../docs/releases/ui-delivery-stable-media-2026-10-06.md).
+These are initial memory-only viewports, with no preview click, navigation or task.

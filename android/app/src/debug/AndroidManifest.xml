@@ -19,6 +19,7 @@
         <activity android:name="app.droprun.DemoPairActivity" android:exported="true" />
         <activity android:name="app.droprun.DemoSettingsActivity" android:exported="true" />
         <activity android:name="app.droprun.DemoTaskActivity" android:exported="true" />
+        <activity android:name="app.droprun.DemoDeliveryVerificationActivity" android:exported="false" />
         <activity android:name="app.droprun.DemoDeliverablesActivity" android:exported="false" />
         <activity android:name="app.droprun.DemoDecisionActivity" android:exported="false" />
         <activity android:name="app.droprun.DemoDeletionActivity" android:exported="false" />

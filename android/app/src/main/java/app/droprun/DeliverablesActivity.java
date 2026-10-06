@@ -22,7 +22,7 @@ import org.json.*;
 public class DeliverablesActivity extends StyledActivity {
     final ExecutorService io=Executors.newSingleThreadExecutor();
     Store store;String taskId;LinearLayout page;File currentFile;JSONObject currentItem;
-    Button saveButton,fileBack;TextView saveNotice,saveDetail;boolean picking;
+    Button saveButton,fileBack;TextView saveNotice,saveDetail;boolean picking,verificationExpanded;
     String saveMessage="",saveError="";SaveOperation saving;
 
     @Override public void onCreate(Bundle state){
@@ -30,7 +30,7 @@ public class DeliverablesActivity extends StyledActivity {
         if(taskId==null||!taskId.matches("[a-zA-Z0-9-]{20,64}")){finish();return;}
         saving=(SaveOperation)getLastNonConfigurationInstance();
         if(saving!=null&&!saving.store.scope.equals(store.scope)){saving.cleanup=true;if(saving.done)saving.file.delete();saving=null;}
-        if(state!=null){picking=state.getBoolean("picking");saveMessage=state.getString("saveMessage","");saveError=state.getString("saveError","");
+        if(state!=null){verificationExpanded=state.getBoolean("verificationExpanded");picking=state.getBoolean("picking");saveMessage=state.getString("saveMessage","");saveError=state.getString("saveError","");
             if(saving==null&&state.getBoolean("savePending")){saveMessage=L.t("Save status is unknown.","保存状态尚未确认。");saveError=L.t("The app restarted during saving. Check your chosen location before saving again; a partial file may remain.","App 在保存期间重新启动。再次保存前，请检查所选位置；那里可能留有不完整文件。");}}
         if(saving!=null)saving.observer=this::updateSaveUi;
         if(state!=null)try{
@@ -126,8 +126,11 @@ public class DeliverablesActivity extends StyledActivity {
         saveDetail=Ui.text(this,"",13,Ui.MUTED);page.addView(saveDetail,Ui.margins(this,4,0));
         saveButton=Ui.button(this,L.t("Save to phone","保存到手机"),true);add(saveButton,this::saveFile);
         fileBack=Ui.button(this,L.t("Back to delivery files","返回交付列表"),false);add(fileBack,this::loadList);updateSaveUi();
-        LinearLayout verified=information(L.t("SHA-256 verified · ","SHA-256 已核对 · ")+size(currentItem.optLong("size")),L.t("Preview displays content only. HTML, scripts and patches are not executed.","预览只显示内容，不执行 HTML、脚本或补丁。"));
-        TextView hash=Ui.text(this,currentItem.optString("sha256"),11,Ui.MUTED);hash.setTypeface(Typeface.MONOSPACE);hash.setTextIsSelectable(true);verified.addView(hash,1);
+        LinearLayout evidence=Ui.vertical(this);
+        evidence.addView(Ui.caption(this,"SHA-256"));
+        TextView hash=Ui.text(this,currentItem.optString("sha256"),11,Ui.MUTED);hash.setTypeface(Typeface.MONOSPACE);hash.setTextIsSelectable(true);evidence.addView(hash);
+        TextView detail=Ui.text(this,L.t("Preview displays content only. HTML, scripts and patches are not executed.","预览只显示内容，不执行 HTML、脚本或补丁。"),13,Ui.MUTED);detail.setTextIsSelectable(true);evidence.addView(detail,Ui.margins(this,8,8));
+        page.addView(Ui.disclosure(this,L.t("Verified file · ","文件已核对 · ")+size(currentItem.optLong("size")),evidence,verificationExpanded,open->verificationExpanded=open),Ui.margins(this,8,0));
         page.addView(Ui.label(this,L.t("File contents","文件内容")));
         boolean previewed=false;
         try{
@@ -199,6 +202,6 @@ public class DeliverablesActivity extends StyledActivity {
         else super.onBackPressed();
     }
     @Override public Object onRetainNonConfigurationInstance(){return saving;}
-    @Override protected void onSaveInstanceState(Bundle state){if(currentFile!=null&&currentItem!=null){state.putString("file",currentFile.getPath());state.putString("item",currentItem.toString());}state.putBoolean("picking",picking);state.putBoolean("savePending",saveBusy());state.putString("saveMessage",saveMessage);state.putString("saveError",saveError);super.onSaveInstanceState(state);}
+    @Override protected void onSaveInstanceState(Bundle state){if(currentFile!=null&&currentItem!=null){state.putString("file",currentFile.getPath());state.putString("item",currentItem.toString());}state.putBoolean("verificationExpanded",verificationExpanded);state.putBoolean("picking",picking);state.putBoolean("savePending",saveBusy());state.putString("saveMessage",saveMessage);state.putString("saveError",saveError);super.onSaveInstanceState(state);}
     @Override protected void onDestroy(){if(saving!=null)saving.observer=null;if(isFinishing()){if(saveBusy())saving.cleanup=true;else clearFile();}io.shutdown();super.onDestroy();}
 }
