@@ -1,34 +1,31 @@
 # Current Handoff
 
-Updated 2026-10-06 UTC. Independent UI/brand work continues while real acceptance
-remains open. Signed0.5.7/code20 candidate is available.
-Material inspection and README refinements are public source-only work. Project
-history, common disclosure motion and navigation icons have passed independent
-local review. Four current Home originals now replace older README references.
-History/icons source is public at d5f91f3 with green CI and twenty byte-matched
-anonymous source reads. Native Share EN/ZH captures and independent review pass;
-new sampled GIFs, README and website source are ready. File-preview disclosure
-passes independent local review. Settled Delivery originals are copied and
-independently checked. Home status/date native regression and independent source
-review pass. New0.5.8/code21 metadata is ready; signed07/site10 remain immutable.
+Updated 2026-10-06 UTC. Signed0.5.8/code21 is now the public candidate.
+Home/history/material/file UI refinements and current native media are included.
+README EN/ZH opens with native sampled GIFs; all sample boundaries remain explicit.
+Eight anonymous downloads and exact-source CI pass. GPTSites11 is refreshed with verified downloads and current native media. Independent UI/brand work continues;
+real acceptance and marketing handover remain open.
 
 ## Current delivery
 
-- Public download is [0.5.7-rc.1](../../docs/releases/0.5.7-rc.1.md), source
-  7097a0db9297fe14873fcc9f652f5d0bc6e79343/runtime0.5.7/code20/protocol2/schema11/shutdown1. Eight complete
-  anonymous assets/checksums/tag pass; stable Android certificate/nondebuggable/
-  noDemo and Windows NotSigned are recorded. [Public audit](../../docs/releases/public-delivery-2026-10-06-rc057.json).
-- GPTSites10 is live from hosting source7b155e9a2a611a6ee0f660a2490893e98ba18318,
-  success2026-10-06T03:03:16.979824+00:00. Anonymous2pages/10CTA/4resources and25 hash-bound
-  dated resources pass; only download pointers changed. Actual normal6scenes/
-  8keyboard staysv8, no freshv10 browser/reduced-motion claim. Local initial
-  SEO/copy/buffer preparation diagnostics were retained before successful native
-  publication. [Public audit](../../docs/releases/public-delivery-2026-10-06-rc057.json).
-- Candidate source7097a0db9297fe14873fcc9f652f5d0bc6e79343: CI37406059158 attempt1 all3jobs/
-  35steps/10required/core210/browser18 green.
-  Thirty fresh anonymous sourceGETs, including4PNGs, match immutable Git.
-  Clean managed Android/Windows builds and independent exports agree. New
-  compact-layout work in the main checkout is not included in this package.
+- Public [0.5.8-rc.1](../../docs/releases/0.5.8-rc.1.md), source
+  79cc2795dcaa40a3f38d7c0791298ade80cdd46c/runtime0.5.8/code21/protocol2/schema11/shutdown1.
+  Eight complete anonymous assets and seven checksum entries/tag pass. Stable
+  Android certificate/nondebug/noDemo and Windows NotSigned verified.
+  [Public audit](../../docs/releases/public-delivery-2026-10-06-rc058.json).
+- Candidate exact-source CI37423690483 attempt1, all3jobs/35steps/
+  10required, core210/browser18, nofail/cancel/skip/todo.
+  52 fresh immutable anonymous source GETs match. Clean managed builds
+  and independent Android/Windows/export review pass; package details live in
+  the candidate record. Native UI evidence remains from labelled development builds.
+- GPTSites11 live from hosting source1badcb50592272309d2dc187981ee70328f38291,
+  native success2026-10-06T06:52:16.527223+00:00. Public audience retained, existing source
+  opened before copy; 53 exact copied static sources, old28media retained,
+  no nested cleanup. Anonymous2pages/10CTA HEAD/22fresh resource GETs pass.
+  Platform JSD observed only as final HTML bytes; never requested/executed.
+  22 inherited dated HTTP and7local-only resources are distinguished.
+  New hosted browser/reduce/playback and true handoff gates remain open.
+  [Public audit](../../docs/releases/public-delivery-2026-10-06-rc058.json).
 
 ## Latest completed work
 
@@ -229,12 +226,13 @@ review pass. New0.5.8/code21 metadata is ready; signed07/site10 remain immutable
 
 ## Single recommended next action
 
-Curate exact0.5.8/code21 UI/media/docs with the
-private film excluded, publish source and verify exact CI. Build a signed candidate
-from a clean managed checkout, verify all exports and anonymous downloads, then
-refresh the existing public Site through its native workflow. Small-window blur
-remains proposal-only. No real task, denied replay or OS change is authorized.
-Root owns publication; genuine acceptance and marketing handover stay open.
+Finish the final companion documentation publication and exact CI/source checks,
+then implement the accepted one-statement Share execution-context refinement:
+confirmed settings become plain readable context, unknown settings keep their
+warning surface. Start with the private opt-in test draft and explicit source/
+device lease; preserve all risk/Relay text, guards and business code. Signed08
+remains immutable. Real tasks, denied replay and OS changes remain unauthorized;
+genuine acceptance and marketing handover stay open.
 
 ## Files this pass
 

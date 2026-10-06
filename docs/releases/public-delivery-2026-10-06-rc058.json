@@ -1,0 +1,1938 @@
+{
+  "recordedAtUtc": "2026-10-06T06:35:40.044Z",
+  "release": "https://github.com/MrMaii/droprun/releases/tag/v0.5.8-rc.1",
+  "tag": "v0.5.8-rc.1",
+  "sourceCommit": "79cc2795dcaa40a3f38d7c0791298ade80cdd46c",
+  "authentication": "none; no Authorization header or browser session",
+  "prerelease": true,
+  "repositoryPublic": true,
+  "annotatedTagSourceVerified": true,
+  "tagObjectSha": "7ba4b1663ad39f2426d9540e76d19b771f94ad6b",
+  "checksumEntries": 7,
+  "artifacts": [
+    {
+      "name": "DropRun-0.5.8-android-BUILD-MANIFEST.json",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.8-rc.1/DropRun-0.5.8-android-BUILD-MANIFEST.json",
+      "status": 200,
+      "bytes": 1772,
+      "sha256": "11a51b8ab6fa11fa4d38c479dad5189b5e66d9d2598d164339b20c0c19f7ef72",
+      "apiDigestMatches": true,
+      "localArtifactMatches": true
+    },
+    {
+      "name": "DropRun-0.5.8-android-distribution.zip",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.8-rc.1/DropRun-0.5.8-android-distribution.zip",
+      "status": 200,
+      "bytes": 3448411,
+      "sha256": "6d64814cb84e3d4a60759dcb1071ce845acc8cde53e46ac1663c1acbaabd9cef",
+      "apiDigestMatches": true,
+      "localArtifactMatches": true
+    },
+    {
+      "name": "DropRun-0.5.8-android.apk",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.8-rc.1/DropRun-0.5.8-android.apk",
+      "status": 200,
+      "bytes": 1689056,
+      "sha256": "7d9b4a31e052b41c0c951ed140f89765091c5622fb0f1730b31db3bf7c8d5d2c",
+      "apiDigestMatches": true,
+      "localArtifactMatches": true
+    },
+    {
+      "name": "DropRun-0.5.8-windows-x64-BUILD-MANIFEST.json",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.8-rc.1/DropRun-0.5.8-windows-x64-BUILD-MANIFEST.json",
+      "status": 200,
+      "bytes": 375696,
+      "sha256": "a2101913094b2b94849ab3d62888373c22e8b9f163fb59e8f611d3ba7e8a089f",
+      "apiDigestMatches": true,
+      "localArtifactMatches": true
+    },
+    {
+      "name": "DropRun-0.5.8-windows-x64-setup.exe",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.8-rc.1/DropRun-0.5.8-windows-x64-setup.exe",
+      "status": 200,
+      "bytes": 76713058,
+      "sha256": "06f817928e9cf0c08d6ee877fb0e220011a451ba92fabed49a310eb114fbcef7",
+      "apiDigestMatches": true,
+      "localArtifactMatches": true
+    },
+    {
+      "name": "DropRun-0.5.8-windows-x64-source.zip",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.8-rc.1/DropRun-0.5.8-windows-x64-source.zip",
+      "status": 200,
+      "bytes": 27386347,
+      "sha256": "d8571ae863c9cb6dffbcc9b5286048c224a9e14b5d6b19f4d1563a4b20b40cae",
+      "apiDigestMatches": true,
+      "localArtifactMatches": true
+    },
+    {
+      "name": "DropRun-0.5.8-windows-x64.zip",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.8-rc.1/DropRun-0.5.8-windows-x64.zip",
+      "status": 200,
+      "bytes": 111577163,
+      "sha256": "38f958434a72fffd77f45b2d820f5c017ec224352416b609f1b2350c7d552097",
+      "apiDigestMatches": true,
+      "localArtifactMatches": true
+    },
+    {
+      "name": "SHA256SUMS.txt",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.8-rc.1/SHA256SUMS.txt",
+      "status": 200,
+      "bytes": 725,
+      "sha256": "dc8a668340b5fcd31f389ee9dbee036c4b276f9212cce0dd4bb376b357ca5a03",
+      "apiDigestMatches": true,
+      "localArtifactMatches": true
+    }
+  ],
+  "verified": true,
+  "websiteVerification": {
+    "startedAt": "2026-10-06T06:53:29.452Z",
+    "authentication": "none; no cookies, token, Authorization or browser session",
+    "inputs": [
+      {
+        "label": "new-site-copy",
+        "bytes": 18544,
+        "sha256": "8fd672423f5c8db5f161f3f6e2fef50f9a6e80470a196717a7e8baf4b13e2caa"
+      },
+      {
+        "label": "new-deployment",
+        "bytes": 1085,
+        "sha256": "74226f2233098448235fbeb57c9972a36e351a0f69ff2fde7dcadea102d667ef"
+      },
+      {
+        "label": "current-complete-anonymous-downloads",
+        "bytes": 3484,
+        "sha256": "007f0cb62ef29e6eedbd3c2b11f74fe6e36addfa244582314708e5ac7803d00a"
+      },
+      {
+        "label": "accepted-prior-site-copy",
+        "bytes": 10065,
+        "sha256": "88025b93cb2ebb2e6d725dda4a8fd0d50596f44c2114d2fc22819755e1e401cd"
+      },
+      {
+        "label": "accepted-prior-http-audit",
+        "bytes": 17388,
+        "sha256": "d2bb3bddce80cbdc803bb1b47441e19848073f364cc3bc5786ee5ac85a43e2f3"
+      }
+    ],
+    "localSources": [
+      {
+        "file": "app.js",
+        "bytes": 5214,
+        "sha256": "38e2c19f1060b79ff981cb82b6c0abe895096f500478888e4b7b222bfb564f6c"
+      },
+      {
+        "file": "brand-logo.png",
+        "bytes": 1432103,
+        "sha256": "5b53d5fba0abb6693006409f347e95e1dc1c82b557b027eb6b556c2adf7e72a1"
+      },
+      {
+        "file": "index.html",
+        "bytes": 16661,
+        "sha256": "efc8d28869a419d74ca7a24d0605b6487833aae0f2afb8e910afa634a25b2bbd"
+      },
+      {
+        "file": "media/demo-en.vtt",
+        "bytes": 346,
+        "sha256": "2fd2bfb7e7a7b82d890f312851ec9996b0cf20ebbd5d2b65480921218b9fc7d2"
+      },
+      {
+        "file": "media/demo-zh.vtt",
+        "bytes": 365,
+        "sha256": "665d99750d6ccfb3a996cda2b05f74c0ca2d69b121a7face589a7dd69b4927e7"
+      },
+      {
+        "file": "media/demo.gif",
+        "bytes": 638965,
+        "sha256": "f995fb5b7246941305f33cc3a546e82394d0d4f178474173a1284b2b1b2424d0"
+      },
+      {
+        "file": "media/demo.mp4",
+        "bytes": 238025,
+        "sha256": "7f3ace0ede13a8430059474d8b7b5a18cc2173bb1bd4e75b8d87c4846224f34a"
+      },
+      {
+        "file": "media/home-dark.png",
+        "bytes": 105456,
+        "sha256": "cc49dfd5ef6c996b4175db15e75c195fd7e157513f7867db92db0d07c1c3f3d9"
+      },
+      {
+        "file": "media/home-zh-dark.png",
+        "bytes": 108247,
+        "sha256": "3141cac532a61286227bacd6b9048350f232202c303506fa8356eaeae75f24c1"
+      },
+      {
+        "file": "media/home-zh.png",
+        "bytes": 103068,
+        "sha256": "63a4df81cb356346fa73f1cb1fd405a1acba2bba657b2bad15faf02b9316de64"
+      },
+      {
+        "file": "media/home.png",
+        "bytes": 100407,
+        "sha256": "dd90d6a3479a1c346eeab10025403ea68fd429a3f04fb5ba810bb8eb4bdcb792"
+      },
+      {
+        "file": "media/native-share-en-20261006-poster.png",
+        "bytes": 84549,
+        "sha256": "2d2a51c1f0b08cfd5a2364f0824ef9fb4d85f7a3856e901aa540676c844e5733"
+      },
+      {
+        "file": "media/native-share-en-20261006.mp4",
+        "bytes": 360262,
+        "sha256": "ed08cb13f48452d62fa3d430532afd6c5360a21f24ce15d1c69b4c6860c9c313"
+      },
+      {
+        "file": "media/native-share-en-20261006.vtt",
+        "bytes": 371,
+        "sha256": "1807ec198d0ed7d413dca53d14044e4d70512d341911ccf96f269fd4ef3d26ee"
+      },
+      {
+        "file": "media/native-share-zh-20261006-poster.png",
+        "bytes": 81282,
+        "sha256": "be6520ea129814c211b009fc53ec6ec43ced31ad2659f572e6c12dec568ce476"
+      },
+      {
+        "file": "media/native-share-zh-20261006.mp4",
+        "bytes": 321348,
+        "sha256": "c07f4b0b7841b6b624874623084455b5ab5635570dc22a7916855249954954e2"
+      },
+      {
+        "file": "media/native-share-zh-20261006.vtt",
+        "bytes": 373,
+        "sha256": "40b50be3d360d094463293429dc06e6a772b330649c56ff45c5dbb2b5768ab13"
+      },
+      {
+        "file": "media/settings-dark.png",
+        "bytes": 101204,
+        "sha256": "fdc84f9caec2bde451605c4c0cdabbd57901e768162dc60345d9006437bd4dd2"
+      },
+      {
+        "file": "media/settings-zh-dark.png",
+        "bytes": 96335,
+        "sha256": "f9be8cb41807cdc86e5bc4f58bbca077528b56628ec37679058d1ebbe9dce941"
+      },
+      {
+        "file": "media/settings-zh.png",
+        "bytes": 95411,
+        "sha256": "bcc82e8f45de3aa501cc1beeb1b887c13b74fb229db395dfeb7b058afe5dae9e"
+      },
+      {
+        "file": "media/settings.png",
+        "bytes": 98977,
+        "sha256": "73b0adbbda75824bc8a3096ca8f694d90fc3954ca77fa4f00096f7acc61e5a06"
+      },
+      {
+        "file": "media/share-dark.png",
+        "bytes": 102232,
+        "sha256": "833efed08c6ef08131edeb55217a8e77af885994918dc0ed83620b4f56abc12a"
+      },
+      {
+        "file": "media/share-zh-dark.png",
+        "bytes": 102081,
+        "sha256": "05c9ebdf33977aa05529fb019cc1c8a0dc68ad20bc72cc731790b90adb53b0bc"
+      },
+      {
+        "file": "media/share-zh.png",
+        "bytes": 98086,
+        "sha256": "a35a23d55ea68d1e67c8456318b0e224e66cd7e74bc28a15162f7a0ade846b7e"
+      },
+      {
+        "file": "media/share.png",
+        "bytes": 98376,
+        "sha256": "925895d229b1628f591c000f3571aeb56a631738f99d66a0b47cc77a66b1366d"
+      },
+      {
+        "file": "media/social.png",
+        "bytes": 103814,
+        "sha256": "afca006fd8d37681ceda37d1fdc9d83bc74c08d0b84620b924c12b3da075ecf5"
+      },
+      {
+        "file": "media/source-delivery-stable-en-dark-20261006.png",
+        "bytes": 37632,
+        "sha256": "a6b2b61774a4c68bf987bb364ac7c2299b4252d443fd760b86015e7e2a6d8668"
+      },
+      {
+        "file": "media/source-delivery-stable-en-light-20261006.png",
+        "bytes": 36425,
+        "sha256": "e9f123773f61d90315a7fe1f1126c503efe3bb0e831e67f157148ba46f404c5a"
+      },
+      {
+        "file": "media/source-delivery-stable-zh-dark-20261006.png",
+        "bytes": 44618,
+        "sha256": "5d39aafc25aa6bf71b8712e96f65718149a522d06ea3f1512e52487395e2c779"
+      },
+      {
+        "file": "media/source-delivery-stable-zh-light-20261006.png",
+        "bytes": 43574,
+        "sha256": "5b0a5133c498e7d19a42026b8bde5f707715ab3bd095ee9b9f4eb1c34f80ae75"
+      },
+      {
+        "file": "media/source-home-en-dark-20261006.png",
+        "bytes": 39877,
+        "sha256": "20a779333440f86cff9e35900f0ea7d537975be2a43c783c90e515106f187b4d"
+      },
+      {
+        "file": "media/source-home-en-light-20261006.png",
+        "bytes": 38811,
+        "sha256": "31f6d3dc090804c8a6cb01ae598af36841eb527c616b33dfc95d8ba30b82506d"
+      },
+      {
+        "file": "media/source-home-zh-dark-20261006.png",
+        "bytes": 47022,
+        "sha256": "a420422c8c1ac05daf7d20b2cbbb850a4ad69f81ad8615a48764aa1abb5c828d"
+      },
+      {
+        "file": "media/source-home-zh-light-20261006.png",
+        "bytes": 46094,
+        "sha256": "2f20d1114c50675e088a49ccf7aa37ba0dddf70b394c1d73646daf566cde57a8"
+      },
+      {
+        "file": "media/source-share-material-en-dark-20261006.png",
+        "bytes": 62224,
+        "sha256": "68878e311221c6d1ce296c0f3fa6ec4e20920c175cbe29c346266c150994506b"
+      },
+      {
+        "file": "media/source-share-material-en-light-20261006.png",
+        "bytes": 63004,
+        "sha256": "6d8bdbbea5ea982c9973a32789cf549a8c6b66b59f362a551b9414062533ddaf"
+      },
+      {
+        "file": "media/source-share-material-zh-dark-20261006.png",
+        "bytes": 66809,
+        "sha256": "2125479828e89c6d510b2ab5ff43a1c33fca10330b9cf5aad1a2414303ccfe8d"
+      },
+      {
+        "file": "media/source-share-material-zh-light-20261006.png",
+        "bytes": 67234,
+        "sha256": "8aef06ad954e7e58a95d6e9d2aced4a076b539e2a4c1a85020779e1c79fe42a7"
+      },
+      {
+        "file": "media/task-dark.png",
+        "bytes": 113788,
+        "sha256": "796c90d09c4251237b6e31e08a1267fdd91e3b15a076277b01e78f379c63afc3"
+      },
+      {
+        "file": "media/task-zh-dark.png",
+        "bytes": 120963,
+        "sha256": "ded243f012842b66f004a119faf80e0c1967fd1d51deaba4fd396341a0cd5de5"
+      },
+      {
+        "file": "media/task-zh.png",
+        "bytes": 118263,
+        "sha256": "0137ddd9870408a550e5f79ed0d63ffd64551d07a7d738f0c84652324fef589d"
+      },
+      {
+        "file": "media/task.png",
+        "bytes": 110723,
+        "sha256": "d942d57cbfeeb3c5bc79af3755cf751aae1b83c94f6298e07d95953c11385a3e"
+      },
+      {
+        "file": "media/ui-tour-en.mp4",
+        "bytes": 2183780,
+        "sha256": "08bc03e80c06331a1e1f330a81dad0d8ceb5b6a3bf4eb6795e3e7826dfc19578"
+      },
+      {
+        "file": "media/ui-tour-en.vtt",
+        "bytes": 448,
+        "sha256": "c7f3731121340263a10260ffa60b11078d68e3504590791c0f5334bf1c45b6d9"
+      },
+      {
+        "file": "media/ui-tour-zh.mp4",
+        "bytes": 2677439,
+        "sha256": "f6d33e6f171ddff0db45022451f6d12babc4406ea2402e762513e0fc03d8a756"
+      },
+      {
+        "file": "media/ui-tour-zh.vtt",
+        "bytes": 534,
+        "sha256": "ff0ce7fb7c2d28ca6f89138dad9b21b358ec10e33517e2af9da201eed11bae55"
+      },
+      {
+        "file": "media/walkthrough-en.vtt",
+        "bytes": 482,
+        "sha256": "bede0c5f203fa91ca22345796d29135b900f6c4c4a12a361426e313bc59ea990"
+      },
+      {
+        "file": "media/walkthrough-zh.vtt",
+        "bytes": 513,
+        "sha256": "71db83a8c5b59945d4a948d67d68427b84e79c454001a4367e45ef27b52b7e50"
+      },
+      {
+        "file": "media/walkthrough.mp4",
+        "bytes": 381532,
+        "sha256": "98065802ae3052b6c9909403f2a1ed8d6636503785d7d0942d2be792e88811d4"
+      },
+      {
+        "file": "robots.txt",
+        "bytes": 87,
+        "sha256": "2c05b3dfbd66461a44bbbfaa39a03e57f27b34c008d44dfbb4f66d7a234924f9"
+      },
+      {
+        "file": "sitemap.xml",
+        "bytes": 240,
+        "sha256": "7e1288dc8427f342c6ebce992b899e2290a6242a7b2c2e9ece44c6352ccf12cb"
+      },
+      {
+        "file": "styles.css",
+        "bytes": 19942,
+        "sha256": "b2ccbdded57ac9ca2b7d065391adc2a72dd332fd317ed6e4e0d065f720bdb883"
+      },
+      {
+        "file": "zh/index.html",
+        "bytes": 16340,
+        "sha256": "3ac520c15349d8138c0f5040629450de7e267575343cd6daeb1afdea3c3815bf"
+      }
+    ],
+    "pages": [
+      {
+        "number": "001",
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/",
+        "method": "GET",
+        "startedAt": "2026-10-06T06:53:29.482Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/",
+        "public": true,
+        "contentType": "text/html",
+        "bytes": 17599,
+        "sha256": "881bdbad02ef09acc23c15f18a6a4a1cee7e4f32f68b2588ba9cf73eda7866fb",
+        "bodyFile": "001-body.bin",
+        "completedAt": "2026-10-06T06:53:30.395Z",
+        "locale": "en",
+        "localFile": "index.html",
+        "localSha256": "efc8d28869a419d74ca7a24d0605b6487833aae0f2afb8e910afa634a25b2bbd",
+        "byteMatch": false,
+        "originMarkupByteMatch": true,
+        "observedPlatformScript": true,
+        "platformScriptRequested": false,
+        "addedPlatformScriptBytes": 938,
+        "addedPlatformScriptSha256": "cf5b7f5ac3431c9b392921b7185b9b92f5e297ad1a5c64adff25789cfcfaea32"
+      },
+      {
+        "number": "002",
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/zh/",
+        "method": "GET",
+        "startedAt": "2026-10-06T06:53:30.395Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/zh/",
+        "public": true,
+        "contentType": "text/html",
+        "bytes": 17278,
+        "sha256": "ebc3b904702517eca6100f0a8aef443ff04339aa16fb97586a7f25eb092e7990",
+        "bodyFile": "002-body.bin",
+        "completedAt": "2026-10-06T06:53:30.909Z",
+        "locale": "zh",
+        "localFile": "zh/index.html",
+        "localSha256": "3ac520c15349d8138c0f5040629450de7e267575343cd6daeb1afdea3c3815bf",
+        "byteMatch": false,
+        "originMarkupByteMatch": true,
+        "observedPlatformScript": true,
+        "platformScriptRequested": false,
+        "addedPlatformScriptBytes": 938,
+        "addedPlatformScriptSha256": "f839b29486b46787ea3a73e8f66723e6fa0eb4cc392cf50ab1759131ccc97e24"
+      }
+    ],
+    "links": [
+      {
+        "number": "003",
+        "url": "https://github.com/MrMaii/droprun",
+        "method": "HEAD",
+        "startedAt": "2026-10-06T06:53:30.911Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://github.com/MrMaii/droprun",
+        "public": true,
+        "contentType": "text/html; charset=utf-8",
+        "completedAt": "2026-10-06T06:53:31.545Z",
+        "bodyDownloadedThisRun": false
+      },
+      {
+        "number": "004",
+        "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.8-rc.1/DropRun-0.5.8-windows-x64-setup.exe",
+        "method": "HEAD",
+        "startedAt": "2026-10-06T06:53:31.548Z",
+        "redirects": [
+          {
+            "status": 302,
+            "from": "https://github.com/MrMaii/droprun/releases/download/v0.5.8-rc.1/DropRun-0.5.8-windows-x64-setup.exe",
+            "to": "https://release-assets.githubusercontent.com/github-production-release-asset/1369070124/7e233acb-da70-443a-8521-23cec6e4d2bd",
+            "queryRedacted": true
+          }
+        ],
+        "status": 200,
+        "finalUrl": "https://release-assets.githubusercontent.com/github-production-release-asset/1369070124/7e233acb-da70-443a-8521-23cec6e4d2bd",
+        "public": true,
+        "contentType": "application/octet-stream",
+        "completedAt": "2026-10-06T06:53:31.815Z",
+        "completeDownloadRecordSha256": "007f0cb62ef29e6eedbd3c2b11f74fe6e36addfa244582314708e5ac7803d00a",
+        "completeDownloadAt": "2026-10-06T06:35:40.044Z",
+        "completeDownloadSha256": "06f817928e9cf0c08d6ee877fb0e220011a451ba92fabed49a310eb114fbcef7",
+        "completeDownloadBytes": 76713058,
+        "bodyDownloadedThisRun": false
+      },
+      {
+        "number": "005",
+        "url": "https://github.com/MrMaii/droprun/blob/main/docs/technical/SELF_HOSTING.md",
+        "method": "HEAD",
+        "startedAt": "2026-10-06T06:53:31.815Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://github.com/MrMaii/droprun/blob/main/docs/technical/SELF_HOSTING.md",
+        "public": true,
+        "contentType": "text/html; charset=utf-8",
+        "completedAt": "2026-10-06T06:53:32.387Z",
+        "bodyDownloadedThisRun": false
+      },
+      {
+        "number": "006",
+        "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.8-rc.1/DropRun-0.5.8-windows-x64.zip",
+        "method": "HEAD",
+        "startedAt": "2026-10-06T06:53:32.388Z",
+        "redirects": [
+          {
+            "status": 302,
+            "from": "https://github.com/MrMaii/droprun/releases/download/v0.5.8-rc.1/DropRun-0.5.8-windows-x64.zip",
+            "to": "https://release-assets.githubusercontent.com/github-production-release-asset/1369070124/828c4d18-30bf-4c22-9f57-4bde6f50b886",
+            "queryRedacted": true
+          }
+        ],
+        "status": 200,
+        "finalUrl": "https://release-assets.githubusercontent.com/github-production-release-asset/1369070124/828c4d18-30bf-4c22-9f57-4bde6f50b886",
+        "public": true,
+        "contentType": "application/octet-stream",
+        "completedAt": "2026-10-06T06:53:32.724Z",
+        "completeDownloadRecordSha256": "007f0cb62ef29e6eedbd3c2b11f74fe6e36addfa244582314708e5ac7803d00a",
+        "completeDownloadAt": "2026-10-06T06:35:40.044Z",
+        "completeDownloadSha256": "38f958434a72fffd77f45b2d820f5c017ec224352416b609f1b2350c7d552097",
+        "completeDownloadBytes": 111577163,
+        "bodyDownloadedThisRun": false
+      },
+      {
+        "number": "007",
+        "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.8-rc.1/DropRun-0.5.8-android.apk",
+        "method": "HEAD",
+        "startedAt": "2026-10-06T06:53:32.726Z",
+        "redirects": [
+          {
+            "status": 302,
+            "from": "https://github.com/MrMaii/droprun/releases/download/v0.5.8-rc.1/DropRun-0.5.8-android.apk",
+            "to": "https://release-assets.githubusercontent.com/github-production-release-asset/1369070124/f8001f2b-0223-42d2-a689-feb2646cfe80",
+            "queryRedacted": true
+          }
+        ],
+        "status": 200,
+        "finalUrl": "https://release-assets.githubusercontent.com/github-production-release-asset/1369070124/f8001f2b-0223-42d2-a689-feb2646cfe80",
+        "public": true,
+        "contentType": "application/vnd.android.package-archive",
+        "completedAt": "2026-10-06T06:53:32.996Z",
+        "completeDownloadRecordSha256": "007f0cb62ef29e6eedbd3c2b11f74fe6e36addfa244582314708e5ac7803d00a",
+        "completeDownloadAt": "2026-10-06T06:35:40.044Z",
+        "completeDownloadSha256": "7d9b4a31e052b41c0c951ed140f89765091c5622fb0f1730b31db3bf7c8d5d2c",
+        "completeDownloadBytes": 1689056,
+        "bodyDownloadedThisRun": false
+      },
+      {
+        "number": "008",
+        "url": "https://github.com/MrMaii/droprun/releases/tag/v0.5.8-rc.1",
+        "method": "HEAD",
+        "startedAt": "2026-10-06T06:53:32.997Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://github.com/MrMaii/droprun/releases/tag/v0.5.8-rc.1",
+        "public": true,
+        "contentType": "text/html; charset=utf-8",
+        "completedAt": "2026-10-06T06:53:33.388Z",
+        "bodyDownloadedThisRun": false
+      },
+      {
+        "number": "009",
+        "url": "https://github.com/MrMaii/droprun/tree/main/docs",
+        "method": "HEAD",
+        "startedAt": "2026-10-06T06:53:33.389Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://github.com/MrMaii/droprun/tree/main/docs",
+        "public": true,
+        "contentType": "text/html; charset=utf-8",
+        "completedAt": "2026-10-06T06:53:33.757Z",
+        "bodyDownloadedThisRun": false
+      },
+      {
+        "number": "010",
+        "url": "https://github.com/MrMaii/droprun/blob/main/docs/technical/PRIVACY.md",
+        "method": "HEAD",
+        "startedAt": "2026-10-06T06:53:33.758Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://github.com/MrMaii/droprun/blob/main/docs/technical/PRIVACY.md",
+        "public": true,
+        "contentType": "text/html; charset=utf-8",
+        "completedAt": "2026-10-06T06:53:34.182Z",
+        "bodyDownloadedThisRun": false
+      },
+      {
+        "number": "011",
+        "url": "https://github.com/MrMaii/droprun/blob/main/LICENSE",
+        "method": "HEAD",
+        "startedAt": "2026-10-06T06:53:34.183Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://github.com/MrMaii/droprun/blob/main/LICENSE",
+        "public": true,
+        "contentType": "text/html; charset=utf-8",
+        "completedAt": "2026-10-06T06:53:34.716Z",
+        "bodyDownloadedThisRun": false
+      },
+      {
+        "number": "012",
+        "url": "https://github.com/MrMaii/droprun/blob/main/docs/technical/SELF_HOSTING.zh-CN.md",
+        "method": "HEAD",
+        "startedAt": "2026-10-06T06:53:34.716Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://github.com/MrMaii/droprun/blob/main/docs/technical/SELF_HOSTING.zh-CN.md",
+        "public": true,
+        "contentType": "text/html; charset=utf-8",
+        "completedAt": "2026-10-06T06:53:35.192Z",
+        "bodyDownloadedThisRun": false
+      }
+    ],
+    "resources": [
+      {
+        "number": "013",
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/styles.css",
+        "method": "GET",
+        "startedAt": "2026-10-06T06:53:35.193Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/styles.css",
+        "public": true,
+        "contentType": "text/css",
+        "bytes": 19942,
+        "sha256": "b2ccbdded57ac9ca2b7d065391adc2a72dd332fd317ed6e4e0d065f720bdb883",
+        "bodyFile": "013-body.bin",
+        "completedAt": "2026-10-06T06:53:35.266Z",
+        "path": "styles.css",
+        "byteMatch": true,
+        "freshBodyGet": true
+      },
+      {
+        "number": "014",
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/app.js",
+        "method": "GET",
+        "startedAt": "2026-10-06T06:53:35.266Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/app.js",
+        "public": true,
+        "contentType": "text/javascript",
+        "bytes": 5214,
+        "sha256": "38e2c19f1060b79ff981cb82b6c0abe895096f500478888e4b7b222bfb564f6c",
+        "bodyFile": "014-body.bin",
+        "completedAt": "2026-10-06T06:53:35.327Z",
+        "path": "app.js",
+        "byteMatch": true,
+        "freshBodyGet": true
+      },
+      {
+        "number": "015",
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/robots.txt",
+        "method": "GET",
+        "startedAt": "2026-10-06T06:53:35.327Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/robots.txt",
+        "public": true,
+        "contentType": "text/plain",
+        "bytes": 87,
+        "sha256": "2c05b3dfbd66461a44bbbfaa39a03e57f27b34c008d44dfbb4f66d7a234924f9",
+        "bodyFile": "015-body.bin",
+        "completedAt": "2026-10-06T06:53:35.379Z",
+        "path": "robots.txt",
+        "byteMatch": true,
+        "freshBodyGet": true
+      },
+      {
+        "number": "016",
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/sitemap.xml",
+        "method": "GET",
+        "startedAt": "2026-10-06T06:53:35.380Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/sitemap.xml",
+        "public": true,
+        "contentType": "text/xml",
+        "bytes": 240,
+        "sha256": "7e1288dc8427f342c6ebce992b899e2290a6242a7b2c2e9ece44c6352ccf12cb",
+        "bodyFile": "016-body.bin",
+        "completedAt": "2026-10-06T06:53:35.440Z",
+        "path": "sitemap.xml",
+        "byteMatch": true,
+        "freshBodyGet": true
+      },
+      {
+        "number": "017",
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/media/source-home-en-dark-20261006.png",
+        "method": "GET",
+        "startedAt": "2026-10-06T06:53:35.441Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/media/source-home-en-dark-20261006.png",
+        "public": true,
+        "contentType": "image/png",
+        "bytes": 39877,
+        "sha256": "20a779333440f86cff9e35900f0ea7d537975be2a43c783c90e515106f187b4d",
+        "bodyFile": "017-body.bin",
+        "completedAt": "2026-10-06T06:53:35.581Z",
+        "path": "media/source-home-en-dark-20261006.png",
+        "byteMatch": true,
+        "freshBodyGet": true
+      },
+      {
+        "number": "018",
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/media/source-home-en-light-20261006.png",
+        "method": "GET",
+        "startedAt": "2026-10-06T06:53:35.582Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/media/source-home-en-light-20261006.png",
+        "public": true,
+        "contentType": "image/png",
+        "bytes": 38811,
+        "sha256": "31f6d3dc090804c8a6cb01ae598af36841eb527c616b33dfc95d8ba30b82506d",
+        "bodyFile": "018-body.bin",
+        "completedAt": "2026-10-06T06:53:35.710Z",
+        "path": "media/source-home-en-light-20261006.png",
+        "byteMatch": true,
+        "freshBodyGet": true
+      },
+      {
+        "number": "019",
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/media/source-share-material-en-dark-20261006.png",
+        "method": "GET",
+        "startedAt": "2026-10-06T06:53:35.710Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/media/source-share-material-en-dark-20261006.png",
+        "public": true,
+        "contentType": "image/png",
+        "bytes": 62224,
+        "sha256": "68878e311221c6d1ce296c0f3fa6ec4e20920c175cbe29c346266c150994506b",
+        "bodyFile": "019-body.bin",
+        "completedAt": "2026-10-06T06:53:35.884Z",
+        "path": "media/source-share-material-en-dark-20261006.png",
+        "byteMatch": true,
+        "freshBodyGet": true
+      },
+      {
+        "number": "020",
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/media/source-share-material-en-light-20261006.png",
+        "method": "GET",
+        "startedAt": "2026-10-06T06:53:35.885Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/media/source-share-material-en-light-20261006.png",
+        "public": true,
+        "contentType": "image/png",
+        "bytes": 63004,
+        "sha256": "6d8bdbbea5ea982c9973a32789cf549a8c6b66b59f362a551b9414062533ddaf",
+        "bodyFile": "020-body.bin",
+        "completedAt": "2026-10-06T06:53:36.004Z",
+        "path": "media/source-share-material-en-light-20261006.png",
+        "byteMatch": true,
+        "freshBodyGet": true
+      },
+      {
+        "number": "021",
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/media/native-share-en-20261006-poster.png",
+        "method": "GET",
+        "startedAt": "2026-10-06T06:53:36.005Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/media/native-share-en-20261006-poster.png",
+        "public": true,
+        "contentType": "image/png",
+        "bytes": 84549,
+        "sha256": "2d2a51c1f0b08cfd5a2364f0824ef9fb4d85f7a3856e901aa540676c844e5733",
+        "bodyFile": "021-body.bin",
+        "completedAt": "2026-10-06T06:53:36.179Z",
+        "path": "media/native-share-en-20261006-poster.png",
+        "byteMatch": true,
+        "freshBodyGet": true
+      },
+      {
+        "number": "022",
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/media/native-share-en-20261006.mp4",
+        "method": "GET",
+        "startedAt": "2026-10-06T06:53:36.180Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/media/native-share-en-20261006.mp4",
+        "public": true,
+        "contentType": "video/mp4",
+        "bytes": 360262,
+        "sha256": "ed08cb13f48452d62fa3d430532afd6c5360a21f24ce15d1c69b4c6860c9c313",
+        "bodyFile": "022-body.bin",
+        "completedAt": "2026-10-06T06:53:36.424Z",
+        "path": "media/native-share-en-20261006.mp4",
+        "byteMatch": true,
+        "freshBodyGet": true
+      },
+      {
+        "number": "023",
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/media/native-share-en-20261006.vtt",
+        "method": "GET",
+        "startedAt": "2026-10-06T06:53:36.425Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/media/native-share-en-20261006.vtt",
+        "public": true,
+        "contentType": "text/vtt",
+        "bytes": 371,
+        "sha256": "1807ec198d0ed7d413dca53d14044e4d70512d341911ccf96f269fd4ef3d26ee",
+        "bodyFile": "023-body.bin",
+        "completedAt": "2026-10-06T06:53:36.691Z",
+        "path": "media/native-share-en-20261006.vtt",
+        "byteMatch": true,
+        "freshBodyGet": true
+      },
+      {
+        "number": "024",
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/media/source-delivery-stable-en-dark-20261006.png",
+        "method": "GET",
+        "startedAt": "2026-10-06T06:53:36.692Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/media/source-delivery-stable-en-dark-20261006.png",
+        "public": true,
+        "contentType": "image/png",
+        "bytes": 37632,
+        "sha256": "a6b2b61774a4c68bf987bb364ac7c2299b4252d443fd760b86015e7e2a6d8668",
+        "bodyFile": "024-body.bin",
+        "completedAt": "2026-10-06T06:53:36.806Z",
+        "path": "media/source-delivery-stable-en-dark-20261006.png",
+        "byteMatch": true,
+        "freshBodyGet": true
+      },
+      {
+        "number": "025",
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/media/source-delivery-stable-en-light-20261006.png",
+        "method": "GET",
+        "startedAt": "2026-10-06T06:53:36.807Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/media/source-delivery-stable-en-light-20261006.png",
+        "public": true,
+        "contentType": "image/png",
+        "bytes": 36425,
+        "sha256": "e9f123773f61d90315a7fe1f1126c503efe3bb0e831e67f157148ba46f404c5a",
+        "bodyFile": "025-body.bin",
+        "completedAt": "2026-10-06T06:53:36.972Z",
+        "path": "media/source-delivery-stable-en-light-20261006.png",
+        "byteMatch": true,
+        "freshBodyGet": true
+      },
+      {
+        "number": "026",
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/media/source-home-zh-dark-20261006.png",
+        "method": "GET",
+        "startedAt": "2026-10-06T06:53:36.973Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/media/source-home-zh-dark-20261006.png",
+        "public": true,
+        "contentType": "image/png",
+        "bytes": 47022,
+        "sha256": "a420422c8c1ac05daf7d20b2cbbb850a4ad69f81ad8615a48764aa1abb5c828d",
+        "bodyFile": "026-body.bin",
+        "completedAt": "2026-10-06T06:53:37.094Z",
+        "path": "media/source-home-zh-dark-20261006.png",
+        "byteMatch": true,
+        "freshBodyGet": true
+      },
+      {
+        "number": "027",
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/media/source-home-zh-light-20261006.png",
+        "method": "GET",
+        "startedAt": "2026-10-06T06:53:37.095Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/media/source-home-zh-light-20261006.png",
+        "public": true,
+        "contentType": "image/png",
+        "bytes": 46094,
+        "sha256": "2f20d1114c50675e088a49ccf7aa37ba0dddf70b394c1d73646daf566cde57a8",
+        "bodyFile": "027-body.bin",
+        "completedAt": "2026-10-06T06:53:37.367Z",
+        "path": "media/source-home-zh-light-20261006.png",
+        "byteMatch": true,
+        "freshBodyGet": true
+      },
+      {
+        "number": "028",
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/media/source-share-material-zh-dark-20261006.png",
+        "method": "GET",
+        "startedAt": "2026-10-06T06:53:37.369Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/media/source-share-material-zh-dark-20261006.png",
+        "public": true,
+        "contentType": "image/png",
+        "bytes": 66809,
+        "sha256": "2125479828e89c6d510b2ab5ff43a1c33fca10330b9cf5aad1a2414303ccfe8d",
+        "bodyFile": "028-body.bin",
+        "completedAt": "2026-10-06T06:53:37.515Z",
+        "path": "media/source-share-material-zh-dark-20261006.png",
+        "byteMatch": true,
+        "freshBodyGet": true
+      },
+      {
+        "number": "029",
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/media/source-share-material-zh-light-20261006.png",
+        "method": "GET",
+        "startedAt": "2026-10-06T06:53:37.515Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/media/source-share-material-zh-light-20261006.png",
+        "public": true,
+        "contentType": "image/png",
+        "bytes": 67234,
+        "sha256": "8aef06ad954e7e58a95d6e9d2aced4a076b539e2a4c1a85020779e1c79fe42a7",
+        "bodyFile": "029-body.bin",
+        "completedAt": "2026-10-06T06:53:37.654Z",
+        "path": "media/source-share-material-zh-light-20261006.png",
+        "byteMatch": true,
+        "freshBodyGet": true
+      },
+      {
+        "number": "030",
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/media/native-share-zh-20261006-poster.png",
+        "method": "GET",
+        "startedAt": "2026-10-06T06:53:37.655Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/media/native-share-zh-20261006-poster.png",
+        "public": true,
+        "contentType": "image/png",
+        "bytes": 81282,
+        "sha256": "be6520ea129814c211b009fc53ec6ec43ced31ad2659f572e6c12dec568ce476",
+        "bodyFile": "030-body.bin",
+        "completedAt": "2026-10-06T06:53:37.798Z",
+        "path": "media/native-share-zh-20261006-poster.png",
+        "byteMatch": true,
+        "freshBodyGet": true
+      },
+      {
+        "number": "031",
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/media/native-share-zh-20261006.mp4",
+        "method": "GET",
+        "startedAt": "2026-10-06T06:53:37.799Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/media/native-share-zh-20261006.mp4",
+        "public": true,
+        "contentType": "video/mp4",
+        "bytes": 321348,
+        "sha256": "c07f4b0b7841b6b624874623084455b5ab5635570dc22a7916855249954954e2",
+        "bodyFile": "031-body.bin",
+        "completedAt": "2026-10-06T06:53:38.287Z",
+        "path": "media/native-share-zh-20261006.mp4",
+        "byteMatch": true,
+        "freshBodyGet": true
+      },
+      {
+        "number": "032",
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/media/native-share-zh-20261006.vtt",
+        "method": "GET",
+        "startedAt": "2026-10-06T06:53:38.289Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/media/native-share-zh-20261006.vtt",
+        "public": true,
+        "contentType": "text/vtt",
+        "bytes": 373,
+        "sha256": "40b50be3d360d094463293429dc06e6a772b330649c56ff45c5dbb2b5768ab13",
+        "bodyFile": "032-body.bin",
+        "completedAt": "2026-10-06T06:53:38.553Z",
+        "path": "media/native-share-zh-20261006.vtt",
+        "byteMatch": true,
+        "freshBodyGet": true
+      },
+      {
+        "number": "033",
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/media/source-delivery-stable-zh-dark-20261006.png",
+        "method": "GET",
+        "startedAt": "2026-10-06T06:53:38.554Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/media/source-delivery-stable-zh-dark-20261006.png",
+        "public": true,
+        "contentType": "image/png",
+        "bytes": 44618,
+        "sha256": "5d39aafc25aa6bf71b8712e96f65718149a522d06ea3f1512e52487395e2c779",
+        "bodyFile": "033-body.bin",
+        "completedAt": "2026-10-06T06:53:38.732Z",
+        "path": "media/source-delivery-stable-zh-dark-20261006.png",
+        "byteMatch": true,
+        "freshBodyGet": true
+      },
+      {
+        "number": "034",
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/media/source-delivery-stable-zh-light-20261006.png",
+        "method": "GET",
+        "startedAt": "2026-10-06T06:53:38.733Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/media/source-delivery-stable-zh-light-20261006.png",
+        "public": true,
+        "contentType": "image/png",
+        "bytes": 43574,
+        "sha256": "5b0a5133c498e7d19a42026b8bde5f707715ab3bd095ee9b9f4eb1c34f80ae75",
+        "bodyFile": "034-body.bin",
+        "completedAt": "2026-10-06T06:53:39.261Z",
+        "path": "media/source-delivery-stable-zh-light-20261006.png",
+        "byteMatch": true,
+        "freshBodyGet": true
+      }
+    ],
+    "requests": [
+      {
+        "number": "001",
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/",
+        "method": "GET",
+        "startedAt": "2026-10-06T06:53:29.482Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/",
+        "public": true,
+        "contentType": "text/html",
+        "bytes": 17599,
+        "sha256": "881bdbad02ef09acc23c15f18a6a4a1cee7e4f32f68b2588ba9cf73eda7866fb",
+        "bodyFile": "001-body.bin",
+        "completedAt": "2026-10-06T06:53:30.395Z"
+      },
+      {
+        "number": "002",
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/zh/",
+        "method": "GET",
+        "startedAt": "2026-10-06T06:53:30.395Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/zh/",
+        "public": true,
+        "contentType": "text/html",
+        "bytes": 17278,
+        "sha256": "ebc3b904702517eca6100f0a8aef443ff04339aa16fb97586a7f25eb092e7990",
+        "bodyFile": "002-body.bin",
+        "completedAt": "2026-10-06T06:53:30.909Z"
+      },
+      {
+        "number": "003",
+        "url": "https://github.com/MrMaii/droprun",
+        "method": "HEAD",
+        "startedAt": "2026-10-06T06:53:30.911Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://github.com/MrMaii/droprun",
+        "public": true,
+        "contentType": "text/html; charset=utf-8",
+        "completedAt": "2026-10-06T06:53:31.545Z"
+      },
+      {
+        "number": "004",
+        "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.8-rc.1/DropRun-0.5.8-windows-x64-setup.exe",
+        "method": "HEAD",
+        "startedAt": "2026-10-06T06:53:31.548Z",
+        "redirects": [
+          {
+            "status": 302,
+            "from": "https://github.com/MrMaii/droprun/releases/download/v0.5.8-rc.1/DropRun-0.5.8-windows-x64-setup.exe",
+            "to": "https://release-assets.githubusercontent.com/github-production-release-asset/1369070124/7e233acb-da70-443a-8521-23cec6e4d2bd",
+            "queryRedacted": true
+          }
+        ],
+        "status": 200,
+        "finalUrl": "https://release-assets.githubusercontent.com/github-production-release-asset/1369070124/7e233acb-da70-443a-8521-23cec6e4d2bd",
+        "public": true,
+        "contentType": "application/octet-stream",
+        "completedAt": "2026-10-06T06:53:31.815Z"
+      },
+      {
+        "number": "005",
+        "url": "https://github.com/MrMaii/droprun/blob/main/docs/technical/SELF_HOSTING.md",
+        "method": "HEAD",
+        "startedAt": "2026-10-06T06:53:31.815Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://github.com/MrMaii/droprun/blob/main/docs/technical/SELF_HOSTING.md",
+        "public": true,
+        "contentType": "text/html; charset=utf-8",
+        "completedAt": "2026-10-06T06:53:32.387Z"
+      },
+      {
+        "number": "006",
+        "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.8-rc.1/DropRun-0.5.8-windows-x64.zip",
+        "method": "HEAD",
+        "startedAt": "2026-10-06T06:53:32.388Z",
+        "redirects": [
+          {
+            "status": 302,
+            "from": "https://github.com/MrMaii/droprun/releases/download/v0.5.8-rc.1/DropRun-0.5.8-windows-x64.zip",
+            "to": "https://release-assets.githubusercontent.com/github-production-release-asset/1369070124/828c4d18-30bf-4c22-9f57-4bde6f50b886",
+            "queryRedacted": true
+          }
+        ],
+        "status": 200,
+        "finalUrl": "https://release-assets.githubusercontent.com/github-production-release-asset/1369070124/828c4d18-30bf-4c22-9f57-4bde6f50b886",
+        "public": true,
+        "contentType": "application/octet-stream",
+        "completedAt": "2026-10-06T06:53:32.724Z"
+      },
+      {
+        "number": "007",
+        "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.8-rc.1/DropRun-0.5.8-android.apk",
+        "method": "HEAD",
+        "startedAt": "2026-10-06T06:53:32.726Z",
+        "redirects": [
+          {
+            "status": 302,
+            "from": "https://github.com/MrMaii/droprun/releases/download/v0.5.8-rc.1/DropRun-0.5.8-android.apk",
+            "to": "https://release-assets.githubusercontent.com/github-production-release-asset/1369070124/f8001f2b-0223-42d2-a689-feb2646cfe80",
+            "queryRedacted": true
+          }
+        ],
+        "status": 200,
+        "finalUrl": "https://release-assets.githubusercontent.com/github-production-release-asset/1369070124/f8001f2b-0223-42d2-a689-feb2646cfe80",
+        "public": true,
+        "contentType": "application/vnd.android.package-archive",
+        "completedAt": "2026-10-06T06:53:32.996Z"
+      },
+      {
+        "number": "008",
+        "url": "https://github.com/MrMaii/droprun/releases/tag/v0.5.8-rc.1",
+        "method": "HEAD",
+        "startedAt": "2026-10-06T06:53:32.997Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://github.com/MrMaii/droprun/releases/tag/v0.5.8-rc.1",
+        "public": true,
+        "contentType": "text/html; charset=utf-8",
+        "completedAt": "2026-10-06T06:53:33.388Z"
+      },
+      {
+        "number": "009",
+        "url": "https://github.com/MrMaii/droprun/tree/main/docs",
+        "method": "HEAD",
+        "startedAt": "2026-10-06T06:53:33.389Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://github.com/MrMaii/droprun/tree/main/docs",
+        "public": true,
+        "contentType": "text/html; charset=utf-8",
+        "completedAt": "2026-10-06T06:53:33.757Z"
+      },
+      {
+        "number": "010",
+        "url": "https://github.com/MrMaii/droprun/blob/main/docs/technical/PRIVACY.md",
+        "method": "HEAD",
+        "startedAt": "2026-10-06T06:53:33.758Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://github.com/MrMaii/droprun/blob/main/docs/technical/PRIVACY.md",
+        "public": true,
+        "contentType": "text/html; charset=utf-8",
+        "completedAt": "2026-10-06T06:53:34.182Z"
+      },
+      {
+        "number": "011",
+        "url": "https://github.com/MrMaii/droprun/blob/main/LICENSE",
+        "method": "HEAD",
+        "startedAt": "2026-10-06T06:53:34.183Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://github.com/MrMaii/droprun/blob/main/LICENSE",
+        "public": true,
+        "contentType": "text/html; charset=utf-8",
+        "completedAt": "2026-10-06T06:53:34.716Z"
+      },
+      {
+        "number": "012",
+        "url": "https://github.com/MrMaii/droprun/blob/main/docs/technical/SELF_HOSTING.zh-CN.md",
+        "method": "HEAD",
+        "startedAt": "2026-10-06T06:53:34.716Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://github.com/MrMaii/droprun/blob/main/docs/technical/SELF_HOSTING.zh-CN.md",
+        "public": true,
+        "contentType": "text/html; charset=utf-8",
+        "completedAt": "2026-10-06T06:53:35.192Z"
+      },
+      {
+        "number": "013",
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/styles.css",
+        "method": "GET",
+        "startedAt": "2026-10-06T06:53:35.193Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/styles.css",
+        "public": true,
+        "contentType": "text/css",
+        "bytes": 19942,
+        "sha256": "b2ccbdded57ac9ca2b7d065391adc2a72dd332fd317ed6e4e0d065f720bdb883",
+        "bodyFile": "013-body.bin",
+        "completedAt": "2026-10-06T06:53:35.266Z"
+      },
+      {
+        "number": "014",
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/app.js",
+        "method": "GET",
+        "startedAt": "2026-10-06T06:53:35.266Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/app.js",
+        "public": true,
+        "contentType": "text/javascript",
+        "bytes": 5214,
+        "sha256": "38e2c19f1060b79ff981cb82b6c0abe895096f500478888e4b7b222bfb564f6c",
+        "bodyFile": "014-body.bin",
+        "completedAt": "2026-10-06T06:53:35.327Z"
+      },
+      {
+        "number": "015",
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/robots.txt",
+        "method": "GET",
+        "startedAt": "2026-10-06T06:53:35.327Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/robots.txt",
+        "public": true,
+        "contentType": "text/plain",
+        "bytes": 87,
+        "sha256": "2c05b3dfbd66461a44bbbfaa39a03e57f27b34c008d44dfbb4f66d7a234924f9",
+        "bodyFile": "015-body.bin",
+        "completedAt": "2026-10-06T06:53:35.379Z"
+      },
+      {
+        "number": "016",
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/sitemap.xml",
+        "method": "GET",
+        "startedAt": "2026-10-06T06:53:35.380Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/sitemap.xml",
+        "public": true,
+        "contentType": "text/xml",
+        "bytes": 240,
+        "sha256": "7e1288dc8427f342c6ebce992b899e2290a6242a7b2c2e9ece44c6352ccf12cb",
+        "bodyFile": "016-body.bin",
+        "completedAt": "2026-10-06T06:53:35.440Z"
+      },
+      {
+        "number": "017",
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/media/source-home-en-dark-20261006.png",
+        "method": "GET",
+        "startedAt": "2026-10-06T06:53:35.441Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/media/source-home-en-dark-20261006.png",
+        "public": true,
+        "contentType": "image/png",
+        "bytes": 39877,
+        "sha256": "20a779333440f86cff9e35900f0ea7d537975be2a43c783c90e515106f187b4d",
+        "bodyFile": "017-body.bin",
+        "completedAt": "2026-10-06T06:53:35.581Z"
+      },
+      {
+        "number": "018",
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/media/source-home-en-light-20261006.png",
+        "method": "GET",
+        "startedAt": "2026-10-06T06:53:35.582Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/media/source-home-en-light-20261006.png",
+        "public": true,
+        "contentType": "image/png",
+        "bytes": 38811,
+        "sha256": "31f6d3dc090804c8a6cb01ae598af36841eb527c616b33dfc95d8ba30b82506d",
+        "bodyFile": "018-body.bin",
+        "completedAt": "2026-10-06T06:53:35.710Z"
+      },
+      {
+        "number": "019",
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/media/source-share-material-en-dark-20261006.png",
+        "method": "GET",
+        "startedAt": "2026-10-06T06:53:35.710Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/media/source-share-material-en-dark-20261006.png",
+        "public": true,
+        "contentType": "image/png",
+        "bytes": 62224,
+        "sha256": "68878e311221c6d1ce296c0f3fa6ec4e20920c175cbe29c346266c150994506b",
+        "bodyFile": "019-body.bin",
+        "completedAt": "2026-10-06T06:53:35.884Z"
+      },
+      {
+        "number": "020",
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/media/source-share-material-en-light-20261006.png",
+        "method": "GET",
+        "startedAt": "2026-10-06T06:53:35.885Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/media/source-share-material-en-light-20261006.png",
+        "public": true,
+        "contentType": "image/png",
+        "bytes": 63004,
+        "sha256": "6d8bdbbea5ea982c9973a32789cf549a8c6b66b59f362a551b9414062533ddaf",
+        "bodyFile": "020-body.bin",
+        "completedAt": "2026-10-06T06:53:36.004Z"
+      },
+      {
+        "number": "021",
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/media/native-share-en-20261006-poster.png",
+        "method": "GET",
+        "startedAt": "2026-10-06T06:53:36.005Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/media/native-share-en-20261006-poster.png",
+        "public": true,
+        "contentType": "image/png",
+        "bytes": 84549,
+        "sha256": "2d2a51c1f0b08cfd5a2364f0824ef9fb4d85f7a3856e901aa540676c844e5733",
+        "bodyFile": "021-body.bin",
+        "completedAt": "2026-10-06T06:53:36.179Z"
+      },
+      {
+        "number": "022",
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/media/native-share-en-20261006.mp4",
+        "method": "GET",
+        "startedAt": "2026-10-06T06:53:36.180Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/media/native-share-en-20261006.mp4",
+        "public": true,
+        "contentType": "video/mp4",
+        "bytes": 360262,
+        "sha256": "ed08cb13f48452d62fa3d430532afd6c5360a21f24ce15d1c69b4c6860c9c313",
+        "bodyFile": "022-body.bin",
+        "completedAt": "2026-10-06T06:53:36.424Z"
+      },
+      {
+        "number": "023",
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/media/native-share-en-20261006.vtt",
+        "method": "GET",
+        "startedAt": "2026-10-06T06:53:36.425Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/media/native-share-en-20261006.vtt",
+        "public": true,
+        "contentType": "text/vtt",
+        "bytes": 371,
+        "sha256": "1807ec198d0ed7d413dca53d14044e4d70512d341911ccf96f269fd4ef3d26ee",
+        "bodyFile": "023-body.bin",
+        "completedAt": "2026-10-06T06:53:36.691Z"
+      },
+      {
+        "number": "024",
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/media/source-delivery-stable-en-dark-20261006.png",
+        "method": "GET",
+        "startedAt": "2026-10-06T06:53:36.692Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/media/source-delivery-stable-en-dark-20261006.png",
+        "public": true,
+        "contentType": "image/png",
+        "bytes": 37632,
+        "sha256": "a6b2b61774a4c68bf987bb364ac7c2299b4252d443fd760b86015e7e2a6d8668",
+        "bodyFile": "024-body.bin",
+        "completedAt": "2026-10-06T06:53:36.806Z"
+      },
+      {
+        "number": "025",
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/media/source-delivery-stable-en-light-20261006.png",
+        "method": "GET",
+        "startedAt": "2026-10-06T06:53:36.807Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/media/source-delivery-stable-en-light-20261006.png",
+        "public": true,
+        "contentType": "image/png",
+        "bytes": 36425,
+        "sha256": "e9f123773f61d90315a7fe1f1126c503efe3bb0e831e67f157148ba46f404c5a",
+        "bodyFile": "025-body.bin",
+        "completedAt": "2026-10-06T06:53:36.972Z"
+      },
+      {
+        "number": "026",
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/media/source-home-zh-dark-20261006.png",
+        "method": "GET",
+        "startedAt": "2026-10-06T06:53:36.973Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/media/source-home-zh-dark-20261006.png",
+        "public": true,
+        "contentType": "image/png",
+        "bytes": 47022,
+        "sha256": "a420422c8c1ac05daf7d20b2cbbb850a4ad69f81ad8615a48764aa1abb5c828d",
+        "bodyFile": "026-body.bin",
+        "completedAt": "2026-10-06T06:53:37.094Z"
+      },
+      {
+        "number": "027",
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/media/source-home-zh-light-20261006.png",
+        "method": "GET",
+        "startedAt": "2026-10-06T06:53:37.095Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/media/source-home-zh-light-20261006.png",
+        "public": true,
+        "contentType": "image/png",
+        "bytes": 46094,
+        "sha256": "2f20d1114c50675e088a49ccf7aa37ba0dddf70b394c1d73646daf566cde57a8",
+        "bodyFile": "027-body.bin",
+        "completedAt": "2026-10-06T06:53:37.367Z"
+      },
+      {
+        "number": "028",
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/media/source-share-material-zh-dark-20261006.png",
+        "method": "GET",
+        "startedAt": "2026-10-06T06:53:37.369Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/media/source-share-material-zh-dark-20261006.png",
+        "public": true,
+        "contentType": "image/png",
+        "bytes": 66809,
+        "sha256": "2125479828e89c6d510b2ab5ff43a1c33fca10330b9cf5aad1a2414303ccfe8d",
+        "bodyFile": "028-body.bin",
+        "completedAt": "2026-10-06T06:53:37.515Z"
+      },
+      {
+        "number": "029",
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/media/source-share-material-zh-light-20261006.png",
+        "method": "GET",
+        "startedAt": "2026-10-06T06:53:37.515Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/media/source-share-material-zh-light-20261006.png",
+        "public": true,
+        "contentType": "image/png",
+        "bytes": 67234,
+        "sha256": "8aef06ad954e7e58a95d6e9d2aced4a076b539e2a4c1a85020779e1c79fe42a7",
+        "bodyFile": "029-body.bin",
+        "completedAt": "2026-10-06T06:53:37.654Z"
+      },
+      {
+        "number": "030",
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/media/native-share-zh-20261006-poster.png",
+        "method": "GET",
+        "startedAt": "2026-10-06T06:53:37.655Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/media/native-share-zh-20261006-poster.png",
+        "public": true,
+        "contentType": "image/png",
+        "bytes": 81282,
+        "sha256": "be6520ea129814c211b009fc53ec6ec43ced31ad2659f572e6c12dec568ce476",
+        "bodyFile": "030-body.bin",
+        "completedAt": "2026-10-06T06:53:37.798Z"
+      },
+      {
+        "number": "031",
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/media/native-share-zh-20261006.mp4",
+        "method": "GET",
+        "startedAt": "2026-10-06T06:53:37.799Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/media/native-share-zh-20261006.mp4",
+        "public": true,
+        "contentType": "video/mp4",
+        "bytes": 321348,
+        "sha256": "c07f4b0b7841b6b624874623084455b5ab5635570dc22a7916855249954954e2",
+        "bodyFile": "031-body.bin",
+        "completedAt": "2026-10-06T06:53:38.287Z"
+      },
+      {
+        "number": "032",
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/media/native-share-zh-20261006.vtt",
+        "method": "GET",
+        "startedAt": "2026-10-06T06:53:38.289Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/media/native-share-zh-20261006.vtt",
+        "public": true,
+        "contentType": "text/vtt",
+        "bytes": 373,
+        "sha256": "40b50be3d360d094463293429dc06e6a772b330649c56ff45c5dbb2b5768ab13",
+        "bodyFile": "032-body.bin",
+        "completedAt": "2026-10-06T06:53:38.553Z"
+      },
+      {
+        "number": "033",
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/media/source-delivery-stable-zh-dark-20261006.png",
+        "method": "GET",
+        "startedAt": "2026-10-06T06:53:38.554Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/media/source-delivery-stable-zh-dark-20261006.png",
+        "public": true,
+        "contentType": "image/png",
+        "bytes": 44618,
+        "sha256": "5d39aafc25aa6bf71b8712e96f65718149a522d06ea3f1512e52487395e2c779",
+        "bodyFile": "033-body.bin",
+        "completedAt": "2026-10-06T06:53:38.732Z"
+      },
+      {
+        "number": "034",
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/media/source-delivery-stable-zh-light-20261006.png",
+        "method": "GET",
+        "startedAt": "2026-10-06T06:53:38.733Z",
+        "redirects": [],
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/media/source-delivery-stable-zh-light-20261006.png",
+        "public": true,
+        "contentType": "image/png",
+        "bytes": 43574,
+        "sha256": "5b0a5133c498e7d19a42026b8bde5f707715ab3bd095ee9b9f4eb1c34f80ae75",
+        "bodyFile": "034-body.bin",
+        "completedAt": "2026-10-06T06:53:39.261Z"
+      }
+    ],
+    "failures": [],
+    "limits": [
+      "HTTP-only; no browser, keyboard, reduced-motion or playback acceptance.",
+      "No platform script is requested or executed. Site HTML and own app.js are inspected as bytes only.",
+      "Development screenshots/recordings retain memory-only markers; not genuine execution, signed-package footage or physical performance."
+    ],
+    "oldMediaPreserved": {
+      "priorCopyProofSha256": "88025b93cb2ebb2e6d725dda4a8fd0d50596f44c2114d2fc22819755e1e401cd",
+      "count": 28,
+      "method": "Old copy proof plus current complete local byte/hash check; not a new HTTP-body claim",
+      "resources": [
+        {
+          "path": "media/demo-en.vtt",
+          "bytes": 346,
+          "sha256": "2fd2bfb7e7a7b82d890f312851ec9996b0cf20ebbd5d2b65480921218b9fc7d2"
+        },
+        {
+          "path": "media/demo-zh.vtt",
+          "bytes": 365,
+          "sha256": "665d99750d6ccfb3a996cda2b05f74c0ca2d69b121a7face589a7dd69b4927e7"
+        },
+        {
+          "path": "media/demo.gif",
+          "bytes": 638965,
+          "sha256": "f995fb5b7246941305f33cc3a546e82394d0d4f178474173a1284b2b1b2424d0"
+        },
+        {
+          "path": "media/demo.mp4",
+          "bytes": 238025,
+          "sha256": "7f3ace0ede13a8430059474d8b7b5a18cc2173bb1bd4e75b8d87c4846224f34a"
+        },
+        {
+          "path": "media/home-dark.png",
+          "bytes": 105456,
+          "sha256": "cc49dfd5ef6c996b4175db15e75c195fd7e157513f7867db92db0d07c1c3f3d9"
+        },
+        {
+          "path": "media/home-zh-dark.png",
+          "bytes": 108247,
+          "sha256": "3141cac532a61286227bacd6b9048350f232202c303506fa8356eaeae75f24c1"
+        },
+        {
+          "path": "media/home-zh.png",
+          "bytes": 103068,
+          "sha256": "63a4df81cb356346fa73f1cb1fd405a1acba2bba657b2bad15faf02b9316de64"
+        },
+        {
+          "path": "media/home.png",
+          "bytes": 100407,
+          "sha256": "dd90d6a3479a1c346eeab10025403ea68fd429a3f04fb5ba810bb8eb4bdcb792"
+        },
+        {
+          "path": "media/settings-dark.png",
+          "bytes": 101204,
+          "sha256": "fdc84f9caec2bde451605c4c0cdabbd57901e768162dc60345d9006437bd4dd2"
+        },
+        {
+          "path": "media/settings-zh-dark.png",
+          "bytes": 96335,
+          "sha256": "f9be8cb41807cdc86e5bc4f58bbca077528b56628ec37679058d1ebbe9dce941"
+        },
+        {
+          "path": "media/settings-zh.png",
+          "bytes": 95411,
+          "sha256": "bcc82e8f45de3aa501cc1beeb1b887c13b74fb229db395dfeb7b058afe5dae9e"
+        },
+        {
+          "path": "media/settings.png",
+          "bytes": 98977,
+          "sha256": "73b0adbbda75824bc8a3096ca8f694d90fc3954ca77fa4f00096f7acc61e5a06"
+        },
+        {
+          "path": "media/share-dark.png",
+          "bytes": 102232,
+          "sha256": "833efed08c6ef08131edeb55217a8e77af885994918dc0ed83620b4f56abc12a"
+        },
+        {
+          "path": "media/share-zh-dark.png",
+          "bytes": 102081,
+          "sha256": "05c9ebdf33977aa05529fb019cc1c8a0dc68ad20bc72cc731790b90adb53b0bc"
+        },
+        {
+          "path": "media/share-zh.png",
+          "bytes": 98086,
+          "sha256": "a35a23d55ea68d1e67c8456318b0e224e66cd7e74bc28a15162f7a0ade846b7e"
+        },
+        {
+          "path": "media/share.png",
+          "bytes": 98376,
+          "sha256": "925895d229b1628f591c000f3571aeb56a631738f99d66a0b47cc77a66b1366d"
+        },
+        {
+          "path": "media/social.png",
+          "bytes": 103814,
+          "sha256": "afca006fd8d37681ceda37d1fdc9d83bc74c08d0b84620b924c12b3da075ecf5"
+        },
+        {
+          "path": "media/task-dark.png",
+          "bytes": 113788,
+          "sha256": "796c90d09c4251237b6e31e08a1267fdd91e3b15a076277b01e78f379c63afc3"
+        },
+        {
+          "path": "media/task-zh-dark.png",
+          "bytes": 120963,
+          "sha256": "ded243f012842b66f004a119faf80e0c1967fd1d51deaba4fd396341a0cd5de5"
+        },
+        {
+          "path": "media/task-zh.png",
+          "bytes": 118263,
+          "sha256": "0137ddd9870408a550e5f79ed0d63ffd64551d07a7d738f0c84652324fef589d"
+        },
+        {
+          "path": "media/task.png",
+          "bytes": 110723,
+          "sha256": "d942d57cbfeeb3c5bc79af3755cf751aae1b83c94f6298e07d95953c11385a3e"
+        },
+        {
+          "path": "media/ui-tour-en.mp4",
+          "bytes": 2183780,
+          "sha256": "08bc03e80c06331a1e1f330a81dad0d8ceb5b6a3bf4eb6795e3e7826dfc19578"
+        },
+        {
+          "path": "media/ui-tour-en.vtt",
+          "bytes": 448,
+          "sha256": "c7f3731121340263a10260ffa60b11078d68e3504590791c0f5334bf1c45b6d9"
+        },
+        {
+          "path": "media/ui-tour-zh.mp4",
+          "bytes": 2677439,
+          "sha256": "f6d33e6f171ddff0db45022451f6d12babc4406ea2402e762513e0fc03d8a756"
+        },
+        {
+          "path": "media/ui-tour-zh.vtt",
+          "bytes": 534,
+          "sha256": "ff0ce7fb7c2d28ca6f89138dad9b21b358ec10e33517e2af9da201eed11bae55"
+        },
+        {
+          "path": "media/walkthrough-en.vtt",
+          "bytes": 482,
+          "sha256": "bede0c5f203fa91ca22345796d29135b900f6c4c4a12a361426e313bc59ea990"
+        },
+        {
+          "path": "media/walkthrough-zh.vtt",
+          "bytes": 513,
+          "sha256": "71db83a8c5b59945d4a948d67d68427b84e79c454001a4367e45ef27b52b7e50"
+        },
+        {
+          "path": "media/walkthrough.mp4",
+          "bytes": 381532,
+          "sha256": "98065802ae3052b6c9909403f2a1ed8d6636503785d7d0942d2be792e88811d4"
+        }
+      ]
+    },
+    "site": "https://droprun.dengmaizi0802.chatgpt.site",
+    "version": 11,
+    "sourceCommit": "1badcb50592272309d2dc187981ee70328f38291",
+    "deploymentId": "appgdep_6ac49a9925b88191b7413c1d99fff287",
+    "versionId": "appgprj_6ab726bb8cd48191acd3234da262627d~appgver_4093b799fbc88191b0df905ccb2b46f1",
+    "deployedAt": "2026-10-06T06:52:16.527223+00:00",
+    "downloadTag": "v0.5.8-rc.1",
+    "downloadSourceCommit": "79cc2795dcaa40a3f38d7c0791298ade80cdd46c",
+    "dynamicSourceFiles": 53,
+    "inheritedHttpEvidence": [
+      {
+        "path": "brand-logo.png",
+        "bytes": 1432103,
+        "sha256": "5b53d5fba0abb6693006409f347e95e1dc1c82b557b027eb6b556c2adf7e72a1",
+        "priorAuditSha256": "d2bb3bddce80cbdc803bb1b47441e19848073f364cc3bc5786ee5ac85a43e2f3",
+        "priorEvidenceOrigin": "prior dated complete-body chain",
+        "priorCheckedAt": "2026-10-05T06:37:03.892Z",
+        "priorSiteVersion": 4,
+        "newHttpBodyGet": false
+      },
+      {
+        "path": "media/home-dark.png",
+        "bytes": 105456,
+        "sha256": "cc49dfd5ef6c996b4175db15e75c195fd7e157513f7867db92db0d07c1c3f3d9",
+        "priorAuditSha256": "d2bb3bddce80cbdc803bb1b47441e19848073f364cc3bc5786ee5ac85a43e2f3",
+        "priorEvidenceOrigin": "prior dated complete-body chain",
+        "priorCheckedAt": "2026-10-05T06:37:03.892Z",
+        "priorSiteVersion": 4,
+        "newHttpBodyGet": false
+      },
+      {
+        "path": "media/home-zh-dark.png",
+        "bytes": 108247,
+        "sha256": "3141cac532a61286227bacd6b9048350f232202c303506fa8356eaeae75f24c1",
+        "priorAuditSha256": "d2bb3bddce80cbdc803bb1b47441e19848073f364cc3bc5786ee5ac85a43e2f3",
+        "priorEvidenceOrigin": "prior dated complete-body chain",
+        "priorCheckedAt": "2026-10-05T06:37:03.892Z",
+        "priorSiteVersion": 4,
+        "newHttpBodyGet": false
+      },
+      {
+        "path": "media/home-zh.png",
+        "bytes": 103068,
+        "sha256": "63a4df81cb356346fa73f1cb1fd405a1acba2bba657b2bad15faf02b9316de64",
+        "priorAuditSha256": "d2bb3bddce80cbdc803bb1b47441e19848073f364cc3bc5786ee5ac85a43e2f3",
+        "priorEvidenceOrigin": "prior dated complete-body chain",
+        "priorCheckedAt": "2026-10-05T06:37:03.892Z",
+        "priorSiteVersion": 4,
+        "newHttpBodyGet": false
+      },
+      {
+        "path": "media/home.png",
+        "bytes": 100407,
+        "sha256": "dd90d6a3479a1c346eeab10025403ea68fd429a3f04fb5ba810bb8eb4bdcb792",
+        "priorAuditSha256": "d2bb3bddce80cbdc803bb1b47441e19848073f364cc3bc5786ee5ac85a43e2f3",
+        "priorEvidenceOrigin": "prior dated complete-body chain",
+        "priorCheckedAt": "2026-10-05T06:37:03.892Z",
+        "priorSiteVersion": 4,
+        "newHttpBodyGet": false
+      },
+      {
+        "path": "media/settings-dark.png",
+        "bytes": 101204,
+        "sha256": "fdc84f9caec2bde451605c4c0cdabbd57901e768162dc60345d9006437bd4dd2",
+        "priorAuditSha256": "d2bb3bddce80cbdc803bb1b47441e19848073f364cc3bc5786ee5ac85a43e2f3",
+        "priorEvidenceOrigin": "prior dated complete-body chain",
+        "priorCheckedAt": "2026-10-05T06:37:03.892Z",
+        "priorSiteVersion": 4,
+        "newHttpBodyGet": false
+      },
+      {
+        "path": "media/settings-zh-dark.png",
+        "bytes": 96335,
+        "sha256": "f9be8cb41807cdc86e5bc4f58bbca077528b56628ec37679058d1ebbe9dce941",
+        "priorAuditSha256": "d2bb3bddce80cbdc803bb1b47441e19848073f364cc3bc5786ee5ac85a43e2f3",
+        "priorEvidenceOrigin": "prior dated complete-body chain",
+        "priorCheckedAt": "2026-10-05T06:37:03.892Z",
+        "priorSiteVersion": 4,
+        "newHttpBodyGet": false
+      },
+      {
+        "path": "media/settings-zh.png",
+        "bytes": 95411,
+        "sha256": "bcc82e8f45de3aa501cc1beeb1b887c13b74fb229db395dfeb7b058afe5dae9e",
+        "priorAuditSha256": "d2bb3bddce80cbdc803bb1b47441e19848073f364cc3bc5786ee5ac85a43e2f3",
+        "priorEvidenceOrigin": "prior dated complete-body chain",
+        "priorCheckedAt": "2026-10-05T06:37:03.892Z",
+        "priorSiteVersion": 4,
+        "newHttpBodyGet": false
+      },
+      {
+        "path": "media/settings.png",
+        "bytes": 98977,
+        "sha256": "73b0adbbda75824bc8a3096ca8f694d90fc3954ca77fa4f00096f7acc61e5a06",
+        "priorAuditSha256": "d2bb3bddce80cbdc803bb1b47441e19848073f364cc3bc5786ee5ac85a43e2f3",
+        "priorEvidenceOrigin": "prior dated complete-body chain",
+        "priorCheckedAt": "2026-10-05T06:37:03.892Z",
+        "priorSiteVersion": 4,
+        "newHttpBodyGet": false
+      },
+      {
+        "path": "media/share-dark.png",
+        "bytes": 102232,
+        "sha256": "833efed08c6ef08131edeb55217a8e77af885994918dc0ed83620b4f56abc12a",
+        "priorAuditSha256": "d2bb3bddce80cbdc803bb1b47441e19848073f364cc3bc5786ee5ac85a43e2f3",
+        "priorEvidenceOrigin": "prior dated complete-body chain",
+        "priorCheckedAt": "2026-10-05T06:37:03.892Z",
+        "priorSiteVersion": 4,
+        "newHttpBodyGet": false
+      },
+      {
+        "path": "media/share-zh-dark.png",
+        "bytes": 102081,
+        "sha256": "05c9ebdf33977aa05529fb019cc1c8a0dc68ad20bc72cc731790b90adb53b0bc",
+        "priorAuditSha256": "d2bb3bddce80cbdc803bb1b47441e19848073f364cc3bc5786ee5ac85a43e2f3",
+        "priorEvidenceOrigin": "prior dated complete-body chain",
+        "priorCheckedAt": "2026-10-05T06:37:03.892Z",
+        "priorSiteVersion": 4,
+        "newHttpBodyGet": false
+      },
+      {
+        "path": "media/share-zh.png",
+        "bytes": 98086,
+        "sha256": "a35a23d55ea68d1e67c8456318b0e224e66cd7e74bc28a15162f7a0ade846b7e",
+        "priorAuditSha256": "d2bb3bddce80cbdc803bb1b47441e19848073f364cc3bc5786ee5ac85a43e2f3",
+        "priorEvidenceOrigin": "prior dated complete-body chain",
+        "priorCheckedAt": "2026-10-05T06:37:03.892Z",
+        "priorSiteVersion": 4,
+        "newHttpBodyGet": false
+      },
+      {
+        "path": "media/share.png",
+        "bytes": 98376,
+        "sha256": "925895d229b1628f591c000f3571aeb56a631738f99d66a0b47cc77a66b1366d",
+        "priorAuditSha256": "d2bb3bddce80cbdc803bb1b47441e19848073f364cc3bc5786ee5ac85a43e2f3",
+        "priorEvidenceOrigin": "prior dated complete-body chain",
+        "priorCheckedAt": "2026-10-05T06:37:03.892Z",
+        "priorSiteVersion": 4,
+        "newHttpBodyGet": false
+      },
+      {
+        "path": "media/social.png",
+        "bytes": 103814,
+        "sha256": "afca006fd8d37681ceda37d1fdc9d83bc74c08d0b84620b924c12b3da075ecf5",
+        "priorAuditSha256": "d2bb3bddce80cbdc803bb1b47441e19848073f364cc3bc5786ee5ac85a43e2f3",
+        "priorEvidenceOrigin": "prior dated complete-body chain",
+        "priorCheckedAt": "2026-10-05T06:37:03.892Z",
+        "priorSiteVersion": 4,
+        "newHttpBodyGet": false
+      },
+      {
+        "path": "media/task-dark.png",
+        "bytes": 113788,
+        "sha256": "796c90d09c4251237b6e31e08a1267fdd91e3b15a076277b01e78f379c63afc3",
+        "priorAuditSha256": "d2bb3bddce80cbdc803bb1b47441e19848073f364cc3bc5786ee5ac85a43e2f3",
+        "priorEvidenceOrigin": "prior dated complete-body chain",
+        "priorCheckedAt": "2026-10-05T06:37:03.892Z",
+        "priorSiteVersion": 4,
+        "newHttpBodyGet": false
+      },
+      {
+        "path": "media/task-zh-dark.png",
+        "bytes": 120963,
+        "sha256": "ded243f012842b66f004a119faf80e0c1967fd1d51deaba4fd396341a0cd5de5",
+        "priorAuditSha256": "d2bb3bddce80cbdc803bb1b47441e19848073f364cc3bc5786ee5ac85a43e2f3",
+        "priorEvidenceOrigin": "prior dated complete-body chain",
+        "priorCheckedAt": "2026-10-05T06:37:03.892Z",
+        "priorSiteVersion": 4,
+        "newHttpBodyGet": false
+      },
+      {
+        "path": "media/task-zh.png",
+        "bytes": 118263,
+        "sha256": "0137ddd9870408a550e5f79ed0d63ffd64551d07a7d738f0c84652324fef589d",
+        "priorAuditSha256": "d2bb3bddce80cbdc803bb1b47441e19848073f364cc3bc5786ee5ac85a43e2f3",
+        "priorEvidenceOrigin": "prior dated complete-body chain",
+        "priorCheckedAt": "2026-10-05T06:37:03.892Z",
+        "priorSiteVersion": 4,
+        "newHttpBodyGet": false
+      },
+      {
+        "path": "media/task.png",
+        "bytes": 110723,
+        "sha256": "d942d57cbfeeb3c5bc79af3755cf751aae1b83c94f6298e07d95953c11385a3e",
+        "priorAuditSha256": "d2bb3bddce80cbdc803bb1b47441e19848073f364cc3bc5786ee5ac85a43e2f3",
+        "priorEvidenceOrigin": "prior dated complete-body chain",
+        "priorCheckedAt": "2026-10-05T06:37:03.892Z",
+        "priorSiteVersion": 4,
+        "newHttpBodyGet": false
+      },
+      {
+        "path": "media/ui-tour-en.mp4",
+        "bytes": 2183780,
+        "sha256": "08bc03e80c06331a1e1f330a81dad0d8ceb5b6a3bf4eb6795e3e7826dfc19578",
+        "priorAuditSha256": "d2bb3bddce80cbdc803bb1b47441e19848073f364cc3bc5786ee5ac85a43e2f3",
+        "priorEvidenceOrigin": "prior dated complete-body chain",
+        "priorCheckedAt": "2026-10-05T06:37:03.892Z",
+        "priorSiteVersion": 4,
+        "newHttpBodyGet": false
+      },
+      {
+        "path": "media/ui-tour-en.vtt",
+        "bytes": 448,
+        "sha256": "c7f3731121340263a10260ffa60b11078d68e3504590791c0f5334bf1c45b6d9",
+        "priorAuditSha256": "d2bb3bddce80cbdc803bb1b47441e19848073f364cc3bc5786ee5ac85a43e2f3",
+        "priorEvidenceOrigin": "prior dated complete-body chain",
+        "priorCheckedAt": "2026-10-05T06:37:03.892Z",
+        "priorSiteVersion": 4,
+        "newHttpBodyGet": false
+      },
+      {
+        "path": "media/ui-tour-zh.mp4",
+        "bytes": 2677439,
+        "sha256": "f6d33e6f171ddff0db45022451f6d12babc4406ea2402e762513e0fc03d8a756",
+        "priorAuditSha256": "d2bb3bddce80cbdc803bb1b47441e19848073f364cc3bc5786ee5ac85a43e2f3",
+        "priorEvidenceOrigin": "prior dated complete-body chain",
+        "priorCheckedAt": "2026-10-05T06:37:03.892Z",
+        "priorSiteVersion": 4,
+        "newHttpBodyGet": false
+      },
+      {
+        "path": "media/ui-tour-zh.vtt",
+        "bytes": 534,
+        "sha256": "ff0ce7fb7c2d28ca6f89138dad9b21b358ec10e33517e2af9da201eed11bae55",
+        "priorAuditSha256": "d2bb3bddce80cbdc803bb1b47441e19848073f364cc3bc5786ee5ac85a43e2f3",
+        "priorEvidenceOrigin": "prior dated complete-body chain",
+        "priorCheckedAt": "2026-10-05T06:37:03.892Z",
+        "priorSiteVersion": 4,
+        "newHttpBodyGet": false
+      }
+    ],
+    "localOnlyRetained": [
+      {
+        "path": "media/demo-en.vtt",
+        "bytes": 346,
+        "sha256": "2fd2bfb7e7a7b82d890f312851ec9996b0cf20ebbd5d2b65480921218b9fc7d2",
+        "method": "Current local source/copy proof only; no inherited matching complete-body HTTP evidence and no fresh GET",
+        "newHttpBodyGet": false
+      },
+      {
+        "path": "media/demo-zh.vtt",
+        "bytes": 365,
+        "sha256": "665d99750d6ccfb3a996cda2b05f74c0ca2d69b121a7face589a7dd69b4927e7",
+        "method": "Current local source/copy proof only; no inherited matching complete-body HTTP evidence and no fresh GET",
+        "newHttpBodyGet": false
+      },
+      {
+        "path": "media/demo.gif",
+        "bytes": 638965,
+        "sha256": "f995fb5b7246941305f33cc3a546e82394d0d4f178474173a1284b2b1b2424d0",
+        "method": "Current local source/copy proof only; no inherited matching complete-body HTTP evidence and no fresh GET",
+        "newHttpBodyGet": false
+      },
+      {
+        "path": "media/demo.mp4",
+        "bytes": 238025,
+        "sha256": "7f3ace0ede13a8430059474d8b7b5a18cc2173bb1bd4e75b8d87c4846224f34a",
+        "method": "Current local source/copy proof only; no inherited matching complete-body HTTP evidence and no fresh GET",
+        "newHttpBodyGet": false
+      },
+      {
+        "path": "media/walkthrough-en.vtt",
+        "bytes": 482,
+        "sha256": "bede0c5f203fa91ca22345796d29135b900f6c4c4a12a361426e313bc59ea990",
+        "method": "Current local source/copy proof only; no inherited matching complete-body HTTP evidence and no fresh GET",
+        "newHttpBodyGet": false
+      },
+      {
+        "path": "media/walkthrough-zh.vtt",
+        "bytes": 513,
+        "sha256": "71db83a8c5b59945d4a948d67d68427b84e79c454001a4367e45ef27b52b7e50",
+        "method": "Current local source/copy proof only; no inherited matching complete-body HTTP evidence and no fresh GET",
+        "newHttpBodyGet": false
+      },
+      {
+        "path": "media/walkthrough.mp4",
+        "bytes": 381532,
+        "sha256": "98065802ae3052b6c9909403f2a1ed8d6636503785d7d0942d2be792e88811d4",
+        "method": "Current local source/copy proof only; no inherited matching complete-body HTTP evidence and no fresh GET",
+        "newHttpBodyGet": false
+      }
+    ],
+    "passed": true,
+    "completedAt": "2026-10-06T06:53:39.262Z"
+  }
+}

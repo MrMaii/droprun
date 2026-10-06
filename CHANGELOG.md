@@ -1,8 +1,8 @@
 # Changelog
 
-## Unreleased
+## 0.5.8-rc.1 — clearer handoffs and native Share
 
-Further UI refinements are separate from the current signed candidate.
+[Verified candidate and open acceptance](docs/releases/0.5.8-rc.1.md).
 
 - Keep full file-verification evidence in a compact disclosure, bringing the
   contents forward while retaining the selectable hash and original explanation.
