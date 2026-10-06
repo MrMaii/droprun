@@ -5,22 +5,22 @@ genuine acceptance is unavailable. No stable launch or marketing handover.
 
 ## Current public delivery
 
-- [Signed candidate0.5.11-rc.1](../../docs/releases/0.5.11-rc.1.md) binds
-  sourcec0a49f1c/code24. Eight complete anonymous assets, seven checksums,
+- [Signed candidate0.5.12-rc.1](../../docs/releases/0.5.12-rc.1.md) binds
+  source22cc77d5/code25. Eight complete anonymous assets, seven checksums,
   public API digests and annotated tag/source match. Stable Android certificate,
   actual nondebuggable/noDemo manifest and DEX pass. Windows is NotSigned;
   installer/Connector were not executed. The release record owns all package
   evidence and source-archive EOL limitations.
-- Own sourceCI37518845457 attempt1 passes3jobs/35steps/10required/3checks:
-  actualcore210/browser18/audit0/Androidfourtasks/Windowspackaging. Full326576B
-  log SHAa1a1b35e retained. Independent CI/source/export/Android reviews passed.
-  db8f64a ownCI failed208/210 on two stale Relay-version assertions; original
-  log and unpublished intermediate builds remain. Final2pathfix has own CI.
-- Final local Android build15.797s, Gradle14s/1executed43up-to-date; two artifact
-  verifiers pass. Final owner first failed helper-hash preflight with0children;
-  corrected owner has a separate known-returned record. No hidden retry of an
-  unknown child. Windows package137.781s, two verifiers pass; actual scoped
-  sharp0.35.5/native metadata/license/AMD64 checks and in-memory8×8PNG pass.
+- Own sourceCI37533941303 attempt1 passes3jobs/35steps/10required/3checks:
+  actualcore210/browser18/Androidfourtasks/Windowspackaging. Full325493B
+  log SHA033e8374 retained. Independent source/artifact/export reviews passed.
+- Android build31.969s; two artifact verifiers pass, compiler-deprecation133B
+  stderr retained. Windows has one successful bounded npm-ci and two artifact
+  verifiers; actual native metadata/license/AMD64 and in-memory8×8PNG checks pass.
+  Original publisher uploaded8assets then its draft-by-tag inspection returned
+  HTTP404. Same observed draftID405160887 was checked and published via3known
+  returned commands; no creation/upload replay. Complete anonymous verification
+  passes. Candidate11 and all original failures remain immutable history.
 - GPTSites18 succeeded at the existing public address on2026-10-06T20:37:37Z;
   hosting source830224a, version8077a939, deployment6ac55c09. Its91public files
   include verified candidate11 download links and accepted Home cards. Own
@@ -52,8 +52,8 @@ genuine acceptance is unavailable. No stable launch or marketing handover.
   website examples. Two200%long-name windows remain reading checks, not images.
   Destroyed motion windows record natural end1/cancel0 and clear their animator;
   do not claim the destruction cancellation branch was observed. Original
-  cancel==1 test failure is preserved. This UI is source/development-only and
-  is not in the signed candidate11. Sourcead543fb and website19 are public;
+  cancel==1 test failure is preserved. This UI is included in signed candidate12;
+  the captures/tests retain development bindings. Sourcead543fb/website19 public;
   independent bounded native/output review passes without extra device runs.
 - [Home cards](../../docs/releases/ui-home-project-cards-2026-10-06.md):
   useful project grouping, stable counts, status/date hierarchy and large-text
@@ -105,16 +105,16 @@ genuine acceptance is unavailable. No stable launch or marketing handover.
 
 ## Single recommended next action
 
-Package source0.5.12/code25 with the published Share/History improvements and
-retention reading check. Verify its own CI and both actual distribution artifacts
-before publishing candidate12 or changing public download links. Candidate11
-and Site19 remain current until that completes. Do not replay denied paths.
+Publish the generated candidate12 website/download updates and inspect the
+documentation commit's own CI. Then continue useful native UI/UX improvement
+from real visual comparisons without replaying denied or genuine-business paths.
 
 ## Files this pass
 
-SettingsReadingPresentationTest and scoped reading records; six version metadata
-paths and CHANGELOG; this handoff. Share/README/website sourcead543fb/Site19 and
-History source d0893fa with its own successful CI are delivered. New private
-actual evidence is under `.local/ux-oct6-retention-reading/`; candidate12 drafts
-under `.local/ux-rc0512-drafts/`. Original failures remain. Author Thomas Deng
+Candidate12 release record/JSON; README EN/ZH/current setup guides/roadmap/context;
+version download builder/generated HTML; retention scope wording and this handoff.
+Release12 source22cc77d, exact CI and anonymous assets are delivered. Website
+candidate12 publish still pending; Site19 remains live. Private actual evidence
+is under `.local/ux-rc0512/` and `.local/ux-rc0512-drafts/`; original failures and
+retention debug bindings remain. Author Thomas Deng
 <150266369+MrMaii@users.noreply.github.com>.

@@ -1,6 +1,8 @@
 # Changelog
 
-## Unreleased
+## 0.5.12-rc.1 — clearer Share confirmation
+
+[Verified candidate and open acceptance](docs/releases/0.5.12-rc.1.md).
 
 - Check Settings retention reading across six native memory-fixture windows,
   including 200% text, unknown policy and cached 14/60-day policy.

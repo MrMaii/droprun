@@ -58,9 +58,10 @@ owner failure is retained and is not relabelled PASS.
 ## Limits
 
 The fixture uses guarded memory preferences, no-op refresh and blocked API/request
-paths. Only its retention Map changes; no business action or persistent setting
-is invoked. Font scale belongs to the Activity configuration, not an OS font
-write. DESTROYED is recorded; executor termination is not measured.
+paths. The added retention fragment changes only its retention Map; no business
+action or persistent setting is invoked. Font scale belongs to the Activity
+configuration, not an OS font write. DESTROYED is recorded; executor termination
+is not measured.
 
 This does not establish every intermediate line's visibility, real policy sync
 or cleanup, real-account/business behavior, physical accessibility, keyboard

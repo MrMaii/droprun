@@ -1,0 +1,235 @@
+{
+  "recordedAtUtc": "2026-10-06T21:38:37.666Z",
+  "release": "https://github.com/MrMaii/droprun/releases/tag/v0.5.12-rc.1",
+  "tag": "v0.5.12-rc.1",
+  "sourceCommit": "22cc77d5fbb43e2ef46daf7bd56c61543c79c1a1",
+  "authentication": "none; no Authorization header or browser session",
+  "prerelease": true,
+  "repositoryPublic": true,
+  "annotatedTagSourceVerified": true,
+  "tagObjectSha": "642453b2487d5c2fc2a7914ce31eef1e36bd34ed",
+  "checksumEntries": 7,
+  "artifacts": [
+    {
+      "name": "DropRun-0.5.12-android-BUILD-MANIFEST.json",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.12-rc.1/DropRun-0.5.12-android-BUILD-MANIFEST.json",
+      "status": 200,
+      "bytes": 1775,
+      "sha256": "973b60639f9300e1a7bf4cdc9b9e6452e54ffd7d56c97f454ad68c1e38dd84b2",
+      "apiDigestMatches": true,
+      "localArtifactMatches": true
+    },
+    {
+      "name": "DropRun-0.5.12-android-distribution.zip",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.12-rc.1/DropRun-0.5.12-android-distribution.zip",
+      "status": 200,
+      "bytes": 3543355,
+      "sha256": "20bffc6b824718acb6071305cbf242cabc233c922c00444d1bd8e54dd1f1908c",
+      "apiDigestMatches": true,
+      "localArtifactMatches": true
+    },
+    {
+      "name": "DropRun-0.5.12-android.apk",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.12-rc.1/DropRun-0.5.12-android.apk",
+      "status": 200,
+      "bytes": 1690980,
+      "sha256": "f7b45cf7b1d76d5b382fe4c227eaac5272239668eb68b705c0b32dbe79864d1b",
+      "apiDigestMatches": true,
+      "localArtifactMatches": true
+    },
+    {
+      "name": "DropRun-0.5.12-windows-x64-BUILD-MANIFEST.json",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.12-rc.1/DropRun-0.5.12-windows-x64-BUILD-MANIFEST.json",
+      "status": 200,
+      "bytes": 375698,
+      "sha256": "09cf8d889840ffff55b9af3cec0546d73ecfd522aeedc18ceb2ec9fa523e5207",
+      "apiDigestMatches": true,
+      "localArtifactMatches": true
+    },
+    {
+      "name": "DropRun-0.5.12-windows-x64-setup.exe",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.12-rc.1/DropRun-0.5.12-windows-x64-setup.exe",
+      "status": 200,
+      "bytes": 76767859,
+      "sha256": "d19b8fc5ab7a708b048d6ff9bb9766cc56f3923316f5e3775eda2060981ab929",
+      "apiDigestMatches": true,
+      "localArtifactMatches": true
+    },
+    {
+      "name": "DropRun-0.5.12-windows-x64-source.zip",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.12-rc.1/DropRun-0.5.12-windows-x64-source.zip",
+      "status": 200,
+      "bytes": 34490659,
+      "sha256": "891ac8070dd64f86e90ab713b06a40af25d2df87ef39072562e90aab11d27309",
+      "apiDigestMatches": true,
+      "localArtifactMatches": true
+    },
+    {
+      "name": "DropRun-0.5.12-windows-x64.zip",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.12-rc.1/DropRun-0.5.12-windows-x64.zip",
+      "status": 200,
+      "bytes": 111664205,
+      "sha256": "d6ce9374adca12664e7f38f6eed185b6d28eb27d305fc76c393c2d9fe0941869",
+      "apiDigestMatches": true,
+      "localArtifactMatches": true
+    },
+    {
+      "name": "SHA256SUMS.txt",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.12-rc.1/SHA256SUMS.txt",
+      "status": 200,
+      "bytes": 732,
+      "sha256": "c52c8fb29c9388879e990c1a52c721623d4180e88b47df77180bee5832a74a85",
+      "apiDigestMatches": true,
+      "localArtifactMatches": true
+    }
+  ],
+  "verified": true,
+  "android": {
+    "version": "0.5.12",
+    "versionCode": 25,
+    "applicationId": "app.droprun.mobile",
+    "certificateSha256": "d65e17ed1df9a1e0b8eabbc51675905673c8fdc1c44e7bb008237b6a0e82c5c4",
+    "apkSha256": "f7b45cf7b1d76d5b382fe4c227eaac5272239668eb68b705c0b32dbe79864d1b",
+    "apkBytes": 1690980,
+    "inventoryFiles": 9,
+    "checksumFiles": 10,
+    "sourceFiles": 142,
+    "publicApkDebuggable": false,
+    "publicApkDemoComponentsAbsent": true,
+    "publicApkDemoDescriptorsAbsent": true,
+    "distributionEntries": 11
+  },
+  "windows": {
+    "version": "0.5.12",
+    "node": "v24.18.0",
+    "wrangler": "4.144.0",
+    "listedFiles": 2022,
+    "zipFiles": 2023,
+    "unlistedFiles": 0,
+    "sourceFiles": 602,
+    "committedApplicationFiles": 54,
+    "installerSignature": "NotSigned",
+    "dependencyFiles": 1960
+  },
+  "sourceArchiveComparison": {
+    "android": {
+      "count": 142,
+      "exact": 141,
+      "CRLF_LF_only": 1,
+      "normalizedPaths": [
+        "android/gradlew.bat"
+      ],
+      "mismatches": []
+    },
+    "windows": {
+      "count": 602,
+      "exact": 601,
+      "CRLF_LF_only": 1,
+      "normalizedPaths": [
+        "android/gradlew.bat"
+      ],
+      "mismatches": []
+    }
+  },
+  "windowsCopiedApplicationComparison": {
+    "count": 54,
+    "exactGitBlobs": 0,
+    "CRLF_LF_only": 54,
+    "manifestHashesMatch": true,
+    "scope": "Copied application files, separately from source ZIP membership; generated runtime package.json and project license copies have separate checks."
+  },
+  "dependencyMetadata": [
+    {
+      "name": "miniflare",
+      "version": "5.20260926.1-alpha",
+      "license": "MIT"
+    },
+    {
+      "name": "sharp",
+      "version": "0.35.5",
+      "license": "Apache-2.0"
+    },
+    {
+      "name": "@img/sharp-win32-x64",
+      "version": "0.35.5",
+      "license": "Apache-2.0 AND LGPL-3.0-or-later"
+    }
+  ],
+  "nativeVersions": {
+    "vips": "8.18.7",
+    "rsvg": "2.63.2"
+  },
+  "fixedInMemoryPngCheckPassed": true,
+  "installerExecuted": false,
+  "connectorStarted": false,
+  "exactCI": {
+    "run": "https://github.com/MrMaii/droprun/actions/runs/37533941303",
+    "attempt": 1,
+    "jobs": 3,
+    "steps": 35,
+    "requiredSteps": 10,
+    "matchingChecks": 3,
+    "actualFooters": {
+      "core": {
+        "tests": 210,
+        "suites": 0,
+        "pass": 210,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 42979.4221
+      },
+      "browser": {
+        "tests": 18,
+        "suites": 0,
+        "pass": 18,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 80543.2246
+      }
+    },
+    "completeLogBytes": 325493,
+    "completeLogSha256": "033e837436acf573767d4ffc101509dd960bd9dbc42250f08e523068a5531b05"
+  },
+  "androidSignedBuild": {
+    "exitCode": 0,
+    "seconds": 31.969,
+    "stderrBytes": 133,
+    "stderrSha256": "149b4942073466f2d906e9406521e823d43ac50547bb086b0dda99ca5c1ff0a6",
+    "stderrScope": "Compiler deprecation notes; not an empty stderr."
+  },
+  "developmentUIEvidence": {
+    "signedCandidateNativeTested": false,
+    "scope": "Each linked native UX record retains its original code 24 debug source/APK binding; not new candidate 12 instrumentation or a genuine Codex recording.",
+    "records": [
+      "ui-share-confirmation-2026-10-06.md",
+      "ui-history-notice-feedback-2026-10-06.md",
+      "ui-settings-retention-reading-2026-10-06.md"
+    ],
+    "retentionOriginalOwnerPassed": false,
+    "retentionIndependentOutputReviewPassed": true,
+    "retentionNativeRerun": false
+  },
+  "publicationRecovery": {
+    "sameReleaseId": 405160887,
+    "originalInspectionFailurePreserved": true,
+    "originalInspectionHttpStatus": 404,
+    "allOriginalUploadsReturnedZero": true,
+    "creationReplayed": false,
+    "uploadReplayed": false,
+    "overwriteRequested": false,
+    "terminationAttempted": false,
+    "finalOwnerChildrenReturned": 3,
+    "publishedAtUtc": "2026-10-06T21:38:14Z"
+  },
+  "limits": [
+    "Public release candidate; genuine handoffs/recovery/isolation and physical Android/clean Windows/fresh Cloudflare acceptance remain open.",
+    "Native UX evidence retains separate development/debug bindings; no signed candidate 12 native or genuine-task recording is inferred.",
+    "Source ZIP normalization and copied Windows application/license line endings are separate; not all source or payload bytes match Git blobs raw.",
+    "License presence and dependency checks do not establish a complete license audit.",
+    "Release publication does not establish a new website deployment or hosted playback result."
+  ]
+}
