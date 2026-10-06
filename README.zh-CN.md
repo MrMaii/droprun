@@ -31,10 +31,12 @@ Codex 在你的 Windows 电脑上工作，Relay 由你部署到自己的 Cloudfl
 
 </details>
 
+**[开始安装与配对 →](docs/technical/SELF_HOSTING.zh-CN.md)**
+
 ## 分享参考、跟进工作、查看交付
 
-原生开发截图与录屏均使用标注的示例数据：首页与导览来自 0.5.1 界面
-（2026 年 10 月 5 日），分享与交付截图来自原生内存验证（2026 年 10 月 6 日）。
+原生开发截图与录屏均使用标注的示例数据：导览来自 0.5.1 界面
+（2026 年 10 月 5 日），首页、分享与交付截图来自原生内存验证（2026 年 10 月 6 日）。
 仅展示界面，不代表签名下载包录制或真实 Codex 任务。
 [媒体来源说明](assets/brand/readme-media.md)。
 
@@ -48,7 +50,7 @@ Codex 在你的 Windows 电脑上工作，Relay 由你部署到自己的 Cloudfl
 
 Codex 在你的电脑和所选项目中工作。按项目查看进展，处理待确认事项。
 
-<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/readme-home-zh-dark.png"><img src="assets/brand/readme-home-zh.png" width="280" alt="原生 Android 项目首页，显示任务与交办次数，保留可见的 Demo data 演示标记"></picture></p>
+<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-home-zh-dark-20261006.png"><img src="assets/brand/source-home-zh-light-20261006.png" width="280" alt="原生 Android 项目首页，项目名称、任务与交办次数沿卡片内容边缘对齐，保留仅内存验证与示例项目标记"></picture></p>
 
 ### 03 · 查看交付
 

@@ -336,12 +336,12 @@ public final class Ui {
     public static LinearLayout disclosure(Context context,String title,View content,boolean open,java.util.function.Consumer<Boolean> change){
         LinearLayout group=vertical(context),header=row(context);
         TextView label=text(context,title,15,TEXT);label.setTypeface(medium());header.addView(label,grow());
-        ImageView chevron=new ImageView(context);chevron.setImageResource(R.drawable.ic_chevron_left);chevron.setImageTintList(ColorStateList.valueOf(MUTED));chevron.setRotation(open?-90:180);header.addView(chevron,square(context,20));
+        ImageView chevron=new ImageView(context);chevron.setImageResource(R.drawable.ic_chevron_left);chevron.setImageTintList(ColorStateList.valueOf(MUTED));chevron.setRotation(open?270:180);header.addView(chevron,square(context,20));
         header.setMinimumHeight(dp(context,52));header.setPadding(dp(context,4),0,dp(context,4),0);header.setClickable(true);header.setFocusable(true);bindPress(header);
         header.setContentDescription(title+(open?L.t(", expanded",", 已展开"):L.t(", collapsed",", 已折叠")));
         content.setVisibility(open?View.VISIBLE:View.GONE);group.addView(header,fill());group.addView(content,fill());
         header.setTag(open);
-        header.setOnClickListener(v->{boolean show=!Boolean.TRUE.equals(header.getTag());header.setTag(show);change.accept(show);header.setContentDescription(title+(show?L.t(", expanded",", 已展开"):L.t(", collapsed",", 已折叠")));expand(content,show);chevron.animate().rotation(show?-90:180).setDuration(motionEnabled(context)?180:0).start();});
+        header.setOnClickListener(v->{boolean show=!Boolean.TRUE.equals(header.getTag());header.setTag(show);change.accept(show);header.setContentDescription(title+(show?L.t(", expanded",", 已展开"):L.t(", collapsed",", 已折叠")));expand(content,show);chevron.animate().rotation(show?270:180).setDuration(motionEnabled(context)?180:0).start();});
         return group;
     }
     public static void expand(View content,boolean show){

@@ -2,8 +2,10 @@
 
 Updated 2026-10-06 UTC. Independent UI/brand work continues while real acceptance
 remains open. Signed0.5.7/code20 candidate is available.
-Further material inspection and README refinements are source-only; project
-history is the next design implementation.
+Material inspection and README refinements are public source-only work. Project
+history, common disclosure motion and navigation icons have passed independent
+local review. Four current Home originals now replace older README references.
+Native Share motion capture is in draft review; signed07 remains immutable.
 
 ## Current delivery
 
@@ -24,6 +26,35 @@ history is the next design implementation.
   compact-layout work in the main checkout is not included in this package.
 
 ## Latest completed work
+
+- [History and disclosure refinement](../../docs/releases/ui-project-history-identity-motion-2026-10-06.md), awaiting source publication:
+  bounded independent24sp identity/full-name-ID entry and recycled status tint;
+  Ui exactly two -90→270 replacements. Red2fail9.338s; firstgreen1/2 13.819s
+  dialog-coordinate test error; secondgreen1/2 23.428s SP-conversion test error;
+  focusedHistory1/1 78.119s,8configs. Motion second-green8 phase traces pass,
+  unchanged method/helper after focused correction, not final samebatch2/2.
+  JVM24/lint0/30 frombuild-green;107source/102unchanged/63transfer hashes/guards0;
+  778 readonly files and old670 unchanged. Root viewed4 representative originals;
+  all24 accepted viewed by owner. Four font2 dialogs obscure the background marker
+  and remain private evidence. Independent frozen review passes; signed07 unchanged.
+- [Navigation icons and current Home media](../../docs/releases/ui-navigation-icons-2026-10-06.md):
+  outline gear and matching information vector retain48dp/tint/focus/callbacks.
+  Compile/lint0/30; capture-only1/1 23.763s, EN/ZH/light/dark Home/History8windows,
+  zero clicks. All16 transfers match;109sources/105unchanged/272readonly files;
+  earlier History778/Material670 unchanged. Independent review passes.
+  Four raw Home originals copied to new dated filenames; old34native+mark unchanged.
+  README/media/link review passes60local references without a new browser probe.
+  Original serialization/tint/count diagnostics retained, no media repainting.
+- README tour-to-install exit added in both languages. Lightweight source review
+  confirms exact links/targets/position; removing only each new paragraph restores
+  the2cb baseline byte-for-byte. Existing34PNG/GIF unchanged. Local six-scene
+  first-minute audit is explicitly pre-edit/approximate Markdown rendering.
+
+- Source2cbcb34b4014d4638a890a7a8eba353ed39babee is public: first CI37410574683
+  attempt1 all3jobs/35steps/10required/core210/browser18 pass. Nineteen fresh
+  anonymous sourceGETs match Git, including4 native PNGs/4 SVGs/3 native sources.
+  PublicCurrent314f6ace matches curation and excludes the private film section.
+  Check-public407 passes; Thomas author/committer verified. Signed07 stays7097.
 
 - [Material inspection](../../docs/releases/ui-share-material-disclosure-2026-10-06.md):
   both pre-Send steps expose exact plain/selectable text and complete names with
@@ -127,17 +158,20 @@ history is the next design implementation.
 
 ## Single recommended next action
 
-Finish independent Material-source and final README-media review, then publish
-curated source. Next implement the reviewed project-history identity and recycled
-status surface with memory-only fixtures; keep list anchors/paging/removal intact.
-Signed07 stays immutable. No real task/IME/process-loss retry is authorized. Root
-owns publication and the private film exclusion; genuine acceptance and marketing
-handover stay open.
+Curate the reviewed History/motion/icons/README source, excluding the private film.
+Complete native Share tour draft review before a fresh source/device lease: API
+compatibility, exact APK identity, confirmed-lifetime transfer barrier and smooth
+native scroll. Then compile and inspect one continuous memory-only take per language;
+any unknown lifetime stops continuation. Prepare a later bundled candidate from
+public immutable source. Small-window blur remains proposal-only. No real task,
+IME/process-loss retry or OS change is authorized. Root owns publication and private
+film exclusion; genuine acceptance and marketing handover stay open.
 
 ## Files this pass
 
-Share material disclosure, opt-in editor fixture and new native test; four authored
-architecture SVGs/four exact raw PNG copies, bilingual README/media notes,
-PRD/changelog/two verification records/current handoff.
+History identity/status, common Ui arrow endpoints, nonexported opt-in fixture
+and native tests; gear/info vectors; four dated Home PNGs, README installation
+paragraphs/gallery/media notes, PRD/changelog/verification records/current handoff.
+Native tour drafts and frozen evidence remain private.
 Private frozen evidence stays outside Git. Author Thomas Deng
 <150266369+MrMaii@users.noreply.github.com>.

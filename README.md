@@ -32,10 +32,12 @@ not a completed source-to-Codex task.
 
 </details>
 
+**[Set up DropRun →](docs/technical/SELF_HOSTING.md)**
+
 ## Share. Follow. Inspect.
 
-Development captures with labelled sample data: home and tours use the 0.5.1 UI
-(October 5, 2026); share and delivery use memory-only native probes
+Development captures with labelled sample data: tours use the 0.5.1 UI
+(October 5, 2026); home, share and delivery use memory-only native probes
 (October 6, 2026). These show the interface only, not the signed download or a
 real Codex task. [Capture notes](assets/brand/readme-media.md).
 
@@ -49,7 +51,7 @@ After choosing an existing project, add a note when you have a specific change i
 
 Codex works on your computer, in the chosen project. Follow progress and decisions in its history.
 
-<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/readme-home-dark.png"><img src="assets/brand/readme-home.png" width="280" alt="Native Android project home with task and dispatch counts and visible Demo data notice"></picture></p>
+<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-home-en-dark-20261006.png"><img src="assets/brand/source-home-en-light-20261006.png" width="280" alt="Native Android project home with names, task and dispatch counts aligned at the card edge; memory-only and sample-project markers retained"></picture></p>
 
 ### 03 · Inspect the delivery
 

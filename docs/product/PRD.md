@@ -15,12 +15,18 @@ in [the current candidate record](../releases/0.5.7-rc.1.md).
   with compact website, preview-download and language links below it.
   A dated native UI tour precedes the workflow gallery; reduced motion selects
   a static light/dark capture, with explicit still links and unchanged provenance.
+  A localized installation link at the end of the tour lets ready readers leave
+  for setup without scrolling through the full static gallery.
+  Workflow media use dated current native captures, with consistent light/dark
+  language sets; older tours keep their source date and sample-data scope.
   The bilingual architecture diagram remains readable at phone width and separates
   the owner's Cloudflare from the computer's Connector and local Codex. The first
   introduction explains that the owner must deploy their own Relay.
   Windows package scripts must start on an unmanaged Windows client with its
   default script policy, without changing persistent user or machine policy.
 - Light translucent UI, lime actions, dark/system appearance, English/Chinese.
+  Navigation gear/information icons share restrained round outlines; their 48dp
+  targets, theme tint, focus, press feedback and action meaning remain distinct.
   Home contains Recent handoffs and settings, with only used or pending projects.
   Project names, counts and status share the card content edge; a redundant
   initial tile does not take width from the full project identity.
@@ -80,6 +86,10 @@ in [the current candidate record](../releases/0.5.7-rc.1.md).
   including follow-ups. Retries never count; local pending shares are separate.
 - Project history is paginated. Saved outbox entries become immediately visible,
   survive interruption, and merge with server acknowledgements by UUID.
+  Project identity has its own bounded heading, separate from Back and Refresh.
+  A 48dp information entry exposes the complete name and ID when the heading is
+  shortened; same-name and retained-history identity remain explicit. Recycled
+  status pills update their background and text from the same actual status.
   Status/pending updates retain the visible task and offset without replaying
   entry motion. Activity recreation restores the reading position in retained
   older pages for both touch and keyboard browsing.
@@ -142,6 +152,8 @@ in [the current candidate record](../releases/0.5.7-rc.1.md).
   disclosure changes have feedback with a motion-off path. Destructive or
   permission-expanding decisions require confirmation; ordinary selections show
   their selected value without an extra confirmation dialog.
+  Disclosure chevrons take a short 90-degree turn and can reverse during motion
+  without leaving their closed-to-open angle range or changing callbacks.
   Home sync errors use a compact attention notice with the original cause in
   details. Manual status checks show immediate, accessible progress, prevent
   duplicate checks and return to the actual cached/connection state. They do not

@@ -1,5 +1,8 @@
 # Native README media
 
+The opening section and first table describe the original October 5 captures.
+New dated workflow media have their own source records below.
+
 Captured October 5, 2026 from the local 0.5.1 development build, with the
 existing Android demonstration activities. Android API 35; 720 × 1440 pixels
 at density 360 (320 × 640 dp). English and Simplified Chinese, light and dark.
@@ -188,5 +191,33 @@ does not repeat the stopped public GitHub gallery renderer.
 
 第一步现为收到材料入口的原生内存示例截图，保留全部标记及来源背景；正常字号下
 发送与本机保存反馈均可见。截图逐字节复制，来自三项通过的批次，后续末行验证另行
-记录。它们比当前签名候选包更新，不表示真实提交、材料读取或执行成功；旧图与动图
+记录。它们比签名0.5.7候选包更新，不表示真实提交、材料读取或执行成功；旧图与动图
 继续保留各自来源。
+
+## Current aligned project Home — October 6, 2026
+
+The second README workflow image uses four raw 320×640 normal-font Home captures
+from one eight-window Home/History memory-only group. Names, counts and status
+share the card edge; the settings gear has the new outline. Every image retains
+the memory/sample-project markers, full system bars and native focus ring.
+The lower list continues below the viewport. These are byte-for-byte copies,
+without crop, repaint or resize; all earlier Home images and tours remain intact.
+
+Debug APK SHA-256:
+`4cc4ebe3e95a338d84651e3ee445e9e8f62d09f05c470160a1ada57840d1763a`.
+[Source and capture scope](../../docs/releases/ui-navigation-icons-2026-10-06.md).
+These development captures include unversioned UI changes after source2cbcb34.
+They are not signed0.5.7 recordings, genuine handoffs or a physical-device test.
+The earlier low-contrast Home dark captures remain separate private evidence;
+this new coherent group is not assembled from different capture sessions.
+
+| Capture | SHA-256 |
+| --- | --- |
+| [source-home-en-light-20261006.png](source-home-en-light-20261006.png) | `31f6d3dc090804c8a6cb01ae598af36841eb527c616b33dfc95d8ba30b82506d` |
+| [source-home-en-dark-20261006.png](source-home-en-dark-20261006.png) | `20a779333440f86cff9e35900f0ea7d537975be2a43c783c90e515106f187b4d` |
+| [source-home-zh-light-20261006.png](source-home-zh-light-20261006.png) | `2f20d1114c50675e088a49ccf7aa37ba0dddf70b394c1d73646daf566cde57a8` |
+| [source-home-zh-dark-20261006.png](source-home-zh-dark-20261006.png) | `a420422c8c1ac05daf7d20b2cbbb850a4ad69f81ad8615a48764aa1abb5c828d` |
+
+第二步已换成同一批次的四张原生首页图，名称、数量和状态对齐，设置入口使用细线
+图标。验证标记、系统栏与焦点环完整保留；不修图、不裁切。不是签名包录制或真实
+交办，旧图与旧动图仍按原日期解释。

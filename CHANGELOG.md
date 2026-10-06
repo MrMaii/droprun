@@ -4,6 +4,12 @@
 
 Further UI refinements are separate from the current signed candidate.
 
+- Give project history a separate name heading and complete identity entry;
+  synchronize recycled status-pill color and shorten common disclosure arrows
+  to a reversible 90-degree turn. [Native verification](docs/releases/ui-project-history-identity-motion-2026-10-06.md).
+- Add localized installation links after the README tour, before its static gallery.
+- Unify the gear/information icons with round outline strokes and update the
+  README Home gallery from one coherent native capture group. [Verification](docs/releases/ui-navigation-icons-2026-10-06.md).
 - Let users inspect complete received text, URL paths and filenames before Send,
   with one compact disclosure shared by project and note steps. Preserve the
   payload, note and task choices. [Native verification](docs/releases/ui-share-material-disclosure-2026-10-06.md).
