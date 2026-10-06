@@ -2,7 +2,8 @@
 
 Updated 2026-10-06 UTC. Independent UI/brand work continues while real acceptance
 remains open. Signed0.5.7/code20 candidate is available.
-Separate compact-layout work continues outside that immutable package.
+Further material inspection and README refinements are source-only; project
+history is the next design implementation.
 
 ## Current delivery
 
@@ -23,6 +24,28 @@ Separate compact-layout work continues outside that immutable package.
   compact-layout work in the main checkout is not included in this package.
 
 ## Latest completed work
+
+- [Material inspection](../../docs/releases/ui-share-material-disclosure-2026-10-06.md):
+  both pre-Send steps expose exact plain/selectable text and complete names with
+  reading-scope copy; choices/note/payload/flight unchanged. Red1fail4.699s;
+  firstgreen2/3 43.109s/testwait issue; samebatch3/3 142.717s plus separate focused
+  lastline1/1 46.593s. Each uses8configs; prior tail-prefix frames remain intact.
+  Green/final/tail app APK is identical; tests differ. JVM24/lint0/30 fromgreen,
+  105source/102unchanged/72device-host hashes/guards0;670 readonly originals.
+  Root copied4 normal closed raw pictures to new README filenames, preserving
+  earlier images/GIFs. New material UI is not in signed07; no genuine extraction,
+  IME, TalkBack, motion-off runtime, recreation or physical claim.
+- [README architecture](../../docs/releases/readme-architecture-2026-10-06.md):
+  four existing SVGs reflowed400x840/20–26px; body19.5px at390 and16px at320.
+  Four native bounds/12 local Edge scenes/44loopbackGETs/owned cleanup pass.
+  Two intro/caption sentences and400width center wrapper refined in each language.
+  Root inspected2 actual320 scenes; independent docs/link/hash review passes.
+  SVGs are authored diagrams, not App captures; no public-render/cross-OS claim.
+
+- Curated source43d912763f6e2824d4e6f1b82a70131c5c5996dc is public: CI37407885179
+  attempt1 all3jobs/35steps/10required/core210/browser18 pass;18 fresh anonymous
+  immutable sourceGETs match. The compact layout is Unreleased source; signed07
+  stays7097. Public07/site10 records match their retained original verification.
 
 - [Compact Share layout](../../docs/releases/ui-share-compact-height-2026-10-06.md):
   one cap statement fixes native initial draft7/20dp clipping and400→401 height
@@ -104,16 +127,17 @@ Separate compact-layout work continues outside that immutable package.
 
 ## Single recommended next action
 
-Independently review the frozen compact Share source and publish its curated
-source plus verified07/site10 records. Keep signed07 immutable. Next design
-review checks whether received material is sufficiently inspectable before Send;
-no real task/IME/process-loss retry is authorized. Root owns publication and the
-private film exclusion; genuine acceptance and marketing handover stay open.
+Finish independent Material-source and final README-media review, then publish
+curated source. Next implement the reviewed project-history identity and recycled
+status surface with memory-only fixtures; keep list anchors/paging/removal intact.
+Signed07 stays immutable. No real task/IME/process-loss retry is authorized. Root
+owns publication and the private film exclusion; genuine acceptance and marketing
+handover stay open.
 
 ## Files this pass
 
-Share/Settings, two opt-in memory fixtures/new hierarchy test/LocalRecovery IDs;
-browser/main/pair-page and owning test teardown; PRD/contracts/changelog/native/
-browser/README records; runtime/installer version metadata and current handoff.
+Share material disclosure, opt-in editor fixture and new native test; four authored
+architecture SVGs/four exact raw PNG copies, bilingual README/media notes,
+PRD/changelog/two verification records/current handoff.
 Private frozen evidence stays outside Git. Author Thomas Deng
 <150266369+MrMaii@users.noreply.github.com>.

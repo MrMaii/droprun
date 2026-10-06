@@ -4,6 +4,12 @@
 
 Further UI refinements are separate from the current signed candidate.
 
+- Let users inspect complete received text, URL paths and filenames before Send,
+  with one compact disclosure shared by project and note steps. Preserve the
+  payload, note and task choices. [Native verification](docs/releases/ui-share-material-disclosure-2026-10-06.md).
+- Reflow the bilingual README architecture into readable phone-width diagrams,
+  retaining local/cloud ownership, return flow and both themes. Make own-account
+  deployment explicit before the tour. [Local verification](docs/releases/readme-architecture-2026-10-06.md).
 - Keep draft feedback readable in compact Share windows, removing a height
   boundary that could shrink the sheet as available space grew. Preserve natural
   short-form wrapping and all existing header, insets and submission behavior.

@@ -9,7 +9,7 @@
 
 > **公开预览 · 0.5.7-rc.1。** [实际验证记录与待通过的验收门槛](docs/releases/0.5.7-rc.1.md)。
 
-Codex 在你的 Windows 电脑上，进入你选定的已有项目工作。
+Codex 在你的 Windows 电脑上工作，Relay 由你部署到自己的 Cloudflare 账号。
 进度、报告和改动证据，回到手机上查看。
 
 ## 原生界面动效
@@ -40,9 +40,9 @@ Codex 在你的 Windows 电脑上，进入你选定的已有项目工作。
 
 ### 01 · 分享参考
 
-选已有项目。有明确想法时，留一句希望完成的改动。
+选好已有项目后，按需补充这次希望完成的改动。
 
-<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-share-zh-dark-20261006.png"><img src="assets/brand/source-share-zh-light-20261006.png" width="280" alt="原生 Android 留言步骤，展示示例材料、可选意图及模型强度入口，保留仅内存验证标记"></picture></p>
+<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-share-material-zh-dark-20261006.png"><img src="assets/brand/source-share-material-zh-light-20261006.png" width="280" alt="原生 Android 留言步骤，展示可展开的收到材料、可选意图及模型强度入口，保留仅内存验证标记"></picture></p>
 
 ### 02 · 跟进本地 Codex
 
@@ -87,7 +87,7 @@ DropRun 没有官方账号或订阅。Cloudflare、可选转写和 Codex 使用�
 
 ## 你的手机、电脑与 Relay
 
-<picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/readme-architecture-zh-dark.svg"><img src="assets/brand/readme-architecture-zh.svg" alt="自部署架构：Android 经自己的 Cloudflare Relay、Windows Connector 连接本地 Codex；项目代码和 Codex 登录留在电脑。"></picture>
+<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/readme-architecture-zh-dark.svg"><img src="assets/brand/readme-architecture-zh.svg" width="400" alt="自部署架构：Android 经自己的 Cloudflare Relay、Windows Connector 连接本地 Codex；项目代码和 Codex 登录留在电脑。"></picture></p>
 
 参考材料与留言：Android → 自己的 Relay → Windows Connector → 本地 Codex。
 进度、报告与交付文件：Connector → Relay → Android。

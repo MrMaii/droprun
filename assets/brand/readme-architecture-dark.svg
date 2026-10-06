@@ -1,37 +1,39 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 320" role="img" aria-labelledby="title description">
-  <title id="title">Self-hosted DropRun architecture</title>
-  <desc id="description">References and notes go from Android through your Cloudflare Relay and Windows Connector to local Codex. Progress, reports and files return through the Connector and Relay. Project code and Codex login stay on your computer.</desc>
-  <rect width="1000" height="320" rx="24" fill="#171B18"/>
-  <g font-family="Segoe UI, Microsoft YaHei, sans-serif">
-    <circle cx="38" cy="34" r="6" fill="#B8EF73"/>
-    <text x="54" y="40" font-size="18" fill="#B8C0B5">Share a reference + note →</text>
-    <rect x="526" y="58" width="464" height="206" rx="20" fill="#283222" stroke="#3B453D"/>
-    <text x="548" y="87" font-size="16" font-weight="600" fill="#B8C0B5">YOUR COMPUTER · code + Codex login stay here</text>
-    <g fill="#232923" stroke="#3B453D" stroke-width="1.5">
-      <rect x="28" y="112" width="180" height="130" rx="18"/>
-      <rect x="272" y="112" width="208" height="130" rx="18"/>
-      <rect x="544" y="112" width="188" height="130" rx="18"/>
-      <rect x="796" y="112" width="176" height="130" rx="18"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="840" viewBox="0 0 400 840" role="img" aria-labelledby="title description" lang="en">
+  <title id="title">DropRun: your phone, your cloud, your computer</title>
+  <desc id="description">Share a reference and optional note from Android to the Cloudflare Relay you deploy in your own account. Your Windows computer runs the Connector and local Codex in an existing project. Project code and Codex login stay on your computer. Progress, reports and delivery files return through Connector and Relay to your phone.</desc>
+  <rect width="400" height="840" rx="24" fill="#171B18"/>
+  <g font-family="system-ui, -apple-system, Segoe UI, PingFang SC, Microsoft YaHei, sans-serif">
+    <circle cx="30" cy="24" r="5" fill="#B8EF73"/>
+    <text x="46" y="31" font-size="20" fill="#B8C0B5">Reference + optional note</text>
+
+    <rect id="phone-card" x="24" y="62" width="352" height="94" rx="20" fill="#232923" stroke="#3B453D" stroke-width="1.5"/>
+    <text data-box="phone-card" x="48" y="102" font-size="26" font-weight="600" fill="#F4F6EE">Android phone</text>
+    <text data-box="phone-card" x="48" y="132" font-size="20" fill="#B8C0B5">Share a reference + note</text>
+
+    <rect id="relay-card" x="24" y="212" width="352" height="132" rx="20" fill="#232923" stroke="#3B453D" stroke-width="1.5"/>
+    <text data-box="relay-card" x="48" y="252" font-size="26" font-weight="600" fill="#F4F6EE">Your Cloudflare Relay</text>
+    <text data-box="relay-card" x="48" y="285" font-size="20" fill="#B8C0B5">You deploy it in your account.</text>
+    <text data-box="relay-card" x="48" y="317" font-size="20" fill="#B8C0B5">Workers · D1 · R2</text>
+
+    <rect id="computer-group" x="16" y="400" width="368" height="340" rx="24" fill="#283222" stroke="#3B453D" stroke-width="1.5"/>
+    <text data-box="computer-group" x="40" y="436" font-size="25" font-weight="600" fill="#F4F6EE">Your Windows computer</text>
+    <text data-box="computer-group" x="40" y="465" font-size="20" fill="#B8C0B5">You run both parts locally.</text>
+
+    <rect id="connector-card" x="32" y="490" width="336" height="78" rx="18" fill="#232923" stroke="#3B453D" stroke-width="1.5"/>
+    <text data-box="connector-card" x="52" y="522" font-size="24" font-weight="600" fill="#F4F6EE">Windows Connector</text>
+    <text data-box="connector-card" x="52" y="548" font-size="20" fill="#B8C0B5">Connects Relay to local Codex</text>
+
+    <rect id="codex-card" x="32" y="618" width="336" height="78" rx="18" fill="#232923" stroke="#3B453D" stroke-width="1.5"/>
+    <text data-box="codex-card" x="52" y="650" font-size="24" font-weight="600" fill="#F4F6EE">Local Codex</text>
+    <text data-box="codex-card" x="52" y="676" font-size="20" fill="#B8C0B5">Works in your existing project</text>
+    <text data-box="computer-group" x="40" y="723" font-size="20" fill="#B8C0B5">Code + Codex login stay here</text>
+
+    <g fill="none" stroke="#B8C0B5" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M190 172V198 M184 192L190 198L196 192 M210 198V172 M204 178L210 172L216 178"/>
+      <path d="M190 360V386 M184 380L190 386L196 380 M210 386V360 M204 366L210 360L216 366"/>
+      <path d="M190 584V604 M184 598L190 604L196 598 M210 604V584 M204 590L210 584L216 590"/>
     </g>
-    <g fill="#F4F6EE" font-size="23" font-weight="600" text-anchor="middle">
-      <text x="118" y="159">Android</text>
-      <text x="376" y="154">Your Cloudflare</text>
-      <text x="376" y="182">Relay</text>
-      <text x="638" y="154">Windows</text>
-      <text x="638" y="182">Connector</text>
-      <text x="884" y="159">Local Codex</text>
-    </g>
-    <g fill="#B8C0B5" font-size="16" text-anchor="middle">
-      <text x="118" y="192">Share sheet</text>
-      <text x="376" y="214">Workers · D1 · R2</text>
-      <text x="638" y="214">Runs on your PC</text>
-      <text x="884" y="192">Existing project</text>
-    </g>
-    <g fill="none" stroke="#B8C0B5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M228 177H252 M234 171L228 177L234 183 M246 171L252 177L246 183"/>
-      <path d="M500 177H524 M506 171L500 177L506 183 M518 171L524 177L518 183"/>
-      <path d="M752 177H776 M758 171L752 177L758 183 M770 171L776 177L770 183"/>
-    </g>
-    <text x="28" y="298" font-size="18" fill="#B8C0B5">← Progress, reports + delivery files return through your Relay</text>
+    <text x="24" y="784" font-size="20" fill="#B8C0B5">Progress, reports + files return</text>
+    <text x="24" y="812" font-size="20" fill="#B8C0B5">through Relay to your phone.</text>
   </g>
 </svg>

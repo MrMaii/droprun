@@ -91,9 +91,20 @@ public final class DemoShareEditorActivity extends ShareActivity {
         };
         store.select("","");L.language(getIntent().getStringExtra("language"));
         shared="https://example.invalid/ui-sample";selected="ui-probe-project";model="probe-fast";effort="medium";draft="";step=1;receiving=false;sent=false;
+        if(getIntent().getBooleanExtra("materialReview",false))materialSample("mixed");
         TextView notice=Ui.text(this,L.t("UI probe · nothing saved or sent.","界面探针 · 未保存或发送任何分享。"),12,0xFFFFFFFF);notice.setPadding(dp(20),dp(4),dp(20),0);root.addView(notice,new FrameLayout.LayoutParams(-1,-2,Gravity.TOP));
         if(hierarchyFontScale!=0f){notice.setText(L.t("UI probe · memory only","界面探针 · 仅内存"));notice.setTextSize(android.util.TypedValue.COMPLEX_UNIT_DIP,12);notice.setTag("hierarchy-marker");if(getIntent().getBooleanExtra("compactHeight",false)&&getIntent().getBooleanExtra("modelDisclosure",false)){root.removeView(notice);notice.setTextColor(Ui.MUTED);notice.setPadding(0,0,0,dp(4));sheet.addView(notice,0);}}
         stage.addView(stepNote(),new ViewGroup.LayoutParams(-1,-2));dots.setActive(1,false);back.setVisibility(View.VISIBLE);probeReady=true;
+    }
+    void materialSample(String kind){
+        if(hierarchyFontScale==0f||!getIntent().getBooleanExtra("materialReview",false)||!getIntent().getBooleanExtra("modelDisclosure",false))throw forbidden("material sample outside opt-in memory probe");
+        StringBuilder text=new StringBuilder("  Received sample text, including its original spacing.\n");
+        for(int n=1;n<=12;n++)text.append("Source line ").append(n).append(": keep the complete text and distinguish the final destination. 参考内容保留。\n");
+        text.append("SOURCE_TAIL — 原文结尾完整保留。  \n");
+        String links="https://example.invalid/posts/alpha?layout=compact&focus=card%20one#motionA\nhttps://example.invalid/posts/beta?layout=wide&focus=card%20two#motionB\n";
+        shared=kind.equals("files")?"":kind.equals("link")?"  https://example.invalid/posts/alpha?layout=compact#motionA  ":kind.equals("text")?text.toString():links+text;
+        attachments=new JSONArray();
+        if(kind.equals("mixed")||kind.equals("files"))try{for(int n=1;n<=8;n++)attachments.put(new JSONObject().put("name","Interface reference collection - shared prefix - 完整文件名 🟢 - final variant 0"+n+".png").put("mime","image/png"));}catch(Exception error){throw new AssertionError(error);}
     }
     boolean executionSettingConfirmed(){return confirmed;}
     @Override void draftFeedback(){if(draftStatus!=null){draftStatus.setText(L.t("UI sample · note not saved.","界面示例 · 留言未保存。"));retryDraft.setVisibility(View.GONE);}}

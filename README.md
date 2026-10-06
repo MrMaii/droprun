@@ -9,7 +9,7 @@
 
 > **Public preview · 0.5.7-rc.1.** [Validation record and open acceptance gates](docs/releases/0.5.7-rc.1.md).
 
-Codex works in an existing project on your own Windows computer.
+Codex works on your Windows computer. You deploy the Relay to your own Cloudflare account.
 DropRun brings progress, reports and evidence back to your phone.
 
 ## Native UI tour
@@ -41,9 +41,9 @@ real Codex task. [Capture notes](assets/brand/readme-media.md).
 
 ### 01 · Share a reference
 
-Pick an existing project. Add a note when you have a specific change in mind.
+After choosing an existing project, add a note when you have a specific change in mind.
 
-<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-share-en-dark-20261006.png"><img src="assets/brand/source-share-en-light-20261006.png" width="280" alt="Native Android note step with sample material, optional intent and visible Model & effort disclosure; memory-only probe marker retained"></picture></p>
+<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-share-material-en-dark-20261006.png"><img src="assets/brand/source-share-material-en-light-20261006.png" width="280" alt="Native Android note step with expandable received material, optional intent and Model & effort controls; memory-only probe marker retained"></picture></p>
 
 ### 02 · Follow local Codex
 
@@ -95,7 +95,7 @@ different signing identities cannot silently replace each other.
 
 ## Your phone. Your computer. Your Relay.
 
-<picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/readme-architecture-dark.svg"><img src="assets/brand/readme-architecture.svg" alt="Self-hosted architecture: Android connects through your Cloudflare Relay and Windows Connector to local Codex; project code and Codex login stay on your computer."></picture>
+<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/readme-architecture-dark.svg"><img src="assets/brand/readme-architecture.svg" width="400" alt="Self-hosted architecture: Android connects through your Cloudflare Relay and Windows Connector to local Codex; project code and Codex login stay on your computer."></picture></p>
 
 References and notes: Android → your Relay → Windows Connector → local Codex.
 Progress, reports and delivery files: Connector → Relay → Android.

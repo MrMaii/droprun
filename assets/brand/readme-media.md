@@ -121,9 +121,9 @@ separate provenance.
 展示结果主卡与操作层级；底部部分控件不在画面内。不是签名包录制，也不表示真实交办
 或预览成功。旧截图与官网录屏保留各自来源。
 
-## Current share note step — October 6, 2026
+## Earlier share note step — October 6, 2026
 
-The first README step uses four raw 320×640 normal-text native note-step captures.
+The first README step previously used four raw 320×640 normal-text native note-step captures.
 They show sample material and intent, the visible model title/summary and collapsed
 disclosure. These are memory-only development probes, not project-selection
 screens, a signed-package recording or genuine Codex execution. Markers, native
@@ -145,3 +145,48 @@ their 0.5.1 October 5 captions still apply. These new assets are README media on
 
 第一步更新为10月6日的原生留言步骤：示例材料、意图与模型入口，保留仅内存标记。
 不是选项目截图、签名包录制或真实交办。旧动图与减少动画的静态降级仍保留原来源。
+
+## Architecture illustration — October 6, 2026
+
+The four English/Chinese light/dark architecture SVGs are authored diagrams,
+not native screenshots. Their compact 400×840 layout keeps the owner's cloud
+outside the Windows boundary and shows Connector and Codex inside it. Platform
+font text remains selectable in the SVG source, without scripts or external fonts.
+Local Windows Edge text bounds and twelve narrow-width renders were checked;
+other operating systems and public Markdown rendering were not revalidated.
+[Design and verification](../../docs/releases/readme-architecture-2026-10-06.md).
+Original App images and tours retain the separate provenance above.
+
+四张中英文、深浅色架构图为源码绘制的示意图，不是 App 截图。紧凑布局让手机上也能
+读清本机与自部署中转的边界；本次只验证本地 Windows Edge，没有重试公开平台的
+渲染检查。原生截图与录屏仍按各自记录解释。
+
+## Current received-material entry — October 6, 2026
+
+The first README workflow image now uses four raw 320×640 normal-font native
+note-step captures with the received-material disclosure collapsed. They are
+byte-for-byte copies from the successful three-method memory-only batch. Each
+retains its marker, sample filenames/intent, system bars and source underlay.
+Send and phone-save feedback are visible; no handoff was sent. The later focused
+tail run is separate evidence, not the origin of these four pictures.
+
+Tested ShareActivity SHA-256:
+`9774bd0c4c8de1f0d892a71cb03c0cb86e4ce4404ceff81e16a392eb04c47bb4`;
+debug APK `921a4fea1e620fa307af8abd05d6ac9a994f1c07f9c9a32cd93451f796ceffdc`.
+[Native verification and limits](../../docs/releases/ui-share-material-disclosure-2026-10-06.md).
+These pictures are newer than the signed0.5.7 candidate. They are not extraction,
+genuine Codex work or a signed-package recording. No crop, repaint or resize;
+earlier Share PNGs, tours and static motion fallbacks remain unchanged. This pass
+does not repeat the stopped public GitHub gallery renderer.
+
+| Capture | SHA-256 |
+| --- | --- |
+| [source-share-material-en-light-20261006.png](source-share-material-en-light-20261006.png) | `6d8bdbbea5ea982c9973a32789cf549a8c6b66b59f362a551b9414062533ddaf` |
+| [source-share-material-en-dark-20261006.png](source-share-material-en-dark-20261006.png) | `68878e311221c6d1ce296c0f3fa6ec4e20920c175cbe29c346266c150994506b` |
+| [source-share-material-zh-light-20261006.png](source-share-material-zh-light-20261006.png) | `8aef06ad954e7e58a95d6e9d2aced4a076b539e2a4c1a85020779e1c79fe42a7` |
+| [source-share-material-zh-dark-20261006.png](source-share-material-zh-dark-20261006.png) | `2125479828e89c6d510b2ab5ff43a1c33fca10330b9cf5aad1a2414303ccfe8d` |
+
+第一步现为收到材料入口的原生内存示例截图，保留全部标记及来源背景；正常字号下
+发送与本机保存反馈均可见。截图逐字节复制，来自三项通过的批次，后续末行验证另行
+记录。它们比当前签名候选包更新，不表示真实提交、材料读取或执行成功；旧图与动图
+继续保留各自来源。

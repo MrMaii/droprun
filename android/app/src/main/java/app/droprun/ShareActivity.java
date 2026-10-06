@@ -53,7 +53,7 @@ public class ShareActivity extends StyledActivity {
     LinearLayout receiveActions,receiveContent;
     String shared="",last="",selected="",model="",effort="",query="",draft="";JSONArray attachments=new JSONArray();
     List<JSONObject> recentProjects=Collections.emptyList();
-    int step=-1,permissionGeneration;boolean receiving=true,showAll=false,panelOpen=false,busy=false,closing=false,sent=false;
+    int step=-1,permissionGeneration;boolean receiving=true,showAll=false,panelOpen=false,materialOpen=false,busy=false,closing=false,sent=false;
 
     @Override protected void onCreate(Bundle state){
         super.onCreate(state);store=new Store(this);Ui.configureOverlay(this);overridePendingTransition(0,0);
@@ -62,7 +62,7 @@ public class ShareActivity extends StyledActivity {
         build();
         if(state!=null&&state.getBoolean("sent")){sent=true;receiving=false;close();return;}
         if(state!=null){
-            shared=state.getString("shared",shared);selected=state.getString("selected","");draft=state.getString("draft","");query=state.getString("query","");showAll=state.getBoolean("showAll");
+            shared=state.getString("shared",shared);selected=state.getString("selected","");draft=state.getString("draft","");query=state.getString("query","");showAll=state.getBoolean("showAll");materialOpen=state.getBoolean("materialOpen",false);
             restoredState=state;
         }
         try{
@@ -121,6 +121,7 @@ public class ShareActivity extends StyledActivity {
     @Override public Object onRetainNonConfigurationInstance(){return incoming;}
     @Override protected void onSaveInstanceState(Bundle state){
         super.onSaveInstanceState(state);state.putBoolean("sent",sent);
+        state.putBoolean("materialOpen",materialOpen);
         state.putString("query",query);state.putBoolean("showAll",showAll);
         if(incoming!=null){state.putString("importId",incoming.id);state.putString("importScope",incoming.store.scope);}
         state.putString("shared",shared);state.putString("selected",selected);state.putString("draft",note==null?draft:note.getText().toString());state.putString("model",model);state.putString("effort",effort);state.putInt("step",step);
@@ -261,6 +262,24 @@ public class ShareActivity extends StyledActivity {
     String projectName(){JSONObject project=store.project(selected);return project==null?"":store.projectLabel(project);}
 
     // ---- the shared material --------------------------------------------------------------------
+    View materialDisclosure(){
+        LinearLayout content=Ui.vertical(this);content.setPadding(dp(14),0,dp(14),dp(12));
+        if(materialOpen)materialContent(content);
+        String label=materialLabel();LinearLayout group=Ui.disclosure(this,L.t("Received material: ","收到的材料：")+label,content,materialOpen,open->{materialOpen=open;if(open&&content.getChildCount()==0)materialContent(content);});
+        group.setTag("share-material-review");group.setBackground(Ui.outlined(this,Ui.SURFACE_2,Ui.LINE,14,1));
+        LinearLayout header=(LinearLayout)group.getChildAt(0);header.setPadding(dp(14),0,dp(14),0);TextView summary=(TextView)header.getChildAt(0);summary.setText(label);summary.setTextSize(13);Ui.oneLine(summary);
+        return group;
+    }
+    void materialContent(LinearLayout content){
+        TextView scope=Ui.caption(this,L.t("Text and filenames received from the source app. Reading coverage is reported with the result.","这里显示来源 App 传来的文字和文件名；实际读取范围以交付报告为准。"));scope.setTag("share-material-scope");content.addView(scope);
+        if(!shared.isEmpty()){TextView text=Ui.text(this,shared,14,Ui.TEXT);text.setTextIsSelectable(true);text.setTag("share-material-text");content.addView(text,Ui.margins(this,10,0));}
+        if(attachments.length()>0){
+            content.addView(Ui.label(this,L.t("Files (","文件（")+attachments.length()+L.t(")","）")));
+            LinearLayout files=Ui.vertical(this);files.setTag("share-material-files");
+            for(int n=0;n<attachments.length();n++){TextView name=Ui.text(this,attachments.optJSONObject(n).optString("name"),14,Ui.TEXT);name.setTextIsSelectable(true);name.setTag("share-material-file:"+n);files.addView(name,Ui.margins(this,n==0?0:10,0));}
+            content.addView(files);
+        }
+    }
     TextView materialChip(){
         String label=materialLabel();TextView chip=new TextView(this);chip.setText(label);chip.setTextSize(13);chip.setTextColor(Ui.TEXT);chip.setTypeface(Ui.medium());chip.setGravity(Gravity.CENTER_VERTICAL);
         chip.setIncludeFontPadding(false);chip.setPadding(dp(14),dp(10),dp(14),dp(10));chip.setMinHeight(dp(40));chip.setBackground(Ui.outlined(this,Ui.SURFACE_2,Ui.LINE,14,1));Ui.oneLine(chip);
@@ -284,7 +303,7 @@ public class ShareActivity extends StyledActivity {
         recentProjects=ProjectPresentation.merge(store.activity(),store.pending(),store.tasks());
         LinearLayout column=Ui.vertical(this);
         column.addView(Ui.title(this,L.t("Where should this idea go?","转发给哪个项目？"),22));
-        LinearLayout.LayoutParams chipParams=new LinearLayout.LayoutParams(-1,-2);chipParams.setMargins(0,dp(12),0,dp(18));column.addView(materialChip(),chipParams);
+        LinearLayout.LayoutParams chipParams=new LinearLayout.LayoutParams(-1,-2);chipParams.setMargins(0,dp(12),0,dp(18));column.addView(materialDisclosure(),chipParams);
         LinearLayout box=Ui.card(this);box.setPadding(dp(6),dp(6),dp(6),dp(6));
         box.setElevation(0);box.setBackground(Ui.outlined(this,Ui.SURFACE_2,Ui.LINE,Ui.RADIUS_CARD,1));
         search=new EditText(this);search.setHint(L.t("Find a project","搜索项目"));search.setSingleLine(true);search.setImeOptions(EditorInfo.IME_ACTION_DONE);search.setText(query);Ui.styleInput(search);
@@ -374,7 +393,7 @@ public class ShareActivity extends StyledActivity {
         LinearLayout column=Ui.vertical(this);
         column.addView(Ui.title(this,L.t("What should Codex do?","想让 Codex 做什么？"),22));
         TextView target=Ui.caption(this,L.t("For “","转发到「")+projectName()+L.t("”","」"));column.addView(target);
-        column.addView(materialChip(),Ui.margins(this,12,4));
+        column.addView(materialDisclosure(),Ui.margins(this,12,4));
         note=new EditText(this);note.setHint(L.t("Optional. Leave this blank and let Codex find the useful part.","可选。留空让 Codex 自己判断怎么用。"));note.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_FLAG_MULTI_LINE|InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
         note.setMinLines(3);note.setMaxLines(6);note.setFilters(new InputFilter[]{new InputFilter.LengthFilter(15000)});note.setText(draft);Ui.styleInput(note);
         note.addTextChangedListener(new TextWatcher(){public void beforeTextChanged(CharSequence s,int start,int count,int after){}public void onTextChanged(CharSequence s,int start,int before,int count){draft=s.toString();checkpoint();}public void afterTextChanged(Editable value){}});

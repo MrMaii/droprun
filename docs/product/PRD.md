@@ -15,6 +15,9 @@ in [the current candidate record](../releases/0.5.7-rc.1.md).
   with compact website, preview-download and language links below it.
   A dated native UI tour precedes the workflow gallery; reduced motion selects
   a static light/dark capture, with explicit still links and unchanged provenance.
+  The bilingual architecture diagram remains readable at phone width and separates
+  the owner's Cloudflare from the computer's Connector and local Codex. The first
+  introduction explains that the owner must deploy their own Relay.
   Windows package scripts must start on an unmanaged Windows client with its
   default script policy, without changing persistent user or machine policy.
 - Light translucent UI, lime actions, dark/system appearance, English/Chinese.
@@ -40,6 +43,11 @@ in [the current candidate record](../releases/0.5.7-rc.1.md).
   the retained three values requires clearing the link first.
   Share project and intent steps each have one main question, without a
   duplicate section label. Material, execution context and actions remain clear.
+  Both pre-Send steps offer a compact, accessible material disclosure. Expansion
+  shows exact received text/URLs and each complete filename in order, without
+  fetching links or opening files. It distinguishes received payload from actual
+  reading coverage, omits empty sections and preserves expansion across local
+  step changes. Long material remains individually reachable by scrolling.
   The optional model control shows a title, summary and expanded state. Effort
   choices show localized meanings with complete 48dp option rows; protocol IDs
   and unknown values stay intact. Focus, project and note survive local choices.
