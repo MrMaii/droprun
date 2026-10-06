@@ -176,6 +176,9 @@ in [the current candidate record](../releases/0.5.8-rc.1.md).
   computer retains its distinct surface. At 150% font and above, project access
   actions follow the full project name on a separate line. A page-wide save disables
   and dims permission controls until its actual completion.
+  Delivery uses the ready preview as its primary action, an outlined file entry
+  and a quiet follow-up button with the same target and interaction states.
+  Empty Home explicitly identifies DropRun as the system-share destination.
   Home sync errors use a compact attention notice with the original cause in
   details. Manual status checks show immediate, accessible progress, prevent
   duplicate checks and return to the actual cached/connection state. They do not

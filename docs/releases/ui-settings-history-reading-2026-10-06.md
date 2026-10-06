@@ -50,7 +50,7 @@ reported as product failures or functional passes.
 
 ## Source and captures
 
-Final source SHA256:
+Source SHA256 for the original fourteen-window capture pass:
 
 - Settings: `08fb1bdf8776f1874b26fd50d1995905b4ca371727075cb73e6fb1565bd670cb`
 - History: `e324bd86a87775cda58583b1b3dc86eaa1157c95997e77b4a261b19d551df898`
@@ -78,5 +78,34 @@ page. History shows three sample records with sample dates, not actual work.
 The signed 0.5.8-rc.1 downloads retain their earlier immutable source. Current
 reading refinements are development source. Genuine end-to-end acceptance,
 physical accessibility/performance and clean Windows/Cloudflare setup remain
-open. The original two-line cap for unique Settings project names also remains
-an independent large-font reading item; this check covers duplicate names.
+open. That original pass covers duplicate project names. The independent check
+below resolves the remaining unique-name case.
+
+## Follow-up: complete unique project names at large font
+
+Unique project names now retain their complete text at font scale 1.5 and above.
+Regular-size names keep the previous two-line cap. At 200%, the permission
+action stays below the name; a long name can be read through scrolling before
+the action is reached. Project labels, permissions and confirmation are unchanged.
+
+The focused native baseline passed 1/1 in 3.133s and recorded actual two-line
+ellipsis hiding 109 English characters and 40 Chinese characters. The corrected
+check passed 1/1 in 3.395s: seven English and six Chinese lines had no ellipsis,
+and all thirteen complete lines were individually reachable inside the safe
+scroll viewport. Both names retained 280dp width; permission controls retained
+their labels, state, ripple, focus and at least 48dp targets.
+
+Each phase used only English/light and Chinese/dark memory windows at font2.
+All four windows reached known `DESTROYED`; four actual guard rows per phase
+were zero. No business control was clicked. Font/language state was restored;
+device facts, OS/IME settings and source closures matched before/after.
+This focused check does not add new screenshots or physical-device evidence.
+
+Settings SHA256 after this one-statement change:
+`c1fe0eae1540345616eded25aedd2bf6b5d2e3810b03e0396b447fdd229d05ac`.
+The corrected build contains 121 Android source files with four unchanged
+Gradle files, still 0.5.8-dev/code21. App APK:
+`b0076ad3283a5a270449b88636b8209dfa9056a1ba648f998bc95c8b3673305c`;
+test APK:
+`3f1639aeeeb3e3beb7ee047a90c45d66b68514725a62ae03c9d5f28022899138`.
+The earlier capture hashes and signed 0.5.8 downloads remain unchanged.

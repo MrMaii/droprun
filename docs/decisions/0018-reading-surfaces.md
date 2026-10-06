@@ -21,9 +21,12 @@ over its opaque page background, with a quiet label and a readable summary.
 
 Settings and project history follow this same edge. Reserve the distinct filled
 Settings card for the connected computer; ordinary preferences and permission
-rows use plain sections. Large text moves the permission action below its name.
+rows use plain sections. Large text keeps the complete project name and moves
+the permission action below it, with long names reachable through scrolling.
 History uses one outer separator, preserving stable row identity and feedback.
 Disclosure reversal continues the current opacity as well as its current height.
+Delivery keeps the ready preview primary, files outlined and follow-up quiet,
+using the existing button states and touch target.
 
 Preserve counts, identity, permissions, callbacks, full evidence and confirmation
 for consequential actions. Appearance does not change business authorization.

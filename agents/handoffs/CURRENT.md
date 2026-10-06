@@ -1,12 +1,16 @@
 # Current Handoff
 
-Updated 2026-10-06 UTC. Signed 0.5.8/code21 is the public candidate; GPTSites12
+Updated 2026-10-06 UTC. Signed 0.5.8/code21 is the public candidate; GPTSites13
 is live. Subsequent Share/Home/delivery reading refinements are public development
 source, with twelve new native stills and bilingual README galleries. Genuine
 acceptance and marketing handover remain open. Independent UI work continues.
 This pass adds Settings/history reading sections and continuous disclosure
 opacity, eight secondary stills and two fresh Share recordings. Signed08 remains
-unchanged; publication of this subsequent source/media is tracked separately.
+unchanged. Subsequent source f9d8dd03ec0323563b0f0299d2fe33e74bc869bf and
+same-address GPTSites13 are now public; exact-source CI has passed.
+Subsequent unique-name, first-use and follow-up refinements are locally verified;
+0.5.9/code22 metadata is prepared for the next exact-source candidate build.
+Public downloads still remain signed08; no new package or CI result claimed yet.
 
 ## Current delivery
 
@@ -31,6 +35,19 @@ unchanged; publication of this subsequent source/media is tracked separately.
   existing VTT checkout CRLF files are Git text-normalization equivalent. Archive
   66files/11479040B/SHA3c053ef1f4f54b09f2b2f3ad47c9876798f8e94617237322ab1c0164710d208d.
   Native publication confirmed; no fresh hosted browser/HTTP check claimed.
+- Latest source f9d8dd03ec0323563b0f0299d2fe33e74bc869bf:34curated files,
+  author/committer Thomas verified, scanner503 pass;34fresh anonymous immutable
+  raw GETs match byte-for-byte. CI37440173099 attempt1 success:3jobs/35steps/
+  10required/3checks; actualcore210/browser18, fail/cancelled/skipped/todo0.
+  Original326980B log SHA78c18e92b2be36ddc3ddca633aaf891d2aa585350ed27e2546af43a8450463d6.
+- GPTSites13: hosting source51b55a86dd97865fff875a935f0cf6d6f8954d0c, native
+  success2026-10-06T09:04:16.733049+00:00, same public URL. Tracked71files copied,
+  six new native media/two changed pages; old media and unknown nested paths kept.
+  Saved archive72files/12359680B, native contentSHAa2664127eb0dfdc737fdbf55f93415b75a5b613c8b99d832a2b44b7b19371857.
+  Local input gzip11353512B SHA f6beb11c9a62066adf96e12218561f3c7b77434e66d13acaf67815b9811ea4a8;
+  platform archive identity is recorded separately. No new hosted HTTP/browser QA.
+  Proofs: .local/ux-oct6-site-secondary-reading/deployment.json and
+  .local/ux-oct6-secondary-reading-public-review/. Signed08 download unchanged.
 
 ## Latest completed work
 
@@ -40,7 +57,29 @@ unchanged; publication of this subsequent source/media is tracked separately.
   Settings1/1 16.987s/six windows/24actualguard rows0; history1/1 17.111s/six
   windows/36rebinds/18guard rows0. Eight raw normal-font stills directly viewed
   and copied exactly to brand. Duplicate-name full IDs and font2 stacked actions
-  pass. Unique Settings project names retain their original two-line cap.
+  pass. The separate follow-up below resolves the unique-name two-line cap.
+- Unique Settings names: baseline1/1 3.133s recorded actual two-line ellipsis
+  (109English/40Chinese characters hidden). Accepted1/1 3.395s verifies all
+  7English+6Chinese complete lines individually reachable at font2/280dp, with
+  the 48dp permission action below. Each phase2knownDESTROYED/4actualguard rows0;
+  no business click/OS/IME change. Settingsc1fe0eae; appb0076ad3/test3f1639ae.
+  Frozen121sources+4configs unchanged during checks, JVM24/lint0errors30warnings.
+- [First-use/follow-up](../../docs/releases/ui-first-use-followup-2026-10-06.md):
+  empty Home names DropRun in the share chooser; task request feedback uses
+  neutral messages; Follow up uses existing ghost style/52dp/states/callback.
+  Native4normalcaptures1/1 12.684s; separate2font2 reading/plan1/1 3.648s;
+  all6knownDESTROYED, 4capturedguards0+2actualBundle rows0, no business action.
+  Root directly viewed4raw stills, copied exact8brand/landing newnames; earlier
+  stills retained. Main4ada0f5b/Task78cac5ab; appacfde93a/test3f1639ae,
+  121sources+4unchangedconfigs/0.5.8-dev21/JVM24/lint0errors30warnings.
+  Empty-state and async request-copy edits are static/compiled, not exercised
+  by these probes. README adds an illustrative note and selects new delivery
+  images; final localized landing build22assets uses the public canonical URL.
+  Local proof: .local/ux-oct6-delivery-followup-owner/accepted.json.
+- After those native runs, prepared seven metadata files for0.5.9/code22 only;
+  protocol2/schema11/shutdown1 stay unchanged. Package/source/release proof must
+  be freshly bound; source/version helper and candidate plan are private. Sites13
+  and signed08 stay unchanged until separately verified publication succeeds.
 - Interrupted disclosure opacity baseline1/1 4.258s: four alpha jumps0.36–0.48.
   Accepted1/1 4.195s: four immediate reversal deltas exactly0, two windows/six
   guard rows0. All14 accepted Settings/history/opacity windows known DESTROYED.
@@ -110,16 +149,18 @@ unchanged; publication of this subsequent source/media is tracked separately.
 
 ## Single recommended next action
 
-Resolve the remaining unique Settings project-name two-line cap at large font,
-using guarded memory UI. Pair has no new capture proving a remaining issue.
-Finish the current source/README/media publication and same-address GPTSites
-refresh; prepare the next signed candidate after that UX pass. Do not replay
+Publish the curated follow-up source and build0.5.9/code22 in a fresh clean
+managed checkout, including all public reading refinements. Bind new exact CI,
+signing/package/export/public-download proof; then update downloads and Sites.
+Pair has no new capture proving a remaining issue. Do not replay
 denied paths or use real tasks/OS changes. Genuine acceptance remains open.
 
 ## Files this pass
 
 Settings/History/Ui local statements; three opt-in native tests; README EN/ZH,
 eight secondary stills, two native GIFs and six MP4/poster/caption files;
-website builder/HTML, PRD/ADR0018/changelog/media notes and two native records.
+website builder/HTML, PRD/ADR0018/changelog/media notes and native records;
+unique-name probe, first-use/request copy/ghost follow-up, four new delivery
+stills in brand/landing and seven0.5.9/code22 metadata fields.
 Private film/launch assets stay uncommitted. Frozen raw evidence stays private.
 Author Thomas Deng <150266369+MrMaii@users.noreply.github.com>.

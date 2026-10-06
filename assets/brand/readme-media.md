@@ -334,3 +334,13 @@ timestamps round to 9.08s and 9.04s respectively. Reduced-motion stills select t
 current plain Share captures. Earlier October 6 recordings remain historical.
 [Original identities, native checks and sampling boundaries](../../docs/releases/ui-share-reading-motion-2026-10-06.md)
 own this media's provenance. These are memory-only UI samples, not actual tasks.
+
+## Quieter delivery follow-up
+
+The workflow's delivery stills now use four later EN/ZH light/dark normal-font
+captures. Preview remains lime, files outlined and follow-up uses the existing
+ghost style. All original PNGs were directly viewed and copied exactly to the
+brand and website sets; earlier reading captures remain historical. The probes
+use memory-only results and perform no business action.
+[Source identity, checks and boundaries](../../docs/releases/ui-first-use-followup-2026-10-06.md).
+The README's written example note is illustrative, separate from all recordings.

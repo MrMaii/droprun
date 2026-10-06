@@ -61,6 +61,7 @@ public class TaskActivity extends StyledActivity {
     void button(LinearLayout target,String label,boolean primary,Runnable action){
         Button button=Ui.button(this,label,primary);
         if(label.equals(L.t("Delete record & material","删除记录与材料"))||label.equals(L.t("Stop handoff","停止任务")))Ui.styleDanger(button);
+        else if(label.equals(L.t("Follow up","继续追问")))Ui.styleGhost(button);
         button.setEnabled(!busy);button.setOnClickListener(v->action.run());target.addView(button,Ui.margins(this,8,0));
     }
     void disclosure(String heading,String value){
@@ -155,9 +156,9 @@ public class TaskActivity extends StyledActivity {
     void confirm(String title,String message,Work work){new AlertDialog.Builder(this).setTitle(title).setMessage(message).setNegativeButton(L.t("Cancel","取消"),null).setPositiveButton(L.t("Confirm","确认"),(d,w)->perform(work)).show();}
     void notice(String message){notice.setText(message);notice.setVisibility(View.VISIBLE);}
     void perform(Work work){
-        if(busy)return;busy=true;notice(L.t("Saving your decision…","正在保存你的决定…"));render();
+        if(busy)return;busy=true;notice(L.t("Processing request…","正在处理请求…"));render();
         io.execute(()->{String error="";try{work.run();}catch(Exception e){error=e.getMessage();}String message=error;
-            runOnUiThread(()->{if(isDestroyed())return;busy=false;notice(message.isEmpty()?L.t("Saved.","已保存。"):message);if(message.isEmpty())Toast.makeText(this,L.t("Decision saved","决定已保存"),Toast.LENGTH_SHORT).show();else actionErrorDialog=new AlertDialog.Builder(this).setTitle(L.t("Could not confirm this action","暂时无法确认操作结果")).setMessage(message).setPositiveButton(L.t("Got it","知道了"),null).show();render();if(foreground)load();});});
+            runOnUiThread(()->{if(isDestroyed())return;busy=false;notice(message.isEmpty()?L.t("Request confirmed.","请求已确认。"):message);if(message.isEmpty())Toast.makeText(this,L.t("Request confirmed","请求已确认"),Toast.LENGTH_SHORT).show();else actionErrorDialog=new AlertDialog.Builder(this).setTitle(L.t("Could not confirm this action","暂时无法确认操作结果")).setMessage(message).setPositiveButton(L.t("Got it","知道了"),null).show();render();if(foreground)load();});});
     }
     void followup(){
         EditText input=new EditText(this);followupInput=input;Ui.styleInput(input);input.setHint(L.t("Continue this handoff…","继续这个任务…"));input.setMinLines(3);input.setText(followupDraft);input.setSelection(input.length());

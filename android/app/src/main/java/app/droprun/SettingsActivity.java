@@ -185,7 +185,7 @@ public class SettingsActivity extends StyledActivity {
             boolean enabled=Store.projectEnabled(p);String id=p.optString("id"),name=ProjectPresentation.label(id,p.optString("name"),projects,history);
             if(card.getChildCount()>0)card.addView(Ui.divider(this));
             boolean large=getResources().getConfiguration().fontScale>=1.5f;LinearLayout line=Ui.row(this);if(large)line.setOrientation(LinearLayout.VERTICAL);line.setPadding(0,dp(6),0,dp(6));line.setMinimumHeight(dp(48));
-            TextView title=Ui.text(this,name,15,Ui.TEXT);title.setMaxLines(name.equals(p.optString("name"))?2:Integer.MAX_VALUE);title.setEllipsize(TextUtils.TruncateAt.END);line.addView(title,large?Ui.fill():Ui.grow());
+            TextView title=Ui.text(this,name,15,Ui.TEXT);title.setMaxLines(large||!name.equals(p.optString("name"))?Integer.MAX_VALUE:2);title.setEllipsize(TextUtils.TruncateAt.END);line.addView(title,large?Ui.fill():Ui.grow());
             boolean pending=switching.contains(id);
             TextView toggle=Ui.chip(this,pending?L.t("Updating","更改中"):enabled?L.t("Allowed","已允许"):L.t("Not allowed","未允许"),enabled);
             toggle.setEnabled(!pending&&!busy);toggle.setAlpha(pending||busy?0.5f:1f);

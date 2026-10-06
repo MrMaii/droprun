@@ -10,6 +10,10 @@
 - Continue the reading edge through Settings and project history; stack project
   access actions at large font sizes and dim them while busy. Interrupted
   disclosures keep their current opacity. [Native checks](docs/releases/ui-settings-history-reading-2026-10-06.md).
+- Keep complete unique project names readable in large-text Settings before the
+  permission action; preserve the regular-size layout and confirmation.
+- Explain choosing DropRun on first use, use accurate shared action feedback,
+  and give follow-up a quieter button treatment. [Native captures and scope](docs/releases/ui-first-use-followup-2026-10-06.md).
 - Group the bilingual README workflow into three images that wrap on narrow
   screens, followed by a short Share, Follow, Inspect explanation.
 - Add an optional Settings/history gallery and refresh the opening Share GIF and
