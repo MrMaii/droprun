@@ -26,9 +26,23 @@ genuine acceptance is unavailable. No stable launch or marketing handover.
   include verified candidate11 download links and accepted Home cards. Own
   documentation CI37527256869 atd891882 passes3jobs/35steps/10required, actual
   core210/browser18. No hosted playback result is inferred.
+- GPTSites19 succeeded at2026-10-06T21:02:56Z: hosting source9af2ea3, version
+  0277ec17, deployment6ac561f8. Product sourcead543fb supplies95public files,
+  four new accepted raw Share images and two updated language pages. Exact
+  packaged96file inventory passes; public audience and all old media retained.
+  Its own sourceCI37530800757 atad543fb passes3jobs/35steps/10required, actual
+  core210/browser18; complete326964B log SHAb86394fb retained. This CI is build,
+  unit/browser/package validation, not a new genuine or physical-device result.
 
 ## UX and brand already included
 
+- [History notice feedback](../../docs/releases/ui-history-notice-feedback-2026-10-06.md):
+  only real details are interactive; static/removing/retry/hidden notices clear
+  press scale and retain readable amber text/polite live region. Local method1/1
+  passes5.239s, original3windows/6memory reads/21guards;15new notice cases pass.
+  Synthetic scale/AX-property checks, no real deletion or retry request. Build
+  27.219s, actualJVM27pass/lint0errors28warnings;333B compiler deprecation stderr
+  preserved. Own new sourceCI is pending; no borrowed signed/sourceCI binding.
 - [Share confirmation group](../../docs/releases/ui-share-confirmation-2026-10-06.md):
   complete destination and received material together; direct project-to-note
   transition and continuous reversed scrim color. Local3native methods each1/1
@@ -37,7 +51,8 @@ genuine acceptance is unavailable. No stable launch or marketing handover.
   Destroyed motion windows record natural end1/cancel0 and clear their animator;
   do not claim the destruction cancellation branch was observed. Original
   cancel==1 test failure is preserved. This UI is source/development-only and
-  is not in the signed candidate11; website publication is pending this commit.
+  is not in the signed candidate11. Sourcead543fb and website19 are public;
+  independent bounded native/output review passes without extra device runs.
 - [Home cards](../../docs/releases/ui-home-project-cards-2026-10-06.md):
   useful project grouping, stable counts, status/date hierarchy and large-text
   name width; four accepted raw native stills retain sample markers.
@@ -83,16 +98,15 @@ genuine acceptance is unavailable. No stable launch or marketing handover.
 
 ## Single recommended next action
 
-Publish the accepted Share confirmation images through the existing Sites source
-and verify that saved deployment. Then fix misleading press feedback on static
-History notices with bounded local checks; retain the finite retention-reading
-proposal's build-only limit. Continue UI work without retrying denied paths.
+Publish the verified History notice source/evidence and inspect its own CI.
+Then review the finite retention-reading proposal for the next local UI pass;
+preserve its build-only limit until run. Continue without replaying denied paths.
 
 ## Files this pass
 
-ShareActivity/three Share instrumentation methods; bilingual README and raw
-Share confirmation images; media provenance; PRD/CONTRACTS; CHANGELOG; scoped
-Share UX record; website builder/generated pages; this handoff. Private actual
-build/native evidence lives under `.local/ux-oct6-share-continuity/`, publication
-evidence under `.local/ux-rc0511-final/`; original failures are preserved. Author Thomas Deng
+ProjectHistoryActivity/HistoryShareStateTest; PRD/CONTRACTS/CHANGELOG; scoped
+History notice record; this handoff. Previous Share/README/website sourcead543fb
+and Site19 are delivered. New private actual evidence is under
+`.local/ux-oct6-history-notice/`; Share publication/ownCI under
+`.local/ux-oct6-share-site/`. Original failures remain. Author Thomas Deng
 <150266369+MrMaii@users.noreply.github.com>.

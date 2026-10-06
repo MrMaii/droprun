@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.accessibility.AccessibilityNodeInfo;
 import android.widget.TextView;
 import androidx.lifecycle.Lifecycle;
 import androidx.test.core.app.ActivityScenario;
@@ -52,7 +53,7 @@ public class HistoryShareStateTest {
                         scenario.onActivity(a->{safe(a,nonce,part);assertEquals(3,a.memoryReads.get());assertFalse("Null-detail failed append must not become a successful page",a.paged);assertEquals(genericFailure(),a.readError);assertEquals(View.VISIBLE,a.notice.getVisibility());assertTrue(a.notice.isClickable());assertCopy(a,"History could not load","暂时无法读取历史","Use Refresh to try again when connected.","联网后点按刷新，重新读取历史。");assertEquals(0,notifications[0]);event(nonce,"history",config,"append-null-failed",history(a,counts,notifications[0]));});
                     }
                 }
-                scenario.onActivity(a->{safe(a,nonce,part);a.adapter.unregisterDataSetObserver(observer);counts[1]++;event(nonce,"history",config,"full-completed",history(a,counts,notifications[0]));});
+                scenario.onActivity(a->{safe(a,nonce,part);assertNoticeFeedback(a);assertEquals(0,notifications[0]);a.adapter.unregisterDataSetObserver(observer);counts[1]++;event(nonce,"history",config,"full-completed",history(a,counts,notifications[0]));});
             }catch(Throwable error){failure=error;throw error;}
             finally{closeHistory(scenario,held[0],failure,nonce,config,counts,notifications[0],priorTouch[0]);}
         }assertEquals(3,counts[0]);assertEquals(3,counts[1]);assertEquals(3,counts[2]);assertEquals(6,counts[4]);summary(nonce,"history",counts);
@@ -83,6 +84,24 @@ public class HistoryShareStateTest {
             finally{closeShare(scenario,held[0],failure,nonce,config,counts,priorTouch[0]);}
         }assertEquals(2,counts[0]);assertEquals(2,counts[1]);assertEquals(2,counts[2]);summary(nonce,"share",counts);
         }finally{if(!unresolvedLifetime){DemoShareEditorActivity.hierarchyFontScale=previous;restore(languageBefore,darkBefore,palette);}}
+    }
+
+    static void assertNoticeFeedback(DemoHistoryLoadStateActivity a){
+        String read=a.readError,action=a.actionError,text=a.notice.getText().toString(),cache=a.memory.history.toString();ProjectHistoryActivity.Removal removal=a.removal;View focus=a.getWindow().getDecorView().findFocus();Object adapter=a.adapter;int rows=a.rows.size(),reads=a.memoryReads.get(),visibility=a.notice.getVisibility();float scaleX=a.notice.getScaleX(),scaleY=a.notice.getScaleY();boolean enabled=a.notice.isEnabled(),clickable=a.notice.isClickable(),focusable=a.notice.isFocusable();JSONArray cases=new JSONArray();
+        assertNull(removal);assertFalse(a.busy);assertFalse(a.handler.hasCallbacks(a.refresh));assertEquals(0,a.forbiddenActions.get());assertFalse(TaskSyncService.running);
+        try{
+            a.readError="Memory notice read failure.";a.actionError="";a.removal=null;a.showNotice();cases.put(assertNotice(a,"details",true,L.t("Couldn't refresh history. Tap for details.","暂时无法刷新历史，点按查看详情。"),true));
+            a.notice.setScaleX(0.975f);a.notice.setScaleY(0.975f);a.actionError=L.t("Saved copy needs attention.","已保存副本需要处理。");a.showNotice();cases.put(assertNotice(a,"action-error",false,a.actionError,true));
+            a.actionError="";a.removal=new ProjectHistoryActivity.Removal(a.store,"memory-notice-only");a.notice.setScaleX(0.975f);a.notice.setScaleY(0.975f);a.showNotice();cases.put(assertNotice(a,"removing-zero-run",false,L.t("Removing saved copy…","正在移除已保存副本…"),true));assertFalse(a.removal.finished);assertEquals("",a.removal.error);
+            a.removal=null;a.showNotice();assertTrue(a.notice.isEnabled());a.notice.setScaleX(0.975f);a.notice.setScaleY(0.975f);String retry=L.t("Retry requested. Keep the app open to see confirmation.","已请求重试，请保持 App 打开查看接收确认。");a.notice.setText(retry);a.noticeInteractive(false);a.notice.setVisibility(View.VISIBLE);cases.put(assertNotice(a,"direct-retry-readonly",false,retry,true));assertEquals("Memory notice read failure.",a.readError);
+            a.readError="";a.notice.setScaleX(0.975f);a.notice.setScaleY(0.975f);a.showNotice();cases.put(assertNotice(a,"hidden-reset",false,"",false));
+        }finally{a.readError=read;a.actionError=action;a.removal=removal;a.showNotice();a.notice.setScaleX(scaleX);a.notice.setScaleY(scaleY);}
+        assertEquals(read,a.readError);assertEquals(action,a.actionError);assertSame(removal,a.removal);assertEquals(text,a.notice.getText().toString());assertEquals(visibility,a.notice.getVisibility());assertEquals(enabled,a.notice.isEnabled());assertEquals(clickable,a.notice.isClickable());assertEquals(focusable,a.notice.isFocusable());assertEquals(scaleX,a.notice.getScaleX(),0f);assertEquals(scaleY,a.notice.getScaleY(),0f);assertSame(focus,a.getWindow().getDecorView().findFocus());assertSame(adapter,a.adapter);assertEquals(rows,a.rows.size());assertEquals(cache,a.memory.history.toString());assertEquals(reads,a.memoryReads.get());assertEquals(0,a.forbiddenActions.get());assertFalse(a.handler.hasCallbacks(a.refresh));assertFalse(TaskSyncService.running);
+        String config=(L.chinese()?"zh":"en")+"|"+(Ui.dark?"dark":"light")+"|"+(a.getResources().getConfiguration().fontScale==2f?"2":"1")+"|"+(rows>0?"cached":"empty");Bundle status=new Bundle();status.putString("stream","HISTORY_NOTICE_EVENT\t"+a.nonce+"\t"+config+"\t"+data("case_count",cases.length(),"cases",cases,"synthetic_scale_only",true,"removal_run",false,"zero_business",true,"forbidden_actions",a.forbiddenActions.get(),"memory_reads",reads,"rows_preserved",true,"cache_preserved",true,"focus_preserved",true,"original_notice_restored",true,"original_flags_restored",true)+"\n");InstrumentationRegistry.getInstrumentation().sendStatus(0,status);
+    }
+    static JSONObject assertNotice(DemoHistoryLoadStateActivity a,String name,boolean details,String text,boolean shown){
+        assertEquals(shown?View.VISIBLE:View.GONE,a.notice.getVisibility());assertEquals(text,a.notice.getText().toString());assertEquals(details,a.notice.isEnabled());assertEquals(details,a.notice.isClickable());assertEquals(details,a.notice.isFocusable());assertEquals(1f,a.notice.getAlpha(),0f);assertEquals(Ui.AMBER,a.notice.getCurrentTextColor());assertTrue(a.notice.getMinimumHeight()>=a.dp(48));assertEquals(View.ACCESSIBILITY_LIVE_REGION_POLITE,a.notice.getAccessibilityLiveRegion());if(!details){assertEquals(1f,a.notice.getScaleX(),0f);assertEquals(1f,a.notice.getScaleY(),0f);}
+        AccessibilityNodeInfo node=a.notice.createAccessibilityNodeInfo();try{if(shown)assertEquals(text,String.valueOf(node.getText()));else assertTrue(node.getText()==null||node.getText().length()==0);assertEquals(details,node.isEnabled());assertEquals(details,node.isClickable());assertEquals(details,node.isFocusable());assertEquals(details,(node.getActions()&AccessibilityNodeInfo.ACTION_CLICK)!=0);assertEquals(View.ACCESSIBILITY_LIVE_REGION_POLITE,node.getLiveRegion());return data("case",name,"notice_visible",shown,"text",text,"ax_enabled",node.isEnabled(),"ax_clickable",node.isClickable(),"ax_focusable",node.isFocusable(),"ax_action_click",(node.getActions()&AccessibilityNodeInfo.ACTION_CLICK)!=0,"ax_live_region",node.getLiveRegion(),"text_color",a.notice.getCurrentTextColor(),"alpha",a.notice.getAlpha(),"minimum_height",a.notice.getMinimumHeight(),"scale_x",a.notice.getScaleX(),"scale_y",a.notice.getScaleY());}finally{node.recycle();}
     }
 
     static String nonce(){String value=InstrumentationRegistry.getArguments().getString("historyShareNonce","");assertTrue(value.matches("[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"));return value;}

@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Match History notice press and keyboard feedback to its actual details action;
+  keep static status readable and reset scale when its action disappears.
+  [Bounded native accessibility/state checks](docs/releases/ui-history-notice-feedback-2026-10-06.md).
+
 - Group the Share destination and received material into one read-only confirmation
   surface, with full project names and more name width at large text.
 - Move directly from an authorized project choice to the note step; continue

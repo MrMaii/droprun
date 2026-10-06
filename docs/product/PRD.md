@@ -145,6 +145,10 @@ in [the current candidate record](../releases/0.5.11-rc.1.md).
   While a history read is pending, Refresh has a persistent disabled/dimmed state
   and a localized refreshing description. Completion restores its usual state;
   repeated clicks reuse the existing busy guard without extra reads or moving rows.
+  Only a notice with actual details offers clicking, focus and press feedback.
+  Static errors, removal status and requested-retry feedback remain readable;
+  switching to readonly or hidden resets the notice's scale. Retry feedback
+  cannot inherit an older details action. [Scoped checks](../releases/ui-history-notice-feedback-2026-10-06.md).
   Project identity has its own bounded heading, separate from Back and Refresh.
   A 48dp information entry exposes the complete name and ID when the heading is
   shortened; same-name and retained-history identity remain explicit. Recycled

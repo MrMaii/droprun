@@ -77,7 +77,8 @@ public class ProjectHistoryActivity extends StyledActivity {
         new AlertDialog.Builder(this).setTitle(L.t("Remove this saved copy?","移除这份已保存副本？")).setMessage(L.t("This removes the phone's retry copy. If the Relay already received it, work may continue on your computer; check the online history to stop that task.","这会移除手机上的重试副本。如果中转服务已收到任务，电脑可能仍在工作；请联网查看历史并停止相应任务。" )).setNegativeButton(L.t("Keep","保留"),null).setPositiveButton(L.t("Remove saved copy","移除已保存副本"),(d,w)->{if(removing())return;removal=new Removal(store,task.optString("id"));removal.observer=removalObserver;actionError="";updateRemoval();local.execute(removal);}).show();
     }
     boolean removing(){return removal!=null&&!removal.finished;}
-    void showNotice(){boolean details=actionError.isEmpty()&&!removing()&&!readError.isEmpty();String message=!actionError.isEmpty()?actionError:removing()?L.t("Removing saved copy…","正在移除已保存副本…"):details?L.t("Couldn't refresh history. Tap for details.","暂时无法刷新历史，点按查看详情。"):"";notice.setText(message);notice.setClickable(details);notice.setFocusable(details);notice.setVisibility(message.isEmpty()?View.GONE:View.VISIBLE);}
+    void showNotice(){boolean details=actionError.isEmpty()&&!removing()&&!readError.isEmpty();String message=!actionError.isEmpty()?actionError:removing()?L.t("Removing saved copy…","正在移除已保存副本…"):details?L.t("Couldn't refresh history. Tap for details.","暂时无法刷新历史，点按查看详情。"):"";notice.setText(message);noticeInteractive(details);notice.setVisibility(message.isEmpty()?View.GONE:View.VISIBLE);}
+    void noticeInteractive(boolean details){notice.setEnabled(details);notice.setClickable(details);notice.setFocusable(details);if(!details){notice.animate().cancel();notice.setScaleX(1f);notice.setScaleY(1f);}}
     void updateRemoval(){if(isDestroyed())return;if(removal.finished)actionError=removal.error;showNotice();snapshot="";render();}
     static final class Removal implements Runnable {
         final Store store;final String id;volatile boolean finished;volatile String error="";volatile Runnable observer;
@@ -89,7 +90,7 @@ public class ProjectHistoryActivity extends StyledActivity {
         String detail=task.optString("message")+"\n\n"+task.optString("content");JSONArray files=task.optJSONArray("localFiles");
         if(files!=null&&files.length()>0)detail+="\n\n"+files.length()+L.t(" saved attachments"," 份已保存附件");
         if(!task.optString("sendError").isEmpty())detail+="\n\n"+task.optString("sendError");
-        new AlertDialog.Builder(this).setTitle(L.t("Saved on this phone","已保存在手机")).setMessage(detail.trim()).setNegativeButton(L.t("Close","关闭"),null).setPositiveButton(L.t("Retry sending","重试发送"),(d,w)->{SyncJob.soon(this);TaskSyncService.start(this);notice.setText(L.t("Retry requested. Keep the app open to see confirmation.","已请求重试，请保持 App 打开查看接收确认。"));notice.setVisibility(View.VISIBLE);notice.announceForAccessibility(notice.getText());}).show();
+        new AlertDialog.Builder(this).setTitle(L.t("Saved on this phone","已保存在手机")).setMessage(detail.trim()).setNegativeButton(L.t("Close","关闭"),null).setPositiveButton(L.t("Retry sending","重试发送"),(d,w)->{SyncJob.soon(this);TaskSyncService.start(this);notice.setText(L.t("Retry requested. Keep the app open to see confirmation.","已请求重试，请保持 App 打开查看接收确认。"));noticeInteractive(false);notice.setVisibility(View.VISIBLE);notice.announceForAccessibility(notice.getText());}).show();
     }
     final class HistoryAdapter extends BaseAdapter {
         // AbsListView restores saved rows only when their stable ID is nonnegative.
