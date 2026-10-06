@@ -20,3 +20,27 @@ and source notes. The unchanged gallery layout is not a new GitHub render check.
 The earlier local README comparison applies to its own frozen source, not these
 subsequent media references. Public downloads stay at 0.5.4 until a new candidate
 has been built and independently verified.
+
+## Independent renderer and reduced-motion follow-through
+
+Actual GitHub EN/ZH rendering of public source `4e0c5ebae04346de1bc86a43cb71429bbba3ce5c`
+at 1280×720 and 390×844 preserves the independent primary entry and complete
+single-rectangle utility labels. All twelve workflow pictures loaded at 280×560;
+the current delivery source and narrow sample marker were checked. No document
+overflow. Existing signed-in Edge/light only; raw anonymous source checks are
+separate. The Chinese desktop third image extends below the viewport, so its
+raw still is not described as a complete phone capture. Candidate pointers in
+this frozen renderer record are still 0.5.4; later pointer edits are separate.
+
+Independent reduced-motion validation used a 35-file frozen public copy and
+empty headless Edge profiles, without changing the user browser or OS settings.
+EN/ZH at desktop/narrow sizes reported reduced-motion true, scroll auto, sampled
+transitions/animations none, zero active animations or waiting reveals, reachable
+installation actions and no overflow. Twelve accepted PNGs match recorded hashes.
+The first run passed English desktop, then selected a hidden narrow header link;
+that probe error is retained. Correcting only the selector passed the remaining
+three scenes. This is combined evidence, not a single four-scene run. Forty-one
+GET and two HEAD requests were all 200, from the frozen public inventory; no
+external action or API request. The copy retains 0.5.4 pointers and is not hosted
+site acceptance. Independent profiles and servers were closed; public files and
+prior archives remain unchanged.

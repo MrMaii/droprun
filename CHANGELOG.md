@@ -4,6 +4,8 @@
 
 ## 0.5.5-rc.1 — clearer results and installation
 
+[Verified preview packages and open acceptance](docs/releases/0.5.5-rc.1.md).
+
 - Distinguish execution-setting progress, confirmed success and warnings with
   existing accessible theme colors. Include visible explanations in native option
   names, retaining selected and disabled states.
