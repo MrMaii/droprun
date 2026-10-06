@@ -40,7 +40,7 @@ public class TaskActionFeedbackTest {
                 Intent intent=new Intent(target,DemoTaskFeedbackActivity.class).putExtra("taskActionFeedbackOptIn",true).putExtra("taskActionFeedbackProbe",phase).putExtra("evidenceNonce",nonce).putExtra("language",language).putExtra("appearance",theme).putExtra("failureCase",kind.name());
                 scenario=ActivityScenario.launch(intent);event(nonce,phase,identity,"returned-handle",new JSONObject());ready(scenario);
                 scenario.onActivity(a->{retained[0]=a;safe(a,language,theme);assertFalse(a.busy);assertFalse(a.loading);assertEquals(0,a.workRuns.get());assertNull(a.actionErrorDialog);assertEquals(View.GONE,a.notice.getVisibility());assertButtons(a,true);loadBase[0]=a.loads.get();taskBefore[0]=a.sample.toString();event(nonce,phase,identity,"entered",metadata(a,loadBase[0]));});entered++;
-                scenario.onActivity(a->{a.beginSyntheticFailure();safe(a,language,theme);assertTrue(a.busy);assertEquals(L.t("Processing request…","正在处理请求…"),a.notice.getText().toString());assertButtons(a,false);assertEquals(loadBase[0],a.loads.get());event(nonce,phase,identity,"pending",metadata(a,loadBase[0]));});
+                scenario.onActivity(a->{a.beginSyntheticFailure();safe(a,language,theme);assertTrue(a.busy);a.readNotice("");assertEquals(L.t("Processing request…","正在处理请求…"),a.notice.getText().toString());a.readNotice("Synthetic refresh failure.");assertTrue(a.busy);assertEquals(L.t("Processing request…","正在处理请求…"),a.notice.getText().toString());assertEquals(View.VISIBLE,a.notice.getVisibility());assertButtons(a,false);assertEquals(loadBase[0],a.loads.get());event(nonce,phase,identity,"pending",metadata(a,loadBase[0]));});
                 completed(scenario,loadBase[0]);
                 scenario.onActivity(a->{
                     safe(a,language,theme);assertFalse(a.busy);assertFalse(a.loading);assertEquals(1,a.workRuns.get());assertFalse(a.workWasMain);assertEquals(1,a.loads.get()-loadBase[0]);assertEquals(taskBefore[0],a.sample.toString());assertButtons(a,true);
@@ -52,7 +52,20 @@ public class TaskActionFeedbackTest {
                     callback[0]=metadata(a,loadBase[0]);event(nonce,phase,identity,"callback-result",callback[0]);
                 });
                 actualWork+=callback[0].getInt("work_runs");actualLoads+=callback[0].getInt("load_delta");
-                scenario.onActivity(a->{safe(a,language,theme);assertFalse(a.busy);assertEquals(taskBefore[0],a.sample.toString());assertEquals(1,a.loads.get()-loadBase[0]);event(nonce,phase,identity,"full-completed",metadata(a,loadBase[0]));});completed++;
+                scenario.onActivity(a->{safe(a,language,theme);assertFalse(a.busy);assertEquals(taskBefore[0],a.sample.toString());assertEquals(1,a.loads.get()-loadBase[0]);event(nonce,phase,identity,"full-completed",metadata(a,loadBase[0]));});
+                scenario.onActivity(a->{safe(a,language,theme);assertTrue(a.actionErrorDialog.isShowing());a.actionErrorDialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick();});
+                ready(scenario);
+                scenario.onActivity(a->{
+                    safe(a,language,theme);assertFalse(a.actionErrorDialog.isShowing());
+                    String expected=kind==DemoTaskFeedbackActivity.FailureCase.NONEMPTY?DemoTaskFeedbackActivity.NONEMPTY:L.t("Check the handoff's latest status before trying again.","请先查看任务的最新状态，再决定是否重试。");
+                    assertEquals(expected,a.actionFailure);
+                    a.readNotice("");assertEquals(View.VISIBLE,a.notice.getVisibility());assertEquals(expected,a.notice.getText().toString());
+                    a.readNotice("Synthetic refresh failure.");assertEquals(View.VISIBLE,a.notice.getVisibility());assertEquals(expected,a.notice.getText().toString());
+                    Bundle saved=new Bundle();a.onSaveInstanceState(saved);assertEquals(expected,saved.getString("actionFailure"));
+                    a.notice("Synthetic new action.");assertEquals("",a.actionFailure);assertEquals(View.VISIBLE,a.notice.getVisibility());assertEquals("Synthetic new action.",a.notice.getText().toString());
+                    a.readNotice("");assertEquals("",a.notice.getText().toString());assertEquals(View.GONE,a.notice.getVisibility());
+                    assertEquals(taskBefore[0],a.sample.toString());assertEquals(1,a.workRuns.get());assertEquals(1,a.loads.get()-loadBase[0]);assertButtons(a,true);
+                });completed++;
             }catch(Throwable error){failure=error;throw error;}
             finally{
                 if(scenario!=null)try{

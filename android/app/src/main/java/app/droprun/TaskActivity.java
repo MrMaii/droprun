@@ -19,7 +19,7 @@ import java.util.concurrent.*;
 public class TaskActivity extends StyledActivity {
     final ExecutorService io=Executors.newSingleThreadExecutor();
     final Handler handler=new Handler(Looper.getMainLooper());
-    Store store;String taskId,snapshot="";LinearLayout body;TextView notice;boolean foreground,busy,loading,thumbnailRequested;
+    Store store;String taskId,snapshot="",actionFailure="";LinearLayout body;TextView notice;boolean foreground,busy,loading,thumbnailRequested;
     android.graphics.Bitmap thumbnail;String thumbnailError="";final java.util.Set<String> expanded=new java.util.HashSet<>();
     AlertDialog followupDialog,actionErrorDialog,localRemovalDialog;EditText followupInput;String followupDraft="",followupId=UUID.randomUUID().toString();
     final Runnable refresh=this::load;
@@ -27,27 +27,27 @@ public class TaskActivity extends StyledActivity {
 
     @Override public void onCreate(Bundle state){
         super.onCreate(state);store=createStore();taskId=getIntent().getStringExtra("taskId");
-        if(state!=null){followupDraft=state.getString("followupDraft","");followupId=state.getString("followupId",followupId);java.util.ArrayList<String> sections=state.getStringArrayList("expanded");if(sections!=null)expanded.addAll(sections);}
+        if(state!=null){actionFailure=state.getString("actionFailure","");followupDraft=state.getString("followupDraft","");followupId=state.getString("followupId",followupId);java.util.ArrayList<String> sections=state.getStringArrayList("expanded");if(sections!=null)expanded.addAll(sections);}
         if(taskId==null||!taskId.matches("[a-zA-Z0-9-]{20,64}")){finish();return;}
         Ui.configureWindow(this);LinearLayout page=Ui.page(this);((View)page.getParent()).setId(R.id.task_scroll);
         ImageButton back=Ui.iconButton(this,R.drawable.ic_chevron_left,L.t("Back to history","返回历史"));back.setOnClickListener(v->finish());
         Ui.topBar(this,page,back,L.t("Handoff","交办"),false,null);
         notice=Ui.text(this,"",13,Ui.AMBER);notice.setVisibility(View.GONE);notice.setAccessibilityLiveRegion(View.ACCESSIBILITY_LIVE_REGION_POLITE);page.addView(notice);
-        body=Ui.vertical(this);page.addView(body,Ui.fill());render();Ui.enter(body);
+        body=Ui.vertical(this);page.addView(body,Ui.fill());readNotice("");render();Ui.enter(body);
         if(state!=null&&state.getBoolean("followupOpen"))followup();
         if(state!=null&&state.getBoolean("localRemovalOpen")&&store.canClearUnavailableTask(taskId))confirmLocalRemoval();
     }
     Store createStore(){return new Store(this);}
     @Override protected void onResume(){super.onResume();foreground=true;if(store!=null)load();}
     @Override protected void onPause(){foreground=false;handler.removeCallbacks(refresh);super.onPause();}
-    @Override protected void onSaveInstanceState(Bundle state){super.onSaveInstanceState(state);state.putStringArrayList("expanded",new java.util.ArrayList<>(expanded));state.putString("followupId",followupId);state.putString("followupDraft",followupInput==null?followupDraft:followupInput.getText().toString());if(followupDialog!=null&&followupDialog.isShowing())state.putBoolean("followupOpen",true);if(localRemovalDialog!=null&&localRemovalDialog.isShowing())state.putBoolean("localRemovalOpen",true);}
+    @Override protected void onSaveInstanceState(Bundle state){super.onSaveInstanceState(state);state.putString("actionFailure",actionFailure);state.putStringArrayList("expanded",new java.util.ArrayList<>(expanded));state.putString("followupId",followupId);state.putString("followupDraft",followupInput==null?followupDraft:followupInput.getText().toString());if(followupDialog!=null&&followupDialog.isShowing())state.putBoolean("followupOpen",true);if(localRemovalDialog!=null&&localRemovalDialog.isShowing())state.putBoolean("localRemovalOpen",true);}
     @Override protected void onDestroy(){handler.removeCallbacksAndMessages(null);if(followupDialog!=null)followupDialog.dismiss();if(actionErrorDialog!=null)actionErrorDialog.dismiss();if(localRemovalDialog!=null)localRemovalDialog.dismiss();io.shutdown();super.onDestroy();}
     void load(){
         handler.removeCallbacks(refresh);if(!foreground||busy||loading)return;loading=true;
         io.execute(()->{
             String error="";try{store.refreshTask(taskId);}catch(Exception e){String detail=e.getMessage();error=detail==null||detail.trim().isEmpty()?L.t("Could not refresh this handoff. We'll try again shortly.","暂时无法刷新这条交办，稍后会自动重试。"):detail;}
             String message=error;
-            runOnUiThread(()->{loading=false;if(isDestroyed()||!foreground)return;notice.setText(message);notice.setVisibility(message.isEmpty()?View.GONE:View.VISIBLE);render();handler.postDelayed(refresh,5000);});
+            runOnUiThread(()->{loading=false;if(isDestroyed()||!foreground)return;readNotice(message);render();handler.postDelayed(refresh,5000);});
         });
     }
     String text(JSONObject task,String key){return task.isNull(key)?"":task.optString(key);}
@@ -165,11 +165,13 @@ public class TaskActivity extends StyledActivity {
         else {if(!state.equals("unavailable"))block(target,L.t("Preview status","预览状态"),L.t("This preview expired or stopped.","预览已失效或停止。"));if(Store.finished(text(task,"status"))&&!url.isEmpty()&&task.optInt("cancel_requested")==0)button(target,L.t("Reopen preview","重开预览"),false,()->perform(()->{store.reopenPreview(taskId);TaskSyncService.start(this);}));}
     }
     void confirm(String title,String message,Work work){new AlertDialog.Builder(this).setTitle(title).setMessage(message).setNegativeButton(L.t("Cancel","取消"),null).setPositiveButton(L.t("Confirm","确认"),(d,w)->perform(work)).show();}
-    void notice(String message){notice.setText(message);notice.setVisibility(View.VISIBLE);}
+    void notice(String message){actionFailure="";showNotice(message);}
+    void readNotice(String message){if(busy)return;showNotice(actionFailure.isEmpty()?message:actionFailure);}
+    void showNotice(String message){notice.setText(message);notice.setVisibility(message.isEmpty()?View.GONE:View.VISIBLE);}
     void perform(Work work){
         if(busy)return;busy=true;notice(L.t("Processing request…","正在处理请求…"));render();
         io.execute(()->{Exception failure=null;try{work.run();}catch(Exception e){failure=e;}boolean failed=failure!=null;String detail=failed?failure.getMessage():null;
-            runOnUiThread(()->{if(isDestroyed())return;busy=false;String message=failed?(detail==null||detail.trim().isEmpty()?L.t("Check the handoff's latest status before trying again.","请先查看任务的最新状态，再决定是否重试。"):detail):L.t("Request confirmed.","请求已确认。");notice(message);if(!failed)Toast.makeText(this,L.t("Request confirmed","请求已确认"),Toast.LENGTH_SHORT).show();else actionErrorDialog=new AlertDialog.Builder(this).setTitle(L.t("Could not confirm this action","暂时无法确认操作结果")).setMessage(message).setPositiveButton(L.t("Got it","知道了"),null).show();render();if(foreground)load();});});
+            runOnUiThread(()->{if(isDestroyed())return;busy=false;String message=failed?(detail==null||detail.trim().isEmpty()?L.t("Check the handoff's latest status before trying again.","请先查看任务的最新状态，再决定是否重试。"):detail):L.t("Request confirmed.","请求已确认。");actionFailure=failed?message:"";showNotice(message);if(!failed)Toast.makeText(this,L.t("Request confirmed","请求已确认"),Toast.LENGTH_SHORT).show();else actionErrorDialog=new AlertDialog.Builder(this).setTitle(L.t("Could not confirm this action","暂时无法确认操作结果")).setMessage(message).setPositiveButton(L.t("Got it","知道了"),null).show();render();if(foreground)load();});});
     }
     void followup(){
         EditText input=new EditText(this);followupInput=input;Ui.styleInput(input);input.setHint(L.t("Continue this handoff…","继续这个任务…"));input.setMinLines(3);input.setText(followupDraft);input.setSelection(input.length());

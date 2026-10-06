@@ -1,0 +1,121 @@
+{
+  "schema": "droprun.task.failure-retention.ui.v1",
+  "developmentAfter": "0.5.13-rc.1",
+  "version": {
+    "name": "0.5.13-dev",
+    "code": 26
+  },
+  "sourceFreeze": {
+    "sha256": "276371d24e39569f1171c876fe9b08554ad55a4aea4fc2d39e7b4a51b878089a",
+    "counts": {
+      "sources": 134,
+      "configs": 4
+    },
+    "beforeAndAfterExact": true
+  },
+  "build": {
+    "ownerSha256": "44754c9acf79d3f14491b8a280ec49e6a7096b166ad812406c2eb60975e5d572",
+    "nonce": "bef5c520-cf72-4e02-9a26-fb46a413a3e8",
+    "exit": 0,
+    "seconds": 86.047,
+    "unitActual": {
+      "tests": 27,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "lintActual": {
+      "errors": 0,
+      "warnings": 28
+    },
+    "stderrBytes": 333,
+    "stderrSha256": "a8ee6c37168f4f4a9c0e9557479804328487165878755fc04a8cbc503e68df88"
+  },
+  "originalInstallation": {
+    "passed": false,
+    "nonce": "bef5c520-cf72-4e02-9a26-fb46a413a3e8",
+    "returnedCommands": 22,
+    "afterReadValuesCompleted": 6,
+    "timedOutRead": "adb settings get global animator_duration_scale",
+    "timeoutSeconds": 20,
+    "pid": 49832,
+    "childExit": "unavailable",
+    "originalOwnerExit": 1,
+    "nativeStarted": false,
+    "noKillOrRetry": true
+  },
+  "continuation": {
+    "ownerSha256": "f9cd8d16473ed915839285e1c6c743006556c44636247e1001d48f818938653c",
+    "nonce": "917924e6-27f7-4157-bfa1-680bb35dc445",
+    "directCommands": 25,
+    "allReturned0": true,
+    "priorPIDObservation": {
+      "pid": 49832,
+      "accessMask": 4096,
+      "query": "OpenProcess PROCESS_QUERY_LIMITED_INFORMATION",
+      "observed": "absent",
+      "windowsError": 87,
+      "originalExit": "unavailable",
+      "terminationAttempted": false,
+      "retryAttempted": false
+    },
+    "deviceValues": {
+      "state": "device",
+      "avd": "DropRunTest\r\r\nOK",
+      "sdk": "35",
+      "size": "Physical size: 320x640",
+      "density": "Physical density: 160",
+      "font": "2.0",
+      "animator": "null",
+      "window_animation": "1",
+      "transition_animation": "1",
+      "ime": "com.google.android.inputmethod.latin/com.android.inputmethod.latin.LatinIME"
+    },
+    "deviceValuesBeforeAndAfterEqual": true,
+    "apks": [
+      {
+        "role": "app",
+        "package": "app.droprun.mobile.debug",
+        "bytes": 2185378,
+        "sha256": "452ba44ed2941705c7428ea9d2aaec85e5aabfe8d4e5609e4ce7e03108a7153a"
+      },
+      {
+        "role": "test",
+        "package": "app.droprun.mobile.debug.test",
+        "bytes": 2035215,
+        "sha256": "ae3566980afe37a69c83ce5bb3669679444d7f6bd087bc825b249538565b3613"
+      }
+    ],
+    "installedBytesMatch": true,
+    "native": {
+      "junit": {
+        "class": "app.droprun.TaskActionFeedbackTest",
+        "method": "closedFailuresRestoreRealActionFeedback",
+        "tests": 1,
+        "failures": 0,
+        "seconds": 30.698
+      },
+      "counts": {
+        "launch_attempts": 8,
+        "returned_handles": 8,
+        "entered": 8,
+        "full_completed": 8,
+        "DESTROYED": 8,
+        "actual_work_runs": 8,
+        "actual_memory_load_delta": 8,
+        "guard_snapshots": 40
+      },
+      "commandSeconds": 32.719,
+      "stdoutBytes": 37768,
+      "stdoutSha256": "7d3ef99f9de5493f7c494d5580446d67e7c93b5b0f5c4ff587fd9e62733bf2b5",
+      "stderrBytes": 0
+    }
+  },
+  "claimLimits": [
+    "Existing full-completed event precedes retention assertions; their intermediate values are not separate telemetry.",
+    "Source-bound direct production presenter assertions; no genuine polling scheduling race or Activity recreation/process-loss result.",
+    "Bundle saving only; successful Work and Toast observation remain untested.",
+    "No new screenshot, signed native, genuine task, OS-setting write, reset, or physical performance acceptance.",
+    "Original installation owner remains failed; PID absence does not mean its exit was0."
+  ]
+}

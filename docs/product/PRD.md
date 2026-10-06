@@ -252,7 +252,10 @@ in [the current candidate record](../releases/0.5.13-rc.1.md).
   Shared actions, icons, chips and model/effort options show a distinct keyboard-
   focus outline in both themes, without changing layout or activating the action.
 - Scrolling text stays outside system bars. Decision errors remain visible after
-  polling; expired cached approvals and previews offer accurate next steps.
+  polling and Activity state restoration, including after dismissing the error
+  dialog. A new explicit operation clears the earlier action error; a successful
+  background read does not confirm that operation. Expired cached approvals and
+  previews offer accurate next steps.
   A terminal handoff distinguishes a missing preview from an unavailable or
   expired one. Recovery guidance points to delivery files only when that entry
   exists. The primary action helps inspect this delivery: a ready preview, or

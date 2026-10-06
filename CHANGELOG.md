@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Keep task action errors visible after background reads and error-dialog dismissal;
+  save them with Activity state and clear them when a new operation starts.
+
 - Show received file counts in Share's folded material row, including a text
   indicator for mixed material. Keep complete expanded content and accessibility
   identity. [Scoped native reading checks](docs/releases/ui-share-material-counts-2026-10-06.md).

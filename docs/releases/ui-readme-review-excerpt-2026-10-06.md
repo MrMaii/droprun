@@ -22,7 +22,12 @@ actual frame/duration results. [Media provenance](../../assets/brand/readme-medi
 distinguishes code25 recordings and latercode26 count stills.
 
 Both READMEs retain every previous media/document reference and use the new
-count stills for current galleries and reduced-motion sources. Their structure
-is checked; an actual GitHub check of this newly changed excerpt is separate
-from the earlier source5ce17bce render. This is UI branding, not genuine task,
+count stills for current galleries and reduced-motion sources. Published source
+c9d42c1 was inspected anonymously on actual GitHub in both languages: the new
+GIFs load at native320×640 and279.33px display width on a360px viewport;
+client/scroll widths are both345px, with all five galleries initially closed.
+The Chinese desktop and both mobile views were directly reviewed; temporary
+viewport and owned tabs were restored/closed. This is a separate rendering
+check from the earlier source5ce17bce, without new playback timing or keyboard
+disclosure claims. This is UI branding, not genuine task,
 physical-device performance, actual reduced-motion or stable-launch acceptance.

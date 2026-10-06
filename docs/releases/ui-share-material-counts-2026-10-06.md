@@ -3,6 +3,14 @@
 October 6, 2026. This development change follows public candidate13; it is not
 included in that immutable signed download.
 
+Published sourcec9d42c1 has its own passing CI37547163008 attempt1: actual
+core210/browser18, three jobs and all ten required steps. This CI does not
+replace the separately bound native results below. Website23 is live with the
+four accepted count stills: product sourcec9d42c1, hosting sourcebe1b5db2;
+its107public files/108archive entries preserve old media and exclude private
+film and unaccepted Delivery images. Native hosting succeeded on2026-10-06
+at23:38:50.779980Z; this is not a fresh hosted playback or genuine task check.
+
 A long first filename used to consume the whole folded material row. Eight files
 plus text looked like one truncated filename. The row now shows **8 files · text**
 or **8 个文件 · 文字**. Multiple files show their count; one file with text uses
