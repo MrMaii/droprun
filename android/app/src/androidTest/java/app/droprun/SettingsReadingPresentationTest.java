@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Rect;
+import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.RippleDrawable;
 import android.os.Build;
 import android.os.Bundle;
@@ -47,7 +48,7 @@ public class SettingsReadingPresentationTest {
                 scenario.onActivity(a->{safe(a);retained[0]=a;assertEquals(scale,a.getResources().getConfiguration().fontScale,0f);assertEquals(config[1].equals("dark"),Ui.dark);assertEquals(320,a.getResources().getConfiguration().screenWidthDp);seed(a);});ready(scenario);entered++;event(identity,"entered");
                 for(int id:new int[]{R.id.settings_appearance,R.id.settings_language,R.id.settings_model,R.id.settings_effort}){
                     scenario.onActivity(a->{View row=a.body.findViewById(id);assertNotNull(row);row.requestRectangleOnScreen(new Rect(0,0,row.getWidth(),row.getHeight()),true);});frame(scenario);ready(scenario);
-                    scenario.onActivity(a->{View row=a.body.findViewById(id);assertTrue(row.getHeight()>=Ui.dp(a,48));assertTrue(row.isClickable());assertTrue(row.isFocusable());assertTrue(row.getForeground() instanceof RippleDrawable);assertTrue(String.valueOf(row.getContentDescription()).contains(", "));assertPreferenceVisible(a,row);if(accepted){assertEquals(Ui.dp(a,280),row.getWidth());assertNull(((View)row.getParent()).getBackground());assertEquals(0f,((View)row.getParent()).getElevation(),0f);}safe(a);});
+                    scenario.onActivity(a->{View row=a.body.findViewById(id);assertTrue(row.getHeight()>=Ui.dp(a,48));assertTrue(row.isClickable());assertTrue(row.isFocusable());assertTrue(row.getForeground() instanceof RippleDrawable);assertTrue(String.valueOf(row.getContentDescription()).contains(", "));assertPreferenceVisible(a,row);if(accepted){boolean modelGroup=id==R.id.settings_model||id==R.id.settings_effort;View parent=(View)row.getParent();assertEquals(Ui.dp(a,modelGroup?248:280),row.getWidth());if(modelGroup){assertTrue(parent.getBackground() instanceof GradientDrawable);GradientDrawable surface=(GradientDrawable)parent.getBackground();assertNotNull(surface.getColor());assertEquals(Ui.SURFACE,surface.getColor().getDefaultColor());}else assertNull(parent.getBackground());assertEquals(0f,parent.getElevation(),0f);}safe(a);});
                 }
                 scenario.onActivity(a->{a.showAccess=true;a.render();});ready(scenario);
                 for(String id:IDS){

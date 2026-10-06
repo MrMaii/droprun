@@ -205,7 +205,10 @@ in [the current candidate record](../releases/0.5.10-rc.1.md).
   without leaving their closed-to-open angle range or changing callbacks.
   Disclosure content also continues from its current opacity when reversed.
   Settings and project history use the common page reading edge; the connected
-  computer retains its distinct surface. At 150% font and above, project access
+  computer retains its distinct surface. Model availability, Refresh/Retry,
+  model and effort form one matte content group with complete values at 200%
+  text. [Grouping decision](../decisions/0019-semantic-content-groups.md).
+  At 150% font and above, project access
   actions follow the full project name on a separate line. A page-wide save disables
   and dims permission controls until its actual completion.
   Delivery uses the ready preview as its primary action, an outlined file entry
@@ -217,6 +220,9 @@ in [the current candidate record](../releases/0.5.10-rc.1.md).
   promise that pending material was received or project work completed.
   At 150% text size and above, project titles wrap fully instead of hiding the suffix
   that identifies a project.
+  Home projects use independent matte surfaces, decorative initials and separate
+  identity/count and state/recency areas. Hide initials at150% text and above;
+  preserve stable IDs, complete names, focus, counts and reading position on rebind.
   Shared actions, icons, chips and model/effort options show a distinct keyboard-
   focus outline in both themes, without changing layout or activating the action.
 - Scrolling text stays outside system bars. Decision errors remain visible after

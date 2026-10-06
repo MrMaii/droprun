@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+- Give Home projects distinct matte cards and decorative initials; reserve name
+  width at large text while preserving state and stable reading on rebind.
+  [Native checks and originals](docs/releases/ui-home-project-cards-2026-10-06.md).
+- Group model availability, Refresh/Retry and model/effort preferences on a
+  matte Settings surface; keep complete large-text choices and recovery focus.
+  [Native checks and captures](docs/releases/ui-settings-model-group-2026-10-06.md).
+- Give both README entrances one clear value heading and a prominent installation
+  link, with a shorter workflow before actual native screenshots.
+  [Local brand/layout checks](docs/releases/ui-readme-brand-reading-2026-10-06.md).
+
 - Distinguish loading, failed reads and confirmed empty history; keep cached rows
   visible and give null/blank failures useful Refresh guidance.
 - Search Share destinations by their displayed label or full ID, retaining the

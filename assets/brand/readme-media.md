@@ -384,3 +384,24 @@ owns their hashes, frozen source, ten closed memory windows and limits. These
 are 0.5.10-dev/code23 captures, separate from the signed 0.5.10 candidate. Earlier
 GIFs, reduced-motion stills and expanded Settings/history examples keep their
 original source/provenance. No new motion or genuine handoff footage is claimed.
+
+## October 6, 2026 — grouped model preferences
+
+The expanded README Settings example now uses the four `source-settings-grouped-*`
+native normal-font originals. They show the scrolled offline model status,
+Refresh, model/effort group and first project-access row. Root directly viewed
+all four; copies retain every original byte, memory-only marker and system pixel.
+These are not full Settings pages,200% captures or signed-package recordings.
+[Frozen source, actual reading/refresh results and hashes](../../docs/releases/ui-settings-model-group-2026-10-06.md)
+own their provenance. The separate Share recording keeps its earlier source.
+
+## October 6, 2026 — distinct Home project cards
+
+The workflow now uses four `source-home-cards-*` normal-font originals in both
+languages/themes. Three fixed memory projects show initials, identity/counts and
+state/recency on independent matte surfaces. Root directly viewed all four;
+brand/landing copies are byte-identical, without retouching or removed markers.
+[Native source, rebind checks and hashes](../../docs/releases/ui-home-project-cards-2026-10-06.md)
+own this separate capture group. They are not genuine dispatches or a signed
+candidate recording. The [bilingual layout review](../../docs/releases/ui-readme-brand-reading-2026-10-06.md)
+also records the subsequent Chinese headline wrap correction and its limits.

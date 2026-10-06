@@ -170,6 +170,7 @@ public class SettingsActivity extends StyledActivity {
     // ---- 默认模型强度 ---------------------------------------------------------------------------
     void modelSection(){
         LinearLayout card=section(L.t("Default model & effort","默认模型强度"));JSONArray catalog=store.models();
+        card.setPadding(dp(16),dp(12),dp(16),dp(12));card.setBackground(Ui.outlined(this,Ui.SURFACE,0,Ui.RADIUS_CARD,0));
         boolean large=getResources().getConfiguration().fontScale>=1.5f;LinearLayout refreshRow=Ui.row(this);if(large)refreshRow.setOrientation(LinearLayout.VERTICAL);
         modelRefreshStatus=Ui.caption(this,modelRefreshMessage());modelRefreshStatus.setAccessibilityLiveRegion(View.ACCESSIBILITY_LIVE_REGION_POLITE);
         refreshRow.addView(modelRefreshStatus,large?Ui.fill():Ui.grow());

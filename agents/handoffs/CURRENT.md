@@ -15,10 +15,10 @@ genuine acceptance is unavailable. No stable launch or marketing handover.
   public audience unchanged. [Website evidence](../../docs/releases/ui-website-demo-reading-2026-10-06.md)
   owns source/archive/asset bindings and offline layout limits. No new hosted
   JavaScript/playback acceptance is claimed.
-- Public source549b90c: seven anonymous immutable file reads match, Thomas
-  author/committer and parent28e5f45 verified. Exact CI37497481404 attempt1 passed
+- Public sourcee315ad6: fifteen anonymous immutable file reads match, Thomas
+  author/committer and parent549b90c verified. Exact CI37504623475 attempt1 passed
   all3jobs/35steps/10required/3checks: actualcore210/browser18/audit0/Androidbuild.
-  Complete326041B log85272c47. Scoped sharp override retains Cloudflare versions.
+  Complete326623B logebe4a877. Scoped sharp override retains Cloudflare versions.
   [Dependency evidence](../../docs/releases/dependency-audit-2026-10-06.md).
 
 ## Latest local UX — tested, ahead of signed candidate
@@ -43,8 +43,35 @@ owns the actual source/APK/output bindings, original failures and limitations.
   25memorycacheapplies. Touch reading2771->2771; selected row fullyvisible.
   No late UI update; ten device properties/source exact. No mode-operation or
   announcement-count native claim. History/Share retain their earlier binding.
-- PRD/CONTRACTS/CHANGELOG synchronize these three behaviors. Source publication
-  and its own CI remain the next step; signed10 stays unchanged.
+- PRD/CONTRACTS/CHANGELOG synchronize these three behaviors. Their source is
+  public ine315ad6 with its own successful CI; signed10 stays unchanged.
+
+## Latest visual pass — local checks complete
+
+- [Model group](../../docs/releases/ui-settings-model-group-2026-10-06.md):
+  matte surface binds availability/Refresh/model/effort. Freeze94882034,
+  appa83e88a9/test2cc96cdf, build34.515s/JVM27/lint0errors30warnings. Reading
+  1/1 21.783s/6knownclosed24guards0 and Refresh1/1 8.067s/4knownclosed25guards0;
+  actualfocus237->243, touch2795->2795. Four raw normal-font captures accepted.
+- [Home cards](../../docs/releases/ui-home-project-cards-2026-10-06.md):
+  independent matte surfaces, initial/name/count and state/date grouping;
+  font>=1.5 hides decoration. Freeze dd281e0b, app9034c5a4/test9a38d89a,
+  build29.343s/JVM27/lint0errors30warnings. CurrentHomeRows1/1 19.011s,
+  6knownclosed/12emittedguards0/36actualrebinds;44ADBchildren returned0, ten
+  device properties/source exact. Old hierarchy matrix notrun; geometry only
+  synchronized. Four original normal-font images accepted, eight exact copies.
+- [Bilingual README](../../docs/releases/ui-readme-brand-reading-2026-10-06.md):
+  one value heading and earlier install link, shorter workflow, new actual
+  Home and Settings images. Eight offline approximate-GitHub scenes passed,
+  rootviewed6. A Chinese hanging headline found visually was shortened;
+  separateZH320light/dark2scenes passed, rootviewed2heroimages. No actual
+  GitHub/GIFplayback/allkeyboard/marketing-ready claim.
+- [ADR0019](../../docs/decisions/0019-semantic-content-groups.md) records the
+  useful-grouping trade-off and partial revision of ADR0018. No new network,
+  permissions, navigation, OS/IME setting or genuine task was introduced.
+- Source and website selector changes await curated publication and exact CI.
+  GPTSites16 and signed10 still refer to their earlier source; never silently
+  relabel them. Model and Home tests have separate source/APK bindings.
 
 ## Visual and README basis
 
@@ -58,10 +85,10 @@ The bilingual README uses real native workflow stills before its Share GIF,
 with recording/provenance details. Its six local previews use approximate
 GitHub CSS; actual GitHub dark/fullmotion is not measured.
 
-The user's current criticism remains actionable: the client still looks too
-much like a basic tool list. Next visual pass should improve useful grouping,
-hierarchy, navigation material and brand consistency, using actual native
-comparisons. Do not equate incremental fixes or tests with Apple-level polish.
+The user's criticism drove the model group and Home card pass above. Continue
+useful grouping, hierarchy, navigation material and brand consistency from real
+native comparisons. Do not equate incremental fixes or tests with Apple-level
+polish or stop useful UI work because genuine acceptance is unavailable.
 
 ## Authorization and blocking conditions
 
@@ -83,9 +110,9 @@ comparisons. Do not equate incremental fixes or tests with Apple-level polish.
 
 ## Single recommended next action
 
-Publish the verified recovery/source pass with exact-source CI, then implement
-the next substantial visual grouping/brand refinement from real captures.
-Build a separate signed candidate after that source passes; keep genuine gates
+Publish the verified Home/model/README source with exact-source CI, then carry
+the accepted Home images to GPTSites and a separate signed candidate. Continue
+the remaining UI states after that source passes; keep genuine gates
 visible. No real Relay/Codex or previously denied path; no marketing handover.
 
 ## Files this pass

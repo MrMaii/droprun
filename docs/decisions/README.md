@@ -40,3 +40,4 @@
 - [0016: Project-first light UX](0016-project-first-light-ux.md)
 - [0017: Recoverable local shares](0017-recoverable-local-shares.md)
 - [0018: Give primary content the page's reading width](0018-reading-surfaces.md)
+- [0019: Use surfaces to make functional groups recognizable](0019-semantic-content-groups.md)

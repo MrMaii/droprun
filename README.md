@@ -1,38 +1,37 @@
 <div align="center">
   <img src="assets/brand/mark.png" width="96" alt="DropRun">
-  <h1>DropRun</h1>
-  <h2>Share from your phone. Put local Codex to work.</h2>
+  <p><strong>DropRun</strong> · Android + Windows · Self-hosted</p>
+  <h1>Share from your phone.<br>Put local Codex to work.</h1>
   <p>Choose an existing project. Add an optional note. Inspect the result and evidence on your phone.</p>
+  <p><a href="docs/technical/SELF_HOSTING.md"><strong>Start installing →</strong></a></p>
   <p>Android 8+ · Windows x64 · signed-in Codex · your Cloudflare</p>
-  <p><a href="docs/technical/SELF_HOSTING.md"><strong>Get started →</strong></a></p>
   <p><a href="https://droprun.dengmaizi0802.chatgpt.site">Website</a> · <a href="https://github.com/MrMaii/droprun/releases/tag/v0.5.10-rc.1">Preview downloads</a> · <a href="README.zh-CN.md">简体中文</a></p>
 </div>
 
 > **Public preview · 0.5.10-rc.1.** [Validation record and open acceptance gates](docs/releases/0.5.10-rc.1.md).
 
 Codex works on your Windows computer. You deploy the Relay to your own Cloudflare account.
-DropRun brings progress, reports and evidence back to your phone.
-
-For example, share a design reference to an existing app project with this note:
-
-> Adapt this navigation idea to our settings screen. Keep our existing visual style.
 
 ## Share. Follow. Inspect.
 
-1. **Share a reference.** In another Android app, tap **Share → DropRun**, then choose an existing project. Add a note when you have a specific change in mind.
-2. **Follow local Codex.** Work happens on your computer, in the chosen project. Follow progress and decisions in its history.
-3. **Inspect the delivery.** See the result, required actions, screenshots and files. Open the full report when needed.
-
-Tasks count independent requests; dispatches count accepted shares and follow-ups.
-Network retries add neither.
+1. **Share → DropRun.** In another Android app, choose an existing project and add an optional note.
+2. **Follow local Codex.** Work happens on your computer, in that project. Follow progress and decisions in its history.
+3. **Inspect the delivery.** Check the result, required actions, screenshots and files; open the full report when needed.
 
 Current screenshots and the Share recording are labelled memory-only development UI, not signed-package or genuine Codex recordings. [Capture notes](assets/brand/readme-media.md).
 
 <p align="center">
   <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-share-matte-en-dark-20261006.png"><img src="assets/brand/source-share-matte-en-light-20261006.png" width="260" alt="01 · Share: native Android note step with expandable received material, optional intent and Model & effort controls; memory-only probe marker retained"></picture>
-  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-home-rows-en-dark-20261006.png"><img src="assets/brand/source-home-rows-en-light-20261006.png" width="260" alt="02 · Follow: native Android project home with names, task and dispatch counts aligned at the page reading edge; memory-only and sample-project markers retained"></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-home-cards-en-dark-20261006.png"><img src="assets/brand/source-home-cards-en-light-20261006.png" width="260" alt="02 · Follow: native Android project cards with initials, names, task and dispatch counts, status and recency; memory-only and sample-project markers retained"></picture>
   <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-delivery-matte-en-dark-20261006.png"><img src="assets/brand/source-delivery-matte-en-light-20261006.png" width="260" alt="03 · Inspect: native handoff page with a clear result heading, fixed-snapshot explanation and delivery actions; visible memory-only marker"></picture>
 </p>
+
+Tasks count independent requests; dispatches count accepted shares and follow-ups.
+Network retries add neither.
+
+For example, share a design reference to an existing app project with this note:
+
+> Adapt this navigation idea to our settings screen. Keep our existing visual style.
 
 <details>
 <summary><strong>Settings and project history</strong></summary>
@@ -40,7 +39,7 @@ Current screenshots and the Share recording are labelled memory-only development
 Settings in one place. Handoff history organized by project.
 
 <p align="center">
-  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-settings-reading-en-dark-20261006.png"><img src="assets/brand/source-settings-reading-en-light-20261006.png" width="220" alt="Native Android settings scrolled to the default model, reasoning effort and project-access sections; normal font size, memory-only marker visible"></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-settings-grouped-en-dark-20261006.png"><img src="assets/brand/source-settings-grouped-en-light-20261006.png" width="220" alt="Native Android settings scrolled to the grouped offline model status, Refresh, model and effort controls, followed by project access; normal font size, memory-only marker visible"></picture>
   <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-history-reading-en-dark-20261006.png"><img src="assets/brand/source-history-reading-en-light-20261006.png" width="220" alt="Native Android project history with the project identity and three memory-only handoff rows; normal font size, sample marker visible"></picture>
 </p>
 

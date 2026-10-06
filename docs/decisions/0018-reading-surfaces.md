@@ -2,6 +2,10 @@
 
 Accepted 2026-10-06. Extends [ADR 0016](0016-project-first-light-ux.md).
 
+The later [ADR 0019](0019-semantic-content-groups.md) revises Home projects and the
+Settings model group to distinct content surfaces. The decision below records the earlier
+layout; other reading and interaction rules remain applicable.
+
 ## Context
 
 Native Home, Share and delivery captures repeat filled containers for ordinary

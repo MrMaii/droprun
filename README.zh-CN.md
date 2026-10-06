@@ -1,37 +1,36 @@
 <div align="center">
   <img src="assets/brand/mark.png" width="96" alt="DropRun">
-  <h1>DropRun</h1>
-  <h2>手机分享参考，让本地 Codex 接着做。</h2>
+  <p><strong>DropRun</strong> · Android + Windows · 自部署</p>
+  <h1>手机分享参考，<br>本地 Codex 接手。</h1>
   <p>选已有项目，可选留一句话，在手机查看结果与证据。</p>
-  <p>Android 8+ · Windows x64 · 已登录 Codex · 自己的 Cloudflare</p>
   <p><a href="docs/technical/SELF_HOSTING.zh-CN.md"><strong>开始安装 →</strong></a></p>
+  <p>Android 8+ · Windows x64 · 已登录 Codex · 自己的 Cloudflare</p>
   <p><a href="https://droprun.dengmaizi0802.chatgpt.site/zh/">官网</a> · <a href="https://github.com/MrMaii/droprun/releases/tag/v0.5.10-rc.1">候选版下载</a> · <a href="README.md">English</a></p>
 </div>
 
 > **公开预览 · 0.5.10-rc.1。** [实际验证记录与待通过的验收门槛](docs/releases/0.5.10-rc.1.md)。
 
 Codex 在你的 Windows 电脑上工作，Relay 由你部署到自己的 Cloudflare 账号。
-进度、报告和改动证据，回到手机上查看。
 
-例如，把一条设计参考分享给已有的 App 项目，留言：
+## 分享、跟进、查看
 
-> 借鉴这里的导航思路，改进我们的设置页。保持现有视觉风格。
-
-## 分享参考、跟进工作、查看交付
-
-1. **分享参考。** 在其他 Android App 点 **分享 → DropRun**，再选已有项目。按需补充这次希望完成的改动。
-2. **跟进本地 Codex。** Codex 在你的电脑和所选项目中工作。按项目查看进展，处理待确认事项。
-3. **查看交付。** 先看结果、需要处理的动作、截图和文件，再按需展开报告。
-
-任务数统计独立请求；交办次数统计已接收的分享与追问。网络重试不增加次数。
+1. **分享 → DropRun。** 在其他 Android App 分享，选已有项目，按需补充留言。
+2. **跟进本地 Codex。** Codex 在你的电脑和所选项目中工作。按项目查看进展与待确认事项。
+3. **查看交付。** 检查结果、需要处理的动作、截图和文件，再按需展开报告。
 
 当前截图与分享录屏为标注的原生内存示例，不是签名包录制或真实 Codex 任务。[媒体来源](assets/brand/readme-media.md)。
 
 <p align="center">
   <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-share-matte-zh-dark-20261006.png"><img src="assets/brand/source-share-matte-zh-light-20261006.png" width="260" alt="01 · 分享：原生 Android 留言步骤，展示可展开的收到材料、可选意图及模型强度入口，保留仅内存验证标记"></picture>
-  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-home-rows-zh-dark-20261006.png"><img src="assets/brand/source-home-rows-zh-light-20261006.png" width="260" alt="02 · 跟进：原生 Android 项目首页，项目名称、任务与交办次数沿页面阅读边缘对齐，保留仅内存验证与示例项目标记"></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-home-cards-zh-dark-20261006.png"><img src="assets/brand/source-home-cards-zh-light-20261006.png" width="260" alt="02 · 跟进：原生 Android 项目卡，集中展示首字、名称、任务与交办次数、状态和最近交办，保留仅内存验证与示例项目标记"></picture>
   <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-delivery-matte-zh-dark-20261006.png"><img src="assets/brand/source-delivery-matte-zh-light-20261006.png" width="260" alt="03 · 查看：原生交办页，清楚的结果标题、固定快照说明与交付入口，保留仅内存验证标记"></picture>
 </p>
+
+任务数统计独立请求；交办次数统计已接收的分享与追问。网络重试不增加次数。
+
+例如，把一条设计参考分享给已有的 App 项目，留言：
+
+> 借鉴这里的导航思路，改进我们的设置页。保持现有视觉风格。
 
 <details>
 <summary><strong>设置与项目历史</strong></summary>
@@ -39,7 +38,7 @@ Codex 在你的 Windows 电脑上工作，Relay 由你部署到自己的 Cloudfl
 设置统一收纳，按项目查看交办历史。
 
 <p align="center">
-  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-settings-reading-zh-dark-20261006.png"><img src="assets/brand/source-settings-reading-zh-light-20261006.png" width="220" alt="原生 Android 设置滚动至默认模型、推理强度与项目授权局部；普通字号，保留仅内存标记"></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-settings-grouped-zh-dark-20261006.png"><img src="assets/brand/source-settings-grouped-zh-light-20261006.png" width="220" alt="原生 Android 设置页，滚动展示分组的离线模型状态、刷新、模型与强度选项及项目授权；常规字号，保留仅内存标记"></picture>
   <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-history-reading-zh-dark-20261006.png"><img src="assets/brand/source-history-reading-zh-light-20261006.png" width="220" alt="原生 Android 项目历史，展示项目身份与三条仅内存交办示例；普通字号，保留示例标记"></picture>
 </p>
 
