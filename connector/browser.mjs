@@ -1,6 +1,6 @@
 import { spawn } from 'node:child_process';
 import { existsSync } from 'node:fs';
-import { mkdir, writeFile, mkdtemp, rm } from 'node:fs/promises';
+import { mkdir, readFile, writeFile, mkdtemp, rm } from 'node:fs/promises';
 import { join } from 'node:path';
 import { createServer } from 'node:net';
 import { matchesTargetRoute } from './routes.mjs';
@@ -16,6 +16,19 @@ export function findBrowser(config = {}) {
 
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
+async function connectSocket(url, timeout) {
+  const socket = new WebSocket(url);
+  try {
+    await new Promise((resolve, reject) => {
+      const timer = setTimeout(() => { socket.close(); reject(new Error('DevTools connection timed out')); }, timeout);
+      socket.onopen = () => { clearTimeout(timer); resolve(); };
+      socket.onerror = () => { clearTimeout(timer); reject(new Error('DevTools connection failed')); };
+      socket.onclose = () => { clearTimeout(timer); reject(new Error('DevTools connection closed')); };
+    });
+    return socket;
+  } catch (error) { socket.close(); throw error; }
+}
+
 export function freePort() {
   return new Promise((resolve, reject) => {
     const server = createServer();
@@ -28,8 +41,7 @@ export function freePort() {
 export class Page {
   constructor(socket) { this.socket = socket; this.serial = 0; this.pending = new Map(); this.listeners = []; }
   static async connect(url) {
-    const socket = new WebSocket(url);
-    await new Promise((resolve, reject) => { socket.onopen = resolve; socket.onerror = () => reject(new Error('DevTools connection failed')); });
+    const socket = await connectSocket(url, 20000);
     const page = new Page(socket);
     socket.onmessage = event => {
       const message = JSON.parse(String(event.data));
@@ -60,8 +72,10 @@ export class Page {
 /** Starts the browser with a dedicated profile and returns handles; the caller must close it. */
 export async function launchBrowser({ executable, profileDir, headless = true, url = 'about:blank', width = 1280, height = 900 }) {
   await mkdir(profileDir, { recursive: true });
-  const port = await freePort();
-  const args = [`--remote-debugging-port=${port}`, `--user-data-dir=${profileDir}`, '--no-first-run', '--no-default-browser-check', '--disable-background-networking', '--disable-sync', '--disable-extensions', `--window-size=${width},${height}`];
+  const activePortFile = join(profileDir, 'DevToolsActivePort');
+  await rm(activePortFile, { force: true });
+  let port = null;
+  const args = ['--remote-debugging-port=0', `--user-data-dir=${profileDir}`, '--no-first-run', '--no-default-browser-check', '--disable-background-networking', '--disable-sync', '--disable-extensions', `--window-size=${width},${height}`];
   if (headless) args.push('--headless=new', '--disable-gpu', '--hide-scrollbars');
   args.push(url);
   const child = spawn(executable, args, { windowsHide: headless, stdio: ['ignore', 'ignore', 'pipe'] });
@@ -70,15 +84,40 @@ export async function launchBrowser({ executable, profileDir, headless = true, u
   let failed = null;
   child.on('error', error => { failed = error; });
   const deadline = Date.now() + 20000;
-  let targets = null;
+  let socket = null;
   while (Date.now() < deadline) {
-    try { const response = await fetch(`http://127.0.0.1:${port}/json`, { signal: AbortSignal.timeout(2000) }); if (response.ok) { const list = await response.json(); if (list.some(t => t.type === 'page')) { targets = list; break; } } } catch {}
+    try {
+      const lines = (await readFile(activePortFile, 'utf8')).trim().split(/\r?\n/);
+      if (lines.length === 2 && /^[1-9]\d{0,4}$/.test(lines[0]) && Number(lines[0]) <= 65535 && /^\/devtools\/browser\/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/.test(lines[1])) {
+        port = Number(lines[0]);
+        const expectedSocket = `ws://127.0.0.1:${port}${lines[1]}`;
+        const version = await (await fetch(`http://127.0.0.1:${port}/json/version`, { signal: AbortSignal.timeout(Math.max(1, Math.min(2000, deadline - Date.now()))) })).json();
+        if (version.webSocketDebuggerUrl === expectedSocket) {
+          const response = await fetch(`http://127.0.0.1:${port}/json`, { signal: AbortSignal.timeout(Math.max(1, Math.min(2000, deadline - Date.now()))) });
+          if (response.ok && (await response.json()).some(t => t.type === 'page') && Date.now() < deadline) { socket = await connectSocket(expectedSocket, deadline - Date.now()); break; }
+        }
+      }
+    } catch {}
     if (failed) throw new Error('浏览器无法启动：' + failed.message);
-    if (child.exitCode !== null) throw new Error('浏览器启动后立即退出（' + child.exitCode + '）' + diagnostics.trim().split('\n').at(-1));
-    await sleep(300);
+    if (child.exitCode !== null && child.exitCode !== 0) throw new Error('浏览器启动后立即退出（' + child.exitCode + '）' + diagnostics.trim().split('\n').at(-1));
+    await sleep(Math.max(0, Math.min(300, deadline - Date.now())));
   }
-  if (!targets) { child.kill(); throw new Error('浏览器没有在 20 秒内响应 DevTools'); }
-  return { child, port, close: () => { try { child.kill(); } catch {} } };
+  if (!socket) { child.kill(); throw new Error('浏览器没有在 20 秒内响应 DevTools'); }
+  let closed = socket.readyState === WebSocket.CLOSED, closing;
+  socket.onclose = () => { closed = true; };
+  const close = () => closing ??= (async () => {
+    try {
+      if (socket.readyState === WebSocket.OPEN) socket.send(JSON.stringify({ id: 1, method: 'Browser.close' }));
+      const deadline = Date.now() + 3000;
+      while (Date.now() < deadline) {
+        try { await fetch(`http://127.0.0.1:${port}/json/version`, { signal: AbortSignal.timeout(Math.max(1, Math.min(200, deadline - Date.now()))) }); }
+        catch (error) { if (error.cause?.code === 'ECONNREFUSED') return; }
+        await sleep(Math.max(0, Math.min(25, deadline - Date.now())));
+      }
+      throw new Error('浏览器关闭后 DevTools 仍未停止；保留专用配置目录供检查。');
+    } finally { socket.close(); }
+  })().catch(error => { closing = null; throw error; });
+  return { child, port, get closed() { return closed; }, close };
 }
 
 export async function firstPage(port) {
@@ -108,7 +147,7 @@ export async function screenshot({ executable, profileDir, url, width = 1280, he
       const result = await page.send('Page.captureScreenshot', { format: 'png', captureBeyondViewport: !!fullPage, ...(clip ? { clip } : {}) });
       return Buffer.from(result.data, 'base64');
     } finally { page.close(); }
-  } finally { browser.close(); }
+  } finally { await browser.close(); }
 }
 
 const visualStyles = new Set(['opacity', 'transform', 'background-color', 'color', 'display', 'visibility', 'border-radius', 'box-shadow', 'position', 'width', 'height']);
@@ -222,10 +261,11 @@ export async function verifyVisual({ executable, profileDir, url, expectedPath, 
   finally {
     page?.close();
     if (browser) {
-      const exited = new Promise(resolve => { if (browser.child.exitCode !== null) return resolve(); browser.child.once('exit', resolve); setTimeout(resolve, 3000).unref(); });
-      browser.close(); await exited;
+      try {
+        await browser.close();
+        await rm(profile, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 }).catch(() => {});
+      } catch (e) { error(e.message); result.passed = false; }
     }
-    await rm(profile, { recursive: true, force: true, maxRetries: 5, retryDelay: 100 }).catch(() => {});
     result.finishedAt = Date.now();
   }
   return result;
@@ -246,5 +286,5 @@ export async function exportCookies({ executable, profileDir, domains, file, hea
       await writeFile(file, lines.join('\n') + '\n', 'utf8');
       return { count: wanted.length, loggedIn: wanted.some(cookie => ['sessionid', 'ds_user_id', 'auth_token', 'SID', 'SESSDATA'].includes(cookie.name)) };
     } finally { page.close(); }
-  } finally { browser?.close(); }
+  } finally { await browser?.close(); }
 }

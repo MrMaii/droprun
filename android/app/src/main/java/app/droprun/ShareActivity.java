@@ -278,7 +278,6 @@ public class ShareActivity extends StyledActivity {
     View stepProject(){
         recentProjects=ProjectPresentation.merge(store.activity(),store.pending(),store.tasks());
         LinearLayout column=Ui.vertical(this);
-        column.addView(Ui.label(this,L.t("CHOOSE A PROJECT","选择项目")));
         column.addView(Ui.title(this,L.t("Where should this idea go?","转发给哪个项目？"),22));
         LinearLayout.LayoutParams chipParams=new LinearLayout.LayoutParams(-1,-2);chipParams.setMargins(0,dp(12),0,dp(18));column.addView(materialChip(),chipParams);
         LinearLayout box=Ui.card(this);box.setPadding(dp(6),dp(6),dp(6),dp(6));
@@ -368,7 +367,6 @@ public class ShareActivity extends StyledActivity {
     // ---- step 2: note, model and effort ---------------------------------------------------------
     View stepNote(){
         LinearLayout column=Ui.vertical(this);
-        column.addView(Ui.label(this,L.t("ADD YOUR INTENT","说说你的想法")));
         column.addView(Ui.title(this,L.t("What should Codex do?","想让 Codex 做什么？"),22));
         TextView target=Ui.caption(this,L.t("For “","转发到「")+projectName()+L.t("”","」"));column.addView(target);
         column.addView(materialChip(),Ui.margins(this,12,4));

@@ -29,12 +29,17 @@ in [the current candidate record](../releases/0.5.5-rc.1.md).
   Keyboard users keep focus on the appearance, language, model or effort control
   they just changed, with that control visible. Cancel preserves the selected
   values and reading position; local model/effort choices survive recreation.
+  Default model and effort use the same setting-row hierarchy as appearance
+  and language. Known effort names are localized; storage keeps the original
+  protocol IDs and unknown choices remain readable verbatim.
   Background settings refresh also retains the focused appearance or language
   control. Structural page focus must not tint the entire content surface.
   Manual pairing validation keeps entered values and shows a complete, visible
   form error for the active input method; format checking never sends a pairing
   request. A nonempty link takes priority. Help and errors explain that using
   the retained three values requires clearing the link first.
+  Share project and intent steps each have one main question, without a
+  duplicate section label. Material, execution context and actions remain clear.
   Share-save feedback gives offline or disabled-notification instructions a
   readable window, including when animations are off; Close stays immediate.
   It reflects connection/notification state when the flight finishes. Ordinary

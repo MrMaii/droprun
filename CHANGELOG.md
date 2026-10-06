@@ -2,6 +2,18 @@
 
 ## Unreleased
 
+Preparing runtime 0.5.6/code19; current download remains 0.5.5 until new packages
+are built and independently verified.
+
+- Simplify share steps to one primary question, and unify default model/effort
+  with existing settings rows and localized effort names. Preserve original IDs,
+  selection, cancel and focus. [Native verification](docs/releases/ui-share-settings-hierarchy-2026-10-06.md).
+- Track the actual owned browser through Windows compatibility relaunches; bind
+  DevTools to its dedicated profile and await confirmed closure. Keep update
+  barriers while a media browser remains unconfirmed. [Verification](docs/releases/browser-lifecycle-2026-10-06.md).
+- Put the dated native tour earlier in both READMEs, with actual GitHub static
+  light/dark fallbacks for reduced motion. [Renderer verification](docs/releases/readme-motion-hierarchy-2026-10-06.md).
+
 - Give project names and counts the full card content width by removing the
   redundant initial tile. Keep states, statistics, access and navigation intact.
   [Local native verification](docs/releases/ui-home-project-hierarchy-2026-10-06.md)

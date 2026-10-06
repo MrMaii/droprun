@@ -96,13 +96,21 @@ const health = createServer(async (request, response) => {
         loginJob = launchBrowser({ executable: browserExecutable, profileDir: browserProfile, headless: false, url: site }).then(browser => {
           const job = { browser, done: false, result: null };
           (async () => {
-            const deadline = Date.now() + 15 * 60000;
-            while (Date.now() < deadline && browser.child.exitCode === null) {
-              await new Promise(r => setTimeout(r, 5000));
-              try { const result = await exportCookies({ executable: browserExecutable, profileDir: browserProfile, domains: ['instagram.com', 'x.com', 'twitter.com', 'youtube.com', 'google.com', 'bilibili.com', 'tiktok.com'], file: cookiesFile, port: browser.port }); job.result = result; if (result.loggedIn) { config.cookiesFile = cookiesFile; job.done = true; break; } } catch {}
+            try {
+              const deadline = Date.now() + 15 * 60000;
+              while (Date.now() < deadline && !browser.closed) {
+                await new Promise(r => setTimeout(r, 5000));
+                if (browser.closed) break;
+                try { const result = await exportCookies({ executable: browserExecutable, profileDir: browserProfile, domains: ['instagram.com', 'x.com', 'twitter.com', 'youtube.com', 'google.com', 'bilibili.com', 'tiktok.com'], file: cookiesFile, port: browser.port }); job.result = result; if (result.loggedIn) { config.cookiesFile = cookiesFile; job.done = true; break; } } catch {}
+              }
+              await new Promise(resolve => setTimeout(resolve, 3000));
+            } finally {
+              while (true) {
+                try { await browser.close(); loginJob = null; break; }
+                catch (error) { job.error = error.message; console.error('media login browser: ' + error.message); await new Promise(resolve => setTimeout(resolve, 3000)); }
+              }
             }
-            await new Promise(resolve => setTimeout(resolve, 3000)); browser.close(); loginJob = null;
-          })();
+          })().catch(error => console.error('media login: ' + error.message));
           return job;
         }).catch(error => { loginJob = null; throw error; });
       }
@@ -152,7 +160,7 @@ const health = createServer(async (request, response) => {
       return reply(response, 200, { ok: true, url: result.url, localUrl, kind: result.mode, version: result.revision, expiresAt: result.expiresAt, note: `预览链接 ${result.minutes} 分钟内有效，交付后重新计时。用完整 localUrl 验证目标页面。` });
     }
     if (url.pathname === '/preview' && request.method === 'GET') return reply(response, 200, { preview: activeTask ? previews.get(activeTask) : null });
-    reply(response, 200, { service: 'DropRun Connector', version: '0.5.5', protocolVersion: 2, shutdownProtocolVersion: 1, instanceId: config.instanceId || null, pid: process.pid, activeTask, online: Date.now() - lastSync < 90000, pairUrl: 'http://127.0.0.1:47493/pair', loginUrl: 'http://127.0.0.1:47493/login', screenshots: !!browserExecutable, previews: !!config.instanceId || !!cloudflaredBin, cookies: !!config.cookiesFile });
+    reply(response, 200, { service: 'DropRun Connector', version: '0.5.6', protocolVersion: 2, shutdownProtocolVersion: 1, instanceId: config.instanceId || null, pid: process.pid, activeTask, online: Date.now() - lastSync < 90000, pairUrl: 'http://127.0.0.1:47493/pair', loginUrl: 'http://127.0.0.1:47493/login', screenshots: !!browserExecutable, previews: !!config.instanceId || !!cloudflaredBin, cookies: !!config.cookiesFile });
   } catch (error) { reply(response, 500, { error: error.message }); }
   finally { if (ownsVisualLock) visualBusy = false; if (localAction) work.end(); }
 });

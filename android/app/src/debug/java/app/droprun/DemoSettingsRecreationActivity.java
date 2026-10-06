@@ -5,7 +5,11 @@ import android.content.ContextWrapper;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.content.res.Configuration;
 import android.view.View;
+import android.widget.TextView;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -17,6 +21,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /** Real mode-operation lifecycle over guarded memory only; never saves a setting or calls a Relay. */
 public class DemoSettingsRecreationActivity extends SettingsActivity {
+    static volatile float hierarchyFontScale;
+    int modelSaves;Store modelProbeStore;TextView hierarchyNotice;
     static volatile ControlledWork finishBeforeAttach;
     final Map<String,Object> global=new HashMap<>(),cached=new HashMap<>();
     final AtomicInteger forbiddenActions=new AtomicInteger();
@@ -24,6 +30,7 @@ public class DemoSettingsRecreationActivity extends SettingsActivity {
 
     AssertionError forbidden(String action){forbiddenActions.incrementAndGet();return new AssertionError("Settings recreation probe forbids "+action);}
     @Override protected void attachBaseContext(Context base){
+        if(hierarchyFontScale!=0f){Configuration config=new Configuration(base.getResources().getConfiguration());config.fontScale=hierarchyFontScale;base=base.createConfigurationContext(config);}
         super.attachBaseContext(new ContextWrapper(base){
             @Override public Context getApplicationContext(){return this;}
             @Override public SharedPreferences getSharedPreferences(String name,int mode){
@@ -42,9 +49,31 @@ public class DemoSettingsRecreationActivity extends SettingsActivity {
         previousLanguage=L.chinese()?"zh":"en";
         global.put("language","zh".equals(getIntent().getStringExtra("language"))?"zh":"en");global.put("appearance","dark".equals(getIntent().getStringExtra("appearance"))?"dark":"light");
         cached.put("directExecution",true);
+        if(getIntent().getBooleanExtra("modelHierarchy",false))L.language((String)global.get("language"));
+        if(getIntent().getBooleanExtra("modelHierarchy",false))try{
+            JSONArray models=new JSONArray().put(new JSONObject().put("id","sample-default").put("displayName",L.t("Local UI model","本地界面模型")).put("isDefault",true).put("defaultEffort","medium").put("efforts",new JSONArray().put("low").put("medium").put("high")))
+                .put(new JSONObject().put("id","sample-second").put("displayName",L.t("Another UI model","另一个界面模型")).put("defaultEffort","low").put("efforts",new JSONArray().put("low").put("high").put("future-effort")));
+            cached.put("projects",new JSONObject().put("models",models).toString());
+            if(state!=null){cached.put("defaultModel",state.getString("probeModel",""));cached.put("defaultEffort",state.getString("probeEffort",""));modelSaves=state.getInt("probeSaves");}
+        }catch(Exception error){throw new AssertionError(error);}
         if(state!=null&&finishBeforeAttach!=null){ControlledWork finishing=finishBeforeAttach;finishBeforeAttach=null;finishing.release.countDown();try{finishing.runner.join(3000);}catch(InterruptedException error){throw new AssertionError(error);}if(finishing.runner.isAlive())throw new AssertionError("Controlled worker did not finish before attachment");}
         super.onCreate(state);firstRenderedChild=body.getChildAt(0);
     }
+    @Override void modelSection(){
+        if(getIntent().getBooleanExtra("modelHierarchy",false)&&modelProbeStore==null){
+            modelProbeStore=new Store(this){
+                @Override void saveDefaults(String model,String effort){modelSaves++;cached.put("defaultModel",model);cached.put("defaultEffort",effort);}
+                @Override JSONObject api(String path,String method,byte[] body,String mime,String filename){throw forbidden("API");}
+                @Override JSONObject request(String origin,String path,String method,byte[] body,String mime,String filename,String token){throw forbidden("request");}
+            };store=modelProbeStore;
+        }
+        super.modelSection();
+        if(getIntent().getBooleanExtra("modelHierarchy",false)){
+            hierarchyNotice=Ui.caption(this,L.t("UI probe · memory only","界面探针 · 仅内存"));
+            ((android.widget.LinearLayout)body.getChildAt(body.getChildCount()-1)).addView(hierarchyNotice,Ui.margins(this,8,0));
+        }
+    }
+    @Override protected void onSaveInstanceState(Bundle state){if(getIntent().getBooleanExtra("modelHierarchy",false)){state.putString("probeModel",store.defaultModel());state.putString("probeEffort",store.defaultEffort(store.defaultModel()));state.putInt("probeSaves",modelSaves);}super.onSaveInstanceState(state);}
     @Override void refresh(){}
     @Override Callable<Void> modeWork(boolean direct){
         workFactories++;work=new ControlledWork(direct,getIntent().getBooleanExtra("fail",false)?L.t("Could not save the execution preference.","执行偏好保存失败。"):null);return work;

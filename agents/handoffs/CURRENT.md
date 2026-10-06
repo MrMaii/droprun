@@ -1,134 +1,93 @@
 # Current Handoff
 
-Updated 2026-10-06 UTC. Public candidate 0.5.5-rc.1 is available. Stable launch
-and marketing acceptance remain open; independent UI/brand work continues.
+Updated 2026-10-06 UTC. Independent UI/brand work continues while real acceptance
+remains open. Runtime0.5.6/code19 source is prepared; new packages are not yet built.
 
 ## Current delivery
 
-- [Candidate record](../../docs/releases/0.5.5-rc.1.md) owns package/source/signature
-  evidence. Source 4e0c5ebae04346de1bc86a43cb71429bbba3ce5c, runtime0.5.5/code18,
-  protocol2/schema11/shutdown1. Eight complete anonymous downloads/API digests/
-  seven checksums/tag pass; stable Android certificate/noDemo/nondebuggable,
-  Windows NotSigned, committed-source and package inventories independently checked.
-  Previous releases are unchanged. [Anonymous audit](../../docs/releases/public-delivery-2026-10-06-rc055.json).
-- Exact-source CI37397059000 attempt1: all3jobs/35steps green, core210/browser14,
-  fail/skip/cancel/todo0; audit0/site20/public-source379/Windows2022 packaging
-  and Android build/JVM/lint. Twenty-seven anonymous source/media GETs match Git.
-- GPTSites version8 succeeded01:21:12.552545Z, source
-  c8de57fd9690c25c69984f8b30d9bd0078d10951, with0.5.5 installation links and
-  nearby actions. Anonymous2pages/10CTA/4current resources/25 unchanged resource
-  comparisons pass; first stale-stylesheet assertion retained and corrected.
-  Actual6Edge scenes/8keyboard focuses/78DOM-derived checks pass, no overflow.
-  RawJPG375×812/1265×712 vsCSS390×844/1280×720 both recorded; GitHub signed-in/
-  auto/light and website normal motion. Hosted reduce=true check proceeds separately.
-  [Installation record](../../docs/releases/ui-install-entry-2026-10-06.md).
-- Initial website archive changed ignored output but retained old tracked source;
-  never saved/deployed. Matched35 tracked files to output before the new source
-  and fresh archive. Originals/nested directories preserved. All needed build
-  outputs/evidence kept outside managed checkout, which is now archived.
-- Presentation81586b7ac3d1c7586eb009e3344624d34f581f7d: exact-source
-  CI37398678588 attempt1 all3jobs/35steps/core210/browser14 green, allfailure
-  counters0; audit0/site20/scanner381/Windows2022/Android. Fifteen anonymous
-  source GETs match immutable Git. It is separate from the signed4e candidate.
+- Public download stays [0.5.5-rc.1](../../docs/releases/0.5.5-rc.1.md), source
+  4e0c5ebae04346de1bc86a43cb71429bbba3ce5c/runtime0.5.5/code18/protocol2/schema11/
+  shutdown1. Eight complete anonymous assets/checksums/tag pass; stable Android
+  certificate/nondebuggable/noDemo and Windows NotSigned remain recorded.
+  [Public audit](../../docs/releases/public-delivery-2026-10-06-rc055.json).
+- GPTSites8 stays live, hosting sourcec8de57fd9690c25c69984f8b30d9bd0078d10951,
+  success01:21:12.552545Z. Anonymous links/resources and actual6normal Edge
+  scenes/8keyboard checks pass. [Installation record](../../docs/releases/ui-install-entry-2026-10-06.md)
+  owns source/archive/CSS-vs-raw-size provenance and earlier retained failures.
+- Latest published README/docs source7e405f9c7e5566483e1e0d7d3dd063b90631a237:
+  CI37401649646 attempt1 all3jobs/35steps/10required/core210/browser14 green;
+  failure counters0/audit0/site20/scanner385/Windows2022/Android. Nine fresh
+  anonymous sourceGETs match immutable Git. New runtime changes below await
+  curated source publication, exact-source CI and a clean managed build.
 
-## Latest verified UX and brand work
+## Latest completed work
 
+- [Home hierarchy](../../docs/releases/ui-home-project-hierarchy-2026-10-06.md):
+  identity/count/state aligned, name168→224dp, EN card179→150dp; red1 and native
+  green2/2/JVM24/lint0/30/101sources pass. Sourceb117b5f CI37400230847 attempt1
+  all3jobs/core210/browser14 green;12anonymous sourceGET exact. Separate
+  [system-bar observation](../../docs/releases/ui-system-bars-observation-2026-10-06.md)
+  compares first361ms dark pixels0 with later2051ms pixels1317/same app/request;
+  no Ui change or exact platform-cause claim. Diagnostic archived privately.
+- [Share/settings hierarchy](../../docs/releases/ui-share-settings-hierarchy-2026-10-06.md):
+  two duplicate share labels removed; known effort labels/settings rows unified,
+  original IDs retained. Red2expectedfail; nativegreen2/2 in92.494s, each8configs;
+  JVM24/lint0/30/102sources/54device-host hashes/guard0. EN eachstep34dp saved;
+  settings48dp/complete names/local choice/cancel/focus/recreate pass. Independent
+  401payload review passes. OldLocalRecovery stable-ID selector compiled, not
+  executed; red/green testAPKs differ. SetText/keyboard bypass/memorysave do not
+  establish IME, disk persistence, process loss, TalkBack or physical performance.
+- [Browser lifetime](../../docs/releases/browser-lifecycle-2026-10-06.md): final
+  Chrome focused4/4/related29/29/7syntax pass; separate4fresh Edge local scenes
+  identity/rawcaps/exit0-live/close127–168ms/refused/14→0 pass. Independent
+  66payload review passes. Startupprofile UUID binding and failed-close update
+  barrier corrected; actualmedia/stop remains source-reviewed only. Original
+  firstred/firstgreen/reuse-red and one diagnostic profile retained. Routine
+  version bump changes only main health version, not verified browser functions.
 - [README motion hierarchy](../../docs/releases/readme-motion-hierarchy-2026-10-06.md):
-  dated native tour moved before workflow gallery, reduce/light/dark still
-  sources and explicit still links; older tour manual video links retained.
-  Original six media bytes and Demo/source notices unchanged. Actual GitHub
-  sanitizer/media selection remains pending; no new genuine demonstration.
-
-- [Settings semantics](../../docs/releases/ui-settings-semantics-2026-10-06.md):
-  progress/success/warning use existing accessible colors; native option names
-  include visible explanations. Combined12/13 plus corrected targeted node1/1,
-  not single13/13. JVM24/lint0/30,12 raw region PNGs/device-host hashes/guard0.
-- [Delivery image actions](../../docs/releases/ui-task-thumbnail-2026-10-06.md):
-  minimum48dp surface preserves ratio; busy/stale clicks and focus blocked.
-  Original direct ImageView minimum failed and retained. Green native5/5,
-  JVM24/lint0/30; all capture/source hashes verified. No genuine file download.
-- [Pair guidance](../../docs/releases/ui-pair-copy-2026-10-06.md): active input
-  correction explained, entries retained, link priority/source confirmation
-  unchanged. Red1/3; green3/3 and settled capture-only3/3. First transitional
-  stills retained;99sources/device settings match. No ordinary Pair/real pairing.
-- [Snapshot hierarchy](../../docs/releases/ui-snapshot-version-2026-10-06.md):
-  clear explanation, full selectable version in existing retained disclosure.
-  Red1/1; affected5/5 and capture-only1/1; JVM24/lint0/30. All100sources and50
-  PNG/JSON device-host hashes match. Final12 raw captures accepted; clipped
-  diagnostic markers preserved. No genuine preview/clipboard/physical claim.
-- [Entry hierarchy](../../docs/releases/ui-install-entry-2026-10-06.md): primary
-  README installation and nearby site installer/guide. Existing Node1/browser14/
-  site20; actual local EN/ZH1280/390 four scenes/10 keyboard checks pass.
-  Independent actual GitHub4e source header/galleries EN/ZH1280/390 pass;
-  signed-in/light only, pointers0.5.4, ZH desktop phone bottom outside viewport.
-  Frozen local reduced-motion four scenes pass across two runs (first hidden-link
-  probe error retained): zero active/waiting animations, no overflow,43 local
-  GET/HEAD200 and no external requests. Not hosted-version QA.
-- README third picture now uses four original Oct6 normal native probes,
-  byte/provenance checked. First two screens/tours stay0.5.1 Demo. Neither set
-  is genuine Codex execution or a signed-package recording. Older originals unchanged.
-- Earlier [Home](../../docs/releases/ui-recovery-2026-10-05.md),
-  [delivery](../../docs/releases/ui-delivery-surface-2026-10-05.md),
-  [settings lifecycle](../../docs/releases/ui-settings-operation-2026-10-05.md),
-  [permissions](../../docs/releases/ui-permission-motion-2026-10-05.md) and
-  [setup](../../docs/releases/ui-setup-hierarchy-2026-10-05.md) own their dated limits.
-
-- [Home identity](../../docs/releases/ui-home-project-hierarchy-2026-10-06.md)
-  is validated Unreleased source, outside unchanged0.5.5 packages. Only tile/
-  spacer/holder removed; name/count/state share content edge. Red1expected fail;
-  green2/2 covers8configurations×3rows plus existing enlarged-name check;
-  JVM24/lint0/30/101sources/18device-host hashes/guard0/sync0 pass. Name width
-  168→224dp, normal EN first card179→150dp; enlarged suffixes complete. Four
-  dark originals reveal low-contrast status-bar glyphs. Not a complete dark-mode,
-  TalkBack, genuine execution or physical-performance acceptance. Independent
-  source review passes. Published b117b5fa27360d6633dbe80f104381c2af2b7a51,
-  exact-source CI37400230847 attempt1 all3jobs/35steps green, core210/browser14
-  failure counters0, audit0/site20/scanner383/Windows2022/Android. Twelve fresh
-  anonymous source GETs match immutable Git.
-- [System-bar observation](../../docs/releases/ui-system-bars-observation-2026-10-06.md):
-  first light→dark window361ms after focus has0 light glyph pixels, native1fail
-  only pixels; later single dark2051ms has1317 light pixels, native1/1. Same
-  app/appearance0/legacy0/themefalse, not a combined2/2 or exact platform-cause
-  claim. Production Ui unchanged; diagnostic archived privately, remaining101
-  sources equal Home green. Original screenshots/failure retained.
-- Hosted reduced-motion first probe remains incomplete: known platform script
-  guard failure plus three Windows launcher exit0 false failures. All own
-  successor browser processes were closed via confirmed CDP identity; originals
-  retained. Browser lifecycle runtime/tests are being repaired separately.
+  dated native tour before workflow, static light/dark reduced-motion fallbacks,
+  explicit still links, existing media unchanged. Actual anonymous GitHub390×844
+  sixcaptures pass across EN3attempt2+ZH3attempt3: selected currentSrc, completed
+  images, notices/order/nooverflow. First helper API error and fixed-wait GIF
+  readiness failure retained;18originalfiles frozen. Not one6scene run.
+- Hosted v8 reduce remains incomplete. Latest EN1280 guard stops at an unapproved
+  h/b platform script path; exact redirect status unsampled. Ten GET9allow/1block,
+  zeroUImeasurements/PNG, other3unstarted. Close221ms/refused/ownprocess0;11new
+  readonly files and prior20unchanged. No repeated probe or allowlist expansion.
+- Earlier dated settings, delivery, pairing, permissions and setup evidence is
+  indexed in the candidate record. Captures/tours retain Demo/memory markers,
+  dates and source limits; none is a genuine Codex execution or signed recording.
 
 ## Authorization and blocking conditions
 
 - Local UI only. No genuine Relay/Codex task, owner Cloudflare change or social
   posting. No physical Android or usable clean Windows guest.
 - Automatic approval rejected240-row history/process loss, retained-Demo discard
-  plus ordinary Pair navigation, and owned-Sites nested-directory cleanup. Do not
-  retry through another tool/wrapper or ask again. Draft/directories remain.
-- Original IME/startup ANRs, Sep29 SyncJob ANR and Home's2,680.552s matrix remain
-  unexplained in their dated records/private originals. No failed IME-path replay,
-  reset/kill/default-IME change or physical-performance claim. Earlier brand
-  ECONNRESET/readiness CI failures remain unexplained; later green CI is separate.
-- Stable gates: genuine3-project/5-consecutive-handoff/20-source reading/recovery;
-  physical accessibility/frame/press/IME; clean Windows/fresh owner Cloudflare/
-  physical install-pair-deliver-upgrade-uninstall; provider limits, blocked
-  process-loss acceptance, genuine completed-work demo and final posters.
+  plus ordinary Pair navigation, and owned-Sites nested cleanup. Do not retry
+  through another tool/wrapper or ask again. Draft/original directories remain.
+- Original IME/startup/Sep29 SyncJob ANRs, Home2680.552s matrix, prior brand
+  ECONNRESET/readiness failures remain unexplained in dated originals. No failed
+  IME path replay, device reset/kill/clear/default-IME/OS-setting change.
+- Stable gates remain genuine3projects/5consecutive handoffs/20source samples,
+  recovery/isolation; physical accessibility/frame/press/IME; clean Windows/fresh
+  owner Cloudflare/install-pair-deliver-upgrade-uninstall; genuine demo/posters.
 - User resumed independent UI/brand/README work. Goal stays active while useful
-  work proceeds. No marketing handover. Original film/LAUNCH_KIT/promo files stay
+  work proceeds; no marketing handover. Original film/LAUNCH_KIT/promo files stay
   uncommitted/unpublished. Working film section is byte-preserved, excluded from
-  public index. Never blanket git add.
+  public index. Never blanket git add. All managed previous builds are archived;
+  originals needed for this release are preserved outside those checkouts.
 
 ## Single recommended next action
 
-Finish and independently review the Windows browser startup/close lifecycle
-regression before any fresh hosted reduced-motion check. Continue read-only
-Share/Settings and README design audits in parallel; implement only concrete
-local UI improvements. Root owns Git/hosting and docs. Keep failed hosted probes
-separate from six accepted normal scenes and genuine acceptance gates open.
+Verify this curated0.5.6/code19 source's first exact-source CI and public bytes,
+then build Android/Windows from a clean managed checkout. Verify stable signing,
+noDemo/source/checksums before a candidate Release or changing download/site
+pointers. Root owns publication and private film exclusion; real gates stay open.
 
 ## Files this pass
 
-MainActivity, non-exported Home fixture and new hierarchy test; PRD, Unreleased
-changelog and README wording; candidate/anonymous/installation/Home records and
-current handoff. Status-bar observation adds documentation only. Browser runtime
-work remains separate and in progress. Private evidence/builds stay under
-.local/ux-rc055/, .local/ux-oct6-home-hierarchy/ and independent new probe dirs.
-Git author Thomas Deng <150266369+MrMaii@users.noreply.github.com>.
+Share/Settings, two opt-in memory fixtures/new hierarchy test/LocalRecovery IDs;
+browser/main/pair-page and owning test teardown; PRD/contracts/changelog/native/
+browser/README records; runtime/installer version metadata and current handoff.
+Private frozen evidence stays outside Git. Author Thomas Deng
+<150266369+MrMaii@users.noreply.github.com>.

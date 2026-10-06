@@ -5,7 +5,7 @@
 This section overrides conflicting historical defaults below. Existing execution,
 plan-version, per-command approval and report-evidence checks remain in force.
 
-- `GET /health`: source version (currently 0.5.5), protocolVersion=2, schemaVersion=11, instanceId and ready;
+- `GET /health`: source version (currently 0.5.6), protocolVersion=2, schemaVersion=11, instanceId and ready;
   public health must not expose project contents, credentials or paired users.
 - Pairing carries relayOrigin and instanceId plus the one-time code. The phone
   verifies health and obtains explicit server confirmation before binding. Tokens,
@@ -98,6 +98,17 @@ plan-version, per-command approval and report-evidence checks remain in force.
   before upgrade. Upgrade runs its bundled shutdown verifier rather than trusting
   the installed older setup helper. This capability belongs to local management,
   not the public Relay protocol.
+  Media-login work remains busy if its browser close cannot be confirmed. Only
+  a confirmed stop releases that barrier; a launcher exit or disconnected
+  DevTools socket alone is insufficient.
+- Connector-owned Chrome/Edge uses an OS-assigned DevTools port and the fresh
+  `DevToolsActivePort` in its dedicated profile to bind browser identity. Startup
+  accepts only the matching loopback port and browser UUID within 20 seconds;
+  a zero-exit compatibility launcher may still have a live successor browser.
+  Close uses the retained browser socket and waits for endpoint refusal within
+  3 seconds. Failure preserves the profile and can recheck the same endpoint;
+  it never reconnects to a reused port to send a shutdown command. Borrowing a
+  cookie-export port does not transfer ownership or close its browser.
 - Local setup `GET /api/doctor` requires the same loopback/Host/Origin checks and
   private `X-DropRun-Setup` session token as other setup APIs. A ready Codex check
   includes the complete paginated `codexStatus.projects` inventory: `id`, `name`,

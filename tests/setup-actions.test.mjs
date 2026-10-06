@@ -27,9 +27,11 @@ async function fixture(t) {
   await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
   let browser, page;
   t.after(async () => {
-    holds.forEach(hold => hold.release()); page?.close(); browser?.close(); server.closeAllConnections();
-    await new Promise(resolve => server.close(resolve));
-    await rm(profileDir, { recursive: true, force: true, maxRetries: 20, retryDelay: 100 });
+    holds.forEach(hold => hold.release()); page?.close();
+    try {
+      await browser?.close();
+      if (browser) await rm(profileDir, { recursive: true, force: true, maxRetries: 20, retryDelay: 100 });
+    } finally { server.closeAllConnections(); await new Promise(resolve => server.close(resolve)); }
   });
   browser = await launchBrowser({ executable, profileDir }); page = await firstPage(browser.port);
   await page.send('Page.enable');

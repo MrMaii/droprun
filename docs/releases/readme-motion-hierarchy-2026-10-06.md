@@ -1,7 +1,7 @@
 # README motion and reading hierarchy
 
 Date: 2026-10-06 UTC. English and Chinese source refinements, outside the unchanged
-0.5.5 packages. Actual GitHub rendering verification is pending.
+0.5.5 packages. Actual immutable GitHub rendering is verified separately below.
 
 The existing native UI GIF previously followed three tall workflow screenshots
 and the full installation explanation. It now follows the value explanation,
@@ -22,5 +22,24 @@ of the signed download is claimed. The newer Home source is not represented by
 the older Home screenshot or tour.
 
 Source order, local references and unchanged media are checked separately from
-GitHub's sanitizer and actual picture/media-query selection. Until those browser
-checks complete, source markup alone does not certify the static fallback there.
+GitHub's sanitizer and actual picture/media-query selection. Source markup alone does not certify the static fallback; the actual renderer
+checks below supply that evidence.
+
+## Actual GitHub rendering
+
+Source7e405f9c7e5566483e1e0d7d3dd063b90631a237, fresh anonymous Edge, CSS
+390×844 and unedited raw PNG390×844. Both English and Chinese retain the
+picture sources and media queries. Normal motion selects the original480×960
+GIF; reduced motion selects the original720×1440 light/dark PNG. Actual
+currentSrc matches the selected source. All images finish loading, Demo and
+candidate notices remain, tour heading precedes workflow, and client/scroll
+width390 has no horizontal overflow. No account login or download action.
+
+Six accepted captures come from two runs: English3 in the second attempt and
+Chinese3 in the third. The first helper called a nonexistent convenience method;
+the second used a fixed800ms wait and failed when the Chinese GIF was still
+loading. The third used a bounded image-readiness check and captured only the
+remaining Chinese cases. Original errors and partial captures are retained; this
+is not a single six-scene run. Owned browser closure was confirmed before
+temporary-profile removal. This does not certify every theme, keyboard flow or
+website reduced-motion behavior.
