@@ -136,6 +136,7 @@ nav a:active { opacity: .5; }
 .install-section { padding-block: 96px 70px; background: var(--soft); border-block: 1px solid var(--line); }
 .install-heading { display: grid; grid-template-columns: 1.05fr 1fr; align-items: start; gap: 92px; }
 .install-heading h2 { margin-block: 20px 26px; }
+.install-entry { margin-top: 24px; }
 .install-steps { padding: 0; margin: 0; list-style: none; }
 .install-steps li { display: flex; gap: 22px; padding-block: 25px; border-bottom: 1px solid var(--line); }
 .install-steps li:first-child { padding-top: 0; }

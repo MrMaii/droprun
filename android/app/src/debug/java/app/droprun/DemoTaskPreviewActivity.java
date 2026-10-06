@@ -46,6 +46,8 @@ public class DemoTaskPreviewActivity extends TaskActivity {
             paint.setColor(0xFF365A24);canvas.drawRect(0,0,width,height,paint);paint.setColor(0xFFB8EF73);canvas.drawRect(0,0,width/3f,height,paint);paint.setColor(0xFFEAF5DD);canvas.drawRect(width*2/3f,0,width,height,paint);
             thumbnailRequested=true;
         }
+        String snapshotVersion=getIntent().getStringExtra("snapshotVersionProbe");
+        if(snapshotVersion!=null)try{sample.put("preview_kind","snapshot").put("preview_status","ready").put("preview_url","https://preview.example.invalid/s/sample").put("preview_expires_at",Long.MAX_VALUE).put("preview_version",snapshotVersion);}catch(Exception error){throw new AssertionError(error);}
         getIntent().putExtra("taskId",ID);super.onCreate(state);
     }
     @Override Store createStore(){return new Store(this){

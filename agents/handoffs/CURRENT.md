@@ -87,7 +87,28 @@ marketing acceptance remain open; independent UI/brand work continues.
   Original two transitional stills retained; four settled EN/ZH captures accepted.
   JVM24/lintRelease0errors28warnings. All99 final sources and device settings
   matched; no genuine pair/API, ordinary Pair navigation, IME or dark-theme claim.
-- Public0.5.4 packages and GPTSites version7 are unchanged by these source edits.
+- Task/Pair sourcec35d0358240f0a310c5378d0138825c7ea15b617: exact-source
+  CI37395262677 attempt1 all3jobs/35steps green, core210/browser14 and
+  fail/skip/cancel/todo0; audit0/site20/public-source372/Windows2022. Nine
+  fresh anonymous source/doc GETs match immutable Git bytes.
+- [Snapshot hierarchy](../../docs/releases/ui-snapshot-version-2026-10-06.md):
+  two Task lines move the complete selectable version into existing disclosure,
+  preserving API/URL/expiry/eligibility/expanded state. Red1/1 in2.388s;
+  combined5/5 in48.2s, capture-only marker fix1/1 in29.01s; JVM24/lint0/30.
+  All100 source hashes and50 PNG/JSON device-host hashes match; final12 raw
+  captures accepted. Four old large-text clipped markers retained. Independent
+  review passes; no genuine preview, clipboard or physical-performance claim.
+- [Entry hierarchy](../../docs/releases/ui-install-entry-2026-10-06.md): README
+  installation primary separate from utility links; nearby installer/guide on
+  landing. Node1/1/browser14/14/site20. Actual EN/ZH1280/390 four settled
+  scenes and10 keyboard checks pass. Conservative local README311px passes;
+  initial insufficient/split-label images retained, actual GitHub renderer open.
+  Later root copied four original Oct6 normal native captures to README with
+  byte/provenance checks; older media and website tours remain unchanged.
+  Landing reduced-motion verification proceeds independently over a frozen copy.
+- Runtime0.5.5/code18 source preparation follows native validation; protocol2,
+  schema11/shutdown1 unchanged. No new signed package/tag/Release yet.
+  Public0.5.4 packages and GPTSites version7 stay immutable while preparing0.5.5.
 
 ## Authorization and blocking conditions
 
@@ -112,11 +133,11 @@ marketing acceptance remain open; independent UI/brand work continues.
 
 ## Single recommended next action
 
-Move the complete static-snapshot version from the result card into the existing
-collapsed evidence section, preserving the raw value and recreation state.
-Client audit owns the next bounded native lease after this frozen source batch
-is committed. Root owns curated publication; public0.5.4 stays immutable.
-Genuine and physical gates remain separate.
+Publish the curated runtime0.5.5/code18 source, then build and independently
+verify Android/Windows candidates from the clean managed checkout. Publish only
+after exact-source CI and package provenance pass; align README and GPTSites
+downloads afterwards, including actual GitHub/header and new installation QA.
+Root owns publication; physical and genuine handoff gates remain open.
 
 ## Files this pass
 

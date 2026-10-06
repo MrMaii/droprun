@@ -2,7 +2,7 @@
   #error PackageDir is required
 #endif
 #ifndef AppVersion
-  #define AppVersion "0.5.4"
+  #define AppVersion "0.5.5"
 #endif
 [Setup]
 AppId={{0F72564E-B95C-4B37-BE35-462612996874}

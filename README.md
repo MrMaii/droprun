@@ -3,8 +3,8 @@
   <h1>DropRun</h1>
   <p><strong>Share from your phone. Put local Codex to work.</strong></p>
   <p>Choose an existing project. Add an optional note. Inspect the result.<br>Android 8+ · Windows x64 · signed-in Codex · your Cloudflare</p>
-  <p><a href="docs/technical/SELF_HOSTING.md"><strong>Get started →</strong></a> &nbsp; · &nbsp; <a href="https://droprun.dengmaizi0802.chatgpt.site">Website</a> &nbsp; · &nbsp; <a href="https://github.com/MrMaii/droprun/releases/tag/v0.5.4-rc.1">Downloads</a> &nbsp; · &nbsp; <a href="README.zh-CN.md">简体中文</a></p>
-  <p>Preview downloads: <a href="https://github.com/MrMaii/droprun/releases/download/v0.5.4-rc.1/DropRun-0.5.4-windows-x64-setup.exe">Windows installer</a> &nbsp; · &nbsp; <a href="https://github.com/MrMaii/droprun/releases/download/v0.5.4-rc.1/DropRun-0.5.4-windows-x64.zip">Portable ZIP</a> &nbsp; · &nbsp; <a href="https://github.com/MrMaii/droprun/releases/download/v0.5.4-rc.1/DropRun-0.5.4-android.apk">Android APK</a></p>
+  <p><a href="docs/technical/SELF_HOSTING.md"><strong>Get started →</strong></a></p>
+  <p><a href="https://droprun.dengmaizi0802.chatgpt.site">Website</a> · <a href="https://github.com/MrMaii/droprun/releases/tag/v0.5.4-rc.1">Preview downloads</a> · <a href="README.zh-CN.md">简体中文</a></p>
 </div>
 
 > **Public preview · 0.5.4-rc.1.** [Validation record and open acceptance gates](docs/releases/0.5.4-rc.1.md).
@@ -20,7 +20,7 @@ and evidence of what changed.
 **UI demonstration only:** nothing was sent to an agent, and the report uses
 labelled sample data.
 
-Share/home screens and tours show the dated 0.5.1 development UI. The delivery region below shows the latest source UI in a memory-only native probe. All were captured October 5, 2026; none records this signed download or genuine Codex execution.
+Share/home screens and tours show the dated 0.5.1 development UI. The delivery region below shows the latest source UI in a memory-only native probe. Share/home and tours were captured October 5, 2026; the delivery screen October 6. None records this signed download or genuine Codex execution.
 [Capture notes](assets/brand/readme-media.md).
 
 ### 01 · Share a reference
@@ -39,7 +39,7 @@ Codex works on your computer, in the chosen project. Follow progress and decisio
 
 See the result, required actions, screenshots and files. Open the full report when needed.
 
-<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-delivery-en-dark-20261005.png"><img src="assets/brand/source-delivery-en-light-20261005.png" width="280" alt="Latest native delivery region: result, preview and files on one surface, with a visible memory-only probe marker"></picture></p>
+<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-delivery-en-dark-20261006.png"><img src="assets/brand/source-delivery-en-light-20261006.png" width="280" alt="Latest native delivery region: result, preview and files on one surface, with a visible memory-only probe marker"></picture></p>
 
 ## Start with your own setup
 

@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.5.5-rc.1 — clearer results and installation
+
 - Distinguish execution-setting progress, confirmed success and warnings with
   existing accessible theme colors. Include visible explanations in native option
   names, retaining selected and disabled states.
@@ -9,8 +11,14 @@
   Keep image navigation disabled during a decision, including stale callbacks.
 - Explain which manual pairing input needs correction. Keep entered values and
   clarify that the link must be blank to use the three connection values.
+- Keep snapshot explanations brief. Put the complete, selectable version in a
+  separate disclosure that retains its expanded state across page recreation.
 - Keep English and Chinese README workflow pictures readable on narrow screens
   with independent step headings, captions and full-width-safe pictures.
+- Give README installation its own primary entry and keep utility links compact.
+  Show the current result hierarchy in original, labelled native probe captures.
+- Put the Windows installer and self-hosting guide beside the website prerequisites,
+  so the installation landing point immediately offers a next step.
 
 ## 0.5.4-rc.1 — clearer delivery and decisions
 

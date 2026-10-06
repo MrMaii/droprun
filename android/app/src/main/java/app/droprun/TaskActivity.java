@@ -120,6 +120,7 @@ public class TaskActivity extends StyledActivity {
         preview(task,delivery);
         if(!report.isEmpty()||Store.finished(status))button(delivery,L.t("Screenshots & delivery files","截图与交付文件"),Store.finished(status)&&!previewState.equals("ready"),this::openDeliverables);
         if(Store.finished(status)&&!text(task,"thread_id").isEmpty())button(L.t("Follow up","继续追问"),false,this::followup);
+        if(TaskPresentation.snapshot(text(task,"preview_kind"))&&!previewState.isEmpty()&&!previewState.equals("unavailable"))disclosure(L.t("Snapshot version","快照版本"),text(task,"preview_version"));
         if(!report.isEmpty())disclosure(L.t("Full report & evidence","完整报告与证据"),report);
         disclosure(L.t("Your note","你的留言"),text(task,"message"));disclosure(L.t("Original material","原始材料"),text(task,"content"));
         if(!Store.finished(status))button(L.t("Stop handoff","停止任务"),false,()->confirm(L.t("Stop this handoff?","停止任务？"),L.t("A stop request will be sent. Changes already made to your project will not be undone.","发送停止请求；已发生的项目改动不会回滚。"),()->store.cancelTask(taskId)));
@@ -142,7 +143,7 @@ public class TaskActivity extends StyledActivity {
         String url=text(task,"preview_url"),state=TaskPresentation.previewStatus(text(task,"preview_status"),url,task.optLong("preview_expires_at"),System.currentTimeMillis());
         if(state.isEmpty()){if(Store.finished(text(task,"status")))block(target,L.t("Preview","预览"),L.t("No preview is attached to this handoff. Check screenshots and delivery files below.","本次交办未附预览，可查看下方的截图与交付文件。"));return;}
         if(state.equals("unavailable"))block(target,L.t("Preview","预览"),Store.finished(text(task,"status"))||!text(task,"report").isEmpty()?L.t("A preview isn't available right now. Check screenshots and delivery files below.","预览暂不可用，可查看下方的截图与交付文件。"):L.t("A preview isn't available right now.","预览暂不可用。"));
-        else block(target,L.t("Preview","预览"),TaskPresentation.snapshot(text(task,"preview_kind"))?L.t("Snapshot from this handoff · ","本次交付快照 · ")+text(task,"preview_version"):L.t("Live project preview. Later changes may alter what you see.","当前项目预览；后续修改可能改变内容。"));
+        else block(target,L.t("Preview","预览"),TaskPresentation.snapshot(text(task,"preview_kind"))?L.t("Fixed snapshot from this handoff.","本次交付的固定快照。"):L.t("Live project preview. Later changes may alter what you see.","当前项目预览；后续修改可能改变内容。"));
         if(state.equals("ready"))button(target,L.t("Open preview","打开预览"),true,()->{
             Uri uri=Uri.parse(url);
             if("https".equals(uri.getScheme())&&uri.getHost()!=null)startActivity(new Intent(Intent.ACTION_VIEW,uri));

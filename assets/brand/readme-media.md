@@ -76,9 +76,9 @@ API 35；720 × 1440 像素，density 360，逻辑尺寸 320 × 640 dp。
 动图时长为 9.08 秒和 12.16 秒；原视频分别为 9.084089 秒和 12.192133 秒。
 字幕只说明实际可见的界面操作，并明确为演示数据。文件校验值见上表。
 
-## Latest delivery region — October 5, 2026
+## Earlier delivery region — October 5, 2026
 
-The third workflow image uses an unedited320×640 native memory-only probe,
+The previous third workflow image used an unedited320×640 native memory-only probe,
 not the earlier0.5.1 tour. Its visible probe/sample marker remains. It shows
 only the delivery region; the task topbar is outside the capture. It does not
 execute work or open a genuine preview. The tested TaskActivity source is included
@@ -94,3 +94,29 @@ recording. [Source and raw capture evidence](../../docs/releases/ui-delivery-sur
 
 第三步使用未经修图的原生内存验证截图，保留示例标记；只展示交付区域。
 不是旧版录屏，也不代表签名包录制、真实任务执行或真实预览验收。
+
+## Current result hierarchy — October 6, 2026
+
+The third README step now uses four raw 320×640 normal-text native screenshots
+from the memory-only snapshot-version probe. The result and inspection actions
+are on the primary card; the full synthetic version is in the collapsed section
+below. Each image keeps its visible probe marker and sample report, without
+cropping, retouching or recreated UI. Some lower controls lie outside the frame.
+No genuine task, preview opening or signed-package recording is represented.
+
+Tested TaskActivity SHA-256: `b0e3b3aeb8c62f585e561d7d738dbf7dae2aa083c2dcf2c591ac07dcbf3646fe`. These development captures precede
+any subsequent runtime version bump. [Native verification and limits](../../docs/releases/ui-snapshot-version-2026-10-06.md)
+owns the original red/green/recapture evidence. Earlier images remain unchanged.
+These four images are README media; the website's earlier tours keep their
+separate provenance.
+
+| Capture | SHA-256 |
+| --- | --- |
+| [source-delivery-en-light-20261006.png](source-delivery-en-light-20261006.png) | `6e08b57718311f62fd1ed148796bfe9fe54996b28686a169eb82d6bcb441e67d` |
+| [source-delivery-en-dark-20261006.png](source-delivery-en-dark-20261006.png) | `93a772853dd16313ab190eb9f18ecb11b28e5f100fd27dd0eacda10b70587edf` |
+| [source-delivery-zh-light-20261006.png](source-delivery-zh-light-20261006.png) | `b4125cea576fda36977705c65bfcc26623b6dd509153f8c9c51d7545b8734573` |
+| [source-delivery-zh-dark-20261006.png](source-delivery-zh-dark-20261006.png) | `b701cf1ecdc866c18db7db9d3fc736a066ad73dd4e5f92fef9d98707c2b3442b` |
+
+第三步更新为 10 月 6 日的原生内存示例：正常字号、保留完整验证标记，不修图或裁切。
+展示结果主卡与操作层级；底部部分控件不在画面内。不是签名包录制，也不表示真实交办
+或预览成功。旧截图与官网录屏保留各自来源。

@@ -10,6 +10,9 @@ in [the current candidate record](../releases/0.5.4-rc.1.md).
 
 - Android + Windows x64; each owner deploys a private Cloudflare Relay. No official
   registration, subscription or multitenant service. GPTSites is the public website.
+  Its installation section places the Windows installer and self-hosting guide
+  beside the prerequisites. README gives installation a distinct primary entry,
+  with compact website, preview-download and language links below it.
   Windows package scripts must start on an unmanaged Windows client with its
   default script policy, without changing persistent user or machine policy.
 - Light translucent UI, lime actions, dark/system appearance, English/Chinese.
@@ -41,6 +44,9 @@ in [the current candidate record](../releases/0.5.4-rc.1.md).
   Delivered screenshot links preserve the image ratio and have a touch target
   at least 48dp tall. Saving a decision disables their navigation and keyboard
   focus along with the delivery buttons; normal access returns when it settles.
+  A static preview explains that it is a fixed snapshot. Its complete version is
+  selectable in a separate collapsed section, with expansion state restored
+  after page recreation; it does not fill the main result explanation.
   A configuration recreation continues observing the same pending mode change,
   including its eventual success or failure, without starting it again. Already
   displayed success is not announced again after recreation. Old completions
