@@ -14,14 +14,22 @@ and marketing acceptance remain open; independent UI/brand work continues.
 - Exact-source CI37397059000 attempt1: all3jobs/35steps green, core210/browser14,
   fail/skip/cancel/todo0; audit0/site20/public-source379/Windows2022 packaging
   and Android build/JVM/lint. Twenty-seven anonymous source/media GETs match Git.
-- GPTSites version7 remains live, succeeded23:43:20.304599Z from source
-  0552e297ea86f68398d2fe459664b82f0af58b7c. It still links0.5.4. Both languages/
-  10CTA/4resources/26 unchanged media and actual1280 installation/language controls
-  passed in its [dated audit](../../docs/releases/public-delivery-2026-10-05-rc054.json).
-  New installation hierarchy and0.5.5 pointers await version8 and separate QA.
-  Owned hosting checkout preserves all nested dirs; opening source retained.
-- Managed build checkout is detached at candidate source. All needed Android/
-  Windows builds and checks are preserved outside it. Archive after website work.
+- GPTSites version8 succeeded01:21:12.552545Z, source
+  c8de57fd9690c25c69984f8b30d9bd0078d10951, with0.5.5 installation links and
+  nearby actions. Anonymous2pages/10CTA/4current resources/25 unchanged resource
+  comparisons pass; first stale-stylesheet assertion retained and corrected.
+  Actual6Edge scenes/8keyboard focuses/78DOM-derived checks pass, no overflow.
+  RawJPG375×812/1265×712 vsCSS390×844/1280×720 both recorded; GitHub signed-in/
+  auto/light and website normal motion. Hosted reduce=true check proceeds separately.
+  [Installation record](../../docs/releases/ui-install-entry-2026-10-06.md).
+- Initial website archive changed ignored output but retained old tracked source;
+  never saved/deployed. Matched35 tracked files to output before the new source
+  and fresh archive. Originals/nested directories preserved. All needed build
+  outputs/evidence kept outside managed checkout, which is now archived.
+- Presentation81586b7ac3d1c7586eb009e3344624d34f581f7d: exact-source
+  CI37398678588 attempt1 all3jobs/35steps/core210/browser14 green, allfailure
+  counters0; audit0/site20/scanner381/Windows2022/Android. Fifteen anonymous
+  source GETs match immutable Git. It is separate from the signed4e candidate.
 
 ## Latest verified UX and brand work
 
@@ -59,6 +67,19 @@ and marketing acceptance remain open; independent UI/brand work continues.
   [permissions](../../docs/releases/ui-permission-motion-2026-10-05.md) and
   [setup](../../docs/releases/ui-setup-hierarchy-2026-10-05.md) own their dated limits.
 
+- [Home identity](../../docs/releases/ui-home-project-hierarchy-2026-10-06.md)
+  is validated Unreleased source, outside unchanged0.5.5 packages. Only tile/
+  spacer/holder removed; name/count/state share content edge. Red1expected fail;
+  green2/2 covers8configurations×3rows plus existing enlarged-name check;
+  JVM24/lint0/30/101sources/18device-host hashes/guard0/sync0 pass. Name width
+  168→224dp, normal EN first card179→150dp; enlarged suffixes complete. Four
+  dark originals reveal low-contrast status-bar glyphs. Not a complete dark-mode,
+  TalkBack, genuine execution or physical-performance acceptance. Independent
+  source review passes; included in this curated change, source CI pending.
+  Separate focused-window probe reads requested dark appearance0/legacy0/theme
+  false while raw glyphs remain low contrast. Production Ui is unchanged; one
+  delayed-window observation proceeds before any proposed fix.
+
 ## Authorization and blocking conditions
 
 - Local UI only. No genuine Relay/Codex task, owner Cloudflare change or social
@@ -81,15 +102,19 @@ and marketing acceptance remain open; independent UI/brand work continues.
 
 ## Single recommended next action
 
-Publish verified0.5.5 README/setup pointers and existing installation hierarchy to
-GPTSites version8; verify anonymous links and actual EN/ZH desktop/narrow controls.
-Then continue the independent Home/Share design review and implement the highest
-value scoped native improvement. Root owns Git/publication/hosting.
+Check this Home-source CI and diagnose the observed dark status-bar glyphs with
+one delayed memory-only window probe. Review the Windows browser launcher exit0
+relaunch/close defect before changing production. Hosted reduced-motion first
+probe retained a blocked platform-script request and three launcher false exits;
+its four scenes did not pass. Keep it separate from the six accepted normal UI
+scenes. Root owns Git/hosting; client owns temporary Android investigation.
+Genuine acceptance gates remain open.
 
 ## Files this pass
 
-README EN/ZH, installation guides, current product/context/roadmap pointers,
-landing generator/pages, candidate/anonymous/installation UX records and current
-handoff. Earlier native changes are already in candidate source. Private evidence
-and distributions stay outside managed checkout under .local/ux-rc055/.
+MainActivity, non-exported Home fixture and new hierarchy test; PRD, Unreleased
+changelog and README wording; candidate/anonymous/installation/Home records and
+current handoff. Browser and status-bar investigations are separate pending
+work, excluded from this source commit. Private evidence/builds stay under
+.local/ux-rc055/, .local/ux-oct6-home-hierarchy/ and independent new probe dirs.
 Git author Thomas Deng <150266369+MrMaii@users.noreply.github.com>.

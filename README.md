@@ -8,7 +8,7 @@
 </div>
 
 > **Public preview · 0.5.5-rc.1.** [Validation record and open acceptance gates](docs/releases/0.5.5-rc.1.md).
-> Includes the latest home, delivery, settings and setup refinements. This remains a release candidate.
+> Includes home, delivery, settings and setup refinements. This remains a release candidate.
 
 You find a useful interaction, screenshot or article on your phone. Share it to
 DropRun, choose a project, and optionally leave a note. Your Windows Connector

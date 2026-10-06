@@ -44,3 +44,34 @@ GET and two HEAD requests were all 200, from the frozen public inventory; no
 external action or API request. The copy retains 0.5.4 pointers and is not hosted
 site acceptance. Independent profiles and servers were closed; public files and
 prior archives remain unchanged.
+
+## Hosted version 8 and updated candidate pointers
+
+2026-10-06 UTC. Presentation source81586b7ac3d1c7586eb009e3344624d34f581f7d
+passed exact-source CI37398678588 on attempt1: all3jobs/35steps, core210/browser14,
+fail/skip/cancel/todo0; Android builds/JVM/lint, audit0/site20/scanner381 and
+Windows2022 packaging/upload. Fifteen fresh anonymous source GETs match Git.
+
+Six actual Edge scenes cover EN/ZH README390 headers and GPTSites EN/ZH1280/390
+installation landings. Three utility labels stay complete on one line;0.5.5
+links are correct. Both nearby installer/guide actions are fully visible;8/8
+actual keyboard focus checks show a solid outline. No document overflow;
+client/scroll widths are375 narrow and1265 desktop. This is actual signed-in
+GitHub/auto/light; website normal motion only. It does not replace the separately
+dated frozen local reduced-motion proof. Installation packages were not clicked.
+
+Six raw JPGs retain backend dimensions375×812/1265×712 for CSS viewports390×844/
+1280×720. Seventy-eight DOM-derived assertions pass, not78 new product tests.
+The first diagnostic read used the wrong measurement object's auth property;
+its error/partial values are retained. Corrected measurement produced the accepted
+scenes. A finalizer's initial empty console projection was corrected without a
+browser rerun; the full verification JSON was already valid. Agent tabs closed,
+viewport restored to1661×975, user IAB untouched. Media references unchanged;
+the previous4e renderer owns actual third-image/sample-marker inspection.
+
+GPTSites version8/sourcec8de57fd9690c25c69984f8b30d9bd0078d10951/deployment
+appgdep_6ac44d01fc8c819181aa5fdab6b83b77/success01:21:12.552545Z derive from
+native publishing provenance, not a deployment ID exposed by the public page.
+[Anonymous website and package audit](public-delivery-2026-10-06-rc055.json)
+records those separate checks. A later removal of the word latest from README's
+candidate notice does not relabel these frozen browser bytes.

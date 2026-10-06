@@ -20,6 +20,7 @@ import org.json.JSONObject;
 
 /** Real home recovery controls over memory only. No saved settings, files, jobs or API. */
 public final class DemoHomeRecoveryActivity extends MainActivity {
+    static float hierarchyFontScale;
     static final String ISSUE="UI sample: POST /tasks returned 403.\nThis sample project no longer accepts handoffs. Existing saved history remains available.";
     final Map<String,Object> global=new ConcurrentHashMap<>(),instance=new ConcurrentHashMap<>();
     final AtomicInteger forbiddenActions=new AtomicInteger();
@@ -29,6 +30,7 @@ public final class DemoHomeRecoveryActivity extends MainActivity {
 
     AssertionError forbidden(String action){forbiddenActions.incrementAndGet();return new AssertionError("Home recovery probe forbids "+action);}
     @Override protected void attachBaseContext(Context base){
+        if(hierarchyFontScale==1f||hierarchyFontScale==2f){android.content.res.Configuration configuration=new android.content.res.Configuration(base.getResources().getConfiguration());configuration.fontScale=hierarchyFontScale;base=base.createConfigurationContext(configuration);}
         super.attachBaseContext(new ContextWrapper(base){
             @Override public Context getApplicationContext(){return this;}
             @Override public SharedPreferences getSharedPreferences(String name,int mode){
@@ -44,8 +46,9 @@ public final class DemoHomeRecoveryActivity extends MainActivity {
     }
     @Override public void onCreate(Bundle state){
         previousLanguage=L.chinese()?"zh":"en";
-        global.put("language","zh".equals(getIntent().getStringExtra("language"))?"zh":"en");global.put("appearance","light");
-        instance.put("syncError",ISSUE);instance.put("receiverNotice","UI probe · no network or stored data");
+        global.put("language","zh".equals(getIntent().getStringExtra("language"))?"zh":"en");global.put("appearance","dark".equals(getIntent().getStringExtra("appearance"))?"dark":"light");
+        boolean hierarchy=getIntent().getBooleanExtra("hierarchyProbe",false);
+        instance.put("syncError",hierarchy?"":ISSUE);instance.put("receiverNotice",hierarchy?("zh".equals(global.get("language"))?"示例项目 · 未发送任务":"Sample projects · no handoffs sent"):"UI probe · no network or stored data");
         super.onCreate(state);
     }
     @Override Store createStore(){probeStore=new ProbeStore(this);return probeStore;}
@@ -86,6 +89,7 @@ public final class DemoHomeRecoveryActivity extends MainActivity {
             super(context);
             try{for(int n=0;n<3;n++){
                 String id="home-ui-project-"+n,name=L.chinese()?"本地示例项目 "+(n+1):"Local sample project "+(n+1);
+                if(getIntent().getBooleanExtra("hierarchyProbe",false))name=(L.chinese()?new String[]{"工作室移动端项目","工作室桌面端项目","灵感笔记"}:new String[]{"Studio mobile app","Studio desktop app","Field notes"})[n];
                 projects.put(new JSONObject().put("id",id).put("name",name));
                 summaries.put(new JSONObject().put("id",id).put("name",name).put("task_count",n+1).put("dispatch_count",n+2).put("last_status","completed").put("last_dispatch_at",System.currentTimeMillis()-(n+1)*60000L).put("available",true));
             }}catch(Exception error){throw new AssertionError(error);}

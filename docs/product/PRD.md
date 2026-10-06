@@ -17,6 +17,8 @@ in [the current candidate record](../releases/0.5.5-rc.1.md).
   default script policy, without changing persistent user or machine policy.
 - Light translucent UI, lime actions, dark/system appearance, English/Chinese.
   Home contains Recent handoffs and settings, with only used or pending projects.
+  Project names, counts and status share the card content edge; a redundant
+  initial tile does not take width from the full project identity.
   Returning to Home or recreating it after an appearance change preserves the
   visible project and reading offset; routine updates do not reset the list.
   Inserting/removing pending entries preserves the record and offset in both
