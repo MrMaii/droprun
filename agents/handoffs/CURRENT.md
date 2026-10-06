@@ -1,26 +1,39 @@
 # Current Handoff
 
 Updated 2026-10-06 UTC. Independent UI/brand work continues while real acceptance
-remains open. Runtime0.5.6/code19 source is prepared; new packages are not yet built.
+remains open. Signed0.5.6/code19 candidate is available. Runtime0.5.7/code20 source includes the
+next Share model/effort refinement; new packages are not built yet.
 
 ## Current delivery
 
-- Public download stays [0.5.5-rc.1](../../docs/releases/0.5.5-rc.1.md), source
-  4e0c5ebae04346de1bc86a43cb71429bbba3ce5c/runtime0.5.5/code18/protocol2/schema11/
+- Public download is [0.5.6-rc.1](../../docs/releases/0.5.6-rc.1.md), source
+  52af35d354bfc15115623a722d34ba7b2d3eb273/runtime0.5.6/code19/protocol2/schema11/
   shutdown1. Eight complete anonymous assets/checksums/tag pass; stable Android
   certificate/nondebuggable/noDemo and Windows NotSigned remain recorded.
-  [Public audit](../../docs/releases/public-delivery-2026-10-06-rc055.json).
-- GPTSites8 stays live, hosting sourcec8de57fd9690c25c69984f8b30d9bd0078d10951,
-  success01:21:12.552545Z. Anonymous links/resources and actual6normal Edge
-  scenes/8keyboard checks pass. [Installation record](../../docs/releases/ui-install-entry-2026-10-06.md)
-  owns source/archive/CSS-vs-raw-size provenance and earlier retained failures.
-- Latest published README/docs source7e405f9c7e5566483e1e0d7d3dd063b90631a237:
-  CI37401649646 attempt1 all3jobs/35steps/10required/core210/browser14 green;
-  failure counters0/audit0/site20/scanner385/Windows2022/Android. Nine fresh
-  anonymous sourceGETs match immutable Git. New runtime changes below await
-  curated source publication, exact-source CI and a clean managed build.
+  [Public audit](../../docs/releases/public-delivery-2026-10-06-rc056.json).
+- GPTSites9 stays live, hosting source71ca198e928baabada2eb7c63b2265bb8f2298e0,
+  success2026-10-06T02:36:15.506491+00:00. Anonymous2pages/10CTA/4resources
+  and25 hash-bound dated resources pass. Only package pointers changed; actual
+  normal6scenes/8keyboard evidence remains v8, not a freshv9 run.
+  [Candidate audit](../../docs/releases/public-delivery-2026-10-06-rc056.json) owns proof.
+- Candidate source52af35d354bfc15115623a722d34ba7b2d3eb273:
+  CI37403613413 attempt1 all3jobs/35steps/10required/core210/browser18 green;
+  failure counters0/audit0/site20/scanner388/Windows2022/Android. Twenty-four
+  fresh anonymous sourceGETs match immutable Git. Clean managed Android/Windows
+  builds and independent exports agree. Initial metadata classification and tag
+  preflight diagnostics were retained; both stopped before publication mutations.
 
 ## Latest completed work
+
+- [Share model disclosure](../../docs/releases/ui-share-model-disclosure-2026-10-06.md):
+  visible title/summary/chevron, localized complete48dp effort rows/rawIDs. Red1
+  expectedfail9.948s; samegreenbatch2/2 93.465s,8configs each; JVM24/lint0/30,
+  103sources/100unchanged/54device-host hashes/guards0. TestAPKs differ. Native
+  finalangles180/270/180; disabled motion source-only. No IME/TalkBack/rotation/
+  disk/physical-performance claim. Independent406files/source review passes.
+  Four README normal raw320x640 captures copied exactly; old6media unchanged.
+  First copy console encoding error retained; no copy replay. Gallery notice and
+  brief ownership introduction refined; tour caption/static fallback unchanged.
 
 - [Home hierarchy](../../docs/releases/ui-home-project-hierarchy-2026-10-06.md):
   identity/count/state aligned, name168→224dp, EN card179→150dp; red1 and native
@@ -79,10 +92,10 @@ remains open. Runtime0.5.6/code19 source is prepared; new packages are not yet b
 
 ## Single recommended next action
 
-Verify this curated0.5.6/code19 source's first exact-source CI and public bytes,
-then build Android/Windows from a clean managed checkout. Verify stable signing,
-noDemo/source/checksums before a candidate Release or changing download/site
-pointers. Root owns publication and private film exclusion; real gates stay open.
+Publish curated0.5.7/code20 source and verify its first exact-source CI/anonymous
+bytes. Build from a new clean managed checkout; preserve prior originals and
+check stable signature/source/noDemo/export before the next candidate. Root owns
+Git/package/site and private film exclusion; real gates stay open.
 
 ## Files this pass
 

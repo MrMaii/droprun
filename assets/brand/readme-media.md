@@ -120,3 +120,28 @@ separate provenance.
 第三步更新为 10 月 6 日的原生内存示例：正常字号、保留完整验证标记，不修图或裁切。
 展示结果主卡与操作层级；底部部分控件不在画面内。不是签名包录制，也不表示真实交办
 或预览成功。旧截图与官网录屏保留各自来源。
+
+## Current share note step — October 6, 2026
+
+The first README step uses four raw 320×640 normal-text native note-step captures.
+They show sample material and intent, the visible model title/summary and collapsed
+disclosure. These are memory-only development probes, not project-selection
+screens, a signed-package recording or genuine Codex execution. Markers, native
+system bars and emulator underlay remain; the lower English draft caption is
+partly outside the viewport. No crop, repaint or resize.
+
+ShareActivity SHA-256: `2455f8c14db90a8b413687ba0397c2338da9b2440d9b443c1f9ab399a94702d4`; debug APK
+`05f7af44367b039b14ee3139817e57409a84570372f9f4e9fd5dbae431f63292`. Captures precede subsequent runtime bumps.
+[Native verification](../../docs/releases/ui-share-model-disclosure-2026-10-06.md)
+owns source/geometry/limits. Existing tour/GIF/static fallback media stay unchanged;
+their 0.5.1 October 5 captions still apply. These new assets are README media only.
+
+| Capture | SHA-256 |
+| --- | --- |
+| [source-share-en-light-20261006.png](source-share-en-light-20261006.png) | `bc3b6e372eee0738eb4a551690c9d6cbb34e5509e2aefd1af12a5964078aa8ff` |
+| [source-share-en-dark-20261006.png](source-share-en-dark-20261006.png) | `9359f2b56df154cbcef8ba4906bf465bfca8f585908812bbf1070cd41fc60789` |
+| [source-share-zh-light-20261006.png](source-share-zh-light-20261006.png) | `f7bbce5c091e0e57c3e954bd6cb73c3fc61200f466bfc373652df6c0ba847f34` |
+| [source-share-zh-dark-20261006.png](source-share-zh-dark-20261006.png) | `e1cd9424dbbb67db745b2a582f201a4b6bd1d25e8307ecb38ab0c72511bb7656` |
+
+第一步更新为10月6日的原生留言步骤：示例材料、意图与模型入口，保留仅内存标记。
+不是选项目截图、签名包录制或真实交办。旧动图与减少动画的静态降级仍保留原来源。

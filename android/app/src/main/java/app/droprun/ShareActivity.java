@@ -18,6 +18,11 @@ import android.text.Editable;
 import android.text.InputFilter;
 import android.text.InputType;
 import android.text.TextWatcher;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.RelativeSizeSpan;
+import android.text.style.TypefaceSpan;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,7 +46,7 @@ public class ShareActivity extends StyledActivity {
     final ExecutorService io=Executors.newSingleThreadExecutor();
     final Handler handler=new Handler(Looper.getMainLooper());
     Store store;FrameLayout root,stage;Capped holder;LinearLayout sheet,projectList,panel;ScrollView scroll;Ui.Dots dots;ImageButton back,gauge;
-    EditText search,note;TextView gaugeText,sendTitle,status,badge;Ui.PlaneView plane;Ui.Glass dialog;ColorDrawable scrim;
+    EditText search,note;TextView gaugeText,sendTitle,status,badge;ImageView modelChevron;Ui.PlaneView plane;Ui.Glass dialog;ColorDrawable scrim;
     AlertDialog discardDialog;
     ShareImport incoming;Runnable importObserver;Bundle restoredState;
     TextView draftStatus;Button retryDraft;boolean discardOnFinish;
@@ -374,12 +379,13 @@ public class ShareActivity extends StyledActivity {
         note.setMinLines(3);note.setMaxLines(6);note.setFilters(new InputFilter[]{new InputFilter.LengthFilter(15000)});note.setText(draft);Ui.styleInput(note);
         note.addTextChangedListener(new TextWatcher(){public void beforeTextChanged(CharSequence s,int start,int count,int after){}public void onTextChanged(CharSequence s,int start,int before,int count){draft=s.toString();checkpoint();}public void afterTextChanged(Editable value){}});
         column.addView(note,Ui.margins(this,8,10));
-        gauge=null;gaugeText=null;panel=null;panelOpen=false;
+        gauge=null;gaugeText=null;modelChevron=null;panel=null;panelOpen=false;
         if(store.models().length()>0){
             LinearLayout gaugeRow=Ui.row(this);gaugeRow.setClickable(true);gaugeRow.setFocusable(true);gaugeRow.setOnClickListener(v->togglePanel());Ui.bindPress(gaugeRow);
             gauge=Ui.iconButton(this,R.drawable.ic_gauge,L.t("Model & effort","模型强度"));gauge.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);gauge.setFocusable(false);gauge.setOnClickListener(v->togglePanel());
             gaugeRow.addView(gauge,Ui.square(this,48));Ui.space(gaugeRow,10);
             gaugeText=Ui.caption(this,"");gaugeRow.addView(gaugeText,Ui.grow());
+            Ui.space(gaugeRow,8);modelChevron=new ImageView(this);modelChevron.setImageResource(R.drawable.ic_chevron_left);modelChevron.setImageTintList(ColorStateList.valueOf(Ui.MUTED));modelChevron.setRotation(180);modelChevron.setTag("share-model-chevron");modelChevron.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);gaugeRow.addView(modelChevron,Ui.square(this,18));
             column.addView(gaugeRow,Ui.fill());
             panel=Ui.vertical(this);panel.setVisibility(View.GONE);column.addView(panel,Ui.margins(this,4,0));
             updateGauge();
@@ -402,12 +408,14 @@ public class ShareActivity extends StyledActivity {
     void updateGauge(){
         checkpoint();
         if(gaugeText==null)return;JSONObject chosen=store.model(model);String meaning=effortHint(effort),summary=(chosen==null?model:chosen.optString("displayName",model))+(effort.isEmpty()?"":" · "+(meaning.isEmpty()?effort:meaning));
-        gaugeText.setText(summary);gaugeText.setTextColor(panelOpen?Ui.TEXT:Ui.MUTED);gauge.setImageTintList(ColorStateList.valueOf(panelOpen?Ui.ACCENT:Ui.TEXT));
+        String title=L.t("Model & effort","模型强度");SpannableString label=new SpannableString(title+"\n"+summary);
+        label.setSpan(new RelativeSizeSpan(1.25f),0,title.length(),Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);label.setSpan(new TypefaceSpan("sans-serif-medium"),0,title.length(),Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);label.setSpan(new ForegroundColorSpan(Ui.TEXT),0,title.length(),Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        gaugeText.setText(label);gaugeText.setTextColor(panelOpen?Ui.TEXT:Ui.MUTED);gauge.setImageTintList(ColorStateList.valueOf(panelOpen?Ui.ACCENT:Ui.TEXT));
         ((View)gaugeText.getParent()).setContentDescription(L.t("Model & effort, ","模型强度，")+summary+(panelOpen?L.t(", tap to collapse","，点按收起"):L.t(", tap to expand","，点按展开")));
     }
     void togglePanel(){if(panel==null)return;panelOpen=!panelOpen;if(panelOpen)renderPanel();reveal(panelOpen);updateGauge();}
     /** Expands or collapses the model panel with height and alpha together, so the button beneath slides instead of jumping. */
-    void reveal(boolean show){Ui.expand(panel,show);}
+    void reveal(boolean show){Ui.expand(panel,show);modelChevron.animate().cancel();float angle=show?270:180;if(Ui.motionEnabled(this))modelChevron.animate().rotation(angle).setDuration(180).setInterpolator(new DecelerateInterpolator(1.8f)).start();else modelChevron.setRotation(angle);}
     void renderPanel(){
         View previous=panel.findFocus();Object focusTag=previous!=null&&!previous.isInTouchMode()?previous.getTag():null;
         panel.removeAllViews();JSONArray catalog=store.models();
@@ -415,19 +423,17 @@ public class ShareActivity extends StyledActivity {
         for(int n=0;n<catalog.length();n++){
             JSONObject m=catalog.optJSONObject(n);if(m==null)continue;String id=m.optString("id");
             LinearLayout row=Ui.optionRow(this,m.optString("displayName",id),m.optBoolean("isDefault")?L.t("Default on your computer","电脑上的默认模型"):null,id.equals(model));
+            row.setMinimumHeight(dp(48));
             row.setTag("model:"+id);
             row.setOnClickListener(v->{model=id;effort=store.defaultEffort(id);renderPanel();updateGauge();});panel.addView(row,Ui.margins(this,0,6));
         }
         JSONObject chosen=store.model(model);JSONArray efforts=chosen==null?null:chosen.optJSONArray("efforts");
         if(efforts==null||efforts.length()==0){restorePanelFocus(focusTag);return;}
-        List<String> labels=new ArrayList<>();for(int n=0;n<efforts.length();n++)labels.add(efforts.optString(n));
         panel.addView(Ui.label(this,L.t("Reasoning effort","推理强度")));
-        LinearLayout choices=Ui.segmented(this,labels,labels.indexOf(effort),index->{effort=labels.get(index);renderPanel();updateGauge();});
-        for(int n=0;n<labels.size();n++)choices.getChildAt(n).setTag("effort:"+labels.get(n));
-        panel.addView(choices,Ui.fill());
-        StringBuilder hint=new StringBuilder();
-        for(String label:labels){String meaning=effortHint(label);if(meaning.isEmpty())continue;if(hint.length()>0)hint.append(" · ");hint.append(label).append(' ').append(meaning);}
-        if(hint.length()>0)panel.addView(Ui.caption(this,hint.toString()),Ui.margins(this,6,0));
+        for(int n=0;n<efforts.length();n++){
+            String id=efforts.optString(n),meaning=effortHint(id);LinearLayout row=Ui.optionRow(this,meaning.isEmpty()?id:meaning,null,id.equals(effort));row.setMinimumHeight(dp(48));row.setTag("effort:"+id);
+            row.setOnClickListener(v->{effort=id;renderPanel();updateGauge();});panel.addView(row,Ui.margins(this,0,6));
+        }
         restorePanelFocus(focusTag);
     }
     void restorePanelFocus(Object tag){

@@ -22,7 +22,7 @@ import org.json.JSONObject;
 public final class DemoShareEditorActivity extends ShareActivity {
     static volatile float hierarchyFontScale;
     final Map<String,Object> hierarchyPreferences=new HashMap<>();
-    int forbiddenActions,keyboardBypasses;
+    int forbiddenActions,keyboardBypasses,checkpointAttempts,checkpointNoops;
     boolean probeReady,direct,confirmed;
     int initializationCloses,networkAttempts,saveAttempts,pairingAttempts,submitAttempts,startAttempts;
     String originalLanguage;
@@ -69,6 +69,7 @@ public final class DemoShareEditorActivity extends ShareActivity {
             projects.put(new JSONObject().put("id","ui-probe-project").put("name",L.t("Local UI sample","本地界面示例")).put("available",true).put("permission",new JSONObject().put("enabled",true)));
             models.put(new JSONObject().put("id","probe-fast").put("displayName","Codex · UI sample").put("isDefault",true).put("defaultEffort","medium").put("efforts",new JSONArray().put("low").put("medium").put("high")));
             models.put(new JSONObject().put("id","probe-thorough").put("displayName","Codex · Another sample").put("defaultEffort","high").put("efforts",new JSONArray().put("low").put("medium").put("high").put("xhigh")));
+            if(getIntent().getBooleanExtra("modelDisclosure",false))models.getJSONObject(1).getJSONArray("efforts").put("future-effort");
         }catch(Exception e){throw new AssertionError(e);}
         store=new Store(this){
             @Override boolean paired(){return false;}
@@ -98,6 +99,7 @@ public final class DemoShareEditorActivity extends ShareActivity {
     @Override void draftFeedback(){if(draftStatus!=null){draftStatus.setText(L.t("UI sample · note not saved.","界面示例 · 留言未保存。"));retryDraft.setVisibility(View.GONE);}}
     @Override void start(){startAttempts++;throw new AssertionError("Editor probe must never start an import or refresh");}
     @Override boolean submit(){submitAttempts++;return false;}
+    @Override void checkpoint(){if(getIntent().getBooleanExtra("modelDisclosure",false)){if(incoming!=null){checkpointAttempts++;throw forbidden("checkpoint persistence");}checkpointNoops++;return;}super.checkpoint();}
     @Override void hideKeyboard(){if(hierarchyFontScale!=0f){keyboardBypasses++;return;}super.hideKeyboard();}
     @Override public void startActivityForResult(Intent intent,int request,Bundle options){if(hierarchyFontScale!=0f)throw forbidden("navigation");super.startActivityForResult(intent,request,options);}
     @Override void close(){if(!probeReady){initializationCloses++;return;}super.close();}

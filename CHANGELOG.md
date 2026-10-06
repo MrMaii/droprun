@@ -2,8 +2,17 @@
 
 ## Unreleased
 
-Preparing runtime 0.5.6/code19; current download remains 0.5.5 until new packages
-are built and independently verified.
+Preparing runtime 0.5.7/code 20; the current signed download remains 0.5.6.
+
+- Make the optional Share model control explicit and give localized effort choices
+  complete 48dp rows. Preserve raw IDs, unknown values, focus and draft.
+  [Local verification](docs/releases/ui-share-model-disclosure-2026-10-06.md).
+- Give README a shorter introduction and current native share pictures; preserve
+  original tours, reduced-motion fallbacks and dated sample provenance.
+
+## 0.5.6-rc.1 — clearer choices and native motion
+
+[Verified candidate packages and open acceptance](docs/releases/0.5.6-rc.1.md).
 
 - Simplify share steps to one primary question, and unify default model/effort
   with existing settings rows and localized effort names. Preserve original IDs,
@@ -17,7 +26,7 @@ are built and independently verified.
 - Give project names and counts the full card content width by removing the
   redundant initial tile. Keep states, statistics, access and navigation intact.
   [Local native verification](docs/releases/ui-home-project-hierarchy-2026-10-06.md)
-  is separate from the unchanged 0.5.5 download. A separate
+  is included in this candidate. A separate
   [system-bar observation](docs/releases/ui-system-bars-observation-2026-10-06.md)
   recorded readable glyphs after settlement; no appearance code changed.
 

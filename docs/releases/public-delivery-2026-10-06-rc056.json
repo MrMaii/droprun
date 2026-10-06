@@ -1,0 +1,438 @@
+{
+  "recordedAtUtc": "2026-10-06T02:33:37.406Z",
+  "release": "https://github.com/MrMaii/droprun/releases/tag/v0.5.6-rc.1",
+  "tag": "v0.5.6-rc.1",
+  "sourceCommit": "52af35d354bfc15115623a722d34ba7b2d3eb273",
+  "authentication": "none; no Authorization header or browser session",
+  "prerelease": true,
+  "repositoryPublic": true,
+  "annotatedTagSourceVerified": true,
+  "tagObjectSha": "e33d0bc494be8f1f67973698002538bc9ae1d366",
+  "checksumEntries": 7,
+  "artifacts": [
+    {
+      "name": "DropRun-0.5.6-android-BUILD-MANIFEST.json",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.6-rc.1/DropRun-0.5.6-android-BUILD-MANIFEST.json",
+      "status": 200,
+      "bytes": 1772,
+      "sha256": "f5c8f0eefab1b31bfdaa1f63ecb6ae64129d062c1fc32369b78a38083726ffc0",
+      "apiDigestMatches": true,
+      "localArtifactMatches": true
+    },
+    {
+      "name": "DropRun-0.5.6-android-distribution.zip",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.6-rc.1/DropRun-0.5.6-android-distribution.zip",
+      "status": 200,
+      "bytes": 3401924,
+      "sha256": "6ad0feb9f2e2bd8695d85903539af7559ed6873994257e986f171c81415cb6e9",
+      "apiDigestMatches": true,
+      "localArtifactMatches": true
+    },
+    {
+      "name": "DropRun-0.5.6-android.apk",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.6-rc.1/DropRun-0.5.6-android.apk",
+      "status": 200,
+      "bytes": 1687096,
+      "sha256": "9177e4b24618d179e5f167ec34a1fd0259181565a6fb5dd13bde65ab05775c99",
+      "apiDigestMatches": true,
+      "localArtifactMatches": true
+    },
+    {
+      "name": "DropRun-0.5.6-windows-x64-BUILD-MANIFEST.json",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.6-rc.1/DropRun-0.5.6-windows-x64-BUILD-MANIFEST.json",
+      "status": 200,
+      "bytes": 375696,
+      "sha256": "c5da98bf081bc4ee66fd57426d2ad9ad855882ac0b8c2c1137760449ceec6196",
+      "apiDigestMatches": true,
+      "localArtifactMatches": true
+    },
+    {
+      "name": "DropRun-0.5.6-windows-x64-setup.exe",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.6-rc.1/DropRun-0.5.6-windows-x64-setup.exe",
+      "status": 200,
+      "bytes": 76722646,
+      "sha256": "c341c5e2de1be099128d2f76212b4cfd5fa3d337501e85703a564d0d90590266",
+      "apiDigestMatches": true,
+      "localArtifactMatches": true
+    },
+    {
+      "name": "DropRun-0.5.6-windows-x64-source.zip",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.6-rc.1/DropRun-0.5.6-windows-x64-source.zip",
+      "status": 200,
+      "bytes": 23193039,
+      "sha256": "bf38696d577304fb7b5f3e90bf018df1822bb8aaa4841fe6077a8afb1e258f4d",
+      "apiDigestMatches": true,
+      "localArtifactMatches": true
+    },
+    {
+      "name": "DropRun-0.5.6-windows-x64.zip",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.6-rc.1/DropRun-0.5.6-windows-x64.zip",
+      "status": 200,
+      "bytes": 111577163,
+      "sha256": "f215b361611aac90aa11a997fa866a563b5705fe5978b80141f6de299f072f1c",
+      "apiDigestMatches": true,
+      "localArtifactMatches": true
+    },
+    {
+      "name": "SHA256SUMS.txt",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.6-rc.1/SHA256SUMS.txt",
+      "status": 200,
+      "bytes": 725,
+      "sha256": "d6fb1b5fbca05067a420553af95428ace3d200b178b552a596c2509d8adcf1d4",
+      "apiDigestMatches": true,
+      "localArtifactMatches": true
+    }
+  ],
+  "verified": true,
+  "websiteVerification": {
+    "startedAt": "2026-10-06T02:37:04.172Z",
+    "authentication": "none; no cookies, token or Authorization",
+    "site": "https://droprun.dengmaizi0802.chatgpt.site",
+    "version": 9,
+    "sourceCommit": "71ca198e928baabada2eb7c63b2265bb8f2298e0",
+    "deploymentId": "appgdep_6ac45e9858a4819181daad2eb2763015",
+    "versionId": "appgprj_6ab726bb8cd48191acd3234da262627d~appgver_9ba5f01d2d208191a701d7f21cf11df6",
+    "deployedAt": "2026-10-06T02:36:15.506491+00:00",
+    "pages": [
+      {
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/",
+        "method": "GET",
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/",
+        "public": true,
+        "bytes": 17069,
+        "sha256": "7758dac59d06b6ca293ebbea466e4923190acdb1bce0be18018bdde428202c00",
+        "byteMatch": false,
+        "observedPlatformScript": true,
+        "originMarkupByteMatch": true,
+        "addedPlatformScriptBytes": 938,
+        "addedPlatformScriptSha256": "511381b75b0c9f6057b7d7eee384dca4d0120d5a5d88a6964a0cf02da4ae0a98",
+        "downloadsMatch": true,
+        "releasePointer": true,
+        "captureDisclosure": true,
+        "installEntry": true,
+        "language": "en",
+        "invalidAnchors": [],
+        "localArtifactSha256": "3ca2666f899ede2e9d2f3a087295771e56a01754a7097299ae79c6dc36179908"
+      },
+      {
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/zh/",
+        "method": "GET",
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/zh/",
+        "public": true,
+        "bytes": 16744,
+        "sha256": "8040090ed074b458b7682677756c92a3ff735013ce9cf8f8e41865712bf51f83",
+        "byteMatch": false,
+        "observedPlatformScript": true,
+        "originMarkupByteMatch": true,
+        "addedPlatformScriptBytes": 938,
+        "addedPlatformScriptSha256": "d16f7eedb41f7fee6aba0bb4feb6d108ffec88f52edbe69eaa77034c3c2eb4cd",
+        "downloadsMatch": true,
+        "releasePointer": true,
+        "captureDisclosure": true,
+        "installEntry": true,
+        "language": "zh-CN",
+        "invalidAnchors": [],
+        "localArtifactSha256": "0e3083bcceafbada5809cc0c5dea4e705b3512462ae4e38fa3c0310214198a2b"
+      }
+    ],
+    "links": [
+      {
+        "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.6-rc.1/DropRun-0.5.6-windows-x64.zip",
+        "method": "HEAD",
+        "status": 200,
+        "finalUrl": "https://release-assets.githubusercontent.com/github-production-release-asset/1369070124/03f0f62d-8293-42f2-a5c9-06b2569275cc",
+        "public": true,
+        "completeDownloadRecord": "public-delivery-2026-10-06-rc056.json",
+        "completeDownloadAt": "2026-10-06T02:33:37.406Z",
+        "completeDownloadSha256": "f215b361611aac90aa11a997fa866a563b5705fe5978b80141f6de299f072f1c"
+      },
+      {
+        "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.6-rc.1/DropRun-0.5.6-windows-x64-setup.exe",
+        "method": "HEAD",
+        "status": 200,
+        "finalUrl": "https://release-assets.githubusercontent.com/github-production-release-asset/1369070124/a27885db-320a-4e35-9bb2-8bef3196224f",
+        "public": true,
+        "completeDownloadRecord": "public-delivery-2026-10-06-rc056.json",
+        "completeDownloadAt": "2026-10-06T02:33:37.406Z",
+        "completeDownloadSha256": "c341c5e2de1be099128d2f76212b4cfd5fa3d337501e85703a564d0d90590266"
+      },
+      {
+        "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.6-rc.1/DropRun-0.5.6-android.apk",
+        "method": "HEAD",
+        "status": 200,
+        "finalUrl": "https://release-assets.githubusercontent.com/github-production-release-asset/1369070124/2b598f9d-c19a-45c7-aa4e-2fa122bdec29",
+        "public": true,
+        "completeDownloadRecord": "public-delivery-2026-10-06-rc056.json",
+        "completeDownloadAt": "2026-10-06T02:33:37.406Z",
+        "completeDownloadSha256": "9177e4b24618d179e5f167ec34a1fd0259181565a6fb5dd13bde65ab05775c99"
+      },
+      {
+        "url": "https://github.com/MrMaii/droprun/blob/main/docs/technical/SELF_HOSTING.md",
+        "method": "HEAD",
+        "status": 200,
+        "finalUrl": "https://github.com/MrMaii/droprun/blob/main/docs/technical/SELF_HOSTING.md",
+        "public": true
+      },
+      {
+        "url": "https://github.com/MrMaii/droprun",
+        "method": "HEAD",
+        "status": 200,
+        "finalUrl": "https://github.com/MrMaii/droprun",
+        "public": true
+      },
+      {
+        "url": "https://github.com/MrMaii/droprun/releases/tag/v0.5.6-rc.1",
+        "method": "HEAD",
+        "status": 200,
+        "finalUrl": "https://github.com/MrMaii/droprun/releases/tag/v0.5.6-rc.1",
+        "public": true
+      },
+      {
+        "url": "https://github.com/MrMaii/droprun/tree/main/docs",
+        "method": "HEAD",
+        "status": 200,
+        "finalUrl": "https://github.com/MrMaii/droprun/tree/main/docs",
+        "public": true
+      },
+      {
+        "url": "https://github.com/MrMaii/droprun/blob/main/LICENSE",
+        "method": "HEAD",
+        "status": 200,
+        "finalUrl": "https://github.com/MrMaii/droprun/blob/main/LICENSE",
+        "public": true
+      },
+      {
+        "url": "https://github.com/MrMaii/droprun/blob/main/docs/technical/SELF_HOSTING.zh-CN.md",
+        "method": "HEAD",
+        "status": 200,
+        "finalUrl": "https://github.com/MrMaii/droprun/blob/main/docs/technical/SELF_HOSTING.zh-CN.md",
+        "public": true
+      },
+      {
+        "url": "https://github.com/MrMaii/droprun/blob/main/docs/technical/PRIVACY.md",
+        "method": "HEAD",
+        "status": 200,
+        "finalUrl": "https://github.com/MrMaii/droprun/blob/main/docs/technical/PRIVACY.md",
+        "public": true
+      }
+    ],
+    "resources": [
+      {
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/styles.css",
+        "method": "GET",
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/styles.css",
+        "public": true,
+        "bytes": 19942,
+        "sha256": "b2ccbdded57ac9ca2b7d065391adc2a72dd332fd317ed6e4e0d065f720bdb883",
+        "path": "styles.css",
+        "byteMatch": true
+      },
+      {
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/app.js",
+        "method": "GET",
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/app.js",
+        "public": true,
+        "bytes": 5214,
+        "sha256": "38e2c19f1060b79ff981cb82b6c0abe895096f500478888e4b7b222bfb564f6c",
+        "path": "app.js",
+        "byteMatch": true
+      },
+      {
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/robots.txt",
+        "method": "GET",
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/robots.txt",
+        "public": true,
+        "bytes": 87,
+        "sha256": "2c05b3dfbd66461a44bbbfaa39a03e57f27b34c008d44dfbb4f66d7a234924f9",
+        "path": "robots.txt",
+        "byteMatch": true
+      },
+      {
+        "url": "https://droprun.dengmaizi0802.chatgpt.site/sitemap.xml",
+        "method": "GET",
+        "status": 200,
+        "finalUrl": "https://droprun.dengmaizi0802.chatgpt.site/sitemap.xml",
+        "public": true,
+        "bytes": 240,
+        "sha256": "7e1288dc8427f342c6ebce992b899e2290a6242a7b2c2e9ece44c6352ccf12cb",
+        "path": "sitemap.xml",
+        "byteMatch": true
+      }
+    ],
+    "failures": [],
+    "unchangedMediaEvidence": {
+      "record": "public-delivery-2026-10-05-rc054.json",
+      "recordSha256": "d049588effdb585891bda2a4c8ca5a23e103d23256a555f13c0a76954bad7fe7",
+      "priorFullByteProofCheckedAt": "2026-10-05T06:37:03.892Z",
+      "priorFullByteProofSiteVersion": 4,
+      "method": "Prior dated anonymous full-byte proof reused after current local hash/length comparison; no new media HTTP-body claim.",
+      "resources": [
+        {
+          "path": "app.js",
+          "bytes": 5214,
+          "sha256": "38e2c19f1060b79ff981cb82b6c0abe895096f500478888e4b7b222bfb564f6c",
+          "unchangedLocalBytes": true
+        },
+        {
+          "path": "brand-logo.png",
+          "bytes": 1432103,
+          "sha256": "5b53d5fba0abb6693006409f347e95e1dc1c82b557b027eb6b556c2adf7e72a1",
+          "unchangedLocalBytes": true
+        },
+        {
+          "path": "robots.txt",
+          "bytes": 87,
+          "sha256": "2c05b3dfbd66461a44bbbfaa39a03e57f27b34c008d44dfbb4f66d7a234924f9",
+          "unchangedLocalBytes": true
+        },
+        {
+          "path": "sitemap.xml",
+          "bytes": 240,
+          "sha256": "7e1288dc8427f342c6ebce992b899e2290a6242a7b2c2e9ece44c6352ccf12cb",
+          "unchangedLocalBytes": true
+        },
+        {
+          "path": "media/social.png",
+          "bytes": 103814,
+          "sha256": "afca006fd8d37681ceda37d1fdc9d83bc74c08d0b84620b924c12b3da075ecf5",
+          "unchangedLocalBytes": true
+        },
+        {
+          "path": "media/home.png",
+          "bytes": 100407,
+          "sha256": "dd90d6a3479a1c346eeab10025403ea68fd429a3f04fb5ba810bb8eb4bdcb792",
+          "unchangedLocalBytes": true
+        },
+        {
+          "path": "media/home-dark.png",
+          "bytes": 105456,
+          "sha256": "cc49dfd5ef6c996b4175db15e75c195fd7e157513f7867db92db0d07c1c3f3d9",
+          "unchangedLocalBytes": true
+        },
+        {
+          "path": "media/home-zh.png",
+          "bytes": 103068,
+          "sha256": "63a4df81cb356346fa73f1cb1fd405a1acba2bba657b2bad15faf02b9316de64",
+          "unchangedLocalBytes": true
+        },
+        {
+          "path": "media/home-zh-dark.png",
+          "bytes": 108247,
+          "sha256": "3141cac532a61286227bacd6b9048350f232202c303506fa8356eaeae75f24c1",
+          "unchangedLocalBytes": true
+        },
+        {
+          "path": "media/share.png",
+          "bytes": 98376,
+          "sha256": "925895d229b1628f591c000f3571aeb56a631738f99d66a0b47cc77a66b1366d",
+          "unchangedLocalBytes": true
+        },
+        {
+          "path": "media/share-dark.png",
+          "bytes": 102232,
+          "sha256": "833efed08c6ef08131edeb55217a8e77af885994918dc0ed83620b4f56abc12a",
+          "unchangedLocalBytes": true
+        },
+        {
+          "path": "media/share-zh.png",
+          "bytes": 98086,
+          "sha256": "a35a23d55ea68d1e67c8456318b0e224e66cd7e74bc28a15162f7a0ade846b7e",
+          "unchangedLocalBytes": true
+        },
+        {
+          "path": "media/share-zh-dark.png",
+          "bytes": 102081,
+          "sha256": "05c9ebdf33977aa05529fb019cc1c8a0dc68ad20bc72cc731790b90adb53b0bc",
+          "unchangedLocalBytes": true
+        },
+        {
+          "path": "media/task.png",
+          "bytes": 110723,
+          "sha256": "d942d57cbfeeb3c5bc79af3755cf751aae1b83c94f6298e07d95953c11385a3e",
+          "unchangedLocalBytes": true
+        },
+        {
+          "path": "media/task-dark.png",
+          "bytes": 113788,
+          "sha256": "796c90d09c4251237b6e31e08a1267fdd91e3b15a076277b01e78f379c63afc3",
+          "unchangedLocalBytes": true
+        },
+        {
+          "path": "media/task-zh.png",
+          "bytes": 118263,
+          "sha256": "0137ddd9870408a550e5f79ed0d63ffd64551d07a7d738f0c84652324fef589d",
+          "unchangedLocalBytes": true
+        },
+        {
+          "path": "media/task-zh-dark.png",
+          "bytes": 120963,
+          "sha256": "ded243f012842b66f004a119faf80e0c1967fd1d51deaba4fd396341a0cd5de5",
+          "unchangedLocalBytes": true
+        },
+        {
+          "path": "media/settings.png",
+          "bytes": 98977,
+          "sha256": "73b0adbbda75824bc8a3096ca8f694d90fc3954ca77fa4f00096f7acc61e5a06",
+          "unchangedLocalBytes": true
+        },
+        {
+          "path": "media/settings-dark.png",
+          "bytes": 101204,
+          "sha256": "fdc84f9caec2bde451605c4c0cdabbd57901e768162dc60345d9006437bd4dd2",
+          "unchangedLocalBytes": true
+        },
+        {
+          "path": "media/settings-zh.png",
+          "bytes": 95411,
+          "sha256": "bcc82e8f45de3aa501cc1beeb1b887c13b74fb229db395dfeb7b058afe5dae9e",
+          "unchangedLocalBytes": true
+        },
+        {
+          "path": "media/settings-zh-dark.png",
+          "bytes": 96335,
+          "sha256": "f9be8cb41807cdc86e5bc4f58bbca077528b56628ec37679058d1ebbe9dce941",
+          "unchangedLocalBytes": true
+        },
+        {
+          "path": "media/ui-tour-en.mp4",
+          "bytes": 2183780,
+          "sha256": "08bc03e80c06331a1e1f330a81dad0d8ceb5b6a3bf4eb6795e3e7826dfc19578",
+          "unchangedLocalBytes": true
+        },
+        {
+          "path": "media/ui-tour-en.vtt",
+          "bytes": 448,
+          "sha256": "c7f3731121340263a10260ffa60b11078d68e3504590791c0f5334bf1c45b6d9",
+          "unchangedLocalBytes": true
+        },
+        {
+          "path": "media/ui-tour-zh.mp4",
+          "bytes": 2677439,
+          "sha256": "f6d33e6f171ddff0db45022451f6d12babc4406ea2402e762513e0fc03d8a756",
+          "unchangedLocalBytes": true
+        },
+        {
+          "path": "media/ui-tour-zh.vtt",
+          "bytes": 534,
+          "sha256": "ff0ce7fb7c2d28ca6f89138dad9b21b358ec10e33517e2af9da201eed11bae55",
+          "unchangedLocalBytes": true
+        }
+      ]
+    },
+    "completedAt": "2026-10-06T02:37:08.053Z",
+    "passed": true,
+    "supersededPriorResources": [
+      "styles.css"
+    ],
+    "retainedDiagnostic": "Earlier v8 stylesheet diagnostic and incomplete hosted reduced-motion guards remain in their dated records. This v9 check verifies public HTML, pointers and resources, not browser reduced-motion behavior.",
+    "limits": [
+      "Browser/keyboard and current viewport checks are recorded separately after deployment.",
+      "Existing site tours/screens are dated 0.5.1 development Demo data, not genuine execution or recordings of the signed candidate."
+    ]
+  }
+}
