@@ -20,23 +20,23 @@ Windows Connector 把参考与意图交给本地 Codex。回来查看进度、�
 分享、首页与录屏来自标注的 0.5.1 开发演示。下方交付区域展示最新源码界面的原生内存验证。均摄于 2026 年 10 月 5 日，不是这个签名下载包的录屏，也不表示真实 Codex 执行。
 [媒体来源说明](assets/brand/readme-media.md)。
 
-<table>
-  <tr>
-    <th align="center">01 · 分享参考</th>
-    <th align="center">02 · 跟进本地 Codex</th>
-    <th align="center">03 · 查看交付</th>
-  </tr>
-  <tr>
-    <td align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/readme-share-zh-dark.png"><img src="assets/brand/readme-share-zh.png" width="220" alt="原生 Android 分享浮层，可选择项目，保留可见的 Demo data 演示标记"></picture></td>
-    <td align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/readme-home-zh-dark.png"><img src="assets/brand/readme-home-zh.png" width="220" alt="原生 Android 项目首页，显示任务与交办次数，保留可见的 Demo data 演示标记"></picture></td>
-    <td align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-delivery-zh-dark-20261005.png"><img src="assets/brand/source-delivery-zh-light-20261005.png" width="220" alt="最新原生交付区域：结果、预览和文件共用一个表面，保留仅内存验证标记"></picture></td>
-  </tr>
-  <tr>
-    <td>选已有项目。有明确想法时，留一句希望完成的改动。</td>
-    <td>Codex 在你的电脑和所选项目中工作。按项目查看进展，处理待确认事项。</td>
-    <td>先看结果、需要处理的动作、截图和文件，再按需展开报告。</td>
-  </tr>
-</table>
+### 01 · 分享参考
+
+选已有项目。有明确想法时，留一句希望完成的改动。
+
+<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/readme-share-zh-dark.png"><img src="assets/brand/readme-share-zh.png" width="280" alt="原生 Android 分享浮层，可选择项目，保留可见的 Demo data 演示标记"></picture></p>
+
+### 02 · 跟进本地 Codex
+
+Codex 在你的电脑和所选项目中工作。按项目查看进展，处理待确认事项。
+
+<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/readme-home-zh-dark.png"><img src="assets/brand/readme-home-zh.png" width="280" alt="原生 Android 项目首页，显示任务与交办次数，保留可见的 Demo data 演示标记"></picture></p>
+
+### 03 · 查看交付
+
+先看结果、需要处理的动作、截图和文件，再按需展开报告。
+
+<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-delivery-zh-dark-20261005.png"><img src="assets/brand/source-delivery-zh-light-20261005.png" width="280" alt="最新原生交付区域：结果、预览和文件共用一个表面，保留仅内存验证标记"></picture></p>
 
 ## 从自己的环境开始
 

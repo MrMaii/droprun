@@ -23,23 +23,23 @@ labelled sample data.
 Share/home screens and tours show the dated 0.5.1 development UI. The delivery region below shows the latest source UI in a memory-only native probe. All were captured October 5, 2026; none records this signed download or genuine Codex execution.
 [Capture notes](assets/brand/readme-media.md).
 
-<table>
-  <tr>
-    <th align="center">01 · Share a reference</th>
-    <th align="center">02 · Follow local Codex</th>
-    <th align="center">03 · Inspect the delivery</th>
-  </tr>
-  <tr>
-    <td align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/readme-share-dark.png"><img src="assets/brand/readme-share.png" width="220" alt="Native Android share sheet with project choices and visible Demo data notice"></picture></td>
-    <td align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/readme-home-dark.png"><img src="assets/brand/readme-home.png" width="220" alt="Native Android project home with task and dispatch counts and visible Demo data notice"></picture></td>
-    <td align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-delivery-en-dark-20261005.png"><img src="assets/brand/source-delivery-en-light-20261005.png" width="220" alt="Latest native delivery region: result, preview and files on one surface, with a visible memory-only probe marker"></picture></td>
-  </tr>
-  <tr>
-    <td>Pick an existing project. Add a note when you have a specific change in mind.</td>
-    <td>Codex works on your computer, in the chosen project. Follow progress and decisions in its history.</td>
-    <td>See the result, required actions, screenshots and files. Open the full report when needed.</td>
-  </tr>
-</table>
+### 01 · Share a reference
+
+Pick an existing project. Add a note when you have a specific change in mind.
+
+<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/readme-share-dark.png"><img src="assets/brand/readme-share.png" width="280" alt="Native Android share sheet with project choices and visible Demo data notice"></picture></p>
+
+### 02 · Follow local Codex
+
+Codex works on your computer, in the chosen project. Follow progress and decisions in its history.
+
+<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/readme-home-dark.png"><img src="assets/brand/readme-home.png" width="280" alt="Native Android project home with task and dispatch counts and visible Demo data notice"></picture></p>
+
+### 03 · Inspect the delivery
+
+See the result, required actions, screenshots and files. Open the full report when needed.
+
+<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-delivery-en-dark-20261005.png"><img src="assets/brand/source-delivery-en-light-20261005.png" width="280" alt="Latest native delivery region: result, preview and files on one surface, with a visible memory-only probe marker"></picture></p>
 
 ## Start with your own setup
 
