@@ -1,34 +1,26 @@
 # Current Handoff
 
-Updated 2026-10-06 UTC. Signed 0.5.9/code22 is the public candidate.
-Source 0.5.10/code23 is prepared after a further native UI pass; its packages
-are not published yet. UI/brand/README work continues while genuine acceptance remains unavailable.
+Updated 2026-10-06 UTC. Signed 0.5.10/code23 is the public candidate.
+UI/brand/README work continues while genuine acceptance remains unavailable.
 No stable launch or marketing handover is claimed.
 
 ## Current delivery
 
-- [0.5.9-rc.1](../../docs/releases/0.5.9-rc.1.md) binds source
-  ff4da90981f215145851fee6bee5a628edb73260. All8 complete anonymous assets,
-  7checksums and annotated tag match. APKd26fe960 retains the stable certificate,
-  nondebug/noDemo; Windows NotSigned. Android129source/9inventory/10checksums;
-  Windows513source/2022inventory/2023portable/54application, no unlisted path.
-  Independent export report fcb818c9 verifies source/archive/8asset membership.
-  Local Windows packaging/verifiers all returned0; installer not executed.
-  [Public audit](../../docs/releases/public-delivery-2026-10-06-rc059.json).
-- Exact-source CI37444434009 attempt1: all3jobs/35steps/10required/3checks pass;
-  actualcore210/browser18, fail/cancelled/skipped/todo0. Complete325334B log
-  SHA840a20c5e480e0d99aa92589ae4ab643a3c9a402fcf8acb4692586413676bea6.
-  All31 anonymous immutable source GETs match; Thomas author/committer verified.
-- GPTSites14 is live, hosting source e8452e795337e302a51eb813b04af8caaef59624,
-  copied from b1be35724ddbbc29768bcc4aaa6dc8d7c41552ea. Native succeeded
-  2026-10-06T10:12:38.411698+00:00; public audience retained,75files copied,4new
-  stills/2changedpages, all old media/unknown paths kept. Native76files/12533760B,
-  localgzip11513539B; representations/digests separately recorded. Fresh2pages/
-  10CTAHEAD/22resourceGET/hash checks pass; no hosted browser/playback claim.
-- Documentation source b1be3572:15fresh immutable anonymous reads match; CI
-  37447756215 attempt1 all3jobs/35steps/10required/3checks,core210/browser18 pass.
-  Original326697B log SHA16cddfb60e9acb70792cbe2fa56a3f85a354ad09ca94e54e584547be0f45dd30.
-  The managed09 build checkout is archived; source/package/proofs remain outside.
+- [0.5.10-rc.1](../../docs/releases/0.5.10-rc.1.md) binds immutable source
+  97b01b17dcf0f6c9be340c1f3710dd70b6f750fa. All8 complete anonymous assets,
+  7checksums and annotated tag match. APK0ff32c4b retains the stable certificate,
+  nondebug/noDemo; Windows NotSigned. Android131source/9inventory/10checksums;
+  Windows526source/2022inventory/2023portable/54application, no unlisted path.
+  Independent export1fafa50c verifies actual archive/source/asset membership.
+  Signing/package/primary/independent checks all returned0; installer not executed.
+  [Public audit](../../docs/releases/public-delivery-2026-10-06-rc0510.json).
+- Exact-source CI37454241068 attempt1: all3jobs/35steps/10required/3checks pass;
+  actualcore210/browser18, fail/cancelled/skipped/todo0. Complete325438B log
+  SHAb57f800b940bee7b64b288d10d39ca68640554cde2d50c33d716aa9cbb3f0139.
+  All32 anonymous immutable source GETs match; Thomas author/committer verified.
+- GPTSites14 remains live with verified09 downloads. The new10 download/source
+  update and result stills are being prepared for the same owned public Site;
+  no Sites15 or fresh hosted browser/playback result is claimed yet.
 
 ## Latest completed work
 
@@ -49,7 +41,7 @@ No stable launch or marketing handover is claimed.
 - README now explains Share → DropRun and three steps before the gallery, with
   one accepted task/dispatch definition nearby. Independent static review checks
   all32image/source tags/8image paragraphs unchanged;27media refs preserved.
-  Downloads/docs now select verified09. Landing build22assets/canonical URL pass.
+  Downloads/docs now select verified10. Landing build22assets/canonical URL pass.
   No fresh README/hosted browser or signed-package capture claimed; HTTP checks above are separate.
 
 ## New local UI pass
@@ -93,13 +85,11 @@ No stable launch or marketing handover is claimed.
 
 ## Single recommended next action
 
-Commit the curated 0.5.10 source, verify its actual public CI, and build/sign
-Android plus Windows from a clean managed checkout. Publish the verified
-candidate, then update downloads/README and the owned website. Do not overwrite
-09 artifacts or label diagnostic screenshots as the signed package.
-Settings failure announcement and Task refresh null-error handling remain
-separate next UI details; private proposals are prepared. Genuine acceptance
-and final marketing handover remain open.
+Commit the curated10 download/README/documentation update, then refresh the
+owned GPTSites and verify its public pages, links and current resources.
+Continue Share destination hierarchy, Settings failure announcement and Task
+refresh error feedback using narrowly guarded local UI checks. Genuine acceptance
+and final marketing handover remain open; no real Relay/Codex submission.
 
 ## Files this pass
 

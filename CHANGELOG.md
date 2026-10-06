@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## 0.5.10-rc.1 — clearer results and accurate feedback
+
+[Verified candidate and open acceptance](docs/releases/0.5.10-rc.1.md).
+
 - Bring delivery results into focus with clearer headings, preserved list lines
   and preview explanations beside their actions. Refresh the bilingual workflow
   screenshots from the actual native interface.

@@ -4,10 +4,10 @@
   <p><strong>手机分享参考，让本地 Codex 接着做。</strong></p>
   <p>选已有项目，可选留一句话，在手机查看结果与证据。<br>Android 8+ · Windows x64 · 已登录 Codex · 自己的 Cloudflare</p>
   <p><a href="docs/technical/SELF_HOSTING.zh-CN.md"><strong>开始安装 →</strong></a></p>
-  <p><a href="https://droprun.dengmaizi0802.chatgpt.site/zh/">官网</a> · <a href="https://github.com/MrMaii/droprun/releases/tag/v0.5.9-rc.1">候选版下载</a> · <a href="README.md">English</a></p>
+  <p><a href="https://droprun.dengmaizi0802.chatgpt.site/zh/">官网</a> · <a href="https://github.com/MrMaii/droprun/releases/tag/v0.5.10-rc.1">候选版下载</a> · <a href="README.md">English</a></p>
 </div>
 
-> **公开预览 · 0.5.9-rc.1。** [实际验证记录与待通过的验收门槛](docs/releases/0.5.9-rc.1.md)。
+> **公开预览 · 0.5.10-rc.1。** [实际验证记录与待通过的验收门槛](docs/releases/0.5.10-rc.1.md)。
 
 Codex 在你的 Windows 电脑上工作，Relay 由你部署到自己的 Cloudflare 账号。
 进度、报告和改动证据，回到手机上查看。
@@ -18,8 +18,7 @@ Codex 在你的 Windows 电脑上工作，Relay 由你部署到自己的 Cloudfl
 
 ## 分享浮层里的动效
 
-原生开发界面实录 · 2026 年 10 月 6 日 · 仅内存示例。
-项目为预置内容，留言留空。未发送任务。
+原生开发界面 · 2026 年 10 月 6 日 · 仅内存示例；项目预置、留言留空，未发送任务。
 
 <p align="center"><picture><source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/brand/source-share-plain-zh-dark-20261006.png"><source media="(prefers-reduced-motion: reduce)" srcset="assets/brand/source-share-plain-zh-light-20261006.png"><img src="assets/brand/native-share-reading-zh-20261006.gif" width="320" alt="原生 Android 分享浮层：检查收到的示例材料、选中另一个示例模型、查看默认深入强度并收起选项；保留仅内存标记，未发送任务"></picture></p>
 
@@ -48,10 +47,7 @@ GIF 为原生 320 × 640 的 25 fps 采样展示；MP4 保留原始时间顺序�
 
 任务数统计独立请求；交办次数统计已接收的分享与追问。网络重试不增加次数。
 
-截图与分享录屏均来自原生内存示例（2026 年 10 月 6 日）。
-较早导览保留各自的原始来源日期。
-仅展示界面，不代表签名下载包录制或真实 Codex 任务。
-[媒体来源说明](assets/brand/readme-media.md)。
+当前截图与分享录屏为标注的原生内存示例，不是签名包录制或真实 Codex 任务。[媒体来源](assets/brand/readme-media.md)。
 
 <p align="center">
   <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-share-plain-zh-dark-20261006.png"><img src="assets/brand/source-share-plain-zh-light-20261006.png" width="220" alt="01 · 分享：原生 Android 留言步骤，展示可展开的收到材料、可选意图及模型强度入口，保留仅内存验证标记"></picture>
@@ -69,8 +65,7 @@ GIF 为原生 320 × 640 的 25 fps 采样展示；MP4 保留原始时间顺序�
   <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-history-reading-zh-dark-20261006.png"><img src="assets/brand/source-history-reading-zh-light-20261006.png" width="220" alt="原生 Android 项目历史，展示项目身份与三条仅内存交办示例；普通字号，保留示例标记"></picture>
 </p>
 
-普通字号原生截图保留仅内存标记：设置图是滚动后的模型与授权局部，项目历史图含三条示例记录。
-它们是开发界面样本，不代表签名下载包、真实 Codex 任务或 200% 字号截图。
+普通字号的内存示例：设置展示滚动后的模型与授权局部，历史含三条示例记录；不是 200% 字号截图。
 
 </details>
 
@@ -80,10 +75,10 @@ GIF 为原生 320 × 640 的 25 fps 采样展示；MP4 保留原始时间顺序�
 | --- | --- | --- |
 | Windows x64、Git、已登录 Codex、Chrome 或 Edge | Android 8 或更新版本 | 自己的 Cloudflare 账号，启用 Workers、D1、R2 |
 
-1. **安装电脑端。** 下载 [Windows 安装包](https://github.com/MrMaii/droprun/releases/download/v0.5.9-rc.1/DropRun-0.5.9-windows-x64-setup.exe)或[便携 ZIP](https://github.com/MrMaii/droprun/releases/download/v0.5.9-rc.1/DropRun-0.5.9-windows-x64.zip)。
+1. **安装电脑端。** 下载 [Windows 安装包](https://github.com/MrMaii/droprun/releases/download/v0.5.10-rc.1/DropRun-0.5.10-windows-x64-setup.exe)或[便携 ZIP](https://github.com/MrMaii/droprun/releases/download/v0.5.10-rc.1/DropRun-0.5.10-windows-x64.zip)。
    便携版解压到固定位置后，运行 `DropRun.cmd`。
 2. **部署自己的 Relay。** 打开本机浏览器向导，检查环境，部署到自己的 Cloudflare 账号。
-3. **配对手机。** 安装 [Android APK](https://github.com/MrMaii/droprun/releases/download/v0.5.9-rc.1/DropRun-0.5.9-android.apk)，扫码确认电脑与服务器，再授权项目。
+3. **配对手机。** 安装 [Android APK](https://github.com/MrMaii/droprun/releases/download/v0.5.10-rc.1/DropRun-0.5.10-android.apk)，扫码确认电脑与服务器，再授权项目。
 4. **发出第一项交办。** 在其他 Android App 点 **分享 → DropRun**，选择项目，跟进接收、执行、审批与报告。“已保存”表示手机已保存，
    不表示任务已完成。
 
@@ -91,7 +86,7 @@ GIF 为原生 320 × 640 的 25 fps 采样展示；MP4 保留原始时间顺序�
 
 DropRun 没有官方账号或订阅。Cloudflare、可选转写和 Codex 使用你自己的账号，
 **用量可能产生费用**。Windows 包未签名，可能提示未知发布者，请对照发布的
-[校验值](https://github.com/MrMaii/droprun/releases/download/v0.5.9-rc.1/SHA256SUMS.txt)。
+[校验值](https://github.com/MrMaii/droprun/releases/download/v0.5.10-rc.1/SHA256SUMS.txt)。
 公共 Android 版与历史私人/debug 版并行安装，不尝试跨签名覆盖。
 
 ## 让一次交办更顺手
@@ -123,7 +118,7 @@ DropRun 没有官方账号或订阅。Cloudflare、可选转写和 Codex 使用�
 - **取消不等于回滚。** 取消任务或删除云端记录，不会撤销项目里已经发生的改动。
 
 当前仍为候选版。实体 Android 性能、干净 Windows 安装与真实来源完整交办仍有待通过的
-验收门槛。重要项目使用前，请阅读[带日期的验证记录](docs/releases/0.5.9-rc.1.md)。
+验收门槛。重要项目使用前，请阅读[带日期的验证记录](docs/releases/0.5.10-rc.1.md)。
 截图与界面动图不能代替这些结果。
 
 ## 开发与贡献
