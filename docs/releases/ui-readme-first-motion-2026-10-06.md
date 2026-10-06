@@ -20,6 +20,15 @@ later persistent note label; no task is sent. The static reduced-motion sources
 show the later code26 note view. Full capture provenance belongs to
 [the media record](../../assets/brand/readme-media.md).
 
-The structural/source review passes. A post-publication visual check of the
-new GitHub render is separate; this document does not imply measured animation
-performance, actual reduced-motion execution or genuine task acceptance.
+The structural/source review passes. The published English and Chinese GitHub
+pages at source `5ce17bce` were then inspected anonymously. At 360 × 820, client
+and scroll widths both remain 345 px; the main GIF loads before the workflow
+and all five details sections start closed. The English recording notes and
+Chinese screenshot gallery each open and close with Return. The expanded
+Chinese gallery loads three 260 px native images without horizontal overflow.
+Temporary browser viewport overrides were reset after the checks.
+
+These are actual GitHub reading and keyboard checks. They do not establish
+measured animation performance, actual reduced-motion execution or genuine task
+acceptance. The current GIF also includes its short original App launch; it is
+not a seamless loop or a capture of the signed candidate.

@@ -58,7 +58,7 @@ public class ShareSettingsHierarchyTest {
         JSONObject[] result={null};scenario.onActivity(a->{try{
             LinearLayout column=(LinearLayout)a.stage.getChildAt(0);TextView heading=findText(column,a.step==0?L.t("Where should this idea go?","转发给哪个项目？"):L.t("What should Codex do?","想让 Codex 做什么？"));
             assertNotNull(heading);assertCompleteText(heading);visible(heading);TextView marker=a.root.findViewWithTag("hierarchy-marker");assertCompleteText(marker);visible(marker);
-            TextView material=findText(column,a.materialLabel());assertNotNull(material);assertCompleteText(material);visible(material);assertSafe(a);
+            TextView material=findText(column,a.materialSummary());assertNotNull(material);assertCompleteText(material);visible(material);assertSafe(a);
             result[0]=new JSONObject().put("kind","share").put("step",step).put("language",language).put("theme",theme).put("font_scale",scale).put("memory_only",true).put("heading_index",column.indexOfChild(heading)).put("heading",heading.getText()).put("heading_bounds",bounds(heading).toShortString()).put("column_height",column.getHeight()).put("prefix_height",bounds(heading).top-bounds(column).top).put("marker",marker.getText()).put("forbidden_actions",a.forbiddenActions).put("keyboard_bypasses",a.keyboardBypasses);
         }catch(Exception error){throw new AssertionError(error);}});capture("share-"+language+"-"+theme+"-font"+(int)scale+"-"+step,result[0]);return result[0];
     }

@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased
+
+- Show received file counts in Share's folded material row, including a text
+  indicator for mixed material. Keep complete expanded content and accessibility
+  identity. [Scoped native reading checks](docs/releases/ui-share-material-counts-2026-10-06.md).
+- Start the bilingual README motion example at the complete note view, with a
+  clearly labelled continuous excerpt and retained complete originals. Use current
+  file-count stills in the README and website; keep development-media scope visible.
+
 ## 0.5.13-rc.1 — clearer notes and activity dates
 
 [Verified candidate and open acceptance](docs/releases/0.5.13-rc.1.md).

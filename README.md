@@ -12,23 +12,25 @@
 
 Codex works on your Windows computer. You deploy the Relay to your own Cloudflare account.
 
-## See the share flow
+## Review before sending
 
-Choose a project, go back and change the model in native Android.
-Labelled memory-only development UI; no task is sent. [Capture notes](assets/brand/readme-media.md).
+Start on the note page, go back to the project list, choose again and adjust the model.
+A 9.36-second continuous native excerpt; labelled memory-only UI, no task sent. [Capture notes](assets/brand/readme-media.md).
 
-<p align="center"><picture><source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/brand/source-share-note-en-dark-20261006.png"><source media="(prefers-reduced-motion: reduce)" srcset="assets/brand/source-share-note-en-light-20261006.png"><img src="assets/brand/native-share-project-tour-en-20261006.gif" width="320" alt="Native Android memory-only UI: select the sample project, visit the empty optional note, return to the project list, select again, choose another sample model with default Thorough effort and collapse the options; no task sent"></picture></p>
+<p align="center"><picture><source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/brand/source-share-count-en-dark-20261006.png"><source media="(prefers-reduced-motion: reduce)" srcset="assets/brand/source-share-count-en-light-20261006.png"><img src="assets/brand/native-share-review-before-sending-en-20261006.gif" width="320" alt="Native Android memory-only excerpt: start at the empty note, return to the project list, choose again, change the sample model and collapse the options; no task sent"></picture></p>
 
 [10.49-second original recording](landing/media/native-share-project-tour-en-20261006.mp4) · [Captions](landing/media/native-share-project-tour-en-20261006.vtt)
 
 <details>
 <summary><strong>Recording scope and still images</strong></summary>
 
-Choose a sample project, visit the optional note, go back, then select another model.
+This excerpt begins after the initial project choice, at original frame18 (1.116322s), and continues to the natural end. Go back, choose again, then select another model.
 Native memory-only UI (`0.5.12-dev`, code25); the note stays empty and no task is sent.
 Recorded before the always-visible **Your note · optional** label was added; this is not a recording of the signed download.
 
-The GIF samples the original frames at 25 fps, native 320 × 640, for 10.48 seconds. Reduced motion shows the later static view with the persistent note label: [light](assets/brand/source-share-note-en-light-20261006.png) · [dark](assets/brand/source-share-note-en-dark-20261006.png).
+The excerpt samples the original frames at 25 fps, native 320 × 640: 234 frames, 9.36 seconds. [Complete original GIF](assets/brand/native-share-project-tour-en-20261006.gif). Reduced motion shows the separately captured later development view with the persistent note label and received file counts (after candidate13): [light](assets/brand/source-share-count-en-light-20261006.png) · [dark](assets/brand/source-share-count-en-dark-20261006.png).
+
+[Earlier note view · light](assets/brand/source-share-note-en-light-20261006.png) · [dark](assets/brand/source-share-note-en-dark-20261006.png)
 
 </details>
 
@@ -44,7 +46,7 @@ The GIF samples the original frames at 25 fps, native 320 × 640, for 10.48 seco
 The screenshots and recordings below are labelled memory-only development UI, not signed-package or genuine Codex recordings. [Capture notes](assets/brand/readme-media.md).
 
 <p align="center">
-  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-share-note-en-dark-20261006.png"><img src="assets/brand/source-share-note-en-light-20261006.png" width="260" alt="01 · Share: project and received material together, a persistent optional-note label and model controls; native memory-only probe marker retained"></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-share-count-en-dark-20261006.png"><img src="assets/brand/source-share-count-en-light-20261006.png" width="260" alt="01 · Share: project and received material together, a persistent optional-note label, received file counts and model controls; native memory-only probe marker retained"></picture>
   <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-home-cards-en-dark-20261006.png"><img src="assets/brand/source-home-cards-en-light-20261006.png" width="260" alt="02 · Follow: native Android project cards with initials, names, task and dispatch counts, status and recency; memory-only and sample-project markers retained"></picture>
   <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-delivery-matte-en-dark-20261006.png"><img src="assets/brand/source-delivery-matte-en-light-20261006.png" width="260" alt="03 · Inspect: native handoff page with a clear result heading, fixed-snapshot explanation and delivery actions; visible memory-only marker"></picture>
 </p>

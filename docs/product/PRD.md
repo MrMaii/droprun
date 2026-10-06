@@ -6,7 +6,7 @@ This edition supersedes earlier hosted/pricing assumptions and ADR 0014's visual
 layout. Decisions: [self-hosting](../decisions/0015-public-selfhost-release.md) and
 [project-first UX](../decisions/0016-project-first-light-ux.md). Historical sections
 below describe the original product goals; release evidence is maintained only
-in [the current candidate record](../releases/0.5.12-rc.1.md).
+in [the current candidate record](../releases/0.5.13-rc.1.md).
 
 - Android + Windows x64; each owner deploys a private Cloudflare Relay. No official
   registration, subscription or multitenant service. GPTSites is the public website.
@@ -16,9 +16,9 @@ in [the current candidate record](../releases/0.5.12-rc.1.md).
   Website first-screen media centers Share: one large share sheet on narrow
   screens, with Home as a secondary desktop view. Installation is primary,
   the native UI tour secondary, and GitHub remains a text entry.
-  README introduces the workflow and current native gallery before its dated
-  Share tour; the value sentence has a clear heading, and recording details use
-  a disclosure. Primary workflow images are larger; reduced motion selects
+  README places its native UI tour after the introduction, before the three
+  workflow steps. Static galleries and recording scope open on demand; the value
+  sentence has a clear heading. Primary workflow images are larger; reduced motion selects
   a static light/dark capture, with explicit still links and unchanged provenance.
   A localized installation link at the end of the tour lets ready readers move
   directly to setup.
@@ -90,6 +90,10 @@ in [the current candidate record](../releases/0.5.12-rc.1.md).
   Material and model controls use light text rows with visible trailing arrows;
   the optional note remains the distinct input surface. Their complete click
   targets, press feedback and expanded-state descriptions remain available.
+  Multiple files or files plus text show their actual file count in the compact
+  summary, with a text indicator for mixed payloads. A single file alone keeps
+  its filename; text-only and link-only payloads keep their existing summary.
+  Counts describe received material, not successful reading or upload.
   Expansion shows exact received text/URLs and each complete filename in order,
   without fetching links or opening files. It distinguishes received payload from actual
   reading coverage, omits empty sections and preserves expansion across local

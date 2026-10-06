@@ -1,0 +1,62 @@
+{
+  "date": "2026-10-06",
+  "scope": "Continuous reviewed code25 memory UI excerpt, starting after the first project choice. No task sent, new native execution or signed capture.",
+  "languages": {
+    "en": {
+      "rawSHA256": "0365a38e9b0c8de847c3791ba08425c9e3464941b71728d816781de23baf1e6a",
+      "completeGifSHA256": "db42a7af5018696ed55ff2017e0fcd03254464d78e0c36fb3cf17789dc86e852",
+      "probeSHA256": "40cc2928c24b3ad21488cdd8d078d4f683151d9e5fc5ee046ac3bc0a1120eabe",
+      "rawDecodedFrames": 137,
+      "sourceStartFrame": 18,
+      "sourceStartPTS": 100469,
+      "sourceStartSeconds": "1.116322",
+      "sourceLastFrame": 136,
+      "sourceExcerptFrames": 119,
+      "sourceExcerptDurationSeconds": 9.378066666666667,
+      "firstSourcePNG_SHA256": "56091d1f4f73bcff32d2970fb274fd40209aa0e77df597016ba545fc3ac672fd",
+      "firstDisplayChecksumMatchesOriginalFrame18": true,
+      "gif": {
+        "file": "native-share-review-before-sending-en-20261006.gif",
+        "bytes": 1095207,
+        "sha256": "c977862a96f706c054e9e91fe86738f761d4d342a65c0a7d834e53f6e7dd9a77",
+        "width": 320,
+        "height": 640,
+        "frames": 234,
+        "frameDelayMs": 40,
+        "durationSeconds": 9.36,
+        "firstDecodedPreviewSHA256": "1d4cf3f9d951e82846b66fcb418c313f8374c71dbf16ad5c318fbca36fc5e6d8",
+        "lastDecodedPreviewSHA256": "3ba3bc67ccedfc08b993f2a98bd53d05401d005405766b4b5e5e608c2936d82e"
+      },
+      "scope": "Starts after the first project choice; retains return/re-selection/model/default-Thorough/collapse through natural source EOF.25fps holds/drops follow original timestamps. No added freeze/tail/transition/interpolation/reordering/crop/scale. Palette quantization is not a pixel-exact GIF-to-PNG copy."
+    },
+    "zh": {
+      "rawSHA256": "ec9b8f6843a6b3a366b8d534d86f22a8d29899f82e939076785b46e042812cfc",
+      "completeGifSHA256": "3d2389a874b5cc0de2def803fabfd852f06ee56851311b09fec46e19f502b778",
+      "probeSHA256": "4400c9dc0a0ae240d5de9d49f4612d95574cbc74097cf104757ef5533d4d7547",
+      "rawDecodedFrames": 137,
+      "sourceStartFrame": 18,
+      "sourceStartPTS": 97346,
+      "sourceStartSeconds": "1.081622",
+      "sourceLastFrame": 136,
+      "sourceExcerptFrames": 119,
+      "sourceExcerptDurationSeconds": 9.414811111111112,
+      "firstSourcePNG_SHA256": "57d3bf1948e787e3b02f929e9fa40b3100b4128ad520e5ab35108960f24b7f36",
+      "firstDisplayChecksumMatchesOriginalFrame18": true,
+      "gif": {
+        "file": "native-share-review-before-sending-zh-20261006.gif",
+        "bytes": 1003125,
+        "sha256": "f7ca5be58342a9e375f72d6b96ed749c6932d99a0bb6a2f68eb9ad3c23bf945f",
+        "width": 320,
+        "height": 640,
+        "frames": 235,
+        "frameDelayMs": 40,
+        "durationSeconds": 9.4,
+        "firstDecodedPreviewSHA256": "6daab6f91477a9c973365dd86a83124305d02eef65af50ce15809dc45ea8cb07",
+        "lastDecodedPreviewSHA256": "5b2f79002c9dc0fac63f987f1e96328581dfda9533ba5f81a75747b14355c88c"
+      },
+      "scope": "Starts after the first project choice; retains return/re-selection/model/default-Thorough/collapse through natural source EOF.25fps holds/drops follow original timestamps. No added freeze/tail/transition/interpolation/reordering/crop/scale. Palette quantization is not a pixel-exact GIF-to-PNG copy."
+    }
+  },
+  "rootVisualReview": "Both first and last decoded GIF frames directly inspected. Full note view at start, collapsed selected model at end; memory-only markers and system bars retained.",
+  "completeOriginalsRetained": true
+}

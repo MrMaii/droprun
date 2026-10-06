@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.test.core.app.ActivityScenario;
 import androidx.test.platform.app.InstrumentationRegistry;
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.junit.Test;
 import java.io.File;
@@ -42,8 +43,9 @@ public class SharePresentationTest {
                 try{
                     scenario=launchProbe(language,theme,destroyed,identity);ready(scenario);
                     scenario.onActivity(a->{safe(a);retained[0]=a;assertEquals(scale,a.getResources().getConfiguration().fontScale,0f);assertEquals(theme.equals("dark"),Ui.dark);assertEquals(320,a.getResources().getConfiguration().screenWidthDp);original[0]=values(a);controls[0]=new View[]{a.note,a.gaugeText,send(a,language),a.back,closeButton(a)};});entered++;event(identity,"entered");scenario.onActivity(SharePresentationTest::assertPresentation);
+                    scenario.onActivity(SharePresentationTest::materialSummaryCases);
                     scenario.onActivity(a->reveal(a,materialHeader(a)));awaitFrame(scenario);
-                    scenario.onActivity(a->{assertSafeBounds(a,screenBounds(materialHeader(a)));assertTrue(materialHeader(a).performClick());});ShareMaterialDisclosureTest.awaitMaterial(scenario);
+                    scenario.onActivity(a->{assertSafeBounds(a,screenBounds(materialHeader(a)));readable(a,ShareMaterialDisclosureTest.summary(a));assertTrue(materialHeader(a).performClick());});ShareMaterialDisclosureTest.awaitMaterial(scenario);
                     scenario.onActivity(a->{ShareMaterialDisclosureTest.assertExactMaterial(a);ShareMaterialDisclosureTest.assertNode(a,true);assertEquals(270f,materialArrow(a).getRotation(),0.01f);assertUnchanged(a,original[0],controls[0],language);});
                     if(scale==2f){
                         scenario.onActivity(a->revealTail(a.stage.findViewWithTag("share-material-text")));awaitFrame(scenario);
@@ -76,8 +78,22 @@ public class SharePresentationTest {
     static View modelHeader(DemoShareEditorActivity a){return (View)a.gaugeText.getParent();}
     static ImageView materialArrow(DemoShareEditorActivity a){View child=materialHeader(a).getChildAt(1);assertTrue(child instanceof ImageView);return (ImageView)child;}
     static TextView heading(DemoShareEditorActivity a){TextView heading=findText(a.stage,L.t("What should Codex do?","想让 Codex 做什么？"));assertNotNull(heading);return heading;}
+    static void materialSummaryCases(DemoShareEditorActivity a){
+        safe(a);String[] before=values(a);String shared=a.shared;JSONArray files=a.attachments;View focused=a.getWindow().getDecorView().findFocus();assertEquals(8,files.length());
+        try{
+            a.attachments=new JSONArray();a.shared="A useful reference.";assertEquals(L.t("Text · A useful reference.","文字 · A useful reference."),a.materialSummary());
+            a.shared="  https://example.invalid/posts/alpha?layout=compact#motionA  ";assertEquals(L.t("example.invalid · link","example.invalid · 链接"),a.materialSummary());
+            a.attachments=new JSONArray().put(files.getJSONObject(0));a.shared="  ";assertEquals(files.getJSONObject(0).getString("name"),a.materialSummary());
+            a.shared="A useful reference. https://example.invalid/posts/alpha";assertEquals(L.t("1 file · text","1 个文件 · 文字"),a.materialSummary());
+            a.attachments=new JSONArray().put(files.getJSONObject(0)).put(files.getJSONObject(1));a.shared="  ";assertEquals(L.t("2 files","2 个文件"),a.materialSummary());
+            a.attachments=files;a.shared=shared;assertEquals(L.t("8 files · text","8 个文件 · 文字"),a.materialSummary());
+        }catch(Exception error){throw new AssertionError(error);}
+        finally{a.attachments=files;a.shared=shared;}
+        assertArrayEquals(before,values(a));assertSame(files,a.attachments);assertSame(focused,a.getWindow().getDecorView().findFocus());safe(a);
+    }
     static void assertPresentation(DemoShareEditorActivity a){
         safe(a);assertNoteLabel(a);assertNull("Readonly material is not another filled input",ShareMaterialDisclosureTest.group(a).getBackground());ShareMaterialDisclosureTest.assertClosed(a);ShareMaterialDisclosureTest.assertNode(a,false);
+        TextView summary=ShareMaterialDisclosureTest.summary(a);assertEquals(L.t("8 files · text","8 个文件 · 文字"),summary.getText().toString());assertCompleteText(summary);
         View material=materialHeader(a),model=modelHeader(a);assertTrue(material.getHeight()>=Ui.dp(a,52));assertTrue(material.getWidth()>=Ui.dp(a,48));assertTrue(material.getForeground() instanceof RippleDrawable);assertEquals(180f,materialArrow(a).getRotation(),0.01f);
         ShareDestinationReadingTest.assertDestination(a);View receipt=a.stage.findViewWithTag("share-destination-material");assertEquals(screenBounds(heading(a)).left,screenBounds(receipt).left);assertEquals(screenBounds(heading(a)).left,screenBounds(a.gaugeText).left);
         assertTrue(model.getHeight()>=Ui.dp(a,48));assertTrue(model.getWidth()>=Ui.dp(a,48));assertTrue(model.isFocusable());assertTrue(model.isClickable());assertTrue(model.getForeground() instanceof RippleDrawable);assertFalse(a.gaugeText.isFocusable());assertCompleteText(a.gaugeText);
@@ -89,7 +105,7 @@ public class SharePresentationTest {
         safe(a);assertPresentation(a);assertEquals(0,a.scroll.getScrollY());assertTrue(a.hasWindowFocus());View decor=a.getWindow().getDecorView();assertTrue(decor.isAttachedToWindow());assertFalse(decor.isLayoutRequested());assertEquals(1f,a.getWindow().getAttributes().alpha,0f);assertEquals(1f,a.holder.getAlpha(),0f);assertEquals(0f,a.holder.getTranslationY(),0f);assertEquals(1,a.stage.getChildCount());View pane=a.stage.getChildAt(0);assertEquals(1f,pane.getAlpha(),0f);assertEquals(0f,pane.getTranslationX(),0f);
         WindowInsets insets=decor.getRootWindowInsets();assertNotNull(insets);assertFalse("Reject any keyboard-visible capture",insets.isVisible(WindowInsets.Type.ime()));
         TextView marker=a.sheet.findViewWithTag("hierarchy-marker");assertCompleteText(marker);ShareSettingsHierarchyTest.visible(marker);Rect window=new Rect();decor.getWindowVisibleDisplayFrame(window);assertTrue(window.contains(screenBounds(marker)));assertTrue(screenBounds(marker).bottom<=screenBounds((View)a.back.getParent()).top);
-        for(TextView text:new TextView[]{heading(a),noteLabel(a),a.gaugeText,title(a),detail(a),send(a,language),a.draftStatus})readable(a,text);assertSafeBounds(a,screenBounds(a.note));assertSafeBounds(a,screenBounds(materialHeader(a)));assertSafeBounds(a,screenBounds(modelHeader(a)));
+        for(TextView text:new TextView[]{heading(a),noteLabel(a),ShareMaterialDisclosureTest.summary(a),a.gaugeText,title(a),detail(a),send(a,language),a.draftStatus})readable(a,text);assertSafeBounds(a,screenBounds(a.note));assertSafeBounds(a,screenBounds(materialHeader(a)));assertSafeBounds(a,screenBounds(modelHeader(a)));
     }
     static TextView noteLabel(DemoShareEditorActivity a){TextView label=a.stage.findViewWithTag("share-note-label");assertNotNull(label);return label;}
     static void assertNoteLabel(DemoShareEditorActivity a){

@@ -38,7 +38,7 @@ zh: {
 };
 
 const exists = async path => access(path).then(() => true, () => false);
-const screenshotStems = { home:'source-home-cards', share:'source-share-note', task:'source-delivery-matte' };
+const screenshotStems = { home:'source-home-cards', share:'source-share-count', task:'source-delivery-matte' };
 const screenshot = (name, locale, theme = 'light') => `${screenshotStems[name]}-${locale}-${theme}-20261006.png`;
 const screenshots = Object.keys(screenshotStems).flatMap(name => ['en', 'zh'].flatMap(locale => ['light', 'dark'].map(theme => `media/${screenshot(name, locale, theme)}`)));
 const shareTours = ['en', 'zh'].flatMap(locale => ['.mp4', '.vtt'].map(suffix => `media/native-share-project-tour-${locale}-20261006${suffix}`));

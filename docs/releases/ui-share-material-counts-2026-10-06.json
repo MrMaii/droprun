@@ -1,0 +1,109 @@
+{
+  "date": "2026-10-06",
+  "scope": "Later 0.5.13-dev/code26 local development UI, after public candidate13; not a signed download or stable-launch acceptance.",
+  "source": {
+    "files": 134,
+    "gradleConfigurations": 4,
+    "closureSha256": "096d6496bc76993233bf779130b99f3049626d8b3f076f14bdd6f15cc9fa703c",
+    "exactBeforeAndAfter": true
+  },
+  "method": "app.droprun.SharePresentationTest#materialAndModelKeepClearLocalEntrypoints",
+  "results": {
+    "jvm": {
+      "tests": 27,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "lint": {
+      "errors": 0,
+      "warnings": 28
+    },
+    "native": {
+      "junitTests": 1,
+      "completeWindows": 6,
+      "DESTROYED": 6,
+      "lifetimeStreams": 32,
+      "counterStreams": 12,
+      "zeroBusinessCounters": true,
+      "staticFontAndLanguageRestorationEvent": true,
+      "headerClicksReported": 24,
+      "capturesReported": 4,
+      "materialSummaryAssertions": "Source-bound pure-memory summary branches and complete eight-file/text summary at normal/200% reading; existing note/focus/draft checks retained. No per-branch telemetry or actual IME measurement."
+    },
+    "deviceReadingsUnchanged": true
+  },
+  "commands": {
+    "build": {
+      "count": 1,
+      "allReturnedZero": true
+    },
+    "install": {
+      "count": 26,
+      "allReturnedZero": true
+    },
+    "native": {
+      "count": 33,
+      "allReturnedZero": true
+    }
+  },
+  "debugApks": [
+    {
+      "role": "app",
+      "bytes": 2185254,
+      "sha256": "7574421a65d553ae067cc3e9fbbc8ab0e76920c27ff1d6ea2b0d158cbf4f3154"
+    },
+    {
+      "role": "test",
+      "bytes": 2034795,
+      "sha256": "d5811874bd26a08a92b29b4827157e3ff55d0816e40e50580fb1b33de70af987"
+    }
+  ],
+  "sourceAssertions": "Six pure-memory formatter cases per completed window; original shared string, JSONArray reference and focus restored. Eight-file/text summary has no ellipsis and is readable after reveal, including two 200% windows. Existing raw-material and full AX descriptions retained.",
+  "images": [
+    {
+      "language": "en",
+      "theme": "light",
+      "file": "assets/brand/source-share-count-en-light-20261006.png",
+      "bytes": 49170,
+      "sha256": "8fc233b20ae1d3d3f48b2a26df91a2e31bdf664647a03fecbf0a385336dce48c",
+      "acceptedByRoot": true,
+      "transformed": false,
+      "rawMetadataAcceptanceUnchanged": true
+    },
+    {
+      "language": "en",
+      "theme": "dark",
+      "file": "assets/brand/source-share-count-en-dark-20261006.png",
+      "bytes": 47668,
+      "sha256": "10c25ea1e5cc2850c2defa32255e53597602d6b3c98af7071acabc25174b399a",
+      "acceptedByRoot": true,
+      "transformed": false,
+      "rawMetadataAcceptanceUnchanged": true
+    },
+    {
+      "language": "zh",
+      "theme": "light",
+      "file": "assets/brand/source-share-count-zh-light-20261006.png",
+      "bytes": 57021,
+      "sha256": "6894a8c7bcfa38937477625976c6da21d82c4d04d34dc981b6bb7baf6a61313e",
+      "acceptedByRoot": true,
+      "transformed": false,
+      "rawMetadataAcceptanceUnchanged": true
+    },
+    {
+      "language": "zh",
+      "theme": "dark",
+      "file": "assets/brand/source-share-count-zh-dark-20261006.png",
+      "bytes": 55963,
+      "sha256": "2cf410c3cfdc18f56685c60635685cdfabf2e577b397b0793d055b96e88b688e",
+      "acceptedByRoot": true,
+      "transformed": false,
+      "rawMetadataAcceptanceUnchanged": true
+    }
+  ],
+  "limits": [
+    "Four raw normal-font stills reviewed directly by root; the two 200% windows are reading checks, not captures.",
+    "No real handoff, signed capture, physical IME/TalkBack, measured press/frame performance or all-UI acceptance."
+  ]
+}

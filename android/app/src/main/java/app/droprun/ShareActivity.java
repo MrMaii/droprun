@@ -269,7 +269,7 @@ public class ShareActivity extends StyledActivity {
         if(materialOpen)materialContent(content);
         String label=materialLabel();LinearLayout group=Ui.disclosure(this,L.t("Received material: ","收到的材料：")+label,content,materialOpen,open->{materialOpen=open;if(open&&content.getChildCount()==0)materialContent(content);});
         group.setTag("share-material-review");
-        LinearLayout header=(LinearLayout)group.getChildAt(0);header.setPadding(0,0,0,0);TextView summary=(TextView)header.getChildAt(0);summary.setText(label);summary.setTextSize(13);Ui.oneLine(summary);
+        LinearLayout header=(LinearLayout)group.getChildAt(0);header.setPadding(0,0,0,0);TextView summary=(TextView)header.getChildAt(0);summary.setText(materialSummary());summary.setTextSize(13);Ui.oneLine(summary);
         return group;
     }
     void materialContent(LinearLayout content){
@@ -286,6 +286,11 @@ public class ShareActivity extends StyledActivity {
         String label=materialLabel();TextView chip=new TextView(this);chip.setText(label);chip.setTextSize(13);chip.setTextColor(Ui.TEXT);chip.setTypeface(Ui.medium());chip.setGravity(Gravity.CENTER_VERTICAL);
         chip.setIncludeFontPadding(false);chip.setPadding(dp(14),dp(10),dp(14),dp(10));chip.setMinHeight(dp(40));chip.setBackground(Ui.outlined(this,Ui.SURFACE_2,Ui.LINE,14,1));Ui.oneLine(chip);
         chip.setContentDescription(L.t("Shared material: ","分享的材料：")+label);return chip;
+    }
+    String materialSummary(){
+        int files=attachments.length();boolean hasText=!shared.trim().isEmpty();
+        if(files==0||(files==1&&!hasText))return materialLabel();
+        return files+(files==1?L.t(" file"," 个文件"):L.t(" files"," 个文件"))+(hasText?L.t(" · text"," · 文字"):"");
     }
     String materialLabel(){
         ArrayList<String> parts=new ArrayList<>();

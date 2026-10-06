@@ -19,15 +19,43 @@ genuine acceptance is unavailable. No stable launch or marketing handover.
   uploaded8assets once and published. All19direct children returned0. Creation,
   tag and upload were not replayed; original failure and preparation/raw-EOL
   failures remain. Intermediate487 CI failure/packages are retained/unpublished.
-- GPTSites21 is live at the existing public address, succeeded2026-10-06
-  22:33:08.863871Z. Product source487d8479; hosting source10c37c2, version8bb416e4,
-  deployment6ac5771b. Its103public files/104archive entries contain Share-first
-  branding and dated native media, still candidate12 downloads. The new committed
-  language pages now point to anonymous-verified13; publish them next. Public
-  audience stays unchanged; private film/unaccepted Delivery stills stay excluded.
+- GPTSites22 is live at the existing public address, succeeded2026-10-06
+  22:59:32.601506Z. Product source5ce17bce; hosting sourcecb4cd2d5,
+  version7c47f825, deployment6ac57d4d. Its103public files/104archive entries retain
+  Share-first branding and dated native media; only two language pages change
+  their download links to anonymous-verified13. Native hosting success is not
+  a new hosted playback check. Public audience stays unchanged; private film
+  and unaccepted Delivery stills stay excluded.
+- Own docs/download source5ce17bce CI37543668963 attempt1 also passes3jobs,
+  35steps/10required/3checks; actualcore210/browser18. Complete326833B log
+  SHA64a39203 and returned0 fetch retained. This is the preceding committed
+  source's result, not a CI claim for later working UI or handoff edits.
 
 ## UX and brand already included
 
+- After candidate13, [Share material counts](../../docs/releases/ui-share-material-counts-2026-10-06.md)
+  now replace the truncated first filename with actual file count and mixed-text
+  indicator; single file and text/link-only identity remain. Only folded visible
+  text changes: full AX, expanded original material, send/persistence stay intact.
+  Fresh source134/4 SHA096d6496; bound ownerSHAf40a2e23/noncea67d1a06. Build
+  returned0 in60.937s, actualJVM27pass/lint0errors28warnings;266B deprecation stderr
+  retained.26install and33native/read commands all returned0; two installed APKs
+  match the build, ten device readings unchanged. One native method passes six
+  full/DESTROYED windows,32lifetime/12zero-business streams,24headers; source-bound
+  six formatter branches restore original material and focus. Normal/200% count
+  reading passes;4raw normal-font stills directly reviewed and copied byte-exact.
+  Original capture metadata remains unaccepted; separate root record accepts
+  images. No signed13/sourceCI binding, real task or performance claim.
+- README now starts its main motion at the complete note view, explicitly a
+  continuous code25 excerpt after initial selection: EN234frames9.36s/ZH2359.40s,
+  firstsourceframe18, through sourceEOF with sub-frame end quantization. Two offline
+  encoders returned0 once; first/last frames directly viewed, originals retained,
+  independent review passes. No inserted motion or fresh native claim. EN final
+  sampled checksum differs from raw136; ZH matches it, so no both-last-frame-exact
+  claim. Current static examples use latercode26 count stills; source5ce actual
+  GitHub check is prior to this new excerpt. Website source now uses these four
+  count images; generated pages rebuilt with the real public origin. Publication
+  and actual updated rendering remain separate.
 - Current runtime0.5.13/code26 is packaged; downloads are verified candidate13.
   [Persistent note and list dates](../../docs/releases/ui-share-note-and-list-dates-2026-10-06.md):
   four raw native stills accepted; JVM27pass/lint0errors28warnings; exact native
@@ -85,7 +113,11 @@ genuine acceptance is unavailable. No stable launch or marketing handover.
   main native GIF before workflow/static galleries; source/version scope and all
   previous media retained. Actual anonymous360px GitHub baseline has no overflow,
   native images loaded/stacked, but the GIF followed3tall screens. New EN/ZH
-  source structure reviewed; actual new public rendering remains the next check.
+  source structure reviewed. Published EN/ZH source5ce17bce is now inspected:
+  main GIF loaded before workflow, five details closed, 360px has no overflow;
+  Return opens/closes EN recording notes and ZH gallery. The expanded ZH gallery
+  loads3native images at260px without overflow. Viewport reset. Actual screenshots
+  retained; brief original GIF launch remains visible, no seamless-loop claim.
 - [README entrance](../../docs/releases/ui-readme-brand-reading-2026-10-06.md):
   one value heading, install link, short workflow and actual native examples.
   Original GIF/video scope stays dated. Approximate GitHub layout checks are
@@ -123,9 +155,9 @@ genuine acceptance is unavailable. No stable launch or marketing handover.
 
 ## Single recommended next action
 
-Publish the reviewed two-language website candidate13 download update and inspect
-the actual reordered GitHub README. Then continue meaningful native UI/UX polish;
-genuine, physical-device and clean-install gates remain open.
+Continue meaningful native UI/UX polish from a concrete reading or interaction
+problem; candidate13 website downloads and reordered GitHub README are published
+and checked. Genuine, physical-device and clean-install gates remain open.
 
 ## Files this pass
 

@@ -1,8 +1,41 @@
 # Native README media
 
+## Review before sending · continuous README excerpt · October 6, 2026
+
+The main English and Chinese README GIFs start on the complete note view after
+the initial project choice. They retain the original return to project selection,
+re-selection, model change and collapsed final state. The complete recordings and
+GIFs below remain unchanged and linked; these excerpts are not the whole journey.
+
+Both start at original decoded frame18: English1.116322s, Chinese1.081622s, and
+continue through frame136 at the source's natural end. Each retains119 continuous
+source frames before25fps sampling. Actual English GIF234×40ms=9.36s, Chinese
+235×40ms=9.40s; their remaining source durations are9.3780667s/9.4148111s. The
+sub-frame end quantization adds no tail hold. No crop, scale, inserted transition,
+motion interpolation, reordered frame or fabricated ending is used. Palette
+quantization means GIF colors are not byte-exact copies of decoded PNGs.
+Sampling can omit final raw frames: the English last sampled checksum differs
+from rawframe136; the Chinese last sample matches it. Both show the actual
+collapsed model state, not an added ending.
+
+Root inspected both first and last decoded GIF frames. Memory-only markers and
+system bars remain. This is still code25 development UI before the persistent
+note label, not a signed download or real task. Reduced motion and current static
+galleries use the separately accepted latercode26 file-count views, after public
+candidate13; see [native scope](../../docs/releases/ui-share-material-counts-2026-10-06.md).
+The website retains the complete original MP4 and its captions.
+
+| File | Bytes | SHA-256 |
+| --- | ---: | --- |
+| [native-share-review-before-sending-en-20261006.gif](native-share-review-before-sending-en-20261006.gif) | 1095207 | `c977862a96f706c054e9e91fe86738f761d4d342a65c0a7d834e53f6e7dd9a77` |
+| [native-share-review-before-sending-zh-20261006.gif](native-share-review-before-sending-zh-20261006.gif) | 1003125 | `f7ca5be58342a9e375f72d6b96ed749c6932d99a0bb6a2f68eb9ad3c23bf945f` |
+
+[Excerpt hashes and first-frame mapping](../../docs/releases/ui-readme-review-excerpt-2026-10-06.json)
+own the offline checks. No new App/device execution was needed for this edit.
+
 ## Project → note → back to project → model · October 6, 2026
 
-The main README GIFs use these English and Chinese recordings of the native
+The complete project-tour GIFs use these English and Chinese recordings of the native
 `0.5.12-dev` debug UI (code25), at 320 × 640 with normal-size light UI. They show
 real row selection and back navigation within a fixed in-memory project: choose
 project, visit the empty optional note, return to the project list, choose again,
