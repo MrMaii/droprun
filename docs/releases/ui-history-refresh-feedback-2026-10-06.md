@@ -56,6 +56,16 @@ Refresh-focus scenario. The fixed cached scene covers failure only, not success.
 
 ## Limits and preserved originals
 
+Public source `c17aed20459c361ddf65b8cb3c586286995f5076` has eight changed
+files verified byte-for-byte by ten anonymous GET200 reads. Thomas Deng is
+author/committer; its sole parent is c2a07f3. Exact CI37513241255 attempt1 passed
+all3jobs/35steps/10required/3source checks: actualcore210/browser18, no failed,
+cancelled or skipped tests, audit0, and all four Android tasks with
+`BUILD SUCCESSFUL in 1m 37s`. The once-fetched complete326,697-byte log has SHA-256
+`1f9baeebd9a4b3efaa24fbe759b87deffe316c66ae077bf145944f386ee49f43`.
+Independent static/native evidence and CI reviews passed. CI is not a second
+instrumentation run or an updated signed candidate.
+
 Foreground-return behavior is supported by the implementation's static ordering;
 pause/resume was not exercised by this three-window run. No new screenshots,
 genuine Relay, Codex task, outbox, server recovery, real keyboard/IME, TalkBack,

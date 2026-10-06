@@ -405,3 +405,14 @@ brand/landing copies are byte-identical, without retouching or removed markers.
 own this separate capture group. They are not genuine dispatches or a signed
 candidate recording. The [bilingual layout review](../../docs/releases/ui-readme-brand-reading-2026-10-06.md)
 also records the subsequent Chinese headline wrap correction and its limits.
+
+## October 6, 2026 — History state before metadata
+
+The expanded README History gallery uses four `source-history-hierarchy-*`
+originals. State now follows each title, before its complete source/date line.
+Root directly viewed all four normal-font native captures; exact brand copies
+retain the memory marker and system bars. The fixed three-row samples are not
+genuine handoffs, longest-state samples,200% screenshots or signed recordings.
+[Frozen source, actual reading checks and hashes](../../docs/releases/ui-history-retention-reading-2026-10-06.md)
+own this separate group. Later retention typography has a separate build-only
+binding and is absent from these images. Earlier GIFs and Settings stills remain.

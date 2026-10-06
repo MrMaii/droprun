@@ -242,15 +242,16 @@ public class SettingsActivity extends StyledActivity {
 
     void retentionSection(){
         LinearLayout card=section(L.t("Data retention","数据保留"));
+        card.setPadding(dp(16),dp(12),dp(16),dp(12));card.setBackground(Ui.outlined(this,Ui.SURFACE,0,Ui.RADIUS_CARD,0));
         JSONObject policy=new JSONObject();try{policy=new JSONObject(store.prefs.getString("retention","{}"));}catch(JSONException ignored){}
         int raw=policy.optInt("rawDays"),artifacts=policy.optInt("artifactDays");
         if(raw>=1&&raw<=365&&artifacts>=1&&artifacts<=365){
-            card.addView(Ui.text(this,L.t("Last synced Relay policy","上次同步的中转策略"),15,Ui.TEXT));
-            card.addView(Ui.caption(this,L.t("Original uploads · ","原始上传 · ")+raw+L.t(" days after a task ends"," 天（任务结束后）")));
-            card.addView(Ui.caption(this,L.t("Screenshots & files · ","截图与文件 · ")+artifacts+L.t(" days after a task ends"," 天（任务结束后）")));
-        }else card.addView(Ui.caption(this,L.t("Connect, then use Refresh in Default model & effort to load your Relay’s retention policy.","联网后，在“默认模型强度”中点按刷新，获取中转服务保留策略。")));
-        card.addView(Ui.caption(this,L.t("Reports stay until you delete them. Preview links and snapshots have separate expiry times. Cleanup runs periodically and does not delete your computer’s project files or backups.","报告保留至你删除。预览链接与快照另有有效期。清理定期运行，不会删除电脑上的项目文件或备份。")),Ui.margins(this,10,0));
-        card.addView(Ui.caption(this,L.t("Change retention in your Relay deployment settings. This cached policy may be outdated while offline. Saved handoffs on this phone stay until sent or removed from project history.","在中转部署配置中修改保留期限。离线时，缓存的策略可能已过时。手机上的待发送副本保留至发送成功，或在项目历史中手动移除。")),Ui.margins(this,8,0));
+            card.addView(Ui.text(this,L.t("Last synced Relay policy","上次同步的中转策略"),13,Ui.MUTED));
+            card.addView(Ui.text(this,L.t("Original uploads · ","原始上传 · ")+raw+L.t(" days after a task ends"," 天（任务结束后）"),15,Ui.TEXT),Ui.margins(this,8,0));
+            card.addView(Ui.text(this,L.t("Screenshots & files · ","截图与文件 · ")+artifacts+L.t(" days after a task ends"," 天（任务结束后）"),15,Ui.TEXT),Ui.margins(this,4,0));
+        }else card.addView(Ui.text(this,L.t("Connect, then use Refresh in Default model & effort to load your Relay’s retention policy.","联网后，在“默认模型强度”中点按刷新，获取中转服务保留策略。"),15,Ui.TEXT));
+        card.addView(Ui.text(this,L.t("Reports stay until you delete them. Preview links and snapshots have separate expiry times. Cleanup runs periodically and does not delete your computer’s project files or backups.","报告保留至你删除。预览链接与快照另有有效期。清理定期运行，不会删除电脑上的项目文件或备份。"),13,Ui.TEXT),Ui.margins(this,12,0));
+        card.addView(Ui.text(this,L.t("Change retention in your Relay deployment settings. This cached policy may be outdated while offline. Saved handoffs on this phone stay until sent or removed from project history.","在中转部署配置中修改保留期限。离线时，缓存的策略可能已过时。手机上的待发送副本保留至发送成功，或在项目历史中手动移除。"),13,Ui.MUTED),Ui.margins(this,8,0));
     }
 
     // ---- 关于 -----------------------------------------------------------------------------------

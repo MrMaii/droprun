@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Put History state before source/date, with full-width metadata and reserved
+  space for its trailing arrow. Keep the current row and reading identity.
+- Make actual retention periods and recovery guidance readable primary text in
+  a Settings group; retain all policy values, rules and read-only behavior.
+  [Separate native/build checks and limits](docs/releases/ui-history-retention-reading-2026-10-06.md).
+
 - Keep History Refresh visibly unavailable while reading, with an accurate
   localized description; restore it on completion or foreground return.
   Cached history stays readable and repeated requests add no reads.

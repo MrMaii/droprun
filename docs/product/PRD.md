@@ -142,6 +142,9 @@ in [the current candidate record](../releases/0.5.10-rc.1.md).
   A 48dp information entry exposes the complete name and ID when the heading is
   shortened; same-name and retained-history identity remain explicit. Recycled
   status pills update their background and text from the same actual status.
+  Each history row reads title, current state, then complete source/date metadata.
+  State keeps its natural pill width within the space reserved before the arrow;
+  metadata retains the full reading width. Long text may grow vertically.
   Status/pending updates retain the visible task and offset without replaying
   entry motion. Activity recreation restores the reading position in retained
   older pages for both touch and keyboard browsing.
@@ -241,6 +244,9 @@ in [the current candidate record](../releases/0.5.10-rc.1.md).
   state; the layout does not fabricate a result or preview.
   Data settings show the last known policy for the selected Relay, distinguish
   unknown/offline values, and explain local pending copies and server retention.
+  Actual retention periods and unknown-policy recovery use primary readable text
+  in one content group. Reports/preview/cleanup rules stay clear; cached-policy
+  status and deployment context are secondary. Typography does not edit policy.
 - Share search and catalog expansion survive recreation. Permission explanations
   and actions remain reachable at 200% font; keyboard focus stays inside the
   open dialog. Failed permission changes remain retryable without advancing.

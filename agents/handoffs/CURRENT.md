@@ -82,7 +82,33 @@ owns the actual source/APK/output bindings, original failures and limitations.
   6memoryreads;27ADBchildren returned0, ten device properties/source exact.
   Cached Infofocus/list/cache/ID/top and0notifications survive; six programmatic
   repeats add no reads. Fixture unchanged; no cachedsuccess/pause/nativeIME/
-  motion claim. This further change awaits curated source publication/exact CI.
+  motion claim. Curated public sourcec17aed2 has ten anonymous GET200 reads,
+  eight changed files byte-exact, Thomas author/committer and unique parentc2.
+  Its own CI37513241255 attempt1 passed3jobs/35steps/10required/3checks;
+  actualcore210/browser18/audit0/Androidfourtasks1m37s. Complete326697-byte
+  log retained (SHA1f9baeeb); independent native and CI reviews passed.
+
+## Latest reading hierarchy pass
+
+- [History/retention record](../../docs/releases/ui-history-retention-reading-2026-10-06.md)
+  owns separate freezes/APKs/reports. History state now precedes full-width
+  source/date, with8dp+18dp reserved for its arrow. Only construction geometry
+  and one existing assertion line change; Refresh/bind/actions remain exact.
+- History freezeb9dd7171 built47.563s/exit0 with402B compiler notes;
+  app29a9d72c/testf22cdc73. Native1/1 25.417s (ADB27.25s),6full/DESTROYED,
+  43events/18actualguards0/36rebinds/4captures; all46ADBchildren returned0,
+  ten observations and source exact. Fixture/lifetime/writers unchanged;
+  no old matrix/motion/dialog, longest-state/pending/Follow-up native claim.
+- Root directly viewed all four raw normal-font History stills. Exact four brand
+  copies now supply both README History picture pairs; original markers/bars
+  remain. New images do not rerun the earlier README layout or Share motion.
+- Later retention Settings source0a188260 gives actual periods/recovery readable
+  primary text and rules within a matte group. All strings/policy/data logic stay
+  exact. Freeze05ace881 built38.813s/exit0/stderr0; app787c1737/testf22cdc73.
+  Both separate archived report sets show27JVM/0fail and lint28warnings/0errors.
+  Retention has no device/native/paragraph/screenshot acceptance yet.
+- This further pass awaits curated source publication and its own CI. Site17
+  and signed10 retain their previous bindings; no stable/marketing handover.
 
 ## Visual and README basis
 
@@ -122,10 +148,11 @@ polish or stop useful UI work because genuine acceptance is unavailable.
 
 ## Single recommended next action
 
-Publish the verified History Refresh/source and Site17 records with exact CI,
-then prepare a separate signed candidate from verified source. Continue useful
-UI states and brand refinement; keep genuine gates
-visible. No real Relay/Codex or previously denied path; no marketing handover.
+Publish the verified History hierarchy and retention source with their separate
+evidence; then prepare the next signed candidate from verified source. Continue
+retention paragraph reading/visual acceptance through an explicitly bounded
+local memory flow. Keep genuine gates visible; no real Relay/Codex or previously
+denied path, no marketing handover.
 
 ## Files this pass
 
