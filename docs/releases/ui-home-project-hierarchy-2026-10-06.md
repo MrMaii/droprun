@@ -91,3 +91,11 @@ physical rendering/frame claim. The public0.5.5 candidate is unchanged.
 
 All original failures, PNGs, build logs, source snapshots and APKs are retained.
 No Git/commit/version/product-document changes were made by this subtask.
+
+## Later system-bar observation
+
+The original dark screenshots and their limitation above remain unchanged. A
+separate [bounded screenshot-timing observation](ui-system-bars-observation-2026-10-06.md)
+recorded readable white glyphs later, with the same app and appearance request.
+No production correction was made, and this does not broaden the card-only
+acceptance claim.

@@ -13,6 +13,8 @@ in [the current candidate record](../releases/0.5.5-rc.1.md).
   Its installation section places the Windows installer and self-hosting guide
   beside the prerequisites. README gives installation a distinct primary entry,
   with compact website, preview-download and language links below it.
+  A dated native UI tour precedes the workflow gallery; reduced motion selects
+  a static light/dark capture, with explicit still links and unchanged provenance.
   Windows package scripts must start on an unmanaged Windows client with its
   default script policy, without changing persistent user or machine policy.
 - Light translucent UI, lime actions, dark/system appearance, English/Chinese.

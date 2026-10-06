@@ -5,7 +5,9 @@
 - Give project names and counts the full card content width by removing the
   redundant initial tile. Keep states, statistics, access and navigation intact.
   [Local native verification](docs/releases/ui-home-project-hierarchy-2026-10-06.md)
-  is separate from the unchanged 0.5.5 download; dark system-bar contrast is under investigation.
+  is separate from the unchanged 0.5.5 download. A separate
+  [system-bar observation](docs/releases/ui-system-bars-observation-2026-10-06.md)
+  recorded readable glyphs after settlement; no appearance code changed.
 
 ## 0.5.5-rc.1 — clearer results and installation
 

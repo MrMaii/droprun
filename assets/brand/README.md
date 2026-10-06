@@ -15,3 +15,9 @@ for the app icon, website, README and public release materials.
 palettes. They show the self-hosted flow and computer boundary, not a task result.
 They use system fonts, contain no scripts or remote assets, and have text
 equivalents in both READMEs. The selected logo and native captures are unchanged.
+
+The dated native UI tour appears before the workflow gallery in both READMEs.
+Its `picture` uses existing light/dark stills for reduced motion; explicit still
+links remain available. Older tours are video links in a collapsed section.
+Media bytes and the Demo/capture provenance remain unchanged. GitHub rendering
+is verified separately from the source markup.

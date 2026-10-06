@@ -33,6 +33,12 @@ and marketing acceptance remain open; independent UI/brand work continues.
 
 ## Latest verified UX and brand work
 
+- [README motion hierarchy](../../docs/releases/readme-motion-hierarchy-2026-10-06.md):
+  dated native tour moved before workflow gallery, reduce/light/dark still
+  sources and explicit still links; older tour manual video links retained.
+  Original six media bytes and Demo/source notices unchanged. Actual GitHub
+  sanitizer/media selection remains pending; no new genuine demonstration.
+
 - [Settings semantics](../../docs/releases/ui-settings-semantics-2026-10-06.md):
   progress/success/warning use existing accessible colors; native option names
   include visible explanations. Combined12/13 plus corrected targeted node1/1,
@@ -75,10 +81,20 @@ and marketing acceptance remain open; independent UI/brand work continues.
   168→224dp, normal EN first card179→150dp; enlarged suffixes complete. Four
   dark originals reveal low-contrast status-bar glyphs. Not a complete dark-mode,
   TalkBack, genuine execution or physical-performance acceptance. Independent
-  source review passes; included in this curated change, source CI pending.
-  Separate focused-window probe reads requested dark appearance0/legacy0/theme
-  false while raw glyphs remain low contrast. Production Ui is unchanged; one
-  delayed-window observation proceeds before any proposed fix.
+  source review passes. Published b117b5fa27360d6633dbe80f104381c2af2b7a51,
+  exact-source CI37400230847 attempt1 all3jobs/35steps green, core210/browser14
+  failure counters0, audit0/site20/scanner383/Windows2022/Android. Twelve fresh
+  anonymous source GETs match immutable Git.
+- [System-bar observation](../../docs/releases/ui-system-bars-observation-2026-10-06.md):
+  first light→dark window361ms after focus has0 light glyph pixels, native1fail
+  only pixels; later single dark2051ms has1317 light pixels, native1/1. Same
+  app/appearance0/legacy0/themefalse, not a combined2/2 or exact platform-cause
+  claim. Production Ui unchanged; diagnostic archived privately, remaining101
+  sources equal Home green. Original screenshots/failure retained.
+- Hosted reduced-motion first probe remains incomplete: known platform script
+  guard failure plus three Windows launcher exit0 false failures. All own
+  successor browser processes were closed via confirmed CDP identity; originals
+  retained. Browser lifecycle runtime/tests are being repaired separately.
 
 ## Authorization and blocking conditions
 
@@ -102,19 +118,17 @@ and marketing acceptance remain open; independent UI/brand work continues.
 
 ## Single recommended next action
 
-Check this Home-source CI and diagnose the observed dark status-bar glyphs with
-one delayed memory-only window probe. Review the Windows browser launcher exit0
-relaunch/close defect before changing production. Hosted reduced-motion first
-probe retained a blocked platform-script request and three launcher false exits;
-its four scenes did not pass. Keep it separate from the six accepted normal UI
-scenes. Root owns Git/hosting; client owns temporary Android investigation.
-Genuine acceptance gates remain open.
+Finish and independently review the Windows browser startup/close lifecycle
+regression before any fresh hosted reduced-motion check. Continue read-only
+Share/Settings and README design audits in parallel; implement only concrete
+local UI improvements. Root owns Git/hosting and docs. Keep failed hosted probes
+separate from six accepted normal scenes and genuine acceptance gates open.
 
 ## Files this pass
 
 MainActivity, non-exported Home fixture and new hierarchy test; PRD, Unreleased
 changelog and README wording; candidate/anonymous/installation/Home records and
-current handoff. Browser and status-bar investigations are separate pending
-work, excluded from this source commit. Private evidence/builds stay under
+current handoff. Status-bar observation adds documentation only. Browser runtime
+work remains separate and in progress. Private evidence/builds stay under
 .local/ux-rc055/, .local/ux-oct6-home-hierarchy/ and independent new probe dirs.
 Git author Thomas Deng <150266369+MrMaii@users.noreply.github.com>.

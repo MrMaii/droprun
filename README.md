@@ -15,6 +15,26 @@ DropRun, choose a project, and optionally leave a note. Your Windows Connector
 hands the reference and intent to local Codex. Come back to progress, a report,
 and evidence of what changed.
 
+## Native UI tour
+
+0.5.1 development UI · October 5, 2026 · labelled Demo data. No task is sent.
+
+<p align="center"><picture><source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/brand/readme-share-dark.png"><source media="(prefers-reduced-motion: reduce)" srcset="assets/brand/readme-share.png"><img src="assets/brand/readme-ui-tour.gif" width="240" alt="Nine-second native Android development UI tour: project selection, note editing, model options, settings and a labelled demonstration report"></picture></p>
+
+[9-second native UI video](https://droprun.dengmaizi0802.chatgpt.site/media/ui-tour-en.mp4) · [Captions](landing/media/ui-tour-en.vtt)
+
+[Light still](assets/brand/readme-share.png) · [Dark still](assets/brand/readme-share-dark.png). With reduced motion enabled, the image above is static.
+
+<details>
+<summary><strong>Earlier preview tour and longer walkthrough</strong></summary>
+
+These earlier videos show the native interface with labelled demonstration data,
+not a completed source-to-Codex task.
+
+[24-second video](https://droprun.dengmaizi0802.chatgpt.site/media/demo.mp4) · [64-second walkthrough](https://droprun.dengmaizi0802.chatgpt.site/media/walkthrough.mp4)
+
+</details>
+
 ## Share. Follow. Inspect.
 
 **UI demonstration only:** nothing was sent to an agent, and the report uses
@@ -63,26 +83,6 @@ Windows packages are unsigned and may show an unknown-publisher prompt; compare
 the release [checksums](https://github.com/MrMaii/droprun/releases/download/v0.5.5-rc.1/SHA256SUMS.txt).
 The public Android app installs alongside the historical private/debug app;
 different signing identities cannot silently replace each other.
-
-## Native UI tour
-
-0.5.1 development UI · October 5, 2026 · labelled Demo data. No task is sent.
-
-<p align="center"><img src="assets/brand/readme-ui-tour.gif" width="240" alt="Nine-second native Android development UI tour: project selection, note editing, model options, settings and a labelled demonstration report"></p>
-
-[9-second native UI video](https://droprun.dengmaizi0802.chatgpt.site/media/ui-tour-en.mp4) · [Captions](landing/media/ui-tour-en.vtt)
-
-<details>
-<summary><strong>Earlier preview tour and longer walkthrough</strong></summary>
-
-<p align="center"><img src="landing/media/demo.gif" width="256" alt="Earlier DropRun Android preview: an actual native interface tour using labelled demonstration data"></p>
-
-These videos and this animation are from the earlier preview. They show the interface, not a completed
-source-to-Codex task.
-
-[24-second video](https://droprun.dengmaizi0802.chatgpt.site/media/demo.mp4) · [64-second walkthrough](https://droprun.dengmaizi0802.chatgpt.site/media/walkthrough.mp4)
-
-</details>
 
 ## Made for a small handoff
 

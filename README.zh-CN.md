@@ -13,6 +13,25 @@
 手机里看到有用的交互、截图或文章，分享到 DropRun，选一个已有项目，可选留一句话。
 Windows Connector 把参考与意图交给本地 Codex。回来查看进度、报告和改动证据。
 
+## 原生界面动效
+
+0.5.1 开发界面 · 2026 年 10 月 5 日 · Demo 演示数据。没有发送任务。
+
+<p align="center"><picture><source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/brand/readme-share-zh-dark.png"><source media="(prefers-reduced-motion: reduce)" srcset="assets/brand/readme-share-zh.png"><img src="assets/brand/readme-ui-tour-zh.gif" width="240" alt="12 秒原生 Android 开发界面动图：选项目、编辑留言、模型选项、关闭确认与继续编辑、设置和标注的演示报告"></picture></p>
+
+[12 秒原生界面视频](https://droprun.dengmaizi0802.chatgpt.site/media/ui-tour-zh.mp4) · [字幕](landing/media/ui-tour-zh.vtt)
+
+[浅色静态截图](assets/brand/readme-share-zh.png) · [深色静态截图](assets/brand/readme-share-zh-dark.png)。启用减少动画时，上方显示静态界面。
+
+<details>
+<summary><strong>较早预览版动图与完整界面导览</strong></summary>
+
+以下较早视频展示原生界面与明确标注的演示数据，不代表真实来源到 Codex 的完整交办。
+
+[24 秒短演示](https://droprun.dengmaizi0802.chatgpt.site/media/demo.mp4) · [64 秒界面导览](https://droprun.dengmaizi0802.chatgpt.site/media/walkthrough.mp4)
+
+</details>
+
 ## 分享参考、跟进工作、查看交付
 
 **仅演示界面：** 没有向 agent 发送任务，报告使用明确标注的示例数据。
@@ -57,25 +76,6 @@ DropRun 没有官方账号或订阅。Cloudflare、可选转写和 Codex 使用�
 **用量可能产生费用**。Windows 包未签名，可能提示未知发布者，请对照发布的
 [校验值](https://github.com/MrMaii/droprun/releases/download/v0.5.5-rc.1/SHA256SUMS.txt)。
 公共 Android 版与历史私人/debug 版并行安装，不尝试跨签名覆盖。
-
-## 原生界面动效
-
-0.5.1 开发界面 · 2026 年 10 月 5 日 · Demo 演示数据。没有发送任务。
-
-<p align="center"><img src="assets/brand/readme-ui-tour-zh.gif" width="240" alt="12 秒原生 Android 开发界面动图：选项目、编辑留言、模型选项、关闭确认与继续编辑、设置和标注的演示报告"></p>
-
-[12 秒原生界面视频](https://droprun.dengmaizi0802.chatgpt.site/media/ui-tour-zh.mp4) · [字幕](landing/media/ui-tour-zh.vtt)
-
-<details>
-<summary><strong>较早预览版动图与完整界面导览</strong></summary>
-
-<p align="center"><img src="landing/media/demo.gif" width="256" alt="较早 DropRun Android 预览版的真实原生界面动图，使用明确标注的演示数据"></p>
-
-以下动图与视频来自较早预览版，展示界面交互，不代表真实来源到 Codex 的完整交办。
-
-[24 秒短演示](https://droprun.dengmaizi0802.chatgpt.site/media/demo.mp4) · [64 秒界面导览](https://droprun.dengmaizi0802.chatgpt.site/media/walkthrough.mp4)
-
-</details>
 
 ## 让一次交办更顺手
 
