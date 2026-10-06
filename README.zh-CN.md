@@ -21,7 +21,7 @@ Codex 在你的 Windows 电脑上工作，Relay 由你部署到自己的 Cloudfl
 当前截图与分享录屏为标注的原生内存示例，不是签名包录制或真实 Codex 任务。[媒体来源](assets/brand/readme-media.md)。
 
 <p align="center">
-  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-share-matte-zh-dark-20261006.png"><img src="assets/brand/source-share-matte-zh-light-20261006.png" width="260" alt="01 · 分享：原生 Android 留言步骤，展示可展开的收到材料、可选意图及模型强度入口，保留仅内存验证标记"></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-share-confirmation-zh-dark-20261006.png"><img src="assets/brand/source-share-confirmation-zh-light-20261006.png" width="260" alt="01 · 分享：项目身份与收到材料组合确认，再填写可选留言及模型参数；保留原生仅内存验证标记"></picture>
   <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-home-cards-zh-dark-20261006.png"><img src="assets/brand/source-home-cards-zh-light-20261006.png" width="260" alt="02 · 跟进：原生 Android 项目卡，集中展示首字、名称、任务与交办次数、状态和最近交办，保留仅内存验证与示例项目标记"></picture>
   <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-delivery-matte-zh-dark-20261006.png"><img src="assets/brand/source-delivery-matte-zh-light-20261006.png" width="260" alt="03 · 查看：原生交办页，清楚的结果标题、固定快照说明与交付入口，保留仅内存验证标记"></picture>
 </p>
@@ -46,9 +46,10 @@ Codex 在你的 Windows 电脑上工作，Relay 由你部署到自己的 Cloudfl
 
 </details>
 
-## 分享浮层里的动效
+## 分享界面录屏 · 较早布局
 
 原生开发界面 · 2026 年 10 月 6 日 · 仅内存示例；项目预置、留言留空，未发送任务。
+录屏保留较早布局；上方当前分享截图展示新的项目与材料确认区域。
 
 <p align="center"><picture><source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/brand/source-share-plain-zh-dark-20261006.png"><source media="(prefers-reduced-motion: reduce)" srcset="assets/brand/source-share-plain-zh-light-20261006.png"><img src="assets/brand/native-share-reading-zh-20261006.gif" width="320" alt="原生 Android 分享浮层：检查收到的示例材料、选中另一个示例模型、查看默认深入强度并收起选项；保留仅内存标记，未发送任务"></picture></p>
 

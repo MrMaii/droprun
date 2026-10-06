@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Group the Share destination and received material into one read-only confirmation
+  surface, with full project names and more name width at large text.
+- Move directly from an authorized project choice to the note step; continue
+  reversed scrim motion from its current color and clear its animator on destruction.
+  [Scoped native checks and raw captures](docs/releases/ui-share-confirmation-2026-10-06.md).
+
 ## 0.5.11-rc.1 — clearer project-first UX
 
 [Verified candidate and open acceptance](docs/releases/0.5.11-rc.1.md).

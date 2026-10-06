@@ -78,7 +78,7 @@ public class SharePresentationTest {
     static void assertPresentation(DemoShareEditorActivity a){
         safe(a);assertNull("Readonly material is not another filled input",ShareMaterialDisclosureTest.group(a).getBackground());ShareMaterialDisclosureTest.assertClosed(a);ShareMaterialDisclosureTest.assertNode(a,false);
         View material=materialHeader(a),model=modelHeader(a);assertTrue(material.getHeight()>=Ui.dp(a,52));assertTrue(material.getWidth()>=Ui.dp(a,48));assertTrue(material.getForeground() instanceof RippleDrawable);assertEquals(180f,materialArrow(a).getRotation(),0.01f);
-        assertEquals(screenBounds(heading(a)).left,screenBounds(ShareMaterialDisclosureTest.summary(a)).left);assertEquals(screenBounds(heading(a)).left,screenBounds(a.gaugeText).left);
+        ShareDestinationReadingTest.assertDestination(a);View receipt=a.stage.findViewWithTag("share-destination-material");assertEquals(screenBounds(heading(a)).left,screenBounds(receipt).left);assertEquals(screenBounds(heading(a)).left,screenBounds(a.gaugeText).left);
         assertTrue(model.getHeight()>=Ui.dp(a,48));assertTrue(model.getWidth()>=Ui.dp(a,48));assertTrue(model.isFocusable());assertTrue(model.isClickable());assertTrue(model.getForeground() instanceof RippleDrawable);assertFalse(a.gaugeText.isFocusable());assertCompleteText(a.gaugeText);
         assertFalse(a.panelOpen);assertEquals(View.GONE,a.panel.getVisibility());assertNotNull(a.modelChevron);assertEquals(180f,a.modelChevron.getRotation(),0.01f);ShareModelDisclosureTest.assertHeaderNode(a,false);
         assertTrue(send(a,L.chinese()?"zh":"en").getHeight()>=Ui.dp(a,48));assertTrue(send(a,L.chinese()?"zh":"en").getWidth()>=Ui.dp(a,48));

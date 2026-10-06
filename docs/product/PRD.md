@@ -73,6 +73,13 @@ in [the current candidate record](../releases/0.5.11-rc.1.md).
   duplicate section label. Material, execution context and actions remain clear.
   The selected destination stays prominent above the optional note, wraps its
   complete name and remains individually readable before the Send action.
+  In the note step, project identity and received material share one read-only
+  confirmation surface. Larger text removes the decorative project initial.
+  Selecting an available, authorized project advances directly without moving
+  that row or adding a fixed delay; selection alone never sends a handoff.
+  Reversing the share scrim continues from its current color, cancels its previous
+  animator and clears the held animator on destruction. Reduced motion sets the
+  destination color immediately. [Scoped checks](../releases/ui-share-confirmation-2026-10-06.md).
   Project search matches the displayed label or full project ID, ignoring outer
   whitespace and case without changing the query, selection or directory order.
   Both pre-Send steps offer a compact, accessible material disclosure.

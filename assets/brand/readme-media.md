@@ -3,9 +3,9 @@
 The opening section and first table describe the original October 5 captures.
 New dated workflow media have their own source records below.
 
-The October 6 matte Share/Delivery stills also have byte-exact website copies
-under the same filenames in `landing/media/`. The builder selects them for
-static product examples; its dated recording and poster retain their own source.
+The October 6 workflow stills also have byte-exact website copies under the same
+filenames in `landing/media/`. The current builder uses confirmation-group Share
+stills and matte Delivery stills; its dated recording and poster retain their own source.
 [Website reading and generation checks](../../docs/releases/ui-website-demo-reading-2026-10-06.md).
 
 Captured October 5, 2026 from the local 0.5.1 development build, with the
@@ -416,3 +416,21 @@ genuine handoffs, longest-state samples,200% screenshots or signed recordings.
 [Frozen source, actual reading checks and hashes](../../docs/releases/ui-history-retention-reading-2026-10-06.md)
 own this separate group. Later retention typography has a separate build-only
 binding and is absent from these images. Earlier GIFs and Settings stills remain.
+
+## Share confirmation group · October 6, 2026
+
+The current workflow gallery uses these four raw 320 × 640 native PNGs from the
+0.5.11 development UI (code24), after the project-and-material confirmation group
+was added. English/Chinese, light/dark, normal font size; the optional note is empty.
+The visible memory-only marker and system bars are retained. No task was sent.
+Both `assets/brand/` and `landing/media/` contain byte-exact copies; no crop,
+retouching or recreated UI. The existing 9.06-second Share recording retains its
+earlier layout and source. These stills do not represent the signed candidate11.
+[Scoped native reading and motion checks](../../docs/releases/ui-share-confirmation-2026-10-06.md).
+
+| File | SHA-256 |
+| --- | --- |
+| [source-share-confirmation-en-light-20261006.png](source-share-confirmation-en-light-20261006.png) | `f2d161d5f4d6d81df5dc7520fad1b3597a6bf5f7190baba32509aad40c45619f` |
+| [source-share-confirmation-en-dark-20261006.png](source-share-confirmation-en-dark-20261006.png) | `66096d793408d2073bf79d1884b02952b8658eead1e5cb830094d91cb1b4466e` |
+| [source-share-confirmation-zh-light-20261006.png](source-share-confirmation-zh-light-20261006.png) | `a6c6725507d789da8a12616db9cd3b5a624361f7addc4a239b5e5ff954a4b60f` |
+| [source-share-confirmation-zh-dark-20261006.png](source-share-confirmation-zh-dark-20261006.png) | `9dc7b006d79b69a0d3f38e80276d6d5381b2b6fb09e6b79c0d1e0fc9491efbe7` |

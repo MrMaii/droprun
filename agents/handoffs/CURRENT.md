@@ -21,13 +21,23 @@ genuine acceptance is unavailable. No stable launch or marketing handover.
   corrected owner has a separate known-returned record. No hidden retry of an
   unknown child. Windows package137.781s, two verifiers pass; actual scoped
   sharp0.35.5/native metadata/license/AMD64 checks and in-memory8×8PNG pass.
-- GPTSites17 remains the website baseline at this document's commit; accepted
-  Home card images are already public. Candidate11 links are prepared in the
-  committed generated pages for native website publication. No new deployment
-  or hosted JavaScript/playback result is inferred from package checks.
+- GPTSites18 succeeded at the existing public address on2026-10-06T20:37:37Z;
+  hosting source830224a, version8077a939, deployment6ac55c09. Its91public files
+  include verified candidate11 download links and accepted Home cards. Own
+  documentation CI37527256869 atd891882 passes3jobs/35steps/10required, actual
+  core210/browser18. No hosted playback result is inferred.
 
 ## UX and brand already included
 
+- [Share confirmation group](../../docs/releases/ui-share-confirmation-2026-10-06.md):
+  complete destination and received material together; direct project-to-note
+  transition and continuous reversed scrim color. Local3native methods each1/1
+  pass; four accepted raw normal-font stills update both READMEs and generated
+  website examples. Two200%long-name windows remain reading checks, not images.
+  Destroyed motion windows record natural end1/cancel0 and clear their animator;
+  do not claim the destruction cancellation branch was observed. Original
+  cancel==1 test failure is preserved. This UI is source/development-only and
+  is not in the signed candidate11; website publication is pending this commit.
 - [Home cards](../../docs/releases/ui-home-project-cards-2026-10-06.md):
   useful project grouping, stable counts, status/date hierarchy and large-text
   name width; four accepted raw native stills retain sample markers.
@@ -73,16 +83,16 @@ genuine acceptance is unavailable. No stable launch or marketing handover.
 
 ## Single recommended next action
 
-Finish native website publication of the verified candidate links. Then review
-the finite retention paragraph-reading proposal before bounded local UI
-execution; keep its build-only limit until actual results. Continue useful UX
-work without retrying genuine or previously denied paths.
+Publish the accepted Share confirmation images through the existing Sites source
+and verify that saved deployment. Then fix misleading press feedback on static
+History notices with bounded local checks; retain the finite retention-reading
+proposal's build-only limit. Continue UI work without retrying denied paths.
 
 ## Files this pass
 
-Runtime version metadata/Relay/installer; bilingual README/setup; current
-PRD/ROADMAP/CONTRACTS/PROJECT_CONTEXT; CHANGELOG; candidate11 release/anonymous
-evidence; website builder/generated language pages; this handoff. Private build
-and release helpers/evidence live under `.local/ux-rc0511-final/`; intermediate
-failures remain under `.local/ux-rc0511/`. Author Thomas Deng
+ShareActivity/three Share instrumentation methods; bilingual README and raw
+Share confirmation images; media provenance; PRD/CONTRACTS; CHANGELOG; scoped
+Share UX record; website builder/generated pages; this handoff. Private actual
+build/native evidence lives under `.local/ux-oct6-share-continuity/`, publication
+evidence under `.local/ux-rc0511-final/`; original failures are preserved. Author Thomas Deng
 <150266369+MrMaii@users.noreply.github.com>.

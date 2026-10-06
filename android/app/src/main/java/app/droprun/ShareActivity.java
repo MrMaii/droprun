@@ -46,7 +46,7 @@ public class ShareActivity extends StyledActivity {
     final ExecutorService io=Executors.newSingleThreadExecutor();
     final Handler handler=new Handler(Looper.getMainLooper());
     Store store;FrameLayout root,stage;Capped holder;LinearLayout sheet,projectList,panel;ScrollView scroll;Ui.Dots dots;ImageButton back;
-    EditText search,note;TextView gaugeText,sendTitle,status,badge;ImageView modelChevron;Ui.PlaneView plane;Ui.Glass dialog;ColorDrawable scrim;
+    EditText search,note;TextView gaugeText,sendTitle,status,badge;ImageView modelChevron;Ui.PlaneView plane;Ui.Glass dialog;ColorDrawable scrim;ObjectAnimator scrimAnimator;
     AlertDialog discardDialog;
     ShareImport incoming;Runnable importObserver;Bundle restoredState;
     TextView draftStatus;Button retryDraft;boolean discardOnFinish;
@@ -111,6 +111,7 @@ public class ShareActivity extends StyledActivity {
         if(step==1)go(0,-1);else close();
     }
     @Override protected void onDestroy(){
+        if(scrimAnimator!=null){scrimAnimator.cancel();scrimAnimator=null;}
         handler.removeCallbacksAndMessages(null);io.shutdown();
         if(incoming!=null&&incoming.observer==importObserver){incoming.observer=null;incoming.editorObserver=null;incoming.release(this);}
         if(discardDialog!=null)discardDialog.dismiss();
@@ -131,7 +132,7 @@ public class ShareActivity extends StyledActivity {
 
     // ---- overlay chrome -------------------------------------------------------------------------
     void build(){
-        root=Ui.frame(this,false);scrim=new ColorDrawable(Ui.SCRIM);root.setBackground(scrim);root.setOnClickListener(v->close());root.setContentDescription(L.t("Cancel","取消"));
+        root=Ui.frame(this,false);scrim=new ColorDrawable(Ui.SCRIM);scrim.setAlpha(0);root.setBackground(scrim);root.setOnClickListener(v->close());root.setContentDescription(L.t("Cancel","取消"));
         sheet=Ui.sheet(this);holder=new Capped(this);holder.addView(sheet,new FrameLayout.LayoutParams(-1,-2));
         root.addView(holder,new FrameLayout.LayoutParams(-1,-2,Gravity.BOTTOM));insets(root);
         LinearLayout header=Ui.row(this);
@@ -165,9 +166,10 @@ public class ShareActivity extends StyledActivity {
         }
     }
     void dim(boolean in){
-        int full=Color.alpha(Ui.SCRIM);
-        if(!Ui.motionEnabled(this)){scrim.setAlpha(in?full:0);return;}
-        if(in)scrim.setAlpha(0);ObjectAnimator.ofInt(scrim,"alpha",in?0:full,in?full:0).setDuration(in?240:200).start();
+        if(scrimAnimator!=null){scrimAnimator.cancel();scrimAnimator=null;}
+        int target=in?Ui.SCRIM:Ui.SCRIM&0x00FFFFFF;
+        if(!Ui.motionEnabled(this)){scrim.setColor(target);return;}
+        scrimAnimator=ObjectAnimator.ofArgb(scrim,"color",scrim.getColor(),target);scrimAnimator.setDuration(in?240:200);scrimAnimator.start();
     }
     void close(){
         if(closing)return;
@@ -348,8 +350,7 @@ public class ShareActivity extends StyledActivity {
         if(busy||step!=0)return;
         if(!project.optBoolean("available",true)){unavailableProject();return;}
         if(!Store.projectEnabled(project)){authorize(project);return;}
-        selected=project.optString("id");renderProjects();busy=true;
-        handler.postDelayed(()->{busy=false;if(!gone()&&step==0)go(1,1);},160);
+        selected=project.optString("id");go(1,1);
     }
     void unavailableProject(){new AlertDialog.Builder(this).setTitle(L.t("Project unavailable","项目暂不可用")).setMessage(L.t("Choose another project, or reconnect this one in DropRun setup on your computer.","请选择其他项目，或在电脑的 DropRun 配置页重新连接这个项目。" )).setPositiveButton(L.t("Got it","知道了"),null).show();}
     void authorize(JSONObject project){
@@ -392,8 +393,11 @@ public class ShareActivity extends StyledActivity {
     View stepNote(){
         LinearLayout column=Ui.vertical(this);
         column.addView(Ui.title(this,L.t("What should Codex do?","想让 Codex 做什么？"),22));
-        TextView target=Ui.text(this,L.t("For “","转发到「")+projectName()+L.t("”","」"),15,Ui.TEXT);target.setTypeface(Ui.medium());column.addView(target);
-        column.addView(materialDisclosure(),Ui.margins(this,12,4));
+        LinearLayout receipt=Ui.vertical(this);receipt.setTag("share-destination-material");receipt.setPadding(dp(16),dp(12),dp(16),dp(8));receipt.setBackground(Ui.outlined(this,Ui.SURFACE_2,0,Ui.RADIUS_CARD,0));
+        LinearLayout destination=Ui.row(this);destination.setGravity(Gravity.TOP);destination.setTag("share-destination-identity");
+        if(getResources().getConfiguration().fontScale<1.5f){destination.addView(Ui.projectTile(this,projectName()),Ui.square(this,32));Ui.space(destination,12);}
+        TextView target=Ui.text(this,L.t("For “","转发到「")+projectName()+L.t("”","」"),17,Ui.TEXT);target.setTypeface(Ui.medium());target.setPadding(0,0,0,0);target.setTag("share-destination-name");destination.addView(target,Ui.grow());receipt.addView(destination,Ui.fill());
+        receipt.addView(materialDisclosure(),Ui.margins(this,2,0));column.addView(receipt,Ui.margins(this,8,4));
         note=new EditText(this);note.setHint(L.t("Optional. Leave this blank and let Codex find the useful part.","可选。留空让 Codex 自己判断怎么用。"));note.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_FLAG_MULTI_LINE|InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
         note.setMinLines(3);note.setMaxLines(6);note.setFilters(new InputFilter[]{new InputFilter.LengthFilter(15000)});note.setText(draft);Ui.styleInput(note);
         note.addTextChangedListener(new TextWatcher(){public void beforeTextChanged(CharSequence s,int start,int count,int after){}public void onTextChanged(CharSequence s,int start,int before,int count){draft=s.toString();checkpoint();}public void afterTextChanged(Editable value){}});
