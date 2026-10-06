@@ -1,6 +1,6 @@
 # DropRun Project Context
 
-Updated 2026-09-25. Current work and evidence: [CURRENT](handoffs/CURRENT.md).
+Updated 2026-10-06. Current work and evidence: [CURRENT](handoffs/CURRENT.md).
 
 DropRun lets a user share phone material to an existing local Codex project and
 receive inspectable results. The first public edition is Android + Windows,
@@ -33,7 +33,7 @@ English with complete Chinese support. Decisions:
 
 [PRD](../docs/product/PRD.md) owns requirements;
 [CONTRACTS](../docs/technical/CONTRACTS.md) owns protocols;
-[release record](../docs/releases/0.5.12-rc.1.md) owns current candidate evidence;
+[release record](../docs/releases/0.5.13-rc.1.md) owns current candidate evidence;
 [self-hosting guide](../docs/technical/SELF_HOSTING.md) owns installation.
 Do not publish local materials, credentials, signing keys or historical chats.
 Social campaign preparation does not authorize posting.

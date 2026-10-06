@@ -5,18 +5,41 @@
   <p>Choose an existing project. Add an optional note. Inspect the result and evidence on your phone.</p>
   <p><a href="docs/technical/SELF_HOSTING.md"><strong>Start installing →</strong></a></p>
   <p>Android 8+ · Windows x64 · signed-in Codex · your Cloudflare</p>
-  <p><a href="https://droprun.dengmaizi0802.chatgpt.site">Website</a> · <a href="https://github.com/MrMaii/droprun/releases/tag/v0.5.12-rc.1">Preview downloads</a> · <a href="README.zh-CN.md">简体中文</a></p>
+  <p><a href="https://droprun.dengmaizi0802.chatgpt.site">Website</a> · <a href="https://github.com/MrMaii/droprun/releases/tag/v0.5.13-rc.1">Preview downloads</a> · <a href="README.zh-CN.md">简体中文</a></p>
 </div>
 
-> **Public preview · 0.5.12-rc.1.** [Validation record and open acceptance gates](docs/releases/0.5.12-rc.1.md).
+> **Public preview · 0.5.13-rc.1.** [Validation record and open acceptance gates](docs/releases/0.5.13-rc.1.md).
 
 Codex works on your Windows computer. You deploy the Relay to your own Cloudflare account.
+
+## See the share flow
+
+Choose a project, go back and change the model in native Android.
+Labelled memory-only development UI; no task is sent. [Capture notes](assets/brand/readme-media.md).
+
+<p align="center"><picture><source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/brand/source-share-note-en-dark-20261006.png"><source media="(prefers-reduced-motion: reduce)" srcset="assets/brand/source-share-note-en-light-20261006.png"><img src="assets/brand/native-share-project-tour-en-20261006.gif" width="320" alt="Native Android memory-only UI: select the sample project, visit the empty optional note, return to the project list, select again, choose another sample model with default Thorough effort and collapse the options; no task sent"></picture></p>
+
+[10.49-second original recording](landing/media/native-share-project-tour-en-20261006.mp4) · [Captions](landing/media/native-share-project-tour-en-20261006.vtt)
+
+<details>
+<summary><strong>Recording scope and still images</strong></summary>
+
+Choose a sample project, visit the optional note, go back, then select another model.
+Native memory-only UI (`0.5.12-dev`, code25); the note stays empty and no task is sent.
+Recorded before the always-visible **Your note · optional** label was added; this is not a recording of the signed download.
+
+The GIF samples the original frames at 25 fps, native 320 × 640, for 10.48 seconds. Reduced motion shows the later static view with the persistent note label: [light](assets/brand/source-share-note-en-light-20261006.png) · [dark](assets/brand/source-share-note-en-dark-20261006.png).
+
+</details>
 
 ## Share. Follow. Inspect.
 
 1. **Share → DropRun.** In another Android app, choose an existing project and add an optional note.
 2. **Follow local Codex.** Work happens on your computer, in that project. Follow progress and decisions in its history.
 3. **Inspect the delivery.** Check the result, required actions, screenshots and files; open the full report when needed.
+
+<details>
+<summary><strong>Share, follow and delivery screens</strong></summary>
 
 The screenshots and recordings below are labelled memory-only development UI, not signed-package or genuine Codex recordings. [Capture notes](assets/brand/readme-media.md).
 
@@ -25,6 +48,8 @@ The screenshots and recordings below are labelled memory-only development UI, no
   <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-home-cards-en-dark-20261006.png"><img src="assets/brand/source-home-cards-en-light-20261006.png" width="260" alt="02 · Follow: native Android project cards with initials, names, task and dispatch counts, status and recency; memory-only and sample-project markers retained"></picture>
   <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-delivery-matte-en-dark-20261006.png"><img src="assets/brand/source-delivery-matte-en-light-20261006.png" width="260" alt="03 · Inspect: native handoff page with a clear result heading, fixed-snapshot explanation and delivery actions; visible memory-only marker"></picture>
 </p>
+
+</details>
 
 Tasks count independent requests; dispatches count accepted shares and follow-ups.
 Network retries add neither.
@@ -46,18 +71,6 @@ Settings in one place. Handoff history organized by project.
 Normal-font memory-only examples: Settings shows a scrolled model/access section; history has three sample rows. These are not 200% text captures.
 
 </details>
-
-## Project → note → back to project → model
-
-Choose a sample project, visit the optional note, go back, then select another model.
-Native memory-only UI (`0.5.12-dev`, code25); the note stays empty and no task is sent.
-Recorded before the always-visible **Your note · optional** label was added; this is not a recording of the signed download.
-
-<p align="center"><picture><source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/brand/source-share-note-en-dark-20261006.png"><source media="(prefers-reduced-motion: reduce)" srcset="assets/brand/source-share-note-en-light-20261006.png"><img src="assets/brand/native-share-project-tour-en-20261006.gif" width="320" alt="Native Android memory-only UI: select the sample project, visit the empty optional note, return to the project list, select again, choose another sample model with default Thorough effort and collapse the options; no task sent"></picture></p>
-
-[10.49-second original recording](landing/media/native-share-project-tour-en-20261006.mp4) · [Captions](landing/media/native-share-project-tour-en-20261006.vtt)
-
-The GIF samples the original frames at 25 fps, native 320 × 640, for 10.48 seconds. Reduced motion shows the later static view with the persistent note label: [light](assets/brand/source-share-note-en-light-20261006.png) · [dark](assets/brand/source-share-note-en-dark-20261006.png).
 
 <details>
 <summary><strong>Earlier Share layout · 9.06-second recording</strong></summary>
@@ -91,11 +104,11 @@ They show interface navigation, not a completed source-to-Codex task.
 | --- | --- | --- |
 | Windows x64, Git, signed-in Codex, Chrome or Edge | Android 8 or newer | Your Cloudflare account with Workers, D1 and R2 |
 
-1. **Install on Windows.** Get the [installer](https://github.com/MrMaii/droprun/releases/download/v0.5.12-rc.1/DropRun-0.5.12-windows-x64-setup.exe) or [portable ZIP](https://github.com/MrMaii/droprun/releases/download/v0.5.12-rc.1/DropRun-0.5.12-windows-x64.zip).
+1. **Install on Windows.** Get the [installer](https://github.com/MrMaii/droprun/releases/download/v0.5.13-rc.1/DropRun-0.5.13-windows-x64-setup.exe) or [portable ZIP](https://github.com/MrMaii/droprun/releases/download/v0.5.13-rc.1/DropRun-0.5.13-windows-x64.zip).
    For the portable edition, extract to a permanent folder and open `DropRun.cmd`.
 2. **Set up your Relay.** Open the local browser guide, check prerequisites and
    deploy to your own Cloudflare account.
-3. **Pair your phone.** Install the [Android APK](https://github.com/MrMaii/droprun/releases/download/v0.5.12-rc.1/DropRun-0.5.12-android.apk), scan the computer's code, confirm the server and authorize projects.
+3. **Pair your phone.** Install the [Android APK](https://github.com/MrMaii/droprun/releases/download/v0.5.13-rc.1/DropRun-0.5.13-android.apk), scan the computer's code, confirm the server and authorize projects.
 4. **Make a handoff.** In another Android app, tap **Share → DropRun** and choose
    a project. Follow receipt, execution and
    approval through to the report. “Saved” means saved on your phone, not finished.
@@ -105,7 +118,7 @@ They show interface navigation, not a completed source-to-Codex task.
 DropRun has no official account or subscription. Cloudflare, optional
 transcription and Codex usage belong to your accounts and **may incur charges**.
 Windows packages are unsigned and may show an unknown-publisher prompt; compare
-the release [checksums](https://github.com/MrMaii/droprun/releases/download/v0.5.12-rc.1/SHA256SUMS.txt).
+the release [checksums](https://github.com/MrMaii/droprun/releases/download/v0.5.13-rc.1/SHA256SUMS.txt).
 The public Android app installs alongside the historical private/debug app;
 different signing identities cannot silently replace each other.
 
@@ -146,7 +159,7 @@ website provides information and downloads. [Data and privacy →](docs/technica
 
 This is a release candidate. Physical Android performance, clean Windows
 installation and the full real-source handoff workflow still have open acceptance
-gates. See the [dated validation record](docs/releases/0.5.12-rc.1.md) before using
+gates. See the [dated validation record](docs/releases/0.5.13-rc.1.md) before using
 it on important projects. Screenshots and a UI tour do not establish those results.
 
 ## Build and contribute

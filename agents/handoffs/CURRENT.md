@@ -5,32 +5,30 @@ genuine acceptance is unavailable. No stable launch or marketing handover.
 
 ## Current public delivery
 
-- [Signed candidate0.5.12-rc.1](../../docs/releases/0.5.12-rc.1.md) remains the
-  download: source22cc77d5/code25, eight anonymous assets/seven checksums,
-  stable Android certificate, actual nondebuggable/noDemo manifest and DEX.
-  Windows is NotSigned; installer/Connector were not executed. Its release
-  record owns package evidence and archive EOL limitations.
-- GPTSites21 succeeded at2026-10-06T22:33:08.863871Z at the existing public
-  address. Product source487d8479; hosting source10c37c2, version8bb416e4,
-  deployment6ac5771b. Exact103public files/104archive entries pass; Share-first
-  hero, four code26 native stills and dated code25 project-tour media are live.
-  Private film and unaccepted Delivery images are excluded, all earlier media
-  retained, public audience unchanged. Candidate12 links remain valid.
-- Source487d8479 own CI37540781309 attempt1 failed: core208/210, browser17/18;
-  Android build succeeded. Complete314906B log SHAa2ba7aa8 is retained under
-  `.local/ux-rc0513/source-ci/`; no rerun or borrowed pass. Intermediate13
-  packages at487 passed local artifact checks but are not publishable.
-- This correction synchronizes Relay health0.5.13 with package0.5.13 and fixes
-  the test-only Browser.close acknowledgement race. Production browser owner
-  is unchanged; closed endpoint, reused-port refusal and recovery checks remain.
-  Focused local Relay15/15 and browser2/2 pass with known returned children.
-  Build fresh final13 packages from the corrected immutable source, then verify
-  that source's own complete CI before export/publication. Final outputs use
-  separate `.local/ux-rc0513-final/`; original failed/intermediate evidence stays.
+- [Signed candidate0.5.13-rc.1](../../docs/releases/0.5.13-rc.1.md) is public:
+  source0abd1797/code26. Eight anonymous full downloads/seven checksums, API
+  digests and annotated tag/source match. Android stable certificate and actual
+  nondebuggable/noDemo manifest/DEX pass; Windows remains NotSigned. Installer,
+  Connector and signed native acceptance were not executed.
+- Own sourceCI37542200890 attempt1 passes3jobs/35steps/10required/3checks;
+  actualcore210/browser18. Complete325762B log SHAa32d78ac retained. Fresh
+  Android/Windows artifact checks and independent export pass. Release record
+  owns counts, hashes, archive EOL and native content-continuity boundaries.
+- First publisher created draft405199769 then stopped because the authenticated
+  list returned zero matches. Separate continuation inspected that observed ID,
+  uploaded8assets once and published. All19direct children returned0. Creation,
+  tag and upload were not replayed; original failure and preparation/raw-EOL
+  failures remain. Intermediate487 CI failure/packages are retained/unpublished.
+- GPTSites21 is live at the existing public address, succeeded2026-10-06
+  22:33:08.863871Z. Product source487d8479; hosting source10c37c2, version8bb416e4,
+  deployment6ac5771b. Its103public files/104archive entries contain Share-first
+  branding and dated native media, still candidate12 downloads. The new committed
+  language pages now point to anonymous-verified13; publish them next. Public
+  audience stays unchanged; private film/unaccepted Delivery stills stay excluded.
 
 ## UX and brand already included
 
-- Current source prepares0.5.13/code26; downloads remain verified candidate12.
+- Current runtime0.5.13/code26 is packaged; downloads are verified candidate13.
   [Persistent note and list dates](../../docs/releases/ui-share-note-and-list-dates-2026-10-06.md):
   four raw native stills accepted; JVM27pass/lint0errors28warnings; exact native
   method1/1 passes27.373s across6full/DESTROYED windows, normal and200%text.
@@ -83,6 +81,11 @@ genuine acceptance is unavailable. No stable launch or marketing handover.
   accurate busy feedback, readable cache, state before full-width source/date.
   Latest native reading method1/1 across6knownclosed windows; four accepted
   raw stills now supply both README History pairs.
+- [README first-motion reading](../../docs/releases/ui-readme-first-motion-2026-10-06.md):
+  main native GIF before workflow/static galleries; source/version scope and all
+  previous media retained. Actual anonymous360px GitHub baseline has no overflow,
+  native images loaded/stacked, but the GIF followed3tall screens. New EN/ZH
+  source structure reviewed; actual new public rendering remains the next check.
 - [README entrance](../../docs/releases/ui-readme-brand-reading-2026-10-06.md):
   one value heading, install link, short workflow and actual native examples.
   Original GIF/video scope stays dated. Approximate GitHub layout checks are
@@ -120,14 +123,14 @@ genuine acceptance is unavailable. No stable launch or marketing handover.
 
 ## Single recommended next action
 
-Build and verify candidate13 from this corrected source, including its own CI,
-then publish the exact verified assets and update website downloads. Continue
-substantive visual/interaction work; genuine and physical gates stay open.
+Publish the reviewed two-language website candidate13 download update and inspect
+the actual reordered GitHub README. Then continue meaningful native UI/UX polish;
+genuine, physical-device and clean-install gates remain open.
 
 ## Files this pass
 
-Relay health version, two direct Browser.close tests, corresponding contract and
-this handoff. Previous reading/brand source487d8479 is public and Site21 is live.
-Private evidence: `.local/ux-rc0513/`, `.local/ux-rc0513-final/` and prior UI
-records. No genuine task, device-setting change, installer execution or stable
-launch claim. Author Thomas Deng <150266369+MrMaii@users.noreply.github.com>.
+Candidate13 release/anonymous evidence, current setup/download links, README
+reading order, changelog/roadmap/context, generated website pages and this handoff.
+Private evidence: `.local/ux-rc0513-final/`; previous originals remain intact.
+No genuine task, device-setting change, installer execution or stable launch.
+Author Thomas Deng <150266369+MrMaii@users.noreply.github.com>.

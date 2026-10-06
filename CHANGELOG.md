@@ -1,6 +1,8 @@
 # Changelog
 
-## Unreleased — reading and brand continuity
+## 0.5.13-rc.1 — clearer notes and activity dates
+
+[Verified candidate and open acceptance](docs/releases/0.5.13-rc.1.md).
 
 - Keep an optional-note label visible while typing; show explicit calendar dates
   for older Home and History records. [Scoped native and JVM checks](docs/releases/ui-share-note-and-list-dates-2026-10-06.md).
@@ -8,6 +10,14 @@
   hero and clearer install/demo actions.
 - Refresh README with native project selection, return navigation and model-choice
   GIFs; retain dated originals and use later labelled stills for reduced motion.
+
+- Put the native share GIF before the three-step description and expandable
+  static galleries in both READMEs. Keep installation, source/version scope and
+  previous media available. [Reading rationale](docs/releases/ui-readme-first-motion-2026-10-06.md).
+- Synchronize Relay health with runtime 0.5.13. Make intentional Browser.close
+  tests handle a lost close acknowledgement while preserving endpoint refusal,
+  reused-port protection and unexpected-request errors. Production browser owner
+  behavior is unchanged.
 
 ## 0.5.12-rc.1 — clearer Share confirmation
 

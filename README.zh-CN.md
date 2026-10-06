@@ -5,18 +5,41 @@
   <p>选已有项目，可选留一句话，在手机查看结果与证据。</p>
   <p><a href="docs/technical/SELF_HOSTING.zh-CN.md"><strong>开始安装 →</strong></a></p>
   <p>Android 8+ · Windows x64 · 已登录 Codex · 自己的 Cloudflare</p>
-  <p><a href="https://droprun.dengmaizi0802.chatgpt.site/zh/">官网</a> · <a href="https://github.com/MrMaii/droprun/releases/tag/v0.5.12-rc.1">候选版下载</a> · <a href="README.md">English</a></p>
+  <p><a href="https://droprun.dengmaizi0802.chatgpt.site/zh/">官网</a> · <a href="https://github.com/MrMaii/droprun/releases/tag/v0.5.13-rc.1">候选版下载</a> · <a href="README.md">English</a></p>
 </div>
 
-> **公开预览 · 0.5.12-rc.1。** [实际验证记录与待通过的验收门槛](docs/releases/0.5.12-rc.1.md)。
+> **公开预览 · 0.5.13-rc.1。** [实际验证记录与待通过的验收门槛](docs/releases/0.5.13-rc.1.md)。
 
 Codex 在你的 Windows 电脑上工作，Relay 由你部署到自己的 Cloudflare 账号。
+
+## 看一次分享操作
+
+在原生 Android 中选择项目、返回，再调整模型。
+标注的开发版内存界面，未发送任务。[媒体来源](assets/brand/readme-media.md)。
+
+<p align="center"><picture><source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/brand/source-share-note-zh-dark-20261006.png"><source media="(prefers-reduced-motion: reduce)" srcset="assets/brand/source-share-note-zh-light-20261006.png"><img src="assets/brand/native-share-project-tour-zh-20261006.gif" width="320" alt="原生 Android 内存界面：选择示例项目、查看空白可选留言、返回项目列表、再次选择项目、选中另一个示例模型及其默认深入强度，最后收起选项；未发送任务"></picture></p>
+
+[10.50 秒原始录屏](landing/media/native-share-project-tour-zh-20261006.mp4) · [字幕](landing/media/native-share-project-tour-zh-20261006.vtt)
+
+<details>
+<summary><strong>录屏范围与静态截图</strong></summary>
+
+选择示例项目、查看可选留言、返回项目列表，再选择另一个模型。
+原生内存界面（`0.5.12-dev`，code25）；留言留空，未发送任务。
+录于新增常驻**留言 · 可选**标签之前；不是签名下载包的录制。
+
+GIF 按 25 fps 采样原始画面，保留原生 320 × 640，时长 10.48 秒。减少动画时显示含常驻留言标签的较新静态截图：[浅色](assets/brand/source-share-note-zh-light-20261006.png) · [深色](assets/brand/source-share-note-zh-dark-20261006.png)。
+
+</details>
 
 ## 分享、跟进、查看
 
 1. **分享 → DropRun。** 在其他 Android App 分享，选已有项目，按需补充留言。
 2. **跟进本地 Codex。** Codex 在你的电脑和所选项目中工作。按项目查看进展与待确认事项。
 3. **查看交付。** 检查结果、需要处理的动作、截图和文件，再按需展开报告。
+
+<details>
+<summary><strong>分享、跟进与交付界面</strong></summary>
 
 下方截图与录屏为标注的原生内存示例，不是签名包录制或真实 Codex 任务。[媒体来源](assets/brand/readme-media.md)。
 
@@ -25,6 +48,8 @@ Codex 在你的 Windows 电脑上工作，Relay 由你部署到自己的 Cloudfl
   <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-home-cards-zh-dark-20261006.png"><img src="assets/brand/source-home-cards-zh-light-20261006.png" width="260" alt="02 · 跟进：原生 Android 项目卡，集中展示首字、名称、任务与交办次数、状态和最近交办，保留仅内存验证与示例项目标记"></picture>
   <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-delivery-matte-zh-dark-20261006.png"><img src="assets/brand/source-delivery-matte-zh-light-20261006.png" width="260" alt="03 · 查看：原生交办页，清楚的结果标题、固定快照说明与交付入口，保留仅内存验证标记"></picture>
 </p>
+
+</details>
 
 任务数统计独立请求；交办次数统计已接收的分享与追问。网络重试不增加次数。
 
@@ -45,18 +70,6 @@ Codex 在你的 Windows 电脑上工作，Relay 由你部署到自己的 Cloudfl
 普通字号的内存示例：设置展示滚动后的模型与授权局部，历史含三条示例记录；不是 200% 字号截图。
 
 </details>
-
-## 项目 → 留言 → 返回项目 → 选择模型
-
-选择示例项目、查看可选留言、返回项目列表，再选择另一个模型。
-原生内存界面（`0.5.12-dev`，code25）；留言留空，未发送任务。
-录于新增常驻**留言 · 可选**标签之前；不是签名下载包的录制。
-
-<p align="center"><picture><source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/brand/source-share-note-zh-dark-20261006.png"><source media="(prefers-reduced-motion: reduce)" srcset="assets/brand/source-share-note-zh-light-20261006.png"><img src="assets/brand/native-share-project-tour-zh-20261006.gif" width="320" alt="原生 Android 内存界面：选择示例项目、查看空白可选留言、返回项目列表、再次选择项目、选中另一个示例模型及其默认深入强度，最后收起选项；未发送任务"></picture></p>
-
-[10.50 秒原始录屏](landing/media/native-share-project-tour-zh-20261006.mp4) · [字幕](landing/media/native-share-project-tour-zh-20261006.vtt)
-
-GIF 按 25 fps 采样原始画面，保留原生 320 × 640，时长 10.48 秒。减少动画时显示含常驻留言标签的较新静态截图：[浅色](assets/brand/source-share-note-zh-light-20261006.png) · [深色](assets/brand/source-share-note-zh-dark-20261006.png)。
 
 <details>
 <summary><strong>较早分享布局 · 9.06 秒录屏</strong></summary>
@@ -90,10 +103,10 @@ GIF 按 25 fps 采样原始画面，保留原生 320 × 640，时长 10.48 秒�
 | --- | --- | --- |
 | Windows x64、Git、已登录 Codex、Chrome 或 Edge | Android 8 或更新版本 | 自己的 Cloudflare 账号，启用 Workers、D1、R2 |
 
-1. **安装电脑端。** 下载 [Windows 安装包](https://github.com/MrMaii/droprun/releases/download/v0.5.12-rc.1/DropRun-0.5.12-windows-x64-setup.exe)或[便携 ZIP](https://github.com/MrMaii/droprun/releases/download/v0.5.12-rc.1/DropRun-0.5.12-windows-x64.zip)。
+1. **安装电脑端。** 下载 [Windows 安装包](https://github.com/MrMaii/droprun/releases/download/v0.5.13-rc.1/DropRun-0.5.13-windows-x64-setup.exe)或[便携 ZIP](https://github.com/MrMaii/droprun/releases/download/v0.5.13-rc.1/DropRun-0.5.13-windows-x64.zip)。
    便携版解压到固定位置后，运行 `DropRun.cmd`。
 2. **部署自己的 Relay。** 打开本机浏览器向导，检查环境，部署到自己的 Cloudflare 账号。
-3. **配对手机。** 安装 [Android APK](https://github.com/MrMaii/droprun/releases/download/v0.5.12-rc.1/DropRun-0.5.12-android.apk)，扫码确认电脑与服务器，再授权项目。
+3. **配对手机。** 安装 [Android APK](https://github.com/MrMaii/droprun/releases/download/v0.5.13-rc.1/DropRun-0.5.13-android.apk)，扫码确认电脑与服务器，再授权项目。
 4. **发出第一项交办。** 在其他 Android App 点 **分享 → DropRun**，选择项目，跟进接收、执行、审批与报告。“已保存”表示手机已保存，
    不表示任务已完成。
 
@@ -101,7 +114,7 @@ GIF 按 25 fps 采样原始画面，保留原生 320 × 640，时长 10.48 秒�
 
 DropRun 没有官方账号或订阅。Cloudflare、可选转写和 Codex 使用你自己的账号，
 **用量可能产生费用**。Windows 包未签名，可能提示未知发布者，请对照发布的
-[校验值](https://github.com/MrMaii/droprun/releases/download/v0.5.12-rc.1/SHA256SUMS.txt)。
+[校验值](https://github.com/MrMaii/droprun/releases/download/v0.5.13-rc.1/SHA256SUMS.txt)。
 公共 Android 版与历史私人/debug 版并行安装，不尝试跨签名覆盖。
 
 ## 让一次交办更顺手
@@ -133,7 +146,7 @@ DropRun 没有官方账号或订阅。Cloudflare、可选转写和 Codex 使用�
 - **取消不等于回滚。** 取消任务或删除云端记录，不会撤销项目里已经发生的改动。
 
 当前仍为候选版。实体 Android 性能、干净 Windows 安装与真实来源完整交办仍有待通过的
-验收门槛。重要项目使用前，请阅读[带日期的验证记录](docs/releases/0.5.12-rc.1.md)。
+验收门槛。重要项目使用前，请阅读[带日期的验证记录](docs/releases/0.5.13-rc.1.md)。
 截图与界面动图不能代替这些结果。
 
 ## 开发与贡献

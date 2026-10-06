@@ -1,6 +1,6 @@
 # Self-host DropRun
 
-[简体中文](SELF_HOSTING.zh-CN.md) · [Release notes](../releases/0.5.12-rc.1.md)
+[简体中文](SELF_HOSTING.zh-CN.md) · [Release notes](../releases/0.5.13-rc.1.md)
 
 This is a public preview. Read the release's validation gaps before using it on
 important projects. One Relay belongs to one owner and one Windows Connector;
@@ -17,9 +17,9 @@ several phones may pair with it. There is no official DropRun account.
 
 ## Install the computer package
 
-Download the [Windows installer](https://github.com/MrMaii/droprun/releases/download/v0.5.12-rc.1/DropRun-0.5.12-windows-x64-setup.exe)
-or [portable ZIP](https://github.com/MrMaii/droprun/releases/download/v0.5.12-rc.1/DropRun-0.5.12-windows-x64.zip) from
-[0.5.12-rc.1](https://github.com/MrMaii/droprun/releases/tag/v0.5.12-rc.1). Compare the file's
+Download the [Windows installer](https://github.com/MrMaii/droprun/releases/download/v0.5.13-rc.1/DropRun-0.5.13-windows-x64-setup.exe)
+or [portable ZIP](https://github.com/MrMaii/droprun/releases/download/v0.5.13-rc.1/DropRun-0.5.13-windows-x64.zip) from
+[0.5.13-rc.1](https://github.com/MrMaii/droprun/releases/tag/v0.5.13-rc.1). Compare the file's
 SHA-256 with the release manifest. Windows may identify the unsigned package as
 an unknown publisher; the project does not claim a trusted Windows signature.
 
@@ -52,7 +52,7 @@ handoffs already accepted by its Relay.
 
 ## Pair Android
 
-Install the [release APK](https://github.com/MrMaii/droprun/releases/download/v0.5.12-rc.1/DropRun-0.5.12-android.apk), then scan the code shown by your computer. Confirm the
+Install the [release APK](https://github.com/MrMaii/droprun/releases/download/v0.5.13-rc.1/DropRun-0.5.13-android.apk), then scan the code shown by your computer. Confirm the
 computer and HTTPS Relay address before pairing. The invitation is single-use and
 expires. Manual pairing accepts the complete invitation or server/code fields.
 Never publish a screenshot of a real pairing code.

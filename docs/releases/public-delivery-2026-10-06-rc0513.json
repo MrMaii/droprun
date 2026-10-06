@@ -1,0 +1,246 @@
+{
+  "recordedAtUtc": "2026-10-06T22:51:44.128Z",
+  "release": "https://github.com/MrMaii/droprun/releases/tag/v0.5.13-rc.1",
+  "tag": "v0.5.13-rc.1",
+  "sourceCommit": "0abd1797d0b754d13f558eb8c2d06fbba92f4f7f",
+  "authentication": "none; no Authorization header or browser session",
+  "prerelease": true,
+  "repositoryPublic": true,
+  "annotatedTagSourceVerified": true,
+  "tagObjectSha": "2070fba6ac4da5f00bc72386d8b72192d93a466e",
+  "checksumEntries": 7,
+  "artifacts": [
+    {
+      "name": "DropRun-0.5.13-android-BUILD-MANIFEST.json",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.13-rc.1/DropRun-0.5.13-android-BUILD-MANIFEST.json",
+      "status": 200,
+      "bytes": 1775,
+      "sha256": "b0a986ec6878bc3cd087efe4d1e602eaf14dedf23193e4e05c7faf0d2d978ee3",
+      "apiDigestMatches": true,
+      "localArtifactMatches": true
+    },
+    {
+      "name": "DropRun-0.5.13-android-distribution.zip",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.13-rc.1/DropRun-0.5.13-android-distribution.zip",
+      "status": 200,
+      "bytes": 3546728,
+      "sha256": "38d9e07c8f0b403b58145dc06379493132601b2c25d579a74e68eb2d51351daa",
+      "apiDigestMatches": true,
+      "localArtifactMatches": true
+    },
+    {
+      "name": "DropRun-0.5.13-android.apk",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.13-rc.1/DropRun-0.5.13-android.apk",
+      "status": 200,
+      "bytes": 1691384,
+      "sha256": "f68bdde8899ea9843149bc2376c2b47314aea2acc9a68240acf2965fe599354e",
+      "apiDigestMatches": true,
+      "localArtifactMatches": true
+    },
+    {
+      "name": "DropRun-0.5.13-windows-x64-BUILD-MANIFEST.json",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.13-rc.1/DropRun-0.5.13-windows-x64-BUILD-MANIFEST.json",
+      "status": 200,
+      "bytes": 375698,
+      "sha256": "9e9e85deaad616d33bafc79f86716a227f5eb5e7e55face1032212f9e9e62f1a",
+      "apiDigestMatches": true,
+      "localArtifactMatches": true
+    },
+    {
+      "name": "DropRun-0.5.13-windows-x64-setup.exe",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.13-rc.1/DropRun-0.5.13-windows-x64-setup.exe",
+      "status": 200,
+      "bytes": 76764386,
+      "sha256": "11bcb69c8dafafc38cea9bdd347ef5af36a8c92b56450901e79b89c17da77a13",
+      "apiDigestMatches": true,
+      "localArtifactMatches": true
+    },
+    {
+      "name": "DropRun-0.5.13-windows-x64-source.zip",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.13-rc.1/DropRun-0.5.13-windows-x64-source.zip",
+      "status": 200,
+      "bytes": 38727801,
+      "sha256": "42906b6f3fc46f1cf0c251f80ebfdb3480a853f7f1de1c96929713e7592ebb23",
+      "apiDigestMatches": true,
+      "localArtifactMatches": true
+    },
+    {
+      "name": "DropRun-0.5.13-windows-x64.zip",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.13-rc.1/DropRun-0.5.13-windows-x64.zip",
+      "status": 200,
+      "bytes": 111664206,
+      "sha256": "95fa2b7ae7241c2b8dc0ef7fb80d97b740e5acff6db8300b38e4670ff637d1bd",
+      "apiDigestMatches": true,
+      "localArtifactMatches": true
+    },
+    {
+      "name": "SHA256SUMS.txt",
+      "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.13-rc.1/SHA256SUMS.txt",
+      "status": 200,
+      "bytes": 732,
+      "sha256": "d16a6c852f0e4b1ac9eefab9c94fa9d5b018ccb3a142ec22c43fa642978588ed",
+      "apiDigestMatches": true,
+      "localArtifactMatches": true
+    }
+  ],
+  "verified": true,
+  "sourcePublic": {
+    "verified": true,
+    "parent": "487d84795f05d6bfc0a8a7ed7dd1b1c52b210003",
+    "author": {
+      "name": "Thomas Deng",
+      "email": "150266369+MrMaii@users.noreply.github.com"
+    },
+    "committer": {
+      "name": "Thomas Deng",
+      "email": "150266369+MrMaii@users.noreply.github.com"
+    },
+    "changedFiles": 4,
+    "bindings": [
+      {
+        "path": "agents/handoffs/CURRENT.md",
+        "bytes": 9137,
+        "sha256": "6e175d123eab8190770d6ad28bc2adaf5697d2c5fb5896967c2332009a05d5d7",
+        "immutableByteExact": true
+      },
+      {
+        "path": "docs/technical/CONTRACTS.md",
+        "bytes": 66639,
+        "sha256": "f482e61d1cc6d3b4738179419b45d8fe09d280d962a1075049a8567dba69e26e",
+        "immutableByteExact": true
+      },
+      {
+        "path": "relay/selfhost.mjs",
+        "bytes": 8680,
+        "sha256": "95fc2267dc0fa0c9287858fbb62ecf1419da9dcc3ed7945c2081cfa4273d0cf1",
+        "immutableByteExact": true
+      },
+      {
+        "path": "tests/browser.test.mjs",
+        "bytes": 14654,
+        "sha256": "f56762fb3d645d1cdbf6eb6fe02d74b3cff8b83adc52d52575300543a4c0fec7",
+        "immutableByteExact": true
+      },
+      {
+        "path": "package.json",
+        "bytes": 843,
+        "sha256": "da86ad9921f2b38559297096a95e326b0fcb65c8b4cfb28d5fb4ae8d95439028",
+        "immutableByteExact": true
+      },
+      {
+        "path": "android/app/build.gradle",
+        "bytes": 1480,
+        "sha256": "e47e79d749bd0621565e833fa9592f0e17acf1e6eac08335ecfbfce20af621d7",
+        "immutableByteExact": true
+      }
+    ]
+  },
+  "exactCI": {
+    "runId": 37542200890,
+    "attempt": 1,
+    "url": "https://github.com/MrMaii/droprun/actions/runs/37542200890",
+    "jobCount": 3,
+    "stepCount": 35,
+    "requiredStepCount": 10,
+    "exactRunCheckCount": 3,
+    "passed": true,
+    "actualTests": {
+      "core": {
+        "tests": 210,
+        "suites": 0,
+        "pass": 210,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 52894.2368
+      },
+      "browser": {
+        "tests": 18,
+        "suites": 0,
+        "pass": 18,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 68865.6402
+      }
+    },
+    "fullLog": {
+      "stdoutBytes": 325762,
+      "stdoutSha256": "a32d78acd7e267c503d21b5f84b171b46ea701783953144cb47f72ce2c16f767",
+      "stderrBytes": 0,
+      "exit": 0,
+      "lifetime": "returned"
+    }
+  },
+  "android": {
+    "version": "0.5.13",
+    "versionCode": 26,
+    "applicationId": "app.droprun.mobile",
+    "certificateSha256": "d65e17ed1df9a1e0b8eabbc51675905673c8fdc1c44e7bb008237b6a0e82c5c4",
+    "apkSha256": "f68bdde8899ea9843149bc2376c2b47314aea2acc9a68240acf2965fe599354e",
+    "apkBytes": 1691384,
+    "inventoryFiles": 9,
+    "checksumFiles": 10,
+    "sourceFiles": 142,
+    "apkDexFiles": 1,
+    "publicApkDemoComponentsAbsent": true,
+    "publicApkDemoDescriptorsAbsent": true,
+    "publicApkDebuggable": false,
+    "sourceArchive": {
+      "count": 142,
+      "exact": 141,
+      "CRLF_LF_only": 1,
+      "normalizedPaths": [
+        "android/gradlew.bat"
+      ],
+      "mismatches": []
+    }
+  },
+  "windows": {
+    "version": "0.5.13",
+    "listedFiles": 2022,
+    "zipFiles": 2023,
+    "sourceFiles": 621,
+    "committedApplicationFiles": 54,
+    "installerSignature": "NotSigned",
+    "sourceArchive": {
+      "count": 621,
+      "exact": 620,
+      "CRLF_LF_only": 1,
+      "normalizedPaths": [
+        "android/gradlew.bat"
+      ],
+      "mismatches": []
+    },
+    "dependencyFiles": 1960,
+    "installerExecuted": false,
+    "connectorStarted": false
+  },
+  "publication": {
+    "releaseId": 405199769,
+    "originalCreatedDraftOnce": true,
+    "originalAuthenticatedListMatches": 0,
+    "originalFailureRetained": true,
+    "exactIdContinuationKnownReturnedChildren": 19,
+    "uploadsReplayed": false,
+    "creationReplayed": false,
+    "allChildrenReturned": true,
+    "scope": "Direct child return evidence only; no recursive executor lifecycle claim."
+  },
+  "developmentUI": {
+    "record": "ui-share-note-and-list-dates-2026-10-06.md",
+    "version": "0.5.13-dev",
+    "versionCode": 26,
+    "nativeReadingSources": 134,
+    "gradleFiles": 4,
+    "originalFreezeBytesRetained": true,
+    "cleanCheckoutContentMatchesWithCRLFNormalization": true,
+    "checkoutLineEndingDifferences": 119,
+    "installedSignedPackageInstrumented": false,
+    "tourVersion": "0.5.12-dev/code25",
+    "tourMemoryOnly": true
+  },
+  "scope": "Public signed/packaged candidate and full anonymous byte verification. Genuine handoffs, physical Android, clean Windows/fresh owner Cloudflare acceptance and stable/marketing launch remain open."
+}
