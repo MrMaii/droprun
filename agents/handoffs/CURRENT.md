@@ -69,10 +69,30 @@ originalPNG includingmarkers/systembars. Eightnewbrandcopies andREADMEprimary
 selections preservepixels. Source states/press remain; runtimepressnotmeasured.
 Signed10 andSites15 are unchanged.
 
-Landing demo CSS now has four local reading-width changes, exact f58fe457;
-its finite local layout preview/publication is pending. Builder/HTML/app.js/media
-and candidate10links are unchanged. Task reading-position restore is a separate
-static finding/private closed-test proposal; no fix or native assertion yet.
+Task reading-position fix is now locally verified: same fixed report and testAPK,
+red JUnit1failure4.513s/1062->0; accepted1/1 5.096s/1062->1062 and paragraph
+595->595. Two knownDESTROYED per phase/guards0, source129/4 exact; accepted
+JVM27/lint0errors30warnings. System font2 remains, fixture-local font1. Source,
+APK and56raw-command hashes match. No process-death/polling/focus/real-task claim.
+[Task record](../../docs/releases/ui-task-reading-position-2026-10-06.md).
+
+Website demo CSS f58fe457 now has an actual offline13-scene/4PNG layout pass:
+EN/ZH320/375/768/781/820/1280light/reduce plusZH768dark. No overflow/network;
+13knownclosed endpoints/pages. Root viewed4originals;ZH768 has sticky-header/
+skip-link obstruction, retained as framing limit, not a clean brand screenshot.
+Eightmatte website stills copied byte-exact; onebuilder selector and generated
+EN/ZH image paths only; allvisiblecopy/hrefs/video-section exact. No new render
+of replaced stills. Signed10/Sites15 remain unchanged until separate publication.
+[Website record](../../docs/releases/ui-website-demo-reading-2026-10-06.md).
+
+Public f04330d4:17anonymous immutable GETs/Thomas author+committer/parent270a492
+match. CI37488186095attempt1 FAILED:core209/210/browser18/18/androidsuccess,
+8coresteps skipped. Full315015B log2d241099 records brand phone-rejection body
+read ECONNRESET, not permission/hash assertion failure. Threepermission probes
+now use32B; fulladminLogo/hash unchanged. Localafter2/2; original also passed
+locally once, so no proven CIcause/fix claim. New-sourceCI required.
+[CI diagnosis](../../docs/releases/ci-brand-authorization-2026-10-06.md).
+
 
 ## README visual pass
 
@@ -105,17 +125,16 @@ No candidate10 link or GIF/static-selector provenance changed.
 
 ## Single recommended next action
 
-Finish actual proof review and curate the verified primary-surface/native-gallery
-pass, excluding the pending landingCSS and private film. Then review/apply the
-closed Task reading-position regression and restore fix; run the finite local
-landing demo preview in parallel. Keep signed10/Sites15 unchanged until a separate
-candidate package/site pass. Genuine acceptance and marketing handover remain
-open. No real Relay/Codex or previously denied path.
+Publish the reviewed website reading/native-still pass from the curated source,
+preserving existing audience and unknown paths. Observe the exact-source CI;
+only then prepare a separate signed candidate carrying the unreleased UI fixes.
+Continue the source-proven UX audit while genuine acceptance remains unavailable.
+No real Relay/Codex or previously denied path; no marketing handover.
 
 ## Files this pass
 
-Ui/Share/Settings/Task source, closed refresh fixture and three opt-in tests; debug
-manifest; PRD/CONTRACTS/CHANGELOG; new nativeShare source PNGs/media provenance;
-local UX record, applied bilingual README and this handoff. Private film/launch originals
-remain uncommitted and excluded from the public index.
+Task stable ScrollView ID/resource, guarded fixed-report fixture/test/manifest;
+PRD/CONTRACTS/CHANGELOG; website CSS/builder/generated EN/ZH/eight raw copies;
+brand media provenance; three dated UX/CI records; small brand authorization-test
+payload change; this handoff. Private film/launch originals remain uncommitted.
 Author Thomas Deng <150266369+MrMaii@users.noreply.github.com>.

@@ -19,6 +19,8 @@ in [the current candidate record](../releases/0.5.10-rc.1.md).
   a static light/dark capture, with explicit still links and unchanged provenance.
   A localized installation link at the end of the tour lets ready readers move
   directly to setup.
+  The website Share recording uses native-width detail when space permits;
+  narrow layouts stack the explanation and recording so controls remain readable.
   Dated Share motion media show received-material disclosure, model choice and
   its default effort, with the preset project and empty note disclosed. Native-size
   sampled GIFs keep README loading light; original videos preserve the timeline.
@@ -33,6 +35,9 @@ in [the current candidate record](../releases/0.5.10-rc.1.md).
   Primary actions use one matte lime surface; elevation belongs to containing
   panels. Focus, press, disabled treatment and motion preferences remain distinct.
   Task disclosure headings follow the same reading edge as the result and actions.
+  Reading an expanded report retains its position after an in-process Activity
+  recreation when content and layout stay the same.
+  [Checked scenario and limits](../releases/ui-task-reading-position-2026-10-06.md).
   Navigation gear/information icons share restrained round outlines; their 48dp
   targets, theme tint, focus, press feedback and action meaning remain distinct.
   Home contains Recent handoffs and settings, with only used or pending projects.

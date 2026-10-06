@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Preserve the reading position of an expanded report after in-process page
+  recreation with unchanged content and layout.
+  [Actual red/green check](docs/releases/ui-task-reading-position-2026-10-06.md).
+- Enlarge the website's Share recording and stack its explanation on narrow
+  layouts. [Actual local layout checks](docs/releases/ui-website-demo-reading-2026-10-06.md).
 - Give primary actions one matte lime surface, preserving their interaction
   states; align task disclosure headings with the result reading edge.
   [Raw native captures and actual checks](docs/releases/ui-primary-surface-2026-10-06.md).

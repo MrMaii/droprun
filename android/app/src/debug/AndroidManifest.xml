@@ -4,6 +4,7 @@
         <activity android:name="app.droprun.DemoTaskRefreshFeedbackActivity" android:exported="false" />
         <activity android:name="app.droprun.DemoTaskPreviewActivity" android:exported="false" />
         <activity android:name="app.droprun.DemoTaskPreviewNormalActivity" android:exported="false" />
+        <activity android:name="app.droprun.DemoTaskScrollActivity" android:exported="false" />
         <activity android:name="app.droprun.DemoHomeRecoveryActivity" android:exported="false" />
         <activity android:name="app.droprun.DemoHistoryIdentityActivity" android:exported="false" />
         <activity android:name="app.droprun.DemoPermissionMotionActivity" android:exported="false" android:theme="@style/ShareTheme" android:taskAffinity="" android:excludeFromRecents="true" android:configChanges="orientation|screenSize|keyboardHidden" android:windowSoftInputMode="adjustResize" />

@@ -29,7 +29,7 @@ public class TaskActivity extends StyledActivity {
         super.onCreate(state);store=createStore();taskId=getIntent().getStringExtra("taskId");
         if(state!=null){followupDraft=state.getString("followupDraft","");followupId=state.getString("followupId",followupId);java.util.ArrayList<String> sections=state.getStringArrayList("expanded");if(sections!=null)expanded.addAll(sections);}
         if(taskId==null||!taskId.matches("[a-zA-Z0-9-]{20,64}")){finish();return;}
-        Ui.configureWindow(this);LinearLayout page=Ui.page(this);
+        Ui.configureWindow(this);LinearLayout page=Ui.page(this);((View)page.getParent()).setId(R.id.task_scroll);
         ImageButton back=Ui.iconButton(this,R.drawable.ic_chevron_left,L.t("Back to history","返回历史"));back.setOnClickListener(v->finish());
         Ui.topBar(this,page,back,L.t("Handoff","交办"),false,null);
         notice=Ui.text(this,"",13,Ui.AMBER);notice.setVisibility(View.GONE);notice.setAccessibilityLiveRegion(View.ACCESSIBILITY_LIVE_REGION_POLITE);page.addView(notice);

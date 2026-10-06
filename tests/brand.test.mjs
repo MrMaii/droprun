@@ -16,6 +16,7 @@ test('public brand uses exact selected bytes; publishing is administrator-only a
     await db.prepare('CREATE TABLE devices(id TEXT,token_hash TEXT)').run();
     stage = 'read selected mark.png';
     const bytes = await readFile('assets/brand/mark.png');
+    const deniedBody = Buffer.from('brand-upload authorization probe');
     const put = async (body, auth='') => {
       const requestStage = stage;
       stage = requestStage + ': dispatchFetch';
@@ -26,13 +27,13 @@ test('public brand uses exact selected bytes; publishing is administrator-only a
       return response;
     };
     stage = 'PUT /connector/brand-logo anonymous';
-    assert.equal((await put(bytes)).status,401);
+    assert.equal((await put(deniedBody)).status,401);
     stage = 'D1 INSERT phone device';
     await db.prepare('INSERT INTO devices VALUES (?,?)').bind('phone',digest('phone-token')).run();
     stage = 'PUT /connector/brand-logo phone';
-    assert.equal((await put(bytes,'phone-token')).status,403);
+    assert.equal((await put(deniedBody,'phone-token')).status,403);
     stage = 'PUT /connector/brand-logo connector';
-    assert.equal((await put(bytes,connector)).status,403);
+    assert.equal((await put(deniedBody,connector)).status,403);
     stage = 'PUT /connector/brand-logo admin invalid bytes';
     assert.equal((await put(Buffer.from('not-the-logo'),token)).status,400);
     stage = 'PUT /connector/brand-logo admin selected bytes';

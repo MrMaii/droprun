@@ -76,6 +76,11 @@ plan-version, per-command approval and report-evidence checks remain in force.
   Task refresh failures retain existing task data. Null or blank error detail
   produces a localized notice; nonblank detail is preserved. The existing active
   refresh schedule and pause/destroy cancellation remain in force.
+  Task's existing ScrollView has stable ID `task_scroll` for native hierarchy
+  restoration. Saved disclosure state is applied before its first synchronous
+  render, then Android restores the view hierarchy. This retains reading position
+  for unchanged content/layout during in-process recreation; it adds no task data,
+  request or manual scroll repair. Other recovery scenarios have separate gates.
 - Fresh installs apply migrations-fresh/0001-baseline.sql only. Existing instances
   apply the compatibility upgrade; never apply consolidated schema and duplicate
   historical ALTER migrations to the same new database.

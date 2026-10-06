@@ -3,6 +3,11 @@
 The opening section and first table describe the original October 5 captures.
 New dated workflow media have their own source records below.
 
+The October 6 matte Share/Delivery stills also have byte-exact website copies
+under the same filenames in `landing/media/`. The builder selects them for
+static product examples; its dated recording and poster retain their own source.
+[Website reading and generation checks](../../docs/releases/ui-website-demo-reading-2026-10-06.md).
+
 Captured October 5, 2026 from the local 0.5.1 development build, with the
 existing Android demonstration activities. Android API 35; 720 × 1440 pixels
 at density 360 (320 × 640 dp). English and Simplified Chinese, light and dark.
