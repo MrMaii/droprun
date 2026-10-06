@@ -1,0 +1,181 @@
+{
+  "schema": "droprun.public-candidate.v1",
+  "recordedAtUtc": "2026-10-06T10:01:07.528Z",
+  "sourceCommit": "ff4da90981f215145851fee6bee5a628edb73260",
+  "version": "0.5.9",
+  "androidVersionCode": 22,
+  "release": "https://github.com/MrMaii/droprun/releases/tag/v0.5.9-rc.1",
+  "prerelease": true,
+  "downloads": {
+    "recordedAtUtc": "2026-10-06T10:01:07.528Z",
+    "release": "https://github.com/MrMaii/droprun/releases/tag/v0.5.9-rc.1",
+    "tag": "v0.5.9-rc.1",
+    "sourceCommit": "ff4da90981f215145851fee6bee5a628edb73260",
+    "authentication": "none; no Authorization header or browser session",
+    "prerelease": true,
+    "repositoryPublic": true,
+    "annotatedTagSourceVerified": true,
+    "tagObjectSha": "4cb19d79b283dcdf9fbe39ffc51185c9d0c73ba2",
+    "checksumEntries": 7,
+    "artifacts": [
+      {
+        "name": "DropRun-0.5.9-android-BUILD-MANIFEST.json",
+        "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.9-rc.1/DropRun-0.5.9-android-BUILD-MANIFEST.json",
+        "status": 200,
+        "bytes": 1772,
+        "sha256": "93e246e306f885b7f195b8469ad044970c669f940e7c2b92afd3a577681ff779",
+        "apiDigestMatches": true,
+        "localArtifactMatches": true
+      },
+      {
+        "name": "DropRun-0.5.9-android-distribution.zip",
+        "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.9-rc.1/DropRun-0.5.9-android-distribution.zip",
+        "status": 200,
+        "bytes": 3483262,
+        "sha256": "c19befb79ed55430a9b54089f3af13929ced89d2e41372119a9482fed2f24286",
+        "apiDigestMatches": true,
+        "localArtifactMatches": true
+      },
+      {
+        "name": "DropRun-0.5.9-android.apk",
+        "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.9-rc.1/DropRun-0.5.9-android.apk",
+        "status": 200,
+        "bytes": 1688416,
+        "sha256": "d26fe960ad5670830b423d21692562e9d3604fb4b7b7f63ce66fad4e5aad0580",
+        "apiDigestMatches": true,
+        "localArtifactMatches": true
+      },
+      {
+        "name": "DropRun-0.5.9-windows-x64-BUILD-MANIFEST.json",
+        "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.9-rc.1/DropRun-0.5.9-windows-x64-BUILD-MANIFEST.json",
+        "status": 200,
+        "bytes": 375696,
+        "sha256": "998f31430c8e1ab7ec744270111fd6e12b3ecbbee7fd2f621137754c047cdf63",
+        "apiDigestMatches": true,
+        "localArtifactMatches": true
+      },
+      {
+        "name": "DropRun-0.5.9-windows-x64-setup.exe",
+        "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.9-rc.1/DropRun-0.5.9-windows-x64-setup.exe",
+        "status": 200,
+        "bytes": 76709169,
+        "sha256": "864d45f5cf057d8514372f4ae6179b908319f3e1d19d50fc3cbb528091f7c250",
+        "apiDigestMatches": true,
+        "localArtifactMatches": true
+      },
+      {
+        "name": "DropRun-0.5.9-windows-x64-source.zip",
+        "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.9-rc.1/DropRun-0.5.9-windows-x64-source.zip",
+        "status": 200,
+        "bytes": 31767563,
+        "sha256": "18aaba38cda894524dd25ea69b0151214c4420aad241571d9f30e447303bbda5",
+        "apiDigestMatches": true,
+        "localArtifactMatches": true
+      },
+      {
+        "name": "DropRun-0.5.9-windows-x64.zip",
+        "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.9-rc.1/DropRun-0.5.9-windows-x64.zip",
+        "status": 200,
+        "bytes": 111577156,
+        "sha256": "5f1cf20a17c0c52719162f98732473d022e0a0e712b6ba6c2fd47b42e72f3cfe",
+        "apiDigestMatches": true,
+        "localArtifactMatches": true
+      },
+      {
+        "name": "SHA256SUMS.txt",
+        "url": "https://github.com/MrMaii/droprun/releases/download/v0.5.9-rc.1/SHA256SUMS.txt",
+        "status": 200,
+        "bytes": 725,
+        "sha256": "acaf0d02dd4b27eb7bad36b2756316109c2b80554516b8e87d024f49b5254141",
+        "apiDigestMatches": true,
+        "localArtifactMatches": true
+      }
+    ],
+    "verified": true
+  },
+  "ci": {
+    "url": "https://github.com/MrMaii/droprun/actions/runs/37444434009",
+    "runId": 37444434009,
+    "attempt": 1,
+    "jobs": 3,
+    "steps": 35,
+    "requiredSteps": 10,
+    "checks": 3,
+    "core": {
+      "tests": 210,
+      "suites": 0,
+      "pass": 210,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "duration_ms": 51993.0792
+    },
+    "browser": {
+      "tests": 18,
+      "suites": 0,
+      "pass": 18,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "duration_ms": 64636.4748
+    },
+    "originalLog": {
+      "bytes": 325334,
+      "sha256": "840a20c5e480e0d99aa92589ae4ab643a3c9a402fcf8acb4692586413676bea6",
+      "retained_complete": true
+    },
+    "passed": true
+  },
+  "publicSource": {
+    "anonymousGets": 31,
+    "exact": 31,
+    "failed": 0
+  },
+  "android": {
+    "applicationId": "app.droprun.mobile",
+    "versionCode": 22,
+    "certificateSha256": "d65e17ed1df9a1e0b8eabbc51675905673c8fdc1c44e7bb008237b6a0e82c5c4",
+    "apkSha256": "d26fe960ad5670830b423d21692562e9d3604fb4b7b7f63ce66fad4e5aad0580",
+    "nonDebuggable": true,
+    "demoComponentsAbsent": true,
+    "demoDescriptorsAbsent": true,
+    "inventoryFiles": 9,
+    "checksums": 10,
+    "sourceFiles": 129
+  },
+  "windows": {
+    "signature": "NotSigned",
+    "inventoryFiles": 2022,
+    "portableFiles": 2023,
+    "sourceFiles": 513,
+    "applicationFiles": 54,
+    "dependencyFiles": 1960
+  },
+  "independentExport": {
+    "verified": true,
+    "reportSha256": "fcb818c9c12388a3e28060cb02d10a617630bb38027d897e07d09acd4cf49500",
+    "sourceComparison": {
+      "android": {
+        "count": 129,
+        "exact": 128,
+        "CRLF_LF_only": 1,
+        "normalizedPaths": [
+          "android/gradlew.bat"
+        ],
+        "mismatches": []
+      },
+      "windows": {
+        "count": 513,
+        "exact": 512,
+        "CRLF_LF_only": 1,
+        "normalizedPaths": [
+          "android/gradlew.bat"
+        ],
+        "mismatches": []
+      }
+    }
+  },
+  "acceptance": "Candidate only; real-source handoffs, recovery/isolation, physical Android and clean Windows/fresh owner Cloudflare acceptance remain open."
+}

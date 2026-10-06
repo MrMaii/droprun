@@ -1,6 +1,10 @@
 # Changelog
 
-## Unreleased — clearer reading surfaces
+## Unreleased
+
+## 0.5.9-rc.1 — clearer reading and follow-up
+
+[Verified candidate and open acceptance](docs/releases/0.5.9-rc.1.md).
 
 - Give Share material and model entries a common reading edge, keeping the note
   distinct. Confirmed execution context stays readable; unconfirmed settings keep
@@ -15,7 +19,8 @@
 - Explain choosing DropRun on first use, use accurate shared action feedback,
   and give follow-up a quieter button treatment. [Native captures and scope](docs/releases/ui-first-use-followup-2026-10-06.md).
 - Group the bilingual README workflow into three images that wrap on narrow
-  screens, followed by a short Share, Follow, Inspect explanation.
+  screens. Explain Share → DropRun and the three steps before the gallery;
+  define accepted task/dispatch counts beside their first appearance.
 - Add an optional Settings/history gallery and refresh the opening Share GIF and
   website video from the current native layout. [Recording scope](docs/releases/ui-share-reading-motion-2026-10-06.md).
 

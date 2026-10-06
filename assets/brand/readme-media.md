@@ -289,15 +289,20 @@ These are initial memory-only viewports, with no preview click, navigation or ta
 ## Workflow gallery layout
 
 The bilingual README now groups Share, Home and Delivery in one inline gallery,
-with three short numbered steps below. Each image displays at 220 pixels wide;
+with three short numbered steps above. The first step names Android Share →
+DropRun; a nearby sentence explains accepted dispatches and excludes retries.
+Each image displays at 220 pixels wide;
 the opening native GIF remains 320 pixels wide. Light/dark source choices and
 all original PNG/GIF bytes remain unchanged. The gallery uses ordinary
 `picture`/`img` markup, without a fixed-width table, injected CSS or JavaScript.
 
-Local HTML previews at 328 and 820 pixels cover both languages and themes:
+Before the subsequent text reorder, local HTML previews at 328 and 820 pixels
+covered both languages and themes:
 the narrow gallery wraps to three rows, the wide gallery uses one row, and
 neither overflows. This is a local gallery layout check, not a fresh GitHub
-rendering check or new App capture. Sample and source limitations above remain.
+rendering check or new App capture. The later text-only reorder retains all
+32 image/source tags and eight image paragraphs; no fresh browser check is
+claimed for it. Sample and source limitations above remain.
 
 ## Plain Share reading rows
 

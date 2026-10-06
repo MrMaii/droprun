@@ -4,10 +4,10 @@
   <p><strong>手机分享参考，让本地 Codex 接着做。</strong></p>
   <p>选已有项目，可选留一句话，在手机查看结果与证据。<br>Android 8+ · Windows x64 · 已登录 Codex · 自己的 Cloudflare</p>
   <p><a href="docs/technical/SELF_HOSTING.zh-CN.md"><strong>开始安装 →</strong></a></p>
-  <p><a href="https://droprun.dengmaizi0802.chatgpt.site/zh/">官网</a> · <a href="https://github.com/MrMaii/droprun/releases/tag/v0.5.8-rc.1">候选版下载</a> · <a href="README.md">English</a></p>
+  <p><a href="https://droprun.dengmaizi0802.chatgpt.site/zh/">官网</a> · <a href="https://github.com/MrMaii/droprun/releases/tag/v0.5.9-rc.1">候选版下载</a> · <a href="README.md">English</a></p>
 </div>
 
-> **公开预览 · 0.5.8-rc.1。** [实际验证记录与待通过的验收门槛](docs/releases/0.5.8-rc.1.md)。
+> **公开预览 · 0.5.9-rc.1。** [实际验证记录与待通过的验收门槛](docs/releases/0.5.9-rc.1.md)。
 
 Codex 在你的 Windows 电脑上工作，Relay 由你部署到自己的 Cloudflare 账号。
 进度、报告和改动证据，回到手机上查看。
@@ -42,6 +42,12 @@ GIF 为原生 320 × 640 的 25 fps 采样展示；MP4 保留原始时间顺序�
 
 ## 分享参考、跟进工作、查看交付
 
+1. **分享参考。** 在其他 Android App 点 **分享 → DropRun**，再选已有项目。按需补充这次希望完成的改动。
+2. **跟进本地 Codex。** Codex 在你的电脑和所选项目中工作。按项目查看进展，处理待确认事项。
+3. **查看交付。** 先看结果、需要处理的动作、截图和文件，再按需展开报告。
+
+任务数统计独立请求；交办次数统计已接收的分享与追问。网络重试不增加次数。
+
 截图与分享录屏均来自原生内存示例（2026 年 10 月 6 日）。
 较早导览保留各自的原始来源日期。
 仅展示界面，不代表签名下载包录制或真实 Codex 任务。
@@ -52,10 +58,6 @@ GIF 为原生 320 × 640 的 25 fps 采样展示；MP4 保留原始时间顺序�
   <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-home-rows-zh-dark-20261006.png"><img src="assets/brand/source-home-rows-zh-light-20261006.png" width="220" alt="02 · 跟进：原生 Android 项目首页，项目名称、任务与交办次数沿页面阅读边缘对齐，保留仅内存验证与示例项目标记"></picture>
   <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-delivery-followup-zh-dark-20261006.png"><img src="assets/brand/source-delivery-followup-zh-light-20261006.png" width="220" alt="03 · 查看：原生交办页，交付结果、固定快照说明与交付入口，保留仅内存验证标记"></picture>
 </p>
-
-1. **分享参考。** 选好已有项目后，按需补充这次希望完成的改动。
-2. **跟进本地 Codex。** Codex 在你的电脑和所选项目中工作。按项目查看进展，处理待确认事项。
-3. **查看交付。** 先看结果、需要处理的动作、截图和文件，再按需展开报告。
 
 <details>
 <summary><strong>设置与项目历史</strong></summary>
@@ -78,25 +80,24 @@ GIF 为原生 320 × 640 的 25 fps 采样展示；MP4 保留原始时间顺序�
 | --- | --- | --- |
 | Windows x64、Git、已登录 Codex、Chrome 或 Edge | Android 8 或更新版本 | 自己的 Cloudflare 账号，启用 Workers、D1、R2 |
 
-1. **安装电脑端。** 下载 [Windows 安装包](https://github.com/MrMaii/droprun/releases/download/v0.5.8-rc.1/DropRun-0.5.8-windows-x64-setup.exe)或[便携 ZIP](https://github.com/MrMaii/droprun/releases/download/v0.5.8-rc.1/DropRun-0.5.8-windows-x64.zip)。
+1. **安装电脑端。** 下载 [Windows 安装包](https://github.com/MrMaii/droprun/releases/download/v0.5.9-rc.1/DropRun-0.5.9-windows-x64-setup.exe)或[便携 ZIP](https://github.com/MrMaii/droprun/releases/download/v0.5.9-rc.1/DropRun-0.5.9-windows-x64.zip)。
    便携版解压到固定位置后，运行 `DropRun.cmd`。
 2. **部署自己的 Relay。** 打开本机浏览器向导，检查环境，部署到自己的 Cloudflare 账号。
-3. **配对手机。** 安装 [Android APK](https://github.com/MrMaii/droprun/releases/download/v0.5.8-rc.1/DropRun-0.5.8-android.apk)，扫码确认电脑与服务器，再授权项目。
-4. **发出第一项交办。** 分享参考，跟进接收、执行、审批与报告。“已保存”表示手机已保存，
+3. **配对手机。** 安装 [Android APK](https://github.com/MrMaii/droprun/releases/download/v0.5.9-rc.1/DropRun-0.5.9-android.apk)，扫码确认电脑与服务器，再授权项目。
+4. **发出第一项交办。** 在其他 Android App 点 **分享 → DropRun**，选择项目，跟进接收、执行、审批与报告。“已保存”表示手机已保存，
    不表示任务已完成。
 
 **[完整安装、恢复和升级指南 →](docs/technical/SELF_HOSTING.zh-CN.md)**
 
 DropRun 没有官方账号或订阅。Cloudflare、可选转写和 Codex 使用你自己的账号，
 **用量可能产生费用**。Windows 包未签名，可能提示未知发布者，请对照发布的
-[校验值](https://github.com/MrMaii/droprun/releases/download/v0.5.8-rc.1/SHA256SUMS.txt)。
+[校验值](https://github.com/MrMaii/droprun/releases/download/v0.5.9-rc.1/SHA256SUMS.txt)。
 公共 Android 版与历史私人/debug 版并行安装，不尝试跨签名覆盖。
 
 ## 让一次交办更顺手
 
 - **保留你的意图。** 留言是任务的主要目标。独立分享创建新 Codex 会话，追问继续原会话。
-- **按项目找回来。** 首页只展示交办过或有待发送记录的项目。任务统计独立任务，
-  交办统计已接收的分享与追问；网络重试不增加次数。
+- **按项目找回来。** 首页只展示交办过或有待发送记录的项目。
 - **决定怎么开工。** 直接执行或先看计划；项目权限与高风险动作的审批各自独立。
 - **检查实际发生了什么。** 报告区分材料读取范围、项目改动与验证。交付可包含截图、文件
   和支持的静态快照；实时预览按需配置。
@@ -122,7 +123,7 @@ DropRun 没有官方账号或订阅。Cloudflare、可选转写和 Codex 使用�
 - **取消不等于回滚。** 取消任务或删除云端记录，不会撤销项目里已经发生的改动。
 
 当前仍为候选版。实体 Android 性能、干净 Windows 安装与真实来源完整交办仍有待通过的
-验收门槛。重要项目使用前，请阅读[带日期的验证记录](docs/releases/0.5.8-rc.1.md)。
+验收门槛。重要项目使用前，请阅读[带日期的验证记录](docs/releases/0.5.9-rc.1.md)。
 截图与界面动图不能代替这些结果。
 
 ## 开发与贡献
