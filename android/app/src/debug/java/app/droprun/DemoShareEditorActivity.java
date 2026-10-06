@@ -92,7 +92,7 @@ public final class DemoShareEditorActivity extends ShareActivity {
         store.select("","");L.language(getIntent().getStringExtra("language"));
         shared="https://example.invalid/ui-sample";selected="ui-probe-project";model="probe-fast";effort="medium";draft="";step=1;receiving=false;sent=false;
         TextView notice=Ui.text(this,L.t("UI probe · nothing saved or sent.","界面探针 · 未保存或发送任何分享。"),12,0xFFFFFFFF);notice.setPadding(dp(20),dp(4),dp(20),0);root.addView(notice,new FrameLayout.LayoutParams(-1,-2,Gravity.TOP));
-        if(hierarchyFontScale!=0f){notice.setText(L.t("UI probe · memory only","界面探针 · 仅内存"));notice.setTextSize(android.util.TypedValue.COMPLEX_UNIT_DIP,12);notice.setTag("hierarchy-marker");}
+        if(hierarchyFontScale!=0f){notice.setText(L.t("UI probe · memory only","界面探针 · 仅内存"));notice.setTextSize(android.util.TypedValue.COMPLEX_UNIT_DIP,12);notice.setTag("hierarchy-marker");if(getIntent().getBooleanExtra("compactHeight",false)&&getIntent().getBooleanExtra("modelDisclosure",false)){root.removeView(notice);notice.setTextColor(Ui.MUTED);notice.setPadding(0,0,0,dp(4));sheet.addView(notice,0);}}
         stage.addView(stepNote(),new ViewGroup.LayoutParams(-1,-2));dots.setActive(1,false);back.setVisibility(View.VISIBLE);probeReady=true;
     }
     boolean executionSettingConfirmed(){return confirmed;}

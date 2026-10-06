@@ -2,7 +2,16 @@
 
 ## Unreleased
 
-Preparing runtime 0.5.7/code 20; the current signed download remains 0.5.6.
+Further UI refinements are separate from the current signed candidate.
+
+- Keep draft feedback readable in compact Share windows, removing a height
+  boundary that could shrink the sheet as available space grew. Preserve natural
+  short-form wrapping and all existing header, insets and submission behavior.
+  [Native verification](docs/releases/ui-share-compact-height-2026-10-06.md).
+
+## 0.5.7-rc.1 — readable share choices
+
+[Verified candidate packages and open acceptance](docs/releases/0.5.7-rc.1.md).
 
 - Make the optional Share model control explicit and give localized effort choices
   complete 48dp rows. Preserve raw IDs, unknown values, focus and draft.

@@ -1,29 +1,41 @@
 # Current Handoff
 
 Updated 2026-10-06 UTC. Independent UI/brand work continues while real acceptance
-remains open. Signed0.5.6/code19 candidate is available. Runtime0.5.7/code20 source includes the
-next Share model/effort refinement; new packages are not built yet.
+remains open. Signed0.5.7/code20 candidate is available.
+Separate compact-layout work continues outside that immutable package.
 
 ## Current delivery
 
-- Public download is [0.5.6-rc.1](../../docs/releases/0.5.6-rc.1.md), source
-  52af35d354bfc15115623a722d34ba7b2d3eb273/runtime0.5.6/code19/protocol2/schema11/
-  shutdown1. Eight complete anonymous assets/checksums/tag pass; stable Android
-  certificate/nondebuggable/noDemo and Windows NotSigned remain recorded.
-  [Public audit](../../docs/releases/public-delivery-2026-10-06-rc056.json).
-- GPTSites9 stays live, hosting source71ca198e928baabada2eb7c63b2265bb8f2298e0,
-  success2026-10-06T02:36:15.506491+00:00. Anonymous2pages/10CTA/4resources
-  and25 hash-bound dated resources pass. Only package pointers changed; actual
-  normal6scenes/8keyboard evidence remains v8, not a freshv9 run.
-  [Candidate audit](../../docs/releases/public-delivery-2026-10-06-rc056.json) owns proof.
-- Candidate source52af35d354bfc15115623a722d34ba7b2d3eb273:
-  CI37403613413 attempt1 all3jobs/35steps/10required/core210/browser18 green;
-  failure counters0/audit0/site20/scanner388/Windows2022/Android. Twenty-four
-  fresh anonymous sourceGETs match immutable Git. Clean managed Android/Windows
-  builds and independent exports agree. Initial metadata classification and tag
-  preflight diagnostics were retained; both stopped before publication mutations.
+- Public download is [0.5.7-rc.1](../../docs/releases/0.5.7-rc.1.md), source
+  7097a0db9297fe14873fcc9f652f5d0bc6e79343/runtime0.5.7/code20/protocol2/schema11/shutdown1. Eight complete
+  anonymous assets/checksums/tag pass; stable Android certificate/nondebuggable/
+  noDemo and Windows NotSigned are recorded. [Public audit](../../docs/releases/public-delivery-2026-10-06-rc057.json).
+- GPTSites10 is live from hosting source7b155e9a2a611a6ee0f660a2490893e98ba18318,
+  success2026-10-06T03:03:16.979824+00:00. Anonymous2pages/10CTA/4resources and25 hash-bound
+  dated resources pass; only download pointers changed. Actual normal6scenes/
+  8keyboard staysv8, no freshv10 browser/reduced-motion claim. Local initial
+  SEO/copy/buffer preparation diagnostics were retained before successful native
+  publication. [Public audit](../../docs/releases/public-delivery-2026-10-06-rc057.json).
+- Candidate source7097a0db9297fe14873fcc9f652f5d0bc6e79343: CI37406059158 attempt1 all3jobs/
+  35steps/10required/core210/browser18 green.
+  Thirty fresh anonymous sourceGETs, including4PNGs, match immutable Git.
+  Clean managed Android/Windows builds and independent exports agree. New
+  compact-layout work in the main checkout is not included in this package.
 
 ## Latest completed work
+
+- [Compact Share layout](../../docs/releases/ui-share-compact-height-2026-10-06.md):
+  one cap statement fixes native initial draft7/20dp clipping and400→401 height
+  discontinuity. Red1expected4.782s; separate marker-only probe1fail4.629s;
+  finalsamebatch2/2 64.122s each8configs, JVM24/lint0/30,104source/101unchanged/
+  28device-host hashes/guards0. EN normalviewport426→439 is13dp content gain;
+  opted-in marker addsEN18/ZH21dp. Short forms wrap; font2 individually reachable,
+  not whole-form visible. Three app APKs differ; testAPK is identical in all3.
+  498 readonly original files retain all failures. Header/insets/callbacks are
+  exact unchanged bytes outside the cap statement. Signed07 does not include it.
+- New4-image GitHub gallery browser probe accepted0/4: GET-only guard stopped
+  GitHub analyticsPOST; no expansion/retry, owned browser/profile closed. Raw
+  four-image byte provenance still passes; old6tour scenes are separate.
 
 - [Share model disclosure](../../docs/releases/ui-share-model-disclosure-2026-10-06.md):
   visible title/summary/chevron, localized complete48dp effort rows/rawIDs. Red1
@@ -92,10 +104,11 @@ next Share model/effort refinement; new packages are not built yet.
 
 ## Single recommended next action
 
-Publish curated0.5.7/code20 source and verify its first exact-source CI/anonymous
-bytes. Build from a new clean managed checkout; preserve prior originals and
-check stable signature/source/noDemo/export before the next candidate. Root owns
-Git/package/site and private film exclusion; real gates stay open.
+Independently review the frozen compact Share source and publish its curated
+source plus verified07/site10 records. Keep signed07 immutable. Next design
+review checks whether received material is sufficiently inspectable before Send;
+no real task/IME/process-loss retry is authorized. Root owns publication and the
+private film exclusion; genuine acceptance and marketing handover stay open.
 
 ## Files this pass
 

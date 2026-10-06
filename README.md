@@ -4,10 +4,10 @@
   <p><strong>Share from your phone. Put local Codex to work.</strong></p>
   <p>Choose an existing project. Add an optional note. Inspect the result.<br>Android 8+ · Windows x64 · signed-in Codex · your Cloudflare</p>
   <p><a href="docs/technical/SELF_HOSTING.md"><strong>Get started →</strong></a></p>
-  <p><a href="https://droprun.dengmaizi0802.chatgpt.site">Website</a> · <a href="https://github.com/MrMaii/droprun/releases/tag/v0.5.6-rc.1">Preview downloads</a> · <a href="README.zh-CN.md">简体中文</a></p>
+  <p><a href="https://droprun.dengmaizi0802.chatgpt.site">Website</a> · <a href="https://github.com/MrMaii/droprun/releases/tag/v0.5.7-rc.1">Preview downloads</a> · <a href="README.zh-CN.md">简体中文</a></p>
 </div>
 
-> **Public preview · 0.5.6-rc.1.** [Validation record and open acceptance gates](docs/releases/0.5.6-rc.1.md).
+> **Public preview · 0.5.7-rc.1.** [Validation record and open acceptance gates](docs/releases/0.5.7-rc.1.md).
 
 Codex works in an existing project on your own Windows computer.
 DropRun brings progress, reports and evidence back to your phone.
@@ -63,11 +63,11 @@ See the result, required actions, screenshots and files. Open the full report wh
 | --- | --- | --- |
 | Windows x64, Git, signed-in Codex, Chrome or Edge | Android 8 or newer | Your Cloudflare account with Workers, D1 and R2 |
 
-1. **Install on Windows.** Get the [installer](https://github.com/MrMaii/droprun/releases/download/v0.5.6-rc.1/DropRun-0.5.6-windows-x64-setup.exe) or [portable ZIP](https://github.com/MrMaii/droprun/releases/download/v0.5.6-rc.1/DropRun-0.5.6-windows-x64.zip).
+1. **Install on Windows.** Get the [installer](https://github.com/MrMaii/droprun/releases/download/v0.5.7-rc.1/DropRun-0.5.7-windows-x64-setup.exe) or [portable ZIP](https://github.com/MrMaii/droprun/releases/download/v0.5.7-rc.1/DropRun-0.5.7-windows-x64.zip).
    For the portable edition, extract to a permanent folder and open `DropRun.cmd`.
 2. **Set up your Relay.** Open the local browser guide, check prerequisites and
    deploy to your own Cloudflare account.
-3. **Pair your phone.** Install the [Android APK](https://github.com/MrMaii/droprun/releases/download/v0.5.6-rc.1/DropRun-0.5.6-android.apk), scan the computer's code, confirm the server and authorize projects.
+3. **Pair your phone.** Install the [Android APK](https://github.com/MrMaii/droprun/releases/download/v0.5.7-rc.1/DropRun-0.5.7-android.apk), scan the computer's code, confirm the server and authorize projects.
 4. **Make a handoff.** Share a reference, then follow receipt, execution and
    approval through to the report. “Saved” means saved on your phone, not finished.
 
@@ -76,7 +76,7 @@ See the result, required actions, screenshots and files. Open the full report wh
 DropRun has no official account or subscription. Cloudflare, optional
 transcription and Codex usage belong to your accounts and **may incur charges**.
 Windows packages are unsigned and may show an unknown-publisher prompt; compare
-the release [checksums](https://github.com/MrMaii/droprun/releases/download/v0.5.6-rc.1/SHA256SUMS.txt).
+the release [checksums](https://github.com/MrMaii/droprun/releases/download/v0.5.7-rc.1/SHA256SUMS.txt).
 The public Android app installs alongside the historical private/debug app;
 different signing identities cannot silently replace each other.
 
@@ -119,7 +119,7 @@ website provides information and downloads. [Data and privacy →](docs/technica
 
 This is a release candidate. Physical Android performance, clean Windows
 installation and the full real-source handoff workflow still have open acceptance
-gates. See the [dated validation record](docs/releases/0.5.6-rc.1.md) before using
+gates. See the [dated validation record](docs/releases/0.5.7-rc.1.md) before using
 it on important projects. Screenshots and a UI tour do not establish those results.
 
 ## Build and contribute

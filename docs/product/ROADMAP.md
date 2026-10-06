@@ -3,7 +3,7 @@
 Current scope is the Android + Windows self-hosted open-source edition described
 in [ADR 0015](../decisions/0015-public-selfhost-release.md). No hosted subscription,
 iOS application or app-store launch is included. Evidence and current pass/fail
-results live in [release validation](../releases/0.5.6-rc.1.md).
+results live in [release validation](../releases/0.5.7-rc.1.md).
 
 ## 1. Reproducible baseline
 

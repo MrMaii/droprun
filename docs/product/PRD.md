@@ -6,7 +6,7 @@ This edition supersedes earlier hosted/pricing assumptions and ADR 0014's visual
 layout. Decisions: [self-hosting](../decisions/0015-public-selfhost-release.md) and
 [project-first UX](../decisions/0016-project-first-light-ux.md). Historical sections
 below describe the original product goals; release evidence is maintained only
-in [the current candidate record](../releases/0.5.6-rc.1.md).
+in [the current candidate record](../releases/0.5.7-rc.1.md).
 
 - Android + Windows x64; each owner deploys a private Cloudflare Relay. No official
   registration, subscription or multitenant service. GPTSites is the public website.
@@ -43,6 +43,9 @@ in [the current candidate record](../releases/0.5.6-rc.1.md).
   The optional model control shows a title, summary and expanded state. Effort
   choices show localized meanings with complete 48dp option rows; protocol IDs
   and unknown values stay intact. Focus, project and note survive local choices.
+  Compact share windows retain usable height and readable draft feedback;
+  taller windows gain breathing room continuously. Short forms still wrap
+  naturally, and large-font content remains scrollable within safe bounds.
   Share-save feedback gives offline or disabled-notification instructions a
   readable window, including when animations are off; Close stays immediate.
   It reflects connection/notification state when the flight finishes. Ordinary

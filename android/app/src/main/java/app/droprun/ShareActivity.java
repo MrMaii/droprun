@@ -159,7 +159,7 @@ public class ShareActivity extends StyledActivity {
         Capped(Context context){super(context);}
         @Override protected void onMeasure(int w,int h){
             if(MeasureSpec.getMode(h)==MeasureSpec.UNSPECIFIED){super.onMeasure(w,h);return;}
-            int height=MeasureSpec.getSize(h);if(height>Ui.dp(getContext(),400))height=Math.round(height*0.86f);
+            int height=MeasureSpec.getSize(h);height=Math.min(height,Math.max(Ui.dp(getContext(),720),Math.round(height*0.86f)));
             super.onMeasure(w,MeasureSpec.makeMeasureSpec(height,MeasureSpec.AT_MOST));
         }
     }
