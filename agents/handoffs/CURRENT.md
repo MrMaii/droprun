@@ -18,11 +18,16 @@ No stable launch or marketing handover is claimed.
   actualcore210/browser18, fail/cancelled/skipped/todo0. Complete325334B log
   SHA840a20c5e480e0d99aa92589ae4ab643a3c9a402fcf8acb4692586413676bea6.
   All31 anonymous immutable source GETs match; Thomas author/committer verified.
-- GPTSites13 remains last confirmed live at the same public address, hosting
-  source51b55a86dd97865fff875a935f0cf6d6f8954d0c. Fresh owner get_site confirms
-  public/active/owner/version13. Updated75-file landing source/output is prepared
-  with09 downloads and four new Delivery stills; publication still pending.
-  Prior public release/site evidence stays under its original dated records.
+- GPTSites14 is live, hosting source e8452e795337e302a51eb813b04af8caaef59624,
+  copied from b1be35724ddbbc29768bcc4aaa6dc8d7c41552ea. Native succeeded
+  2026-10-06T10:12:38.411698+00:00; public audience retained,75files copied,4new
+  stills/2changedpages, all old media/unknown paths kept. Native76files/12533760B,
+  localgzip11513539B; representations/digests separately recorded. Fresh2pages/
+  10CTAHEAD/22resourceGET/hash checks pass; no hosted browser/playback claim.
+- Documentation source b1be3572:15fresh immutable anonymous reads match; CI
+  37447756215 attempt1 all3jobs/35steps/10required/3checks,core210/browser18 pass.
+  Original326697B log SHA16cddfb60e9acb70792cbe2fa56a3f85a354ad09ca94e54e584547be0f45dd30.
+  The managed09 build checkout is archived; source/package/proofs remain outside.
 
 ## Latest completed work
 
@@ -44,7 +49,7 @@ No stable launch or marketing handover is claimed.
   one accepted task/dispatch definition nearby. Independent static review checks
   all32image/source tags/8image paragraphs unchanged;27media refs preserved.
   Downloads/docs now select verified09. Landing build22assets/canonical URL pass.
-  No fresh README browser rendering, signed-package capture or hosted QA claimed.
+  No fresh README/hosted browser or signed-package capture claimed; HTTP checks above are separate.
 
 ## Authorization and blocking conditions
 
@@ -67,16 +72,19 @@ No stable launch or marketing handover is claimed.
 
 ## Single recommended next action
 
-Publish the curated09 download/documentation update, then existing GPTSites14
-using exact pushed source and a local archive. Verify native publication and
-fresh public links without replaying rejected scripts/browser paths. Continue
-independent UI/brand work; genuine acceptance remains open.
+Fix TaskActivity action-feedback classification for null/empty exception text,
+then verify accurate failure/busy recovery with focused JVM/guarded local UI
+checks. The static finding also affects refresh null text; review scope before
+changing it. Do not weaken DemoTaskPreview.perform or replay denied fixtures.
+The settings failure-announcement finding is a separate next detail.
+Genuine acceptance and final marketing handover remain open.
 
 ## Files this pass
 
 Main/Task/Settings, opt-in unique-name probe, source/version metadata; native
 Delivery stills and README/media evidence;09 package/export/public-download
 records; current README/installation/PRD/roadmap/context links, landing
-builder/HTML, CHANGELOG and this handoff. Private originals stay in .local;
+builder/HTML, CHANGELOG and this handoff; actual Sites14/HTTP/documentation
+publication evidence and a new static Task feedback finding. Private originals stay in .local;
 film/launch assets stay uncommitted and excluded from public index.
 Author Thomas Deng <150266369+MrMaii@users.noreply.github.com>.
