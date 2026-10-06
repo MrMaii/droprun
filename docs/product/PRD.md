@@ -17,7 +17,7 @@ in [the current candidate record](../releases/0.5.8-rc.1.md).
   a static light/dark capture, with explicit still links and unchanged provenance.
   A localized installation link at the end of the tour lets ready readers leave
   for setup without scrolling through the full static gallery.
-  Current Share motion media show received-material disclosure, model choice and
+  Dated Share motion media show received-material disclosure, model choice and
   its default effort, with the preset project and empty note disclosed. Native-size
   sampled GIFs keep README loading light; original videos preserve the timeline.
   Workflow media use dated current native captures, with consistent light/dark
@@ -31,9 +31,10 @@ in [the current candidate record](../releases/0.5.8-rc.1.md).
   Navigation gear/information icons share restrained round outlines; their 48dp
   targets, theme tint, focus, press feedback and action meaning remain distinct.
   Home contains Recent handoffs and settings, with only used or pending projects.
-  Project names, counts and status share the card content edge; a redundant
-  initial tile does not take width from the full project identity.
-  Recycled Home cards update status text and its tint together. Large text puts
+  Project names, counts and status share the page's reading edge. Continuous
+  clickable rows use light separators and retain distinct state emphasis; a
+  redundant initial tile does not take width from the full project identity.
+  Recycled Home rows update status text and its tint together. Large text puts
   the date below the status, preserving natural wrapping and the project target;
   normal text retains the compact horizontal footer.
   Returning to Home or recreating it after an appearance change preserves the
@@ -55,9 +56,12 @@ in [the current candidate record](../releases/0.5.8-rc.1.md).
   the retained three values requires clearing the link first.
   Share project and intent steps each have one main question, without a
   duplicate section label. Material, execution context and actions remain clear.
-  Both pre-Send steps offer a compact, accessible material disclosure. Expansion
-  shows exact received text/URLs and each complete filename in order, without
-  fetching links or opening files. It distinguishes received payload from actual
+  Both pre-Send steps offer a compact, accessible material disclosure.
+  Material and model controls use light text rows with visible trailing arrows;
+  the optional note remains the distinct input surface. Their complete click
+  targets, press feedback and expanded-state descriptions remain available.
+  Expansion shows exact received text/URLs and each complete filename in order,
+  without fetching links or opening files. It distinguishes received payload from actual
   reading coverage, omits empty sections and preserves expansion across local
   step changes. Long material remains individually reachable by scrolling.
   The optional model control shows a title, summary and expanded state. Effort
@@ -79,6 +83,9 @@ in [the current candidate record](../releases/0.5.8-rc.1.md).
   Delivered screenshot links preserve the image ratio and have a touch target
   at least 48dp tall. Saving a decision disables their navigation and keyboard
   focus along with the delivery buttons; normal access returns when it settles.
+  A delivered result uses the page's reading width: a quiet section label,
+  readable summary and the existing preview actions in their original order.
+  Full reports and evidence remain available through their disclosures.
   A static preview explains that it is a fixed snapshot. Its complete version is
   selectable in a separate collapsed section, with expansion state restored
   after page recreation; it does not fill the main result explanation.
@@ -197,6 +204,8 @@ in [the current candidate record](../releases/0.5.8-rc.1.md).
   Before Send, the editor shows the saved execution preference and its consequence,
   or explicitly says it is unconfirmed. It explains that the Relay's setting on
   first receipt determines the task's mode; a cached preference is not a promise.
+  Confirmed execution settings are readonly context, while unknown settings keep
+  a distinct warning surface and the complete next step.
   The notice and Send remain readable by scrolling at 200% font. Model summaries
   use localized effort meanings, retaining unknown values and the exact request.
 - Share selection prioritizes recent server and local activity; identical names

@@ -965,7 +965,7 @@ public class LocalRecoveryTest {
         try(ActivityScenario<DemoShareActivity> scenario=ActivityScenario.launch(share)){
             scenario.onActivity(activity->{activity.selected="demo-studio";activity.go(1,1);});
             instrumentation.sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_TAB);instrumentation.waitForIdleSync();
-            scenario.onActivity(activity->{assertFalse(activity.sheet.isFocusable());assertFalse(activity.gauge.isFocusable());assertTrue(activity.note.requestFocus());});
+            scenario.onActivity(activity->{assertFalse(activity.sheet.isFocusable());assertFalse(activity.gaugeText.isFocusable());assertTrue(((android.view.View)activity.gaugeText.getParent()).isFocusable());assertTrue(activity.note.requestFocus());});
             instrumentation.sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_TAB);
             scenario.onActivity(activity->assertTrue(activity.getCurrentFocus().getContentDescription().toString().startsWith("Model & effort,")));
             instrumentation.sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_TAB);

@@ -14,7 +14,7 @@ DropRun brings progress, reports and evidence back to your phone.
 
 ## Inside the share sheet
 
-Current native development UI · October 6, 2026 · memory-only samples.
+Recorded native development UI · October 6, 2026 · memory-only samples.
 The project is preset; the optional note is empty. No task is sent.
 
 <p align="center"><picture><source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/brand/source-share-material-en-dark-20261006.png"><source media="(prefers-reduced-motion: reduce)" srcset="assets/brand/source-share-material-en-light-20261006.png"><img src="assets/brand/native-share-en-20261006.gif" width="320" alt="Native Android share sheet: inspect received sample material, select another sample model, view its default Thorough effort and collapse the options; visible memory-only marker, no task sent"></picture></p>
@@ -38,27 +38,19 @@ They show interface navigation, not a completed source-to-Codex task.
 
 ## Share. Follow. Inspect.
 
-Current screenshots and the Share recording use memory-only native samples
+Native screenshots and the Share recording use memory-only samples
 (October 6, 2026). Earlier tours retain their original source dates. These show the interface only, not the signed download or a
 real Codex task. [Capture notes](assets/brand/readme-media.md).
 
-### 01 · Share a reference
+<p align="center">
+  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-share-plain-en-dark-20261006.png"><img src="assets/brand/source-share-plain-en-light-20261006.png" width="220" alt="01 · Share: native Android note step with expandable received material, optional intent and Model & effort controls; memory-only probe marker retained"></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-home-rows-en-dark-20261006.png"><img src="assets/brand/source-home-rows-en-light-20261006.png" width="220" alt="02 · Follow: native Android project home with names, task and dispatch counts aligned at the card edge; memory-only and sample-project markers retained"></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-delivery-reading-en-dark-20261006.png"><img src="assets/brand/source-delivery-reading-en-light-20261006.png" width="220" alt="03 · Inspect: native handoff page with result, fixed-snapshot explanation and delivery actions; visible memory-only marker"></picture>
+</p>
 
-After choosing an existing project, add a note when you have a specific change in mind.
-
-<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-share-material-en-dark-20261006.png"><img src="assets/brand/source-share-material-en-light-20261006.png" width="280" alt="Native Android note step with expandable received material, optional intent and Model & effort controls; memory-only probe marker retained"></picture></p>
-
-### 02 · Follow local Codex
-
-Codex works on your computer, in the chosen project. Follow progress and decisions in its history.
-
-<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-home-en-dark-20261006.png"><img src="assets/brand/source-home-en-light-20261006.png" width="280" alt="Native Android project home with names, task and dispatch counts aligned at the card edge; memory-only and sample-project markers retained"></picture></p>
-
-### 03 · Inspect the delivery
-
-See the result, required actions, screenshots and files. Open the full report when needed.
-
-<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-delivery-stable-en-dark-20261006.png"><img src="assets/brand/source-delivery-stable-en-light-20261006.png" width="280" alt="Native handoff page with result, fixed-snapshot explanation and delivery actions; visible memory-only marker"></picture></p>
+1. **Share a reference.** Choose an existing project. Add a note when you have a specific change in mind.
+2. **Follow local Codex.** Work happens on your computer, in the chosen project. Follow progress and decisions in its history.
+3. **Inspect the delivery.** See the result, required actions, screenshots and files. Open the full report when needed.
 
 ## Start with your own setup
 

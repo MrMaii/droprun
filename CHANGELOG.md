@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased — clearer reading surfaces
+
+- Give Share material and model entries a common reading edge, keeping the note
+  distinct. Confirmed execution context stays readable; unconfirmed settings keep
+  their warning. [Native checks and stills](docs/releases/ui-share-reading-surfaces-2026-10-06.md).
+- Use continuous Home project rows and bring delivered results to page width.
+  [Native checks and stills](docs/releases/ui-home-delivery-reading-2026-10-06.md).
+- Group the bilingual README workflow into three images that wrap on narrow
+  screens, followed by a short Share, Follow, Inspect explanation.
+
 ## 0.5.8-rc.1 — clearer handoffs and native Share
 
 [Verified candidate and open acceptance](docs/releases/0.5.8-rc.1.md).

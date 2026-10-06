@@ -45,7 +45,7 @@ public class ShareActivity extends StyledActivity {
     static final int PAIR=40;
     final ExecutorService io=Executors.newSingleThreadExecutor();
     final Handler handler=new Handler(Looper.getMainLooper());
-    Store store;FrameLayout root,stage;Capped holder;LinearLayout sheet,projectList,panel;ScrollView scroll;Ui.Dots dots;ImageButton back,gauge;
+    Store store;FrameLayout root,stage;Capped holder;LinearLayout sheet,projectList,panel;ScrollView scroll;Ui.Dots dots;ImageButton back;
     EditText search,note;TextView gaugeText,sendTitle,status,badge;ImageView modelChevron;Ui.PlaneView plane;Ui.Glass dialog;ColorDrawable scrim;
     AlertDialog discardDialog;
     ShareImport incoming;Runnable importObserver;Bundle restoredState;
@@ -266,8 +266,8 @@ public class ShareActivity extends StyledActivity {
         LinearLayout content=Ui.vertical(this);content.setPadding(dp(14),0,dp(14),dp(12));
         if(materialOpen)materialContent(content);
         String label=materialLabel();LinearLayout group=Ui.disclosure(this,L.t("Received material: ","收到的材料：")+label,content,materialOpen,open->{materialOpen=open;if(open&&content.getChildCount()==0)materialContent(content);});
-        group.setTag("share-material-review");group.setBackground(Ui.outlined(this,Ui.SURFACE_2,Ui.LINE,14,1));
-        LinearLayout header=(LinearLayout)group.getChildAt(0);header.setPadding(dp(14),0,dp(14),0);TextView summary=(TextView)header.getChildAt(0);summary.setText(label);summary.setTextSize(13);Ui.oneLine(summary);
+        group.setTag("share-material-review");
+        LinearLayout header=(LinearLayout)group.getChildAt(0);header.setPadding(0,0,0,0);TextView summary=(TextView)header.getChildAt(0);summary.setText(label);summary.setTextSize(13);Ui.oneLine(summary);
         return group;
     }
     void materialContent(LinearLayout content){
@@ -398,11 +398,9 @@ public class ShareActivity extends StyledActivity {
         note.setMinLines(3);note.setMaxLines(6);note.setFilters(new InputFilter[]{new InputFilter.LengthFilter(15000)});note.setText(draft);Ui.styleInput(note);
         note.addTextChangedListener(new TextWatcher(){public void beforeTextChanged(CharSequence s,int start,int count,int after){}public void onTextChanged(CharSequence s,int start,int before,int count){draft=s.toString();checkpoint();}public void afterTextChanged(Editable value){}});
         column.addView(note,Ui.margins(this,8,10));
-        gauge=null;gaugeText=null;modelChevron=null;panel=null;panelOpen=false;
+        gaugeText=null;modelChevron=null;panel=null;panelOpen=false;
         if(store.models().length()>0){
-            LinearLayout gaugeRow=Ui.row(this);gaugeRow.setClickable(true);gaugeRow.setFocusable(true);gaugeRow.setOnClickListener(v->togglePanel());Ui.bindPress(gaugeRow);
-            gauge=Ui.iconButton(this,R.drawable.ic_gauge,L.t("Model & effort","模型强度"));gauge.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);gauge.setFocusable(false);gauge.setOnClickListener(v->togglePanel());
-            gaugeRow.addView(gauge,Ui.square(this,48));Ui.space(gaugeRow,10);
+            LinearLayout gaugeRow=Ui.row(this);gaugeRow.setMinimumHeight(dp(48));gaugeRow.setClickable(true);gaugeRow.setFocusable(true);gaugeRow.setOnClickListener(v->togglePanel());Ui.bindPress(gaugeRow);
             gaugeText=Ui.caption(this,"");gaugeRow.addView(gaugeText,Ui.grow());
             Ui.space(gaugeRow,8);modelChevron=new ImageView(this);modelChevron.setImageResource(R.drawable.ic_chevron_left);modelChevron.setImageTintList(ColorStateList.valueOf(Ui.MUTED));modelChevron.setRotation(180);modelChevron.setTag("share-model-chevron");modelChevron.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);gaugeRow.addView(modelChevron,Ui.square(this,18));
             column.addView(gaugeRow,Ui.fill());
@@ -417,7 +415,7 @@ public class ShareActivity extends StyledActivity {
     boolean executionSettingConfirmed(){return store.prefs.getBoolean("settingsKnown",false)&&store.prefs.getString("settingsError","").isEmpty();}
     View executionSettingNotice(){
         boolean confirmed=executionSettingConfirmed(),direct=store.directExecution();
-        LinearLayout notice=Ui.vertical(this);notice.setTag("share-execution-setting");notice.setPadding(dp(14),dp(10),dp(14),dp(10));notice.setBackground(Ui.outlined(this,Ui.SURFACE_2,Ui.LINE,14,1));
+        LinearLayout notice=Ui.vertical(this);notice.setTag("share-execution-setting");notice.setPadding(dp(confirmed?4:14),dp(confirmed?8:10),dp(confirmed?4:14),dp(confirmed?8:10));if(!confirmed)notice.setBackground(Ui.outlined(this,Ui.SURFACE_2,Ui.LINE,14,1));
         String title=confirmed?(direct?L.t("Saved setting · Direct execution","已保存设置 · 直接执行"):L.t("Saved setting · Plan review","已保存设置 · 先看计划")):L.t("Execution setting not confirmed","执行设置尚未确认");
         TextView heading=Ui.text(this,title,13,confirmed?Ui.TEXT:Ui.AMBER);heading.setTypeface(Ui.medium());heading.setTag("share-execution-title");notice.addView(heading,Ui.fill());
         String detail=confirmed?(direct?L.t("Can edit project files and run commands.","可修改项目文件并运行命令。"):L.t("Approve a plan before edits begin.","批准计划后才开始修改。")):L.t("Check DropRun Settings before sending.","发送前，请在 DropRun 设置中查看。");
@@ -429,7 +427,7 @@ public class ShareActivity extends StyledActivity {
         if(gaugeText==null)return;JSONObject chosen=store.model(model);String meaning=effortHint(effort),summary=(chosen==null?model:chosen.optString("displayName",model))+(effort.isEmpty()?"":" · "+(meaning.isEmpty()?effort:meaning));
         String title=L.t("Model & effort","模型强度");SpannableString label=new SpannableString(title+"\n"+summary);
         label.setSpan(new RelativeSizeSpan(1.25f),0,title.length(),Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);label.setSpan(new TypefaceSpan("sans-serif-medium"),0,title.length(),Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);label.setSpan(new ForegroundColorSpan(Ui.TEXT),0,title.length(),Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        gaugeText.setText(label);gaugeText.setTextColor(panelOpen?Ui.TEXT:Ui.MUTED);gauge.setImageTintList(ColorStateList.valueOf(panelOpen?Ui.ACCENT:Ui.TEXT));
+        gaugeText.setText(label);gaugeText.setTextColor(panelOpen?Ui.TEXT:Ui.MUTED);
         ((View)gaugeText.getParent()).setContentDescription(L.t("Model & effort, ","模型强度，")+summary+(panelOpen?L.t(", tap to collapse","，点按收起"):L.t(", tap to expand","，点按展开")));
     }
     void togglePanel(){if(panel==null)return;panelOpen=!panelOpen;if(panelOpen)renderPanel();reveal(panelOpen);updateGauge();}

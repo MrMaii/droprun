@@ -106,7 +106,7 @@ public class TaskActivity extends StyledActivity {
         }
         LinearLayout delivery=body;
         if(report.isEmpty())block(L.t("What's happening","当前进展"),status.equals("waiting_for_approval")&&liveApprovals==0?L.t("This command request expired or is no longer available. Reconnect to refresh the task's status.","这条命令请求已过期或失效。请联网查看任务的最新状态。"):TaskPresentation.noReport(status,!plan.isEmpty()));
-        else {delivery=Ui.card(this);TextView label=Ui.title(this,L.t("The result","交付结果"),17);label.setPadding(0,0,0,Ui.dp(this,12));delivery.addView(label);String summary=TaskPresentation.resultSummary(report);delivery.addView(Ui.text(this,summary,16,Ui.TEXT));body.addView(delivery,Ui.margins(this,18,10));}
+        else {delivery=Ui.vertical(this);TextView label=Ui.title(this,L.t("The result","交付结果"),12);label.setTextColor(Ui.MUTED);label.setPadding(0,0,0,Ui.dp(this,12));delivery.addView(label);String summary=TaskPresentation.resultSummary(report);delivery.addView(Ui.text(this,summary,18,Ui.TEXT));body.addView(delivery,Ui.margins(this,18,10));}
         if(Store.finished(status)){
             if(thumbnail!=null){
                 ImageView picture=new ImageView(this);picture.setImageBitmap(thumbnail);picture.setAdjustViewBounds(true);picture.setScaleType(ImageView.ScaleType.FIT_CENTER);picture.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);

@@ -285,3 +285,34 @@ by owner and root. Earlier delivery files and their hashes above remain historic
 
 [Originals, hashes and capture boundaries](../../docs/releases/ui-delivery-stable-media-2026-10-06.md).
 These are initial memory-only viewports, with no preview click, navigation or task.
+
+## Workflow gallery layout
+
+The bilingual README now groups Share, Home and Delivery in one inline gallery,
+with three short numbered steps below. Each image displays at 220 pixels wide;
+the opening native GIF remains 320 pixels wide. Light/dark source choices and
+all original PNG/GIF bytes remain unchanged. The gallery uses ordinary
+`picture`/`img` markup, without a fixed-width table, injected CSS or JavaScript.
+
+Local HTML previews at 328 and 820 pixels cover both languages and themes:
+the narrow gallery wraps to three rows, the wide gallery uses one row, and
+neither overflows. This is a local gallery layout check, not a fresh GitHub
+rendering check or new App capture. Sample and source limitations above remain.
+
+## Plain Share reading rows
+
+The first workflow still now uses the subsequently refined Share interface:
+plain material/model entries, one note input and confirmed execution context.
+Four original normal-font EN/ZH light/dark screenshots were directly viewed;
+brand and landing copies retain the original bytes and memory-only marker.
+[Capture and functional verification](../../docs/releases/ui-share-reading-surfaces-2026-10-06.md).
+The opening GIF and its reduced-motion stills remain from the earlier recording.
+
+## Continuous Home and delivery
+
+The other two workflow stills now select the subsequent continuous Home rows
+and delivery reading area. Both languages/themes use raw normal-font originals;
+all eight were directly viewed, with byte-identical brand/landing copies.
+[Native checks and boundaries](../../docs/releases/ui-home-delivery-reading-2026-10-06.md).
+The updated website source selects this same twelve-image workflow set. This
+does not establish a new hosted deployment or a recording of the signed APK.

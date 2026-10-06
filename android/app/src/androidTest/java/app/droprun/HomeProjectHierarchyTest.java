@@ -35,7 +35,7 @@ public class HomeProjectHierarchyTest {
                             assertEquals("Project identity begins at the card content edge",expectedLeft,left(holder.name));
                             assertEquals("Counts share the project identity edge",expectedLeft,left(holder.counts));assertEquals("State shares the identity edge",expectedLeft,left(holder.state));
                             int expectedWidth=holder.card.getWidth()-holder.card.getPaddingLeft()-holder.card.getPaddingRight()-Ui.dp(a,16);
-                            assertEquals("The project name uses all space before the chevron",expectedWidth,holder.name.getWidth());assertEquals(Ui.dp(a,224),holder.name.getWidth());
+                            assertEquals("The project name uses all space before the chevron",expectedWidth,holder.name.getWidth());assertEquals(Ui.dp(a,264),holder.name.getWidth());
                             assertEquals(project.optString("name"),holder.name.getText().toString());assertCompleteText(holder.name);assertCompleteText(holder.counts);assertCompleteText(holder.state);
                             assertEquals(ProjectPresentation.counts(project),holder.counts.getText().toString());assertEquals(ProjectPresentation.state(project),holder.state.getText().toString());
                             assertTrue(holder.card.getHeight()>=Ui.dp(a,48));assertTrue(holder.card.getWidth()>=Ui.dp(a,48));assertTrue(holder.card.isFocusable());assertTrue(holder.card.isEnabled());

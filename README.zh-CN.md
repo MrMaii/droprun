@@ -14,7 +14,7 @@ Codex 在你的 Windows 电脑上工作，Relay 由你部署到自己的 Cloudfl
 
 ## 分享浮层里的动效
 
-最新原生开发界面 · 2026 年 10 月 6 日 · 仅内存示例。
+原生开发界面实录 · 2026 年 10 月 6 日 · 仅内存示例。
 项目为预置内容，留言留空。未发送任务。
 
 <p align="center"><picture><source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/brand/source-share-material-zh-dark-20261006.png"><source media="(prefers-reduced-motion: reduce)" srcset="assets/brand/source-share-material-zh-light-20261006.png"><img src="assets/brand/native-share-zh-20261006.gif" width="320" alt="原生 Android 分享浮层：检查收到的示例材料、选中另一个示例模型、查看默认深入强度并收起选项；保留仅内存标记，未发送任务"></picture></p>
@@ -38,28 +38,20 @@ GIF 为原生 320 × 640 的 25 fps 采样展示；MP4 保留原始时间顺序�
 
 ## 分享参考、跟进工作、查看交付
 
-当前截图与分享录屏均来自原生内存示例（2026 年 10 月 6 日）。
+截图与分享录屏均来自原生内存示例（2026 年 10 月 6 日）。
 较早导览保留各自的原始来源日期。
 仅展示界面，不代表签名下载包录制或真实 Codex 任务。
 [媒体来源说明](assets/brand/readme-media.md)。
 
-### 01 · 分享参考
+<p align="center">
+  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-share-plain-zh-dark-20261006.png"><img src="assets/brand/source-share-plain-zh-light-20261006.png" width="220" alt="01 · 分享：原生 Android 留言步骤，展示可展开的收到材料、可选意图及模型强度入口，保留仅内存验证标记"></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-home-rows-zh-dark-20261006.png"><img src="assets/brand/source-home-rows-zh-light-20261006.png" width="220" alt="02 · 跟进：原生 Android 项目首页，项目名称、任务与交办次数沿卡片内容边缘对齐，保留仅内存验证与示例项目标记"></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-delivery-reading-zh-dark-20261006.png"><img src="assets/brand/source-delivery-reading-zh-light-20261006.png" width="220" alt="03 · 查看：原生交办页，交付结果、固定快照说明与交付入口，保留仅内存验证标记"></picture>
+</p>
 
-选好已有项目后，按需补充这次希望完成的改动。
-
-<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-share-material-zh-dark-20261006.png"><img src="assets/brand/source-share-material-zh-light-20261006.png" width="280" alt="原生 Android 留言步骤，展示可展开的收到材料、可选意图及模型强度入口，保留仅内存验证标记"></picture></p>
-
-### 02 · 跟进本地 Codex
-
-Codex 在你的电脑和所选项目中工作。按项目查看进展，处理待确认事项。
-
-<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-home-zh-dark-20261006.png"><img src="assets/brand/source-home-zh-light-20261006.png" width="280" alt="原生 Android 项目首页，项目名称、任务与交办次数沿卡片内容边缘对齐，保留仅内存验证与示例项目标记"></picture></p>
-
-### 03 · 查看交付
-
-先看结果、需要处理的动作、截图和文件，再按需展开报告。
-
-<p align="center"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-delivery-stable-zh-dark-20261006.png"><img src="assets/brand/source-delivery-stable-zh-light-20261006.png" width="280" alt="原生交办页：交付结果、固定快照说明与交付入口，保留仅内存验证标记"></picture></p>
+1. **分享参考。** 选好已有项目后，按需补充这次希望完成的改动。
+2. **跟进本地 Codex。** Codex 在你的电脑和所选项目中工作。按项目查看进展，处理待确认事项。
+3. **查看交付。** 先看结果、需要处理的动作、截图和文件，再按需展开报告。
 
 ## 从自己的环境开始
 
