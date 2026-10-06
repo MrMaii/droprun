@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## 0.5.11-rc.1 — clearer project-first UX
+
+[Verified candidate and open acceptance](docs/releases/0.5.11-rc.1.md).
+
 - Put History state before source/date, with full-width metadata and reserved
   space for its trailing arrow. Keep the current row and reading identity.
 - Make actual retention periods and recovery guidance readable primary text in

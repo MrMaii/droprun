@@ -33,7 +33,7 @@ English with complete Chinese support. Decisions:
 
 [PRD](../docs/product/PRD.md) owns requirements;
 [CONTRACTS](../docs/technical/CONTRACTS.md) owns protocols;
-[release record](../docs/releases/0.5.10-rc.1.md) owns current candidate evidence;
+[release record](../docs/releases/0.5.11-rc.1.md) owns current candidate evidence;
 [self-hosting guide](../docs/technical/SELF_HOSTING.md) owns installation.
 Do not publish local materials, credentials, signing keys or historical chats.
 Social campaign preparation does not authorize posting.

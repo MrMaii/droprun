@@ -1,163 +1,88 @@
 # Current Handoff
 
-Updated 2026-10-06 UTC. Continue substantive UI, UX and brand refinement while
+Updated 2026-10-06 UTC. Continue substantive UI/UX/brand improvement while
 genuine acceptance is unavailable. No stable launch or marketing handover.
 
-## Public delivery
+## Current public delivery
 
-- Signed Android/Windows public preview is still
-  [0.5.10-rc.1](../../docs/releases/0.5.10-rc.1.md), source97b01b17/code23.
-  Anonymous assets/checksums and stable Android certificate were checked;
-  Windows is NotSigned. Installer was not executed. The release record owns
-  package evidence; later UI source is not claimed to be inside this candidate.
-- [GPTSites17](https://droprun.dengmaizi0802.chatgpt.site/) carries the accepted
-  Home card images in both languages/themes. Native publication succeeded;
-  public audience unchanged. [Website/source evidence](../../docs/releases/ui-website-home-cards-2026-10-06.md)
-  owns91publicfiles/92archivefiles, source5ddd4ad5 and actual deployment. CSS,
-  JS, downloads and earlier demo keep their prior bindings. No new hosted
-  JavaScript/playback acceptance is claimed.
-- Public sourcec2a07f3: thirty-three anonymous immutable file reads match, Thomas
-  author/committer and unique parent14b563a verified. Exact CI37510525606 attempt1
-  passed all3jobs/35steps/10required/3checks: actualcore210/browser18/audit0/
-  Androidbuild. Earlier14b563a omitted generated HTML and failed its own run's
-  page check; original complete log remains. c2 repairs only the two HTML files.
-  Scoped sharp override and [dependency evidence](../../docs/releases/dependency-audit-2026-10-06.md)
-  retain their prior source/audit records; e315's own CI also passed.
+- [Signed candidate0.5.11-rc.1](../../docs/releases/0.5.11-rc.1.md) binds
+  sourcec0a49f1c/code24. Eight complete anonymous assets, seven checksums,
+  public API digests and annotated tag/source match. Stable Android certificate,
+  actual nondebuggable/noDemo manifest and DEX pass. Windows is NotSigned;
+  installer/Connector were not executed. The release record owns all package
+  evidence and source-archive EOL limitations.
+- Own sourceCI37518845457 attempt1 passes3jobs/35steps/10required/3checks:
+  actualcore210/browser18/audit0/Androidfourtasks/Windowspackaging. Full326576B
+  log SHAa1a1b35e retained. Independent CI/source/export/Android reviews passed.
+  db8f64a ownCI failed208/210 on two stale Relay-version assertions; original
+  log and unpublished intermediate builds remain. Final2pathfix has own CI.
+- Final local Android build15.797s, Gradle14s/1executed43up-to-date; two artifact
+  verifiers pass. Final owner first failed helper-hash preflight with0children;
+  corrected owner has a separate known-returned record. No hidden retry of an
+  unknown child. Windows package137.781s, two verifiers pass; actual scoped
+  sharp0.35.5/native metadata/license/AMD64 checks and in-memory8×8PNG pass.
+- GPTSites17 remains the website baseline at this document's commit; accepted
+  Home card images are already public. Candidate11 links are prepared in the
+  committed generated pages for native website publication. No new deployment
+  or hosted JavaScript/playback result is inferred from package checks.
 
-## Latest local UX — tested, ahead of signed candidate
+## UX and brand already included
 
-[History, search and Settings recovery](../../docs/releases/ui-history-settings-recovery-2026-10-06.md)
-owns the actual source/APK/output bindings, original failures and limitations.
-
-- History shows pending/failure/confirmed zero separately, preserves cached rows
-  and uses a useful null/blank error fallback. Native1/1 8.88s,3knownclosed,
-  21actualguards0,6memoryreads. The owner then failed on human/raw output parsing;
-  its failed record remains. History was not rerun to repair the parser.
-- Share searches the displayed label or full ID. Native1/1 6.717s,2knownclosed,
-  18actualguards0; fixed queries keep selection/material/order. Small-catalog
-  programmatic entry does not establish real keyboard/IME entry.
-- Settings adds Refresh/Retry through the existing three GETs. Native initially
-  failed1/1 7.915s: a54px keyboard-selected model row had48px visible. Three known
-  windows closed; fourth notentered. Existing reveal-on-layout now also runs
-  after unchanged-cache status updates. Test/fixture bytes unchanged.
-- Settings-only source freeze4d577923 (133native/4configs) built successfully
-  in42.125s. App3a277873; originaltest7cce8d97 was verified without reinstall.
-  Same test now1/1 10.729s,4knownclosed/25actualguards0,9completedreads/8callbacks/
-  25memorycacheapplies. Touch reading2771->2771; selected row fullyvisible.
-  No late UI update; ten device properties/source exact. No mode-operation or
-  announcement-count native claim. History/Share retain their earlier binding.
-- PRD/CONTRACTS/CHANGELOG synchronize these three behaviors. Their source is
-  public ine315ad6 with its own successful CI; signed10 stays unchanged.
-
-## Latest visual pass — local checks complete
-
-- [Model group](../../docs/releases/ui-settings-model-group-2026-10-06.md):
-  matte surface binds availability/Refresh/model/effort. Freeze94882034,
-  appa83e88a9/test2cc96cdf, build34.515s/JVM27/lint0errors30warnings. Reading
-  1/1 21.783s/6knownclosed24guards0 and Refresh1/1 8.067s/4knownclosed25guards0;
-  actualfocus237->243, touch2795->2795. Four raw normal-font captures accepted.
 - [Home cards](../../docs/releases/ui-home-project-cards-2026-10-06.md):
-  independent matte surfaces, initial/name/count and state/date grouping;
-  font>=1.5 hides decoration. Freeze dd281e0b, app9034c5a4/test9a38d89a,
-  build29.343s/JVM27/lint0errors30warnings. CurrentHomeRows1/1 19.011s,
-  6knownclosed/12emittedguards0/36actualrebinds;44ADBchildren returned0, ten
-  device properties/source exact. Old hierarchy matrix notrun; geometry only
-  synchronized. Four original normal-font images accepted, eight exact copies.
-- [Bilingual README](../../docs/releases/ui-readme-brand-reading-2026-10-06.md):
-  one value heading and earlier install link, shorter workflow, new actual
-  Home and Settings images. Eight offline approximate-GitHub scenes passed,
-  rootviewed6. A Chinese hanging headline found visually was shortened;
-  separateZH320light/dark2scenes passed, rootviewed2heroimages. No actual
-  GitHub/GIFplayback/allkeyboard/marketing-ready claim.
-- [ADR0019](../../docs/decisions/0019-semantic-content-groups.md) records the
-  useful-grouping trade-off and partial revision of ADR0018. No new network,
-  permissions, navigation, OS/IME setting or genuine task was introduced.
-- This pass is public inc2a07f3, with its own successful CI and GPTSites17.
-  Signed10 still refers to its earlier source. Model and Home tests have separate
-  source/APK bindings.
-- [History Refresh feedback](../../docs/releases/ui-history-refresh-feedback-2026-10-06.md)
-  now has its own local source freeze6321e926: disabled/alpha0.5/accurate busy
-  description and idle restoration. Actual build42.5s/JVM27/lint0errors28warnings;
-  appa5ef6b39/testc2a715fc. Native1/1 7.91s,3full/DESTROYED,21actualguards0,
-  6memoryreads;27ADBchildren returned0, ten device properties/source exact.
-  Cached Infofocus/list/cache/ID/top and0notifications survive; six programmatic
-  repeats add no reads. Fixture unchanged; no cachedsuccess/pause/nativeIME/
-  motion claim. Curated public sourcec17aed2 has ten anonymous GET200 reads,
-  eight changed files byte-exact, Thomas author/committer and unique parentc2.
-  Its own CI37513241255 attempt1 passed3jobs/35steps/10required/3checks;
-  actualcore210/browser18/audit0/Androidfourtasks1m37s. Complete326697-byte
-  log retained (SHA1f9baeeb); independent native and CI reviews passed.
-
-## Latest reading hierarchy pass
-
-- [History/retention record](../../docs/releases/ui-history-retention-reading-2026-10-06.md)
-  owns separate freezes/APKs/reports. History state now precedes full-width
-  source/date, with8dp+18dp reserved for its arrow. Only construction geometry
-  and one existing assertion line change; Refresh/bind/actions remain exact.
-- History freezeb9dd7171 built47.563s/exit0 with402B compiler notes;
-  app29a9d72c/testf22cdc73. Native1/1 25.417s (ADB27.25s),6full/DESTROYED,
-  43events/18actualguards0/36rebinds/4captures; all46ADBchildren returned0,
-  ten observations and source exact. Fixture/lifetime/writers unchanged;
-  no old matrix/motion/dialog, longest-state/pending/Follow-up native claim.
-- Root directly viewed all four raw normal-font History stills. Exact four brand
-  copies now supply both README History picture pairs; original markers/bars
-  remain. New images do not rerun the earlier README layout or Share motion.
-- Later retention Settings source0a188260 gives actual periods/recovery readable
-  primary text and rules within a matte group. All strings/policy/data logic stay
-  exact. Freeze05ace881 built38.813s/exit0/stderr0; app787c1737/testf22cdc73.
-  Both separate archived report sets show27JVM/0fail and lint28warnings/0errors.
-  Retention has no device/native/paragraph/screenshot acceptance yet.
-- This further pass awaits curated source publication and its own CI. Site17
-  and signed10 retain their previous bindings; no stable/marketing handover.
-
-## Visual and README basis
-
-Actual local captures retain memory/sample markers and system bars. No genuine
-Codex or signed-package demo is implied. Current work:
-[primary surfaces](../../docs/releases/ui-primary-surface-2026-10-06.md),
-[Share feedback](../../docs/releases/ui-share-destination-feedback-2026-10-06.md),
-[Share motion](../../docs/releases/ui-share-reading-motion-2026-10-06.md),
-[task reading position](../../docs/releases/ui-task-reading-position-2026-10-06.md).
-The bilingual README uses real native workflow stills before its Share GIF,
-with recording/provenance details. Its current eight-scene layout and separate
-two-scene Chinese wrap repair use approximate GitHub CSS; actual GitHub
-dark/fullmotion is not measured.
-
-The user's criticism drove the model group and Home card pass above. Continue
-useful grouping, hierarchy, navigation material and brand consistency from real
-native comparisons. Do not equate incremental fixes or tests with Apple-level
-polish or stop useful UI work because genuine acceptance is unavailable.
+  useful project grouping, stable counts, status/date hierarchy and large-text
+  name width; four accepted raw native stills retain sample markers.
+- [Settings model group](../../docs/releases/ui-settings-model-group-2026-10-06.md)
+  and [read recovery](../../docs/releases/ui-history-settings-recovery-2026-10-06.md):
+  availability/Refresh/model/effort together, cached failure recovery and current
+  reading/focus. Share searches displayed labels/full IDs without changing
+  destination/material/permission.
+- [History Refresh](../../docs/releases/ui-history-refresh-feedback-2026-10-06.md)
+  and [reading hierarchy](../../docs/releases/ui-history-retention-reading-2026-10-06.md):
+  accurate busy feedback, readable cache, state before full-width source/date.
+  Latest native reading method1/1 across6knownclosed windows; four accepted
+  raw stills now supply both README History pairs.
+- [README entrance](../../docs/releases/ui-readme-brand-reading-2026-10-06.md):
+  one value heading, install link, short workflow and actual native examples.
+  Original GIF/video scope stays dated. Approximate GitHub layout checks are
+  not actual GitHub/fullmotion/TalkBack results.
+- Retention typography is included but remains build-only. Its private reading
+  proposal in `.local/ux-oct6-retention-reading-proposal/` is unapplied/unrun.
+  Prior native checks have separate debug source/APK bindings; no combined
+  signed11 native count or genuine-task recording is inferred.
+- [ADR0019](../../docs/decisions/0019-semantic-content-groups.md) owns the useful
+  grouping/material trade-off. Continue from real visual comparisons, including
+  navigation, state recovery, feedback and brand consistency. Incremental
+  fixes/tests do not alone establish Apple-level polish.
 
 ## Authorization and blocking conditions
 
 - Local UI only. No genuine Relay/Codex task, owner Cloudflare change or social
   posting. No physical Android or usable clean Windows guest.
-- Automatic approval rejected240-row history/process loss, retained-Demo discard
-  plus ordinary Pair navigation, and owned-Sites nested cleanup. Do not retry
-  through another tool/wrapper or ask again. Draft/original directories remain.
-- Original IME/startup/SyncJob ANRs, Home2680.552s matrix and old transport failures
-  remain in dated originals. No failed IME replay, device reset/kill/clear,
-  default-IME or OS-setting change; no protected DemoTaskPreview bypass.
-- Stable gates remain genuine3projects/5consecutive handoffs/20source samples,
-  recovery/isolation; physical accessibility/frame/press/IME; clean Windows/fresh
-  owner Cloudflare/install-pair-deliver-upgrade-uninstall; genuine demo/posters.
-- Goal active while useful UI/brand/README work proceeds. Private film, launch-kit
-  and promo files stay unpublished; working film section byte-preserved and
-  excluded from public index. Never blanket git add. All prior managed build
-  worktrees are archived; needed originals are preserved outside them.
+- Do not replay rejected240-row history/process loss, retained-Demo discard and
+  ordinary Pair navigation, owned-Sites nested cleanup, protected DemoTaskPreview
+  bypass, emulator reset/kill/clear/defaultIME or OS-setting writes.
+- Original IME/startup/SyncJob ANRs, Home2680.552s matrix and transport failures
+  remain in their dated originals. All outputs/private helpers are preserved.
+- Genuine3projects/5continuous handoffs/20sources and real recovery/isolation;
+  physical Android accessibility/frame/press/IME; clean Windows/fresh-owner
+  Cloudflare install-pair-deliver-upgrade-uninstall; genuine demo/final posters
+  remain open. Candidate readiness is not stable launch or marketing handover.
+- Private film, launch-kit, promo and four unaccepted Delivery PNGs stay out of
+  public source and website output. Film section is byte-preserved in working
+  CURRENT and stripped only from its public index blob. Never blanket git add.
 
 ## Single recommended next action
 
-Publish the verified History hierarchy and retention source with their separate
-evidence; then prepare the next signed candidate from verified source. Continue
-retention paragraph reading/visual acceptance through an explicitly bounded
-local memory flow. Keep genuine gates visible; no real Relay/Codex or previously
-denied path, no marketing handover.
+Finish native website publication of the verified candidate links. Then review
+the finite retention paragraph-reading proposal before bounded local UI
+execution; keep its build-only limit until actual results. Continue useful UX
+work without retrying genuine or previously denied paths.
 
 ## Files this pass
 
-Home/Settings/History production and four presentation assertions; twelve accepted
-PNG copies; bilingual README/media provenance; generated website Home selector;
-PRD/CONTRACTS/CHANGELOG/ADR0019; three local visual records and the website/CI
-publication and History Refresh records; this handoff. Private launch originals remain uncommitted.
-Author Thomas Deng <150266369+MrMaii@users.noreply.github.com>.
+Runtime version metadata/Relay/installer; bilingual README/setup; current
+PRD/ROADMAP/CONTRACTS/PROJECT_CONTEXT; CHANGELOG; candidate11 release/anonymous
+evidence; website builder/generated language pages; this handoff. Private build
+and release helpers/evidence live under `.local/ux-rc0511-final/`; intermediate
+failures remain under `.local/ux-rc0511/`. Author Thomas Deng
+<150266369+MrMaii@users.noreply.github.com>.
