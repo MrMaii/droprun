@@ -291,7 +291,7 @@ public final class Ui {
         row.addView(words,grow());
         ImageView check=new ImageView(context);check.setImageResource(R.drawable.ic_check);check.setImageTintList(ColorStateList.valueOf(ACCENT));check.setVisibility(selected?View.VISIBLE:View.INVISIBLE);check.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
         row.addView(check,square(context,20));
-        row.setClickable(true);row.setFocusable(true);row.setContentDescription(title+(selected?L.t(", selected","，已选择"):""));bindPress(row);return row;
+        row.setClickable(true);row.setFocusable(true);row.setContentDescription(title+(detail!=null&&detail.length()>0?L.t(", ","，")+detail:"")+(selected?L.t(", selected","，已选择"):""));bindPress(row);return row;
     }
     /** Two-line list row: title on top, meta beneath, optional trailing view. Compact (≈56dp). */
     public static LinearLayout listRow(Context context,CharSequence title,CharSequence meta,View trailing){

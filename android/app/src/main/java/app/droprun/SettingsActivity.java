@@ -19,7 +19,7 @@ public class SettingsActivity extends StyledActivity {
     /** Project ids whose permission change is still in flight; their chip reads 更改中 and ignores taps. */
     final Set<String> switching=new HashSet<>();
     Store store;LinearLayout body;TextView noticeView,modeNoticeView;String notice="",modeMessage="";boolean busy=false,showAccess=false;
-    ModeChange modeChange,shownModeResult;
+    ModeChange modeChange,shownModeResult;int modeMessageColor=Ui.MUTED;
 
     @Override protected void onCreate(Bundle state){
         super.onCreate(state);store=new Store(this);Ui.configureWindow(this);
@@ -93,7 +93,7 @@ public class SettingsActivity extends StyledActivity {
     // ---- 执行模式 -------------------------------------------------------------------------------
     void modeSection(){
         LinearLayout card=section(L.t("Execution","执行模式"));
-        modeNoticeView=Ui.text(this,modeMessage,12,Ui.AMBER);modeNoticeView.setVisibility(modeMessage.isEmpty()?View.GONE:View.VISIBLE);card.addView(modeNoticeView,Ui.margins(this,0,10));
+        modeNoticeView=Ui.text(this,modeMessage,12,modeMessageColor);modeNoticeView.setVisibility(modeMessage.isEmpty()?View.GONE:View.VISIBLE);card.addView(modeNoticeView,Ui.margins(this,0,10));
         boolean direct=store.directExecution();
         card.addView(option(L.t("Act on the idea","直接执行"),L.t("Codex works directly in the original project","转发后立刻在项目里开工"),direct,()->changeMode(true)));
         Ui.space(card,8);
@@ -123,17 +123,17 @@ public class SettingsActivity extends StyledActivity {
     }
     void showModeChange(ModeChange operation){
         if(modeChange!=operation||isDestroyed()||isFinishing())return;
-        if(!sameModeScope(operation)){clearModeChange();busy=false;modeMessage=L.t("The connection changed. Reopen this screen.","连接已改变，请重新打开此页面。");render();return;}
+        if(!sameModeScope(operation)){clearModeChange();busy=false;modeMessage=L.t("The connection changed. Reopen this screen.","连接已改变，请重新打开此页面。");modeMessageColor=Ui.AMBER;render();return;}
         if(operation.isDone()&&shownModeResult==operation)return;
-        busy=!operation.isDone();boolean saved=false;
+        busy=!operation.isDone();boolean saved=false;modeMessageColor=busy?Ui.MUTED:Ui.AMBER;
         if(busy)modeMessage=L.t("Saving…","正在保存…");
-        else try{operation.get();modeMessage=L.t("Execution preference saved.","执行偏好已保存。");saved=true;}
+        else try{operation.get();modeMessage=L.t("Execution preference saved.","执行偏好已保存。");modeMessageColor=Ui.ACCENT;saved=true;}
         catch(Exception error){Throwable cause=error instanceof ExecutionException&&error.getCause()!=null?error.getCause():error;modeMessage=cause.getMessage();if(modeMessage==null||modeMessage.isEmpty())modeMessage=L.t("Could not save the execution preference.","执行偏好保存失败。");}
         if(!busy)shownModeResult=operation;render();
         if(saved)modeNoticeView.post(()->{if(modeChange==operation&&!isDestroyed()&&!isFinishing()&&sameModeScope(operation)&&!operation.announced&&modeNoticeView.isAttachedToWindow()){operation.announced=true;modeNoticeView.announceForAccessibility(modeMessage);}});
     }
     void clearModeChange(){
-        if(modeChange!=null&&modeChange.observer.get()==this)modeChange.observer.clear();modeChange=null;shownModeResult=null;modeMessage="";
+        if(modeChange!=null&&modeChange.observer.get()==this)modeChange.observer.clear();modeChange=null;shownModeResult=null;modeMessage="";modeMessageColor=Ui.MUTED;
     }
     static final class ModeChange extends FutureTask<Void>{
         final String scope;WeakReference<SettingsActivity> observer=new WeakReference<>(null);boolean announced;

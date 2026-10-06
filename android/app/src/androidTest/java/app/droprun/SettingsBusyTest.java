@@ -56,7 +56,7 @@ public class SettingsBusyTest {
         String title=direct?L.t("Act on the idea","直接执行"):L.t("Review a plan first","先看计划");View row=find(activity.body,title);assertNotNull("Find the actual execution option",row);return row;
     }
     static View find(View view,String title){
-        CharSequence description=view.getContentDescription();if(description!=null&&(description.toString().equals(title)||description.toString().equals(title+L.t(", selected","，已选择"))))return view;
+        CharSequence description=view.getContentDescription();if(description!=null&&(description.toString().equals(title)||description.toString().startsWith(title+L.t(", ","，"))))return view;
         if(view instanceof ViewGroup)for(int n=0;n<((ViewGroup)view).getChildCount();n++){View found=find(((ViewGroup)view).getChildAt(n),title);if(found!=null)return found;}return null;
     }
     static void awaitLayout(ActivityScenario<DemoSettingsBusyActivity> scenario)throws Exception{

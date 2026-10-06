@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Distinguish execution-setting progress, confirmed success and warnings with
+  existing accessible theme colors. Include visible explanations in native option
+  names, retaining selected and disabled states.
+- Keep English and Chinese README workflow pictures readable on narrow screens
+  with independent step headings, captions and full-width-safe pictures.
+
 ## 0.5.4-rc.1 — clearer delivery and decisions
 
 - Keep execution-setting progress and its result through page recreation without

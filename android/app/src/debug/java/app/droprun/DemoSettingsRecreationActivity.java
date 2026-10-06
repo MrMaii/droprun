@@ -40,7 +40,7 @@ public class DemoSettingsRecreationActivity extends SettingsActivity {
     }
     @Override protected void onCreate(Bundle state){
         previousLanguage=L.chinese()?"zh":"en";
-        global.put("language","zh".equals(getIntent().getStringExtra("language"))?"zh":"en");global.put("appearance","light");
+        global.put("language","zh".equals(getIntent().getStringExtra("language"))?"zh":"en");global.put("appearance","dark".equals(getIntent().getStringExtra("appearance"))?"dark":"light");
         cached.put("directExecution",true);
         if(state!=null&&finishBeforeAttach!=null){ControlledWork finishing=finishBeforeAttach;finishBeforeAttach=null;finishing.release.countDown();try{finishing.runner.join(3000);}catch(InterruptedException error){throw new AssertionError(error);}if(finishing.runner.isAlive())throw new AssertionError("Controlled worker did not finish before attachment");}
         super.onCreate(state);firstRenderedChild=body.getChildAt(0);

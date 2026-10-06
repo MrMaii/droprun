@@ -33,6 +33,9 @@ in [the current candidate record](../releases/0.5.4-rc.1.md).
   The Codex label remains complete at 200% font. Pending execution-setting
   choices report disabled state and cannot take keyboard focus; they become
   available again when the request settles.
+  Execution feedback stays beside those choices: neutral while saving, green
+  after confirmation, warning on failure or connection change. Accessible option
+  names include the visible title, any explanation and the selected state.
   A configuration recreation continues observing the same pending mode change,
   including its eventual success or failure, without starting it again. Already
   displayed success is not announced again after recreation. Old completions

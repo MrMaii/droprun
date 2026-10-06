@@ -1,6 +1,6 @@
 # Current Handoff
 
-Updated2026-10-05 UTC. Public candidate0.5.4-rc.1 is available. Stable launch and
+Updated 2026-10-06 UTC. Public candidate0.5.4-rc.1 is available. Stable launch and
 marketing acceptance remain open; independent UI/brand work continues.
 
 ## Published product and source
@@ -26,8 +26,19 @@ marketing acceptance remain open; independent UI/brand work continues.
 - README/download/setup pointers now target the verified0.5.4 candidate. Third
   workflow image uses the latest unedited native delivery-region probe. Its marker
   stays visible; first two screens and tours remain dated0.5.1 Demo data. Neither
-  set is genuine execution or a signed-package recording. Public presentation
-  source/CI/README viewport verification follows this documentation publication.
+  set is genuine execution or a signed-package recording. Presentation source
+  270b002b694164fbab2ebe0e8de14d4960b9cb82: CI37390566862 attempt1 all3jobs
+  green (actual core210/browser14, fail/skip/cancel0); ten anonymous source/image
+  GETs match Git and original capture bytes. The managed build worktree is archived.
+- Actual EN/ZH GitHub rendering at1280/390 has no document overflow, but the
+  three-column gallery compresses narrow images to65–92px, making text/markers
+  unreadable. This failed usability check is retained. Source6f577f6bdbd006d3413b51133043a2d2742195c4
+  fixes it with independent step/caption/picture blocks: EN/ZH1280/390 all12images
+  at280x560, loaded, no document overflow; narrow sample markers readable. Actual
+  signed-in Edge/light only; raw anonymous bytes are separate. One partial-blank
+  capture remains beside its bounded supplement. [README record](../../docs/releases/ui-readme-flow-2026-10-06.md)
+  owns scope. Exact-source CI37391622412 attempt1 all3jobs/35steps green, core210/
+  browser14 and fail/skip/cancel/todo0, no rerun. User browser state restored.
 
 ## Verified UX changes
 
@@ -50,6 +61,22 @@ marketing acceptance remain open; independent UI/brand work continues.
   Actual system fonts confirmed; no speculative serif correction applied.
 - [Earlier follow-through](../../docs/releases/ui-followthrough-2026-10-05.md)
   owns share feedback, focus, invalid-pair and related dated evidence.
+
+## Verified source refinements after the candidate
+
+- [Settings semantics](../../docs/releases/ui-settings-semantics-2026-10-06.md):
+  pending/success/warning use existing MUTED/ACCENT/AMBER; no string matching.
+  Native option names include visible explanation and selected suffix. Red3/4
+  failures preserved; combined12/13 (old9 and new3 tone methods pass), a test
+  attachment helper correction followed by targeted node1/1,56 assertions.
+  JVM24/lint0errors30warnings;12 raw regional PNGs/24 device-host hashes/guard0.
+  Independent source review passes. No single13/13 run, real receipt or TalkBack
+  claim. Source and development APK identities are frozen; device lease released.
+  Public0.5.4 packages are unchanged by these source refinements.
+- Next bounded delivery-image check: ordinary buttons disable during a decision,
+  but the current image entry remains active; extreme aspect ratios have no
+  explicit48dp target. Source evidence exists; client audit owns independent
+  memory-bitmap reproduction, not a genuine download or business operation.
 
 ## Authorization and blocking conditions
 
@@ -74,9 +101,9 @@ marketing acceptance remain open; independent UI/brand work continues.
 
 ## Single recommended next action
 
-Finish exact presentation-source CI and actual public README layout checks;
-then continue the next bounded local UI audit. Genuine/physical gates remain
-separate. Do not replay rejected operations or announce marketing readiness.
+Complete the bounded Task thumbnail target/busy-state reproduction and minimum
+fix, then verify its affected native controls. Root owns curated source publication;
+public0.5.4 artifacts stay immutable. Genuine and physical gates remain separate.
 
 ## Files this pass
 
