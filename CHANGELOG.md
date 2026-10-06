@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased — reading and brand continuity
+
+- Keep an optional-note label visible while typing; show explicit calendar dates
+  for older Home and History records. [Scoped native and JVM checks](docs/releases/ui-share-note-and-list-dates-2026-10-06.md).
+- Put Share first on the bilingual website, with a readable single-phone mobile
+  hero and clearer install/demo actions.
+- Refresh README with native project selection, return navigation and model-choice
+  GIFs; retain dated originals and use later labelled stills for reduced motion.
+
 ## 0.5.12-rc.1 — clearer Share confirmation
 
 [Verified candidate and open acceptance](docs/releases/0.5.12-rc.1.md).

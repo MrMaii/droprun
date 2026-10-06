@@ -1,0 +1,95 @@
+{
+  "date": "2026-10-06",
+  "scope": "0.5.13-dev/code26 local guarded reading; not signed-package or stable-launch acceptance",
+  "source": {
+    "versionName": "0.5.13-dev",
+    "versionCode": 26,
+    "files": 134,
+    "gradleConfigurations": 4,
+    "closureSha256": "505fe8c5c84b581c4fe25dec9ad7dcdde88c54e12975ffd579ac7e937b9cc138",
+    "exactBeforeAndAfter": true
+  },
+  "methods": {
+    "native": "app.droprun.SharePresentationTest#materialAndModelKeepClearLocalEntrypoints",
+    "jvm": "app.droprun.MobileContractTest#existingCacheAndExecutionContractsStillHold",
+    "dateChecks": "android/app/src/test/java/app/droprun/TaskPresentationTest.java"
+  },
+  "results": {
+    "jvmTests": 27,
+    "dateBoundaryChecksWithinExistingWrapper": 12,
+    "lintErrors": 0,
+    "lintWarnings": 28,
+    "compilerDeprecationStderrBytes": 266,
+    "nativeTests": 1,
+    "completeAndDestroyedWindows": 6,
+    "lifetimeStreams": 32,
+    "zeroBusinessCounterStreams": 12,
+    "headerClicksExpectedBySummary": 24,
+    "deviceReadingsUnchanged": true,
+    "rawImagesReviewedByRoot": 4
+  },
+  "debugApks": [
+    {
+      "role": "app",
+      "bytes": 1963838,
+      "sha256": "bfb1a687257e2203905de5a4cbad82d4cd2083e5316f7b3f1680c7f96ff6da2f"
+    },
+    {
+      "role": "test",
+      "bytes": 2034168,
+      "sha256": "b51e621ca45663b77b92c75773f9218cacf97fcad844d3a8810bf6b967a8230b"
+    }
+  ],
+  "images": [
+    {
+      "language": "en",
+      "theme": "light",
+      "fontScale": 1,
+      "paths": [
+        "assets/brand/source-share-note-en-light-20261006.png",
+        "landing/media/source-share-note-en-light-20261006.png"
+      ],
+      "bytes": 50167,
+      "sha256": "113256a8f07ad2b8e2b423e50b56e77d2f17c98be35fb15ac54ac2a20442cbcf"
+    },
+    {
+      "language": "en",
+      "theme": "dark",
+      "fontScale": 1,
+      "paths": [
+        "assets/brand/source-share-note-en-dark-20261006.png",
+        "landing/media/source-share-note-en-dark-20261006.png"
+      ],
+      "bytes": 48832,
+      "sha256": "8abbb813ac2fd2da6889844f5b20e20521c99e20e6cb363ee03ae5f2ee00c53e"
+    },
+    {
+      "language": "zh",
+      "theme": "light",
+      "fontScale": 1,
+      "paths": [
+        "assets/brand/source-share-note-zh-light-20261006.png",
+        "landing/media/source-share-note-zh-light-20261006.png"
+      ],
+      "bytes": 57816,
+      "sha256": "92ba4b97559c37dbbac0868b70a3ff8fd31d3c6e165110b0212096b494fa856f"
+    },
+    {
+      "language": "zh",
+      "theme": "dark",
+      "fontScale": 1,
+      "paths": [
+        "assets/brand/source-share-note-zh-dark-20261006.png",
+        "landing/media/source-share-note-zh-dark-20261006.png"
+      ],
+      "bytes": 56705,
+      "sha256": "fbf73db759690d74613426d2cd5974425b93abbdc40ffe6e42fb10238a2bc2f1"
+    }
+  ],
+  "limits": [
+    "24 header clicks are source assertions and a summary, not individual click logs.",
+    "Four normal-font memory-only stills; 200% windows are reading checks.",
+    "No new Home/History native geometry check, real IME, motion or physical-device measurement.",
+    "No genuine Relay/Codex task or signed-candidate acceptance."
+  ]
+}

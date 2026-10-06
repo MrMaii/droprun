@@ -33,8 +33,39 @@ genuine acceptance is unavailable. No stable launch or marketing handover.
   Its own sourceCI37530800757 atad543fb passes3jobs/35steps/10required, actual
   core210/browser18; complete326964B log SHAb86394fb retained. This CI is build,
   unit/browser/package validation, not a new genuine or physical-device result.
+- GPTSites20 succeeded at2026-10-06T21:45:54Z: hosting sourcee725ce4, saved
+  versionc8530daa, deployment6ac56c0a; product docs source0720cf0. Exact95public
+  files/96archive entries pass, only two language HTML files change, all earlier
+  media retained. Public audience stays unchanged. First native packaging failed
+  because explicit TMPDIR was missing; original commit/error preserved. Separate
+  preparation after creating that owned directory succeeded without source reset
+  or force push. Candidate12 downloads now appear in both language pages.
+  Own docsCI37535823985 attempt1 at0720cf0 passes3jobs/35steps/10required;
+  actualcore210/browser18. Complete326694B log SHA5b062195 retained. Original
+  pending snapshot stays preserved; no workflow trigger/rerun or borrowed CI.
 
 ## UX and brand already included
+
+- Current source prepares0.5.13/code26; downloads remain verified candidate12.
+  [Persistent note and list dates](../../docs/releases/ui-share-note-and-list-dates-2026-10-06.md):
+  four raw native stills accepted; JVM27pass/lint0errors28warnings; exact native
+  method1/1 passes27.373s across6full/DESTROYED windows, normal and200%text.
+  Empty/populated label, focus/draft restore and normal Send/draft visibility pass;
+  all business counters zero. Source134/4 and both installed APKs remain exact.
+  No new Home/History geometry, physical IME or performance claim.
+- New project-tour EN/ZH uses guarded0.5.12-dev/code25 before the note label.
+  Natural raw10.494389/10.496433s;137decoded frames each. Root inspected21original
+  chronological frames per language; GIF262×40ms=10.48s keeps source order/native
+  pixels, no artificial ending. README now uses these GIFs plus latercode26stills;
+  original9.06s and all historical media remain. First known-closed EN take failed
+  on strict adb transfer-progress handling; corrected successful takes are fresh,
+  originals retained. This is memory UI navigation, never a real task or signed capture.
+- Website local preview now puts Share first, Home second; mobile shows one large
+  Share. EN mobile install/demo buttons fit one row with54pxheight at360pxviewport;
+  desktop Share300px/Home170px at1280px. Both widths have no horizontal overflow.
+  Actual keyboard starts both original videos to their natural ends; arrow-key
+  workflow selection/focus works. Fresh screenshots retained. Reduced-motion code
+  reviewed; its actual preference-off execution remains unmeasured. Not published yet.
 
 - [History notice feedback](../../docs/releases/ui-history-notice-feedback-2026-10-06.md):
   only real details are interactive; static/removing/retry/hidden notices clear
@@ -105,16 +136,16 @@ genuine acceptance is unavailable. No stable launch or marketing handover.
 
 ## Single recommended next action
 
-Publish the generated candidate12 website/download updates and inspect the
-documentation commit's own CI. Then continue useful native UI/UX improvement
-from real visual comparisons without replaying denied or genuine-business paths.
+Commit the reviewed reading/brand source, publish the matching website and build
+candidate13 from that clean immutable commit. Preserve original media, private film
+and deny-list; keep genuine and physical acceptance gates open.
 
 ## Files this pass
 
 Candidate12 release record/JSON; README EN/ZH/current setup guides/roadmap/context;
 version download builder/generated HTML; retention scope wording and this handoff.
 Release12 source22cc77d, exact CI and anonymous assets are delivered. Website
-candidate12 publish still pending; Site19 remains live. Private actual evidence
+candidate12 Site20 is live; its own documentation CI passes. Private evidence
 is under `.local/ux-rc0512/` and `.local/ux-rc0512-drafts/`; original failures and
 retention debug bindings remain. Author Thomas Deng
 <150266369+MrMaii@users.noreply.github.com>.

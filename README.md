@@ -18,10 +18,10 @@ Codex works on your Windows computer. You deploy the Relay to your own Cloudflar
 2. **Follow local Codex.** Work happens on your computer, in that project. Follow progress and decisions in its history.
 3. **Inspect the delivery.** Check the result, required actions, screenshots and files; open the full report when needed.
 
-Current screenshots and the Share recording are labelled memory-only development UI, not signed-package or genuine Codex recordings. [Capture notes](assets/brand/readme-media.md).
+The screenshots and recordings below are labelled memory-only development UI, not signed-package or genuine Codex recordings. [Capture notes](assets/brand/readme-media.md).
 
 <p align="center">
-  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-share-confirmation-en-dark-20261006.png"><img src="assets/brand/source-share-confirmation-en-light-20261006.png" width="260" alt="01 · Share: project identity and received material together, followed by an optional note and model controls; native memory-only probe marker retained"></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-share-note-en-dark-20261006.png"><img src="assets/brand/source-share-note-en-light-20261006.png" width="260" alt="01 · Share: project and received material together, a persistent optional-note label and model controls; native memory-only probe marker retained"></picture>
   <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-home-cards-en-dark-20261006.png"><img src="assets/brand/source-home-cards-en-light-20261006.png" width="260" alt="02 · Follow: native Android project cards with initials, names, task and dispatch counts, status and recency; memory-only and sample-project markers retained"></picture>
   <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-delivery-matte-en-dark-20261006.png"><img src="assets/brand/source-delivery-matte-en-light-20261006.png" width="260" alt="03 · Inspect: native handoff page with a clear result heading, fixed-snapshot explanation and delivery actions; visible memory-only marker"></picture>
 </p>
@@ -47,22 +47,29 @@ Normal-font memory-only examples: Settings shows a scrolled model/access section
 
 </details>
 
-## Share UI recording · earlier layout
+## Project → note → back to project → model
 
-Native development UI · October 6, 2026 · memory-only. Preset project, empty note; no task sent.
-The recording uses the earlier layout; the current Share stills above show the new project-and-material confirmation group.
+Choose a sample project, visit the optional note, go back, then select another model.
+Native memory-only UI (`0.5.12-dev`, code25); the note stays empty and no task is sent.
+Recorded before the always-visible **Your note · optional** label was added; this is not a recording of the signed download.
+
+<p align="center"><picture><source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/brand/source-share-note-en-dark-20261006.png"><source media="(prefers-reduced-motion: reduce)" srcset="assets/brand/source-share-note-en-light-20261006.png"><img src="assets/brand/native-share-project-tour-en-20261006.gif" width="320" alt="Native Android memory-only UI: select the sample project, visit the empty optional note, return to the project list, select again, choose another sample model with default Thorough effort and collapse the options; no task sent"></picture></p>
+
+[10.49-second original recording](landing/media/native-share-project-tour-en-20261006.mp4) · [Captions](landing/media/native-share-project-tour-en-20261006.vtt)
+
+The GIF samples the original frames at 25 fps, native 320 × 640, for 10.48 seconds. Reduced motion shows the later static view with the persistent note label: [light](assets/brand/source-share-note-en-light-20261006.png) · [dark](assets/brand/source-share-note-en-dark-20261006.png).
+
+<details>
+<summary><strong>Earlier Share layout · 9.06-second recording</strong></summary>
+
+Memory-only development UI; preset project, empty note, no task sent. This earlier layout predates the project-and-material confirmation group.
 
 <p align="center"><picture><source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/brand/source-share-plain-en-dark-20261006.png"><source media="(prefers-reduced-motion: reduce)" srcset="assets/brand/source-share-plain-en-light-20261006.png"><img src="assets/brand/native-share-reading-en-20261006.gif" width="320" alt="Native Android share sheet: inspect received sample material, select another sample model, view its default Thorough effort and collapse the options; visible memory-only marker, no task sent"></picture></p>
 
 [9.06-second original recording](landing/media/native-share-reading-en-20261006.mp4) · [Captions](landing/media/native-share-reading-en-20261006.vtt)
 
-Reduced motion shows a static image.
-
-<details>
-<summary><strong>Static views and recording details</strong></summary>
-
 [Light still](assets/brand/source-share-plain-en-light-20261006.png) · [Dark still](assets/brand/source-share-plain-en-dark-20261006.png).
-The GIF is a 25 fps sampled display at native 320 × 640; the MP4 keeps the original timeline.
+The earlier GIF remains a 25 fps sampled display at native 320 × 640; its MP4 keeps the original timeline.
 
 </details>
 

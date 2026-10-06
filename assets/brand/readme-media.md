@@ -1,6 +1,64 @@
 # Native README media
 
-The opening section and first table describe the original October 5 captures.
+## Project → note → back to project → model · October 6, 2026
+
+The main README GIFs use these English and Chinese recordings of the native
+`0.5.12-dev` debug UI (code25), at 320 × 640 with normal-size light UI. They show
+real row selection and back navigation within a fixed in-memory project: choose
+project, visit the empty optional note, return to the project list, choose again,
+open Model & effort, choose another sample model with its default Thorough effort,
+and collapse the options. The project-and-material confirmation group is present;
+the later always-visible label for the optional note is **not** present.
+
+The visible memory-only marker, system bars and original timeline remain. No task
+was sent, no material was opened, and no text was typed. The raw MP4s are byte-exact
+copies of the successful native captures. They are development UI examples, not
+recordings of the signed candidate12, genuine Codex tasks, physical-device motion
+or performance acceptance. The two older 9.06-second recordings remain linked in
+README details; all earlier assets are retained. Website integration is separate.
+
+Both originals decode to 137 frames: English duration **10.494389 s**, Chinese
+**10.496433 s**. Each GIF samples only those existing frames in original order at
+25 fps: **262 frames × 40 ms = 10.48 s**, native 320 × 640. Sampling can hold or drop
+source frames; it does not interpolate motion, crop, resize, retouch or append a
+fabricated ending. The VTTs use the observed original-frame PTS boundaries for
+project, note, return, project selection, model opening, model selection and the
+collapsed final state; cue ends stay within each actual MP4 duration.
+
+Reduced motion uses the later code26 stills with the persistent optional-note
+label, recorded separately below. They are not frames of this code25 recording.
+
+| File | Bytes | SHA-256 |
+| --- | ---: | --- |
+| [native-share-project-tour-en-20261006.gif](native-share-project-tour-en-20261006.gif) | 1389490 | `db42a7af5018696ed55ff2017e0fcd03254464d78e0c36fb3cf17789dc86e852` |
+| [native-share-project-tour-en-20261006.mp4](../../landing/media/native-share-project-tour-en-20261006.mp4) | 616864 | `0365a38e9b0c8de847c3791ba08425c9e3464941b71728d816781de23baf1e6a` |
+| [native-share-project-tour-en-20261006.vtt](../../landing/media/native-share-project-tour-en-20261006.vtt) | 637 | `bbc3f9e757afdbc62bab234d481e1a9625fa1a197cde2897b2b7beddf7d46196` |
+| [native-share-project-tour-zh-20261006.gif](native-share-project-tour-zh-20261006.gif) | 1309246 | `3d2389a874b5cc0de2def803fabfd852f06ee56851311b09fec46e19f502b778` |
+| [native-share-project-tour-zh-20261006.mp4](../../landing/media/native-share-project-tour-zh-20261006.mp4) | 598523 | `ec9b8f6843a6b3a366b8d534d86f22a8d29899f82e939076785b46e042812cfc` |
+| [native-share-project-tour-zh-20261006.vtt](../../landing/media/native-share-project-tour-zh-20261006.vtt) | 630 | `4fef794ac3cfa6fd101335ebf02b6f0bd6548a41a09c587e8802153dd0d0d764` |
+
+## Persistent optional-note label · October 6, 2026
+
+The README Share gallery and reduced-motion views use the four accepted raw
+320 × 640 PNGs below from the subsequent development UI (code26). The normal-size
+English/Chinese, light/dark views show the project/material confirmation group
+and the persistent **Your note · optional** / **留言 · 可选** label above an empty
+note field. Visible memory-only markers and system bars remain; these byte-exact
+originals do not show a sent task or a signed-package capture.
+
+The code25 project-tour GIFs/MP4s above predate this label. Earlier confirmation-group
+code24 PNGs remain in their dated record below; no earlier asset was overwritten.
+
+| File | Bytes | SHA-256 |
+| --- | ---: | --- |
+| [source-share-note-en-light-20261006.png](source-share-note-en-light-20261006.png) | 50167 | `113256a8f07ad2b8e2b423e50b56e77d2f17c98be35fb15ac54ac2a20442cbcf` |
+| [source-share-note-en-dark-20261006.png](source-share-note-en-dark-20261006.png) | 48832 | `8abbb813ac2fd2da6889844f5b20e20521c99e20e6cb363ee03ae5f2ee00c53e` |
+| [source-share-note-zh-light-20261006.png](source-share-note-zh-light-20261006.png) | 57816 | `92ba4b97559c37dbbac0868b70a3ff8fd31d3c6e165110b0212096b494fa856f` |
+| [source-share-note-zh-dark-20261006.png](source-share-note-zh-dark-20261006.png) | 56705 | `fbf73db759690d74613426d2cd5974425b93abbdc40ffe6e42fb10238a2bc2f1` |
+
+## Original captures · October 5, 2026
+
+This section and its first historical table describe the original October 5 captures.
 New dated workflow media have their own source records below.
 
 The October 6 workflow stills also have byte-exact website copies under the same
@@ -273,10 +331,10 @@ and the settled Delivery PNGs linked below, plus these videos and first-frame
 posters. Its captions describe the actual sample flow. Older assets remain under
 their original filenames and retain their earlier provenance.
 
-README 首屏现为最新分享配置动图：两种语言均为浅色原生内存示例，项目预置、留言
+当时的 README 首屏使用这一分享配置动图：两种语言均为浅色原生内存示例，项目预置、留言
 留空；展示材料展开、模型选择、默认深入强度与收起后的摘要。没有发送或执行任务。
 原始 MP4 保留全部源帧；GIF 按 25 fps 正常时间采样，40 ms 一帧，原生尺寸不变。
-透明差分属于编码压缩，合成画面仍完整，两个动图均小于 1 MB。官网源码已引用当前首页、
+透明差分属于编码压缩，合成画面仍完整，两个动图均小于 1 MB。当时的官网源码已引用首页、
 分享与下述新交付原图，以及原始视频和首帧封面。旧图、旧视频与失败诊断均保留。上述素材不代表签名
 发行包录制、真机性能、真实来源读取或完整交办验收。
 
@@ -316,7 +374,7 @@ plain material/model entries, one note input and confirmed execution context.
 Four original normal-font EN/ZH light/dark screenshots were directly viewed;
 brand and landing copies retain the original bytes and memory-only marker.
 [Capture and functional verification](../../docs/releases/ui-share-reading-surfaces-2026-10-06.md).
-The opening GIF and its reduced-motion stills remain from the earlier recording.
+The earlier GIF and its reduced-motion stills retain their original provenance.
 
 ## Continuous Home and delivery
 
@@ -335,13 +393,13 @@ directly viewed and copied byte-for-byte, retaining memory markers and system
 pixels. They are not full Settings screenshots, 200% captures, actual task
 history or recordings of the signed download. [Native verification and originals](../../docs/releases/ui-settings-history-reading-2026-10-06.md).
 
-## Current reading-layout Share recording
+## Earlier reading-layout Share recording
 
-The opening GIF and website player now use two subsequent native recordings with
+The earlier README GIFs and dated website player use two native recordings with
 the plain Share layout. Original MP4 durations are 9.061167s English and 9.059311s
 Chinese. The normal-size 25fps sampled GIFs are 860536 and 865983 bytes; source
 timestamps round to 9.08s and 9.04s respectively. Reduced-motion stills select the
-current plain Share captures. Earlier October 6 recordings remain historical.
+plain Share captures. Earlier October 6 recordings remain historical.
 [Original identities, native checks and sampling boundaries](../../docs/releases/ui-share-reading-motion-2026-10-06.md)
 own this media's provenance. These are memory-only UI samples, not actual tasks.
 
@@ -419,12 +477,12 @@ binding and is absent from these images. Earlier GIFs and Settings stills remain
 
 ## Share confirmation group · October 6, 2026
 
-The current workflow gallery uses these four raw 320 × 640 native PNGs from the
+The earlier workflow gallery used these four raw 320 × 640 native PNGs from the
 0.5.11 development UI (code24), after the project-and-material confirmation group
 was added. English/Chinese, light/dark, normal font size; the optional note is empty.
 The visible memory-only marker and system bars are retained. No task was sent.
 Both `assets/brand/` and `landing/media/` contain byte-exact copies; no crop,
-retouching or recreated UI. The existing 9.06-second Share recording retains its
+retouching or recreated UI. The earlier 9.06-second Share recording retains its
 earlier layout and source. These stills do not represent the signed candidate11.
 [Scoped native reading and motion checks](../../docs/releases/ui-share-confirmation-2026-10-06.md).
 

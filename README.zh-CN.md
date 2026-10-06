@@ -18,10 +18,10 @@ Codex 在你的 Windows 电脑上工作，Relay 由你部署到自己的 Cloudfl
 2. **跟进本地 Codex。** Codex 在你的电脑和所选项目中工作。按项目查看进展与待确认事项。
 3. **查看交付。** 检查结果、需要处理的动作、截图和文件，再按需展开报告。
 
-当前截图与分享录屏为标注的原生内存示例，不是签名包录制或真实 Codex 任务。[媒体来源](assets/brand/readme-media.md)。
+下方截图与录屏为标注的原生内存示例，不是签名包录制或真实 Codex 任务。[媒体来源](assets/brand/readme-media.md)。
 
 <p align="center">
-  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-share-confirmation-zh-dark-20261006.png"><img src="assets/brand/source-share-confirmation-zh-light-20261006.png" width="260" alt="01 · 分享：项目身份与收到材料组合确认，再填写可选留言及模型参数；保留原生仅内存验证标记"></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-share-note-zh-dark-20261006.png"><img src="assets/brand/source-share-note-zh-light-20261006.png" width="260" alt="01 · 分享：项目与收到材料组合确认，常驻可选留言标签与模型参数；保留原生仅内存验证标记"></picture>
   <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-home-cards-zh-dark-20261006.png"><img src="assets/brand/source-home-cards-zh-light-20261006.png" width="260" alt="02 · 跟进：原生 Android 项目卡，集中展示首字、名称、任务与交办次数、状态和最近交办，保留仅内存验证与示例项目标记"></picture>
   <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-delivery-matte-zh-dark-20261006.png"><img src="assets/brand/source-delivery-matte-zh-light-20261006.png" width="260" alt="03 · 查看：原生交办页，清楚的结果标题、固定快照说明与交付入口，保留仅内存验证标记"></picture>
 </p>
@@ -46,22 +46,29 @@ Codex 在你的 Windows 电脑上工作，Relay 由你部署到自己的 Cloudfl
 
 </details>
 
-## 分享界面录屏 · 较早布局
+## 项目 → 留言 → 返回项目 → 选择模型
 
-原生开发界面 · 2026 年 10 月 6 日 · 仅内存示例；项目预置、留言留空，未发送任务。
-录屏保留较早布局；上方当前分享截图展示新的项目与材料确认区域。
+选择示例项目、查看可选留言、返回项目列表，再选择另一个模型。
+原生内存界面（`0.5.12-dev`，code25）；留言留空，未发送任务。
+录于新增常驻**留言 · 可选**标签之前；不是签名下载包的录制。
+
+<p align="center"><picture><source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/brand/source-share-note-zh-dark-20261006.png"><source media="(prefers-reduced-motion: reduce)" srcset="assets/brand/source-share-note-zh-light-20261006.png"><img src="assets/brand/native-share-project-tour-zh-20261006.gif" width="320" alt="原生 Android 内存界面：选择示例项目、查看空白可选留言、返回项目列表、再次选择项目、选中另一个示例模型及其默认深入强度，最后收起选项；未发送任务"></picture></p>
+
+[10.50 秒原始录屏](landing/media/native-share-project-tour-zh-20261006.mp4) · [字幕](landing/media/native-share-project-tour-zh-20261006.vtt)
+
+GIF 按 25 fps 采样原始画面，保留原生 320 × 640，时长 10.48 秒。减少动画时显示含常驻留言标签的较新静态截图：[浅色](assets/brand/source-share-note-zh-light-20261006.png) · [深色](assets/brand/source-share-note-zh-dark-20261006.png)。
+
+<details>
+<summary><strong>较早分享布局 · 9.06 秒录屏</strong></summary>
+
+原生内存界面；项目预置、留言留空，未发送任务。较早布局尚未加入项目与材料确认组。
 
 <p align="center"><picture><source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/brand/source-share-plain-zh-dark-20261006.png"><source media="(prefers-reduced-motion: reduce)" srcset="assets/brand/source-share-plain-zh-light-20261006.png"><img src="assets/brand/native-share-reading-zh-20261006.gif" width="320" alt="原生 Android 分享浮层：检查收到的示例材料、选中另一个示例模型、查看默认深入强度并收起选项；保留仅内存标记，未发送任务"></picture></p>
 
 [9.06 秒原始录屏](landing/media/native-share-reading-zh-20261006.mp4) · [字幕](landing/media/native-share-reading-zh-20261006.vtt)
 
-启用减少动画时显示静态界面。
-
-<details>
-<summary><strong>静态界面与录屏说明</strong></summary>
-
 [浅色静态截图](assets/brand/source-share-plain-zh-light-20261006.png) · [深色静态截图](assets/brand/source-share-plain-zh-dark-20261006.png)。
-GIF 为原生 320 × 640 的 25 fps 采样展示；MP4 保留原始时间顺序。
+较早 GIF 仍为原生 320 × 640 的 25 fps 采样展示；其 MP4 保留原始时间顺序。
 
 </details>
 

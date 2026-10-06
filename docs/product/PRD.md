@@ -6,13 +6,16 @@ This edition supersedes earlier hosted/pricing assumptions and ADR 0014's visual
 layout. Decisions: [self-hosting](../decisions/0015-public-selfhost-release.md) and
 [project-first UX](../decisions/0016-project-first-light-ux.md). Historical sections
 below describe the original product goals; release evidence is maintained only
-in [the current candidate record](../releases/0.5.11-rc.1.md).
+in [the current candidate record](../releases/0.5.12-rc.1.md).
 
 - Android + Windows x64; each owner deploys a private Cloudflare Relay. No official
   registration, subscription or multitenant service. GPTSites is the public website.
   Its installation section places the Windows installer and self-hosting guide
   beside the prerequisites. README gives installation a distinct primary entry,
   with compact website, preview-download and language links below it.
+  Website first-screen media centers Share: one large share sheet on narrow
+  screens, with Home as a secondary desktop view. Installation is primary,
+  the native UI tour secondary, and GitHub remains a text entry.
   README introduces the workflow and current native gallery before its dated
   Share tour; the value sentence has a clear heading, and recording details use
   a disclosure. Primary workflow images are larger; reduced motion selects
@@ -21,8 +24,8 @@ in [the current candidate record](../releases/0.5.11-rc.1.md).
   directly to setup.
   The website Share recording uses native-width detail when space permits;
   narrow layouts stack the explanation and recording so controls remain readable.
-  Dated Share motion media show received-material disclosure, model choice and
-  its default effort, with the preset project and empty note disclosed. Native-size
+  Dated Share motion media show project selection, return navigation, model choice
+  and its default effort, with the memory-only project and empty note disclosed. Native-size
   sampled GIFs keep README loading light; original videos preserve the timeline.
   Workflow media use dated current native captures, with consistent light/dark
   language sets; older tours keep their source date and sample-data scope.
@@ -41,12 +44,13 @@ in [the current candidate record](../releases/0.5.11-rc.1.md).
   Navigation gear/information icons share restrained round outlines; their 48dp
   targets, theme tint, focus, press feedback and action meaning remain distinct.
   Home contains Recent handoffs and settings, with only used or pending projects.
-  Project names, counts and status share the page's reading edge. Continuous
-  clickable rows use light separators and retain distinct state emphasis; a
-  redundant initial tile does not take width from the full project identity.
+  Project names, counts and status form recognizable groups using the
+  [current surface decision](../decisions/0019-semantic-content-groups.md).
   Recycled Home rows update status text and its tint together. Large text puts
   the date below the status, preserving natural wrapping and the project target;
   normal text retains the compact horizontal footer.
+  Older list dates identify the calendar date without requiring mental arithmetic;
+  absent dates are explicit. The display policy is owned by CONTRACTS.
   Returning to Home or recreating it after an appearance change preserves the
   visible project and reading offset; routine updates do not reset the list.
   Inserting/removing pending entries preserves the record and offset in both
@@ -212,6 +216,7 @@ in [the current candidate record](../releases/0.5.11-rc.1.md).
   Physical-device performance targets: <5% overdue frames, no >700ms frozen frame,
   p95 press feedback <100ms. These are goals, not measured results.
 - UX polish acceptance: project/computer names remain readable at 200% font;
+  the optional note keeps its visible field label after typing;
   empty-home guidance and share actions remain reachable by scrolling; project
   and task cards can receive keyboard focus and open with Enter; pending entries expose failure and
   retry; follow-up drafts survive Activity recreation. Presses, navigation and

@@ -398,7 +398,8 @@ public class ShareActivity extends StyledActivity {
         if(getResources().getConfiguration().fontScale<1.5f){destination.addView(Ui.projectTile(this,projectName()),Ui.square(this,32));Ui.space(destination,12);}
         TextView target=Ui.text(this,L.t("For “","转发到「")+projectName()+L.t("”","」"),17,Ui.TEXT);target.setTypeface(Ui.medium());target.setPadding(0,0,0,0);target.setTag("share-destination-name");destination.addView(target,Ui.grow());receipt.addView(destination,Ui.fill());
         receipt.addView(materialDisclosure(),Ui.margins(this,2,0));column.addView(receipt,Ui.margins(this,8,4));
-        note=new EditText(this);note.setHint(L.t("Optional. Leave this blank and let Codex find the useful part.","可选。留空让 Codex 自己判断怎么用。"));note.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_FLAG_MULTI_LINE|InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
+        TextView noteLabel=Ui.text(this,L.t("Your note · optional","留言 · 可选"),13,Ui.TEXT);noteLabel.setTypeface(Ui.medium());noteLabel.setPadding(0,0,0,0);noteLabel.setTag("share-note-label");column.addView(noteLabel,Ui.margins(this,4,0));
+        note=new EditText(this);note.setId(View.generateViewId());noteLabel.setLabelFor(note.getId());note.setHint(L.t("Leave blank for Codex to decide.","留空，让 Codex 判断。"));note.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_FLAG_MULTI_LINE|InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
         note.setMinLines(3);note.setMaxLines(6);note.setFilters(new InputFilter[]{new InputFilter.LengthFilter(15000)});note.setText(draft);Ui.styleInput(note);
         note.addTextChangedListener(new TextWatcher(){public void beforeTextChanged(CharSequence s,int start,int count,int after){}public void onTextChanged(CharSequence s,int start,int before,int count){draft=s.toString();checkpoint();}public void afterTextChanged(Editable value){}});
         column.addView(note,Ui.margins(this,8,10));

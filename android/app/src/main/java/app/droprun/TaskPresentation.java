@@ -90,6 +90,13 @@ final class TaskPresentation {
         if(hours<24)return hours+L.t(" hr ago"," 小时前");
         return (hours/24)+L.t(" days ago"," 天前");
     }
+    /** List dates only; unknown timestamps must not imply the Unix epoch. */
+    static String listDate(long createdAt,long now){
+        if(createdAt<=0)return L.t("Date unavailable","日期未知");
+        if(createdAt>now||now-createdAt<7*86400000L)return elapsed(createdAt,now);
+        java.time.format.DateTimeFormatter format=java.time.format.DateTimeFormatter.ofPattern(L.t("MMM d, uuuu","uuuu年M月d日"),L.chinese()?java.util.Locale.CHINESE:java.util.Locale.ENGLISH);
+        return format.format(java.time.Instant.ofEpochMilli(createdAt).atZone(java.time.ZoneId.systemDefault()));
+    }
     /** "42 秒", "6 分 34 秒", "1 小时 12 分"; a zero trailing unit is dropped and negative spans clamp to zero. */
     static String duration(long ms) {
         long seconds=Math.max(0,ms/1000);

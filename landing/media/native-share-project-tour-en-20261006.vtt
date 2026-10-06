@@ -1,0 +1,29 @@
+WEBVTT
+
+NOTE
+Native 0.5.12-dev/code25 memory-only project tour.
+No task sent. Captured before the persistent Optional note label.
+
+00:00:00.000 --> 00:00:00.821
+Select a sample project.
+
+00:00:00.821 --> 00:00:02.398
+Optional note stays empty.
+Memory-only UI; no task sent.
+
+00:00:02.398 --> 00:00:03.818
+Return to the project list.
+
+00:00:03.818 --> 00:00:05.202
+Select the project again.
+Confirm the project and sample link.
+
+00:00:05.202 --> 00:00:06.808
+Open Model & effort.
+
+00:00:06.808 --> 00:00:09.200
+Another sample model is selected.
+Thorough is its default effort.
+
+00:00:09.200 --> 00:00:10.494
+Selection kept. No task sent.

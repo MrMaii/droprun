@@ -40,6 +40,28 @@ public final class TaskPresentationTest {
         check(TaskPresentation.processingTime("reading",0,0,30000).equals("刚刚开始"),"A fresh task is not shown as 0 minutes");
         check(TaskPresentation.processingTime("running",0,0,-60000).equals("刚刚开始"),"A creation time ahead of the phone clock does not go negative");
         check(TaskPresentation.processingTime("awaiting_plan_approval",0,0,3600000).equals("等你处理")&&TaskPresentation.processingTime("waiting_for_approval",0,3600000,3600000).equals("等你处理"),"Tasks waiting on the user say so instead of running a timer");
-        System.out.println("PASS: Android plan, delivery, blocked-state, processing-time and notification presentation");
+        boolean originalChinese=L.chinese();java.util.TimeZone originalZone=java.util.TimeZone.getDefault();java.util.Locale originalFormat=java.util.Locale.getDefault(java.util.Locale.Category.FORMAT);
+        try{
+            java.util.Locale.setDefault(java.util.Locale.Category.FORMAT,java.util.Locale.FRANCE);java.util.TimeZone.setDefault(java.util.TimeZone.getTimeZone("UTC"));
+            long now=java.time.Instant.parse("2026-01-02T12:00:00Z").toEpochMilli(),week=7*86400000L;
+            L.language("en");
+            check(TaskPresentation.listDate(0,now).equals("Date unavailable")&&TaskPresentation.listDate(-1,now).equals("Date unavailable"),"Absent or invalid list timestamps must not pretend to be a 1970 date");
+            check(TaskPresentation.listDate(now,now).equals("Just now")&&TaskPresentation.listDate(now+60000,now).equals("Just now"),"Current and future list timestamps keep existing clock-skew clamping");
+            check(TaskPresentation.listDate(now-60000,now).equals("1 min ago")&&TaskPresentation.listDate(now-3*3600000L,now).equals("3 hr ago")&&TaskPresentation.listDate(now-2*86400000L,now).equals("2 days ago"),"Recent list dates retain minutes, hours and days");
+            check(TaskPresentation.listDate(now-week+1,now).equals("6 days ago"),"The final millisecond before seven days remains relative");
+            check(TaskPresentation.listDate(now-week,now).equals("Dec 26, 2025")&&TaskPresentation.listDate(now-week-1,now).equals("Dec 26, 2025"),"At seven days list dates become explicit English calendar dates despite French system formatting");
+            L.language("zh");
+            check(TaskPresentation.listDate(0,now).equals("日期未知")&&TaskPresentation.listDate(-1,now).equals("日期未知"),"Unknown list dates have explicit Chinese copy");
+            check(TaskPresentation.listDate(now+60000,now).equals("刚刚")&&TaskPresentation.listDate(now-week+1,now).equals("6 天前")&&TaskPresentation.listDate(now-week,now).equals("2025年12月26日"),"Chinese copy retains future/recent clamping and includes the full older calendar date");
+            long midnight=java.time.Instant.parse("2026-01-01T00:30:00Z").toEpochMilli(),later=java.time.Instant.parse("2026-01-10T12:00:00Z").toEpochMilli();
+            L.language("en");check(TaskPresentation.listDate(midnight,later).equals("Jan 1, 2026"),"UTC uses the stored instant's calendar date");
+            java.util.TimeZone.setDefault(java.util.TimeZone.getTimeZone("America/Los_Angeles"));
+            check(TaskPresentation.listDate(midnight,later).equals("Dec 31, 2025"),"A changed system timezone can move a stored instant into the previous year");
+            L.language("zh");check(TaskPresentation.listDate(midnight,later).equals("2025年12月31日"),"Chinese dates use the same system timezone rather than UTC");
+            java.util.TimeZone.setDefault(java.util.TimeZone.getTimeZone("Asia/Shanghai"));
+            check(TaskPresentation.listDate(midnight,later).equals("2026年1月1日"),"A later timezone change must not reuse an earlier cached date");
+            L.language("en");check(TaskPresentation.listDate(midnight,later).equals("Jan 1, 2026"),"Product language switching changes the explicit date format immediately");
+        }finally{L.language(originalChinese?"zh":"en");java.util.TimeZone.setDefault(originalZone);java.util.Locale.setDefault(java.util.Locale.Category.FORMAT,originalFormat);}
+        System.out.println("PASS: Android plan, delivery, blocked-state, processing-time, list-date and notification presentation");
     }
 }
