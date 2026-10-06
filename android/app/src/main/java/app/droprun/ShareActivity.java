@@ -324,7 +324,7 @@ public class ShareActivity extends StyledActivity {
         List<JSONObject> ordered=ProjectPresentation.sharing(projects,recentProjects,selected,last);
         int shown=0,hidden=0;
         for(JSONObject p:ordered){
-            if(!filter.isEmpty()&&!p.optString("name").toLowerCase(Locale.ROOT).contains(filter))continue;
+            if(!filter.isEmpty()&&!ProjectPresentation.label(p.optString("id"),p.optString("name"),projects,history).toLowerCase(Locale.ROOT).contains(filter)&&!p.optString("id").toLowerCase(Locale.ROOT).contains(filter))continue;
             if(filter.isEmpty()&&!showAll&&shown>=6){hidden++;continue;}
             if(shown>0){LinearLayout.LayoutParams line=new LinearLayout.LayoutParams(-1,Math.max(1,dp(1)));line.setMargins(dp(12),0,dp(12),0);projectList.addView(Ui.divider(this),line);}
             projectList.addView(projectRow(p,projects,history),Ui.fill());shown++;

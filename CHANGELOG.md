@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+- Distinguish loading, failed reads and confirmed empty history; keep cached rows
+  visible and give null/blank failures useful Refresh guidance.
+- Search Share destinations by their displayed label or full ID, retaining the
+  selected project, directory order and permission rules.
+- Add Settings Refresh/Retry for the existing read batch, preserving completion-
+  time reading position or surviving keyboard focus without writing execution mode.
+
 - Update Miniflare's sharp child dependency to 0.35.5 with a scoped override;
   retain the pinned Cloudflare tools. [Audit and local checks](docs/releases/dependency-audit-2026-10-06.md).
 - Preserve the reading position of an expanded report after in-process page

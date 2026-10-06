@@ -18,7 +18,7 @@ import java.util.concurrent.*;
 public class ProjectHistoryActivity extends StyledActivity {
     final ExecutorService io=Executors.newSingleThreadExecutor(),local=Executors.newSingleThreadExecutor();final Handler handler=new Handler(Looper.getMainLooper());
     final List<JSONObject> rows=new ArrayList<>();final Set<String> pendingIds=new HashSet<>();final HistoryAdapter adapter=new HistoryAdapter();
-    Store store;String projectId,projectName,cursor="",snapshot="";TextView notice;ListView list;Button more;LinearLayout empty;boolean busy,foreground,paged;Parcelable restoredScroll;
+    Store store;String projectId,projectName,cursor="",snapshot="";TextView notice,emptyTitle,emptyDetail;ListView list;Button more;LinearLayout empty;boolean busy,foreground,paged;Parcelable restoredScroll;int emptyReadState; // 0 checking, 1 checked, 2 failed
     Removal removal;final Runnable removalObserver=this::updateRemoval;String readError="",actionError="";
     final Runnable refresh=()->{if(paged){render();handler.postDelayed(this.refresh,7000);}else load(false);};
     @Override protected void onCreate(Bundle state){
@@ -33,7 +33,7 @@ public class ProjectHistoryActivity extends StyledActivity {
         notice=Ui.text(this,"",14,Ui.AMBER);notice.setPadding(dp(24),dp(10),dp(24),dp(10));notice.setMinimumHeight(dp(48));notice.setAccessibilityLiveRegion(View.ACCESSIBILITY_LIVE_REGION_POLITE);Ui.bindPress(notice);notice.setOnClickListener(v->{if(!readError.isEmpty()&&actionError.isEmpty()&&!removing())new AlertDialog.Builder(this).setTitle(L.t("History could not refresh","暂时无法刷新历史")).setMessage(readError).setPositiveButton(L.t("Close","关闭"),null).show();});page.addView(notice);
         FrameLayout stage=new FrameLayout(this);page.addView(stage,new LinearLayout.LayoutParams(-1,0,1));list=new ListView(this);list.setDivider(null);list.setSelector(android.R.color.transparent);list.setPadding(dp(20),dp(10),dp(20),dp(24));list.setClipToPadding(false);list.setVerticalScrollBarEnabled(false);
         more=Ui.button(this,L.t("Load earlier handoffs","查看更早交办"),false);more.setOnClickListener(v->load(true));list.addFooterView(more,null,false);list.setAdapter(adapter);list.setItemsCanFocus(true);stage.addView(list,new FrameLayout.LayoutParams(-1,-1));
-        empty=Ui.vertical(this);empty.setPadding(dp(28),dp(60),dp(28),dp(28));empty.setGravity(Gravity.CENTER);empty.addView(Ui.title(this,L.t("Nothing here yet","这里还没有交办"),22));empty.addView(Ui.caption(this,L.t("Refresh when connected, or share something to this project.","联网后刷新，或先分享内容到这个项目。")));stage.addView(empty,new FrameLayout.LayoutParams(-1,-1));
+        empty=Ui.vertical(this);empty.setPadding(dp(28),dp(60),dp(28),dp(28));empty.setGravity(Gravity.CENTER);emptyTitle=Ui.title(this,L.t("Loading handoffs…","正在读取交办…"),22);empty.addView(emptyTitle);emptyDetail=Ui.caption(this,L.t("Checking this project's history.","正在读取这个项目的交办记录。"));empty.addView(emptyDetail);stage.addView(empty,new FrameLayout.LayoutParams(-1,-1));
         JSONArray cached=store.history(projectId).optJSONArray("tasks");paged=cached!=null&&cached.length()>50;render();
         if(removal!=null){removal.observer=removalObserver;if(removal.finished)actionError=removal.error;}showNotice();
     }
@@ -45,12 +45,18 @@ public class ProjectHistoryActivity extends StyledActivity {
     int dp(int n){return Ui.dp(this,n);}
     Store createStore(){return new Store(this);}
     void load(boolean append){
-        handler.removeCallbacks(refresh);if(busy||!foreground)return;busy=true;more.setEnabled(false);String next=append?cursor:"";
-        io.execute(()->{String error="";try{store.loadHistory(projectId,next);}catch(Exception e){error=e.getMessage();}String message=error;
-            runOnUiThread(()->{busy=false;if(isDestroyed()||!foreground)return;if(message.isEmpty()&&append)paged=true;readError=message;showNotice();more.setEnabled(true);render();handler.postDelayed(refresh,7000);});});
+        handler.removeCallbacks(refresh);if(busy||!foreground)return;busy=true;emptyReadState=0;updateEmptyCopy();more.setEnabled(false);String next=append?cursor:"";
+        io.execute(()->{String error="";int outcome=2;try{store.loadHistory(projectId,next);outcome=1;}catch(Exception e){error=e.getMessage();}int result=outcome;String message=result==2&&(error==null||error.trim().isEmpty())?L.t("Couldn't refresh history. Use Refresh to try again.","暂时无法刷新历史，请点按刷新重试。"):error;
+            runOnUiThread(()->{busy=false;if(isDestroyed()||!foreground)return;emptyReadState=result;if(result==1&&append)paged=true;readError=message;showNotice();more.setEnabled(true);render();handler.postDelayed(refresh,7000);});});
+    }
+    void updateEmptyCopy(){
+        String title=emptyReadState==0?L.t("Loading handoffs…","正在读取交办…"):emptyReadState==2?L.t("History could not load","暂时无法读取历史"):L.t("Nothing here yet","这里还没有交办");
+        String detail=emptyReadState==0?L.t("Checking this project's history.","正在读取这个项目的交办记录。"):emptyReadState==2?L.t("Use Refresh to try again when connected.","联网后点按刷新，重新读取历史。"):L.t("Refresh when connected, or share something to this project.","联网后刷新，或先分享内容到这个项目。");
+        if(!title.contentEquals(emptyTitle.getText()))emptyTitle.setText(title);
+        if(!detail.contentEquals(emptyDetail.getText()))emptyDetail.setText(detail);
     }
     void render(){
-        JSONObject history=store.history(projectId);JSONArray tasks=history.optJSONArray("tasks"),pending=store.pending();String next=history.toString()+pending+store.tasks();if(next.equals(snapshot))return;snapshot=next;cursor=MainActivity.text(history,"nextCursor");
+        updateEmptyCopy();JSONObject history=store.history(projectId);JSONArray tasks=history.optJSONArray("tasks"),pending=store.pending();String next=history.toString()+pending+store.tasks();if(next.equals(snapshot))return;snapshot=next;cursor=MainActivity.text(history,"nextCursor");
         View visible=list.getChildAt(0);int offset=visible==null?0:visible.getTop()-list.getPaddingTop();
         // A pending keyboard selection is not a laid-out anchor yet.
         String anchor=(list.isInTouchMode()||list.getSelectedView()==null)&&visible!=null&&visible.getTag() instanceof Holder?((Holder)visible.getTag()).id:null;

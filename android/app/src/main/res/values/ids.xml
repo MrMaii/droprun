@@ -6,4 +6,5 @@
     <item name="settings_language" type="id" />
     <item name="settings_model" type="id" />
     <item name="settings_effort" type="id" />
+    <item name="settings_refresh" type="id" />
 </resources>

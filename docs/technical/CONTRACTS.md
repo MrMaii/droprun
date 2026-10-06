@@ -24,6 +24,13 @@ plan-version, per-command approval and report-evidence checks remain in force.
 - Android overlays local pending by UUID; pending counts are separate from server
   accepted counts and cannot disappear between persistence and acknowledgement.
   Cached project-history pages remain available across Activity recreation.
+  History distinguishes a pending read, failed read and successful zero-record
+  result independently of its data snapshot. Copy updates do not rebuild an
+  unchanged adapter or reset the visible-record anchor. Null/blank read errors
+  use localized failure detail; nonblank detail remains verbatim. Cached/pending
+  rows remain visible and failure uses the existing notice/Refresh route. Only
+  an actually successful append changes the local paged flag; transient labels
+  are not persisted read receipts and do not alter Store cache/API semantics.
   Home/history adapter stable IDs must be nonnegative for Android's native
   saved-row restoration; transient status changes must not change those IDs.
   Refresh anchors in touch mode or without a laid-out native selection use the
@@ -69,6 +76,15 @@ plan-version, per-command approval and report-evidence checks remain in force.
   after a section rebuild, provided the updated catalog still offers that control.
   Defaults are instance-scoped local preferences; choosing or cancelling these
   dialogs never submits an execution-mode or project-permission mutation.
+  Settings opening and explicit Refresh/Retry reuse `GET /projects`,
+  `GET /device/settings` and `GET /device/retention`. One read batch runs at a
+  time; pending reads, mode writes or project-permission changes disable the
+  refresh control. Partial failure offers Retry while keeping cached values.
+  On changed data, the completion callback captures the current scroll offset
+  before rendering; surviving stable-ID preference/Refresh controls retain
+  keyboard focus and are revealed. Refresh makes no execution-mode write.
+  The unchanged-data branch also reveals a surviving keyboard preference after
+  status text relayout; touch reading position is not moved by this focus path.
   A settled execution-mode result, success or failure, is announced at most once
   for its retained operation. Only the current operation, current instance and
   attached view may announce while its Activity is neither finishing nor destroyed;
@@ -204,7 +220,7 @@ plan-version, per-command approval and report-evidence checks remain in force.
 - 决策请求失败通过需用户关闭的错误弹窗反馈，不被随后成功的状态轮询覆盖；请求异常不等于服务器未执行。
 - 设置读取 `/device/retention` 并按实例缓存。显示上次同步的实际期限及离线过时提示；未知策略不冒充默认 7/30 天。保留期限由拥有者在 Relay 部署配置中修改，手机只读。
 - 通用滚动页在系统栏和键盘 inset 处裁剪内容；滚动中的文字不能进入状态栏或导航栏安全区域。
-- 分享项目搜索词和“显示全部”状态随 Activity 恢复；匹配忽略首尾空白和大小写，不更改用户输入。无匹配时仍可继续编辑搜索。
+- 分享项目搜索词和“显示全部”状态随 Activity 恢复；匹配可见项目标签或完整 ID，忽略首尾空白和大小写，不更改用户输入、当前选择或目录排序。无匹配时仍可继续编辑搜索。
 - 授权浮层内容可滚动，操作避开导航栏；弹窗存在期间背景控件不能获得键盘焦点，关闭后恢复。授权异常保留当前步骤并显示失败原因，允许重试或取消，不能伪装授权成功。
 - 分享目录以完整项目汇总和本机待发送时间排序；当前选择优先，没有汇总的上次选择仅作本机回退，其他未用项目保持目录顺序。服务端已接收 UUID 不重复影响待发送合并。历史中已经移出目录的项目不重新成为分享目标。
 - 同名项目显示可区分的 ID 前缀，前缀冲突时延长；名称、完整 ID、授权与统计原值不变。分享选择、授权提示、首页、历史及任务详情使用一致的标识规则。`available=false` 的项目可查看说明，但不能进入分享编辑或通过分享浮层保存新的交办。

@@ -57,3 +57,14 @@ These are local dependency and core-compatibility checks. They do not turn the
 old CI run green, update a signed release, establish genuine Relay acceptance,
 or prove that a future public installer contains the new files. A new candidate
 must be built from the updated lockfile and checked separately.
+
+## Exact-source CI
+
+Source `549b90cfeabe93a8bcb24933c176ec297705da4c` passed CI run 37497481404,
+attempt 1: all three jobs, 35 steps, ten required steps and three matching
+checks succeeded. Its complete 326,041-byte log is SHA-256
+`85272c47037ebf3a6c79ee43797000660a2ce8537257d98c993b0de68fde5b68`.
+The actual core 210/210 and browser 18/18 test footers have zero failures,
+cancellations, skips or todos; the audit reports zero vulnerabilities and
+Android's build job succeeds. This verifies the updated source CI, not a
+new signed package or genuine installation and handoff acceptance.

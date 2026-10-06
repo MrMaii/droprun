@@ -60,6 +60,11 @@ in [the current candidate record](../releases/0.5.10-rc.1.md).
   protocol IDs and unknown choices remain readable verbatim.
   Background settings refresh also retains the focused appearance or language
   control. Structural page focus must not tint the entire content surface.
+  Settings offers Refresh/Retry beside model availability, reading the existing
+  project, execution-setting and retention data once at a time. A pending read or
+  mode/project change disables this action; partial failure keeps cached data
+  visible and offers Retry. Completion retains the then-current reading offset
+  or surviving preference/Refresh keyboard focus, without writing execution mode.
   Manual pairing validation keeps entered values and shows a complete, visible
   form error for the active input method; format checking never sends a pairing
   request. A nonempty link takes priority. Help and errors explain that using
@@ -68,6 +73,8 @@ in [the current candidate record](../releases/0.5.10-rc.1.md).
   duplicate section label. Material, execution context and actions remain clear.
   The selected destination stays prominent above the optional note, wraps its
   complete name and remains individually readable before the Send action.
+  Project search matches the displayed label or full project ID, ignoring outer
+  whitespace and case without changing the query, selection or directory order.
   Both pre-Send steps offer a compact, accessible material disclosure.
   Material and model controls use light text rows with visible trailing arrows;
   the optional note remains the distinct input surface. Their complete click
@@ -124,6 +131,10 @@ in [the current candidate record](../releases/0.5.10-rc.1.md).
   including follow-ups. Retries never count; local pending shares are separate.
 - Project history is paginated. Saved outbox entries become immediately visible,
   survive interruption, and merge with server acknowledgements by UUID.
+  An empty history shows loading until a read completes, and only a successful
+  zero-record read confirms that no handoffs are present. Failure offers Refresh;
+  null or blank error details use a useful localized message. Cached and pending
+  rows stay visible, with failure feedback separate from the zero-record surface.
   Project identity has its own bounded heading, separate from Back and Refresh.
   A 48dp information entry exposes the complete name and ID when the heading is
   shortened; same-name and retained-history identity remain explicit. Recycled

@@ -20,6 +20,7 @@ public class SettingsActivity extends StyledActivity {
     final Set<String> switching=new HashSet<>();
     Store store;LinearLayout body;TextView noticeView,modeNoticeView;String notice="",modeMessage="";boolean busy=false,showAccess=false;
     ModeChange modeChange,shownModeResult;int modeMessageColor=Ui.MUTED;
+    TextView modelRefreshStatus;Button modelRefreshButton;boolean refreshing=false,refreshFailed=false;
 
     @Override protected void onCreate(Bundle state){
         super.onCreate(state);store=new Store(this);Ui.configureWindow(this);
@@ -34,15 +35,40 @@ public class SettingsActivity extends StyledActivity {
         Ui.enter(body);refresh();
     }
     int dp(int value){return Ui.dp(this,value);}
-    /** Projects and the execution mode are re-read from the relay each time the screen opens; the sections rebuild only if something changed. */
+    /** Reads the existing settings endpoints on open or explicit refresh; never approves or saves a preference. */
     void refresh(){
-        String before=snapshot();
+        if(refreshing||busy||!switching.isEmpty()||isDestroyed()||isFinishing())return;
+        String before=snapshot();refreshing=true;refreshFailed=false;updateModelRefresh();
         io.execute(()->{
-            try{JSONObject data=store.get("/projects");store.prefs.edit().putString("projects",data.toString()).apply();}catch(Exception ignored){}
-            try{store.getSettings();}catch(Exception ignored){}
-            try{JSONObject policy=store.get("/device/retention");store.prefs.edit().putString("retention",policy.toString()).apply();}catch(Exception ignored){}
-            runOnUiThread(()->{if(!isDestroyed()&&!snapshot().equals(before))render();});
+            boolean failed=false;
+            try{JSONObject data=store.get("/projects");store.prefs.edit().putString("projects",data.toString()).apply();}catch(Exception ignored){failed=true;}
+            try{store.getSettings();}catch(Exception ignored){failed=true;}
+            try{JSONObject policy=store.get("/device/retention");store.prefs.edit().putString("retention",policy.toString()).apply();}catch(Exception ignored){failed=true;}
+            boolean readFailed=failed;
+            runOnUiThread(()->{
+                if(isDestroyed()||isFinishing())return;
+                refreshing=false;refreshFailed=readFailed;
+                if(!snapshot().equals(before)){
+                    ScrollView scroll=findViewById(R.id.settings_scroll);int scrollY=scroll.getScrollY();render();
+                    scroll.post(()->{View focused=getCurrentFocus();if(!isDestroyed()&&!isFinishing()&&(focused==null||focused.isInTouchMode()))scroll.scrollTo(scroll.getScrollX(),scrollY);});
+                    modelRefreshStatus.announceForAccessibility(modelRefreshStatus.getText());
+                }else {updateModelRefresh();revealPreferenceAfterLayout();}
+            });
         });
+    }
+    String modelRefreshMessage(){
+        if(refreshing)return L.t("Refreshing settings…","正在刷新设置…");
+        if(refreshFailed)return L.t("Some settings could not refresh. Check your Relay connection, then retry.","部分设置刷新失败。请检查中转连接后重试。");
+        if(!store.computerOnline())return store.models().length()==0?L.t("Computer offline. Start Connector, then refresh.","电脑离线。启动 Connector 后刷新。"):L.t("Computer offline. Showing last synced models.","电脑离线，显示上次同步的模型。");
+        if(store.models().length()==0)return L.t("No models synced yet. Keep Connector running, then refresh.","尚未同步模型。保持 Connector 运行后刷新。");
+        return L.t("Models are available.","模型列表已就绪。");
+    }
+    void updateModelRefresh(){
+        if(modelRefreshStatus==null||modelRefreshButton==null)return;
+        modelRefreshStatus.setText(modelRefreshMessage());modelRefreshStatus.setTextColor(refreshFailed?Ui.AMBER:Ui.MUTED);
+        boolean available=!refreshing&&!busy&&switching.isEmpty();modelRefreshButton.setEnabled(available);
+        modelRefreshButton.setText(refreshFailed?L.t("Retry","重试"):L.t("Refresh","刷新"));
+        modelRefreshButton.setContentDescription(refreshing?L.t("Refreshing settings","正在刷新设置"):!available?L.t("Wait for the current change before refreshing settings","当前更改完成后可刷新设置"):refreshFailed?L.t("Retry refreshing settings and models","重试刷新设置与模型"):L.t("Refresh settings and models","刷新设置与模型"));
     }
     String snapshot(){JSONObject data=store.projectsData();return data.optString("name")+store.computerOnline()+data.optJSONArray("projects")+data.optJSONArray("models")+store.directExecution()+store.prefs.getString("settingsError","")+store.prefs.getString("retention","");}
     /** Rebuilds the sections in place: the ScrollView around them keeps its position and nothing re-animates. */
@@ -51,7 +77,7 @@ public class SettingsActivity extends StyledActivity {
         noticeView.setText(notice);noticeView.setVisibility(notice.isEmpty()?View.GONE:View.VISIBLE);
         body.removeAllViews();
         computerSection();appearanceSection();modeSection();modelSection();accessSection();retentionSection();aboutSection();disconnectSection();
-        if(focusId==R.id.settings_appearance||focusId==R.id.settings_language||focusId==R.id.settings_model||focusId==R.id.settings_effort){View replacement=body.findViewById(focusId);if(replacement!=null){replacement.requestFocus();revealPreferenceAfterLayout();}}
+        if(focusId==R.id.settings_appearance||focusId==R.id.settings_language||focusId==R.id.settings_model||focusId==R.id.settings_effort||focusId==R.id.settings_refresh){View replacement=body.findViewById(focusId);if(replacement!=null){replacement.requestFocus();revealPreferenceAfterLayout();}}
     }
     LinearLayout section(String label){body.addView(Ui.label(this,label));LinearLayout card=Ui.vertical(this);body.addView(card,Ui.cardParams(this));return card;}
     LinearLayout.LayoutParams trailing(){LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(-2,-2);params.setMarginStart(dp(10));return params;}
@@ -144,7 +170,14 @@ public class SettingsActivity extends StyledActivity {
     // ---- 默认模型强度 ---------------------------------------------------------------------------
     void modelSection(){
         LinearLayout card=section(L.t("Default model & effort","默认模型强度"));JSONArray catalog=store.models();
-        if(catalog.length()==0){card.addView(Ui.caption(this,L.t("Waiting for your computer's model list.","等待电脑同步模型列表。")));return;}
+        boolean large=getResources().getConfiguration().fontScale>=1.5f;LinearLayout refreshRow=Ui.row(this);if(large)refreshRow.setOrientation(LinearLayout.VERTICAL);
+        modelRefreshStatus=Ui.caption(this,modelRefreshMessage());modelRefreshStatus.setAccessibilityLiveRegion(View.ACCESSIBILITY_LIVE_REGION_POLITE);
+        refreshRow.addView(modelRefreshStatus,large?Ui.fill():Ui.grow());
+        modelRefreshButton=Ui.button(this,L.t("Refresh","刷新"),false);Ui.styleGhost(modelRefreshButton);modelRefreshButton.setId(R.id.settings_refresh);
+        modelRefreshButton.setMinHeight(dp(48));modelRefreshButton.setMinimumHeight(dp(48));modelRefreshButton.setPadding(dp(12),dp(10),dp(12),dp(10));modelRefreshButton.setOnClickListener(v->refresh());
+        LinearLayout.LayoutParams refreshParams=new LinearLayout.LayoutParams(-2,-2);if(large)refreshParams.topMargin=dp(4);else refreshParams.setMarginStart(dp(8));refreshRow.addView(modelRefreshButton,refreshParams);
+        updateModelRefresh();card.addView(refreshRow,Ui.margins(this,0,catalog.length()==0?0:10));
+        if(catalog.length()==0)return;
         String model=store.defaultModel(),effort=store.defaultEffort(model);JSONObject current=store.model(model);
         LinearLayout choose=Ui.setting(this,L.t("Model","模型"),current==null?model:current.optString("displayName",model),()->{});
         choose.setId(R.id.settings_model);
@@ -214,7 +247,7 @@ public class SettingsActivity extends StyledActivity {
             card.addView(Ui.text(this,L.t("Last synced Relay policy","上次同步的中转策略"),15,Ui.TEXT));
             card.addView(Ui.caption(this,L.t("Original uploads · ","原始上传 · ")+raw+L.t(" days after a task ends"," 天（任务结束后）")));
             card.addView(Ui.caption(this,L.t("Screenshots & files · ","截图与文件 · ")+artifacts+L.t(" days after a task ends"," 天（任务结束后）")));
-        }else card.addView(Ui.caption(this,L.t("Connect and reopen Settings to load your Relay’s retention policy.","联网后重新打开设置，获取你的中转服务保留策略。")));
+        }else card.addView(Ui.caption(this,L.t("Connect, then use Refresh in Default model & effort to load your Relay’s retention policy.","联网后，在“默认模型强度”中点按刷新，获取中转服务保留策略。")));
         card.addView(Ui.caption(this,L.t("Reports stay until you delete them. Preview links and snapshots have separate expiry times. Cleanup runs periodically and does not delete your computer’s project files or backups.","报告保留至你删除。预览链接与快照另有有效期。清理定期运行，不会删除电脑上的项目文件或备份。")),Ui.margins(this,10,0));
         card.addView(Ui.caption(this,L.t("Change retention in your Relay deployment settings. This cached policy may be outdated while offline. Saved handoffs on this phone stay until sent or removed from project history.","在中转部署配置中修改保留期限。离线时，缓存的策略可能已过时。手机上的待发送副本保留至发送成功，或在项目历史中手动移除。")),Ui.margins(this,8,0));
     }
@@ -243,11 +276,11 @@ public class SettingsActivity extends StyledActivity {
     void revealPreferenceAfterLayout(){
         body.getViewTreeObserver().addOnPreDrawListener(new android.view.ViewTreeObserver.OnPreDrawListener(){public boolean onPreDraw(){
             body.getViewTreeObserver().removeOnPreDrawListener(this);View focused=getCurrentFocus();
-            if(focused!=null&&!focused.isInTouchMode()&&(focused.getId()==R.id.settings_appearance||focused.getId()==R.id.settings_language||focused.getId()==R.id.settings_model||focused.getId()==R.id.settings_effort))
+            if(focused!=null&&!focused.isInTouchMode()&&(focused.getId()==R.id.settings_appearance||focused.getId()==R.id.settings_language||focused.getId()==R.id.settings_model||focused.getId()==R.id.settings_effort||focused.getId()==R.id.settings_refresh))
                 focused.requestRectangleOnScreen(new android.graphics.Rect(0,0,focused.getWidth(),focused.getHeight()),true);
             return true;
         }});
     }
     @Override public Object onRetainNonConfigurationInstance(){return modeChange;}
-    @Override protected void onDestroy(){clearModeChange();io.shutdown();super.onDestroy();}
+    @Override protected void onDestroy(){refreshing=false;clearModeChange();io.shutdown();super.onDestroy();}
 }
