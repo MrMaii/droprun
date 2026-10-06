@@ -316,3 +316,21 @@ all eight were directly viewed, with byte-identical brand/landing copies.
 [Native checks and boundaries](../../docs/releases/ui-home-delivery-reading-2026-10-06.md).
 The updated website source selects this same twelve-image workflow set. This
 does not establish a new hosted deployment or a recording of the signed APK.
+
+## Settings and project history
+
+Eight additional raw normal-font EN/ZH light/dark captures show the scrolled
+Settings model/access area and three project-history sample records. They were
+directly viewed and copied byte-for-byte, retaining memory markers and system
+pixels. They are not full Settings screenshots, 200% captures, actual task
+history or recordings of the signed download. [Native verification and originals](../../docs/releases/ui-settings-history-reading-2026-10-06.md).
+
+## Current reading-layout Share recording
+
+The opening GIF and website player now use two subsequent native recordings with
+the plain Share layout. Original MP4 durations are 9.061167s English and 9.059311s
+Chinese. The normal-size 25fps sampled GIFs are 860536 and 865983 bytes; source
+timestamps round to 9.08s and 9.04s respectively. Reduced-motion stills select the
+current plain Share captures. Earlier October 6 recordings remain historical.
+[Original identities, native checks and sampling boundaries](../../docs/releases/ui-share-reading-motion-2026-10-06.md)
+own this media's provenance. These are memory-only UI samples, not actual tasks.

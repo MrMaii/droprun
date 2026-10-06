@@ -19,6 +19,12 @@ row feedback, with the note as the input surface. Confirmed settings read as
 context; unknown settings retain a warning. Delivery uses page-width content
 over its opaque page background, with a quiet label and a readable summary.
 
+Settings and project history follow this same edge. Reserve the distinct filled
+Settings card for the connected computer; ordinary preferences and permission
+rows use plain sections. Large text moves the permission action below its name.
+History uses one outer separator, preserving stable row identity and feedback.
+Disclosure reversal continues the current opacity as well as its current height.
+
 Preserve counts, identity, permissions, callbacks, full evidence and confirmation
 for consequential actions. Appearance does not change business authorization.
 Do not replace genuine captures with invented product screens.
@@ -34,3 +40,5 @@ performance and real handoff acceptance remain open.
 Requirements live in [PRD](../product/PRD.md); actual evidence in
 [Share verification](../releases/ui-share-reading-surfaces-2026-10-06.md) and
 [Home/delivery verification](../releases/ui-home-delivery-reading-2026-10-06.md).
+The follow-on [Settings/history verification](../releases/ui-settings-history-reading-2026-10-06.md)
+records the actual layout and reversal checks.

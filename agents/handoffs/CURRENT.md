@@ -1,9 +1,12 @@
 # Current Handoff
 
-Updated 2026-10-06 UTC. Signed 0.5.8/code21 is the public candidate; GPTSites11
-is live. Subsequent Share/Home/delivery reading refinements are tested development
+Updated 2026-10-06 UTC. Signed 0.5.8/code21 is the public candidate; GPTSites12
+is live. Subsequent Share/Home/delivery reading refinements are public development
 source, with twelve new native stills and bilingual README galleries. Genuine
 acceptance and marketing handover remain open. Independent UI work continues.
+This pass adds Settings/history reading sections and continuous disclosure
+opacity, eight secondary stills and two fresh Share recordings. Signed08 remains
+unchanged; publication of this subsequent source/media is tracked separately.
 
 ## Current delivery
 
@@ -18,10 +21,46 @@ acceptance and marketing handover remain open. Independent UI work continues.
 - Companion source32ffee2b219e4a999eab7016c0ac30154b5328ad is public.
   CI37426729901 attempt1: all3jobs/35steps/10required/core210/browser18 success;
   14 fresh immutable anonymous source reads match. Thomas identity verified.
-  New source publication below is pending, not a new signed package or hosted deployment.
+  Reading source7fd043531bb82e84108fac08b31154e352275715 is now public. Forty-six
+  fresh immutable anonymous reads match all changed blobs; removed gauge is absent.
+  CI37432553536 attempt1: all3jobs/35steps/10required/core210/browser18 success.
+  Author and committer Thomas verified. Signed08 package is unchanged.
+- GPTSites12: hosting source1c4f9fabfcac6b2b32ca669b27e7526bdc18fb50, native
+  success2026-10-06T08:06:40.939615+00:00, same public URL/audience. Sixty-five
+  source files copied,12newstills/2changedpages, all other media retained; four
+  existing VTT checkout CRLF files are Git text-normalization equivalent. Archive
+  66files/11479040B/SHA3c053ef1f4f54b09f2b2f3ad47c9876798f8e94617237322ab1c0164710d208d.
+  Native publication confirmed; no fresh hosted browser/HTTP check claimed.
 
 ## Latest completed work
 
+- [Settings/history](../../docs/releases/ui-settings-history-reading-2026-10-06.md):
+  plain ordinary Settings sections, retained connected-computer card, 280dp
+  history titles; font>=1.5 access action follows the name; busy controls dim.
+  Settings1/1 16.987s/six windows/24actualguard rows0; history1/1 17.111s/six
+  windows/36rebinds/18guard rows0. Eight raw normal-font stills directly viewed
+  and copied exactly to brand. Duplicate-name full IDs and font2 stacked actions
+  pass. Unique Settings project names retain their original two-line cap.
+- Interrupted disclosure opacity baseline1/1 4.258s: four alpha jumps0.36–0.48.
+  Accepted1/1 4.195s: four immediate reversal deltas exactly0, two windows/six
+  guard rows0. All14 accepted Settings/history/opacity windows known DESTROYED.
+  Final120source closure/four unchanged Gradle configs/AndroidJVM24/lint0errors/
+  30existing warnings pass. App75f772c2/testd64c9fec, 0.5.8-dev/code21.
+- [Current native Share media](../../docs/releases/ui-share-reading-motion-2026-10-06.md):
+  EN1/1 18.931s and ZH1/1 19.156s, each recorder/native exit0 and known destroyed.
+  Original MP4 9.061167/9.059311s,121/124frames; independent full decode and42
+  original samples viewed, root representative originals and6GIF composites
+  viewed. Native-size sampled GIFs860536/865983B with227/226frames preserve
+  rounded source order. Source MP4/poster copies exact;8new public media names,
+  old media retained. No typing/send/OS change. Two failed copy-helper assumptions
+  preserved (equal frame counts/default Windows decoding); no new take/encode.
+- Local README remaining3-scenes successor passed separately, all3 directly
+  viewed; earlier5/8 protocol failure stays failed. Local landing4reduced-motion
+  scenes passed (EN/ZH328light/820dark), no overflow, keyboard Right/Home tabs,
+  real #install CTA48px, paused video; all4hero viewports directly viewed. These
+  checks precede the final video-reference swap; final build22assets passes.
+  No fresh GitHub renderer or hosted QA claim. README adds closed Settings/history
+  gallery and clearer brand/workflow copy; website mirrors the three actual steps.
 - [Share](../../docs/releases/ui-share-reading-surfaces-2026-10-06.md): plain
   material/model entries, note input retained, confirmed context readable and
   unconfirmed warning intact. Context red→green1/1 11.173s, eight windows;
@@ -41,8 +80,12 @@ acceptance and marketing handover remain open. Independent UI work continues.
   numbered steps. Eight local gallery scenes at328/820/light/dark passed before
   replacing still references; selected images stay320x640. This is not fresh
   GitHub rendering. Old dated native GIF/MP4s remain, with their original layout.
-  Website source selects the new12stills and builds22required assets; no new
-  hosting or browser assertion. Requirements and [ADR0018](../../docs/decisions/0018-reading-surfaces.md)
+  New still selection local gallery refresh completed5/8scenes before protocol
+  `Invalid InterceptionId.`; whole check failed, no retry. English4 and Chinese
+  narrow/light passed, two images directly viewed. The separate remaining3-scene
+  successor described above subsequently passed; no single8/8 batch claimed.
+  Website selects new12stills/builds22assets and is now GPTSites12. Requirements
+  and [ADR0018](../../docs/decisions/0018-reading-surfaces.md)
   record the readable-surface decision. Current native checks are sample UI,
   not physical performance, real source reading or completed Codex work.
 
@@ -67,17 +110,16 @@ acceptance and marketing handover remain open. Independent UI work continues.
 
 ## Single recommended next action
 
-Curate and publish the verified reading-layout source/README/media, checking exact
-CI and immutable source. Then refresh the existing GPTSites from that source and
-continue Settings/History/Pair with current native screenshots before choosing
-changes. Prepare the next signed candidate after that UX pass. Do not replay
+Resolve the remaining unique Settings project-name two-line cap at large font,
+using guarded memory UI. Pair has no new capture proving a remaining issue.
+Finish the current source/README/media publication and same-address GPTSites
+refresh; prepare the next signed candidate after that UX pass. Do not replay
 denied paths or use real tasks/OS changes. Genuine acceptance remains open.
 
 ## Files this pass
 
-Main/Share/Task local UI statements; four opt-in native tests and two legacy
-selector/width compatibility changes; removed newly orphaned gauge icon;
-README EN/ZH, twelve exact brand/landing capture pairs, website builder/HTML,
-PRD/ADR0018/changelog/media notes and two native verification records.
+Settings/History/Ui local statements; three opt-in native tests; README EN/ZH,
+eight secondary stills, two native GIFs and six MP4/poster/caption files;
+website builder/HTML, PRD/ADR0018/changelog/media notes and two native records.
 Private film/launch assets stay uncommitted. Frozen raw evidence stays private.
 Author Thomas Deng <150266369+MrMaii@users.noreply.github.com>.

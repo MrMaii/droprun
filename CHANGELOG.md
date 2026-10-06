@@ -7,8 +7,13 @@
   their warning. [Native checks and stills](docs/releases/ui-share-reading-surfaces-2026-10-06.md).
 - Use continuous Home project rows and bring delivered results to page width.
   [Native checks and stills](docs/releases/ui-home-delivery-reading-2026-10-06.md).
+- Continue the reading edge through Settings and project history; stack project
+  access actions at large font sizes and dim them while busy. Interrupted
+  disclosures keep their current opacity. [Native checks](docs/releases/ui-settings-history-reading-2026-10-06.md).
 - Group the bilingual README workflow into three images that wrap on narrow
   screens, followed by a short Share, Follow, Inspect explanation.
+- Add an optional Settings/history gallery and refresh the opening Share GIF and
+  website video from the current native layout. [Recording scope](docs/releases/ui-share-reading-motion-2026-10-06.md).
 
 ## 0.5.8-rc.1 — clearer handoffs and native Share
 

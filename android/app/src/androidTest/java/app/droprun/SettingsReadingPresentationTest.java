@@ -1,0 +1,91 @@
+package app.droprun;
+
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Rect;
+import android.graphics.drawable.RippleDrawable;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.SystemClock;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowInsets;
+import android.widget.*;
+import androidx.lifecycle.Lifecycle;
+import androidx.test.core.app.ActivityScenario;
+import androidx.test.platform.app.InstrumentationRegistry;
+import org.json.*;
+import org.junit.Test;
+import java.io.File;
+import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.StandardOpenOption;
+import java.util.UUID;
+import static app.droprun.ShareEditorTest.assertCompleteText;
+import static app.droprun.ShareEditorTest.findText;
+import static app.droprun.ShareSettingsHierarchyTest.bounds;
+import static org.junit.Assert.*;
+
+/** Six opt-in memory windows. No permission/mode/disconnect/preference click or business write. */
+public class SettingsReadingPresentationTest {
+    static boolean unresolvedLifetime;
+    static final String[] IDS={"memory-mobile","memory-desktop"};
+    @Test public void readingSectionsKeepChoicesAndProjectIdentity()throws Throwable{
+        Bundle args=InstrumentationRegistry.getArguments();String phase=args.getString("settingsReadingProbe","");if(phase.isEmpty())return;assertTrue(phase.equals("baseline")||phase.equals("accepted"));
+        boolean accepted=phase.equals("accepted");String capture=args.getString("captureSettingsReading","");assertTrue(capture.isEmpty()||capture.equals(phase));String nonce=args.getString("settingsReadingNonce","");if(capture.isEmpty())assertTrue(nonce.isEmpty());else assertEquals(UUID.fromString(nonce).toString(),nonce);
+        assertTrue(Build.VERSION.SDK_INT>=30);assertFalse(unresolvedLifetime);Context target=InstrumentationRegistry.getInstrumentation().getTargetContext();assertTrue(target.getPackageName().endsWith(".debug"));assertFalse(TaskSyncService.running);assertFalse(target.getPackageManager().getActivityInfo(new ComponentName(target,DemoSettingsRecreationActivity.class),0).exported);
+        File directory=null;if(!capture.isEmpty()){File base=target.getExternalFilesDir(null);assertNotNull(base);directory=new File(base,"ui-probe-evidence/settings-reading-"+nonce);assertFalse(directory.exists());assertTrue(directory.mkdirs());}
+        float prior=DemoSettingsRecreationActivity.hierarchyFontScale;String priorLanguage=L.chinese()?"zh":"en";boolean destroyed=true;int entered=0,completed=0,closed=0,captured=0;
+        try{for(String[] config:new String[][]{{"en","light","1"},{"en","dark","1"},{"zh","light","1"},{"zh","dark","1"},{"en","light","2"},{"zh","dark","2"}}){
+            String identity=phase+"|"+String.join("|",config);float scale=Float.parseFloat(config[2]);assertTrue(destroyed);assertFalse(unresolvedLifetime);DemoSettingsRecreationActivity.hierarchyFontScale=scale;
+            ActivityScenario<DemoSettingsRecreationActivity> scenario=null;Throwable failure=null;DemoSettingsRecreationActivity[] retained={null};
+            try{
+                destroyed=false;unresolvedLifetime=true;event(identity,"launch-attempt");scenario=ActivityScenario.launch(new Intent(target,DemoSettingsRecreationActivity.class).putExtra("language",config[0]).putExtra("appearance",config[1]).putExtra("modelHierarchy",true));event(identity,"returned-handle");ready(scenario);
+                scenario.onActivity(a->{safe(a);retained[0]=a;assertEquals(scale,a.getResources().getConfiguration().fontScale,0f);assertEquals(config[1].equals("dark"),Ui.dark);assertEquals(320,a.getResources().getConfiguration().screenWidthDp);seed(a);});ready(scenario);entered++;event(identity,"entered");
+                for(int id:new int[]{R.id.settings_appearance,R.id.settings_language,R.id.settings_model,R.id.settings_effort}){
+                    scenario.onActivity(a->{View row=a.body.findViewById(id);assertNotNull(row);row.requestRectangleOnScreen(new Rect(0,0,row.getWidth(),row.getHeight()),true);});frame(scenario);ready(scenario);
+                    scenario.onActivity(a->{View row=a.body.findViewById(id);assertTrue(row.getHeight()>=Ui.dp(a,48));assertTrue(row.isClickable());assertTrue(row.isFocusable());assertTrue(row.getForeground() instanceof RippleDrawable);assertTrue(String.valueOf(row.getContentDescription()).contains(", "));assertPreferenceVisible(a,row);if(accepted){assertEquals(Ui.dp(a,280),row.getWidth());assertNull(((View)row.getParent()).getBackground());assertEquals(0f,((View)row.getParent()).getElevation(),0f);}safe(a);});
+                }
+                scenario.onActivity(a->{a.showAccess=true;a.render();});ready(scenario);
+                for(String id:IDS){
+                    scenario.onActivity(a->{TextView name=projectName(a,id),chip=projectChip(a,id);assertEquals(a.store.projectLabel(id,sampleName()),name.getText().toString());assertCompleteText(name);assertTrue(name.getText().toString().contains(id.substring(0,8)));assertTrue(String.valueOf(chip.getContentDescription()).startsWith(name.getText().toString()));assertTrue(chip.getHeight()>=Ui.dp(a,48));assertTrue(chip.getWidth()>=Ui.dp(a,48));assertTrue(chip.isClickable());assertTrue(chip.isFocusable());assertTrue(chip.getForeground() instanceof RippleDrawable);if(accepted&&scale>=1.5f){assertEquals(Ui.dp(a,280),name.getWidth());assertSame(name.getParent(),chip.getParent());assertEquals(LinearLayout.VERTICAL,((LinearLayout)name.getParent()).getOrientation());Rect nameBounds=bounds(name),chipBounds=bounds(chip);assertEquals(nameBounds.left,chipBounds.left);assertTrue("Permission action follows the complete project name",chipBounds.top>=nameBounds.bottom+Ui.dp(a,8));}});
+                    for(boolean tail:new boolean[]{false,true}){scenario.onActivity(a->{TextView name=projectName(a,id);name.requestRectangleOnScreen(line(name,tail),true);});ready(scenario);scenario.onActivity(a->{TextView name=projectName(a,id);Rect shown=new Rect();assertTrue(name.getLocalVisibleRect(shown));assertTrue("Requested project line including ID fits its visible text area",shown.contains(line(name,tail)));safe(a);});}
+                    scenario.onActivity(a->{TextView chip=projectChip(a,id);chip.requestRectangleOnScreen(new Rect(0,0,chip.getWidth(),chip.getHeight()),true);});ready(scenario);scenario.onActivity(a->SettingsRecreationTest.assertCompleteAndVisible(a,projectChip(a,id)));
+                }
+                int[] scroll={0},focus={View.NO_ID};String[] values={null};scenario.onActivity(a->{scroll[0]=((ScrollView)a.findViewById(R.id.settings_scroll)).getScrollY();View current=a.getCurrentFocus();if(current!=null&&!current.isInTouchMode())focus[0]=current.getId();values[0]=a.store.defaultModel()+"|"+a.store.defaultEffort(a.store.defaultModel());a.render();});ready(scenario);
+                scenario.onActivity(a->{assertTrue(a.showAccess);assertEquals(scroll[0],((ScrollView)a.findViewById(R.id.settings_scroll)).getScrollY());assertEquals(values[0],a.store.defaultModel()+"|"+a.store.defaultEffort(a.store.defaultModel()));if(focus[0]==R.id.settings_appearance||focus[0]==R.id.settings_language||focus[0]==R.id.settings_model||focus[0]==R.id.settings_effort)assertEquals(focus[0],a.getCurrentFocus().getId());safe(a);});
+                if(scale==1f&&directory!=null){capture(scenario,directory,nonce,phase,config[0],config[1]);captured++;}
+                if(accepted){scenario.onActivity(a->{a.busy=true;a.render();});ready(scenario);scenario.onActivity(a->{for(String id:IDS){TextView chip=projectChip(a,id);assertFalse(chip.isEnabled());assertEquals(.5f,chip.getAlpha(),0f);}safe(a);guards(identity,"memory-busy-disabled",a);a.busy=false;a.render();});ready(scenario);scenario.onActivity(a->{for(String id:IDS){TextView chip=projectChip(a,id);assertTrue(chip.isEnabled());assertEquals(1f,chip.getAlpha(),0f);}safe(a);guards(identity,"memory-idle-restored",a);});}
+                scenario.onActivity(a->guards(identity,"before-close",a));completed++;event(identity,"full-completed");
+            }catch(Throwable error){failure=error;throw error;}
+            finally{if(scenario!=null)try{scenario.close();assertEquals(Lifecycle.State.DESTROYED,scenario.getState());destroyed=true;unresolvedLifetime=false;closed++;event(identity,"DESTROYED");if(retained[0]!=null){guards(identity,"after-destroyed",retained[0]);safe(retained[0]);}}catch(Throwable closeError){if(failure!=null)failure.addSuppressed(closeError);else throw closeError;}}
+        }}finally{if(destroyed){DemoSettingsRecreationActivity.hierarchyFontScale=prior;L.language(priorLanguage);event(phase,"font-and-language-restored");}}
+        assertEquals(6,entered);assertEquals(6,completed);assertEquals(6,closed);assertEquals(directory==null?0:4,captured);assertFalse(unresolvedLifetime);event(phase,"SUMMARY entered="+entered+" completed="+completed+" DESTROYED="+closed+" captures="+captured+" business_actions=not_invoked_by_test");
+    }
+    static String sampleName(){return L.t("Studio research references — mobile experience","工作室参考资料归档 · 移动端交互体验");}
+    static void seed(DemoSettingsRecreationActivity a){try{JSONObject data=a.store.projectsData();JSONArray projects=new JSONArray();for(int n=0;n<IDS.length;n++)projects.put(new JSONObject().put("id",IDS[n]).put("name",sampleName()).put("permission",new JSONObject().put("enabled",n==0)));data.put("projects",projects);a.cached.put("projects",data.toString());a.render();safe(a);}catch(JSONException error){throw new AssertionError(error);}}
+    static TextView projectName(DemoSettingsRecreationActivity a,String id){TextView name=findText(a.body,a.store.projectLabel(id,sampleName()));assertNotNull(name);return name;}
+    static TextView projectChip(DemoSettingsRecreationActivity a,String id){ViewGroup row=(ViewGroup)projectName(a,id).getParent();for(int n=0;n<row.getChildCount();n++){View child=row.getChildAt(n);if(child instanceof TextView&&child.isClickable())return (TextView)child;}fail("Permission chip is absent");return null;}
+    static Rect line(TextView view,boolean tail){assertCompleteText(view);android.text.Layout layout=view.getLayout();int n=tail?layout.getLineForOffset(view.length()-1):0;return new Rect(view.getCompoundPaddingLeft()+(int)Math.floor(layout.getLineLeft(n)),view.getCompoundPaddingTop()+layout.getLineTop(n),view.getCompoundPaddingLeft()+(int)Math.ceil(layout.getLineRight(n)),view.getCompoundPaddingTop()+layout.getLineBottom(n));}
+    static void assertPreferenceVisible(DemoSettingsRecreationActivity a,View view){
+        if(view instanceof ImageView){
+            assertEquals(View.VISIBLE,view.getVisibility());assertNotNull(((ImageView)view).getDrawable());android.graphics.Matrix matrix=new android.graphics.Matrix();view.transformMatrixToGlobal(matrix);android.graphics.RectF projected=new android.graphics.RectF(0,0,view.getWidth(),view.getHeight());matrix.mapRect(projected);Rect visible=new Rect();assertTrue(view.getGlobalVisibleRect(visible));assertEquals("The transformed glyph is fully visible, not clipped",new android.graphics.RectF(visible),projected);
+            View scroll=a.findViewById(R.id.settings_scroll);Rect viewport=bounds(scroll);viewport.left+=scroll.getPaddingLeft();viewport.top+=scroll.getPaddingTop();viewport.right-=scroll.getPaddingRight();viewport.bottom-=scroll.getPaddingBottom();Rect safe=new Rect();a.getWindow().getDecorView().getWindowVisibleDisplayFrame(safe);assertTrue(safe.intersect(viewport));assertTrue("The complete transformed glyph fits the safe scroll viewport",new android.graphics.RectF(safe).contains(projected));
+        }else{assertTrue("Entire preference node fits actual scroll and screen",SettingsRecreationTest.fullyVisible(a,view));if(view instanceof TextView)assertCompleteText((TextView)view);}
+        if(view instanceof ViewGroup)for(int n=0;n<((ViewGroup)view).getChildCount();n++)assertPreferenceVisible(a,((ViewGroup)view).getChildAt(n));
+    }
+    static void safe(DemoSettingsRecreationActivity a){assertEquals(0,a.forbiddenActions.get());assertEquals(0,a.workFactories);assertEquals(0,a.modelSaves);assertFalse(a.store.paired());assertTrue(a.getIntent().getBooleanExtra("modelHierarchy",false));}
+    static void event(String identity,String value){Bundle status=new Bundle();status.putString("stream","SETTINGS_READING_LIFETIME\t"+identity+"\t"+value+"\n");InstrumentationRegistry.getInstrumentation().sendStatus(0,status);}
+    static void guards(String identity,String phase,DemoSettingsRecreationActivity a){event(identity,phase+" forbidden="+a.forbiddenActions.get()+" work_factories="+a.workFactories+" model_saves="+a.modelSaves);}
+    static void ready(ActivityScenario<DemoSettingsRecreationActivity> scenario)throws Exception{long deadline=SystemClock.elapsedRealtime()+3000;boolean[] ready={false};do{InstrumentationRegistry.getInstrumentation().waitForIdleSync();scenario.onActivity(a->{View decor=a.getWindow().getDecorView();ready[0]=a.hasWindowFocus()&&decor.isAttachedToWindow()&&!decor.isLayoutRequested()&&!a.body.isLayoutRequested()&&a.body.getAlpha()==1f&&a.body.getTranslationY()==0f;});if(ready[0])return;Thread.sleep(20);}while(SystemClock.elapsedRealtime()<deadline);fail("Settings memory window did not settle");}
+    static void frame(ActivityScenario<DemoSettingsRecreationActivity> scenario)throws Exception{java.util.concurrent.CountDownLatch next=new java.util.concurrent.CountDownLatch(1);scenario.onActivity(a->{View decor=a.getWindow().getDecorView();decor.getViewTreeObserver().addOnPreDrawListener(new android.view.ViewTreeObserver.OnPreDrawListener(){public boolean onPreDraw(){decor.getViewTreeObserver().removeOnPreDrawListener(this);next.countDown();return true;}});decor.invalidate();});assertTrue(next.await(3,java.util.concurrent.TimeUnit.SECONDS));}
+    static Rect bodyRect(DemoSettingsRecreationActivity a,View view){Rect rect=new Rect(0,0,view.getWidth(),view.getHeight());a.body.offsetDescendantRectToMyCoords(view,rect);return rect;}
+    static void capture(ActivityScenario<DemoSettingsRecreationActivity> scenario,File directory,String nonce,String phase,String language,String theme)throws Exception{
+        boolean[] includeModel={false};scenario.onActivity(a->{View accessRow=(View)projectName(a,IDS[0]).getParent();Rect span=bodyRect(a,a.hierarchyNotice);span.union(bodyRect(a,accessRow));ScrollView scroll=a.findViewById(R.id.settings_scroll);int viewport=scroll.getHeight()-scroll.getPaddingTop()-scroll.getPaddingBottom();assertTrue("Marker and first access row fit the actual viewport",span.height()<=viewport);Rect withModel=new Rect(span);withModel.union(bodyRect(a,(View)a.body.findViewById(R.id.settings_model).getParent()));includeModel[0]=withModel.height()<=viewport;if(includeModel[0])span=withModel;a.body.requestRectangleOnScreen(span,true);});frame(scenario);frame(scenario);ready(scenario);long settled=SystemClock.elapsedRealtime();Thread.sleep(2000);ready(scenario);JSONObject[] metadata={null};
+        scenario.onActivity(a->{safe(a);assertEquals(1f,a.getWindow().getAttributes().alpha,0f);WindowInsets insets=a.getWindow().getDecorView().getRootWindowInsets();assertNotNull(insets);assertFalse(insets.isVisible(WindowInsets.Type.ime()));assertTrue(SystemClock.elapsedRealtime()-settled>=2000);if(includeModel[0]){assertPreferenceVisible(a,a.body.findViewById(R.id.settings_model));assertPreferenceVisible(a,a.body.findViewById(R.id.settings_effort));}SettingsRecreationTest.assertCompleteAndVisible(a,a.hierarchyNotice);SettingsRecreationTest.assertCompleteAndVisible(a,findText(a.body,2+L.t(" projects · manage access"," 个项目 · 管理授权")));SettingsRecreationTest.assertCompleteAndVisible(a,projectName(a,IDS[0]));SettingsRecreationTest.assertCompleteAndVisible(a,projectChip(a,IDS[0]));try{JSONArray projects=new JSONArray();for(String id:IDS){TextView name=projectName(a,id),chip=projectChip(a,id);projects.put(new JSONObject().put("id",id).put("visible_name",name.getText()).put("name_bounds",bounds(name).toShortString()).put("name_width",name.getWidth()).put("name_lines",name.getLineCount()).put("chip_bounds",bounds(chip).toShortString()).put("chip_description",chip.getContentDescription()).put("chip_enabled",chip.isEnabled()).put("chip_alpha",chip.getAlpha()));}metadata[0]=new JSONObject().put("nonce",nonce).put("phase",phase).put("language",language).put("theme",theme).put("font_scale",1).put("memory_only",true).put("capture_accepted",false).put("fixture",a.getClass().getSimpleName()).put("scope","First project access row and memory marker; model rows only when model_rows_in_capture is true; not the full Settings page").put("model_rows_in_capture",includeModel[0]).put("marker",a.hierarchyNotice.getText()).put("model_row_bounds",bounds(a.body.findViewById(R.id.settings_model)).toShortString()).put("projects",projects).put("required_predraws_completed",2).put("settled_at_elapsed_ms",settled).put("capture_at_elapsed_ms",SystemClock.elapsedRealtime()).put("forbidden_actions",a.forbiddenActions.get()).put("work_factories",a.workFactories).put("model_saves",a.modelSaves).put("business_actions","not_invoked_by_test").put("system_bar_pixels_require_visual_review",true);}catch(JSONException error){throw new AssertionError(error);}});
+        Bitmap image=InstrumentationRegistry.getInstrumentation().getUiAutomation().takeScreenshot();assertNotNull(image);String name="settings-reading-"+language+"-"+theme+"-font1";try{assertEquals(320,image.getWidth());assertEquals(640,image.getHeight());try(OutputStream out=Files.newOutputStream(new File(directory,name+".png").toPath(),StandardOpenOption.CREATE_NEW,StandardOpenOption.WRITE)){assertTrue(image.compress(Bitmap.CompressFormat.PNG,100,out));}try(OutputStream out=Files.newOutputStream(new File(directory,name+".json").toPath(),StandardOpenOption.CREATE_NEW,StandardOpenOption.WRITE)){out.write(metadata[0].toString(2).getBytes(StandardCharsets.UTF_8));}}finally{image.recycle();}
+    }
+}

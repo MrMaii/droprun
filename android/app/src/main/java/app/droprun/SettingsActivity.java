@@ -53,14 +53,14 @@ public class SettingsActivity extends StyledActivity {
         computerSection();appearanceSection();modeSection();modelSection();accessSection();retentionSection();aboutSection();disconnectSection();
         if(focusId==R.id.settings_appearance||focusId==R.id.settings_language||focusId==R.id.settings_model||focusId==R.id.settings_effort){View replacement=body.findViewById(focusId);if(replacement!=null){replacement.requestFocus();revealPreferenceAfterLayout();}}
     }
-    LinearLayout section(String label){body.addView(Ui.label(this,label));LinearLayout card=Ui.card(this);body.addView(card,Ui.cardParams(this));return card;}
+    LinearLayout section(String label){body.addView(Ui.label(this,label));LinearLayout card=Ui.vertical(this);body.addView(card,Ui.cardParams(this));return card;}
     LinearLayout.LayoutParams trailing(){LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(-2,-2);params.setMarginStart(dp(10));return params;}
     void error(Exception e){if(!isDestroyed())new AlertDialog.Builder(this).setTitle(L.t("Could not complete this action","暂时无法完成")).setMessage(e.getMessage()).setPositiveButton(L.t("Got it","知道了"),null).show();}
 
     // ---- 电脑 -----------------------------------------------------------------------------------
     void computerSection(){
         LinearLayout card=section(L.t("Computer","电脑"));
-        card.setBackground(Ui.outlined(this,Ui.dark?0xFF2B372C:0xFF222B24,0,Ui.RADIUS_CARD,0));card.setElevation(Ui.dpf(this,3));
+        card.setPadding(dp(20),dp(20),dp(20),dp(20));card.setBackground(Ui.outlined(this,Ui.dark?0xFF2B372C:0xFF222B24,0,Ui.RADIUS_CARD,0));card.setElevation(Ui.dpf(this,3));
         LinearLayout head=Ui.row(this);
         ImageView computer=new ImageView(this);computer.setImageResource(R.drawable.ic_computer);computer.setImageTintList(ColorStateList.valueOf(Ui.LIME));computer.setPadding(dp(10),dp(10),dp(10),dp(10));computer.setBackground(Ui.outlined(this,0xFF354236,0,15,0));computer.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);head.addView(computer,Ui.square(this,44));Ui.space(head,12);
         LinearLayout words=Ui.vertical(this);TextView name=Ui.title(this,store.computerName(),17);name.setTextColor(0xFFF4F6F0);name.setPadding(0,0,0,0);words.addView(name);words.addView(Ui.text(this,store.projects().length()+L.t(" Codex projects"," 个 Codex 项目"),12,0xFFC5CEC2),Ui.margins(this,5,0));head.addView(words,Ui.grow());
@@ -184,17 +184,17 @@ public class SettingsActivity extends StyledActivity {
             JSONObject p=projects.optJSONObject(n);if(p==null)continue;
             boolean enabled=Store.projectEnabled(p);String id=p.optString("id"),name=ProjectPresentation.label(id,p.optString("name"),projects,history);
             if(card.getChildCount()>0)card.addView(Ui.divider(this));
-            LinearLayout line=Ui.row(this);line.setPadding(0,dp(6),0,dp(6));line.setMinimumHeight(dp(48));
-            TextView title=Ui.text(this,name,15,Ui.TEXT);title.setMaxLines(name.equals(p.optString("name"))?2:Integer.MAX_VALUE);title.setEllipsize(TextUtils.TruncateAt.END);line.addView(title,Ui.grow());
+            boolean large=getResources().getConfiguration().fontScale>=1.5f;LinearLayout line=Ui.row(this);if(large)line.setOrientation(LinearLayout.VERTICAL);line.setPadding(0,dp(6),0,dp(6));line.setMinimumHeight(dp(48));
+            TextView title=Ui.text(this,name,15,Ui.TEXT);title.setMaxLines(name.equals(p.optString("name"))?2:Integer.MAX_VALUE);title.setEllipsize(TextUtils.TruncateAt.END);line.addView(title,large?Ui.fill():Ui.grow());
             boolean pending=switching.contains(id);
             TextView toggle=Ui.chip(this,pending?L.t("Updating","更改中"):enabled?L.t("Allowed","已允许"):L.t("Not allowed","未允许"),enabled);
-            toggle.setEnabled(!pending&&!busy);toggle.setAlpha(pending?0.5f:1f);
+            toggle.setEnabled(!pending&&!busy);toggle.setAlpha(pending||busy?0.5f:1f);
             toggle.setContentDescription(name+(pending?L.t(", updating","，正在更改"):enabled?L.t(", allowed, tap to revoke access","，已允许，点按停止转发"):L.t(", not allowed, tap to allow","，未允许，点按允许")));
             toggle.setOnClickListener(v->{
                 if(enabled)new AlertDialog.Builder(this).setTitle(L.t("Stop handoffs to “","停止向「")+name+L.t("”?","」转发？")).setMessage(L.t("Queued and running handoffs for this project will be stopped. Changes already made will not be undone.","这个项目里排队和进行中的任务会被停止；已经发生的改动不会回滚。")).setNegativeButton(L.t("Keep","保留"),null).setPositiveButton(L.t("Stop","停止"),(d,w)->setPermission(id,false)).show();
                 else new AlertDialog.Builder(this).setTitle(L.t("Allow handoffs to this project?","允许向这个项目交办？")).setMessage(name+"\n\n"+L.t("Future shares can ask Codex to edit this original project using your execution preference.","之后的分享可按你的执行偏好，请 Codex 修改这个原项目。" )).setNegativeButton(L.t("Cancel","取消"),null).setPositiveButton(L.t("Allow","允许"),(d,w)->setPermission(id,true)).show();
             });
-            line.addView(toggle,trailing());card.addView(line);
+            LinearLayout.LayoutParams toggleParams=large?new LinearLayout.LayoutParams(-2,-2):trailing();if(large)toggleParams.topMargin=dp(8);line.addView(toggle,toggleParams);card.addView(line);
         }
         TextView note=Ui.caption(this,L.t("You can also allow a project when sharing to it for the first time.","第一次转发到某个项目时也会询问。"));note.setPadding(0,dp(8),0,0);card.addView(note);
     }

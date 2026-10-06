@@ -171,6 +171,11 @@ in [the current candidate record](../releases/0.5.8-rc.1.md).
   their selected value without an extra confirmation dialog.
   Disclosure chevrons take a short 90-degree turn and can reverse during motion
   without leaving their closed-to-open angle range or changing callbacks.
+  Disclosure content also continues from its current opacity when reversed.
+  Settings and project history use the common page reading edge; the connected
+  computer retains its distinct surface. At 150% font and above, project access
+  actions follow the full project name on a separate line. A page-wide save disables
+  and dims permission controls until its actual completion.
   Home sync errors use a compact attention notice with the original cause in
   details. Manual status checks show immediate, accessible progress, prevent
   duplicate checks and return to the actual cached/connection state. They do not

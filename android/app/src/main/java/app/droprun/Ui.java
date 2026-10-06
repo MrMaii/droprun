@@ -348,11 +348,12 @@ public final class Ui {
         Object running=content.getTag(R.id.expand_animation);if(running instanceof ValueAnimator)((ValueAnimator)running).cancel();
         ViewGroup.LayoutParams params=content.getLayoutParams();
         if(!motionEnabled(content.getContext())){params.height=-2;content.setLayoutParams(params);content.setVisibility(show?View.VISIBLE:View.GONE);content.setAlpha(1);return;}
+        float fromAlpha=content.getVisibility()==View.GONE?0.4f:content.getAlpha(),toAlpha=show?1f:0f;
         View parent=(View)content.getParent();int width=Math.max(1,parent.getWidth()-parent.getPaddingLeft()-parent.getPaddingRight());
         int from=content.getVisibility()==View.GONE?0:content.getHeight();content.measure(View.MeasureSpec.makeMeasureSpec(width,View.MeasureSpec.EXACTLY),View.MeasureSpec.makeMeasureSpec(0,View.MeasureSpec.UNSPECIFIED));
         int to=show?content.getMeasuredHeight():0;content.setVisibility(View.VISIBLE);
         ValueAnimator animator=ValueAnimator.ofInt(from,to);content.setTag(R.id.expand_animation,animator);animator.setDuration(280);animator.setInterpolator(new DecelerateInterpolator(1.8f));
-        animator.addUpdateListener(a->{params.height=(int)a.getAnimatedValue();content.setLayoutParams(params);content.setAlpha(show?0.4f+0.6f*a.getAnimatedFraction():1f-a.getAnimatedFraction());});
+        animator.addUpdateListener(a->{params.height=(int)a.getAnimatedValue();content.setLayoutParams(params);content.setAlpha(fromAlpha+(toAlpha-fromAlpha)*a.getAnimatedFraction());});
         animator.addListener(new AnimatorListenerAdapter(){boolean cancelled;@Override public void onAnimationCancel(Animator a){cancelled=true;}@Override public void onAnimationEnd(Animator a){if(cancelled)return;params.height=-2;content.setLayoutParams(params);content.setAlpha(1);content.setVisibility(show?View.VISIBLE:View.GONE);content.setTag(R.id.expand_animation,null);}});animator.start();
     }
     /** Compact settings navigation; values wrap at large font sizes. */
