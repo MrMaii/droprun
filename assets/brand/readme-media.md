@@ -360,3 +360,12 @@ The two font2 reading windows also verified original list lines and plan actions
 [Source identities and local verification](../../docs/releases/ui-task-results-feedback-2026-10-06.md).
 These captures are from the diagnostic debug build, not the signed download or
 a genuine Codex delivery. Earlier recordings and captures retain their dates.
+
+## Share destination — October 6, 2026
+
+Four raw 320×640 light/dark EN/ZH captures from the unreleased 0.5.10-dev/code23
+memory-only build. The complete preset destination has stronger typography;
+the .invalid link and empty note are disclosed. No material/model control or
+Send was activated. All four raw images were directly reviewed and copied
+without retouching. The separate Share GIF above retains its earlier source.
+[Source, hashes, checks and limits](../../docs/releases/ui-share-destination-feedback-2026-10-06.md).

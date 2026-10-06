@@ -1,8 +1,9 @@
 <div align="center">
   <img src="assets/brand/mark.png" width="96" alt="DropRun">
   <h1>DropRun</h1>
-  <p><strong>手机分享参考，让本地 Codex 接着做。</strong></p>
-  <p>选已有项目，可选留一句话，在手机查看结果与证据。<br>Android 8+ · Windows x64 · 已登录 Codex · 自己的 Cloudflare</p>
+  <h2>手机分享参考，让本地 Codex 接着做。</h2>
+  <p>选已有项目，可选留一句话，在手机查看结果与证据。</p>
+  <p>Android 8+ · Windows x64 · 已登录 Codex · 自己的 Cloudflare</p>
   <p><a href="docs/technical/SELF_HOSTING.zh-CN.md"><strong>开始安装 →</strong></a></p>
   <p><a href="https://droprun.dengmaizi0802.chatgpt.site/zh/">官网</a> · <a href="https://github.com/MrMaii/droprun/releases/tag/v0.5.10-rc.1">候选版下载</a> · <a href="README.md">English</a></p>
 </div>
@@ -16,29 +17,6 @@ Codex 在你的 Windows 电脑上工作，Relay 由你部署到自己的 Cloudfl
 
 > 借鉴这里的导航思路，改进我们的设置页。保持现有视觉风格。
 
-## 分享浮层里的动效
-
-原生开发界面 · 2026 年 10 月 6 日 · 仅内存示例；项目预置、留言留空，未发送任务。
-
-<p align="center"><picture><source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/brand/source-share-plain-zh-dark-20261006.png"><source media="(prefers-reduced-motion: reduce)" srcset="assets/brand/source-share-plain-zh-light-20261006.png"><img src="assets/brand/native-share-reading-zh-20261006.gif" width="320" alt="原生 Android 分享浮层：检查收到的示例材料、选中另一个示例模型、查看默认深入强度并收起选项；保留仅内存标记，未发送任务"></picture></p>
-
-[9.06 秒原始录屏](landing/media/native-share-reading-zh-20261006.mp4) · [字幕](landing/media/native-share-reading-zh-20261006.vtt)
-
-[浅色静态截图](assets/brand/source-share-plain-zh-light-20261006.png) · [深色静态截图](assets/brand/source-share-plain-zh-dark-20261006.png)。启用减少动画时显示静态界面。
-GIF 为原生 320 × 640 的 25 fps 采样展示；MP4 保留原始时间顺序。
-
-<details>
-<summary><strong>较早界面导览与完整演示</strong></summary>
-
-10 月 5 日的较早导览使用 0.5.1 开发界面与标注的演示数据。
-它们展示界面操作，不代表真实来源到 Codex 的完整交办。
-
-[较早 12 秒导览](https://droprun.dengmaizi0802.chatgpt.site/media/ui-tour-zh.mp4) · [24 秒短演示](https://droprun.dengmaizi0802.chatgpt.site/media/demo.mp4) · [64 秒界面导览](https://droprun.dengmaizi0802.chatgpt.site/media/walkthrough.mp4)
-
-</details>
-
-**[开始安装与配对 →](docs/technical/SELF_HOSTING.zh-CN.md)**
-
 ## 分享参考、跟进工作、查看交付
 
 1. **分享参考。** 在其他 Android App 点 **分享 → DropRun**，再选已有项目。按需补充这次希望完成的改动。
@@ -50,9 +28,9 @@ GIF 为原生 320 × 640 的 25 fps 采样展示；MP4 保留原始时间顺序�
 当前截图与分享录屏为标注的原生内存示例，不是签名包录制或真实 Codex 任务。[媒体来源](assets/brand/readme-media.md)。
 
 <p align="center">
-  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-share-plain-zh-dark-20261006.png"><img src="assets/brand/source-share-plain-zh-light-20261006.png" width="220" alt="01 · 分享：原生 Android 留言步骤，展示可展开的收到材料、可选意图及模型强度入口，保留仅内存验证标记"></picture>
-  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-home-rows-zh-dark-20261006.png"><img src="assets/brand/source-home-rows-zh-light-20261006.png" width="220" alt="02 · 跟进：原生 Android 项目首页，项目名称、任务与交办次数沿页面阅读边缘对齐，保留仅内存验证与示例项目标记"></picture>
-  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-delivery-result-zh-dark-20261006.png"><img src="assets/brand/source-delivery-result-zh-light-20261006.png" width="220" alt="03 · 查看：原生交办页，清楚的结果标题、固定快照说明与交付入口，保留仅内存验证标记"></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-share-destination-zh-dark-20261006.png"><img src="assets/brand/source-share-destination-zh-light-20261006.png" width="260" alt="01 · 分享：原生 Android 留言步骤，展示可展开的收到材料、可选意图及模型强度入口，保留仅内存验证标记"></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-home-rows-zh-dark-20261006.png"><img src="assets/brand/source-home-rows-zh-light-20261006.png" width="260" alt="02 · 跟进：原生 Android 项目首页，项目名称、任务与交办次数沿页面阅读边缘对齐，保留仅内存验证与示例项目标记"></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-delivery-result-zh-dark-20261006.png"><img src="assets/brand/source-delivery-result-zh-light-20261006.png" width="260" alt="03 · 查看：原生交办页，清楚的结果标题、固定快照说明与交付入口，保留仅内存验证标记"></picture>
 </p>
 
 <details>
@@ -68,6 +46,36 @@ GIF 为原生 320 × 640 的 25 fps 采样展示；MP4 保留原始时间顺序�
 普通字号的内存示例：设置展示滚动后的模型与授权局部，历史含三条示例记录；不是 200% 字号截图。
 
 </details>
+
+## 分享浮层里的动效
+
+原生开发界面 · 2026 年 10 月 6 日 · 仅内存示例；项目预置、留言留空，未发送任务。
+
+<p align="center"><picture><source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/brand/source-share-plain-zh-dark-20261006.png"><source media="(prefers-reduced-motion: reduce)" srcset="assets/brand/source-share-plain-zh-light-20261006.png"><img src="assets/brand/native-share-reading-zh-20261006.gif" width="320" alt="原生 Android 分享浮层：检查收到的示例材料、选中另一个示例模型、查看默认深入强度并收起选项；保留仅内存标记，未发送任务"></picture></p>
+
+[9.06 秒原始录屏](landing/media/native-share-reading-zh-20261006.mp4) · [字幕](landing/media/native-share-reading-zh-20261006.vtt)
+
+启用减少动画时显示静态界面。
+
+<details>
+<summary><strong>静态界面与录屏说明</strong></summary>
+
+[浅色静态截图](assets/brand/source-share-plain-zh-light-20261006.png) · [深色静态截图](assets/brand/source-share-plain-zh-dark-20261006.png)。
+GIF 为原生 320 × 640 的 25 fps 采样展示；MP4 保留原始时间顺序。
+
+</details>
+
+<details>
+<summary><strong>较早界面导览与完整演示</strong></summary>
+
+10 月 5 日的较早导览使用 0.5.1 开发界面与标注的演示数据。
+它们展示界面操作，不代表真实来源到 Codex 的完整交办。
+
+[较早 12 秒导览](https://droprun.dengmaizi0802.chatgpt.site/media/ui-tour-zh.mp4) · [24 秒短演示](https://droprun.dengmaizi0802.chatgpt.site/media/demo.mp4) · [64 秒界面导览](https://droprun.dengmaizi0802.chatgpt.site/media/walkthrough.mp4)
+
+</details>
+
+**[开始安装与配对 →](docs/technical/SELF_HOSTING.zh-CN.md)**
 
 ## 从自己的环境开始
 

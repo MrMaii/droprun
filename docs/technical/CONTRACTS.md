@@ -69,6 +69,13 @@ plan-version, per-command approval and report-evidence checks remain in force.
   after a section rebuild, provided the updated catalog still offers that control.
   Defaults are instance-scoped local preferences; choosing or cancelling these
   dialogs never submits an execution-mode or project-permission mutation.
+  A settled execution-mode result, success or failure, is announced at most once
+  for its retained operation. Only the current operation, current instance and
+  attached view may announce while its Activity is neither finishing nor destroyed;
+  pending and stale operations cannot announce.
+  Task refresh failures retain existing task data. Null or blank error detail
+  produces a localized notice; nonblank detail is preserved. The existing active
+  refresh schedule and pause/destroy cancellation remain in force.
 - Fresh installs apply migrations-fresh/0001-baseline.sql only. Existing instances
   apply the compatibility upgrade; never apply consolidated schema and duplicate
   historical ALTER migrations to the same new database.

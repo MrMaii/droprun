@@ -392,7 +392,7 @@ public class ShareActivity extends StyledActivity {
     View stepNote(){
         LinearLayout column=Ui.vertical(this);
         column.addView(Ui.title(this,L.t("What should Codex do?","想让 Codex 做什么？"),22));
-        TextView target=Ui.caption(this,L.t("For “","转发到「")+projectName()+L.t("”","」"));column.addView(target);
+        TextView target=Ui.text(this,L.t("For “","转发到「")+projectName()+L.t("”","」"),15,Ui.TEXT);target.setTypeface(Ui.medium());column.addView(target);
         column.addView(materialDisclosure(),Ui.margins(this,12,4));
         note=new EditText(this);note.setHint(L.t("Optional. Leave this blank and let Codex find the useful part.","可选。留空让 Codex 自己判断怎么用。"));note.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_FLAG_MULTI_LINE|InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
         note.setMinLines(3);note.setMaxLines(6);note.setFilters(new InputFilter[]{new InputFilter.LengthFilter(15000)});note.setText(draft);Ui.styleInput(note);

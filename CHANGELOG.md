@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+- Introduce the workflow and larger native screenshots before Share motion in
+  both READMEs; keep recording parameters in a disclosure and provenance visible.
+- Make the selected Share destination easier to read, including complete long
+  names at large text sizes.
+- Announce a settled execution-preference failure once, using the same guarded
+  feedback as success. Keep pending and stale operations silent.
+- Show a useful localized notice when a task refresh fails without error detail;
+  preserve existing results and the normal retry schedule.
+  [Actual local checks and limits](docs/releases/ui-share-destination-feedback-2026-10-06.md).
+
 ## 0.5.10-rc.1 — clearer results and accurate feedback
 
 [Verified candidate and open acceptance](docs/releases/0.5.10-rc.1.md).

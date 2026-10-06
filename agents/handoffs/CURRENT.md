@@ -29,47 +29,40 @@ No stable launch or marketing handover is claimed.
   attempt1 all3jobs/35steps/10required/3checks, actualcore210/browser18 pass.
   Complete327067B log SHAe3f655e57b73c1a684bb46f8b77d21a307df14bdbf1664c0640068bda2abb5bd.
 
-## Latest completed work
+## Latest local UI work — unreleased
 
-- Continuous Home rows, plain Share reading entries, page-width delivery,
-  Settings/history sections and reversible disclosure opacity are packaged.
-  [Settings/history](../../docs/releases/ui-settings-history-reading-2026-10-06.md)
-  and [Share motion](../../docs/releases/ui-share-reading-motion-2026-10-06.md)
-  own native evidence and boundaries; historical failed originals remain intact.
-- Unique Settings names: native baseline hid109EN/40ZH chars; accepted font2
-  exposes all7EN+6ZH lines individually. Each2windows destroyed/4guard rows0.
-- [First-use/follow-up](../../docs/releases/ui-first-use-followup-2026-10-06.md):
-  first use names DropRun in Share, neutral request feedback, quiet Follow up.
-  Four normal captures1/1 12.684s and two font2 reading/plan windows1/1 3.648s;
-  all6destroyed, zero business guards, no business click/OS/IME change.
-  Raw4stills directly viewed;8brand/landing copies byte-exact. Frozen121native
-  sources/4configs, JVM24/lint0errors30existing warnings; version bump followed.
-  Empty-state and async wording are compiled/static, not exercised by probes.
-- README now explains Share → DropRun and three steps before the gallery, with
-  one accepted task/dispatch definition nearby. Independent static review checks
-  all32image/source tags/8image paragraphs unchanged;27media refs preserved.
-  Downloads/docs now select verified10. Landing build22assets/canonical URL pass.
-  No fresh README/hosted browser or signed-package capture claimed; HTTP checks above are separate.
+- [Share destination and failure feedback](../../docs/releases/ui-share-destination-feedback-2026-10-06.md)
+  owns the new evidence and limits. Share destination now15sp/medium/TEXT;
+  Settings announces settled failure once; blank task-refresh detail gives a
+  useful localized notice. Cached results and normal scheduling remain.
+- One offline build38s:127native sources/4configs, freeze67f70b1f;
+  actual0.5.10-dev/code23, appdd562b04/testf93ba91f. JVM27/0fail/error/skips;
+  lint0errors/30existingwarnings. This is ahead of immutable signed10.
+- Actual Settings1/1 5.405s:2memory failures/2native announcements/2knownDESTROYED,
+  12guard observations0. Refresh1/1 4.644s:4fixed active failure callbacks,
+  4knownDESTROYED/20guards0; no paused/late/success or spokenTalkBack claim.
+- Actual Share1/1 15.972s:4normal raw320x640captures+2font2readingwindows,
+  all6knownDESTROYED;19natural lines/32IDchars/47eight-counter guards0.
+  LonglabelEN8/ZH7lines+Sendreachable. ProjectPresentation.label output is placed
+  into fixture memory name; catalog integration is not exercised. Root directly
+  viewed4originalPNG/systembars;4brandcopies byte-exact. No media/control/Send click.
+- SameAPKs/source/deviceexact. Original owner failed only its local tilde-path
+  regex after successful app install;12known returned children, no test launch.
+  Failed originals retained. Continuation installed only testAPK, then passed.
+- Existing continuousHome, page-widthDelivery, Settings/history, first-use and
+  Share-reading motion remain. Their dated records own prior captures/limits;
+  [task-results](../../docs/releases/ui-task-results-feedback-2026-10-06.md)
+  and [Share-motion](../../docs/releases/ui-share-reading-motion-2026-10-06.md).
 
-## New local UI pass
+## README visual pass
 
-- [Task results and action feedback](../../docs/releases/ui-task-results-feedback-2026-10-06.md)
-  owns the latest evidence: 27JVM/0fail/error/skips; lint0errors30warnings,
-  frozen123sources/4configs; actual debug0.5.9-dev/code22. Later metadata-only
-  version0.5.10/code23 is distinct. App e27434f0, test0ef7f972.
-- Actual closed failure callbacks:1/1 11.327s,8windows all known DESTROYED,
-  40guard snapshots0, Work8/memoryRefreshDelta8. Null/blank errors never confirm
-  success; controls restore and the failure dialog gives an actionable next step.
-  OriginalPreview perform denial remains unchanged. Static baseline only; noToast
-  measurement or genuine request. Independent review9d238cbc checks raw38160B
-  stdout cce4cb9b and24child exits/hashes. Its CRLF-reading false original and
-  unexecuted successor are retained; corrected read-only review passed.
-- Same APKs, no rebuild/reinstall:normal4captures1/1 12.274s and2font2 reading,
-  list and plan windows1/1 4.487s. All6knownDESTROYED,4raw+2final guards0.
-  Root/independent directly viewed4rawPNG;8brand/landing copies byte-exact.
-  Result title is clearer, original list lines stay separate, ready preview
-  explanation is close to its action. README/website source selects these stills;
-  canonical22asset build passes. These debug captures predate signed10 and Sites15; their checks are recorded above.
+Applied the accepted bilingual layout byte-exact after six actual local previews:
+EN/ZH320/375/1280, light/reducedmotion, no horizontal overflow or external load;
+all six owner endpoints stopped. Root viewed four hero/gallery PNGs. Workflow
+and native260px gallery precede Share motion; recording parameters disclosed,
+provenance visible. Reportf71b48f3 is linked in the local UX record. This uses
+approximate GitHub CSS, not its actual renderer; dark/fullmotion not measured.
+No candidate10 link or GIF/static-selector provenance changed.
 
 ## Authorization and blocking conditions
 
@@ -92,20 +85,16 @@ No stable launch or marketing handover is claimed.
 
 ## Single recommended next action
 
-Build and verify the next local UI pass: clearer Share destination, the guarded
-once failure announcement in Settings, and fallback for null/blank task refresh
-errors. These three source changes and their closed tests are not yet built/run
-and are not part of signed10. Keep genuine acceptance and marketing handover
-open; no real Relay/Codex submission or previously denied path.
+Curate/review/commit the verified unreleased UI source, raw stills, README and
+contracts. Then continue the primary-button material refinement, preserving
+interaction states and reduced-motion behavior. Keep signed10 and Sites15
+immutable until a separate candidate package/site pass. Genuine acceptance and
+marketing handover remain open. No real Relay/Codex or previously denied path.
 
 ## Files this pass
 
-Task result/summary and closed action-feedback fixture/test, native list checks,
-source0.5.10/version23, contract/PRD/changelog, new rawDelivery stills and README/
-landing selection; prior Main/Task/Settings, opt-in unique-name probe, source/version metadata; native
-Delivery stills and README/media evidence;09 package/export/public-download
-records; current README/installation/PRD/roadmap/context links, landing
-builder/HTML, CHANGELOG and this handoff; actual Sites14/HTTP/documentation
-publication evidence and a new static Task feedback finding. Private originals stay in .local;
-film/launch assets stay uncommitted and excluded from public index.
+Share/Settings/Task source, closed refresh fixture and three opt-in tests; debug
+manifest; PRD/CONTRACTS/CHANGELOG; new nativeShare source PNGs/media provenance;
+local UX record, applied bilingual README and this handoff. Private film/launch originals
+remain uncommitted and excluded from the public index.
 Author Thomas Deng <150266369+MrMaii@users.noreply.github.com>.

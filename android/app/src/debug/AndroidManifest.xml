@@ -1,6 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application>
         <activity android:name="app.droprun.DemoTaskFeedbackActivity" android:exported="false" />
+        <activity android:name="app.droprun.DemoTaskRefreshFeedbackActivity" android:exported="false" />
         <activity android:name="app.droprun.DemoTaskPreviewActivity" android:exported="false" />
         <activity android:name="app.droprun.DemoTaskPreviewNormalActivity" android:exported="false" />
         <activity android:name="app.droprun.DemoHomeRecoveryActivity" android:exported="false" />

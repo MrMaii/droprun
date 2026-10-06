@@ -45,7 +45,7 @@ public class TaskActivity extends StyledActivity {
     void load(){
         handler.removeCallbacks(refresh);if(!foreground||busy||loading)return;loading=true;
         io.execute(()->{
-            String error="";try{store.refreshTask(taskId);}catch(Exception e){error=e.getMessage();}
+            String error="";try{store.refreshTask(taskId);}catch(Exception e){String detail=e.getMessage();error=detail==null||detail.trim().isEmpty()?L.t("Could not refresh this handoff. We'll try again shortly.","暂时无法刷新这条交办，稍后会自动重试。"):detail;}
             String message=error;
             runOnUiThread(()->{loading=false;if(isDestroyed()||!foreground)return;notice.setText(message);notice.setVisibility(message.isEmpty()?View.GONE:View.VISIBLE);render();handler.postDelayed(refresh,5000);});
         });

@@ -13,10 +13,12 @@ in [the current candidate record](../releases/0.5.10-rc.1.md).
   Its installation section places the Windows installer and self-hosting guide
   beside the prerequisites. README gives installation a distinct primary entry,
   with compact website, preview-download and language links below it.
-  A dated native UI tour precedes the workflow gallery; reduced motion selects
+  README introduces the workflow and current native gallery before its dated
+  Share tour; the value sentence has a clear heading, and recording details use
+  a disclosure. Primary workflow images are larger; reduced motion selects
   a static light/dark capture, with explicit still links and unchanged provenance.
-  A localized installation link at the end of the tour lets ready readers leave
-  for setup without scrolling through the full static gallery.
+  A localized installation link at the end of the tour lets ready readers move
+  directly to setup.
   Dated Share motion media show received-material disclosure, model choice and
   its default effort, with the preset project and empty note disclosed. Native-size
   sampled GIFs keep README loading light; original videos preserve the timeline.
@@ -56,6 +58,8 @@ in [the current candidate record](../releases/0.5.10-rc.1.md).
   the retained three values requires clearing the link first.
   Share project and intent steps each have one main question, without a
   duplicate section label. Material, execution context and actions remain clear.
+  The selected destination stays prominent above the optional note, wraps its
+  complete name and remains individually readable before the Send action.
   Both pre-Send steps offer a compact, accessible material disclosure.
   Material and model controls use light text rows with visible trailing arrows;
   the optional note remains the distinct input surface. Their complete click
@@ -91,6 +95,8 @@ in [the current candidate record](../releases/0.5.10-rc.1.md).
   Task-action failures never become success confirmations because error text is
   absent. Missing detail gives a localized next step: check the latest handoff
   state before retrying. The controls become available when the callback settles.
+  A task refresh with missing detail keeps the cached result and displays a
+  localized notice that another refresh will follow; useful error detail stays intact.
   A static preview explains that it is a fixed snapshot. Its complete version is
   selectable in a separate collapsed section, with expansion state restored
   after page recreation; it does not fill the main result explanation.
@@ -100,7 +106,9 @@ in [the current candidate record](../releases/0.5.10-rc.1.md).
   download, cache verification, decoding and Save/Back behavior stay unchanged.
   A configuration recreation continues observing the same pending mode change,
   including its eventual success or failure, without starting it again. Already
-  displayed success is not announced again after recreation. Old completions
+  displayed results are not announced again after recreation. A settled failure
+  receives the same guarded, once-only accessibility announcement as success.
+  Pending saves remain silent. Old completions
   cannot replace a newer decision, disconnect feedback or another connection.
   Mode-change progress and results appear beside the affected choices, so viewing
   those choices does not scroll their feedback out of the safe area.

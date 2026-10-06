@@ -1,8 +1,9 @@
 <div align="center">
   <img src="assets/brand/mark.png" width="96" alt="DropRun">
   <h1>DropRun</h1>
-  <p><strong>Share from your phone. Put local Codex to work.</strong></p>
-  <p>Choose an existing project. Add an optional note. Inspect the result and evidence on your phone.<br>Android 8+ · Windows x64 · signed-in Codex · your Cloudflare</p>
+  <h2>Share from your phone. Put local Codex to work.</h2>
+  <p>Choose an existing project. Add an optional note. Inspect the result and evidence on your phone.</p>
+  <p>Android 8+ · Windows x64 · signed-in Codex · your Cloudflare</p>
   <p><a href="docs/technical/SELF_HOSTING.md"><strong>Get started →</strong></a></p>
   <p><a href="https://droprun.dengmaizi0802.chatgpt.site">Website</a> · <a href="https://github.com/MrMaii/droprun/releases/tag/v0.5.10-rc.1">Preview downloads</a> · <a href="README.zh-CN.md">简体中文</a></p>
 </div>
@@ -16,29 +17,6 @@ For example, share a design reference to an existing app project with this note:
 
 > Adapt this navigation idea to our settings screen. Keep our existing visual style.
 
-## Inside the share sheet
-
-Native development UI · October 6, 2026 · memory-only. Preset project, empty note; no task sent.
-
-<p align="center"><picture><source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/brand/source-share-plain-en-dark-20261006.png"><source media="(prefers-reduced-motion: reduce)" srcset="assets/brand/source-share-plain-en-light-20261006.png"><img src="assets/brand/native-share-reading-en-20261006.gif" width="320" alt="Native Android share sheet: inspect received sample material, select another sample model, view its default Thorough effort and collapse the options; visible memory-only marker, no task sent"></picture></p>
-
-[9.06-second original recording](landing/media/native-share-reading-en-20261006.mp4) · [Captions](landing/media/native-share-reading-en-20261006.vtt)
-
-[Light still](assets/brand/source-share-plain-en-light-20261006.png) · [Dark still](assets/brand/source-share-plain-en-dark-20261006.png). Reduced motion shows a static image.
-The GIF is a 25 fps sampled display at native 320 × 640; the MP4 keeps the original timeline.
-
-<details>
-<summary><strong>Earlier UI tours and longer walkthrough</strong></summary>
-
-The October 5 tours use the 0.5.1 development UI with labelled demonstration data.
-They show interface navigation, not a completed source-to-Codex task.
-
-[Earlier 9-second tour](https://droprun.dengmaizi0802.chatgpt.site/media/ui-tour-en.mp4) · [24-second video](https://droprun.dengmaizi0802.chatgpt.site/media/demo.mp4) · [64-second walkthrough](https://droprun.dengmaizi0802.chatgpt.site/media/walkthrough.mp4)
-
-</details>
-
-**[Set up DropRun →](docs/technical/SELF_HOSTING.md)**
-
 ## Share. Follow. Inspect.
 
 1. **Share a reference.** In another Android app, tap **Share → DropRun**, then choose an existing project. Add a note when you have a specific change in mind.
@@ -51,9 +29,9 @@ Network retries add neither.
 Current screenshots and the Share recording are labelled memory-only development UI, not signed-package or genuine Codex recordings. [Capture notes](assets/brand/readme-media.md).
 
 <p align="center">
-  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-share-plain-en-dark-20261006.png"><img src="assets/brand/source-share-plain-en-light-20261006.png" width="220" alt="01 · Share: native Android note step with expandable received material, optional intent and Model & effort controls; memory-only probe marker retained"></picture>
-  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-home-rows-en-dark-20261006.png"><img src="assets/brand/source-home-rows-en-light-20261006.png" width="220" alt="02 · Follow: native Android project home with names, task and dispatch counts aligned at the page reading edge; memory-only and sample-project markers retained"></picture>
-  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-delivery-result-en-dark-20261006.png"><img src="assets/brand/source-delivery-result-en-light-20261006.png" width="220" alt="03 · Inspect: native handoff page with a clear result heading, fixed-snapshot explanation and delivery actions; visible memory-only marker"></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-share-destination-en-dark-20261006.png"><img src="assets/brand/source-share-destination-en-light-20261006.png" width="260" alt="01 · Share: native Android note step with expandable received material, optional intent and Model & effort controls; memory-only probe marker retained"></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-home-rows-en-dark-20261006.png"><img src="assets/brand/source-home-rows-en-light-20261006.png" width="260" alt="02 · Follow: native Android project home with names, task and dispatch counts aligned at the page reading edge; memory-only and sample-project markers retained"></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-delivery-result-en-dark-20261006.png"><img src="assets/brand/source-delivery-result-en-light-20261006.png" width="260" alt="03 · Inspect: native handoff page with a clear result heading, fixed-snapshot explanation and delivery actions; visible memory-only marker"></picture>
 </p>
 
 <details>
@@ -69,6 +47,36 @@ Settings in one place. Handoff history organized by project.
 Normal-font memory-only examples: Settings shows a scrolled model/access section; history has three sample rows. These are not 200% text captures.
 
 </details>
+
+## Inside the share sheet
+
+Native development UI · October 6, 2026 · memory-only. Preset project, empty note; no task sent.
+
+<p align="center"><picture><source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/brand/source-share-plain-en-dark-20261006.png"><source media="(prefers-reduced-motion: reduce)" srcset="assets/brand/source-share-plain-en-light-20261006.png"><img src="assets/brand/native-share-reading-en-20261006.gif" width="320" alt="Native Android share sheet: inspect received sample material, select another sample model, view its default Thorough effort and collapse the options; visible memory-only marker, no task sent"></picture></p>
+
+[9.06-second original recording](landing/media/native-share-reading-en-20261006.mp4) · [Captions](landing/media/native-share-reading-en-20261006.vtt)
+
+Reduced motion shows a static image.
+
+<details>
+<summary><strong>Static views and recording details</strong></summary>
+
+[Light still](assets/brand/source-share-plain-en-light-20261006.png) · [Dark still](assets/brand/source-share-plain-en-dark-20261006.png).
+The GIF is a 25 fps sampled display at native 320 × 640; the MP4 keeps the original timeline.
+
+</details>
+
+<details>
+<summary><strong>Earlier UI tours and longer walkthrough</strong></summary>
+
+The October 5 tours use the 0.5.1 development UI with labelled demonstration data.
+They show interface navigation, not a completed source-to-Codex task.
+
+[Earlier 9-second tour](https://droprun.dengmaizi0802.chatgpt.site/media/ui-tour-en.mp4) · [24-second video](https://droprun.dengmaizi0802.chatgpt.site/media/demo.mp4) · [64-second walkthrough](https://droprun.dengmaizi0802.chatgpt.site/media/walkthrough.mp4)
+
+</details>
+
+**[Set up DropRun →](docs/technical/SELF_HOSTING.md)**
 
 ## Start with your own setup
 
