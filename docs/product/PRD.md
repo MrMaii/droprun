@@ -25,7 +25,9 @@ in [the current candidate record](../releases/0.5.4-rc.1.md).
   Background settings refresh also retains the focused appearance or language
   control. Structural page focus must not tint the entire content surface.
   Manual pairing validation keeps entered values and shows a complete, visible
-  form error; format checking never sends a pairing request.
+  form error for the active input method; format checking never sends a pairing
+  request. A nonempty link takes priority. Help and errors explain that using
+  the retained three values requires clearing the link first.
   Share-save feedback gives offline or disabled-notification instructions a
   readable window, including when animations are off; Close stays immediate.
   It reflects connection/notification state when the flight finishes. Ordinary
@@ -36,6 +38,9 @@ in [the current candidate record](../releases/0.5.4-rc.1.md).
   Execution feedback stays beside those choices: neutral while saving, green
   after confirmation, warning on failure or connection change. Accessible option
   names include the visible title, any explanation and the selected state.
+  Delivered screenshot links preserve the image ratio and have a touch target
+  at least 48dp tall. Saving a decision disables their navigation and keyboard
+  focus along with the delivery buttons; normal access returns when it settles.
   A configuration recreation continues observing the same pending mode change,
   including its eventual success or failure, without starting it again. Already
   displayed success is not announced again after recreation. Old completions

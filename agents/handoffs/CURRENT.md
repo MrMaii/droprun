@@ -65,18 +65,29 @@ marketing acceptance remain open; independent UI/brand work continues.
 ## Verified source refinements after the candidate
 
 - [Settings semantics](../../docs/releases/ui-settings-semantics-2026-10-06.md):
-  pending/success/warning use existing MUTED/ACCENT/AMBER; no string matching.
-  Native option names include visible explanation and selected suffix. Red3/4
-  failures preserved; combined12/13 (old9 and new3 tone methods pass), a test
-  attachment helper correction followed by targeted node1/1,56 assertions.
-  JVM24/lint0errors30warnings;12 raw regional PNGs/24 device-host hashes/guard0.
-  Independent source review passes. No single13/13 run, real receipt or TalkBack
-  claim. Source and development APK identities are frozen; device lease released.
-  Public0.5.4 packages are unchanged by these source refinements.
-- Next bounded delivery-image check: ordinary buttons disable during a decision,
-  but the current image entry remains active; extreme aspect ratios have no
-  explicit48dp target. Source evidence exists; client audit owns independent
-  memory-bitmap reproduction, not a genuine download or business operation.
+  pending/success/warning use existing MUTED/ACCENT/AMBER; native option names
+  include visible explanation and selected suffix. Red3/4 failures retained;
+  combined12/13 (old9 and new3 tone methods pass), corrected test attachment helper
+  followed by targeted node1/1 with56 assertions. JVM24/lint0errors30warnings;
+  12 raw region PNGs/24 device-host hashes/guard0. No single13/13, real receipt
+  or TalkBack claim. Public sourcefabd7316f4bedc7aa7e5a63f1df1f0e84652bf14:
+  CI37392789435 attempt1 all3jobs/35steps green, core210/browser14, audit0,
+  site20/public-source369/Windows2022. Nine fresh anonymous source/doc GETs match.
+- [Delivery image target](../../docs/releases/ui-task-thumbnail-2026-10-06.md):
+  a1200x40 memory bitmap exposed an8dp clickable target and active navigation
+  during a decision. Direct ImageView minimum failed; a48dp minimum action surface
+  preserves the centered image ratio, blocks busy/stale clicks and keyboard focus.
+  Red3methods/2fail; green affected native5/5 in41.098s, JVM24/lint0errors30warnings,
+  12 green PNGs plus2 red/minimum captures, device-host hashes/guards pass.
+  No genuine file download, navigation, TalkBack or physical-touch claim.
+- [Manual pairing guidance](../../docs/releases/ui-pair-copy-2026-10-06.md):
+  help/errors explain the active input method and clearing a nonempty link to use
+  retained values. Parsing/link priority and source confirmation unchanged.
+  Red1/3 passed; green3/3 in8.516s; capture-only idle synchronization3/3 in14.032s.
+  Original two transitional stills retained; four settled EN/ZH captures accepted.
+  JVM24/lintRelease0errors28warnings. All99 final sources and device settings
+  matched; no genuine pair/API, ordinary Pair navigation, IME or dark-theme claim.
+- Public0.5.4 packages and GPTSites version7 are unchanged by these source edits.
 
 ## Authorization and blocking conditions
 
@@ -101,9 +112,11 @@ marketing acceptance remain open; independent UI/brand work continues.
 
 ## Single recommended next action
 
-Complete the bounded Task thumbnail target/busy-state reproduction and minimum
-fix, then verify its affected native controls. Root owns curated source publication;
-public0.5.4 artifacts stay immutable. Genuine and physical gates remain separate.
+Move the complete static-snapshot version from the result card into the existing
+collapsed evidence section, preserving the raw value and recreation state.
+Client audit owns the next bounded native lease after this frozen source batch
+is committed. Root owns curated publication; public0.5.4 stays immutable.
+Genuine and physical gates remain separate.
 
 ## Files this pass
 

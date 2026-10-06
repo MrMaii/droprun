@@ -17,8 +17,10 @@ import static org.junit.Assert.*;
 /** Real manual-entry controls with local-only destination recording and no persistent writes. */
 public class ManualPairValidationTest {
     static final String RELAY="https://manual.example.invalid",INSTANCE="11111111-2222-3333-4444-555555555555",CODE="A123B-456C7-890D1-234E5";
-    static final String EN_ERROR="Check the pairing link, or the Relay address, instance ID and code. Nothing was sent; your entries are kept.";
-    static final String ZH_ERROR="请检查完整配对链接，或中转服务地址、实例 ID 和配对码。尚未发送配对请求，输入内容已保留。";
+    static final String EN_MANUAL_ERROR="Check the Relay address, instance ID and code. Nothing was sent; your entries are kept.";
+    static final String ZH_MANUAL_ERROR="请检查中转服务地址、实例 ID 和配对码。尚未发送，输入已保留。";
+    static final String EN_LINK_ERROR="Check the full link, or clear it to use the three values. Nothing was sent; your entries are kept.";
+    static final String ZH_LINK_ERROR="请检查完整配对链接，或清空链接改填下方三项。尚未发送，输入已保留。";
 
     @Test public void invalidManualValuesKeepInputsAndExposeCompleteErrorAtLargeText()throws Exception{
         Context context=fixtureContext();requireLargeText(context);
@@ -35,6 +37,7 @@ public class ManualPairValidationTest {
             String[] values={"https://manual.example.invalid/pair",RELAY,INSTANCE,CODE};
             openAndContinue(scenario,values);assertErrorAndInputs(scenario,values,language);
             scenario.onActivity(activity->{assertEquals("An invalid link must not fall back to the three manual fields",0,activity.confirmations);assertNoRequests(activity);});
+            scenario.onActivity(activity->{activity.manualFields[0].setText("");activity.manualDialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick();assertFalse("Clearing the link allows the retained valid manual values",activity.manualDialog.isShowing());assertEquals(1,activity.confirmations);assertNotNull(activity.confirmedTarget);assertEquals(RELAY,activity.confirmedTarget.relay);assertEquals(INSTANCE,activity.confirmedTarget.instanceId);assertEquals(CODE.replace("-",""),activity.confirmedTarget.code);assertNoRequests(activity);});
         }
     }
     @Test public void validManualValuesAndLinkOnlyReachLocalSourceConfirmation(){
@@ -61,7 +64,7 @@ public class ManualPairValidationTest {
         scenario.onActivity(activity->{assertTrue("Invalid values must keep manual entry open",activity.manualDialog.isShowing());root[0]=activity.manualDialog.getWindow().getDecorView();assertNotNull("Show a form error instead of attaching the error to the empty link field",root[0].findViewWithTag("manual-pair-error"));});
         awaitFrame(scenario,root[0]);awaitFrame(scenario,root[0]);
         scenario.onActivity(activity->{
-            TextView error=root[0].findViewWithTag("manual-pair-error");assertEquals(View.VISIBLE,error.getVisibility());assertEquals("zh".equals(language)?ZH_ERROR:EN_ERROR,error.getText().toString());assertEquals(View.ACCESSIBILITY_LIVE_REGION_POLITE,error.getAccessibilityLiveRegion());
+            TextView error=root[0].findViewWithTag("manual-pair-error");assertEquals(View.VISIBLE,error.getVisibility());boolean usingLink=!values[0].trim().isEmpty();String expected="zh".equals(language)?(usingLink?ZH_LINK_ERROR:ZH_MANUAL_ERROR):(usingLink?EN_LINK_ERROR:EN_MANUAL_ERROR);assertEquals(expected,error.getText().toString());assertEquals(View.ACCESSIBILITY_LIVE_REGION_POLITE,error.getAccessibilityLiveRegion());
             for(int n=0;n<values.length;n++)assertEquals("Keep every submitted input",values[n],activity.manualFields[n].getText().toString());
             assertNull("The optional blank pairing-link field must not receive a misleading error",activity.manualFields[0].getError());
             assertTrue("Exercise a compact dialog width",error.getWidth()<=Ui.dp(activity,320));assertTrue(error.getWidth()>0);
@@ -78,6 +81,7 @@ public class ManualPairValidationTest {
         if(!"true".equals(InstrumentationRegistry.getArguments().getString("captureUi")))return;
         Context context=InstrumentationRegistry.getInstrumentation().getTargetContext();java.io.File base=context.getExternalFilesDir(null);assertNotNull(base);
         java.io.File directory=new java.io.File(base,"ui-probe-evidence");assertTrue(directory.isDirectory()||directory.mkdirs());
+        InstrumentationRegistry.getInstrumentation().getUiAutomation().waitForIdle(500,3000);
         android.graphics.Bitmap image=InstrumentationRegistry.getInstrumentation().getUiAutomation().takeScreenshot();assertNotNull(image);
         try(java.io.FileOutputStream out=new java.io.FileOutputStream(new java.io.File(directory,"manual-pair-"+language+"-"+source+".png"))){assertTrue(image.compress(android.graphics.Bitmap.CompressFormat.PNG,100,out));}finally{image.recycle();}
     }

@@ -5,6 +5,10 @@
 - Distinguish execution-setting progress, confirmed success and warnings with
   existing accessible theme colors. Include visible explanations in native option
   names, retaining selected and disabled states.
+- Give narrow delivery images a minimum 48dp touch target without cropping.
+  Keep image navigation disabled during a decision, including stale callbacks.
+- Explain which manual pairing input needs correction. Keep entered values and
+  clarify that the link must be blank to use the three connection values.
 - Keep English and Chinese README workflow pictures readable on narrow screens
   with independent step headings, captions and full-width-safe pictures.
 

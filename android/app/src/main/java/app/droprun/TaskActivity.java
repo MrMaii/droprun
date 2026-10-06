@@ -108,7 +108,12 @@ public class TaskActivity extends StyledActivity {
         if(report.isEmpty())block(L.t("What's happening","当前进展"),status.equals("waiting_for_approval")&&liveApprovals==0?L.t("This command request expired or is no longer available. Reconnect to refresh the task's status.","这条命令请求已过期或失效。请联网查看任务的最新状态。"):TaskPresentation.noReport(status,!plan.isEmpty()));
         else {delivery=Ui.card(this);TextView label=Ui.title(this,L.t("The result","交付结果"),17);label.setPadding(0,0,0,Ui.dp(this,12));delivery.addView(label);String summary=TaskPresentation.resultSummary(report);delivery.addView(Ui.text(this,summary,16,Ui.TEXT));body.addView(delivery,Ui.margins(this,18,10));}
         if(Store.finished(status)){
-            if(thumbnail!=null){ImageView picture=new ImageView(this);picture.setImageBitmap(thumbnail);picture.setAdjustViewBounds(true);picture.setScaleType(ImageView.ScaleType.FIT_CENTER);picture.setContentDescription(L.t("Verified screenshot from this handoff. Open all delivery files.","本次交办的已校验截图。打开全部交付文件。"));picture.setBackground(Ui.surface(this,Ui.SURFACE));picture.setClipToOutline(true);picture.setFocusable(true);picture.setOnClickListener(v->openDeliverables());Ui.bindPress(picture);delivery.addView(picture,Ui.margins(this,14,8));}
+            if(thumbnail!=null){
+                ImageView picture=new ImageView(this);picture.setImageBitmap(thumbnail);picture.setAdjustViewBounds(true);picture.setScaleType(ImageView.ScaleType.FIT_CENTER);picture.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
+                FrameLayout imageAction=new FrameLayout(this);imageAction.setMinimumHeight(Ui.dp(this,48));imageAction.setBackground(Ui.surface(this,Ui.SURFACE));imageAction.setClipToOutline(true);
+                imageAction.setContentDescription(L.t("Verified screenshot from this handoff. Open all delivery files.","本次交办的已校验截图。打开全部交付文件。"));imageAction.setEnabled(!busy);imageAction.setFocusable(!busy);imageAction.setOnClickListener(v->{if(!busy)openDeliverables();});Ui.bindPress(imageAction);
+                imageAction.addView(picture,new FrameLayout.LayoutParams(-1,-2,android.view.Gravity.CENTER));delivery.addView(imageAction,Ui.margins(this,14,8));
+            }
             else if(!thumbnailError.isEmpty())delivery.addView(Ui.caption(this,thumbnailError),Ui.margins(this,10,0));
             if(!thumbnailRequested)loadThumbnail();
         }
