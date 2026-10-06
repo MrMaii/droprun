@@ -18,9 +18,16 @@ No stable launch or marketing handover is claimed.
   actualcore210/browser18, fail/cancelled/skipped/todo0. Complete325438B log
   SHAb57f800b940bee7b64b288d10d39ca68640554cde2d50c33d716aa9cbb3f0139.
   All32 anonymous immutable source GETs match; Thomas author/committer verified.
-- GPTSites14 remains live with verified09 downloads. The new10 download/source
-  update and result stills are being prepared for the same owned public Site;
-  no Sites15 or fresh hosted browser/playback result is claimed yet.
+- GPTSites15 is live, hosting source c3c88cf43cd675ac587b99296461d875e53a27e1,
+  copied from 4caf7643c8fc977f31cb94741944fa598a0a7cf6. Native succeeded
+  2026-10-06T11:31:35.957154+00:00; public audience retained,79files copied,
+  4new stills/2changedpages, oldmedia/unknownpaths preserved. Native80files/
+  12697600B; localgzip11675609B; representations/digests recorded separately.
+  Fresh2pages/10CTAHEAD/22complete-resource GET/hash checks pass;22 inherited
+  dated HTTP responses/33local-only kept. No hosted browser/playback claim.
+- Documentation4caf7643:14fresh anonymous immutable reads match; CI37456172442
+  attempt1 all3jobs/35steps/10required/3checks, actualcore210/browser18 pass.
+  Complete327067B log SHAe3f655e57b73c1a684bb46f8b77d21a307df14bdbf1664c0640068bda2abb5bd.
 
 ## Latest completed work
 
@@ -62,7 +69,7 @@ No stable launch or marketing handover is claimed.
   Root/independent directly viewed4rawPNG;8brand/landing copies byte-exact.
   Result title is clearer, original list lines stay separate, ready preview
   explanation is close to its action. README/website source selects these stills;
-  canonical22asset build passes. HostedSite14 and signed09 remain unchanged.
+  canonical22asset build passes. These debug captures predate signed10 and Sites15; their checks are recorded above.
 
 ## Authorization and blocking conditions
 
@@ -85,11 +92,11 @@ No stable launch or marketing handover is claimed.
 
 ## Single recommended next action
 
-Commit the curated10 download/README/documentation update, then refresh the
-owned GPTSites and verify its public pages, links and current resources.
-Continue Share destination hierarchy, Settings failure announcement and Task
-refresh error feedback using narrowly guarded local UI checks. Genuine acceptance
-and final marketing handover remain open; no real Relay/Codex submission.
+Build and verify the next local UI pass: clearer Share destination, the guarded
+once failure announcement in Settings, and fallback for null/blank task refresh
+errors. These three source changes and their closed tests are not yet built/run
+and are not part of signed10. Keep genuine acceptance and marketing handover
+open; no real Relay/Codex submission or previously denied path.
 
 ## Files this pass
 
