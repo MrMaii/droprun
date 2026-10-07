@@ -246,6 +246,9 @@ in [the current candidate record](../releases/0.5.14-rc.1.md).
   Project access uses a separate flat theme surface with the same group padding
   and corners. Project names and distinguishing ID prefixes wrap completely; preserve
   existing permission confirmation and pending state inside the group.
+  A same-screen Settings rebuild keeps keyboard focus on the access disclosure
+  or the same complete project ID. When a permission control is unavailable or
+  hidden, focus returns to the access header; later completion must not steal it.
   At 150% font and above, project access
   actions follow the full project name on a separate line. A page-wide save disables
   and dims permission controls until its actual completion.

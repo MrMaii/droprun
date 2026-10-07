@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Preserve keyboard focus on project-access controls during a Settings rebuild;
+  follow the complete project ID and fall back to its header when unavailable.
+  [Bounded native focus check](docs/releases/ui-settings-access-focus-2026-10-07.md).
 - Group Settings project access on its own matte surface; preserve complete
   project names and ID prefixes, existing confirmation and pending feedback.
   [Local reading and original partial captures](docs/releases/ui-settings-access-group-2026-10-07.md).

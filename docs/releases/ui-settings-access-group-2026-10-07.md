@@ -57,3 +57,9 @@ physical performance, motion or genuine handoff acceptance.
 Automated capture acceptance stays false. Separate direct visual review accepts
 these four local views; README copies preserve their original bytes.
 [Exact selected receipts and original hashes](ui-settings-access-group-2026-10-07.json).
+
+Published source `525f55ce` also passes its own CI37559210757 attempt1: three
+jobs, 35 successful steps, ten required steps and three matching checks; actual
+core210/browser18 with no failures or skips. Full326694-byte log and responses
+are independently read. This CI excludes later Settings focus development.
+[Exact source CI](ui-settings-access-source-ci-2026-10-07.json).

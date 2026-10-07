@@ -72,12 +72,13 @@ public class SettingsActivity extends StyledActivity {
     String snapshot(){JSONObject data=store.projectsData();return data.optString("name")+store.computerOnline()+data.optJSONArray("projects")+data.optJSONArray("models")+store.directExecution()+store.prefs.getString("settingsError","")+store.prefs.getString("retention","");}
     /** Rebuilds the sections in place: the ScrollView around them keeps its position and nothing re-animates. */
     void render(){
-        View focused=getCurrentFocus();int focusId=focused!=null&&!focused.isInTouchMode()?focused.getId():View.NO_ID;
+        View focused=getCurrentFocus();boolean keepFocus=trackedFocus(focused);int focusId=keepFocus?focused.getId():View.NO_ID;Object focusTag=keepFocus?focused.getTag():null;
         noticeView.setText(notice);noticeView.setVisibility(notice.isEmpty()?View.GONE:View.VISIBLE);
         body.removeAllViews();
         computerSection();appearanceSection();modeSection();modelSection();accessSection();retentionSection();aboutSection();disconnectSection();
-        if(focusId==R.id.settings_appearance||focusId==R.id.settings_language||focusId==R.id.settings_model||focusId==R.id.settings_effort||focusId==R.id.settings_refresh){View replacement=body.findViewById(focusId);if(replacement!=null){replacement.requestFocus();revealPreferenceAfterLayout();}}
+        if(keepFocus){View replacement=focusTag instanceof String?body.findViewWithTag(focusTag):body.findViewById(focusId);if(focusTag instanceof String&&(replacement==null||!replacement.isShown()||!replacement.isEnabled()||!replacement.isFocusable()))replacement=body.findViewById(R.id.settings_access);if(replacement!=null){replacement.requestFocus();revealPreferenceAfterLayout();}}
     }
+    boolean trackedFocus(View view){return view!=null&&!view.isInTouchMode()&&(view.getId()==R.id.settings_appearance||view.getId()==R.id.settings_language||view.getId()==R.id.settings_model||view.getId()==R.id.settings_effort||view.getId()==R.id.settings_refresh||view.getId()==R.id.settings_access||view.getTag() instanceof String&&((String)view.getTag()).startsWith("project-access:"));}
     LinearLayout section(String label){body.addView(Ui.label(this,label));LinearLayout card=Ui.vertical(this);body.addView(card,Ui.cardParams(this));return card;}
     LinearLayout.LayoutParams trailing(){LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(-2,-2);params.setMarginStart(dp(10));return params;}
     void error(Exception e){if(!isDestroyed())new AlertDialog.Builder(this).setTitle(L.t("Could not complete this action","暂时无法完成")).setMessage(e.getMessage()).setPositiveButton(L.t("Got it","知道了"),null).show();}
@@ -212,7 +213,7 @@ public class SettingsActivity extends StyledActivity {
         LinearLayout container=section(L.t("Project access","项目授权"));LinearLayout card=Ui.vertical(this);
         container.setPadding(dp(16),dp(12),dp(16),dp(12));container.setBackground(Ui.outlined(this,Ui.SURFACE,0,Ui.RADIUS_CARD,0));
         JSONArray projects=store.projects(),history=store.activity();
-        container.addView(Ui.disclosure(this,projects.length()+L.t(" projects · manage access"," 个项目 · 管理授权"),card,showAccess,open->showAccess=open));
+        LinearLayout disclosure=Ui.disclosure(this,projects.length()+L.t(" projects · manage access"," 个项目 · 管理授权"),card,showAccess,open->showAccess=open);disclosure.getChildAt(0).setId(R.id.settings_access);container.addView(disclosure);
         if(projects.length()==0)card.addView(Ui.caption(this,L.t("No projects have synced yet. Check that your Connector is running.","电脑还没有同步项目。请确认 Connector 已启动。")));
         for(int n=0;n<projects.length();n++){
             JSONObject p=projects.optJSONObject(n);if(p==null)continue;
@@ -222,6 +223,7 @@ public class SettingsActivity extends StyledActivity {
             TextView title=Ui.text(this,name,15,Ui.TEXT);line.addView(title,large?Ui.fill():Ui.grow());
             boolean pending=switching.contains(id);
             TextView toggle=Ui.chip(this,pending?L.t("Updating","更改中"):enabled?L.t("Allowed","已允许"):L.t("Not allowed","未允许"),enabled);
+            toggle.setTag("project-access:"+id);
             toggle.setEnabled(!pending&&!busy);toggle.setAlpha(pending||busy?0.5f:1f);
             toggle.setContentDescription(name+(pending?L.t(", updating","，正在更改"):enabled?L.t(", allowed, tap to revoke access","，已允许，点按停止转发"):L.t(", not allowed, tap to allow","，未允许，点按允许")));
             toggle.setOnClickListener(v->{
@@ -278,7 +280,7 @@ public class SettingsActivity extends StyledActivity {
     void revealPreferenceAfterLayout(){
         body.getViewTreeObserver().addOnPreDrawListener(new android.view.ViewTreeObserver.OnPreDrawListener(){public boolean onPreDraw(){
             body.getViewTreeObserver().removeOnPreDrawListener(this);View focused=getCurrentFocus();
-            if(focused!=null&&!focused.isInTouchMode()&&(focused.getId()==R.id.settings_appearance||focused.getId()==R.id.settings_language||focused.getId()==R.id.settings_model||focused.getId()==R.id.settings_effort||focused.getId()==R.id.settings_refresh))
+            if(trackedFocus(focused))
                 focused.requestRectangleOnScreen(new android.graphics.Rect(0,0,focused.getWidth(),focused.getHeight()),true);
             return true;
         }});

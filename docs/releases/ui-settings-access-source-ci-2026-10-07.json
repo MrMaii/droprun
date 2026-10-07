@@ -1,0 +1,50 @@
+{
+  "schema": "droprun.source-ci.v1",
+  "date": "2026-10-07",
+  "source": "525f55ce34a2ea791ff416f015ff98c74c2a616b",
+  "runId": 37559210757,
+  "attempt": 1,
+  "url": "https://github.com/MrMaii/droprun/actions/runs/37559210757",
+  "status": "completed",
+  "conclusion": "success",
+  "jobs": 3,
+  "steps": 35,
+  "requiredSuccessfulSteps": 10,
+  "matchingChecks": 3,
+  "actualTests": {
+    "core": {
+      "tests": 210,
+      "suites": 0,
+      "pass": 210,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "duration_ms": 51282.3124
+    },
+    "browser": {
+      "tests": 18,
+      "suites": 0,
+      "pass": 18,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "duration_ms": 62546.2088
+    }
+  },
+  "completeLog": {
+    "bytes": 326694,
+    "sha256": "f4467cf11a66d0abd7b044d7479bfe88b7462bb85765f6e9b67871f239369ef2",
+    "fetchExit": 0,
+    "fetchStderrBytes": 0
+  },
+  "independentReviewSHA256": "acd57ad626fe6680a1947701ab25b5486f0cd84212cafc3e40a7726161c2d594",
+  "terminalVerificationSHA256": "cb1a32875fd2c390858f4fe1d11575c316e47e7f7aa9f537a29410fee7faff5c",
+  "boundaries": [
+    "All footer values come from this exact attempt full log; no old CI counts borrowed.",
+    "One new terminal snapshot and one complete gh log child; no rerun/trigger/retry/kill/source/device/build action.",
+    "Android Gradle step success is not a native instrumented, physical Android or signed14-package test.",
+    "Later focus development is outside exact525 source; successful CI does not update candidate14 or Site24."
+  ]
+}

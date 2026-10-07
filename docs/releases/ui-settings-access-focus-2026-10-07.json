@@ -1,0 +1,160 @@
+{
+  "schema": "droprun.local-ui-settings-focus.v1",
+  "date": "2026-10-07",
+  "verifiedWithinScope": true,
+  "developmentParent": "525f55ce34a2ea791ff416f015ff98c74c2a616b",
+  "version": {
+    "name": "0.5.14-dev",
+    "code": 27
+  },
+  "signedCandidateIncludesThisChange": false,
+  "changes": [
+    "Stable access-header ID; exact complete nonlocalized project-ID chip tags preserve existing keyboard focus through same-Activity render.",
+    "Unavailable or collapsed chip falls back to header; completion never retains an old chip focus request. Existing confirmation, policy and motion remain."
+  ],
+  "sourceFreeze": {
+    "sha256": "6a172b909382a570520f05810e0ddb59a20ea065c6445d2b84ab1e44bec92458",
+    "sources": 134,
+    "configs": 4
+  },
+  "independentReview": {
+    "sha256": "792b735c0eb812b9a53ca6214dbc3ecc5f3bbcb378102baf3d0f9f6af51d462e",
+    "directChildrenReturned0": 60,
+    "rawFilesRehashed": 120,
+    "sourceSnapshotsChecked": 6
+  },
+  "phases": {
+    "build": {
+      "verification": {
+        "bytes": 4141,
+        "sha256": "0519b7a0bb8595a95bd8efe7aa9f0102f85b59f089edd4ca6d34302c6d591008"
+      },
+      "returned0": 1
+    },
+    "install": {
+      "verification": {
+        "bytes": 20288,
+        "sha256": "54951eefbec8346b1c1dc1c09b6dcfdebd858be32234687408627bfe2403739c"
+      },
+      "returned0": 26
+    },
+    "native": {
+      "verification": {
+        "bytes": 52656,
+        "sha256": "4e25495732c25f66d90b157c60aa31ba84aa2296da6dbb8b8cea5c34fe017665"
+      },
+      "returned0": 33
+    }
+  },
+  "debugApks": [
+    {
+      "role": "app",
+      "package": "app.droprun.mobile.debug",
+      "bytes": 2181756,
+      "sha256": "96cdc8b3169236c5cdfe19b751e8f8ac901046796107bc09a3b52125e8bb36c8"
+    },
+    {
+      "role": "test",
+      "package": "app.droprun.mobile.debug.test",
+      "bytes": 2055253,
+      "sha256": "4d06df0ed8d656c2d5ecb7aea76b19eeccfe157d4657e7ec0564585f9ffba512"
+    }
+  ],
+  "fourInstalledReadsByteExact": true,
+  "boundJvmReport": {
+    "tests": 27,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "boundLintReport": {
+    "errors": 0,
+    "warnings": 28
+  },
+  "compilerStderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "native": {
+    "counts": {
+      "events": 62,
+      "windows": 6,
+      "entered": 6,
+      "full_completed": 6,
+      "DESTROYED": 6,
+      "zero_guard_streams": 24,
+      "touch_mode_restored": 6,
+      "captures": 4
+    },
+    "junit": {
+      "class": "app.droprun.SettingsReadingPresentationTest",
+      "method": "readingSectionsKeepChoicesAndProjectIdentity",
+      "tests": 1,
+      "failures": 0,
+      "seconds": 34.565
+    },
+    "raw": {
+      "bytes": 9778,
+      "sha256": "cbebaaa7a3c6f55713cfd9307d55b1150894a2765b026e93260cbc56f0486af9"
+    },
+    "zeroGuardReceipts": 24,
+    "exactEventSequence": true,
+    "nonceArgvAndSourceGateBound": true,
+    "completeTagAndHelperSourceBound": true,
+    "sourceTokensChecked": {
+      "SettingsActivity.java": 7,
+      "Ui.java": 2,
+      "SettingsReadingPresentationTest.java": 7
+    }
+  },
+  "tenObservedDeviceValuesEqual": true,
+  "observedGlobalFont": "2.0",
+  "captures": {
+    "count": 4,
+    "publication": "private only",
+    "pixelAcceptance": false,
+    "scope": "Normal-font original excerpts; not current public README replacement or new direct visual acceptance."
+  },
+  "retainedFailedAttempt": {
+    "independentReviewSHA256": "d5d5cd8e4b0118080d87ac209d10761cf49c09614ec63c55951fed99b6df116b",
+    "directChildrenReturned0": 42,
+    "rawFilesRehashed": 84,
+    "nativeRaw": {
+      "bytes": 6510,
+      "sha256": "a570161b0e301e79f9f314bcd6cbf55232745e3a5aab1b26513461dc3ecebe3c"
+    },
+    "junit": {
+      "tests": 1,
+      "failures": 1,
+      "seconds": 5.173
+    },
+    "actual": {
+      "entered": 1,
+      "full_completed": 0,
+      "DESTROYED": 1,
+      "zeroGuardStreams": 1,
+      "touchSetterReturned": 1,
+      "captures": 0
+    },
+    "correction": {
+      "priorTestSHA256": "563731505190e7d01011415b49bcde738fca4d3c9c76da8d10ce0bbf58dfc069",
+      "newTestSHA256": "138ca2dc2558aa42998f8f159192aabccb47daa731cbb4728aafa16cec43e35a",
+      "onlyChange": "one new header visibility call uses the existing transform-aware assertPreferenceVisible; production and legacy helper unchanged"
+    },
+    "limits": [
+      "Failed stack proves a child-level old visibility predicate failed; no geometric telemetry identifies a particular child/glyph, clipping cause or false positive.",
+      "Header new-view/focus/Boolean assertions precede the failure in the exact bound test; they are source-order evidence, not separately emitted receipts.",
+      "Only first EN/light/font1 window entered and closed. Remaining five, pending/collapse cases, captures and native after-device reads did not run.",
+      "ADB child exit0 is not JUnit or owner pass. Touch restoration event proves setter return only. No executor/all Ui/TalkBack/real permission acceptance.",
+      "Original results untouched; prior successful actual-reader has not been executed for this failed take."
+    ]
+  },
+  "boundaries": [
+    "Six fixed memory windows; no real permission/mode/business action or external execution by this reader.",
+    "Only first project row plus memory marker visibility is source/JUnit-asserted. Second row is measured metadata, not an on-screen claim. Model rows only when the recorded conditional flag is true.",
+    "Surface, complete labels, font2 width248, direct-render header/exact-tag focus, memory reorder and synthetic pending/collapse fallback are source/JUnit assertions; no per-assertion focus telemetry. Missing-project native case is absent; recreation/controller/permission/TalkBack acceptance is not tested.",
+    "Six touch-mode-restored events prove the restoration setter returned after known DESTROYED, not a new touch-mode observation. Instrumentation changes touch mode for real keyboard focus. Known DESTROYED is not executor termination or full Ui-static restoration. Ten observed values do not prove every device state unchanged.",
+    "PNG CRC/dimensions/metadata are byte checks. Pixel acceptance remains false until separate direct review.",
+    "JVM/lint counts come from exact bound report files; do not imply every task freshly executed. No signed candidate, physical performance or genuine handoff acceptance."
+  ]
+}

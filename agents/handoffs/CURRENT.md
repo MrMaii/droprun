@@ -36,6 +36,29 @@ real-environment acceptance is unavailable. No stable launch or marketing handov
 
 ## Completed UX and brand
 
+- [Settings access focus](../../docs/releases/ui-settings-access-focus-2026-10-07.md):
+  stable disclosure ID and exact full project-ID tags restore existing non-touch
+  keyboard focus through direct same-Activity render. Pending/collapsed/missing
+  chip falls back to header; completion never retains a chip key that could steal
+  focus. Native missing-project, real callback, recreation and TalkBack stay open.
+  Fresh134/4 freeze6a172b90 build/install/native1/26/33 children return0; independent
+  120raw/current closure/four installed reads pass. Bound JVM27/lint0errors28warnings,
+  compilerstderr0; no all-tasks-fresh claim. Native1test34.565s closes all six
+  windows,62orderedstreams/24zero guards/6touch-mode setter returns. Actual
+  keyboard request/assertSame, reorder and synthetic pending/collapse are
+  source-bound JUnit assertions, not separate focus telemetry. Four normal-font
+  originals remain private and pixel-unaccepted; README retains separately reviewed
+  prior access-group images. Ten read-only device values match, not all framework
+  or Ui state. Original fdd failure in5.173s retains42children/84raw and one closed
+  window; only new header check changed to existing transform-aware visibility.
+  Its stack identifies a child predicate, without geometric cause. Signed14 and
+  source525 CI do not include this later change.
+- Public Settings/README source is now525f55ce, author/committer Thomas Deng;
+  19 curated public files push returned0, public check660 pass. Source CI
+  37559210757 attempt1 passes3jobs/35steps/10required/3checks, actual210+18;
+  independent full326694B log SHAf4467cf1. Both prior pending snapshots remain
+  unchanged. [Exact CI](../../docs/releases/ui-settings-access-source-ci-2026-10-07.json).
+  The access-group proof below binds the source before later focus development.
 - [Settings access grouping](../../docs/releases/ui-settings-access-group-2026-10-07.md):
   one flat theme surface16h/12v/radius26, complete natural project-name wrapping;
   pending callbacks and permission confirmation retained. Fresh134/4 freeze
@@ -151,16 +174,17 @@ real-environment acceptance is unavailable. No stable launch or marketing handov
 
 ## Single recommended next action
 
-Preserve keyboard focus on the project-access disclosure and permission controls
-when Settings rebuilds after a read or busy-state change. Current fixed preference
-IDs do not cover those controls. Review a minimal stable-key implementation and
-extend only the existing guarded memory method; no real permission activation.
+Remove Home's two-line cap for independent long project names. The current
+normal18sp/184dp name area can hide a distinguishing mobile/desktop tail;
+duplicate-name ID hints and large text already wrap. Review the prepared private
+patches, preserve short-name cards and all36 existing rebind/anchor/feedback checks,
+and verify complete first/last-line reading within the original six memory windows.
+No project/navigation/business activation, extra matrix or capture is required.
 Real-environment gates do not block local UI, motion, README or brand work.
 
 ## Files this pass
 
-SettingsActivity/SettingsReadingPresentationTest; PRD/CONTRACTS/CHANGELOG/ADR0019,
-access-group records and a328 exact-source CI followthrough for note/result;
-EN/ZH README, media provenance, four new original Settings PNGs, current handoff.
+SettingsActivity/SettingsReadingPresentationTest/ids; PRD/CONTRACTS/CHANGELOG,
+focus records and exact525 source CI followthrough, current handoff.
 No genuine task or stable launch; website media remain Site24's set.
 Author Thomas Deng <150266369+MrMaii@users.noreply.github.com>.

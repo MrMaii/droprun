@@ -7,4 +7,5 @@
     <item name="settings_model" type="id" />
     <item name="settings_effort" type="id" />
     <item name="settings_refresh" type="id" />
+    <item name="settings_access" type="id" />
 </resources>
