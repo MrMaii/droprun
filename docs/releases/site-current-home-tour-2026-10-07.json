@@ -1,0 +1,67 @@
+{
+  "date": "2026-10-07",
+  "status": "succeeded",
+  "version": 29,
+  "url": "https://droprun.dengmaizi0802.chatgpt.site",
+  "productSource": "d2e8560417db767b0482cdecebbbcb78aadcddf8",
+  "siteSource": "4800df835b92239abc0bd21d61897db8e1080321",
+  "projectId": "appgprj_6ab726bb8cd48191acd3234da262627d",
+  "savedVersionId": "appgprj_6ab726bb8cd48191acd3234da262627d~appgver_404b39fe8a88819197058b4a372c3d3e",
+  "deploymentId": "appgdep_6ac651318a6c8191b5335dd380ded5ae",
+  "localArchive": {
+    "compressedBytes": 16442676,
+    "compressedSha256": "6fd8a22456176729fcc8e1e2716158137b112779bdd6f28ff216784f5326ab83",
+    "entries": 140,
+    "regularFiles": 136,
+    "publicFiles": 135,
+    "manifestFiles": 1,
+    "allPublicBytesMatched": true
+  },
+  "sourceChanges": {
+    "changedExistingHtml": 2,
+    "newMedia": 10,
+    "unchangedExistingPublicAssets": 123,
+    "preservedNestedIgnoredFiles": 29,
+    "cleanup": false
+  },
+  "independentArchiveReviewSha256": "b98e1fb102ba411ea33807d462a26aff2c60df871f82daad78670fbdc2176f01",
+  "nativeSave": {
+    "versionNumber": 29,
+    "source": {
+      "commit_sha": "4800df835b92239abc0bd21d61897db8e1080321"
+    },
+    "archiveMetadata": {
+      "archive_format": "tar",
+      "sediment_file_id": "file_00000000677081f7951a95158796eacd",
+      "content_hash": "sha256:87227cd92bc795654d7adb69564d13c10745f9c66b6234af5531a40c5acd0fbf",
+      "size_bytes": 17797120,
+      "file_count": 136
+    }
+  },
+  "nativeDeployment": {
+    "id": "appgdep_6ac651318a6c8191b5335dd380ded5ae",
+    "project_id": "appgprj_6ab726bb8cd48191acd3234da262627d",
+    "title": "DropRun — Give inspiration a next step",
+    "version_id": "appgprj_6ab726bb8cd48191acd3234da262627d~appgver_404b39fe8a88819197058b4a372c3d3e",
+    "type": "publish",
+    "status": "succeeded",
+    "url": "https://droprun.dengmaizi0802.chatgpt.site",
+    "has_mcp": false,
+    "screenshot_asset_pointer": null,
+    "provider_deployment_id": "site---6ab726bb8cd48191acd3234da262627d",
+    "failure_message": null,
+    "env_set_revision": 0,
+    "updated_at": "2026-10-07T14:03:38.791948+00:00"
+  },
+  "retainedFailures": [
+    "First official packaging chose unavailable WSL Bash; source/build were retained.",
+    "Second packaging used Git Bash but GNU tar interpreted the Windows drive colon as a remote archive. The successful successor changed only process-local PATH/TAR_OPTIONS and used a forward-slash archive path.",
+    "Primary file review initially assumed a dot static directory; official normalization uses dist. Independent review initially assumed a built manifest mirror existed. Both reader assumptions were corrected without changing the archive.",
+    "An extra local uncompressed-tar hash comparison did not match returned cloud storage metadata. No cloud archive was read; native metadata is reported separately, not claimed byte-equivalent to the local archive."
+  ],
+  "limits": [
+    "Official save/deploy success plus local archive/input verification; no new deployed fetch, browser, keyboard, reduced-motion or continuous playback acceptance.",
+    "Tour is source9fcaa04/code29 memory-only UI, captured before quiet navigation. Home stills have their own source-bound record.",
+    "Downloads remain immutable signed0.5.16-rc.1. No signed-native, clean installer, owner Cloudflare, genuine handoff or stable-launch claim."
+  ]
+}

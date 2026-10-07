@@ -23,16 +23,29 @@ handover. Current user request takes precedence over dated handoffs.
   source paths are anonymously byte-matched; author/committer Thomas Deng.
   Public README, setup guides and generated download links now target16.
   This follow-through does not infer new source CI or native acceptance.
-- [GPTSites28](../../docs/releases/site-candidate16-downloads-2026-10-07.md)
-  is public at https://droprun.dengmaizi0802.chatgpt.site/; hosting ebf4b94c.
-  Official source/save/deploy success and independent126-member archive read
-  retain125public files, change only two bilingual pages to candidate16 and
-  preserve123assets. The first inventory guard failure stays intact; its
-  successor verifies/preserves29 ignored nested files, with no cleanup.
-  No new media, repeated Site27 browser QA, deployed fetch or playback proof.
+- [GPTSites29](../../docs/releases/site-current-home-tour-2026-10-07.md)
+  is public at https://droprun.dengmaizi0802.chatgpt.site/; hosting4800df83.
+  Official source/save/deploy success follows complete local135-public-file
+  primary and independent archive reviews: two HTML changes, ten added media,
+  123 unchanged assets and29 preserved/excluded ignored nested files. Home
+  state-first originals and current-source bilingual sharing tours are published;
+  downloads remain16. Packaging/reader failures remain retained. Returned cloud
+  archive metadata is separate from local archive bytes; equivalence is not
+  established. No new deployed fetch, browser QA or continuous playback proof.
+- Runtime0.5.17/code30 is prepared in six version-bearing files. Existing local
+  relay-selfhost/share contract tests pass15/15, with no genuine task or owner
+  deployment. Signed candidate17, its new source commit and own CI are pending;
+  fresh builders remain unbound and have not executed.
 
 ## Accepted development and present work
 
+- [Quiet Share source's own CI37631569149](../../docs/releases/ui-quiet-share-source-ci-2026-10-07.md)
+  is fully closed at exactd2e85604 attempt1: all three jobs/35steps/10required
+  and three matching checks pass. Complete327367B log yields core210/210 and
+  browser19/19, zero failures/cancellations/skips/todo; audit0 and public-source
+  797files. Android executes all four requested tasks; CI case/lint totals are
+  not inferred. Four returned fetches/eight raw files and actual footer lines
+  are independently rechecked. This source's CI does not cover version17 edits.
 - [Quiet Share navigation](../../docs/releases/ui-share-quiet-chrome-2026-10-07.md)
   removes only idle Back/Close circles; existing48dp layout, tint, press, focus,
   disabled state and callbacks are source-preserved. Fresh13.248s native closes
@@ -207,15 +220,16 @@ handover. Current user request takes precedence over dated handoffs.
 
 ## Single recommended next action
 
-Finish the selected source publication and its own CI, then carry the accumulated
-Home/Share refinements into the next signed candidate and publish the separately
-reviewed media to GPTSites. Keep original failed attempts and closed take bindings;
-never auto-rebind or replay them. Genuine release gates remain open.
+Publish the selected version17 source and close that exact source's own CI, then
+bind freshly reviewed builders to its managed checkout and produce/verify the
+signed candidate. GPTSites29 media publication is complete; keep downloads16
+until17 exists and anonymous verification passes. Preserve original failures and
+closed take bindings; never auto-rebind or replay them. Genuine gates remain open.
 
 ## Files this pass
 
-Ui/ShareActivity; PRD/CONTRACTS/ADR0019/CHANGELOG; quiet Share record and two raw
-originals; current-source bilingual GIF/MP4/captions/first frames and tour record;
-Home source's closed CI record; bilingual README and media provenance; this handoff.
-Source does not upgrade signed16 or Site28.
+Version17 scalars in package/lock, Android Gradle, Connector, Relay and installer;
+quiet source's closed CI and Site29 publication records; media provenance; handoff.
+Prior curated source d2e85604 includes Home/Share, bilingual README and tour media.
+Version17 source does not upgrade signed16; Site29 retains16 downloads.
 Private film/launch-kit/promo and four unaccepted Delivery PNGs stay excluded.

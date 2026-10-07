@@ -868,3 +868,15 @@ state and the secondary counts/date line are directly reviewed in both themes
 and languages. Long-name/200% reading and same-holder rebinds are assertions,
 not such pixels or real polling. Signed16 and the website are unchanged.
 [Source/APK binding, hashes and limits](../../docs/releases/ui-home-status-hierarchy-2026-10-07.md).
+
+## Current Home and sharing media on the website · October 7, 2026
+
+[GPTSites29](../../docs/releases/site-current-home-tour-2026-10-07.md) now
+publishes the four state-first Home originals and the newer bilingual Share
+MP4s, matching first frames and captions from this repository. The tour stops
+before Send and predates quiet Back/Close. Two HTML files and ten media files
+are selected;123 earlier assets remain byte-identical. Both complete local
+archive readers accept all135 public bytes. Official save/deploy returns success;
+cloud archive metadata is reported separately from local byte verification.
+Downloads remain signed0.5.16-rc.1. No new deployed browser, continuous playback,
+real handoff, signed-native or stable-launch acceptance is inferred.

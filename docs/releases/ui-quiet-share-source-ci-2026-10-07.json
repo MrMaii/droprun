@@ -1,0 +1,196 @@
+{
+  "schema": "droprun.source-ci.v1",
+  "date": "2026-10-07",
+  "source": "d2e8560417db767b0482cdecebbbcb78aadcddf8",
+  "runId": 37631569149,
+  "attempt": 1,
+  "url": "https://github.com/MrMaii/droprun/actions/runs/37631569149",
+  "status": "completed",
+  "conclusion": "success",
+  "jobs": 3,
+  "jobResults": [
+    {
+      "name": "core",
+      "id": 112826890179,
+      "status": "completed",
+      "conclusion": "success",
+      "stepCount": 16
+    },
+    {
+      "name": "android",
+      "id": 112826890647,
+      "status": "completed",
+      "conclusion": "success",
+      "stepCount": 10
+    },
+    {
+      "name": "browser",
+      "id": 112826890831,
+      "status": "completed",
+      "conclusion": "success",
+      "stepCount": 9
+    }
+  ],
+  "steps": 35,
+  "requiredSteps": 10,
+  "requiredStepResults": [
+    {
+      "job": "core",
+      "step": "Install media test tools",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "job": "core",
+      "step": "Test core without concurrent browser processes",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "job": "core",
+      "step": "Run npm audit --audit-level=high",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "job": "core",
+      "step": "Run npm run site:build",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "job": "core",
+      "step": "Verify generated pages and refresh Windows line-ending metadata",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "job": "core",
+      "step": "Run npm run check:public",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "job": "core",
+      "step": "Build Windows installer and portable package",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "job": "core",
+      "step": "Run actions/upload-artifact@v4",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "job": "browser",
+      "step": "Test real browsers in isolation",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "job": "android",
+      "step": "Run ./gradlew assembleDebug assembleDebugAndroidTest testDebugUnitTest lintDebug",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "matchingChecks": 3,
+  "matchingCheckResults": [
+    {
+      "name": "core",
+      "id": 112826890179,
+      "headSha": "d2e8560417db767b0482cdecebbbcb78aadcddf8",
+      "status": "completed",
+      "conclusion": "success",
+      "detailsUrl": "https://github.com/MrMaii/droprun/actions/runs/37631569149/job/112826890179"
+    },
+    {
+      "name": "android",
+      "id": 112826890647,
+      "headSha": "d2e8560417db767b0482cdecebbbcb78aadcddf8",
+      "status": "completed",
+      "conclusion": "success",
+      "detailsUrl": "https://github.com/MrMaii/droprun/actions/runs/37631569149/job/112826890647"
+    },
+    {
+      "name": "browser",
+      "id": 112826890831,
+      "headSha": "d2e8560417db767b0482cdecebbbcb78aadcddf8",
+      "status": "completed",
+      "conclusion": "success",
+      "detailsUrl": "https://github.com/MrMaii/droprun/actions/runs/37631569149/job/112826890831"
+    }
+  ],
+  "actualTests": {
+    "core": {
+      "tests": 210,
+      "suites": 0,
+      "pass": 210,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "duration_ms": 50655.9992
+    },
+    "browser": {
+      "tests": 19,
+      "suites": 0,
+      "pass": 19,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "duration_ms": 85069.1965
+    }
+  },
+  "actualAudit": {
+    "reportedVulnerabilities": 0,
+    "command": "npm audit --audit-level=high",
+    "actualLine": "2026-10-07T13:51:15.5802034Z found 0 vulnerabilities"
+  },
+  "androidLogEvidence": {
+    "requestedTasks": [
+      "assembleDebug",
+      "assembleDebugAndroidTest",
+      "testDebugUnitTest",
+      "lintDebug"
+    ],
+    "actualTaskLines": {
+      "assembleDebug": "2026-10-07T13:50:44.5893150Z > Task :app:assembleDebug",
+      "assembleDebugAndroidTest": "2026-10-07T13:51:08.1905539Z > Task :app:assembleDebugAndroidTest",
+      "testDebugUnitTest": "2026-10-07T13:51:03.4886205Z > Task :app:testDebugUnitTest",
+      "lintDebug": "2026-10-07T13:51:24.8965833Z > Task :app:lintDebug"
+    },
+    "buildSuccessLine": "2026-10-07T13:51:24.8989997Z BUILD SUCCESSFUL in 1m 41s",
+    "actionableTasksLine": "2026-10-07T13:51:24.8990683Z 73 actionable tasks: 73 executed",
+    "unitTestCaseCount": null,
+    "lintErrorCount": null,
+    "lintWarningCount": null,
+    "limitation": "This complete CI log confirms the four Gradle tasks and build success. It does not expose unit-test XML or lint counts and does not run device instrumentation."
+  },
+  "publicSourceCheck": {
+    "files": 797,
+    "actualLine": "2026-10-07T13:51:29.1045166Z Public source check passed (797 files). Manual material/privacy review still required.",
+    "manualMaterialPrivacyReviewStillRequired": true
+  },
+  "completeLog": {
+    "bytes": 327367,
+    "sha256": "4f7f39f03c8f644a773286cf984eb70ff2fe0035c7d847954a8099ceebddfbf5",
+    "fetchExit": 0,
+    "fetchStderrBytes": 0
+  },
+  "collectorSha256": "c4678a3daaed4b5aad2f23378cd860449a1e9b3e0f26a3d1227db839a7ced73f",
+  "knownReturnedZeroFetchChildren": 4,
+  "rawOutputsRehashed": 8,
+  "collectorVerificationSha256": "50bf309311977469c873372ba0463d19868438df118b873216051378f733f378",
+  "readerSha256": "7e0d9be2e1ad0b9ef234863a51fa14f1172a71eb19831a255dd9a2a0ec4cb71d",
+  "independentVerificationSha256": "3517ed086bab8a1fa6ce2d94758459a099a4316c582515ae0d89cd14a3c22dfe",
+  "boundaries": [
+    "Exact d2e85604 quiet Share navigation and README/media source with complete attempt1 log; prior source CI counts are not reused.",
+    "Actual core/browser totals are parsed from this log timestamped spec footer, with every fail/cancelled/skipped/todo zero; no TAP assumption or inferred Android test count.",
+    "All 35 steps and 10 required steps are source/run-bound and successful; successful Android/Windows CI builds do not establish native instrumentation, physical device, owner installation, candidate17 package acceptance or genuine handoffs.",
+    "Quiet Share local memory reading and two original font1 stills have a separate retained native record. Earlier bilingual tour media remains bound to source9fcaa04e. This CI does not replay or replace either validation.",
+    "Signed releases and website deployment keep their independent source/hosting receipts; this CI does not update them or establish stable launch."
+  ]
+}
