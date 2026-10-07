@@ -30,12 +30,11 @@ lime accent continues to identify actions and selected states rather than every
 container.
 
 Home gives each project one matte surface using the same radius and no border
-or elevation. A decorative initial and a smaller18sp name distinguish the
-identity block; counts follow the name, while state and recency share the lower
-reading line. The card has16dp padding and12dp separation. At150% text and above,
-hide the initial and its gap to preserve width for the complete name. Recycled
-cards update that initial from the current displayed label. IDs, counts,
-permissions, navigation, polling and feedback retain their existing meaning.
+or elevation. Refined2026-10-07: the complete20sp name leads without a decorative
+initial;13sp counts follow, while state and recency share the lower reading line.
+The card keeps16dp padding and12dp separation. Complete names wrap at every text
+size. IDs, counts, permissions, navigation, polling and feedback retain their
+existing meaning.
 
 ## Alternatives and consequences
 
@@ -49,10 +48,18 @@ must remain readable and reachable at 200% text; content can grow vertically.
 This is a functional grouping change, not an authorization or network change.
 Genuine handoff, physical accessibility and performance gates stay open.
 
-Home's normal-font name width changes264→184dp; the18sp heading lets the sampled
-names fit. Large text uses232dp and full wrapping. Continuous rows offered more
-width but weaker separation of project identity and task state. Do not trade
-complete values, keyboard focus or reading position for the new surfaces.
+The original2026-10-06 initial reduced Home's normal name width264→184dp; large
+text hid it and used232dp. The2026-10-07 revision removes its48dp allocation at
+every size, giving normal names232dp too. Two English names shared S and two
+Chinese names shared 工: the repeated decoration did not distinguish those
+projects. The20sp name restores emphasis while the matte surface still separates
+identity and state. This loses the repeated initial motif between Home and Share;
+Share's destination-confirmation tile remains. Larger headings may change wrapping
+and height. Do not trade complete values, keyboard focus or reading position for
+the new surfaces. [Fresh reading and rebind checks](../releases/ui-home-typography-2026-10-07.md)
+cover six fixed local windows; both reviewers accept the four normal-font originals.
+Prior initial-based captures do not cover this revised layout. Long-name and200%
+reading are assertion checks, without new pixel, physical or genuine-use acceptance.
 
 ## Verification
 

@@ -18,11 +18,11 @@ Codex works on your Windows computer. You deploy the Relay to your own Cloudflar
 2. **Follow local Codex.** Work happens on your computer, in that project. Follow progress and decisions in its history.
 3. **Inspect the delivery.** Check the result, required actions, screenshots and files; open the full report when needed.
 
-Screenshots and recording show labelled memory-only development samples, not a genuine task or the signed download; delivery includes changes after 0.5.15-rc.1. [Media sources and recording scope](assets/brand/readme-media.md).
+Screenshots and recording show labelled memory-only development samples, not a genuine task or the signed download; Home and delivery include changes after 0.5.15-rc.1. [Media sources and recording scope](assets/brand/readme-media.md).
 
 <p align="center">
   <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-share-count-en-dark-20261006.png"><img src="assets/brand/source-share-count-en-light-20261006.png" width="260" alt="01 · Share: project and received material together, a persistent optional-note label, received file counts and model controls; native memory-only probe marker retained"></picture>
-  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-home-cards-en-dark-20261006.png"><img src="assets/brand/source-home-cards-en-light-20261006.png" width="260" alt="02 · Follow: native Android project cards with initials, names, task and dispatch counts, status and recency; memory-only and sample-project markers retained"></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-home-typography-en-dark-20261007.png"><img src="assets/brand/source-home-typography-en-light-20261007.png" width="260" alt="02 · Follow: native Android project cards with larger complete names, task and dispatch counts, status and recency; memory-only and sample-project markers retained"></picture>
   <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-delivery-followup-en-dark-20261007.png"><img src="assets/brand/source-delivery-followup-en-light-20261007.png" width="260" alt="03 · Inspect: native handoff page with a prominent result, grouped preview and files, and an outlined follow-up button; visible memory-only marker"></picture>
 </p>
 
@@ -36,11 +36,11 @@ For example, share a design reference to an existing app project with this note:
 <details>
 <summary><strong>Watch the sharing interaction</strong></summary>
 
-Return to project selection and adjust the model before sending.
+Choose a different project, then switch from Thorough to Balanced before sending.
 
-<p align="center"><picture><source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/brand/source-share-count-en-dark-20261006.png"><source media="(prefers-reduced-motion: reduce)" srcset="assets/brand/source-share-count-en-light-20261006.png"><img src="assets/brand/native-share-review-before-sending-en-20261006.gif" width="320" alt="Native Android memory-only excerpt: start at the empty note, return to the project list, choose again, change the sample model and collapse the options; no task sent"></picture></p>
+<p align="center"><picture><source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/brand/source-share-count-en-dark-20261006.png"><source media="(prefers-reduced-motion: reduce)" srcset="assets/brand/source-share-count-en-light-20261006.png"><img src="assets/brand/native-share-touch-en-20261007.gif" width="320" alt="Native Android memory-only full-timeline tour: choose a project, return and switch to a different project, change Thorough to Balanced and collapse; no task sent"></picture></p>
 
-[Original recording](landing/media/native-share-project-tour-en-20261006.mp4) · [Captions](landing/media/native-share-project-tour-en-20261006.vtt)
+[Original recording](landing/media/native-share-touch-en-20261007.mp4) · [Captions](landing/media/native-share-touch-en-20261007.vtt)
 
 </details>
 

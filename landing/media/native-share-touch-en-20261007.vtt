@@ -1,0 +1,33 @@
+WEBVTT
+
+NOTE
+Memory-only native development sample, code28/app0872. Captions use reviewed encoded-frame PTS, not host event clock. No task sent.
+
+1
+00:00:00.000 --> 00:00:01.500
+Choose a project.
+
+2
+00:00:01.865 --> 00:00:03.000
+Return to the project list.
+
+3
+00:00:03.239 --> 00:00:04.800
+Switch to Second UI sample.
+
+4
+00:00:04.908 --> 00:00:06.100
+Open Model & effort.
+
+5
+00:00:06.129 --> 00:00:07.380
+Another sample · Thorough (high).
+
+6
+00:00:07.388 --> 00:00:08.580
+Choose Balanced (medium).
+
+7
+00:00:08.589 --> 00:00:09.536
+Collapse; Balanced stays selected.
+

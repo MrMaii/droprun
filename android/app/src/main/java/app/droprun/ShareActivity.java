@@ -425,7 +425,7 @@ public class ShareActivity extends StyledActivity {
     boolean executionSettingConfirmed(){return store.prefs.getBoolean("settingsKnown",false)&&store.prefs.getString("settingsError","").isEmpty();}
     View executionSettingNotice(){
         boolean confirmed=executionSettingConfirmed(),direct=store.directExecution();
-        LinearLayout notice=Ui.vertical(this);notice.setTag("share-execution-setting");notice.setPadding(dp(confirmed?4:14),dp(confirmed?4:10),dp(confirmed?4:14),dp(confirmed?4:10));if(!confirmed)notice.setBackground(Ui.outlined(this,Ui.SURFACE_2,Ui.LINE,14,1));
+        LinearLayout notice=Ui.vertical(this);notice.setTag("share-execution-setting");notice.setPadding(dp(confirmed?0:14),dp(confirmed?4:10),dp(confirmed?0:14),dp(confirmed?4:10));if(!confirmed)notice.setBackground(Ui.outlined(this,Ui.SURFACE_2,Ui.LINE,14,1));
         String title=confirmed?(direct?L.t("Saved setting · Direct execution","已保存设置 · 直接执行"):L.t("Saved setting · Plan review","已保存设置 · 先看计划")):L.t("Execution setting not confirmed","执行设置尚未确认");
         TextView heading=Ui.text(this,title,13,confirmed?Ui.TEXT:Ui.AMBER);heading.setTypeface(Ui.medium());heading.setTag("share-execution-title");notice.addView(heading,Ui.fill());
         String detail=confirmed?(direct?L.t("Can edit project files and run commands.","可修改项目文件并运行命令。"):L.t("Approve a plan before edits begin.","批准计划后才开始修改。")):L.t("Check DropRun Settings before sending.","发送前，请在 DropRun 设置中查看。");

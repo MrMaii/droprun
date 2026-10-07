@@ -1,0 +1,55 @@
+{
+  "schema": 1,
+  "date": "2026-10-07",
+  "productSource": "b9cea70158497e2d559081972256b1b893c9b8f2",
+  "hostingSource": "bd4147852bd2221cbc0d8ed26cfca53aa04b5cd5",
+  "projectId": "appgprj_6ab726bb8cd48191acd3234da262627d",
+  "versionId": "appgprj_6ab726bb8cd48191acd3234da262627d~appgver_9edca65dedbc81919e6ab5d29d02a507",
+  "versionNumber": 26,
+  "deploymentId": "appgdep_6ac5e223931881919aa4220d99dad976",
+  "status": "succeeded",
+  "url": "https://droprun.dengmaizi0802.chatgpt.site",
+  "publishedAt": "2026-10-07T06:09:46.419003+00:00",
+  "audience": "public preserved",
+  "publicFiles": 115,
+  "archiveFiles": 116,
+  "archiveRaw": {
+    "bytes": 14360605,
+    "sha256": "8a82133c18869f8aba06fcb7e75d2de4f99374ebf33cde211b1ae65ec32def00"
+  },
+  "nativeNormalizedArchive": {
+    "archive_format": "tar",
+    "sediment_file_id": "file_00000000551481f7b2bd0953ad0f25ef",
+    "content_hash": "sha256:8a5eac2965a4abe297a05b5912cb765dab207e0341efaea9a9f0d4326e1a93e7",
+    "size_bytes": 15544320,
+    "file_count": 116
+  },
+  "changedHtml": 2,
+  "addedOriginalPngs": 4,
+  "originalWorkflow": {
+    "exit": 1,
+    "sourcePushVerifiedByBundledWorkflow": true,
+    "packagingFailure": "PATH selected Windows WSL bash; /bin/bash unavailable"
+  },
+  "archiveOnlyContinuation": {
+    "exit": 0,
+    "gitBashOnProcessPath": true,
+    "gnuTarForceLocal": true,
+    "sourcePushReplay": false,
+    "cleanup": false
+  },
+  "archiveReader": {
+    "firstExit": 1,
+    "reason": "Incorrect expectation for static.directory; bundled static preparation uses dist",
+    "correctedPassed": true,
+    "archiveRebuilt": false
+  },
+  "privateFilmIncluded": false,
+  "signedCandidate": "0.5.15-rc.1 unchanged",
+  "limitations": [
+    "Native succeeded URL confirms scoped publication, not a new hosted-browser, JS, keyboard or playback check.",
+    "Screens are labelled memory-only development originals; no genuine Codex work.",
+    "Current outlined follow-up screen is later than immutable signed candidate15.",
+    "No owner Cloudflare or social posting."
+  ]
+}

@@ -86,8 +86,23 @@ acceptance is unavailable. No stable launch or marketing handover.
   by default, with one optional native-interaction recording. Historical media
   and detailed timing stay in the source record. Installation onward remains;
   189 local README/provenance/Settings-record links resolve. No comprehension test.
-  Landing source uses the same four outlined-follow-up originals; local build
-  checks20 assets, including canonical/social metadata. It is not yet a new hosted deployment or signed download.
+  Landing now uses the same four outlined-follow-up originals; local build
+  checks20 assets with canonical/social metadata. [Site26](../../docs/releases/site-followup-gallery-2026-10-07.md)
+  succeeds2026-10-07T06:09:46.419003Z, productb9cea70/hostingbd414785,
+  115public files/116archive members, preserved public audience. Original WSL
+  packaging failure and incorrect static-directory reader expectation remain;
+  archive-only Git Bash/force-local continuation passes without push replay.
+  No new hosted-browser/playback QA or signed-download update.
+- Sourceb9cea70's own CI37579746345 attempt1 passes3jobs/35steps/3matching checks;
+  actual210core+19browser, zero failed/cancelled/skipped/todo. Full326968B log
+  SHAd00a98ea and corrected file-only footer reader pass; initial TAP expectation
+  failure remains, without refetch or CI rerun.
+  [Exact CI](../../docs/releases/ui-project-identity-source-ci-2026-10-07.json).
+  Root opens anonymous EN/main and exact-b9 Chinese GitHub rendering: all three
+  images load at260px outside closed Details; optional tour remains collapsed.
+  Upper/lower desktop excerpts viewed; no narrow/dark/new-playback or measured
+  comprehension claim. Root temporary tab17 closed, user's website tab preserved.
+
 - [Settings identity](../../docs/releases/ui-settings-project-identity-2026-10-07.md)
   separates the complete15sp medium name from only the helper-appended12sp ID.
   Exact135/4 freeze5ffd, build/install/native1/26/29 all return0. Separate
@@ -100,6 +115,42 @@ acceptance is unavailable. No stable launch or marketing handover.
   new motion, physical, TalkBack, signed15 or genuine claim.
 - Candidate15's clean managed checkout was archived through the app; saved
   release artifacts and evidence remain outside that checkout. Sourcea48 remains.
+
+## Current native and presentation refinement
+
+- [Home names first](../../docs/releases/ui-home-typography-2026-10-07.md)
+  removes only decorative initials, gives complete20sp names232dp at320dp,
+  and aligns the heading/notice at20dp. Matte cards,13sp counts, state/recency,
+  stable IDs, focus and reading position retain their meaning. Settings Refresh
+  reuses its existing secondary outline; confirmed Share execution copy aligns
+  to its reading edge. Those two companion changes have build/lint evidence,
+  without new native/pixel acceptance in this Home take.
+- The first Home take failed because its old22-character Chinese prefix fitted
+  the widened column. Original1test/19.29s failure remains unchanged; three owned
+  windows closed. A fresh successor changes only that synthetic prefix to37
+  characters and keeps the >=2 coverage assertion. Fresh freeze3a8f9241,
+  nonce045d31fe, build/install/native1/26/42 known children return0. Independent
+  pure-file reader9c4b7778 rehashes138raw/139snapshots/six source receipts;
+  appa03ef969/test5ae105c9 bytes match saved/current/installed copies. Reports:
+  27JVM/0failed and lint0errors/28warnings. Actual native1test38.795s closes six
+  EN/ZH/theme/font1/font2 windows,36rebinds and12zero-guard streams. Root and
+  independent reviewer accept four normal originals only; long/font2 reading
+  remains source-bound assertions. Byte-exact Home copies feed README/Landing.
+- [New Share recording](../../docs/releases/ui-share-project-effort-tour-2026-10-07.md)
+  actually changes destination and model/effort in two closed memory windows.
+  EN1test22.223s/100frames9.535800s; ZH1test22.004s/104frames10.339411s.
+  Full-timeline25fps GIFs last9.52s/10.32s. One local model-header DOWN/UP gives
+  bounded press samples; other choices are programmatic. Native guards are zero
+  and in-process font/language/theme palettes restore after known destruction.
+  Original-frame sheets and composited keyframes were reviewed, without continuous
+  human playback or all-button/physical performance claims. Initial English
+  stream-count reader failure remains; its probe was reused, no take replay.
+  Tour binds to earlier app0872/code28, not new Home appa03 or signed15.
+- Both READMEs show the accepted Home originals and optional current Share tour.
+  Landing uses the same four Home images plus original MP4/captions. Local build
+  checks20 assets with canonical/social metadata. Candidate15 remains immutable;
+  current development gallery is explicitly later than that signed download.
+  Public source CI and this changed Site publication are pending at this checkpoint.
 
 ## Authorization and blocking conditions
 
@@ -122,20 +173,17 @@ acceptance is unavailable. No stable launch or marketing handover.
 
 ## Single recommended next action
 
-Update the current Share interaction recording with two finite memory windows:
-actually return and choose a different already-authorized sample project, change
-effort, and inspect the native header's bounded synthetic press and panel motion.
-Review the test-only mode first, then bind fresh source/test APK and finite owner;
-reuse unchanged production/app bytes only after actual equality checks. The old
-code25 film has one project/default-high/performClick and does not prove those
-behaviors. No Send, Pair, IME/OS manipulation, denied replay or real task.
+Publish this reviewed Home/README/Share-tour checkpoint, collect its exact source
+CI once, and update the existing public Site with the matching curated assets.
+Then continue the next concrete UI/UX issue from actual screens and source;
+genuine acceptance remains separate and must not block authorized design work.
 
 ## Files this pass
 
-SettingsActivity/SettingsReadingPresentationTest/new SettingsProjectIdentityTest;
-installer Details focus CSS; PRD/CONTRACTS/ADR0019/CHANGELOG;
-bilingual README and brand provenance/two exact Settings originals;
-Settings/focus release records and earlier5876source CI; landing generator,
-two language HTMLs/four byte-exact outlined-follow-up originals; current handoff.
-Earlier candidate15 and Site25 retain their separate source identities.
+MainActivity/ShareActivity/SettingsActivity; HomeRowsPresentationTest,
+HomeProjectHierarchyTest and opt-in NativeShareTourCaptureTest; PRD/CONTRACTS/
+ADR0019/CHANGELOG; bilingual README, brand provenance, four Home originals and
+two GIFs; landing generator/two HTMLs/four Home originals/six tour files;
+Home/tour release records, prior b9 source CI and Site26 receipts; current handoff.
+Private promo film and launch-kit remain untouched and excluded from publication.
 Author Thomas Deng <150266369+MrMaii@users.noreply.github.com>.

@@ -174,7 +174,7 @@ public class SettingsActivity extends StyledActivity {
         boolean large=getResources().getConfiguration().fontScale>=1.5f;LinearLayout refreshRow=Ui.row(this);if(large)refreshRow.setOrientation(LinearLayout.VERTICAL);
         modelRefreshStatus=Ui.caption(this,modelRefreshMessage());modelRefreshStatus.setAccessibilityLiveRegion(View.ACCESSIBILITY_LIVE_REGION_POLITE);
         refreshRow.addView(modelRefreshStatus,large?Ui.fill():Ui.grow());
-        modelRefreshButton=Ui.button(this,L.t("Refresh","刷新"),false);Ui.styleGhost(modelRefreshButton);modelRefreshButton.setId(R.id.settings_refresh);
+        modelRefreshButton=Ui.button(this,L.t("Refresh","刷新"),false);modelRefreshButton.setId(R.id.settings_refresh);
         modelRefreshButton.setMinHeight(dp(48));modelRefreshButton.setMinimumHeight(dp(48));modelRefreshButton.setPadding(dp(12),dp(10),dp(12),dp(10));modelRefreshButton.setOnClickListener(v->refresh());
         LinearLayout.LayoutParams refreshParams=new LinearLayout.LayoutParams(-2,-2);if(large)refreshParams.topMargin=dp(4);else refreshParams.setMarginStart(dp(8));refreshRow.addView(modelRefreshButton,refreshParams);
         updateModelRefresh();card.addView(refreshRow,Ui.margins(this,0,catalog.length()==0?0:10));

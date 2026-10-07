@@ -18,11 +18,11 @@ Codex 在你的 Windows 电脑上工作，Relay 由你部署到自己的 Cloudfl
 2. **跟进本地 Codex。** Codex 在你的电脑和所选项目中工作。按项目查看进展与待确认事项。
 3. **查看交付。** 检查结果、需要处理的动作、截图和文件，再按需展开报告。
 
-截图与录屏为标注的原生内存示例，并非真实交办或签名下载包录制；交付界面包含晚于 0.5.15-rc.1 的改动。[媒体来源与录制范围](assets/brand/readme-media.md)。
+截图与录屏为标注的原生内存示例，并非真实交办或签名下载包录制；首页与交付界面包含晚于 0.5.15-rc.1 的改动。[媒体来源与录制范围](assets/brand/readme-media.md)。
 
 <p align="center">
   <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-share-count-zh-dark-20261006.png"><img src="assets/brand/source-share-count-zh-light-20261006.png" width="260" alt="01 · 分享：项目与收到材料组合确认，常驻可选留言标签、收到文件数与模型参数；保留原生仅内存验证标记"></picture>
-  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-home-cards-zh-dark-20261006.png"><img src="assets/brand/source-home-cards-zh-light-20261006.png" width="260" alt="02 · 跟进：原生 Android 项目卡，集中展示首字、名称、任务与交办次数、状态和最近交办，保留仅内存验证与示例项目标记"></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-home-typography-zh-dark-20261007.png"><img src="assets/brand/source-home-typography-zh-light-20261007.png" width="260" alt="02 · 跟进：原生 Android 项目卡，突出完整项目名，展示任务与交办次数、状态和最近交办，保留仅内存验证与示例项目标记"></picture>
   <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-delivery-followup-zh-dark-20261007.png"><img src="assets/brand/source-delivery-followup-zh-light-20261007.png" width="260" alt="03 · 查看：原生交办页，突出结果，组合展示预览与文件，并提供描边追问按钮；保留仅内存验证标记"></picture>
 </p>
 
@@ -35,11 +35,11 @@ Codex 在你的 Windows 电脑上工作，Relay 由你部署到自己的 Cloudfl
 <details>
 <summary><strong>观看分享交互</strong></summary>
 
-发送前，返回项目选择，再调整本次交办的模型。
+发送前，返回并改选另一个项目，再把推理强度从深入改为均衡。
 
-<p align="center"><picture><source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/brand/source-share-count-zh-dark-20261006.png"><source media="(prefers-reduced-motion: reduce)" srcset="assets/brand/source-share-count-zh-light-20261006.png"><img src="assets/brand/native-share-review-before-sending-zh-20261006.gif" width="320" alt="原生 Android 内存连续片段：从空留言页开始，返回项目列表、再次选择，调整示例模型并收起；未发送任务"></picture></p>
+<p align="center"><picture><source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/brand/source-share-count-zh-dark-20261006.png"><source media="(prefers-reduced-motion: reduce)" srcset="assets/brand/source-share-count-zh-light-20261006.png"><img src="assets/brand/native-share-touch-zh-20261007.gif" width="320" alt="原生 Android 仅内存完整时序：选择项目，返回并改选另一个项目，从深入改为均衡后收起；未发送任务"></picture></p>
 
-[原始录屏](landing/media/native-share-project-tour-zh-20261006.mp4) · [字幕](landing/media/native-share-project-tour-zh-20261006.vtt)
+[原始录屏](landing/media/native-share-touch-zh-20261007.mp4) · [字幕](landing/media/native-share-touch-zh-20261007.vtt)
 
 </details>
 

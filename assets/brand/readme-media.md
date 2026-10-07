@@ -712,3 +712,39 @@ installation states, not owner Cloudflare deployment or candidate15 screenshots.
 The Chinese dark fixture uses CSS200% and reduced motion; it is not physical
 Windows scaling. [Selected record](../../docs/releases/ui-setup-details-focus-2026-10-07.md)
 owns geometry, original failures, hashes and the limited visual review.
+
+## Website and README publication · October 7, 2026
+
+Source b9cea70 makes the three workflow screens visible by default and leaves
+one optional sharing interaction. Root opened the anonymous English main README
+and exact-source Chinese page on GitHub. All three260px images loaded outside
+closed Details; upper/lower desktop excerpts were viewed. No narrow/dark rendering,
+new GIF playback or comprehension measurement is inferred. Temporary tab closed.
+[Site26](../../docs/releases/site-followup-gallery-2026-10-07.md) publishes the same
+four outlined-follow-up originals on both language pages. Its native receipt owns
+publication scope; candidate15 remains unchanged.
+
+## Actual project and effort changes · October 7, 2026
+
+The optional README tour now uses `native-share-touch-{en,zh}-20261007.gif`:
+choose one sample project, return and choose a different one, change the sample
+model's Thorough/high effort to Balanced/medium, then collapse. Full original
+MP4s, first frames and captions remain in `landing/media` with the same stem.
+The320×640 canvas, source launcher, system bars and memory marker stay intact;
+no task was sent. Reduced-motion gallery stills keep their own earlier source.
+[Recording, timeline and limited review](../../docs/releases/ui-share-project-effort-tour-2026-10-07.md)
+bind this tour to app0872/code28, before later Home/Share/Settings refinements.
+The25fps GIFs last9.52s/10.32s; originals last9.535800s/10.339411s. Phase review
+and one local header press do not establish all-button coverage, continuous
+human playback, physical performance or signed-download acceptance.
+
+## Home names first · October 7, 2026
+
+`source-home-typography-{en,zh}-{light,dark}-20261007.png` are byte-exact native
+320×640 originals. Complete20sp project names replace decorative initials;
+13sp counts and state/recency retain their hierarchy. Both reviewers directly
+accept these four normal-font memory samples. The lime gear is keyboard-focused
+in the samples; its focus treatment is not the default unfocused appearance.
+[Source-bound reading, original fixture failure and scope](../../docs/releases/ui-home-typography-2026-10-07.md)
+own six closed local windows and the27JVM/Android lint results. These later
+development images do not show the signed0.5.15-rc.1 download or real handoffs.

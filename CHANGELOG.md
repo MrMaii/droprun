@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Give Home project names the full card reading width and a clearer20sp heading;
+  align page edges, keep complete names and retain state/recency hierarchy.
+- Make Settings Refresh/Retry an outlined secondary action; align the confirmed
+  Share execution explanation with the note and primary action.
 - Separate complete Settings project names from ambiguous ID hints, keeping
   permission feedback and accessibility identity intact.
   [Four local reading windows and two original stills](docs/releases/ui-settings-project-identity-2026-10-07.md).

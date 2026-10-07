@@ -31,11 +31,11 @@ public class HomeProjectHierarchyTest {
                         final int row=position;scenario.onActivity(a->a.list.setSelectionFromTop(row,0));awaitLayout(scenario);
                         scenario.onActivity(a->{
                             View visible=a.list.getChildAt(row-a.list.getFirstVisiblePosition());assertNotNull("The requested small-sample row is laid out",visible);MainActivity.HomeHolder holder=(MainActivity.HomeHolder)visible.getTag();
-                            JSONObject project=a.items.get(row);boolean large=a.getResources().getConfiguration().fontScale>=1.5f;int contentEdge=left(holder.card)+holder.card.getPaddingLeft(),expectedLeft=contentEdge+(large?0:Ui.dp(a,48));
-                            assertEquals("Project identity follows its optional initial",expectedLeft,left(holder.name));
+                            JSONObject project=a.items.get(row);int contentEdge=left(holder.card)+holder.card.getPaddingLeft(),expectedLeft=contentEdge;
+                            assertEquals("Project identity begins at the card content edge",expectedLeft,left(holder.name));
                             assertEquals("Counts share the project identity edge",expectedLeft,left(holder.counts));assertEquals("State begins at the card content edge",contentEdge,left(holder.state));
-                            int expectedWidth=holder.card.getWidth()-holder.card.getPaddingLeft()-holder.card.getPaddingRight()-Ui.dp(a,large?0:48)-Ui.dp(a,16);
-                            assertEquals("The project name uses all space before the chevron",expectedWidth,holder.name.getWidth());assertEquals(Ui.dp(a,large?232:184),holder.name.getWidth());
+                            int expectedWidth=holder.card.getWidth()-holder.card.getPaddingLeft()-holder.card.getPaddingRight()-Ui.dp(a,16);
+                            assertEquals("The project name uses all space before the chevron",expectedWidth,holder.name.getWidth());assertEquals(Ui.dp(a,232),holder.name.getWidth());
                             assertEquals(project.optString("name"),holder.name.getText().toString());assertCompleteText(holder.name);assertCompleteText(holder.counts);assertCompleteText(holder.state);
                             assertEquals(ProjectPresentation.counts(project),holder.counts.getText().toString());assertEquals(ProjectPresentation.state(project),holder.state.getText().toString());
                             assertTrue(holder.card.getHeight()>=Ui.dp(a,48));assertTrue(holder.card.getWidth()>=Ui.dp(a,48));assertTrue(holder.card.isFocusable());assertTrue(holder.card.isEnabled());

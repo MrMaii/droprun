@@ -25,8 +25,9 @@ in [the current candidate record](../releases/0.5.15-rc.1.md).
   directly to setup.
   The website Share recording uses native-width detail when space permits;
   narrow layouts stack the explanation and recording so controls remain readable.
-  Dated Share motion media show project selection, return navigation, model choice
-  and its default effort, with the memory-only project and empty note disclosed. Native-size
+  Dated Share motion media show selection of a different project, return navigation,
+  model choice and a Thorough-to-Balanced effort change. The memory-only projects,
+  empty note and absence of sending are disclosed. Native-size
   sampled GIFs keep README loading light; original videos preserve the timeline.
   Workflow media use dated current native captures, with consistent light/dark
   language sets; older tours keep their source date and sample-data scope.
@@ -49,6 +50,9 @@ in [the current candidate record](../releases/0.5.15-rc.1.md).
   Navigation gear/information icons share restrained round outlines; their 48dp
   targets, theme tint, focus, press feedback and action meaning remain distinct.
   Home contains Recent handoffs and settings, with only used or pending projects.
+  The heading and connection notice share the list's20dp page edge. Project cards
+  prioritize the complete20sp name, then13sp counts and the status/recency line;
+  decorative initials do not take width from Home names. Long names wrap.
   Project names, counts and status form recognizable groups using the
   [current surface decision](../decisions/0019-semantic-content-groups.md).
   Recycled Home rows update status text and its tint together. Large text puts
@@ -70,7 +74,9 @@ in [the current candidate record](../releases/0.5.15-rc.1.md).
   Background settings refresh also retains the focused appearance or language
   control. Structural page focus must not tint the entire content surface.
   Settings offers Refresh/Retry beside model availability, reading the existing
-  project, execution-setting and retention data once at a time. A pending read or
+  data through a recognizable outlined secondary button, with the same48dp target,
+  press, focus and disabled states.
+  Project, execution-setting and retention data load once at a time. A pending read or
   mode/project change disables this action; partial failure keeps cached data
   visible and offers Retry. Completion retains the then-current reading offset
   or surviving preference/Refresh keyboard focus, without writing execution mode.
@@ -269,9 +275,9 @@ in [the current candidate record](../releases/0.5.15-rc.1.md).
   Project titles wrap fully at every text size instead of hiding a distinguishing
   suffix. Long cards can grow vertically; names longer than one viewport remain
   readable by scrolling.
-  Home projects use independent matte surfaces, decorative initials and separate
-  identity/count and state/recency areas. Hide initials at150% text and above;
-  preserve stable IDs, complete names, focus, counts and reading position on rebind.
+  Home's project surfaces follow [ADR0019](../decisions/0019-semantic-content-groups.md),
+  separating identity/count from state/recency. Preserve stable IDs, complete names,
+  focus, counts and reading position on rebind.
   Shared actions, icons, chips and model/effort options show a distinct keyboard-
   focus outline in both themes, without changing layout or activating the action.
 - Scrolling text stays outside system bars. Decision errors remain visible after

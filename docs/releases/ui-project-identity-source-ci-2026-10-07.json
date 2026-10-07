@@ -1,0 +1,48 @@
+{
+  "schema": "droprun.source-ci.v1",
+  "date": "2026-10-07",
+  "source": "b9cea70158497e2d559081972256b1b893c9b8f2",
+  "runId": 37579746345,
+  "attempt": 1,
+  "url": "https://github.com/MrMaii/droprun/actions/runs/37579746345",
+  "status": "completed",
+  "conclusion": "success",
+  "jobs": 3,
+  "steps": 35,
+  "matchingChecks": 3,
+  "actualTests": {
+    "core": {
+      "tests": 210,
+      "suites": 0,
+      "pass": 210,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "duration_ms": 55176.002
+    },
+    "browser": {
+      "tests": 19,
+      "suites": 0,
+      "pass": 19,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "duration_ms": 64975.6579
+    }
+  },
+  "completeLog": {
+    "bytes": 326968,
+    "sha256": "d00a98ea639d303e7f5203180bb659b0819c9ca899ac79cd0bf27fa1ea4a2db4",
+    "fetchExit": 0,
+    "fetchStderrBytes": 0
+  },
+  "readerSha256": "daff8de1bc25c9de4f32f84c73a77457ad073f3c1271f45162109131301ed8b9",
+  "boundaries": [
+    "Exact b9cea70 source and complete attempt1 log; earlier CI counts are not reused.",
+    "Successful Android and Windows CI builds do not establish native instrumentation, physical-device acceptance, installed signed candidate15 or genuine handoffs.",
+    "Website deployment26 has its own hosting source and native publication receipt.",
+    "Initial collector expected TAP footer; corrected file-only reader parses the actual timestamped spec footer without refetching or rerunning CI."
+  ]
+}

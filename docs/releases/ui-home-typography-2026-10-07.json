@@ -1,0 +1,152 @@
+{
+  "schema": "droprun.local-ui-home-typographic-cards.v1",
+  "date": "2026-10-07",
+  "verifiedWithinScope": true,
+  "version": {
+    "name": "0.5.15-dev",
+    "code": 28
+  },
+  "signedCandidateIncludesThisChange": false,
+  "changes": [
+    "Home keeps matte cards/status-recency and complete wrapping, removes decorative initials and uses20sp names with232dp width at320dp. Name/counts/state share the content edge; page header/notice use20dp.",
+    "Share confirmed execution context aligns to its page edge. Settings Refresh reuses the existing secondary outline. These companion changes have build/lint and existing implementation evidence only, without this take establishing new native or pixel acceptance."
+  ],
+  "sourceFreeze": {
+    "sha256": "3a8f92412d1d7eb3ae1155930f54d138ba99fdd1dbbb114771bb61d2a4541756",
+    "sources": 135,
+    "configs": 4,
+    "selectedSourceSHA256": {
+      "android/app/src/main/java/app/droprun/MainActivity.java": "a8b66a10656419d948faa82bcc5a9a7d8c7829ca87c07c36ce7a5409813d9271",
+      "android/app/src/main/java/app/droprun/ShareActivity.java": "b72067132d6c680fa7463e3facc51945f23e3cffba125312b197a213e8711d23",
+      "android/app/src/main/java/app/droprun/SettingsActivity.java": "da204a5963ed69ac63282ba9747f0d0b9971038b57a504f5d77558aadfd1648e",
+      "android/app/src/androidTest/java/app/droprun/HomeProjectHierarchyTest.java": "1de7511e0e02438d7deb6780f5aa3a6e1aac30c066ddd5fb6500e34f736607fa",
+      "android/app/src/androidTest/java/app/droprun/HomeRowsPresentationTest.java": "4a10daaf8f2d5bc47044f1484b0ff11d372861abcb606534aaa10374d1b8aab3"
+    },
+    "exactAtHistoricalIndependentRead": true,
+    "scope": "The closed take and this independent read only; later Android edits are outside this proof."
+  },
+  "execution": {
+    "nonce": "045d31fe-f85f-413c-9d21-033e46343c02",
+    "ownerSha256": "678e9261d47d4a3e1891282425ce8617a89383b25451020b6ddf41bc85bced47",
+    "phaseVerificationSha256": {
+      "build": "d0c0ab6f7a829002a892d0621db461ee678c631c7566fba13ce79c77c66d5c35",
+      "install": "feffc2a26569f58f9a14e0c8b5a791312babf605978c855365e8a8e5cf61408a",
+      "native": "ebf4b738b46291058a4d9448a38041eac271c1c118ca0742bd2e9083fe501579"
+    },
+    "knownReturnedZeroChildren": {
+      "build": 1,
+      "install": 26,
+      "native": 42
+    },
+    "originalRawFilesRehashed": 138,
+    "sourceConfigurationCopiesRehashed": 139,
+    "sourceReceiptsVerified": 6
+  },
+  "buildReports": {
+    "jvm": {
+      "tests": 27,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "lint": {
+      "errors": 0,
+      "warnings": 28
+    },
+    "scope": "Bound report XML counts; not a claim that every task freshly executed."
+  },
+  "apks": [
+    {
+      "role": "app",
+      "package": "app.droprun.mobile.debug",
+      "bytes": 2186592,
+      "sha256": "a03ef969e8e6baac0fbd724d6a36ab45b4d7b03f7b40bedd94fe262d2d3fec08"
+    },
+    {
+      "role": "test",
+      "package": "app.droprun.mobile.debug.test",
+      "bytes": 2077584,
+      "sha256": "5ae105c9d0c7d79b26b49c77b1c493e1ebe5ed5b9f15239dc9818529a326215e"
+    }
+  ],
+  "savedCurrentInstalledBytesMatch": true,
+  "native": {
+    "selection": "app.droprun.HomeRowsPresentationTest#continuousRowsKeepIdentityAndReadPosition",
+    "junitTests": 1,
+    "junitFailures": 0,
+    "seconds": 38.795,
+    "windows": [
+      "en/light/font1",
+      "en/dark/font1",
+      "zh/light/font1",
+      "zh/dark/font1",
+      "en/light/font2",
+      "zh/dark/font2"
+    ],
+    "knownDestroyed": 6,
+    "lifecycleEvents": 32,
+    "zeroGuardStreams": 12,
+    "completedRebinds": 36,
+    "originalPngs": 4,
+    "originalJsons": 4,
+    "businessActionsInvoked": false,
+    "scope": "Complete long-name/first-final-line reading, identity/name-key restoration and anchor checks are source-bound assertions, not independently emitted geometry or long/200% visual acceptance."
+  },
+  "normalOriginals": [
+    {
+      "name": "home-rows-en-light-font1.png",
+      "bytes": 38460,
+      "sha256": "d7cf21d4c1af84633925f3fdec9690a00e7397d828a84d811feb445835a71d4e"
+    },
+    {
+      "name": "home-rows-en-dark-font1.png",
+      "bytes": 38878,
+      "sha256": "cf3735ab6d31b3fe754656614847c0dac4bc4e225919a6e6d27ff564406f83d1"
+    },
+    {
+      "name": "home-rows-zh-light-font1.png",
+      "bytes": 46071,
+      "sha256": "6cd7cec4382422b908ebffee6b7a5f10ab6b520c636aed9bfa7af9b151805708"
+    },
+    {
+      "name": "home-rows-zh-dark-font1.png",
+      "bytes": 46849,
+      "sha256": "2189cf320e1f03892cee4d51ff3844deb8da43a6d0b8a1fe1fc67959f03ec473"
+    }
+  ],
+  "visualAcceptance": {
+    "rootAccepted": true,
+    "independentReviewerAccepted": true,
+    "scope": "Only these four directly viewed normal-font320x640 EN/ZH light/dark originals: text-first cards, name/count/state-recency hierarchy and20dp page edge. Original memory markers/system bars remain. No long-name/200% pixel, motion or physical claim."
+  },
+  "independentRead": {
+    "pureFileOnly": true,
+    "readerSha256": "9c4b7778f211c45ca83061cd77ae22bd5f755eef30a21b05ea765633b6f963a2",
+    "verificationSha256": "0ef40a98702c359bd5e591245b2701be1a479b6cce25cf56b01378f5d237bb21",
+    "passed": true,
+    "driversInvoked": false
+  },
+  "retainedFailure": {
+    "nonce": "a9d8b9ae-3670-4b21-934f-e564ae0c0e0b",
+    "passed": false,
+    "stdoutSha256": "9566318b7c979b82635d320faf4a1379b814cc1a508cd3748b20a7e3157c1f4c",
+    "verificationSha256": "46b48cf676727b14b8238b9c238b6cfe926f230b428b4483ecdd9f06f617f146",
+    "junitTests": 1,
+    "junitFailures": 1,
+    "seconds": 19.29,
+    "completedWindows": 2,
+    "knownDestroyed": 3,
+    "fontLanguageRestored": true,
+    "reason": "Old Chinese prefix no longer placed the distinct suffix beyond two lines at the new232dp width. Only synthetic prefix length22\u219237 changed; the >=2 coverage assertion remains.",
+    "relabeledSuccessful": false,
+    "reusedAsSuccessorEvidence": false
+  },
+  "boundaries": [
+    "Share/Settings were not rerun natively in this take.",
+    "Four originals capture normal records after long-name restoration; no long-name/200% visual acceptance.",
+    "Only ten read-only device values match; no executor termination or all Ui/device-state equality.",
+    "No genuine Relay/Codex handoff, project navigation, permission activation or OS/IME write.",
+    "No physical performance, TalkBack, source CI, signed-native or stable-launch acceptance.",
+    "Signed candidate15 and old Share app0872/testc433 retain their own source and media scope."
+  ]
+}
