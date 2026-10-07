@@ -1,6 +1,6 @@
 # Current Handoff
 
-Updated 2026-10-06 UTC. Continue substantive native UX and brand work while
+Updated 2026-10-07 UTC. Continue substantive native UX and brand work while
 real-environment acceptance is unavailable. No stable launch or marketing handover.
 
 ## Public delivery
@@ -17,6 +17,11 @@ real-environment acceptance is unavailable. No stable launch or marketing handov
 - UI/README sourcec9d42c1 is pushed with Thomas as author and committer. Its own
   CI37547163008 attempt1 passes3jobs/35steps/10required/3checks; actualcore210/browser18.
   Full327371B log SHAde384d0b retained. This does not bind later working Task edits.
+- Task-feedback source104c9f0 own CI37549599379 attempt1 passes3jobs/35steps,
+  10required/3checks. Actualcore210/browser18; full326676B log SHA018601c5,
+  fetch returned0/stderr0. Candidate14 preparation advances runtime0.5.14/code27
+  and Connector/Relay health plus installer default together. These edits require their own source CI and
+  fresh immutable packages; signed13 remains the public download meanwhile.
 - GPTSites23 is live at the existing public URL, native hosting succeeded
   2026-10-06T23:38:50.779980Z. Product sourcec9d42c1; hosting sourcebe1b5db2;
   versiona61a934c/deployment6ac58683.107public files/108archive entries add only
@@ -44,7 +49,7 @@ real-environment acceptance is unavailable. No stable launch or marketing handov
   a new explicit event clears the older error. Bundle save/restore implemented.
   Raw134-source/4-config SHA276371d2; build86.047s/returned0, actualJVM27pass,
   lint0errors28warnings, original333B deprecation stderr retained.
-  Original installer owner44754c9a/noncebef5c520 failed on23rd read after22returned0
+  Original debug-install owner44754c9a/noncebef5c520 failed on23rd read after22returned0
   commands and exact installed APKs. after-animator PID49832 exceeded20s; original
   exit stays unavailable. Original failed metadata and unknown raw remain unchanged.
   Separate read-only PID gate observed absence87, not exit0. New continuation
@@ -96,15 +101,17 @@ scope separate from the completed failure-retention freeze above.
 
 ## Single recommended next action
 
-Package the next signed candidate from the reviewed UI source after its own CI;
+Package candidate14 from its clean versioned source after its own CI;
 current public13 does not include material counts or Task failure retention.
 Continue the diagnosed metadata-only Task rebind issue as a separate bounded UX
 change; genuine/physical/clean-install gates stay open.
 
 ## Files this pass
 
-TaskActivity and its existing guarded action-feedback test, PRD/CONTRACTS,
-changelog, task failure record, material/README publication records and handoff.
+Candidate14 package/lock, Android code/version, Connector/Relay health, installer
+default, changelog and handoff.
+Preceding TaskActivity/guarded test, PRD/CONTRACTS, task-failure and media records
+are committed in104c9f0 with their own passing CI.
 Private evidence: `.local/ux-oct6-task-failure-retention/`,
 `.local/ux-oct6-material-summary/`, `.local/readme-review-excerpt/`.
 No genuine task, OS setting write, installer execution or stable launch.

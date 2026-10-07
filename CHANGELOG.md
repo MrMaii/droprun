@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.5.14-rc.1 — clearer material and lasting decision feedback
+
 - Keep task action errors visible after background reads and error-dialog dismissal;
   save them with Activity state and clear them when a new operation starts.
 
@@ -11,6 +13,9 @@
 - Start the bilingual README motion example at the complete note view, with a
   clearly labelled continuous excerpt and retained complete originals. Use current
   file-count stills in the README and website; keep development-media scope visible.
+- Synchronize Android code27, Node package, Connector/Relay health and installer
+  default with runtime 0.5.14.
+  Signed artifacts and public downloads require this candidate's own verification.
 
 ## 0.5.13-rc.1 — clearer notes and activity dates
 
