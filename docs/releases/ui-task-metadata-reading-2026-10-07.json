@@ -1093,5 +1093,45 @@
     "verified": true,
     "sha256": "2f299495dc70ea0127b9645fd2f5a84ecb665ad2649f5fc4f86ad085d58bb845",
     "rawFilesRehashed": 104
+  },
+  "exactSourceCI": {
+    "source": "c05ac920a9021a2a03df9c3cc4706a501c3f2d02",
+    "runId": 37552669308,
+    "attempt": 1,
+    "url": "https://github.com/MrMaii/droprun/actions/runs/37552669308",
+    "passed": true,
+    "jobCount": 3,
+    "stepCount": 35,
+    "requiredStepCount": 10,
+    "exactRunCheckCount": 3,
+    "actualTests": {
+      "core": {
+        "tests": 210,
+        "suites": 0,
+        "pass": 210,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 58141.8611
+      },
+      "browser": {
+        "tests": 18,
+        "suites": 0,
+        "pass": 18,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 57647.5779
+      }
+    },
+    "log": {
+      "stdoutBytes": 326680,
+      "stdoutSha256": "526b08cd435c8d55f4d94e700935dbb0d68666165bd44b0db1da7233b893c826",
+      "stderrBytes": 0,
+      "exit": 0,
+      "lifetime": "returned"
+    }
   }
 }

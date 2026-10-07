@@ -24,14 +24,53 @@ real-environment acceptance is unavailable. No stable launch or marketing handov
 - README, setup guides and generated EN/ZH pages point to verified candidate14.
   Older recordings retain their code25 provenance and newer count stills code26.
   Metadata-only report reading below is later development, not in the signed tag.
-- GPTSites23 remains the current live deployment, product sourcec9d42c1/hosting
-  sourcebe1b5db2, succeeded2026-10-06T23:38:50.779980Z. Candidate14 website source
-  refresh is prepared; no later deployment is claimed before native success.
-  The107public files retain all accepted media. Private film and four unaccepted
-  Delivery images remain excluded.
+- GPTSites24 is live, product sourcec05ac920/hosting22f3e429,
+  succeeded2026-10-07T00:39:27.584587Z.107public files/108archive members; only the
+  two language pages change their candidate14 links. Accepted media remain.
+  Original packaging failed because Windows selected WSL bash; source was already
+  pushed. Separate exact-inventory archive continuation passes without a source
+  push replay or cleanup. Native storage normalizes tar, not raw gzip-byte equality.
+  [Exact publication scope](../../docs/releases/site-candidate14-2026-10-07.json).
+  Private film and four unaccepted Delivery images remain excluded. Candidate14
+  managed worktree is confirmed archived; artifacts remain outside the checkout.
 
 ## Completed UX and brand
 
+- [Task result focus](../../docs/releases/ui-task-result-focus-2026-10-07.md):
+  report-present identity20, quiet accessible result heading14 and summary22 at
+  full reading width; settled earlier plan follows full report, before note,
+  retaining disclosure state. Awaiting-plan and no-report positions stay.
+  Fresh134/4 freeze5af8a6ab passes debug build/JVM27/lint0errors28warnings,
+  exact built/current/six installed APK reads. Build/install/reading/capture
+  direct children1/26/25/34 all return0; independent172raw pass. Reading1test
+  in11.310s closes ENlight/ZHdark font2,22streams/2ORDER/2zero closed counters;
+  measured full-report/earlier-plan/note indices6<7<8. Separate unchanged
+  capture1test18.994s closes4normal EN/ZH light/dark windows; root and independent
+  reviewer view all original320×640PNG. README receives exact copies, code27
+  later development than signed14. Capture owner pixelAcceptance=false remains;
+  human visual acceptance is separate. Photos omit older plan/note. First attempt
+  retains stale elevation assertion failure and42children/84raw; only helper
+  expectation2→0 corrected, production button styling unchanged. No business
+  activation, genuine work, actual IME, signed-native, motion, physical or complete
+  accessibility acceptance. Known DESTROYED does not prove executor termination;
+  only ten read-only device values match. Current source's own CI is pending push.
+- [Share note surface](../../docs/releases/ui-share-note-surface-2026-10-07.md):
+  genuine two-line minimum after styling; full note padding, max6/15000 limit
+  and draft semantics retained. Confirmed execution context is quieter;
+  unconfirmed warning spacing stays intact. A new 134/4 freeze passes fresh
+  debug build/JVM27/lint0errors28warnings, exact installed bytes and native1test
+  in8.834s. Four ENlight/ZHdark font1/2 memory windows close,46events/36guard
+  receipts/12draft states/24target reveals. Normal empty/short Send+draft fit;
+  long/font2 targets are individually reachable. Two earlier clipping failures
+  remain unchanged, including their incomplete matrices and no native after
+  reads. New52children/104raw independently pass. No keyboard, Send, genuine
+  persistence, screenshot, physical or signed-native acceptance claim.
+- Bilingual README now puts the decision and continuous native excerpt first;
+  exact recording links remain inside the complete source disclosure. All media
+  and downloads14 remain. Its delivery gallery now uses the four independently
+  viewed October7 code27 native result-focus stills; older media remain linked
+  in provenance. Only local target existence was rechecked, not a new GitHub
+  render or hosted-site update.
 - [Task metadata reading](../../docs/releases/ui-task-metadata-reading-2026-10-07.md):
   local presentation ignores only updated_at, updates the date caption separately,
   and retains report View/buffer/selection/disclosure/focus/offset. Actual report
@@ -44,8 +83,10 @@ real-environment acceptance is unavailable. No stable launch or marketing handov
   restoration only proves setter return after known DESTROYED, not all-state
   equality or fresh focus-mode observation. Selection is programmatic; caption
   uses synthetic Stale plus actual render. No live polling, minute wait, gesture,
-  200%, signed-native, physical or performance claim. Source edits await their
-  own pushed CI; do not borrow candidate14 CI for this later development.
+  200%, signed-native, physical or performance claim. Sourcec05ac920 own
+  CI37552669308 attempt1 passes3jobs/35steps/10required/3checks; actual210+18.
+  Full326680B log SHA526b08cd retained, returned0/stderr0. Candidate14 CI remains
+  separate from this later development.
 - [Share counts](../../docs/releases/ui-share-material-counts-2026-10-06.md) and
   [Task failure retention](../../docs/releases/ui-task-failure-retention-2026-10-06.md)
   are now included in signed14. Visible multi-file/mixed-text counts retain full
@@ -89,13 +130,17 @@ real-environment acceptance is unavailable. No stable launch or marketing handov
 
 ## Single recommended next action
 
-Publish the scoped metadata-reading source and its own CI, then refresh existing
-GPTSites downloads to verified14. Continue visible UI/README refinement from
-actual captures; real-environment gates do not block that authorized work.
+Publish the verified Share note/Task result-focus development source, then read
+that exact commit's own CI. Continue native design refinement afterward; the
+next proposed surface is Settings project access, with complete labels and
+large-text width checked before adopting an inset group. Real-environment gates
+do not block local UI, motion, README or brand work.
 
 ## Files this pass
 
-TaskActivity/TaskScrollRestorationTest, PRD/CONTRACTS/CHANGELOG, new metadata-reading
-record; signed14 record/evidence, EN/ZH README/setup, context/roadmap, landing builder
-and its two pages, current handoff. No genuine task or stable launch.
+ShareActivity/ShareEditorTest, TaskActivity/TaskReadingHierarchyTest and one
+TaskPreviewFeedbackTest assertion; PRD/CONTRACTS/CHANGELOG, new note/result-focus
+records, metadata-reading exact-source CI followthrough and Site24 evidence;
+EN/ZH README, media provenance and four new original delivery PNGs, current
+handoff. No genuine task or stable launch; website media remain Site24's set.
 Author Thomas Deng <150266369+MrMaii@users.noreply.github.com>.

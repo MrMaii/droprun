@@ -405,9 +405,9 @@ public class ShareActivity extends StyledActivity {
         receipt.addView(materialDisclosure(),Ui.margins(this,2,0));column.addView(receipt,Ui.margins(this,8,4));
         TextView noteLabel=Ui.text(this,L.t("Your note · optional","留言 · 可选"),13,Ui.TEXT);noteLabel.setTypeface(Ui.medium());noteLabel.setPadding(0,0,0,0);noteLabel.setTag("share-note-label");column.addView(noteLabel,Ui.margins(this,4,0));
         note=new EditText(this);note.setId(View.generateViewId());noteLabel.setLabelFor(note.getId());note.setHint(L.t("Leave blank for Codex to decide.","留空，让 Codex 判断。"));note.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_FLAG_MULTI_LINE|InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
-        note.setMinLines(3);note.setMaxLines(6);note.setFilters(new InputFilter[]{new InputFilter.LengthFilter(15000)});note.setText(draft);Ui.styleInput(note);
+        note.setMaxLines(6);note.setFilters(new InputFilter[]{new InputFilter.LengthFilter(15000)});note.setText(draft);Ui.styleInput(note);note.setMinLines(2);
         note.addTextChangedListener(new TextWatcher(){public void beforeTextChanged(CharSequence s,int start,int count,int after){}public void onTextChanged(CharSequence s,int start,int before,int count){draft=s.toString();checkpoint();}public void afterTextChanged(Editable value){}});
-        column.addView(note,Ui.margins(this,8,10));
+        column.addView(note,Ui.margins(this,8,6));
         gaugeText=null;modelChevron=null;panel=null;panelOpen=false;
         if(store.models().length()>0){
             LinearLayout gaugeRow=Ui.row(this);gaugeRow.setMinimumHeight(dp(48));gaugeRow.setClickable(true);gaugeRow.setFocusable(true);gaugeRow.setOnClickListener(v->togglePanel());Ui.bindPress(gaugeRow);
@@ -417,7 +417,7 @@ public class ShareActivity extends StyledActivity {
             panel=Ui.vertical(this);panel.setVisibility(View.GONE);column.addView(panel,Ui.margins(this,4,0));
             updateGauge();
         }
-        column.addView(executionSettingNotice(),Ui.margins(this,12,0));
+        column.addView(executionSettingNotice(),Ui.margins(this,executionSettingConfirmed()?8:12,0));
         Button send=Ui.button(this,L.t("Hand off to Codex","交给 Codex"),true);send.setTag("share-send");send.setOnClickListener(v->{if(submit())go(2,1);});column.addView(send,Ui.margins(this,12,0));
         draftStatus=Ui.caption(this,"");draftStatus.setGravity(Gravity.CENTER);draftStatus.setAccessibilityLiveRegion(View.ACCESSIBILITY_LIVE_REGION_POLITE);column.addView(draftStatus,Ui.margins(this,4,0));retryDraft=Ui.button(this,L.t("Retry saving draft","重试保存草稿"),false);retryDraft.setOnClickListener(v->checkpoint());column.addView(retryDraft,Ui.margins(this,6,0));draftFeedback();
         return column;
@@ -425,7 +425,7 @@ public class ShareActivity extends StyledActivity {
     boolean executionSettingConfirmed(){return store.prefs.getBoolean("settingsKnown",false)&&store.prefs.getString("settingsError","").isEmpty();}
     View executionSettingNotice(){
         boolean confirmed=executionSettingConfirmed(),direct=store.directExecution();
-        LinearLayout notice=Ui.vertical(this);notice.setTag("share-execution-setting");notice.setPadding(dp(confirmed?4:14),dp(confirmed?8:10),dp(confirmed?4:14),dp(confirmed?8:10));if(!confirmed)notice.setBackground(Ui.outlined(this,Ui.SURFACE_2,Ui.LINE,14,1));
+        LinearLayout notice=Ui.vertical(this);notice.setTag("share-execution-setting");notice.setPadding(dp(confirmed?4:14),dp(confirmed?4:10),dp(confirmed?4:14),dp(confirmed?4:10));if(!confirmed)notice.setBackground(Ui.outlined(this,Ui.SURFACE_2,Ui.LINE,14,1));
         String title=confirmed?(direct?L.t("Saved setting · Direct execution","已保存设置 · 直接执行"):L.t("Saved setting · Plan review","已保存设置 · 先看计划")):L.t("Execution setting not confirmed","执行设置尚未确认");
         TextView heading=Ui.text(this,title,13,confirmed?Ui.TEXT:Ui.AMBER);heading.setTypeface(Ui.medium());heading.setTag("share-execution-title");notice.addView(heading,Ui.fill());
         String detail=confirmed?(direct?L.t("Can edit project files and run commands.","可修改项目文件并运行命令。"):L.t("Approve a plan before edits begin.","批准计划后才开始修改。")):L.t("Check DropRun Settings before sending.","发送前，请在 DropRun 设置中查看。");

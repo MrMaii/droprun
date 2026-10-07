@@ -1,5 +1,31 @@
 # Native README media
 
+## Result reading focus · October 7, 2026
+
+Four complete, unedited native 320 × 640 PNGs from `0.5.14-dev`, code27.
+These are later development than the immutable signed candidate14. English
+and Chinese light/dark views use normal-size text and a fixed memory-only sample;
+no task was sent and no preview or action was opened. The visible sample marker
+and system bars remain. The README delivery gallery uses these new stills;
+the older delivery images and Share recordings below remain unchanged.
+
+Root and a separate reviewer directly viewed all four original images. The result
+is the reading focus; preview, files and follow-up have distinct visual priority.
+These stills contain no older plan or user note. Their position is covered only by
+the separate two-window large-text reading test. Still images do not establish
+motion, physical-device performance, full accessibility or genuine delivery.
+
+| File | Bytes | SHA-256 |
+| --- | ---: | --- |
+| [source-delivery-result-en-light-20261007.png](source-delivery-result-en-light-20261007.png) | 36457 | `92c2fa281289f0dec4419b3616d06fa6bd526bced3690ee2e5790bffa6f74806` |
+| [source-delivery-result-en-dark-20261007.png](source-delivery-result-en-dark-20261007.png) | 36768 | `560f60ad7bf90da8daba51d0feb7bf68d5f54cadf652d9811719f3bc0756c8e5` |
+| [source-delivery-result-zh-light-20261007.png](source-delivery-result-zh-light-20261007.png) | 44839 | `77d579945ab2b82395848fcfa057f87a806564d8749765ea4fffa9cf1d4293f7` |
+| [source-delivery-result-zh-dark-20261007.png](source-delivery-result-zh-dark-20261007.png) | 46069 | `bfde5c626a1adf51808fbb44b318aaa5778437738063715f0d92eb848f85a14c` |
+
+[Exact local reading, capture and failed-attempt scope](../../docs/releases/ui-task-result-focus-2026-10-07.md).
+The hosted website's media are a separately published set; this README edit does
+not update GPTSites or replace the signed candidate.
+
 ## Review before sending · continuous README excerpt · October 6, 2026
 
 The main English and Chinese README GIFs start on the complete note view after

@@ -1,0 +1,518 @@
+{
+  "schema": "droprun.local-ui-note-reading.v1",
+  "date": "2026-10-07",
+  "verifiedWithinScope": true,
+  "developmentParent": "c05ac920a9021a2a03df9c3cc4706a501c3f2d02",
+  "signedCandidateIncludesThisChange": false,
+  "version": {
+    "name": "0.5.14-dev",
+    "code": 27
+  },
+  "changes": [
+    "Apply minLines2 after shared input styling; retain max6 and the 15000-character limit.",
+    "Retain the input padding; reclaim 4dp from its lower gap and 12dp from confirmed execution context. Unconfirmed warning padding and margin remain unchanged."
+  ],
+  "sourceFreeze": {
+    "sha256": "99ff3b33a4858186e70e689e778d863fd30a052816dae00a4a0f935550e0deb3",
+    "sources": 134,
+    "configs": 4
+  },
+  "independentReview": {
+    "sha256": "245213b40c877299cc796717d8dbff4bdb09566a98f164fc1c1c098234f7665c",
+    "rawFilesRehashed": 104,
+    "directChildrenReturned0": 52
+  },
+  "phases": {
+    "build": {
+      "verification": {
+        "bytes": 3760,
+        "sha256": "851c4c11abcb4fc14cce8013318d3cbb3ce5c45bf44df7cb5cdb738da995d321"
+      },
+      "commandsReturned0": 1,
+      "rawFilesRehashed": 2
+    },
+    "install": {
+      "verification": {
+        "bytes": 19902,
+        "sha256": "e03f77a361d3b6e53a194e86038943f11c1b08d9e716853f71b63153c00792cd"
+      },
+      "commandsReturned0": 26,
+      "rawFilesRehashed": 52
+    },
+    "native": {
+      "verification": {
+        "bytes": 136197,
+        "sha256": "07b7a9cf0dafd95e615abceb664bc1a4cdb2aa1b949b1a29a62c82fd76585e26"
+      },
+      "commandsReturned0": 25,
+      "rawFilesRehashed": 50
+    }
+  },
+  "debugApks": [
+    {
+      "role": "app",
+      "bytes": 2185835,
+      "sha256": "5f25386d26aed23de5ffbb1b07c2c537038ed1aa77972bda5b1d3d8c0106b643"
+    },
+    {
+      "role": "test",
+      "bytes": 2051160,
+      "sha256": "63cedbbf0aef33f865a3c761e317885361203d9c3eeb81d47486e7b3716d1144"
+    }
+  ],
+  "installedBytesMatched": true,
+  "jvm": {
+    "tests": 27,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "lint": {
+    "errors": 0,
+    "warnings": 28
+  },
+  "compilerStderrRetained": {
+    "bytes": 133,
+    "sha256": "149b4942073466f2d906e9406521e823d43ac50547bb086b0dda99ca5c1ff0a6"
+  },
+  "native": {
+    "class": "app.droprun.ShareEditorTest",
+    "method": "twoLineNoteKeepsIntentAndActionsReachable",
+    "junitTests": 1,
+    "junitSeconds": 8.834,
+    "raw": {
+      "bytes": 34504,
+      "sha256": "67dc3c5e21d7adf8c05dd78f8d41e72f163356e3841c930f2ccfd247a6894bbe"
+    },
+    "counts": {
+      "events": 46,
+      "windows": 4,
+      "entered": 4,
+      "full_completed": 4,
+      "DESTROYED": 4,
+      "geometry_receipts": 32,
+      "guard_receipts": 36,
+      "draft_states": 12,
+      "native_reveals": 24,
+      "globals_restored": 1
+    },
+    "geometry": [
+      {
+        "scene": "en|light|font1",
+        "event": "entered",
+        "noteHeight": 63,
+        "lineHeight": 18,
+        "layoutLines": 1,
+        "scrollY": 0,
+        "sendBounds": "[20,520][300,572]",
+        "draftBounds": "[20,576][300,596]",
+        "viewport": "[20,116][300,596]"
+      },
+      {
+        "scene": "en|light|font1",
+        "event": "empty|send-visible",
+        "noteHeight": 63,
+        "lineHeight": 18,
+        "layoutLines": 1,
+        "scrollY": 0,
+        "sendBounds": "[20,520][300,572]",
+        "draftBounds": "[20,576][300,596]",
+        "viewport": "[20,116][300,596]"
+      },
+      {
+        "scene": "en|light|font1",
+        "event": "empty|draft-visible",
+        "noteHeight": 63,
+        "lineHeight": 18,
+        "layoutLines": 1,
+        "scrollY": 0,
+        "sendBounds": "[20,520][300,572]",
+        "draftBounds": "[20,576][300,596]",
+        "viewport": "[20,116][300,596]"
+      },
+      {
+        "scene": "en|light|font1",
+        "event": "short|send-visible",
+        "noteHeight": 63,
+        "lineHeight": 18,
+        "layoutLines": 1,
+        "scrollY": 0,
+        "sendBounds": "[20,520][300,572]",
+        "draftBounds": "[20,576][300,596]",
+        "viewport": "[20,116][300,596]"
+      },
+      {
+        "scene": "en|light|font1",
+        "event": "short|draft-visible",
+        "noteHeight": 63,
+        "lineHeight": 18,
+        "layoutLines": 1,
+        "scrollY": 0,
+        "sendBounds": "[20,520][300,572]",
+        "draftBounds": "[20,576][300,596]",
+        "viewport": "[20,116][300,596]"
+      },
+      {
+        "scene": "en|light|font1",
+        "event": "long|send-visible",
+        "noteHeight": 134,
+        "lineHeight": 18,
+        "layoutLines": 9,
+        "scrollY": 33,
+        "sendBounds": "[20,544][300,596]",
+        "draftBounds": "[20,600][300,620]",
+        "viewport": "[20,102][300,596]"
+      },
+      {
+        "scene": "en|light|font1",
+        "event": "long|draft-visible",
+        "noteHeight": 134,
+        "lineHeight": 18,
+        "layoutLines": 9,
+        "scrollY": 57,
+        "sendBounds": "[20,520][300,572]",
+        "draftBounds": "[20,576][300,596]",
+        "viewport": "[20,102][300,596]"
+      },
+      {
+        "scene": "en|light|font1",
+        "event": "full-completed",
+        "noteHeight": 134,
+        "lineHeight": 18,
+        "layoutLines": 9,
+        "scrollY": 57,
+        "sendBounds": "[20,520][300,572]",
+        "draftBounds": "[20,576][300,596]",
+        "viewport": "[20,102][300,596]"
+      },
+      {
+        "scene": "zh|dark|font1",
+        "event": "entered",
+        "noteHeight": 65,
+        "lineHeight": 18,
+        "layoutLines": 1,
+        "scrollY": 0,
+        "sendBounds": "[20,517][300,569]",
+        "draftBounds": "[20,573][300,596]",
+        "viewport": "[20,107][300,596]"
+      },
+      {
+        "scene": "zh|dark|font1",
+        "event": "empty|send-visible",
+        "noteHeight": 65,
+        "lineHeight": 18,
+        "layoutLines": 1,
+        "scrollY": 0,
+        "sendBounds": "[20,517][300,569]",
+        "draftBounds": "[20,573][300,596]",
+        "viewport": "[20,107][300,596]"
+      },
+      {
+        "scene": "zh|dark|font1",
+        "event": "empty|draft-visible",
+        "noteHeight": 65,
+        "lineHeight": 18,
+        "layoutLines": 1,
+        "scrollY": 0,
+        "sendBounds": "[20,517][300,569]",
+        "draftBounds": "[20,573][300,596]",
+        "viewport": "[20,107][300,596]"
+      },
+      {
+        "scene": "zh|dark|font1",
+        "event": "short|send-visible",
+        "noteHeight": 65,
+        "lineHeight": 18,
+        "layoutLines": 1,
+        "scrollY": 0,
+        "sendBounds": "[20,517][300,569]",
+        "draftBounds": "[20,573][300,596]",
+        "viewport": "[20,107][300,596]"
+      },
+      {
+        "scene": "zh|dark|font1",
+        "event": "short|draft-visible",
+        "noteHeight": 65,
+        "lineHeight": 18,
+        "layoutLines": 1,
+        "scrollY": 0,
+        "sendBounds": "[20,517][300,569]",
+        "draftBounds": "[20,573][300,596]",
+        "viewport": "[20,107][300,596]"
+      },
+      {
+        "scene": "zh|dark|font1",
+        "event": "long|send-visible",
+        "noteHeight": 150,
+        "lineHeight": 18,
+        "layoutLines": 9,
+        "scrollY": 56,
+        "sendBounds": "[20,544][300,596]",
+        "draftBounds": "[20,600][300,623]",
+        "viewport": "[20,105][300,596]"
+      },
+      {
+        "scene": "zh|dark|font1",
+        "event": "long|draft-visible",
+        "noteHeight": 150,
+        "lineHeight": 18,
+        "layoutLines": 9,
+        "scrollY": 83,
+        "sendBounds": "[20,517][300,569]",
+        "draftBounds": "[20,573][300,596]",
+        "viewport": "[20,105][300,596]"
+      },
+      {
+        "scene": "zh|dark|font1",
+        "event": "full-completed",
+        "noteHeight": 150,
+        "lineHeight": 18,
+        "layoutLines": 9,
+        "scrollY": 83,
+        "sendBounds": "[20,517][300,569]",
+        "draftBounds": "[20,573][300,596]",
+        "viewport": "[20,105][300,596]"
+      },
+      {
+        "scene": "en|light|font2",
+        "event": "entered",
+        "noteHeight": 93,
+        "lineHeight": 32,
+        "layoutLines": 1,
+        "scrollY": 0,
+        "sendBounds": "[20,866][300,931]",
+        "draftBounds": "[20,935][300,1001]",
+        "viewport": "[20,102][300,596]"
+      },
+      {
+        "scene": "en|light|font2",
+        "event": "empty|send-visible",
+        "noteHeight": 93,
+        "lineHeight": 32,
+        "layoutLines": 1,
+        "scrollY": 335,
+        "sendBounds": "[20,531][300,596]",
+        "draftBounds": "[20,600][300,666]",
+        "viewport": "[20,102][300,596]"
+      },
+      {
+        "scene": "en|light|font2",
+        "event": "empty|draft-visible",
+        "noteHeight": 93,
+        "lineHeight": 32,
+        "layoutLines": 1,
+        "scrollY": 405,
+        "sendBounds": "[20,461][300,526]",
+        "draftBounds": "[20,530][300,596]",
+        "viewport": "[20,102][300,596]"
+      },
+      {
+        "scene": "en|light|font2",
+        "event": "short|send-visible",
+        "noteHeight": 93,
+        "lineHeight": 32,
+        "layoutLines": 1,
+        "scrollY": 405,
+        "sendBounds": "[20,461][300,526]",
+        "draftBounds": "[20,530][300,596]",
+        "viewport": "[20,102][300,596]"
+      },
+      {
+        "scene": "en|light|font2",
+        "event": "short|draft-visible",
+        "noteHeight": 93,
+        "lineHeight": 32,
+        "layoutLines": 1,
+        "scrollY": 405,
+        "sendBounds": "[20,461][300,526]",
+        "draftBounds": "[20,530][300,596]",
+        "viewport": "[20,102][300,596]"
+      },
+      {
+        "scene": "en|light|font2",
+        "event": "long|send-visible",
+        "noteHeight": 220,
+        "lineHeight": 32,
+        "layoutLines": 10,
+        "scrollY": 462,
+        "sendBounds": "[20,531][300,596]",
+        "draftBounds": "[20,600][300,666]",
+        "viewport": "[20,102][300,596]"
+      },
+      {
+        "scene": "en|light|font2",
+        "event": "long|draft-visible",
+        "noteHeight": 220,
+        "lineHeight": 32,
+        "layoutLines": 10,
+        "scrollY": 532,
+        "sendBounds": "[20,461][300,526]",
+        "draftBounds": "[20,530][300,596]",
+        "viewport": "[20,102][300,596]"
+      },
+      {
+        "scene": "en|light|font2",
+        "event": "full-completed",
+        "noteHeight": 220,
+        "lineHeight": 32,
+        "layoutLines": 10,
+        "scrollY": 532,
+        "sendBounds": "[20,461][300,526]",
+        "draftBounds": "[20,530][300,596]",
+        "viewport": "[20,102][300,596]"
+      },
+      {
+        "scene": "zh|dark|font2",
+        "event": "entered",
+        "noteHeight": 102,
+        "lineHeight": 32,
+        "layoutLines": 1,
+        "scrollY": 0,
+        "sendBounds": "[20,880][300,948]",
+        "draftBounds": "[20,952][300,993]",
+        "viewport": "[20,105][300,596]"
+      },
+      {
+        "scene": "zh|dark|font2",
+        "event": "empty|send-visible",
+        "noteHeight": 102,
+        "lineHeight": 32,
+        "layoutLines": 1,
+        "scrollY": 352,
+        "sendBounds": "[20,528][300,596]",
+        "draftBounds": "[20,600][300,641]",
+        "viewport": "[20,105][300,596]"
+      },
+      {
+        "scene": "zh|dark|font2",
+        "event": "empty|draft-visible",
+        "noteHeight": 102,
+        "lineHeight": 32,
+        "layoutLines": 1,
+        "scrollY": 397,
+        "sendBounds": "[20,483][300,551]",
+        "draftBounds": "[20,555][300,596]",
+        "viewport": "[20,105][300,596]"
+      },
+      {
+        "scene": "zh|dark|font2",
+        "event": "short|send-visible",
+        "noteHeight": 102,
+        "lineHeight": 32,
+        "layoutLines": 1,
+        "scrollY": 397,
+        "sendBounds": "[20,483][300,551]",
+        "draftBounds": "[20,555][300,596]",
+        "viewport": "[20,105][300,596]"
+      },
+      {
+        "scene": "zh|dark|font2",
+        "event": "short|draft-visible",
+        "noteHeight": 102,
+        "lineHeight": 32,
+        "layoutLines": 1,
+        "scrollY": 397,
+        "sendBounds": "[20,483][300,551]",
+        "draftBounds": "[20,555][300,596]",
+        "viewport": "[20,105][300,596]"
+      },
+      {
+        "scene": "zh|dark|font2",
+        "event": "long|send-visible",
+        "noteHeight": 258,
+        "lineHeight": 32,
+        "layoutLines": 9,
+        "scrollY": 508,
+        "sendBounds": "[20,528][300,596]",
+        "draftBounds": "[20,600][300,641]",
+        "viewport": "[20,105][300,596]"
+      },
+      {
+        "scene": "zh|dark|font2",
+        "event": "long|draft-visible",
+        "noteHeight": 258,
+        "lineHeight": 32,
+        "layoutLines": 9,
+        "scrollY": 553,
+        "sendBounds": "[20,483][300,551]",
+        "draftBounds": "[20,555][300,596]",
+        "viewport": "[20,105][300,596]"
+      },
+      {
+        "scene": "zh|dark|font2",
+        "event": "full-completed",
+        "noteHeight": 258,
+        "lineHeight": 32,
+        "layoutLines": 9,
+        "scrollY": 553,
+        "sendBounds": "[20,483][300,551]",
+        "draftBounds": "[20,555][300,596]",
+        "viewport": "[20,105][300,596]"
+      }
+    ]
+  },
+  "priorFailures": [
+    {
+      "nonce": "a1138ac7-6121-43c2-bec6-71b1b63d3eac",
+      "acceptancePassed": false,
+      "nativeOwnerRootObservedExit1": true,
+      "instrumentationChildExit0": true,
+      "phaseRecordHashes": {
+        "build": "1e56cfde6e22b79036308e92528e5c933d022eb1ddc2b00d026a208be5e26ad5",
+        "install": "d0d99fdd62745d477f5b069a28ea5d0e9a17d749413138a5a2d4ba2eef5d48ff",
+        "native": "c352df899c16b1a0ba6cb524f088001043883afe24b6d24e241a4b98f5135d22"
+      },
+      "raw": {
+        "bytes": 7436,
+        "sha256": "9c9ea128330d0323d3e832bfc34a18f86188b69026b83a95978450f079e7fdc2"
+      },
+      "directChildrenReturned0": 42,
+      "rawFilesRehashed": 84,
+      "entered": 1,
+      "fullCompleted": 0,
+      "DESTROYED": 1,
+      "events": 5,
+      "nativeAfterDeviceReadsNotStarted": true,
+      "clippedDraftBounds": "[20,578][300,598]",
+      "viewport": "[20,102][300,596]",
+      "originalFailureUnchanged": true
+    },
+    {
+      "nonce": "2d0f9a22-c0c2-4fc7-9503-a6cb5003975f",
+      "acceptancePassed": false,
+      "nativeOwnerRootObservedExit1": true,
+      "instrumentationChildExit0": true,
+      "phaseRecordHashes": {
+        "build": "7ce515d5d2eca27bf5528292dbd9ff73e0e410542e4771a9f6fb9fefcaf44fee",
+        "install": "a7425488acafa43ce686c02942b70a4a695f3dcacb5066e48a03afb53b31a181",
+        "native": "ba3b80ee35625eefa74d8224e395ba6d06e87b362e61acb7d4c0c60f6abb33e3"
+      },
+      "raw": {
+        "bytes": 15644,
+        "sha256": "45e0c1bb1802de2a57843f1684be5e7003d93a4e34e686a936db7ea9f016196e"
+      },
+      "directChildrenReturned0": 42,
+      "rawFilesRehashed": 84,
+      "entered": 2,
+      "fullCompleted": 1,
+      "DESTROYED": 2,
+      "events": 16,
+      "nativeAfterDeviceReadsNotStarted": true,
+      "clippedDraftBounds": "[20,583][300,606]",
+      "viewport": "[20,105][300,596]",
+      "originalFailureUnchanged": true
+    }
+  ],
+  "deviceObservation": "Ten recorded identity/settings values match before/after and prior install; not all device state unchanged. Global font2.0; fixture fonts1/2.",
+  "assertionScope": [
+    "Note label/AX link, initial normal font1 empty/short simultaneous visibility, IME closed, 15000 filter and complete layout tail are native assertions; not all have dedicated telemetry.",
+    "Static original-vs-restored font/language/theme/palette equality is asserted by source/JUnit; logs emit restored values only.",
+    "Long-note text and draft retain complete sample. Max6 is editor display bound, not all long lines visible at once."
+  ],
+  "boundaries": [
+    "Four specific ENlight/ZHdark font1/2 memory windows, not full theme matrix.",
+    "Send and draft are separately revealed for long/font2; no user Send/Close/Back/material/model activation, IME interaction, capture, genuine task, physical performance or signed-package acceptance.",
+    "Old native owner failures remain failures; first one closed window and second two closed windows, with no native after-device reads.",
+    "This independent reader imports no owner/parser and runs no external process/network/device/Git command."
+  ]
+}

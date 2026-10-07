@@ -1,0 +1,42 @@
+{
+  "schema": "droprun.public-site-update.v1",
+  "date": "2026-10-07",
+  "verified": true,
+  "url": "https://droprun.dengmaizi0802.chatgpt.site",
+  "audience": "public",
+  "productSource": "c05ac920a9021a2a03df9c3cc4706a501c3f2d02",
+  "hostingSource": "22f3e429587e893fa54370e8e9764ba3ea7d97aa",
+  "versionNumber": 24,
+  "versionId": "appgprj_6ab726bb8cd48191acd3234da262627d~appgver_8dab280101048191b2e5939bc47cf0cc",
+  "deploymentId": "appgdep_6ac594b7339c8191881dae8f890138ca",
+  "deploymentStatus": "succeeded",
+  "deploymentUpdatedAt": "2026-10-07T00:39:27.584587+00:00",
+  "downloads": "https://github.com/MrMaii/droprun/releases/tag/v0.5.14-rc.1",
+  "publicFiles": 107,
+  "archiveFiles": 108,
+  "newFiles": 0,
+  "changedFiles": [
+    "index.html",
+    "zh/index.html"
+  ],
+  "localArchive": {
+    "archiveBytes": 14038565,
+    "archiveSha256": "ddc3cdd87bf5df8aade9ef9c20e7057effb7510e49669f5862c26eac4404a535"
+  },
+  "nativeStoredArchive": {
+    "archive_format": "tar",
+    "content_hash": "sha256:19e86851b2b22a700ed8222681977cdfe28aba06391f42c62daa578a136151d3",
+    "size_bytes": 15196160,
+    "file_count": 108
+  },
+  "archiveScope": "Native service stores a normalized tar; its digest and size are not equal to the local gzip container. Local member bytes and file inventory were verified separately.",
+  "retainedFailure": "Bundled source workflow returned 1 after successfully pushing and checking hosting source. Its package step selected Windows WSL bash without /bin/bash. A separate archive-only continuation packed the exact reviewed static inventory; no source push replay, cleanup or unknown-process retry.",
+  "acceptedMediaPreserved": true,
+  "privateFilmAndUnacceptedDeliveryImagesExcluded": true,
+  "extraBrowserQA": false,
+  "independentArchiveAndMetadataReview": {
+    "verifiedWithinRecordedScope": true,
+    "sha256": "c80737cfcf4c00de4076ae6ef16f71a14bb9106ce29208cd1e778c386a4c13be"
+  },
+  "claimLimit": "Native succeeded deployment and curated immutable source/archive. No new hosted playback, signed-native or genuine handoff acceptance."
+}

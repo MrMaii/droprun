@@ -39,3 +39,9 @@ No genuine submission, polling schedule race, selection gesture, minute wait,
 rotation/process loss, 200% reading, signed-package acceptance, physical Android,
 frame or press-latency claim. Prior failures remain in their dated records.
 [Machine-readable scope and actual receipts](ui-task-metadata-reading-2026-10-07.json).
+
+[Exact-source CI](https://github.com/MrMaii/droprun/actions/runs/37552669308) passes attempt 1 for `c05ac920a9021a2a03df9c3cc4706a501c3f2d02`:
+three jobs, 35 successful steps, 10 required steps and three checks; actual core
+210/210 and browser 18/18. Complete 326680-byte log SHA-256
+`526b08cd435c8d55f4d94e700935dbb0d68666165bd44b0db1da7233b893c826`; fetch returned zero with empty stderr.
+This source CI is separate from native memory validation and the signed candidate.

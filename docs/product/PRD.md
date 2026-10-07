@@ -94,6 +94,11 @@ in [the current candidate record](../releases/0.5.14-rc.1.md).
   Material and model controls use light text rows with visible trailing arrows;
   the optional note remains the distinct input surface. Their complete click
   targets, press feedback and expanded-state descriptions remain available.
+  The note has a two-line minimum after input styling, preserves its padding
+  and may display up to six lines. Confirmed execution context uses quieter
+  spacing; unconfirmed warnings keep their emphasis. Normal empty/short notes
+  retain Send and draft feedback in view; larger or long notes remain scrollable.
+  [Bounded local check](../releases/ui-share-note-surface-2026-10-07.md).
   Multiple files or files plus text show their actual file count in the compact
   summary, with a text indicator for mixed payloads. A single file alone keeps
   its filename; text-only and link-only payloads keep their existing summary.
@@ -269,6 +274,12 @@ in [the current candidate record](../releases/0.5.14-rc.1.md).
   inspection actions share one stable content surface. Follow-up, approvals and
   the full report remain separate. Missing reports keep their actual progress
   state; the layout does not fabricate a result or preview.
+  With a report, the result summary takes visual priority: 22sp body text,
+  a quiet 14sp accessible result heading and a 20sp task identity. Missing
+  reports retain the 24sp identity. Settled earlier plans follow the full report,
+  before the user's note, with their disclosure state retained; plans awaiting
+  approval and missing-report states retain their earlier position.
+  [Bounded local reading and native stills](../releases/ui-task-result-focus-2026-10-07.md).
   Data settings show the last known policy for the selected Relay, distinguish
   unknown/offline values, and explain local pending copies and server retention.
   Actual retention periods and unknown-policy recovery use primary readable text

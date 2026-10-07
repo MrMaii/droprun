@@ -1,0 +1,280 @@
+{
+  "schema": "droprun.local-ui-result-focus.v1",
+  "date": "2026-10-07",
+  "verifiedWithinScope": true,
+  "developmentParent": "c05ac920a9021a2a03df9c3cc4706a501c3f2d02",
+  "version": {
+    "name": "0.5.14-dev",
+    "code": 27
+  },
+  "signedCandidateIncludesThisChange": false,
+  "changes": [
+    "With a report, task identity20sp, quiet accessible result heading14sp and result summary22sp at full page reading width.",
+    "A non-awaiting older plan follows Full report & evidence, before Your note, retaining disclosure state. Awaiting-plan and no-report positions remain.",
+    "Correct only the old primary-action elevation assertion from2dp to the existing flat0; production button styling is unchanged."
+  ],
+  "sourceFreeze": {
+    "sha256": "5af8a6ab049bb5ef1c212e9882ec881f1e4c869c89e2278b532c8901feef27ae",
+    "sources": 134,
+    "configs": 4
+  },
+  "independentReview": {
+    "verified": true,
+    "sha256": "6e216fa57ad0c27c1d7c482cb6e645825eded3aa23f46b82d81f8d203e276633",
+    "directChildrenReturned0": 86,
+    "rawFilesRehashed": 172
+  },
+  "phases": {
+    "build": {
+      "verification": {
+        "bytes": 3937,
+        "sha256": "ef6e70265b1136ec6fb64df2ff2ebc67ce1291af6f46d72ef04a08dfad247818"
+      },
+      "directChildrenReturned0": 1,
+      "rawFilesRehashed": 2
+    },
+    "install": {
+      "verification": {
+        "bytes": 20079,
+        "sha256": "22946264e8a7bebe355084b8df9952b7ca3254b384e711b96c8a4067411fe17a"
+      },
+      "directChildrenReturned0": 26,
+      "rawFilesRehashed": 52
+    },
+    "reading": {
+      "verification": {
+        "bytes": 21264,
+        "sha256": "6fbe691137c6f11e668698bcee1ae69fa0a253349f30ead06f87c480227f13ff"
+      },
+      "directChildrenReturned0": 25,
+      "rawFilesRehashed": 50
+    },
+    "capture": {
+      "verification": {
+        "bytes": 36313,
+        "sha256": "5a44531cae235f9cded93ab73731bc97a14c3cae476178f061044509bfdf18cc"
+      },
+      "directChildrenReturned0": 34,
+      "rawFilesRehashed": 68
+    }
+  },
+  "debugApks": [
+    {
+      "role": "app",
+      "bytes": 2185941,
+      "sha256": "7adf1127dd8d4a305fee0af8a44f739346e2f576e6b47581670836dd8bb952c7"
+    },
+    {
+      "role": "test",
+      "bytes": 2052981,
+      "sha256": "40d7f7ab41663260f4de8e5bb85d27292708b24c2f8f5bb247ea695d9d51e8c1"
+    }
+  ],
+  "buildAndInstalledBytesMatched": true,
+  "jvm": {
+    "tests": 27,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "lint": {
+    "errors": 0,
+    "warnings": 28
+  },
+  "compilerStderrRetained": {
+    "bytes": 133,
+    "sha256": "149b4942073466f2d906e9406521e823d43ac50547bb086b0dda99ca5c1ff0a6"
+  },
+  "reading": {
+    "class": "app.droprun.TaskReadingHierarchyTest",
+    "method": "readingAndPlanEligibilityRemainReachableAtDoubleFont",
+    "tests": 1,
+    "junit_seconds": 11.31,
+    "nonce": "a38cb048-b491-4e27-a5ec-ef6062d0598c",
+    "nonce_scope": "Canonical instrumentation argument and source gate; reading stream tags do not emit nonce.",
+    "all_known_destroyed": true,
+    "counts": {
+      "streams": 22,
+      "lifetime": 18,
+      "ORDER": 2,
+      "COUNTERS": 2,
+      "entered": 2,
+      "full_completed": 2,
+      "DESTROYED": 2
+    },
+    "order_actual": [
+      {
+        "scene": "en|light|font2",
+        "full_report_index": 6,
+        "earlier_plan_index": 7,
+        "your_note_index": 8,
+        "full_report_bottom": 632,
+        "earlier_plan_top": 647,
+        "earlier_plan_bottom": 685,
+        "your_note_top": 707,
+        "forbidden_actions": 0
+      },
+      {
+        "scene": "zh|dark|font2",
+        "full_report_index": 6,
+        "earlier_plan_index": 7,
+        "your_note_index": 8,
+        "full_report_bottom": 632,
+        "earlier_plan_top": 643,
+        "earlier_plan_bottom": 688,
+        "your_note_top": 703,
+        "forbidden_actions": 0
+      }
+    ],
+    "zero_closed_counters": 2,
+    "raw": {
+      "bytes": 3798,
+      "sha256": "f3313ecf9edf8557d6af3b2ddb18f4630c0973cdcd4fafe7e15b6c779a41db3a"
+    }
+  },
+  "capture": {
+    "class": "app.droprun.DeliveryStableCaptureTest",
+    "method": "captureFourSettledMemoryDeliveries",
+    "tests": 1,
+    "junitSeconds": 18.994,
+    "raw": {
+      "bytes": 769,
+      "sha256": "9dd92fe10b1a512b8e70c1ff0bcfb847807df121ce36f5a1a2109a3c51098a43"
+    },
+    "knownDESTROYED": 4,
+    "PNGCRCValid": true,
+    "metadataWindows": [
+      {
+        "language": "en",
+        "theme": "light",
+        "fontScale": 1,
+        "noticeBounds": "[20,90][300,111]",
+        "captureAtElapsedMs": 110487496,
+        "closedAtElapsedMs": 110489580,
+        "PNGDimensions": [
+          320,
+          640
+        ]
+      },
+      {
+        "language": "en",
+        "theme": "dark",
+        "fontScale": 1,
+        "noticeBounds": "[20,90][300,111]",
+        "captureAtElapsedMs": 110492470,
+        "closedAtElapsedMs": 110493907,
+        "PNGDimensions": [
+          320,
+          640
+        ]
+      },
+      {
+        "language": "zh",
+        "theme": "light",
+        "fontScale": 1,
+        "noticeBounds": "[20,90][300,115]",
+        "captureAtElapsedMs": 110497056,
+        "closedAtElapsedMs": 110498308,
+        "PNGDimensions": [
+          320,
+          640
+        ]
+      },
+      {
+        "language": "zh",
+        "theme": "dark",
+        "fontScale": 1,
+        "noticeBounds": "[20,90][300,115]",
+        "captureAtElapsedMs": 110501273,
+        "closedAtElapsedMs": 110502651,
+        "PNGDimensions": [
+          320,
+          640
+        ]
+      }
+    ],
+    "ownerPixelAcceptanceRemainsFalse": true
+  },
+  "directVisualReview": {
+    "acceptedForLocalLayoutAndREADME": true,
+    "sha256": "2b74544f389261f662c627ac3b710bff816f31524dd1aef06646a1cff91350b2",
+    "files": [
+      {
+        "file": "assets/brand/source-delivery-result-en-light-20261007.png",
+        "bytes": 36457,
+        "sha256": "92c2fa281289f0dec4419b3616d06fa6bd526bced3690ee2e5790bffa6f74806",
+        "dimensions": [
+          320,
+          640
+        ]
+      },
+      {
+        "file": "assets/brand/source-delivery-result-en-dark-20261007.png",
+        "bytes": 36768,
+        "sha256": "560f60ad7bf90da8daba51d0feb7bf68d5f54cadf652d9811719f3bc0756c8e5",
+        "dimensions": [
+          320,
+          640
+        ]
+      },
+      {
+        "file": "assets/brand/source-delivery-result-zh-light-20261007.png",
+        "bytes": 44839,
+        "sha256": "77d579945ab2b82395848fcfa057f87a806564d8749765ea4fffa9cf1d4293f7",
+        "dimensions": [
+          320,
+          640
+        ]
+      },
+      {
+        "file": "assets/brand/source-delivery-result-zh-dark-20261007.png",
+        "bytes": 46069,
+        "sha256": "bfde5c626a1adf51808fbb44b318aaa5778437738063715f0d92eb848f85a14c",
+        "dimensions": [
+          320,
+          640
+        ]
+      }
+    ],
+    "observations": [
+      "The result is the dominant reading text; task identity and the result label are subordinate.",
+      "English three-line and Chinese two-line sample summaries are fully visible.",
+      "Primary lime preview, secondary files and quiet follow-up retain distinct visual priority.",
+      "No visible text or action clipping in these initial views; light/dark system bars remain legible.",
+      "The stills omit older plans and notes; only the separate reading receipts support their order."
+    ]
+  },
+  "independentVisualReview": {
+    "sha256": "c7cb4fa32d3390bb9313e2c1a83df6a72d2d42ad636587405ec4f7af85f485da",
+    "completeOriginalImagesViewed": 4,
+    "acceptedOnlyWithinFourNormalFontStills": true
+  },
+  "priorFailedAttemptRetained": {
+    "nonce": "45dcae04-19af-40c2-87bf-d25a083b9422",
+    "nativeAcceptanceRemainsFalse": true,
+    "failure": "Old test elevation expected2/actual0 before entered; fresh source fixes only helper expectation to flat0. Production Task2 unchanged from first attempt.",
+    "originalOwnerFreezeThreePhase84RawAndAPKBindingsUnchanged": true,
+    "directChildrenReturned0": 42,
+    "rawFilesRehashed": 84,
+    "junitTests": 1,
+    "junitFailures": 1,
+    "junitSeconds": 2.301,
+    "knownDESTROYED": 1,
+    "entered": 0,
+    "fullCompleted": 0,
+    "ZHAndCaptureNotStarted": true,
+    "readingAfterDeviceReadsNotStarted": true,
+    "originalFailedIndependentReviewHashUnchanged": true
+  },
+  "sourceAndJUnitOnly": [
+    "Font2 line reading, headings/action eligibility, original sample/expanded restoration and focus checks are assertions; only ORDER indices/bounds and closed counters have dedicated reading telemetry.",
+    "Reading canonical nonce belongs to argv/source gate; stream tags omit nonce.",
+    "Normal capture sample has no earlier plan or user note. These four stills do not demonstrate the new report/earlier-plan/note order."
+  ],
+  "deviceObservation": "Ten recorded values equal before/after install, reading and capture; globalfont2.0 retained. Not all device/static state unchanged.",
+  "boundaries": [
+    "Two specific ENlight/ZHdark font2 reading windows plus four EN/ZH light/dark font1 capture windows. Separate exact methods; no expanded matrix.",
+    "Known scenario DESTROYED is not executor termination. No Work, preview, user click, protected bypass, actual IME, genuine task, physical performance, full accessibility or signed-package acceptance.",
+    "Four normal-font memory-only stills. No genuine work was sent; no signed-package, motion, physical or full-accessibility acceptance."
+  ]
+}

@@ -120,7 +120,7 @@ public class TaskPreviewFeedbackTest {
         assertEquals(open,find(a.body,L.t("Open preview","打开预览"))!=null);assertEquals(reopen,find(a.body,L.t("Reopen preview","重开预览"))!=null);
         TextView primary=open?find(a.body,L.t("Open preview","打开预览")):Store.finished(a.sample.optString("status"))?find(a.body,L.t("Screenshots & delivery files","截图与交付文件")):null;
         assertEquals("One primary delivery action, or none while no result is available",primary==null?0:1,primaryCount(a.body));
-        if(primary!=null){assertTrue(primary instanceof Button);assertEquals(Ui.ON_LIME,primary.getTextColors().getColorForState(new int[]{android.R.attr.state_enabled},0));assertEquals(Ui.dp(a,2),primary.getElevation(),0.01f);assertEquals(!a.busy,primary.isEnabled());}
+        if(primary!=null){assertTrue(primary instanceof Button);assertEquals(Ui.ON_LIME,primary.getTextColors().getColorForState(new int[]{android.R.attr.state_enabled},0));assertEquals(0f,primary.getElevation(),0.01f);assertEquals(!a.busy,primary.isEnabled());}
         TextView followup=find(a.body,L.t("Follow up","继续追问"));if(followup!=null){assertTrue(followup instanceof Button);assertEquals(Ui.TEXT,followup.getTextColors().getColorForState(new int[]{android.R.attr.state_enabled},0));assertEquals(0f,followup.getElevation(),0f);assertEquals(!a.busy,followup.isEnabled());}assertSafe(a);
     }
     static int primaryCount(View view){int count=view instanceof Button&&((Button)view).getTextColors().getColorForState(new int[]{android.R.attr.state_enabled},0)==Ui.ON_LIME?1:0;if(view instanceof ViewGroup)for(int n=0;n<((ViewGroup)view).getChildCount();n++)count+=primaryCount(((ViewGroup)view).getChildAt(n));return count;}

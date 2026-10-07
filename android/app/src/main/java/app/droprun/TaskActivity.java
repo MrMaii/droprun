@@ -89,7 +89,7 @@ public class TaskActivity extends StyledActivity {
         if(snapshot.equals(next))return;snapshot=next;body.removeAllViews();sharedAt=null;
         if(task==null){block(L.t("Handoff unavailable","任务暂不可用"),L.t("Refresh when connected. This handoff may have been deleted.","请联网刷新；任务也可能已被删除。"));return;}
         String status=text(task,"status"),plan=text(task,"plan_report"),report=text(task,"report");
-        body.addView(Ui.title(this,MainActivity.name(task),24));
+        body.addView(Ui.title(this,MainActivity.name(task),report.isEmpty()?24:20));
         body.addView(Ui.caption(this,projectLabel+" · "+TaskPresentation.mode(text(task,"execution_mode"))),Ui.margins(this,6,0));
         boolean largeText=getResources().getConfiguration().fontScale>=1.5f;
         LinearLayout statusLine=largeText?Ui.vertical(this):Ui.row(this);statusLine.addView(Ui.pill(this,TaskPresentation.status(status),TaskPresentation.statusColor(status)),new LinearLayout.LayoutParams(-2,-2));
@@ -98,7 +98,7 @@ public class TaskActivity extends StyledActivity {
         block(L.t("Needs attention","需要处理"),text(task,"error"));
         if(unavailableDelete)block(L.t("Relay record inaccessible","无法访问中转记录"),L.t("Cloud deletion could not be confirmed. You can clear the phone's cached copy. The record may return if your Relay makes it available again.","尚未确认云端已删除。可以清除手机上的缓存副本；若中转服务再次提供此记录，它可能重新出现。"));
         if(!plan.isEmpty()){
-            if(status.equals("awaiting_plan_approval"))block(L.t("Understanding & plan","理解与计划"),plan);else disclosure(L.t("Earlier plan","之前的计划"),plan);
+            if(status.equals("awaiting_plan_approval"))block(L.t("Understanding & plan","理解与计划"),plan);else if(report.isEmpty())disclosure(L.t("Earlier plan","之前的计划"),plan);
             if(status.equals("awaiting_plan_approval")&&!text(task,"plan_version").isEmpty()){
                 String version=text(task,"plan_version");
                 button(L.t("Approve this plan","批准这个计划"),true,()->confirm(L.t("Approve this plan?","批准这个计划？"),L.t("Codex will edit the original project and run commands according to this plan.","Codex 将按当前计划修改原项目并运行命令。"),()->store.decidePlan(taskId,version,true)));
@@ -116,10 +116,10 @@ public class TaskActivity extends StyledActivity {
         LinearLayout delivery=body;
         if(report.isEmpty())block(L.t("What's happening","当前进展"),status.equals("waiting_for_approval")&&liveApprovals==0?L.t("This command request expired or is no longer available. Reconnect to refresh the task's status.","这条命令请求已过期或失效。请联网查看任务的最新状态。"):TaskPresentation.noReport(status,!plan.isEmpty()));
         else {
-            delivery=Ui.vertical(this);TextView label=Ui.title(this,L.t("The result","交付结果"),18);label.setPadding(0,0,0,Ui.dp(this,8));delivery.addView(label);
+            delivery=Ui.vertical(this);TextView label=Ui.title(this,L.t("The result","交付结果"),14);label.setTextColor(Ui.MUTED);label.setPadding(0,0,0,Ui.dp(this,8));delivery.addView(label);
             CharSequence summary=ReportText.render(TaskPresentation.resultSummary(report));
             if(summary.length()>0&&summary.charAt(summary.length()-1)=='\n')summary=summary.subSequence(0,summary.length()-1);
-            delivery.addView(Ui.text(this,summary,18,Ui.TEXT));body.addView(delivery,Ui.margins(this,18,10));
+            delivery.addView(Ui.text(this,summary,22,Ui.TEXT));body.addView(delivery,Ui.margins(this,18,10));
         }
         if(Store.finished(status)){
             if(thumbnail!=null){
@@ -136,6 +136,7 @@ public class TaskActivity extends StyledActivity {
         if(Store.finished(status)&&!text(task,"thread_id").isEmpty())button(L.t("Follow up","继续追问"),false,this::followup);
         if(TaskPresentation.snapshot(text(task,"preview_kind"))&&!previewState.isEmpty()&&!previewState.equals("unavailable"))disclosure(L.t("Snapshot version","快照版本"),text(task,"preview_version"));
         if(!report.isEmpty())disclosure(L.t("Full report & evidence","完整报告与证据"),report);
+        if(!report.isEmpty()&&!plan.isEmpty()&&!status.equals("awaiting_plan_approval"))disclosure(L.t("Earlier plan","之前的计划"),plan);
         disclosure(L.t("Your note","你的留言"),text(task,"message"));disclosure(L.t("Original material","原始材料"),text(task,"content"));
         if(!Store.finished(status))button(L.t("Stop handoff","停止任务"),false,()->confirm(L.t("Stop this handoff?","停止任务？"),L.t("A stop request will be sent. Changes already made to your project will not be undone.","发送停止请求；已发生的项目改动不会回滚。"),()->store.cancelTask(taskId)));
         else button(L.t("Delete record & material","删除记录与材料"),false,()->confirm(L.t("Delete this handoff?","删除这条任务？"),L.t("The Relay task, material and report will be deleted permanently. Your project files stay on your computer.","云端任务、材料与报告将删除，无法撤销。电脑上的项目文件不变。"),()->{store.deleteTask(taskId);runOnUiThread(this::finish);}));

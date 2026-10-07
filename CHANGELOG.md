@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+- Make the delivered answer the visual focus; retain full reading width and
+  move earlier plans beside the full report. Plans awaiting approval keep
+  their existing position and actions.
+  [Local large-text reading and native stills](docs/releases/ui-task-result-focus-2026-10-07.md).
+- Give the optional Share note a genuine two-line input surface; retain complete
+  long notes and make Send/draft feedback reachable on narrow and large-text views.
+  [Local checks and retained layout failures](docs/releases/ui-share-note-surface-2026-10-07.md).
+- Simplify the bilingual README's first demo introduction; keep native sample
+  labels and move exact recording links into the existing source disclosure.
+  Replace its delivery stills with the four reviewed result-focused native views.
 - Preserve expanded report Views, text selection and keyboard focus when only a
   task receipt's `updated_at` changes. Update its shared-date caption separately;
   retain actual report updates and Store freshness ordering.
