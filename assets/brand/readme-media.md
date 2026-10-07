@@ -748,3 +748,20 @@ in the samples; its focus treatment is not the default unfocused appearance.
 [Source-bound reading, original fixture failure and scope](../../docs/releases/ui-home-typography-2026-10-07.md)
 own six closed local windows and the27JVM/Android lint results. These later
 development images do not show the signed0.5.15-rc.1 download or real handoffs.
+
+## Local work and data flow wording · October 7, 2026
+
+The bilingual README, privacy text and architecture descriptions distinguish local
+Codex work and login from submitted material, reports and uploaded artifacts that
+pass through the owner's Cloudflare. Reports or artifacts may include code. Only
+the description and footer text changed in each SVG; geometry, colors and links
+remain unchanged. Earlier hashes and native-image records above remain historical.
+This is a wording correction with local XML/text checks, not a new screenshot,
+browser rendering, comprehension study or privacy-control validation.
+
+| Architecture source | SHA-256 after wording correction |
+| --- | --- |
+| [readme-architecture.svg](readme-architecture.svg) | `6d3443711fc1a325095ca58629f523615a3e69cb66a4486acb3d05dadab239cb` |
+| [readme-architecture-dark.svg](readme-architecture-dark.svg) | `3f160e562b1d33303a2dd1ea372963e0b5fc78e0579d4f01ec0f73975c8e5030` |
+| [readme-architecture-zh.svg](readme-architecture-zh.svg) | `bed691cfb8f811ea443cc3677fc06c8a1e5a7684127c7712b9b2989e48d20c91` |
+| [readme-architecture-zh-dark.svg](readme-architecture-zh-dark.svg) | `10361fa6e8953e773686723bcf2716ee1b78b31070845032763889a44cf56025` |

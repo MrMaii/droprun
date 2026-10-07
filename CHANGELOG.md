@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Return from an idle file preview to delivery files before leaving the task;
+  preserve the existing active-save confirmation and save-picker exit behavior.
 - Give Home project names the full card reading width and a clearer20sp heading;
   align page edges, keep complete names and retain state/recency hierarchy.
 - Make Settings Refresh/Retry an outlined secondary action; align the confirmed

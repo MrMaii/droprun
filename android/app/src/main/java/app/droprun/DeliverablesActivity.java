@@ -199,6 +199,7 @@ public class DeliverablesActivity extends StyledActivity {
     }
     @Override public void onBackPressed(){
         if(saveBusy()){new AlertDialog.Builder(this).setTitle(L.t("Save in progress","正在保存文件")).setMessage(L.t("Leaving closes this preview while the save continues. Check the selected location for the result.","离开会关闭预览，保存仍将继续。请到所选位置检查结果。")).setNegativeButton(L.t("Stay here","留在此页"),null).setPositiveButton(L.t("Leave preview","离开预览"),(dialog,which)->finish()).show();}
+        else if(fileBack!=null&&!picking)loadList();
         else super.onBackPressed();
     }
     @Override public Object onRetainNonConfigurationInstance(){return saving;}

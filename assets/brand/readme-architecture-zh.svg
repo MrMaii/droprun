@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="400" height="840" viewBox="0 0 400 840" role="img" aria-labelledby="title description" lang="zh">
   <title id="title">DropRun：你的手机、云与电脑</title>
-  <desc id="description">从 Android 分享参考材料和可选留言，经你部署在自己 Cloudflare 账号中的 Relay，进入你 Windows 电脑上运行的 Connector 和本地 Codex。Codex 在已有项目中工作，项目代码与 Codex 登录留在电脑。进度、报告和交付文件经 Connector 与 Relay 返回手机。</desc>
+  <desc id="description">从 Android 分享参考材料和可选留言，经你部署在自己 Cloudflare 账号中的 Relay，进入你 Windows 电脑上运行的 Connector 和本地 Codex。Codex 在电脑上的已有项目中工作，登录信息保留本机。提交材料、报告与上传产物经过自己的 Cloudflare，报告或产物可能包含代码。进度、报告和交付文件经 Connector 与 Relay 返回手机。</desc>
   <rect width="400" height="840" rx="24" fill="#F7F7F2"/>
   <g font-family="system-ui, -apple-system, Segoe UI, PingFang SC, Microsoft YaHei, sans-serif">
     <circle cx="30" cy="24" r="5" fill="#B8EF73"/>
@@ -26,7 +26,7 @@
     <rect id="codex-card" x="32" y="618" width="336" height="78" rx="18" fill="#FFFFFF" stroke="#E1E5DD" stroke-width="1.5"/>
     <text data-box="codex-card" x="52" y="650" font-size="24" font-weight="600" fill="#191D1A">本地 Codex</text>
     <text data-box="codex-card" x="52" y="676" font-size="20" fill="#616A63">在你的已有项目中工作</text>
-    <text data-box="computer-group" x="40" y="723" font-size="20" fill="#616A63">项目代码与 Codex 登录留在这里</text>
+    <text data-box="computer-group" x="40" y="723" font-size="20" fill="#616A63">本地执行与 Codex 登录</text>
 
     <g fill="none" stroke="#616A63" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <path d="M190 172V198 M184 192L190 198L196 192 M210 198V172 M204 178L210 172L216 178"/>

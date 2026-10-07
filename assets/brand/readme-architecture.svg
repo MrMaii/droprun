@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="400" height="840" viewBox="0 0 400 840" role="img" aria-labelledby="title description" lang="en">
   <title id="title">DropRun: your phone, your cloud, your computer</title>
-  <desc id="description">Share a reference and optional note from Android to the Cloudflare Relay you deploy in your own account. Your Windows computer runs the Connector and local Codex in an existing project. Project code and Codex login stay on your computer. Progress, reports and delivery files return through Connector and Relay to your phone.</desc>
+  <desc id="description">Share a reference and optional note from Android to the Cloudflare Relay you deploy in your own account. Your Windows computer runs the Connector and local Codex in an existing project. Codex login stays on your computer. Submitted material, reports and uploaded artifacts pass through your own Cloudflare; reports or artifacts may include code. Progress, reports and delivery files return through Connector and Relay to your phone.</desc>
   <rect width="400" height="840" rx="24" fill="#F7F7F2"/>
   <g font-family="system-ui, -apple-system, Segoe UI, PingFang SC, Microsoft YaHei, sans-serif">
     <circle cx="30" cy="24" r="5" fill="#B8EF73"/>
@@ -26,7 +26,7 @@
     <rect id="codex-card" x="32" y="618" width="336" height="78" rx="18" fill="#FFFFFF" stroke="#E1E5DD" stroke-width="1.5"/>
     <text data-box="codex-card" x="52" y="650" font-size="24" font-weight="600" fill="#191D1A">Local Codex</text>
     <text data-box="codex-card" x="52" y="676" font-size="20" fill="#616A63">Works in your existing project</text>
-    <text data-box="computer-group" x="40" y="723" font-size="20" fill="#616A63">Code + Codex login stay here</text>
+    <text data-box="computer-group" x="40" y="723" font-size="20" fill="#616A63">Local work + Codex login</text>
 
     <g fill="none" stroke="#616A63" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
       <path d="M190 172V198 M184 192L190 198L196 192 M210 198V172 M204 178L210 172L216 178"/>

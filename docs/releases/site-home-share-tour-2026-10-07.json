@@ -1,0 +1,52 @@
+{
+  "schema": 1,
+  "date": "2026-10-07",
+  "productSource": "ccee562002839203df64300c411e0d8574845e89",
+  "hostingSource": "a5e82b8b0995755584e8e2aeab0dafc4d4456040",
+  "projectId": "appgprj_6ab726bb8cd48191acd3234da262627d",
+  "versionId": "appgprj_6ab726bb8cd48191acd3234da262627d~appgver_37ad682b43808191bd4139cf7ebb979e",
+  "versionNumber": 27,
+  "deploymentId": "appgdep_6ac5eebb09c481918f65f654f25e0897",
+  "status": "succeeded",
+  "url": "https://droprun.dengmaizi0802.chatgpt.site",
+  "publishedAt": "2026-10-07T07:03:31.761795+00:00",
+  "audience": "public preserved",
+  "publicFiles": 125,
+  "archiveFiles": 126,
+  "archiveRaw": {
+    "bytes": 15376927,
+    "sha256": "6429947f0c7732b887aba7dee5f5f35f23c2f71cbe6a47a3b28618e640d973b7"
+  },
+  "nativeNormalizedArchive": {
+    "archive_format": "tar",
+    "sediment_file_id": "file_00000000369881f7adfcd15f25dff879",
+    "content_hash": "sha256:cee5a0eb50905820ec87adbc0abf0b58cfb84f472021386437eb8b996bccff95",
+    "size_bytes": 16650240,
+    "file_count": 126
+  },
+  "changedHtml": 2,
+  "addedOriginalHomePngs": 4,
+  "addedShareTourFiles": 6,
+  "workflow": {
+    "exit": 0,
+    "sourcePushVerifiedByBundledWorkflow": true,
+    "gitBashOnProcessPath": true,
+    "gnuTarForceLocal": true,
+    "cleanup": false
+  },
+  "archiveReader": {
+    "firstExit": 1,
+    "reason": "Initial reader expected root manifest; bundled archive places the manifest at dist/.openai/hosting.json",
+    "correctedPassed": true,
+    "readerSha256": "05cadd301244e0dde753690c8e570d71b1ac64dc28def01f04f5c759ac66204d",
+    "archiveRebuilt": false,
+    "publicationReplayed": false
+  },
+  "privateFilmIncluded": false,
+  "signedCandidate": "0.5.15-rc.1 unchanged",
+  "limitations": [
+    "Native succeeded URL confirms publication, without a new hosted-browser, JavaScript, keyboard or continuous playback check.",
+    "Home originals show a labelled local development sample; Share tour binds to its separate earlier frozen app.",
+    "Current Home and delivery are later than immutable signed candidate15; no genuine Codex work, owner Cloudflare change, social posting or stable launch."
+  ]
+}

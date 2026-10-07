@@ -1,0 +1,211 @@
+{
+  "schema": "droprun.local-ui-validation.v1",
+  "date": "2026-10-07",
+  "nonce": "4a76b858-59fe-45d4-b469-8857f0ab6de2",
+  "passed": true,
+  "sourceFreezeSha256": "a3ff8ff2842464eba62fe519c8789b6695d5d5801720a1d4808747e6ff2c4ee5",
+  "sourceCounts": {
+    "sources": 137,
+    "configs": 4
+  },
+  "targetSourceSha256": {
+    "android/app/src/main/java/app/droprun/DeliverablesActivity.java": "3c4f72c8b14aba7ad0b2283f78f05adacc090f85d86427a3adbfcaa553ccb05a",
+    "android/app/src/debug/AndroidManifest.xml": "c3b50009724c8fa14d8f53ff731cb0f098a62bfc507dfd6214f6acfe125ace8d",
+    "android/app/src/debug/java/app/droprun/DemoDeliveryBackActivity.java": "aac72dc064f68478e57717deeb963b042f498a83ab8cb6e4a9d136a933d96aa1",
+    "android/app/src/androidTest/java/app/droprun/DeliveryBackHierarchyTest.java": "b55c4355186ac804e0e5fa4a2e50898db8f44e815e98c52d333946f8b2a74e7d"
+  },
+  "ownerSha256": "b1c82b38c24e4e7916704eb3aad27f85a29288e2eaf00a2e57fa9de6b512b305",
+  "readerSha256": "37a6c57323a16cef820f470d505fcf92718aeb4b7da11a99d0e630aec2fc6735",
+  "independentReviewSha256": "fc9adbfe2c1ba2afdb6b6caba4916aae747df7ef486528a1b8ad1bc7e9542d43",
+  "readerObservedExitCode": 0,
+  "stageVerificationSha256": {
+    "build": "535aa0ded97a32abb917fa2d68da322f53d81ff3c542f2098232db15515a5bca",
+    "install": "4b5046c5316549012658a827a494cfc2a5767dd691624ed2bdbc872c1e27f2c2",
+    "native": "134b03b7459361ce9b428652f41ee9a2b4dc4f1352aa8baa0e9ad79a9bb55de9"
+  },
+  "directChildren": {
+    "build": 1,
+    "install": 26,
+    "native": 25
+  },
+  "knownReturnedZeroChildren": 52,
+  "sourceSnapshotsRehashed": 141,
+  "sourceReceiptsRehashed": 6,
+  "rawFilesRehashed": 104,
+  "version": {
+    "name": "0.5.15-dev",
+    "code": 28
+  },
+  "apks": [
+    {
+      "role": "app",
+      "package": "app.droprun.mobile.debug",
+      "bytes": 2190318,
+      "sha256": "8e978cfc00452a3e06327b93a5ab3f6c562e4980b08bdbc977414aefa4922b1d",
+      "outputMetadataSha256": "9e1f9ce502ae4d5056e5560d87c92140638933435431e3fcb3538a6a29ca57d6"
+    },
+    {
+      "role": "test",
+      "package": "app.droprun.mobile.debug.test",
+      "bytes": 2083293,
+      "sha256": "2a1ba77a99871bb0238b683e89828ea14130b298f884c38bf60ca10655d45504",
+      "outputMetadataSha256": "181493b9ffc5a1e4217dc361fbffacc45894e47b81a418b200c67c9b71a83803"
+    }
+  ],
+  "savedCurrentAndFourInstalledReadsMatch": true,
+  "reports": [
+    {
+      "path": "android/app/build/test-results/testDebugUnitTest/TEST-app.droprun.DeletedTaskCacheTest.xml",
+      "bytes": 1881,
+      "sha256": "3247eda90572b1eb601f3d567a2ad34ce7f900c000390eddaa940c5ee074a193"
+    },
+    {
+      "path": "android/app/build/test-results/testDebugUnitTest/TEST-app.droprun.MobileContractTest.xml",
+      "bytes": 1860,
+      "sha256": "44db1f3f63445a07245ed7aa19c38bc594a27f5103f54d7603bac3ef53f1cd9c"
+    },
+    {
+      "path": "android/app/build/test-results/testDebugUnitTest/TEST-app.droprun.ResultSummaryTest.xml",
+      "bytes": 1003,
+      "sha256": "251381eaef2414cf0a2495f2a44f02e7f5308c1f39e69b19822b2177a0fe9067"
+    },
+    {
+      "path": "android/app/build/reports/lint-results-debug.xml",
+      "bytes": 36928,
+      "sha256": "f9dd54de1f4f7a60621caf579c68c2cb666206f4a998cbff2ec0e69d2b03eeaf"
+    }
+  ],
+  "unitActual": {
+    "tests": 27,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "lintActual": {
+    "errors": 0,
+    "warnings": 28
+  },
+  "native": {
+    "selection": "app.droprun.DeliveryBackHierarchyTest#previewBackReturnsToFilesWithoutChangingOtherBackStates",
+    "junitTests": 1,
+    "junitFailures": 0,
+    "seconds": 13.658,
+    "events": 22,
+    "naturalBackClosed": 4,
+    "cleanupDestroyed": 4,
+    "windows": [
+      {
+        "language": "en",
+        "theme": "light",
+        "scene": "preview",
+        "eventCount": 7,
+        "phaseOrder": [
+          "entered",
+          "preview-top-back",
+          "body-back",
+          "saving-dialog-stay",
+          "list-exit-requested",
+          "framework-back-closed",
+          "DESTROYED"
+        ],
+        "zeroGuardSnapshots": 7,
+        "naturalBackClosed": {
+          "finishing": true,
+          "destroyed": true,
+          "executorTerminated": true
+        },
+        "cleanupDestroyed": {
+          "destroyed": true,
+          "executorTerminated": true
+        }
+      },
+      {
+        "language": "zh",
+        "theme": "dark",
+        "scene": "preview",
+        "eventCount": 7,
+        "phaseOrder": [
+          "entered",
+          "preview-top-back",
+          "body-back",
+          "saving-dialog-stay",
+          "list-exit-requested",
+          "framework-back-closed",
+          "DESTROYED"
+        ],
+        "zeroGuardSnapshots": 7,
+        "naturalBackClosed": {
+          "finishing": true,
+          "destroyed": true,
+          "executorTerminated": true
+        },
+        "cleanupDestroyed": {
+          "destroyed": true,
+          "executorTerminated": true
+        }
+      },
+      {
+        "language": "en",
+        "theme": "light",
+        "scene": "picking",
+        "eventCount": 4,
+        "phaseOrder": [
+          "entered",
+          "picking-exit-requested",
+          "framework-back-closed",
+          "DESTROYED"
+        ],
+        "zeroGuardSnapshots": 4,
+        "naturalBackClosed": {
+          "finishing": true,
+          "destroyed": true,
+          "executorTerminated": true
+        },
+        "cleanupDestroyed": {
+          "destroyed": true,
+          "executorTerminated": true
+        }
+      },
+      {
+        "language": "zh",
+        "theme": "dark",
+        "scene": "picking",
+        "eventCount": 4,
+        "phaseOrder": [
+          "entered",
+          "picking-exit-requested",
+          "framework-back-closed",
+          "DESTROYED"
+        ],
+        "zeroGuardSnapshots": 4,
+        "naturalBackClosed": {
+          "finishing": true,
+          "destroyed": true,
+          "executorTerminated": true
+        },
+        "cleanupDestroyed": {
+          "destroyed": true,
+          "executorTerminated": true
+        }
+      }
+    ],
+    "summary": {
+      "entered": 4,
+      "completed": 4,
+      "DESTROYED": 4,
+      "actual_list_renders": 10,
+      "actual_preview_renders": 8,
+      "statics_restored": true,
+      "scope": "fixed synthetic routing; no download, verification, picker, save worker or external navigation"
+    }
+  },
+  "tenDeviceReadValuesMatch": true,
+  "pixelAcceptance": false,
+  "boundaries": [
+    "Only new-source debug-memory routing: idle preview top Back and body Back use the list; the real owned save-warning Stay listener and synthetic picking/list framework exit are exercised.",
+    "Four natural framework Back Lifecycle closes and executor terminations occur before scenario cleanup. Same-callback exit-request Finishing is not a timing requirement.",
+    "No native screenshot/pixel/motion, physical or system Back gesture, live file/download/SHA verification/cache deletion/reload/scroll restoration, real picker/Save worker/continuation, process death, signed candidate or genuine handoff acceptance.",
+    "The original 50f4a9cb JUnit failure7.508s remains failed; cleanup there is not natural Back proof. Only test timing/protocol changed for this fresh successor; the production branch and debug fixture bytes stayed unchanged.",
+    "Restoration is bound to source assertions and native summary; only ten captured device reads are compared. Reports/APKs/raw files are read-only evidence; this independent reader performs no device/build/network replay. Root host returns retain their separately observed receipts."
+  ]
+}

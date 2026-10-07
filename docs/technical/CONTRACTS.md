@@ -187,6 +187,11 @@ plan-version, per-command approval and report-evidence checks remain in force.
   presenting contents/Save. Invalid caches are discarded and the list can reload.
   Export rechecks bytes after current server authorization and before opening the
   destination. Cancelling the system save picker does not discard the preview.
+- Idle file-preview Back uses the same list reload and cleanup as its body
+  action. The list's Back still exits; choosing a save location retains the
+  existing exit branch. `saveBusy()` takes precedence and retains its existing
+  Stay/Leave confirmation. This route does not alter download, byte verification,
+  export authorization, picker callbacks or save-worker lifetime.
 - File export locks repeated picker launches and callbacks while choosing/saving.
   Authorization and file-copy work runs off the UI thread, with persistent inline
   progress, success or failure next to Save. A configuration change retains the

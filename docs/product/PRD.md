@@ -149,7 +149,11 @@ in [the current candidate record](../releases/0.5.15-rc.1.md).
   File previews put content before full technical evidence. A compact verified-file
   disclosure retains the exact selectable SHA-256 and original non-execution
   explanation. Its expansion preference survives Activity recreation; file
-  download, cache verification, decoding and Save/Back behavior stay unchanged.
+  download, cache verification, decoding and Save behavior stay unchanged.
+  Top Back from an idle file preview returns to the delivery list, matching the
+  body action; Back from the list still exits toward the task report. Choosing
+  a save location retains its existing exit behavior. An active save keeps the
+  existing leave confirmation before either destination can be considered.
   A configuration recreation continues observing the same pending mode change,
   including its eventual success or failure, without starting it again. Already
   displayed results are not announced again after recreation. A settled failure
