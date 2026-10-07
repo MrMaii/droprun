@@ -14,9 +14,19 @@ text description remain ordinary accessible text outside the artwork.
 Generate compact artwork with `node scripts/build-readme-cover.mjs --compact`.
 Root directly viewed all four new originals: their full mark, names, value
 statement and labels fit. This is artwork review, not native execution or a
-GitHub responsive-rendering result. Published narrow display is still pending.
+GitHub responsive-rendering result by itself.
 The desktop source's separately accepted display remains in the
 [earlier rendering record](readme-cover-rendering-2026-10-07.md).
+
+The later anonymous GitHub check at sourcec30e5c45 accepts both English and
+Chinese light compact covers. In the same requested390px viewport, DOM reports
+the selected compact source, complete640×480 natural dimensions and309.33×232
+rendering. Both saved original JPEGs were reopened: full covers, value statements
+and the installation links beneath are readable. The Chinese language link
+reaches the same source. The temporary viewport was reset and tab closed.
+This establishes these two narrow light views only; dark, breakpoint boundaries,
+keyboard, reduced-motion, CTA destinations and complete accessibility remain
+separate checks. No full GitHub page overflow or signed-App result is inferred.
 
 | Artwork | Bytes | SHA-256 |
 | --- | ---: | --- |

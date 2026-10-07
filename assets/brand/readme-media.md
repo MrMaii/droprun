@@ -41,7 +41,10 @@ Below600px, each README selects the compact dark/light artwork before its
 desktop theme choice. Native images and recordings remain unchanged.
 Generate with `node scripts/build-readme-cover.mjs --compact`; font provenance
 and artwork limits are the same as the desktop covers. All four local originals
-were directly reviewed; published responsive rendering remains pending.
+were directly reviewed. The subsequent anonymous GitHub EN/ZH narrow light check
+selects the640×480 sources at309.33×232; both saved originals were reopened and
+their value statements/installation links accepted. Dark and full accessibility
+remain open; this does not establish native or motion acceptance.
 
 ## Complete follow-up target · October 7, 2026
 

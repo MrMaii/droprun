@@ -58,8 +58,10 @@ handover. Current user request takes precedence over dated handoffs.
 - [Compact README artwork](../../docs/releases/readme-compact-cover-2026-10-07.md)
   addresses an observed narrow baseline: desktop cover text shrank at309.33px.
   Four640x480 local originals were viewed; desktop artwork stays byte-exact.
-  Both READMEs select compact themes below600px. Published narrow display is
-  pending; artwork does not establish native or continuous-motion acceptance.
+  Both READMEs select compact themes below600px. Actual anonymous GitHub EN/ZH
+  light narrow views atc30e5c45 choose640x480 sources rendered309.33x232; both
+  saved originals were reopened and accepted. Dark/accessibility remain open;
+  artwork does not establish native or continuous-motion acceptance.
 - [Share read feedback first](../../docs/releases/ui-share-read-feedback-2026-10-07.md)
   fixes an actual first-screen issue. Four original six-cache/font1 baseline
   loading/failure captures hid status and Retry; both reviewers confirmed it.
@@ -156,12 +158,13 @@ handover. Current user request takes precedence over dated handoffs.
 
 ## Single recommended next action
 
-Continue the current Share interaction tour with the refined name-first source:
-prepare a finite local walkthrough of project choice, return and model/effort
-changes without Send, then bind fresh native recording and review continuous
-playback before replacing old README/website motion media. Do not rerun the
-closed failed baseline or accepted readers after source/APK changes. Check this
-commit's own CI for a later candidate; genuine release gates remain open.
+Complete the narrow Share project-focus improvement and its finite local
+baseline/accepted capture, using the unchanged memory fixture. Its private
+proposal is prepared, not applied or run. Then bind a fresh current-source
+project/model/effort tour without Send and review actual continuous playback
+before replacing old motion media. The earlier recorder draft binds name-first
+APKs and becomes ineligible after any source/APK change; never auto-rebind or
+replay a closed take. Genuine release gates remain open.
 
 ## Files this pass
 
