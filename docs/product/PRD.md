@@ -6,7 +6,7 @@ This edition supersedes earlier hosted/pricing assumptions and ADR 0014's visual
 layout. Decisions: [self-hosting](../decisions/0015-public-selfhost-release.md) and
 [project-first UX](../decisions/0016-project-first-light-ux.md). Historical sections
 below describe the original product goals; release evidence is maintained only
-in [the current candidate record](../releases/0.5.14-rc.1.md).
+in [the current candidate record](../releases/0.5.15-rc.1.md).
 
 - Android + Windows x64; each owner deploys a private Cloudflare Relay. No official
   registration, subscription or multitenant service. GPTSites is the public website.
@@ -316,7 +316,10 @@ in [the current candidate record](../releases/0.5.14-rc.1.md).
   inventory. Empty, unavailable and failed checks have clear recovery; partial
   inventories must not be presented as complete. Paths remain local.
 - Setup actions show immediate waiting feedback and prevent conflicting or duplicate
-  clicks. Errors remain readable after polling. Unknown status blocks further
+  clicks. The current phase and errors follow the initiating control (after its
+  button group for Connector start). Diagnostic logs use a native Details
+  disclosure, initially closed; polling retains its position, expansion and focus.
+  Errors remain outside that disclosure and readable after polling. Unknown status blocks further
   mutations until recovery; an uncertain acknowledgement must not trigger an
   automatic retry. Read-only release checks have their own waiting/retry feedback.
 - Delivery-file previews recheck cached size and hash after recreation and before

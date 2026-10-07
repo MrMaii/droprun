@@ -41,7 +41,7 @@ input:disabled { opacity: .6; }
 .checks { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0; }
 .check { padding: 7px 12px; background: var(--soft); border-radius: 12px; font-size: 13px; line-height: 1.4; }
 .missing { background: var(--warning); }
-.status { padding: 14px 4px; }
+.status { margin-top: 14px; padding: 14px 16px; background: var(--soft); border: 1px solid var(--line); border-radius: 16px; overflow-wrap: anywhere; }
 #error { color: var(--error); font-size: 14px; }
 pre { font: 12px/1.6 ui-monospace, monospace; white-space: pre-wrap; overflow-wrap: anywhere; max-height: 220px; overflow: auto; }
 footer { margin-top: 24px; }

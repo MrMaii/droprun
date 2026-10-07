@@ -2,8 +2,17 @@
 
 ## Unreleased
 
-- Prepare runtime0.5.15 and Android code28 for the next signed candidate.
-  Existing candidate14 downloads remain until new artifact verification passes.
+- Keep installer phase and errors beside the active control; collapse diagnostic
+  logs separately while preserving focus and polling state.
+  [Eight local browser checks](docs/releases/ui-setup-active-feedback-2026-10-07.md).
+  This development is outside the signed 0.5.15 candidate.
+
+## 0.5.15-rc.1 — complete project names and focused delivery
+
+[Verified candidate and open acceptance](docs/releases/0.5.15-rc.1.md).
+
+- Publish runtime0.5.15/code28 after exact-source CI, independent packages and
+  all eight complete anonymous downloads pass; stable/genuine acceptance stays open.
 - Group report-present preview details and delivery-file actions on one flat
   surface; retain full-width result text and screenshots, with follow-up separate.
   [Local reading and original native stills](docs/releases/ui-task-artifact-group-2026-10-07.md).

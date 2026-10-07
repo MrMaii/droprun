@@ -161,7 +161,12 @@ plan-version, per-command approval and report-evidence checks remain in force.
   the server is busy, or status is unknown. It reads status after either success
   or failed acknowledgement and never automatically repeats a mutation. Older
   status reads cannot replace newer state; periodic polling waits for pending
-  reads. Local action errors survive polls until a new intentional action.
+  reads. Local action errors survive polls until a new intentional action. The
+  existing phase/error/log region moves once after the initiating button (after
+  the existing button group for Connector start). Without a known initiating
+  action, setup retains its neutral position. Polls update the original nodes
+  without reparenting, scrolling or changing native Details expansion. Diagnostic
+  logs are initially collapsed; phase and errors remain outside them.
 - `GET /device/retention` returns rawDays/artifactDays. Owners configure
   RAW_RETENTION_DAYS (7) and ARTIFACT_RETENTION_DAYS (30), bounds 1–365, by redeploying
   their configuration. The phone reads policy; it does not silently edit it.

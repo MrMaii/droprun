@@ -53,7 +53,7 @@ async function fixture(t) {
     const shot = await page.send('Page.captureScreenshot', { format: 'png' });
     await writeFile(join(dir, name + '.png'), Buffer.from(shot.data, 'base64'));
   };
-  return { state, calls, queue, run, until, capture };
+  return { state, calls, queue, run, until, capture, page };
 }
 const allDisabled = '["login","deploy","start","tools"].every(id=>document.getElementById(id).disabled)';
 
@@ -69,7 +69,8 @@ test('setup locks all mutations before acknowledgement and keeps errors across p
   await f.until('document.getElementById("error").textContent.includes("checksum")');
   await f.run('refresh()');
   assert.match(await f.run('document.getElementById("error").textContent'), /checksum mismatch/);
-  assert.equal(await f.run('document.getElementById("error").previousElementSibling.id'), 'tools');
+  assert.equal(await f.run('document.getElementById("setup-status").previousElementSibling.id'), 'tools');
+  assert.equal(await f.run('document.getElementById("setup-status").contains(document.getElementById("error"))'), true);
   assert.equal(await f.run('document.getElementById("error").hidden'), false);
   f.queue('/api/status', { code: 503, body: { error: 'Synthetic offline state' } });
   await f.run('refresh()');
@@ -91,6 +92,65 @@ test('setup locks all mutations before acknowledgement and keeps errors across p
   assert.equal(await f.run('document.getElementById("tools").textContent'), '安装媒体工具');
 });
 
+test('setup phase feedback follows deployment and details keep keyboard focus through polling', options, async t => {
+  const f = await fixture(t), hold = gate();
+  assert.equal(await f.run('document.getElementById("setup-status").parentElement.tagName'), 'MAIN');
+  assert.equal(await f.run('document.getElementById("setup-details").open'), false);
+  assert.equal(await f.run('document.getElementById("setup-details").contains(document.getElementById("error"))'), false);
+  f.queue('/api/deploy', { hold });
+  await f.run('document.getElementById("account").value="0123456789abcdef0123456789abcdef";document.getElementById("cost").checked=true;document.getElementById("deploy").click()');
+  assert.equal(await f.run(allDisabled), true);
+  assert.equal(await f.run('["account","name","cost"].every(id=>document.getElementById(id).disabled)'), true);
+  assert.equal(await f.run('document.getElementById("deploy").getAttribute("aria-busy")'), 'true');
+  assert.equal(await f.run('document.getElementById("setup-status").previousElementSibling.id'), 'deploy');
+  assert.match(await f.run('document.getElementById("step").textContent'), /Preparing Relay/);
+  await f.run('document.getElementById("deploy").click();document.getElementById("login").click()');
+  f.state.busy = true; f.state.step = 'd1-resource'; f.state.messages = ['Synthetic database preparation. ' + 'diagnostic '.repeat(60)];
+  hold.release();
+  await f.until('pendingAction===""&&document.getElementById("step").textContent==="Preparing the database"');
+  assert.equal(f.calls.filter(call => call.method === 'POST').length, 1);
+  assert.equal(await f.run(allDisabled), true);
+  assert.equal(await f.run('document.getElementById("setup-status").getAttribute("aria-live")'), 'polite');
+  await f.run('document.getElementById("language").click()');
+  assert.equal(await f.run('document.querySelector("#setup-details > summary").textContent'), '详细信息');
+  assert.equal(await f.run('document.getElementById("step").textContent'), '正在准备数据库');
+  await f.run('window.retainedFeedback=document.getElementById("setup-status");window.retainedMessages=document.getElementById("messages");window.feedbackMoves=0;window.feedbackObserver=new MutationObserver(records=>{feedbackMoves+=records.flatMap(record=>[...record.addedNodes,...record.removedNodes]).filter(node=>node===retainedFeedback).length;});feedbackObserver.observe(document.querySelector("main"),{childList:true,subtree:true});document.querySelector("#setup-details > summary").focus()');
+  await f.page.send('Input.dispatchKeyEvent', { type: 'keyDown', key: 'Enter', code: 'Enter', text: '\r', windowsVirtualKeyCode: 13 });
+  await f.page.send('Input.dispatchKeyEvent', { type: 'keyUp', key: 'Enter', code: 'Enter', windowsVirtualKeyCode: 13 });
+  assert.equal(await f.run('document.getElementById("setup-details").open'), true);
+  f.state.step = 'r2-resource'; f.state.messages.push('Synthetic storage preparation.');
+  await f.run('refresh()');
+  await f.run('refresh()');
+  assert.equal(await f.run('document.getElementById("step").textContent'), '正在准备文件存储');
+  assert.equal(await f.run('document.activeElement===document.querySelector("#setup-details > summary")'), true);
+  assert.equal(await f.run('document.getElementById("setup-details").open'), true);
+  assert.equal(await f.run('retainedFeedback===document.getElementById("setup-status")&&retainedMessages===document.getElementById("messages")&&feedbackMoves===0'), true);
+  assert.equal(await f.run('document.getElementById("setup-status").previousElementSibling.id'), 'deploy');
+  assert.match(await f.run('document.getElementById("messages").textContent'), /storage preparation/);
+  for (const [width, zoom, theme, motion] of [[320, 1, 'light', 'no-preference'], [1280, 2, 'dark', 'reduce']]) {
+    await f.page.send('Emulation.setDeviceMetricsOverride', { width, height: 1000, deviceScaleFactor: 1, mobile: false });
+    await f.page.send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-color-scheme', value: theme }, { name: 'prefers-reduced-motion', value: motion }] });
+    await f.run(`document.documentElement.style.zoom=${zoom}`);
+    assert.equal(await f.run('document.documentElement.scrollWidth<=document.documentElement.clientWidth+1'), true, `${width}/${zoom} horizontal overflow`);
+    assert.equal(await f.run('document.getElementById("messages").scrollWidth<=document.getElementById("messages").clientWidth+1'), true);
+    assert.equal(await f.run('document.querySelector("#setup-details > summary").getBoundingClientRect().height>=48'), true);
+    if (motion === 'reduce') assert.equal(await f.run('getComputedStyle(document.getElementById("deploy")).transitionDuration'), '0s');
+  }
+  await f.page.send('Input.dispatchKeyEvent', { type: 'keyDown', key: 'Enter', code: 'Enter', text: '\r', windowsVirtualKeyCode: 13 });
+  await f.page.send('Input.dispatchKeyEvent', { type: 'keyUp', key: 'Enter', code: 'Enter', windowsVirtualKeyCode: 13 });
+  assert.equal(await f.run('document.getElementById("setup-details").open'), false);
+  f.queue('/api/status', { code: 503, body: { error: 'Synthetic phase read unavailable' } });
+  await f.run('refresh()');
+  assert.equal(await f.run(allDisabled), true);
+  assert.match(await f.run('document.getElementById("error").textContent'), /phase read unavailable/);
+  assert.equal(await f.run('document.getElementById("error").hidden'), false);
+  assert.equal(await f.run('document.getElementById("setup-details").contains(document.getElementById("error"))'), false);
+  assert.equal(await f.run('document.activeElement===document.querySelector("#setup-details > summary")&&feedbackMoves===0'), true);
+  await f.run('refresh()');
+  assert.equal(await f.run(allDisabled), true);
+  assert.equal(f.calls.filter(call => call.method === 'POST').length, 1);
+});
+
 test('late status responses cannot unlock accepted work; unknown status prevents another mutation', options, async t => {
   const f = await fixture(t), hold = gate();
   f.queue('/api/status', { hold, body: { ...f.state } });
@@ -98,6 +158,7 @@ test('late status responses cannot unlock accepted work; unknown status prevents
   f.state.busy = true; f.state.step = 'Starting Connector';
   await f.run('act("start")');
   assert.equal(await f.run(allDisabled), true);
+  assert.equal(await f.run('document.getElementById("setup-status").previousElementSibling.contains(document.getElementById("start"))'), true);
   hold.release(); await f.run('oldPoll');
   assert.equal(await f.run(allDisabled), true);
   f.queue('/api/status', { code: 503, body: { error: 'Synthetic connection loss' } });
@@ -130,6 +191,7 @@ test('lost acknowledgement never retries a mutation and slow polls are not overt
   await f.run('act("login")');
   assert.equal(await f.run(allDisabled), true);
   assert.match(await f.run('document.getElementById("error").textContent'), /acknowledgement lost/);
+  assert.equal(await f.run('document.getElementById("setup-status").previousElementSibling.id'), 'login');
   await f.run('refresh();void 0');
   await f.run('act("login")');
   assert.equal(f.calls.filter(call => call.method === 'POST').length, 1);

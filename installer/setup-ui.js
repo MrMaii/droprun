@@ -24,7 +24,7 @@ function renderActions() {
 async function act(path, body = {}) {
   if (pendingAction || serverBusy || !statusReady) return;
   pendingAction = path; actionError = ''; ++statusRequest;
-  el(path).after(el('error'));
+  (el(path).closest('.actions') || el(path)).after(el('setup-status'));
   if (lastState) lastState = { ...lastState, error: null };
   renderActions();
   try {

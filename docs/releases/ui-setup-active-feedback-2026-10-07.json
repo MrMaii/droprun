@@ -1,0 +1,129 @@
+{
+  "schema": "droprun.local-setup-ui.v1",
+  "date": "2026-10-07",
+  "developmentChange": "setup active feedback",
+  "candidate15Source": "a48c0d5c2660951b5d5e97d04fdfde7543a8dce1",
+  "includedInCandidate15": false,
+  "verification": {
+    "oneNodeChildReturned": true,
+    "exitCode": 0,
+    "tests": 8,
+    "pass": 8,
+    "skipped": 0,
+    "fail": 0,
+    "newTestDurationMs": 772.9835,
+    "raw": {
+      "stdout": {
+        "bytes": 985,
+        "sha256": "9a536ba14553e62b65f37e33e8ee3fc7ebf743981d4f6611292e6e74ec3f5310"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "sourceBindingsAtReadTime": {
+      "installer/setup.html": {
+        "bytes": 7927,
+        "sha256": "b738fe8813f4b904c73724458f7c91563bf47f795d1ed9688f141a5dadd16a2c"
+      },
+      "installer/setup.css": {
+        "bytes": 6780,
+        "sha256": "d76cbc30dcf3759482f41b93d380d8c477ea20707ef854747ccd57494715b2ae"
+      },
+      "installer/setup-ui.js": {
+        "bytes": 16804,
+        "sha256": "3b434b74213f8c55ba5243a44d8d332c6cbe05fcf4f46cdcf72eb2a4f8f55794"
+      },
+      "tests/setup-actions.test.mjs": {
+        "bytes": 22496,
+        "sha256": "416bae90a36a3f5bd0b2a3b77bd5ade171d6cd8ac9179bb65f2dea880e2d05f7"
+      },
+      "docs/product/PRD.md": {
+        "bytes": 42046,
+        "sha256": "87da485928d91373a56371447c4ba9cd489773645cafbb3477fb005f3b93da7b"
+      },
+      "docs/technical/CONTRACTS.md": {
+        "bytes": 70869,
+        "sha256": "0c5e6e2f335943bd89edf04202bd145a3a48b6e665117d1e3ce114f2f9382d5a"
+      },
+      "tests/setup-ui.test.mjs": {
+        "bytes": 8468,
+        "sha256": "f9fc56015ce6b6cda7eb7d0c41acc1cf8429e6cf5f372b8476beb628d0c6caab"
+      },
+      "connector/browser.mjs": {
+        "bytes": 20937,
+        "sha256": "2576adea3d7c371464d64bf29d43f3739c61e1e60fe1eac8c1ea72a7da68503d"
+      },
+      "package.json": {
+        "bytes": 843,
+        "sha256": "160313e4439f42d03e3dfb5e0f64e7ec336add9383b78dd9e638eeeac6cc781f"
+      },
+      "package-lock.json": {
+        "bytes": 73208,
+        "sha256": "98b977988c9ebb81ac1590d300cd2ada0ff33aea1f2979c90dcb69b2369aa321"
+      }
+    },
+    "ownerSha256": "9c4f387d3740e68d9bfc270d734b9979f3d283e4960b9040adce45e752abe385",
+    "resultSha256": "84ffbafd491ef6e1be4c8926b710f2d15a1132a8b1c74cd1a4c4f75459b50585",
+    "independentReviewSha256": "c92ac9bdfb0438cbfa6c1392edbeef6b2713e414fac81e8820f55caeb77a3d59"
+  },
+  "screenshots": [
+    {
+      "path": "actions/action-error-and-offline.png",
+      "bytes": 41346,
+      "sha256": "7156c957bfd7f11fe60d10f2865bcb68ca86e7a29305f6bc08190328772b1607",
+      "width": 1258,
+      "height": 802,
+      "directlyViewed": true
+    },
+    {
+      "path": "actions/release-waiting-zh.png",
+      "bytes": 45970,
+      "sha256": "3bf6e6b28a0035061065fb0ee3e3e8141fa44dd74289f1f8ec9769b9d7569cc8",
+      "width": 1258,
+      "height": 802,
+      "directlyViewed": false
+    },
+    {
+      "path": "actions/tools-waiting.png",
+      "bytes": 42894,
+      "sha256": "46b130dfe5eabd19d4609faac639c51ed836dbc5c4e4687aaa460a4d0627e4de",
+      "width": 1258,
+      "height": 802,
+      "directlyViewed": true
+    },
+    {
+      "path": "projects/setup-projects-1280-2-dark.png",
+      "bytes": 70344,
+      "sha256": "24d5e358f0746b7e50f12c618b05df1dad333ca5d022f845c365b89ec7640dab",
+      "width": 1280,
+      "height": 1000,
+      "directlyViewed": false
+    },
+    {
+      "path": "projects/setup-projects-320-1-light.png",
+      "bytes": 28744,
+      "sha256": "57ce99fb100d0715f29c13471acb81f578de54cd5d470f5c8d9a33f8e1233ed2",
+      "width": 320,
+      "height": 1000,
+      "directlyViewed": false
+    }
+  ],
+  "automatedPixelAcceptance": false,
+  "independentVisualScope": {
+    "viewedCount": 2,
+    "accepted": true,
+    "scope": "Tools waiting feedback remains beside its button; synthetic action/status errors stay exposed while native Details is closed. Visible text and grouping are readable in these two English light desktop fragments."
+  },
+  "limits": [
+    "One closed Node child and eight actual non-skipped local browser fixture tests; no owner replay or new browser/process/network/device run by this reader.",
+    "New deployment test assertions cover synthetic acknowledgement, one POST, locks, phase translation, native keyboard Details, focus/open state, node identity/no reparent and two reading matrices; no separate per-assertion telemetry.",
+    "Unknown status is a synthetic503 response, not a real offline Cloudflare installation.",
+    "Five original PNGs are byte-checked; only the two normal desktop tools waiting/error originals were directly viewed and locally accepted.",
+    "No deployment database/storage phase screenshot, dark/narrow new-status visual acceptance, complete wizard, screen reader, physical device, real deployment or performance claim.",
+    "Owner pixelAcceptance=false is unchanged. Independent visual acceptance is limited to the two viewed English light desktop fragments.",
+    "Later development after immutable candidate15 sourcea48; candidate15 does not include this setup change. No signed release or Site update is established here."
+  ],
+  "selectionBoundary": "Root selected after closed tests and independent pure-file review, before candidate15 documentation release-link edits. These10 hashes are historical test/read-time bindings; the setup change is outside immutable candidate15a48. Later documentation-only link changes do not imply retesting."
+}
