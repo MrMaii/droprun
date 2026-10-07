@@ -1,5 +1,34 @@
 # Native README media
 
+## Delivery artifact group · October 7, 2026
+
+The current README delivery gallery uses four complete, unedited320×640 native
+PNGs from `0.5.14-dev`, code27, later than signed candidate14. The result keeps
+its full reading width; preview explanation and preview/file controls form one
+flat theme surface. Root and an independent reviewer directly viewed all four
+normal-font EN/ZH light/dark originals. Memory-only notice and system bars remain;
+no task, preview or business action was activated. Brand copies are byte-exact.
+
+Follow-up text is visible near the bottom; these pictures do not prove its
+complete touch target. The sample has no older plan, note or screenshot thumbnail.
+Automated pixel acceptance stays false; separate human review accepts only these
+local views. No motion, physical, full-accessibility or signed-package acceptance.
+The earlier result-focus stills immediately below retain their exact links/hashes;
+code25 Share GIFs and separately published website media are unchanged.
+
+| File | Bytes | SHA-256 |
+| --- | ---: | --- |
+| [source-delivery-artifacts-en-light-20261007.png](source-delivery-artifacts-en-light-20261007.png) | 38003 | `415cb6697fae9532cddf18d20f08db173bc972b078638c59d816e327f967568d` |
+| [source-delivery-artifacts-en-dark-20261007.png](source-delivery-artifacts-en-dark-20261007.png) | 38297 | `28d785b595bdb3bb24dba178ba6c065221631b6fb8bbed4454f06153840b4e88` |
+| [source-delivery-artifacts-zh-light-20261007.png](source-delivery-artifacts-zh-light-20261007.png) | 46293 | `4d1d41daa74fe479531d0434de934fd56e2dcbd79f5a3719796031a965bd92be` |
+| [source-delivery-artifacts-zh-dark-20261007.png](source-delivery-artifacts-zh-dark-20261007.png) | 47578 | `f80b298e2cd2fe08b8d51c06aac5236283034ec8433614d8143894ca85b3f865` |
+
+[Exact local scope and receipts](../../docs/releases/ui-task-artifact-group-2026-10-07.md).
+This README update does not deploy GPTSites or replace candidate14 downloads.
+
+交付图库使用四张新的原生内存示例原图：结果保持完整读宽，预览与文件入口组合呈现。
+保留标记与系统栏；不是签名包、真实交办或真机性能验收，旧图与分享动图来源继续保留。
+
 ## Settings access grouping · October 7, 2026
 
 The README Settings gallery now uses four unedited native 320 × 640 PNGs from
@@ -32,7 +61,7 @@ Four complete, unedited native 320 × 640 PNGs from `0.5.14-dev`, code27.
 These are later development than the immutable signed candidate14. English
 and Chinese light/dark views use normal-size text and a fixed memory-only sample;
 no task was sent and no preview or action was opened. The visible sample marker
-and system bars remain. The README delivery gallery uses these new stills;
+and system bars remain. The README delivery gallery previously used these stills;
 the older delivery images and Share recordings below remain unchanged.
 
 Root and a separate reviewer directly viewed all four original images. The result

@@ -66,6 +66,9 @@ plan-version, per-command approval and report-evidence checks remain in force.
   an explicit retry; it never automatically replays removal or claims server stop.
   Home's list has a stable View ID so Activity state restores its reading position
   on recreation, including when returning after an appearance preference change.
+  Home project names retain complete natural wrapping on every bind, including
+  ordinary text size and independent names with a distinguishing suffix. This
+  changes card height, not project identity, statistics or navigation.
   Settings saves its project-access disclosure state in the Activity Bundle and
   assigns stable IDs to its scroll container and appearance/language controls for
   native scroll/focus restoration. After layout, a restored keyboard preference
@@ -196,6 +199,7 @@ plan-version, per-command approval and report-evidence checks remain in force.
 - 错误记录持久化不能改写其他实例的 `instanceId`。错误归属的本机记录保留并拒绝发送，不影响合法记录继续同步。
 - 追问弹窗的草稿、打开状态和提交 UUID 随 Activity 状态保存；成功写入 outbox 后才清空草稿并生成下一次 UUID。关闭弹窗不等于提交。
 - 报告优先摘取已有结果段落，保留该段落原有的列表换行；全文和证据始终可展开。不得生成报告中不存在的成果。交付结果使用正文阅读宽度与明确的标题层级；预览说明紧邻对应操作。
+- 仅存在报告时，预览说明与交付文件操作位于一个平面主题表面内（26dp圆角、左右16dp、上下12dp），首个预览标题不重复添加顶部区段留白；结果正文与截图缩略图保持原页面读宽。容器不取得焦点、不响应点击。追问、审批、全文与清理入口保持独立；无报告状态、文案、操作资格、确认与回调不变。
 - 存在报告时，概要使用22sp正文，结果标签使用14sp次级文字并保留无障碍标题，任务身份使用20sp；缺失报告时身份标题保持24sp。有报告且不待计划审批的“之前的计划”入口排列在完整报告后、留言前，保留原展开状态；待审批计划与无报告状态沿用原位置及操作条件。
 - 任务操作的成功由执行是否抛出异常决定，不能由错误文字是否为空决定。失败时保留非空原始说明；null、空串或纯空白使用本地化提示，先核对任务最新状态再决定是否重试。失败不显示成功确认；回调仍恢复 busy 与现有控件，并刷新前台任务。
 - 任务详情将操作失败与后台读取反馈分开：关闭错误弹窗后，操作失败仍留在页面，优先于读取错误；成功读取不能抹去失败或当作操作确认。Activity 状态保存该失败文案，下一次明确操作开始时清除；busy 早退不清除。

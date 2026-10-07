@@ -84,3 +84,23 @@ their memory-only markers; no invented product screens replace them.
 [Home's actual reading and rebind checks](../releases/ui-home-project-cards-2026-10-06.md)
 own its separate source/APK binding. Those tests are not genuine polling or
 cross-instance acceptance.
+
+### Delivery-artifact extension — accepted 2026-10-07
+
+Report-present delivery pages give the existing preview explanation and file
+inspection actions one opaque theme surface: radius26, padding16h/12v, no stroke
+or elevation. Remove only the first preview heading's duplicate top inset. The
+result summary and screenshot thumbnail retain the page's full reading width;
+follow-up, approval, full report and deletion remain outside. Report-empty states
+and all copy, eligibility, confirmation, callbacks and motion are unchanged.
+
+This extends functional grouping without restoring an inset around the result.
+At320dp, artifact controls change280→248dp; complete labels may grow vertically.
+The lime primary still means ready preview, or files when none is ready. No blur,
+new navigation, business authorization or decorative identity is introduced.
+
+[Two font2 reading windows and four normal-font native originals](../releases/ui-task-artifact-group-2026-10-07.md)
+pass the bounded local checks; root and an independent reviewer view all four
+originals and accept this grouping. Follow-up sits near the normal viewport's
+bottom and can require scrolling; its complete normal-font touch area is not
+established by the stills. No genuine, physical, signed-package or motion claim.

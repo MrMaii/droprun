@@ -55,3 +55,14 @@ source. Known destruction does not prove executor termination or complete Ui
 restoration; touch-mode restoration events prove the setter returned, without
 a fresh framework-mode observation. Ten read-only values do not prove all
 device state unchanged. No real permission, task, signed-native or full UX closure.
+
+## Published source CI
+
+Source `3139f589ba3a854f0478ef1b8e5577bd14b153c8` has its own
+[successful CI attempt](https://github.com/MrMaii/droprun/actions/runs/37560842952):
+three jobs, 35 successful steps, ten required steps and three matching checks.
+The complete log reports 210 core and 18 browser tests passing. Its 327065 bytes
+hash to `32b485ba8c893fa62ca6f8ef0fb5498fed3e5a6bf5eabd171437b23397766475`.
+[Independent byte-bound record](ui-settings-access-focus-source-ci-2026-10-07.json).
+This CI excludes later Home development and does not update signed candidate14
+or Site24; Android build success is separate from native interaction acceptance.

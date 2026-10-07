@@ -131,8 +131,13 @@ public class TaskActivity extends StyledActivity {
             else if(!thumbnailError.isEmpty())delivery.addView(Ui.caption(this,thumbnailError),Ui.margins(this,10,0));
             if(!thumbnailRequested)loadThumbnail();
         }
-        preview(task,delivery);
-        if(!report.isEmpty()||Store.finished(status))button(delivery,L.t("Screenshots & delivery files","截图与交付文件"),Store.finished(status)&&!previewState.equals("ready"),this::openDeliverables);
+        LinearLayout artifacts=delivery;
+        if(!report.isEmpty()){
+            artifacts=Ui.vertical(this);artifacts.setPadding(Ui.dp(this,16),Ui.dp(this,12),Ui.dp(this,16),Ui.dp(this,12));artifacts.setBackground(Ui.outlined(this,Ui.SURFACE,0,Ui.RADIUS_CARD,0));delivery.addView(artifacts,Ui.margins(this,12,0));
+        }
+        preview(task,artifacts);
+        if(artifacts!=delivery&&artifacts.getChildCount()>0)artifacts.getChildAt(0).setPadding(0,0,0,Ui.dp(this,6));
+        if(!report.isEmpty()||Store.finished(status))button(artifacts,L.t("Screenshots & delivery files","截图与交付文件"),Store.finished(status)&&!previewState.equals("ready"),this::openDeliverables);
         if(Store.finished(status)&&!text(task,"thread_id").isEmpty())button(L.t("Follow up","继续追问"),false,this::followup);
         if(TaskPresentation.snapshot(text(task,"preview_kind"))&&!previewState.isEmpty()&&!previewState.equals("unavailable"))disclosure(L.t("Snapshot version","快照版本"),text(task,"preview_version"));
         if(!report.isEmpty())disclosure(L.t("Full report & evidence","完整报告与证据"),report);

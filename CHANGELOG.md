@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Group report-present preview details and delivery-file actions on one flat
+  surface; retain full-width result text and screenshots, with follow-up separate.
+  [Local reading and original native stills](docs/releases/ui-task-artifact-group-2026-10-07.md).
+- Keep complete Home project names at ordinary text sizes too; long cards grow
+  instead of hiding the mobile/desktop distinction at the end of a name.
+  [Complete-name reading regression](docs/releases/ui-home-complete-names-2026-10-07.md).
 - Preserve keyboard focus on project-access controls during a Settings rebuild;
   follow the complete project ID and fall back to its header when unavailable.
   [Bounded native focus check](docs/releases/ui-settings-access-focus-2026-10-07.md).

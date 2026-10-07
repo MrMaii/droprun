@@ -36,6 +36,24 @@ real-environment acceptance is unavailable. No stable launch or marketing handov
 
 ## Completed UX and brand
 
+- Home complete names: remove the ordinary-text two-line cap on creation/bind.
+  [Closed reading regression](../../docs/releases/ui-home-complete-names-2026-10-07.md)
+  passes six fixed memory windows,31.881s,36 rebinds and12 zero guards; independent
+  104raw/source/APK check passes. First/final long-name lines are source/JUnit
+  assertions. Both original native failures5.771/14.136 and the file-only reader
+  newline failure remain separate. No capture, real polling, navigation or signed14
+  claim. Later Task changes are outside the Home frozen closure.
+- Task artifact group: report-present preview explanation and delivery-file actions
+  now share one flat26dp surface16h/12v; result/screenshot keep full page width.
+  Fresh134/4 freezea6883307 build/install/reading/capture pass1/26/25/34children;
+  independent172raw/four-phase/APK review010e599c passes. Two font2 reading
+  windows close in12.229s,22streams; root views all four normal-font original
+  PNGs and accepts their scoped grouping. Independent visual review2baad04e
+  accepts these four normal-font views; README/media provenance receives exact
+  original brand copies. Owner pixelAcceptance=false remains. Follow-up sits near
+  the bottom; its complete normal-font touch target is not proven by these stills.
+  [Exact local scope](../../docs/releases/ui-task-artifact-group-2026-10-07.md).
+  No action, preview, genuine task, new motion, physical or signed14 acceptance.
 - [Settings access focus](../../docs/releases/ui-settings-access-focus-2026-10-07.md):
   stable disclosure ID and exact full project-ID tags restore existing non-touch
   keyboard focus through direct same-Activity render. Pending/collapsed/missing
@@ -51,9 +69,11 @@ real-environment acceptance is unavailable. No stable launch or marketing handov
   prior access-group images. Ten read-only device values match, not all framework
   or Ui state. Original fdd failure in5.173s retains42children/84raw and one closed
   window; only new header check changed to existing transform-aware visibility.
-  Its stack identifies a child predicate, without geometric cause. Signed14 and
-  source525 CI do not include this later change.
-- Public Settings/README source is now525f55ce, author/committer Thomas Deng;
+  Its stack identifies a child predicate, without geometric cause. Own source3139
+  CI37560842952 attempt1 passes3jobs/35steps/10required/3checks, actual210+18;
+  full327065B log SHA32b485ba independently checked. It excludes later Home/Task
+  development and signed14. [Exact CI](../../docs/releases/ui-settings-access-focus-source-ci-2026-10-07.json).
+- Earlier Settings/README source525f55ce, author/committer Thomas Deng;
   19 curated public files push returned0, public check660 pass. Source CI
   37559210757 attempt1 passes3jobs/35steps/10required/3checks, actual210+18;
   independent full326694B log SHAf4467cf1. Both prior pending snapshots remain
@@ -111,7 +131,7 @@ real-environment acceptance is unavailable. No stable launch or marketing handov
 - Bilingual README now puts the decision and continuous native excerpt first;
   exact recording links remain inside the complete source disclosure. All media
   and downloads14 remain. Its delivery gallery now uses the four independently
-  viewed October7 code27 native result-focus stills; older media remain linked
+  viewed October7 code27 native artifact-group stills; older media remain linked
   in provenance. Only local target existence was rechecked, not a new GitHub
   render or hosted-site update. Settings gallery also uses the four reviewed
   October7 partial access-group views; exact historical images stay in provenance.
@@ -174,17 +194,16 @@ real-environment acceptance is unavailable. No stable launch or marketing handov
 
 ## Single recommended next action
 
-Remove Home's two-line cap for independent long project names. The current
-normal18sp/184dp name area can hide a distinguishing mobile/desktop tail;
-duplicate-name ID hints and large text already wrap. Review the prepared private
-patches, preserve short-name cards and all36 existing rebind/anchor/feedback checks,
-and verify complete first/last-line reading within the original six memory windows.
-No project/navigation/business activation, extra matrix or capture is required.
+Publish the curated Home/Task source and accepted README originals, then verify
+that exact source's own CI. Prepare the next signed candidate from that coherent
+verified source; signed14 and Site24 remain separate until new publication passes.
 Real-environment gates do not block local UI, motion, README or brand work.
 
 ## Files this pass
 
-SettingsActivity/SettingsReadingPresentationTest/ids; PRD/CONTRACTS/CHANGELOG,
-focus records and exact525 source CI followthrough, current handoff.
+MainActivity/HomeRowsPresentationTest; TaskActivity/TaskReadingHierarchyTest/
+TaskPreviewFeedbackTest; PRD/CONTRACTS/CHANGELOG/ADR0019, Home/Task records and
+exact3139 focus-source CI followthrough; bilingual README, brand provenance and
+four byte-exact artifact-group originals.
 No genuine task or stable launch; website media remain Site24's set.
 Author Thomas Deng <150266369+MrMaii@users.noreply.github.com>.

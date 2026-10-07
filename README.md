@@ -48,7 +48,7 @@ The screenshots and recordings below are labelled memory-only development UI, no
 <p align="center">
   <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-share-count-en-dark-20261006.png"><img src="assets/brand/source-share-count-en-light-20261006.png" width="260" alt="01 · Share: project and received material together, a persistent optional-note label, received file counts and model controls; native memory-only probe marker retained"></picture>
   <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-home-cards-en-dark-20261006.png"><img src="assets/brand/source-home-cards-en-light-20261006.png" width="260" alt="02 · Follow: native Android project cards with initials, names, task and dispatch counts, status and recency; memory-only and sample-project markers retained"></picture>
-  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-delivery-result-en-dark-20261007.png"><img src="assets/brand/source-delivery-result-en-light-20261007.png" width="260" alt="03 · Inspect: native handoff page with the result as the reading focus, fixed-snapshot explanation and delivery actions; visible memory-only marker"></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-delivery-artifacts-en-dark-20261007.png"><img src="assets/brand/source-delivery-artifacts-en-light-20261007.png" width="260" alt="03 · Inspect: native handoff page with a prominent result and one flat preview-and-files group; visible memory-only marker"></picture>
 </p>
 
 </details>

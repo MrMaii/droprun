@@ -1,0 +1,233 @@
+{
+  "schema": "droprun.local-ui-home-complete-names.v1",
+  "date": "2026-10-07",
+  "verifiedWithinScope": true,
+  "developmentParent": "3139f589ba3a854f0478ef1b8e5577bd14b153c8",
+  "version": {
+    "name": "0.5.14-dev",
+    "code": 27
+  },
+  "signedCandidateIncludesThisChange": false,
+  "changes": [
+    "Remove the initial two-line project-name cap and use complete natural wrapping on every Home row bind. Card typography, widths, feedback, status, stable IDs and navigation remain.",
+    "In the existing guarded memory reading method, two unique long names share a prefix and distinguish mobile/desktop by the tail. Complete text and first/final-line reading are asserted before exact original name keys/objects and list anchor restoration.",
+    "Pass a Rect copy to requestRectangleOnScreen; retain the original local rectangle for the unchanged visibility predicate and include row/tail/requested/shown on assertion failure."
+  ],
+  "sourceFreeze": {
+    "sha256": "bb23fbc01de8eef92021d1ead66ee0dafbb3977cd0156596b72825461341dc50",
+    "sources": 134,
+    "configs": 4,
+    "selectedSourceSHA256": {
+      "android/app/src/main/java/app/droprun/MainActivity.java": "d07fc51f9dc78b5e1b6ee1ed237d45cb4512611caf5973605ca6611a68a175f6",
+      "android/app/src/androidTest/java/app/droprun/HomeRowsPresentationTest.java": "f490b84bb00b4845300753a71dd47be1a292a0b8663750caadacbe2f7bc76fda"
+    },
+    "exactAtHistoricalIndependentRead": true,
+    "scope": "The closed freeze and its historical independent read only. Later Android edits are outside this proof; the current checkout was not rechecked to prepare this record."
+  },
+  "independentReview": {
+    "bytes": 15486,
+    "sha256": "08a6c5b7a95ebfde530e0db6f1a031bdf8829302eb50471302f7891d221f4050",
+    "readerSHA256": "39da1b3ff0532956ddfcf97e0e0e2735a4ce2ba9bf24a105dcd43e64498869d4",
+    "ownerSHA256": "99c351f70a1962779d27557f1b9573af42e8cb685ceb661952f4106c6cb71481",
+    "directChildrenReturned0": 52,
+    "rawFilesRehashed": 104,
+    "sourceSnapshotsChecked": 6,
+    "toolsChecked": 4
+  },
+  "phases": {
+    "build": {
+      "verification": {
+        "bytes": 4228,
+        "sha256": "dd7724d5915bb3377ce37d4761ec89adc1ae25770d25d9b98c9c890e06c4c840"
+      },
+      "returned0": 1,
+      "passed": true
+    },
+    "install": {
+      "verification": {
+        "bytes": 20364,
+        "sha256": "2aaaa01567213743d622aff39e481810cd23274c1b63fa2027f84b914fdd9ad5"
+      },
+      "returned0": 26,
+      "passed": true
+    },
+    "native": {
+      "verification": {
+        "bytes": 43789,
+        "sha256": "b21c041e772c833925d52ba84c86abbf46bd35be53a0643a94e3c219046aed30"
+      },
+      "returned0": 25,
+      "passed": true
+    }
+  },
+  "debugApks": [
+    {
+      "role": "app",
+      "package": "app.droprun.mobile.debug",
+      "bytes": 2181635,
+      "sha256": "415fec70f4f287f1160a6ff560d0c137a6811e0dcd4dc5824e818cc4266f7d8e"
+    },
+    {
+      "role": "test",
+      "package": "app.droprun.mobile.debug.test",
+      "bytes": 2058197,
+      "sha256": "b6542c5004f89d3613cb106192cfc354d637d544ba931e0c0d42385c0431d801"
+    }
+  ],
+  "fourInstalledReadsByteExact": true,
+  "boundJvmReport": {
+    "tests": 27,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "boundLintReport": {
+    "errors": 0,
+    "warnings": 28
+  },
+  "compilerStderr": {
+    "bytes": 133,
+    "sha256": "149b4942073466f2d906e9406521e823d43ac50547bb086b0dda99ca5c1ff0a6",
+    "description": "Retained deprecation notice; not a zero-stderr build."
+  },
+  "native": {
+    "junit": {
+      "class": "app.droprun.HomeRowsPresentationTest",
+      "method": "continuousRowsKeepIdentityAndReadPosition",
+      "tests": 1,
+      "failures": 0,
+      "seconds": 31.881
+    },
+    "raw": {
+      "bytes": 6609,
+      "sha256": "fb001229ff2a65ca62c67d8481343663b8d789d9e346a30e6bf1fdac817b5cf7"
+    },
+    "counts": {
+      "events": 32,
+      "streams": 44,
+      "windows": 6,
+      "entered": 6,
+      "full_completed": 6,
+      "DESTROYED": 6,
+      "zero_guard_streams": 12,
+      "captures": 0,
+      "completed_rebinds": 36
+    },
+    "scenes": [
+      "en/light/font1",
+      "en/dark/font1",
+      "zh/light/font1",
+      "zh/dark/font1",
+      "en/light/font2",
+      "zh/dark/font2"
+    ],
+    "exactEventSequence": true,
+    "sourceBoundAssertions": "Complete long names; first/final-line reveal; original name key/object and list anchor restoration; existing 36 rebind/identity/focus/card/feedback checks. Individual geometric values and assertions are not separately serialized.",
+    "nonceBinding": "No native nonce or capture argument. Fresh host take path and exact source/owner/build/install bindings plus the sole instrumentation argv bind the take. Native streams omit nonce."
+  },
+  "tenObservedDeviceValuesEqual": true,
+  "observedGlobalFont": "2.0",
+  "capture": {
+    "requested": false,
+    "count": 0,
+    "newVisualAcceptance": false
+  },
+  "retainedNativeFailures": [
+    {
+      "nativePassed": false,
+      "independentRetainedFailureReview": {
+        "bytes": 6255,
+        "sha256": "98d6427730aaf58615b25adbf94670024ae0d04799d89adcf46365915a3b640d"
+      },
+      "sourceFreezeSHA256": "0bf36ac7dc34e6eabd133890eb47202d75a17bef4aa0683a50e436e43e61b2cb",
+      "nativeRaw": {
+        "bytes": 6241,
+        "sha256": "c8a85b270fc7e99d485f486175a4bfd4d23ce0799d36dbd886d5fc3c936e2e33"
+      },
+      "junit": {
+        "class": "app.droprun.HomeRowsPresentationTest",
+        "method": "continuousRowsKeepIdentityAndReadPosition",
+        "tests": 1,
+        "failures": 1,
+        "seconds": 5.771
+      },
+      "counts": {
+        "events": 5,
+        "streams": 6,
+        "windows": 1,
+        "entered": 1,
+        "full_completed": 0,
+        "DESTROYED": 1,
+        "zero_guard_streams": 1
+      },
+      "directChildrenReturned0": 42,
+      "rawFilesRehashed": 84,
+      "nativeAfterReads": false,
+      "otherFiveWindowsExecuted": false,
+      "captureRequested": false,
+      "error": "Fit all lines vertically; complete-text helper119 > assertRow104 > new long-name lambda73.",
+      "correction": "Two production maxLines changes; a new take was built and installed.",
+      "boundary": "One first EN/light/font1 known DESTROYED with zero forbidden/sync counter and font/language-restored. Individual geometry or rebind/restore assertions are not separately emitted."
+    },
+    {
+      "nativePassed": false,
+      "independentRetainedFailureReview": {
+        "bytes": 6362,
+        "sha256": "04dcc92462fed50c4f29daebe0005438d61f4cc781e23aa8c90a89051fe06436"
+      },
+      "sourceFreezeSHA256": "12255b057c4d7aa73e8a45337d4a8278253f76a4b03a37be32ec91051486e2f9",
+      "nativeRaw": {
+        "bytes": 5783,
+        "sha256": "5849d868636b8b88288ca2c0253bb3b1f64f623c7588da8186fd3a0b9ba45639"
+      },
+      "junit": {
+        "class": "app.droprun.HomeRowsPresentationTest",
+        "method": "continuousRowsKeepIdentityAndReadPosition",
+        "tests": 1,
+        "failures": 1,
+        "seconds": 14.136
+      },
+      "counts": {
+        "events": 5,
+        "streams": 6,
+        "windows": 1,
+        "entered": 1,
+        "full_completed": 0,
+        "DESTROYED": 1,
+        "zero_guard_streams": 1
+      },
+      "directChildrenReturned0": 42,
+      "rawFilesRehashed": 84,
+      "nativeAfterReads": false,
+      "otherFiveWindowsExecuted": false,
+      "captureRequested": false,
+      "error": "The requested first or final long-name line is visible; lambda76. Failing row/tail/rectangle geometry was not logged.",
+      "correction": "Only the new test passes a Rect copy and adds error diagnostics. Production wrapping and the visibility predicate remain.",
+      "boundary": "One first EN/light/font1 known DESTROYED with zero forbidden/sync counter and font/language-restored. Individual geometry or rebind/restore assertions are not separately emitted."
+    }
+  ],
+  "separatePureLocalReaderFailure": {
+    "originalFailedResult": {
+      "bytes": 190,
+      "sha256": "6a5325e7ea3ffa0c6aba883109ae712dbd1f3c40f633ed24b89942a56277e892"
+    },
+    "nativeFailureUnaffected": true,
+    "cause": "Device stdout read_text normalized AVD CRLF while the owner bytes.decode.strip retained it.",
+    "correction": "Fresh file-only followthrough reader uses bytes.decode(utf-8).strip and a distinct result file. No reader replay or native rerun for this correction.",
+    "freshSuccessfulFailureReviewSHA256": "98d6427730aaf58615b25adbf94670024ae0d04799d89adcf46365915a3b640d"
+  },
+  "primarySource": {
+    "url": "https://raw.githubusercontent.com/aosp-mirror/platform_frameworks_base/android-15.0.0_r1/core/java/android/view/View.java",
+    "checkedDate": "2026-10-07",
+    "sourceVersion": "android-15.0.0_r1",
+    "lines": "7951-7978",
+    "finding": "View.requestRectangleOnScreen sets the caller Rect while traversing parent coordinates; the test now passes a copy and retains the original local rectangle. Actual failed row/tail/rectangle values were not logged."
+  },
+  "boundaries": [
+    "Source-bound JUnit assertions are distinct from the 44 actual ordered streams and 36-rebind summary. No separate geometric or per-assertion telemetry.",
+    "Six known DESTROYED plus font/language-restored is not executor termination or complete Ui-static restoration. Ten observed identity/settings values do not prove every device state unchanged.",
+    "JVM/lint counts come from exact bound report files; not every build task is claimed freshly executed.",
+    "No capture, screenshot, direct visual or motion review; no live polling, business click, network, persistence, navigation, OS-setting write or touch-mode setter.",
+    "No new source CI, signed-native, physical performance, TalkBack, real-source handoff or full UX closure. This development does not update candidate14 or Site24."
+  ]
+}

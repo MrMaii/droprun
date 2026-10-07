@@ -63,6 +63,24 @@ public class HomeRowsPresentationTest {
                             scenario.onActivity(a->{assertSame(outer[0],rowById(a,id[0]));assertAnchor(a,before[0],top[0]);assertSame("A native bind keeps the actual focused View",focused[0],a.getWindow().getDecorView().findFocus());assertRow(a,holder[0],a.items.get(row));safe(a);});rebound++;
                         }
                     }
+                    boolean[] namePresent=new boolean[2],namesChanged={false};Object[] priorNames=new Object[2];int[] priorPosition={0},priorTop={0};String[] priorAnchor={null};Throwable nameFailure=null;
+                    scenario.onActivity(a->{safe(a);priorPosition[0]=a.list.getFirstVisiblePosition();priorTop[0]=offset(a);priorAnchor[0]=anchor(a);for(int n=0;n<2;n++){JSONObject project=a.items.get(n);namePresent[n]=project.has("name");priorNames[n]=project.opt("name");}});
+                    String prefix=L.t("Studio reference archive — interaction and motion research for the ","工作室交互参考资料归档与研究 · 项目方向：");String[] longNames={prefix+L.t("Mobile client","移动客户端"),prefix+L.t("Desktop client","桌面客户端")};
+                    try{
+                        scenario.onActivity(a->{try{safe(a);namesChanged[0]=true;for(int n=0;n<2;n++)a.items.get(n).put("name",longNames[n]);a.adapter.notifyDataSetChanged();}catch(org.json.JSONException error){throw new AssertionError(error);}});awaitLayout(scenario);
+                        for(int position=0;position<2;position++){
+                            final int row=position;scenario.onActivity(a->a.list.setSelectionFromTop(row,0));awaitLayout(scenario);
+                            scenario.onActivity(a->{JSONObject project=a.items.get(row);MainActivity.HomeHolder holder=(MainActivity.HomeHolder)rowById(a,project.optString("id")).getTag();assertRow(a,holder,project);assertEquals(longNames[row],holder.name.getText().toString());assertTrue("Independent-name suffix is beyond the previous two-line cap",holder.name.getLayout().getLineForOffset(prefix.length())>=2);});
+                            for(boolean tail:new boolean[]{false,true}){
+                                Rect[] requested={null};scenario.onActivity(a->{TextView name=((MainActivity.HomeHolder)rowById(a,a.items.get(row).optString("id")).getTag()).name;requested[0]=nameLine(name,tail);name.requestRectangleOnScreen(new Rect(requested[0]),true);});awaitLayout(scenario);
+                                scenario.onActivity(a->{TextView name=((MainActivity.HomeHolder)rowById(a,a.items.get(row).optString("id")).getTag()).name;assertEquals(longNames[row],name.getText().toString());assertCompleteText(name);Rect shown=new Rect();assertTrue(name.getLocalVisibleRect(shown));assertTrue("The requested first or final long-name line is visible: row="+row+" tail="+tail+" requested="+requested[0].toShortString()+" shown="+shown.toShortString(),shown.contains(requested[0]));Rect physical=new Rect(requested[0]),textBounds=bounds(name),safeFrame=new Rect();physical.offset(textBounds.left,textBounds.top);a.getWindow().getDecorView().getWindowVisibleDisplayFrame(safeFrame);assertTrue(safeFrame.intersect(bounds(a.list)));assertTrue("The complete requested line fits the list and window",safeFrame.contains(physical));safe(a);});
+                            }
+                        }
+                    }catch(Throwable error){nameFailure=error;throw error;}
+                    finally{if(namesChanged[0])try{
+                        scenario.onActivity(a->{try{safe(a);for(int n=0;n<2;n++){JSONObject project=a.items.get(n);if(namePresent[n])project.put("name",priorNames[n]);else project.remove("name");assertEquals(namePresent[n],project.has("name"));assertSame(priorNames[n],project.opt("name"));}a.adapter.notifyDataSetChanged();a.list.setSelectionFromTop(priorPosition[0],priorTop[0]);}catch(org.json.JSONException error){throw new AssertionError(error);}});awaitLayout(scenario);
+                        scenario.onActivity(a->{assertAnchor(a,priorAnchor[0],priorTop[0]);assertProjects(a);safe(a);});
+                    }catch(Throwable restoreError){if(nameFailure!=null)nameFailure.addSuppressed(restoreError);else throw restoreError;}}
                     if(scale==1f){scenario.onActivity(a->a.list.setSelectionFromTop(0,0));awaitLayout(scenario);scenario.onActivity(HomeRowsPresentationTest::normalVisible);if(directory!=null){captureNormal(scenario,directory,nonce,language,theme);captured++;}}
                     scenario.onActivity(a->{safe(a);guards(identity,"before-close",a);});completed++;lifecycle(identity,"full-completed");
                 }catch(Throwable error){failure=error;throw error;}
@@ -73,6 +91,7 @@ public class HomeRowsPresentationTest {
         lifecycle("rows","SUMMARY entered="+entered+" completed="+completed+" DESTROYED="+closed+" completed_rebinds="+rebound+" captures="+captured+" business_actions=not_invoked_by_test");
     }
     static View rowById(DemoHomeRecoveryActivity a,String id){for(int n=0;n<a.list.getChildCount();n++){View row=a.list.getChildAt(n);if(row.getTag() instanceof MainActivity.HomeHolder&&id.equals(((MainActivity.HomeHolder)row.getTag()).id))return row;}fail("The requested stable project is not laid out: "+id);return null;}
+    static Rect nameLine(TextView text,boolean tail){assertCompleteText(text);android.text.Layout layout=text.getLayout();int line=tail?layout.getLineForOffset(text.length()-1):0;return new Rect(text.getCompoundPaddingLeft()+(int)Math.floor(layout.getLineLeft(line)),text.getCompoundPaddingTop()+layout.getLineTop(line),text.getCompoundPaddingLeft()+(int)Math.ceil(layout.getLineRight(line)),text.getCompoundPaddingTop()+layout.getLineBottom(line));}
     static TextView part(MainActivity.HomeHolder holder,String part){return part.equals("name")?holder.name:part.equals("counts")?holder.counts:part.equals("state")?holder.state:holder.date;}
     static void assertRow(DemoHomeRecoveryActivity a,MainActivity.HomeHolder holder,JSONObject project){
         safe(a);assertCard(a,holder,project);assertTrue(holder.card.getBackground() instanceof GradientDrawable);GradientDrawable surface=(GradientDrawable)holder.card.getBackground();assertNotNull(surface.getColor());assertEquals(Ui.SURFACE,surface.getColor().getDefaultColor());assertEquals(Ui.dp(a,Ui.RADIUS_CARD),surface.getCornerRadius(),0f);assertEquals(0f,holder.card.getElevation(),0f);assertTrue(holder.card.getForeground() instanceof RippleDrawable);assertTrue(holder.card.getMinimumHeight()>=Ui.dp(a,48));

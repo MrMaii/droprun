@@ -48,7 +48,7 @@ Codex 在你的 Windows 电脑上工作，Relay 由你部署到自己的 Cloudfl
 <p align="center">
   <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-share-count-zh-dark-20261006.png"><img src="assets/brand/source-share-count-zh-light-20261006.png" width="260" alt="01 · 分享：项目与收到材料组合确认，常驻可选留言标签、收到文件数与模型参数；保留原生仅内存验证标记"></picture>
   <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-home-cards-zh-dark-20261006.png"><img src="assets/brand/source-home-cards-zh-light-20261006.png" width="260" alt="02 · 跟进：原生 Android 项目卡，集中展示首字、名称、任务与交办次数、状态和最近交办，保留仅内存验证与示例项目标记"></picture>
-  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-delivery-result-zh-dark-20261007.png"><img src="assets/brand/source-delivery-result-zh-light-20261007.png" width="260" alt="03 · 查看：原生交办页，以结果为阅读重点，提供固定快照说明与交付入口，保留仅内存验证标记"></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-delivery-artifacts-zh-dark-20261007.png"><img src="assets/brand/source-delivery-artifacts-zh-light-20261007.png" width="260" alt="03 · 查看：原生交办页，突出结果，预览与文件入口收于同一平面分组；保留仅内存验证标记"></picture>
 </p>
 
 </details>

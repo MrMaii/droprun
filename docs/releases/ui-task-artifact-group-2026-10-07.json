@@ -1,0 +1,237 @@
+{
+  "schema": "droprun.local-ui-artifact-group.v1",
+  "date": "2026-10-07",
+  "verifiedWithinScope": true,
+  "version": {
+    "name": "0.5.14-dev",
+    "code": 27
+  },
+  "signedCandidateIncludesThisChange": false,
+  "changes": [
+    "With a report, preview explanation and delivery-file controls share one flat theme surface: radius26dp,16dp horizontal and12dp vertical padding.",
+    "The22sp result and optional screenshot thumbnail keep full reading width outside the group; empty-report and approval flow remain unchanged.",
+    "The existing preview heading starts at the group edge. Lime preview and outlined files retain their action priority; callback copy is unchanged."
+  ],
+  "sourceFreeze": {
+    "sha256": "a688330713d6f8df6d9c1922d5ca49793176aba3520a436431a403c3be5cda88",
+    "sources": 134,
+    "configs": 4
+  },
+  "sourceFiles": [
+    {
+      "file": "android/app/src/main/java/app/droprun/TaskActivity.java",
+      "sha256": "4683f4813284288e371e3b34607c543adc1ea7f7c05d138b4d216cdf8027762d"
+    },
+    {
+      "file": "android/app/src/androidTest/java/app/droprun/TaskReadingHierarchyTest.java",
+      "sha256": "1f02a903509adf45827661a435d45c7df7ff2e4d29a1bbba1417b77cf6621ebb"
+    },
+    {
+      "file": "android/app/src/androidTest/java/app/droprun/TaskPreviewFeedbackTest.java",
+      "sha256": "44b3078cfa7f93a68b4c0fa6db53d1bede7e5a9a5b78cf910dec73c04b496a45"
+    }
+  ],
+  "independentFileReview": {
+    "sha256": "010e599ca33941409b99a69aa998a3a29073863aaac8ed3c0142159bd94063f4",
+    "directChildrenReturned0": 86,
+    "rawFilesRehashed": 172,
+    "eightSourceSnapshotsAndCurrentExactAtReview": true,
+    "buildCurrentAndSixInstalledReadsByteExact": true,
+    "fiveCallbackAndThumbnailSlicesByteExact": true
+  },
+  "phases": {
+    "build": {
+      "verification": {
+        "bytes": 3975,
+        "sha256": "8f3e80a90528c3293b719e28f37c06672285c9bf3f50761e071ce90d868e674d"
+      },
+      "directChildrenReturned0": 1,
+      "rawFilesRehashed": 2
+    },
+    "install": {
+      "verification": {
+        "bytes": 20115,
+        "sha256": "3a0f9515825adc5dd441a80cf61653189961c01c1e2ef107318aeccb65c0c8ba"
+      },
+      "directChildrenReturned0": 26,
+      "rawFilesRehashed": 52
+    },
+    "reading": {
+      "verification": {
+        "bytes": 21303,
+        "sha256": "b802932a9909cb20c7f5cd4a5b72c47c967477f1dbaa0c641307b6b615000571"
+      },
+      "directChildrenReturned0": 25,
+      "rawFilesRehashed": 50
+    },
+    "capture": {
+      "verification": {
+        "bytes": 36352,
+        "sha256": "b6240ea68746f8ad7891d52c9ea629f8f9df7d4067938bca2d6303df8f9e5dab"
+      },
+      "directChildrenReturned0": 34,
+      "rawFilesRehashed": 68
+    }
+  },
+  "debugApks": [
+    {
+      "role": "app",
+      "bytes": 2181779,
+      "sha256": "3ace3b55238c72f7c16689f0523c4b5fa6489f92a7821902bf5200f30662d1c0"
+    },
+    {
+      "role": "test",
+      "bytes": 2058741,
+      "sha256": "3fa6aef5aae523109832b6907e2395e0e41ed71d7d3aa1f8b5df8590fa602ec4"
+    }
+  ],
+  "jvmReports": {
+    "tests": 27,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "lintReports": {
+    "errors": 0,
+    "warnings": 28
+  },
+  "compilerStderrRetained": {
+    "bytes": 333,
+    "sha256": "a8ee6c37168f4f4a9c0e9557479804328487165878755fc04a8cbc503e68df88"
+  },
+  "reading": {
+    "class": "app.droprun.TaskReadingHierarchyTest",
+    "method": "readingAndPlanEligibilityRemainReachableAtDoubleFont",
+    "tests": 1,
+    "junit_seconds": 12.229,
+    "nonce": "2c59f592-d0c8-45a1-bd17-de15503d22a7",
+    "nonce_scope": "Canonical instrumentation argument and source gate; reading stream tags do not emit nonce.",
+    "all_known_destroyed": true,
+    "counts": {
+      "streams": 22,
+      "lifetime": 18,
+      "ORDER": 2,
+      "COUNTERS": 2,
+      "entered": 2,
+      "full_completed": 2,
+      "DESTROYED": 2
+    },
+    "order_actual": [
+      {
+        "scene": "en|light|font2",
+        "full_report_index": 6,
+        "earlier_plan_index": 7,
+        "your_note_index": 8,
+        "full_report_bottom": 632,
+        "earlier_plan_top": 647,
+        "earlier_plan_bottom": 685,
+        "your_note_top": 707,
+        "forbidden_actions": 0
+      },
+      {
+        "scene": "zh|dark|font2",
+        "full_report_index": 6,
+        "earlier_plan_index": 7,
+        "your_note_index": 8,
+        "full_report_bottom": 632,
+        "earlier_plan_top": 643,
+        "earlier_plan_bottom": 688,
+        "your_note_top": 703,
+        "forbidden_actions": 0
+      }
+    ],
+    "zero_closed_counters": 2,
+    "raw": {
+      "bytes": 3799,
+      "sha256": "7745feb92f9277546758207846cbc5efa331360d12dcf779df1a127fbcade6d2"
+    }
+  },
+  "capture": {
+    "class": "app.droprun.DeliveryStableCaptureTest",
+    "method": "captureFourSettledMemoryDeliveries",
+    "tests": 1,
+    "junitSeconds": 22.583,
+    "raw": {
+      "bytes": 769,
+      "sha256": "561671cccb4b89b17fddd4145803d27124f5062bc3272603603fe82702dcdf27"
+    },
+    "knownDESTROYED": 4,
+    "actualTransfers": 9,
+    "PNGCRCValid": true,
+    "ownerPixelAcceptanceRemainsFalse": true
+  },
+  "directIndependentVisualReview": {
+    "sha256": "2baad04eea68b2da82e4cfd88e52947f52b7af319929db075aababa413b114bb",
+    "allFourCompleteOriginalImagesViewed": true,
+    "acceptedOnlyForFourLocalNormalFontStills": true,
+    "files": [
+      {
+        "file": "assets/brand/source-delivery-artifacts-en-light-20261007.png",
+        "bytes": 38003,
+        "sha256": "415cb6697fae9532cddf18d20f08db173bc972b078638c59d816e327f967568d",
+        "dimensions": [
+          320,
+          640
+        ],
+        "language": "en",
+        "theme": "light"
+      },
+      {
+        "file": "assets/brand/source-delivery-artifacts-en-dark-20261007.png",
+        "bytes": 38297,
+        "sha256": "28d785b595bdb3bb24dba178ba6c065221631b6fb8bbed4454f06153840b4e88",
+        "dimensions": [
+          320,
+          640
+        ],
+        "language": "en",
+        "theme": "dark"
+      },
+      {
+        "file": "assets/brand/source-delivery-artifacts-zh-light-20261007.png",
+        "bytes": 46293,
+        "sha256": "4d1d41daa74fe479531d0434de934fd56e2dcbd79f5a3719796031a965bd92be",
+        "dimensions": [
+          320,
+          640
+        ],
+        "language": "zh",
+        "theme": "light"
+      },
+      {
+        "file": "assets/brand/source-delivery-artifacts-zh-dark-20261007.png",
+        "bytes": 47578,
+        "sha256": "f80b298e2cd2fe08b8d51c06aac5236283034ec8433614d8143894ca85b3f865",
+        "dimensions": [
+          320,
+          640
+        ],
+        "language": "zh",
+        "theme": "dark"
+      }
+    ],
+    "observations": [
+      "The result remains the largest reading text, outside one flat artifact group. Task identity and the accessible result label remain subordinate.",
+      "Preview caption, lime Open preview and outlined delivery files read as one functional surface. The full English three-line and Chinese two-line memory result is visible.",
+      "Both light and dark themes retain readable text, uncut artifact controls and rounded surface edges. The memory-only notice and complete status/navigation bars are retained.",
+      "Follow-up text is visible near the viewport bottom. These stills do not prove the complete normal-font follow-up touch target; scrolling can be required."
+    ]
+  },
+  "sourceAndJUnitOnly": [
+    "Font2 line reading, flat artifact-group padding/248dp control width, full280dp result width, heading spacing, action eligibility and original sample/expanded restoration are source/JUnit assertions; only ORDER indices/bounds and closed counters have dedicated reading telemetry.",
+    "Reading canonical nonce belongs to argv/source gate; stream tags omit nonce.",
+    "Normal capture sample has no earlier plan or user note. These four stills do not demonstrate the new report/earlier-plan/note order."
+  ],
+  "deviceObservation": "Ten recorded values equal before/after install, reading and capture; globalfont2.0 retained. Not all device/static state unchanged.",
+  "boundaries": [
+    "Four specific normal-font 320x640 memory-only stills. No earlier plan, user note or thumbnail occurs in the photographed sample.",
+    "200% artifact padding/248dp controls and full280dp result width belong to the separate source-bound JUnit assertions, not these photos or dedicated geometry telemetry.",
+    "No task, preview or business action was activated. No signed-package, physical, motion, TalkBack, real work, Apple-level or performance acceptance.",
+    "Two specific ENlight/ZHdark font2 reading windows plus four EN/ZH light/dark font1 capture windows. Separate exact methods; no expanded matrix.",
+    "Known scenario DESTROYED is not executor termination. No Work, preview, user click, protected bypass, actual IME, genuine task, physical performance, full accessibility or signed-package acceptance.",
+    "Raw capture and metadata eligibility only. No direct visual/pixel acceptance by this reader.",
+    "Pure file reader: does not import owner/parser or call external process, device, network or Git.",
+    "Follow-up text appears near the bottom; the four normal-font stills do not prove its complete touch target. No hosted-site or GitHub-rendering check is claimed.",
+    "The retained earlier result-focus failure belongs to its separately dated record; this run does not replay or erase it."
+  ]
+}

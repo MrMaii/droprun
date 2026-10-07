@@ -259,8 +259,9 @@ in [the current candidate record](../releases/0.5.14-rc.1.md).
   details. Manual status checks show immediate, accessible progress, prevent
   duplicate checks and return to the actual cached/connection state. They do not
   promise that pending material was received or project work completed.
-  At 150% text size and above, project titles wrap fully instead of hiding the suffix
-  that identifies a project.
+  Project titles wrap fully at every text size instead of hiding a distinguishing
+  suffix. Long cards can grow vertically; names longer than one viewport remain
+  readable by scrolling.
   Home projects use independent matte surfaces, decorative initials and separate
   identity/count and state/recency areas. Hide initials at150% text and above;
   preserve stable IDs, complete names, focus, counts and reading position on rebind.
@@ -276,10 +277,11 @@ in [the current candidate record](../releases/0.5.14-rc.1.md).
   exists. The primary action helps inspect this delivery: a ready preview, or
   screenshots/files when no preview is ready. Follow-up remains available as a
   secondary action; emphasis does not change permissions or reopen conditions.
-  When a report exists, its summary, existing screenshot, preview state and
-  inspection actions share one stable content surface. Follow-up, approvals and
-  the full report remain separate. Missing reports keep their actual progress
-  state; the layout does not fabricate a result or preview.
+  When a report exists, its summary and existing screenshot keep the full page
+  reading width. Preview explanation and delivery-file actions form one flat
+  theme-aware group with 26dp corners and 16dp horizontal / 12dp vertical padding.
+  Follow-up, approvals and the full report remain separate. Missing reports keep
+  their current progress and preview layout; no result or preview is fabricated.
   With a report, the result summary takes visual priority: 22sp body text,
   a quiet 14sp accessible result heading and a 20sp task identity. Missing
   reports retain the 24sp identity. Settled earlier plans follow the full report,
