@@ -1,0 +1,51 @@
+{
+  "schema": "droprun.source-ci.v1",
+  "date": "2026-10-07",
+  "source": "dcccee528cecc23f74e604082d9658bc3592c0be",
+  "runId": 37573958658,
+  "attempt": 1,
+  "url": "https://github.com/MrMaii/droprun/actions/runs/37573958658",
+  "status": "completed",
+  "conclusion": "success",
+  "jobs": 3,
+  "steps": 35,
+  "requiredSuccessfulSteps": 10,
+  "matchingChecks": 3,
+  "actualTests": {
+    "core": {
+      "tests": 210,
+      "suites": 0,
+      "pass": 210,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "duration_ms": 54331.409
+    },
+    "browser": {
+      "tests": 19,
+      "suites": 0,
+      "pass": 19,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "duration_ms": 63973.5992
+    }
+  },
+  "completeLog": {
+    "bytes": 327703,
+    "sha256": "8dc0b4bbf0074b6b3f39bbfc238d7876d942112f0faf8029d3c307e2acf6bdb6",
+    "fetchExit": 0,
+    "fetchStderrBytes": 0
+  },
+  "independentReviewSHA256": "99d66bd2cf488d71fccf63852b1ea7e01a4e1363a96d1a2d564a289638e95a8d",
+  "terminalVerificationSHA256": "b6d11aef6af12be17539af3d0da7ab5f932af66896cbd5df31964c4e9524d299",
+  "boundaries": [
+    "All footer values come from this exact attempt complete log; no old CI counts borrowed.",
+    "Pure-file reader: no owner import, external process, network, device, build or Git operation.",
+    "Android Gradle success is not fresh native instrumentation, physical Android or signed-candidate15-package acceptance.",
+    "CI covers exact dcccee5 installer-feedback source; native follow-up work is later and excluded. Historical local memory-native receipts remain individually scoped.",
+    "CI package builds do not publish or install a signed candidate. Site25 publication is separately recorded. Original failures remain separate."
+  ]
+}

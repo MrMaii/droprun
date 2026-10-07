@@ -19,9 +19,16 @@ acceptance is unavailable. No stable launch or marketing handover.
   returns expected1. Anonymous/publication reader passes. Candidate14's original
   failure/continuation remains in its dated record.
 - README/setup/current links now point to verified15. Native sample-media bytes
-  stay unchanged. Website still has the separately recorded Site24 delivery;
-  candidate15 website links/media await synchronization; no Site25 publication
-  or new hosted/playback proof is established here.
+  stay unchanged. [GPTSites25](../../docs/releases/site-candidate15-2026-10-07.json)
+  succeeded2026-10-07T05:01:17.383229Z, productdcccee5/hostingba33abd8.
+  Exact111public files/112archive members; two language pages and four accepted
+  Task media additions. Bundled packaging failed on GNU tar's C: path handling;
+  archive-only continuation succeeds with no source-push replay or cleanup.
+  Native storage normalizes tar; no new hosted-browser/playback proof.
+  Setup source dcccee5 is public. Own CI37573958658 attempt1 passes three jobs,
+  35steps/10required/three checks, actual210core+19browser with none skipped;
+  full327703B log SHA8dc0b4bb and separate file reader99d66bd2 pass.
+  [Exact CI](../../docs/releases/ui-setup-active-feedback-source-ci-2026-10-07.json).
 
 ## Included UX and brand
 
@@ -52,6 +59,19 @@ acceptance is unavailable. No stable launch or marketing handover.
   The independent review directly accepts only two English light desktop
   fragments; narrow/dark new-phase visual acceptance remains open.
 
+## Later native development
+
+- Follow-up now reuses the existing outlined secondary button. Position,
+  same-session dialog, eligibility, primary delivery action and locks stay.
+  Two reviewed source/test paths are applied. Fresh finite build returns0,
+  installation26 direct children return0 with exact installed debug bytes.
+  Reading1test18.725s closes4memory windows/28streams/four zero counters.
+  Actual unscrolled normal follow-up bounds exceed the safe bottom by1px EN
+  and12px ZH. This passes the measurement probe but is not accepted first-screen
+  fit. Separate capture1/34children completes four normal originals; root views
+  two light originals and keeps them as a baseline, not final visual acceptance.
+  All86 direct phase children return0; no signed15 inclusion or dialog/IME claim.
+
 ## Authorization and blocking conditions
 
 - Local UI only. No genuine Relay/Codex task, owner Cloudflare change or social
@@ -73,18 +93,17 @@ acceptance is unavailable. No stable launch or marketing handover.
 
 ## Single recommended next action
 
-Refine the installer active-step feedback at320px and200% dark within the
-existing local browser fixtures: phase/error text and diagnostic Details should
-remain beside the initiating action without polling moving focus or expansion.
-Keep this later work outside signed15 and preserve the existing mutation locks.
-Candidate15 website synchronization is a separate publishing step; keep Site24
-until anonymous hosted links/media are checked. Do not replay denied paths.
+Reduce report-present delivery's outer margins from18top/10bottom to12top/0bottom,
+retaining the8dp artifact-to-follow-up gap. Prepare a fresh frozen source/nonce
+and require complete normal-sample initial targets after emitting raw geometry.
+Keep the original measured overflow and captures. Recheck large-text scrolling
+separately; this does not promise every long result fits its first screen.
+Installer narrow/dark phase visuals remain useful. Do not replay denied paths.
 
 ## Files this pass
 
 Bilingual README/setup; current PROJECT_CONTEXT/PRD/ROADMAP release pointers;
-CHANGELOG; candidate15 release and public evidence; website download-link builder
-and this handoff. Language-page generation and hosting are still pending.
-Existing native/media bytes are preserved; four accepted Task originals are
-prepared as additional byte-exact landing/media copies.
+CHANGELOG; candidate15 release and public evidence; website builder/generated
+EN/ZH pages, four byte-exact Task media additions and Site25 record; setup active
+feedback UI/test/requirements and its local record; Task follow-up source/test.
 Author Thomas Deng <150266369+MrMaii@users.noreply.github.com>.

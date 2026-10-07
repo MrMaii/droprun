@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-07",
+  "url": "https://droprun.dengmaizi0802.chatgpt.site",
+  "version": 25,
+  "projectId": "appgprj_6ab726bb8cd48191acd3234da262627d",
+  "versionId": "appgprj_6ab726bb8cd48191acd3234da262627d~appgver_17a57de020948191958d67e463fc6249",
+  "deploymentId": "appgdep_6ac5d216c1548191922d2840afe5597d",
+  "status": "succeeded",
+  "succeededAtUtc": "2026-10-07T05:01:17.383229+00:00",
+  "productSource": "dcccee528cecc23f74e604082d9658bc3592c0be",
+  "hostingSource": "ba33abd8acafa91e87cf4fe8915d464bc37f7608",
+  "sourceAudience": "public; preserved from existing Site",
+  "publicFiles": 111,
+  "archiveFiles": 112,
+  "changedFiles": [
+    "index.html",
+    "zh/index.html",
+    "media/source-delivery-artifacts-en-light-20261007.png",
+    "media/source-delivery-artifacts-en-dark-20261007.png",
+    "media/source-delivery-artifacts-zh-light-20261007.png",
+    "media/source-delivery-artifacts-zh-dark-20261007.png"
+  ],
+  "candidate": "v0.5.15-rc.1",
+  "localArchive": {
+    "bytes": 14203985,
+    "sha256": "8cc45bdf3503600dc599c6a67fad6c787cadd8aa65450ed510e582f4a3244ed1",
+    "exactReviewedStaticInventory": true
+  },
+  "nativeArchiveStorage": {
+    "archive_format": "tar",
+    "sediment_file_id": "file_0000000068c481f7bd42a7d2e5fca1f6",
+    "content_hash": "sha256:04480c9d6db6843d544cba55225c32e92f3a3411af4ae2e5223b109f88816ffd",
+    "size_bytes": 15370240,
+    "file_count": 112
+  },
+  "originalWorkflow": {
+    "wrapperReturnedExit": 0,
+    "workflowSucceeded": false,
+    "reason": "GNU tar interpreted the Windows C: archive path as a remote address. The bundled workflow completed saveSource push and exact remote-head validation before its packaging failure."
+  },
+  "continuation": {
+    "archiveOnly": true,
+    "sourcePushReplayed": false,
+    "cleanHostingCheckout": true,
+    "privateFilesAbsent": true,
+    "olderMediaBytesPreserved": true,
+    "thumbnailChanged": false,
+    "cleanup": false
+  },
+  "authorAndCommitter": "Thomas Deng <150266369+MrMaii@users.noreply.github.com>",
+  "verificationScope": "Native succeeded deployment and exact local source/archive inventory. Native storage normalizes tar; its hash is not the raw gzip hash. No additional hosted-browser, video playback, signed-native or genuine-workflow acceptance.",
+  "stableLaunch": false
+}
