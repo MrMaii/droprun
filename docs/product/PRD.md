@@ -329,6 +329,9 @@ in [the current candidate record](../releases/0.5.15-rc.1.md).
   Selecting a model or effort in the share editor preserves keyboard focus on
   that option and keeps it visible. These choices do not change Settings defaults
   or create a handoff before Send.
+  Rebuilding the share project rows retains keyboard focus on the same surviving
+  full project ID and reveals it. Search and Refresh keep their own focus;
+  touch reading does not use this keyboard restoration path.
   Before Send, the editor shows the saved execution preference and its consequence,
   or explicitly says it is unconfirmed. It explains that the Relay's setting on
   first receipt determines the task's mode; a cached preference is not a promise.

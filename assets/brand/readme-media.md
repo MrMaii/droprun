@@ -795,6 +795,16 @@ in the samples; its focus treatment is not the default unfocused appearance.
 own six closed local windows and the27JVM/Android lint results. These later
 development images do not show the signed0.5.15-rc.1 download or real handoffs.
 
+## Share project focus · October 7, 2026
+
+`source-share-focus-{en-light,zh-dark}-20261007.png` are byte-exact320×640
+native memory originals after a local project-row replacement. Both reviewers
+accept the complete labels/marker and second-row gray focus fill; first-row
+green selection remains. Launcher background is excluded. [Closed before/after
+focus and exact hashes](../../docs/releases/ui-share-project-focus-2026-10-07.md)
+own this finite font1 scope. No real read, Send, motion, physical or signed-App
+acceptance is inferred; these images do not replace the public native tour.
+
 ## Local work and data flow wording · October 7, 2026
 
 The bilingual README, privacy text and architecture descriptions distinguish local

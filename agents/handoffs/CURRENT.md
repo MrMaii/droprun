@@ -33,6 +33,17 @@ handover. Current user request takes precedence over dated handoffs.
 
 ## Accepted development and present work
 
+- [Share project focus](../../docs/releases/ui-share-project-focus-2026-10-07.md)
+  keeps a surviving full-ID keyboard destination through local row replacement.
+  Closed baseline13.217s observes0/2 retained focus; accepted13.172s observes2/2,
+  with Search/Refresh focus and12 fields unchanged. Each take retains23 events,
+  16 zero guard receipts, two known DESTROYED/drained windows,146 frozen files,
+  1/26/29 returned-zero children and112 raw files. Independent file readers pass;
+  both reviewers directly accept both font1 after originals, including the
+  second-row gray focus fill. Touch restore records setter return only. No actual
+  async catalog, removed-row fallback, Send, motion,200%, physical or signed-App
+  acceptance. Next visual refinement: Home state before secondary counts/date.
+
 - [Share confirmation names first](../../docs/releases/ui-share-name-first-2026-10-07.md)
   uses complete20sp names and248dp reading width without decorative initials.
   A fresh12.754s accepted method closes two EN/light and ZH/dark font1 memory

@@ -1,0 +1,173 @@
+{
+  "date": "2026-10-07",
+  "status": "Accepted local development; outside immutable signed candidate16",
+  "version": {
+    "name": "0.5.16-dev",
+    "code": 29
+  },
+  "productionSha256": "d4f8864a69dfb2d566d5ef919fb8a2a40db74ddf698b30bae88eeb4cefde275c",
+  "testSha256": "e665133065d08b1540da13f651a7b3c093f1f506576f2c497b6398136d4164f4",
+  "helpers": {
+    "owner": "aa25d5bbf33479df867c42cebadfd2c0e54f22880a12fdf2990df31eb243a6ec",
+    "protocol": "d481c198dfa710066489f36cab8aaf3e2357e1dd5753694c376b7a316e70a634",
+    "reader": "7a4bef3137157d7935fe6ab6515acb8a0b96f40cb923ac41f181a4af984771a1",
+    "binder": "52cc299190687c6801c794d35363152ba3f3c9ec24d65ecc022957bfec233859"
+  },
+  "baseline": {
+    "nonce": "8f5e65b3-7868-47e3-9cc1-ef8c2901fd46",
+    "readerVerificationSha256": "efe8d0fe45b46c4ddd54a2dcd5afa9ab9ebc07c1887d76b9ef8a0ab61491f78d",
+    "bindingsSha256": "bb81887854012cd671365c325468d14624dde750fadaa973b6e54e4326c97d91",
+    "source": {
+      "freezeSha256": "896c96102de653e4cf58d845c2abd4d79980824602712a88a8ad93b63dbf5fb3",
+      "counts": {
+        "sources": 142,
+        "configs": 4
+      },
+      "snapshotsRehashed": 146,
+      "currentBytesExactAtReview": true
+    },
+    "stages": {
+      "build": "b494bbd467a86b009dca291a27fd1e74f4291d2ca8e49054a0328811f0797d63",
+      "install": "2867125743aae4c6cb0fa75c9cc1e70af8adaad36e4f7845ce00e9e39a5b1d94",
+      "native": "630adcffcdf34dcbf099e4893584f0fbe6659d10b07f3a476a95e503d4f0d755"
+    },
+    "directChildren": {
+      "build": 1,
+      "install": 26,
+      "native": 29
+    },
+    "rawFilesRehashed": 112,
+    "seconds": 13.217,
+    "events": 23,
+    "summary": {
+      "entered": 2,
+      "full_completed": 2,
+      "DESTROYED": 2,
+      "captures": 2,
+      "focused_row_rebuilds": 2,
+      "same_id_focus_observed": 0,
+      "touch_mode_restore_returns": 2,
+      "guard_snapshots": 16,
+      "statics_restored": true,
+      "business_actions": "not_invoked_by_test",
+      "scope": "Two-project font1 memory selector after a local row rebuild; no read request, input or business click"
+    },
+    "unitActual": {
+      "tests": 27,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "lintActual": {
+      "errors": 0,
+      "warnings": 29
+    },
+    "apks": [
+      {
+        "role": "app",
+        "path": "android/app/build/outputs/apk/debug/app-debug.apk",
+        "package": "app.droprun.mobile.debug",
+        "bytes": 2213162,
+        "sha256": "79c0560e0fec6c92d67db0b53204e4b78ab8ea8db1001b21754875b979c19d55",
+        "outputMetadataSha256": "66140bac0675e030042f3d1d044fa98604bb9696b9c0d56dddca0b8a0d1329e0"
+      },
+      {
+        "role": "test",
+        "path": "android/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk",
+        "package": "app.droprun.mobile.debug.test",
+        "bytes": 2117771,
+        "sha256": "abc56ef92360f8a558e6ba147c7ff74f673b4fa3715f458fc7fae53a5f119aec",
+        "outputMetadataSha256": "181493b9ffc5a1e4217dc361fbffacc45894e47b81a418b200c67c9b71a83803"
+      }
+    ]
+  },
+  "accepted": {
+    "nonce": "53d4c553-30f1-49c8-9574-f3fdb827d9f9",
+    "readerVerificationSha256": "f6496a6ff71c3f484fb6717f844722a903f98d002bd9018252daea3606e2a9e4",
+    "bindingsSha256": "e0531e6a07ec8f3e4be97364682859842f603be121bfa576d669158046c1b571",
+    "source": {
+      "freezeSha256": "c78b3b954836dd65df27498d1892341138a585c28b79f9aa69b3ad4c072533e3",
+      "counts": {
+        "sources": 142,
+        "configs": 4
+      },
+      "snapshotsRehashed": 146,
+      "currentBytesExactAtReview": true
+    },
+    "stages": {
+      "build": "8e51fc8184a49c580c0493eed6c39ecd6302cb9b81f9a8fd76383d141c7d64b9",
+      "install": "496d52c8bc4013839f689bddb937f7c94128e39c8c11784b2632d2be0589e51e",
+      "native": "ae975d34bfa9cb52d3fa658bcc18f918fd73d867a0ac468e0be9493bf7952cfa"
+    },
+    "directChildren": {
+      "build": 1,
+      "install": 26,
+      "native": 29
+    },
+    "rawFilesRehashed": 112,
+    "seconds": 13.172,
+    "events": 23,
+    "summary": {
+      "entered": 2,
+      "full_completed": 2,
+      "DESTROYED": 2,
+      "captures": 2,
+      "focused_row_rebuilds": 2,
+      "same_id_focus_observed": 2,
+      "touch_mode_restore_returns": 2,
+      "guard_snapshots": 16,
+      "statics_restored": true,
+      "business_actions": "not_invoked_by_test",
+      "scope": "Two-project font1 memory selector after a local row rebuild; no read request, input or business click"
+    },
+    "unitActual": {
+      "tests": 27,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "lintActual": {
+      "errors": 0,
+      "warnings": 29
+    },
+    "apks": [
+      {
+        "role": "app",
+        "path": "android/app/build/outputs/apk/debug/app-debug.apk",
+        "package": "app.droprun.mobile.debug",
+        "bytes": 2213330,
+        "sha256": "b042797a092de062993180e9c005fbd1064abb307bc626ba50667728bb10b05d",
+        "outputMetadataSha256": "66140bac0675e030042f3d1d044fa98604bb9696b9c0d56dddca0b8a0d1329e0"
+      },
+      {
+        "role": "test",
+        "path": "android/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk",
+        "package": "app.droprun.mobile.debug.test",
+        "bytes": 2117771,
+        "sha256": "abc56ef92360f8a558e6ba147c7ff74f673b4fa3715f458fc7fae53a5f119aec",
+        "outputMetadataSha256": "181493b9ffc5a1e4217dc361fbffacc45894e47b81a418b200c67c9b71a83803"
+      }
+    ]
+  },
+  "originals": [
+    {
+      "path": "assets/brand/source-share-focus-en-light-20261007.png",
+      "bytes": 65470,
+      "sha256": "2f4cc92eedfbcd959bd92243b54e919f8751e1198daed48eab793cca3c26f9ad",
+      "review": "Root and separate reviewer directly viewed this original; fixed font1 content/marker and distinct second-row focus fill accepted. Launcher background is excluded."
+    },
+    {
+      "path": "assets/brand/source-share-focus-zh-dark-20261007.png",
+      "bytes": 56815,
+      "sha256": "3e3f7ae921fbe9312fe8674761c281a9f59aa24a5f5dc2d8b8c1150be31762df",
+      "review": "Root and separate reviewer directly viewed this original; fixed font1 content/marker and distinct second-row focus fill accepted. Launcher background is excluded."
+    }
+  ],
+  "scope": [
+    "Local renderProjects row replacement; no asynchronous catalog request, removal/fallback, business click, Send or Pair.",
+    "Exact fields, Search and Refresh focus retained; eight zero fixture counters, known destruction/drain and static restoration are test-reported assertions.",
+    "Touch-mode restoration records a returned framework setter, not a new global-mode observation.",
+    "Ten read-only device values match. No continuous motion, 200%, physical keyboard/device, real Relay or signed-App acceptance.",
+    "Root tool transcript separately observes both parent owner/reader returns; selected file records do not independently prove parent lifetime."
+  ]
+}

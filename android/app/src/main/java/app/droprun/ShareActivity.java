@@ -347,7 +347,7 @@ public class ShareActivity extends StyledActivity {
         return column;
     }
     void renderProjects(){
-        if(projectList==null)return;projectList.removeAllViews();
+        if(projectList==null)return;View previous=projectList.findFocus();Object focusTag=previous!=null&&!previous.isInTouchMode()?previous.getTag():null;projectList.removeAllViews();
         JSONArray projects=store.projects(),history=store.activity();
         search.setVisibility(projects.length()>6||!query.isEmpty()?View.VISIBLE:View.GONE);
         updateProjectRead();if(projects.length()==0)return;
@@ -363,6 +363,9 @@ public class ShareActivity extends StyledActivity {
         }
         if(shown==0)projectList.addView(notice(L.t("No matching projects","没有匹配的项目")));
         if(hidden>0){TextView more=Ui.linkButton(this,L.t("Show all ","显示全部 ")+projects.length()+L.t(" projects"," 个项目"));more.setOnClickListener(v->{showAll=true;renderProjects();});LinearLayout.LayoutParams params=new LinearLayout.LayoutParams(-2,-2);params.setMargins(dp(6),dp(6),0,dp(2));projectList.addView(more,params);}
+        if(focusTag!=null){View replacement=projectList.findViewWithTag(focusTag);if(replacement!=null&&replacement.requestFocus())replacement.post(()->{
+            if(replacement.hasFocus())replacement.requestRectangleOnScreen(new android.graphics.Rect(0,0,replacement.getWidth(),replacement.getHeight()),true);
+        });}
     }
     View projectRow(JSONObject project,JSONArray catalog,JSONArray history){
         String id=project.optString("id"),name=ProjectPresentation.label(id,project.optString("name"),catalog,history);boolean available=project.optBoolean("available",true),enabled=Store.projectEnabled(project),chosen=id.equals(selected);
@@ -373,7 +376,7 @@ public class ShareActivity extends StyledActivity {
         words.addView(Ui.caption(this,!available?L.t("Unavailable","暂不可用"):enabled?L.t("Allowed","已授权"):L.t("Allow access","需授权")),Ui.margins(this,4,0));row.addView(words,Ui.grow());
         Ui.space(row,8);ImageView arrow=new ImageView(this);arrow.setImageResource(chosen?R.drawable.ic_check:R.drawable.ic_chevron_left);arrow.setRotation(chosen?0:180);arrow.setImageTintList(ColorStateList.valueOf(chosen?Ui.ACCENT:Ui.DIM));arrow.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);row.addView(arrow,Ui.square(this,18));
         row.setClickable(true);row.setFocusable(true);row.setContentDescription(name+(!available?L.t(", unavailable","，暂不可用"):enabled?L.t(", allowed","，已授权"):L.t(", permission required","，需授权"))+(chosen?L.t(", selected","，已选择"):""));Ui.bindPress(row);
-        row.setOnClickListener(v->pick(project));
+        row.setTag("project:"+id);row.setOnClickListener(v->pick(project));
         return row;
     }
     void pick(JSONObject project){
