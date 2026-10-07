@@ -120,3 +120,18 @@ bottom clearance. Root and an independent reviewer accept all four normal stills
 the original overflow baseline remains unchanged. This does not claim arbitrary
 first-screen fit, actual press/dialog/IME, new motion, physical or signed-package
 acceptance. The outlined action's existing interaction states are reused.
+
+### Project-identity extension — accepted 2026-10-07
+
+Inside the access surface, the distinguishing ID previously read as another
+part of the long project name. Keep the existing TextView and complete15sp
+medium name; put only the helper-appended ID on a separate12sp muted line.
+Unique names get no hint. Use the exact known name length, preserving names
+that contain a middle-dot and prefixes that must extend beyond eight characters.
+The original full accessibility label, permission description, confirmation,
+callbacks,48dp target, large-text stacking and focus rules remain.
+
+A new chip or nested card would add another visual boundary without a new
+function. Two text levels clarify identity within the existing surface.
+[Four fixed memory windows and two normal originals](../releases/ui-settings-project-identity-2026-10-07.md)
+own the actual local scope; this adds no real permission or physical acceptance.

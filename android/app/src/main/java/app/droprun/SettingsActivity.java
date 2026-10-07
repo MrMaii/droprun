@@ -217,10 +217,16 @@ public class SettingsActivity extends StyledActivity {
         if(projects.length()==0)card.addView(Ui.caption(this,L.t("No projects have synced yet. Check that your Connector is running.","电脑还没有同步项目。请确认 Connector 已启动。")));
         for(int n=0;n<projects.length();n++){
             JSONObject p=projects.optJSONObject(n);if(p==null)continue;
-            boolean enabled=Store.projectEnabled(p);String id=p.optString("id"),name=ProjectPresentation.label(id,p.optString("name"),projects,history);
+            boolean enabled=Store.projectEnabled(p);String id=p.optString("id"),projectName=p.optString("name"),name=ProjectPresentation.label(id,projectName,projects,history);
             if(card.getChildCount()>0)card.addView(Ui.divider(this));
             boolean large=getResources().getConfiguration().fontScale>=1.5f;LinearLayout line=Ui.row(this);if(large)line.setOrientation(LinearLayout.VERTICAL);line.setPadding(0,dp(6),0,dp(6));line.setMinimumHeight(dp(48));
-            TextView title=Ui.text(this,name,15,Ui.TEXT);line.addView(title,large?Ui.fill():Ui.grow());
+            TextView title=Ui.text(this,name,15,Ui.TEXT);title.setTypeface(Ui.medium());title.setContentDescription(name);
+            if(!name.equals(projectName)){
+                android.text.SpannableString identity=new android.text.SpannableString(projectName+"\n"+name.substring(projectName.length()+3));int hintStart=projectName.length()+1;
+                identity.setSpan(new android.text.style.AbsoluteSizeSpan(Math.round(android.util.TypedValue.applyDimension(android.util.TypedValue.COMPLEX_UNIT_SP,12,getResources().getDisplayMetrics()))),hintStart,identity.length(),android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                identity.setSpan(new android.text.style.ForegroundColorSpan(Ui.MUTED),hintStart,identity.length(),android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);title.setText(identity);
+            }
+            line.addView(title,large?Ui.fill():Ui.grow());
             boolean pending=switching.contains(id);
             TextView toggle=Ui.chip(this,pending?L.t("Updating","更改中"):enabled?L.t("Allowed","已允许"):L.t("Not allowed","未允许"),enabled);
             toggle.setTag("project-access:"+id);

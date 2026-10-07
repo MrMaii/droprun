@@ -1,0 +1,535 @@
+{
+  "date": "2026-10-07",
+  "scope": "Four fixed Settings memory windows and two normal originals. Full labels and spans, individually revealed original-sample lines, same-ID keyboard focus and same-window unique/colliding variants only. No real permission, physical, signed-package, motion, TalkBack or executor-termination acceptance.",
+  "nonce": "14f379af-a760-47d6-b175-6fa2cf30e4a8",
+  "outsideSignedCandidate": "0.5.15-rc.1",
+  "source": {
+    "freezeSha256": "5ffd9ba865907afa44c411d309678629be11c665523e2f9446ae8c4c45bbe5c0",
+    "sources": 135,
+    "configs": 4,
+    "currentExact": true,
+    "ownerSha256": "a796bde79eec1f4115cd53046c432c8021392f3fd6de3337c5e2f5aa410dd99c",
+    "protocolSha256": "fb6e7456ce4f894ae92b2415b15e146e215d22ef23f66ba6719f67308e474573"
+  },
+  "sourceChanges": [
+    {
+      "target": "android/app/src/main/java/app/droprun/SettingsActivity.java",
+      "beforeSha256": "e49ed75cdccabbd0cc4375f7d60cbfa049812174bf6715b5abf37839fe56693b",
+      "afterSha256": "253f021cf5010560bf15a54a873c348968172448dff14c7fd59207262b897390"
+    },
+    {
+      "target": "android/app/src/androidTest/java/app/droprun/SettingsReadingPresentationTest.java",
+      "beforeSha256": "138ca2dc2558aa42998f8f159192aabccb47daa731cbb4728aafa16cec43e35a",
+      "afterSha256": "cc3745efc9e4f4421a66a9aafd9b27b9128fca601c21491ae7feb982fea1481f"
+    },
+    {
+      "target": "android/app/src/androidTest/java/app/droprun/SettingsProjectIdentityTest.java",
+      "beforeSha256": null,
+      "afterSha256": "4bf92ecdc35e7491beed0c012d75d1690715dc34a46bd073624f79d2fdc3d387"
+    }
+  ],
+  "phaseCounts": {
+    "build": 1,
+    "install": 26,
+    "native": 29
+  },
+  "phaseVerificationSha256": {
+    "build": "4a8379b7b9002c709bfa7d587f873eaa3128e8f9ddc1668055336086715ec6d6",
+    "install": "8dffbfec89b89e635fc4648267bc9201b20e4e06a44d7fc60c62ec7a9f3f5c0c",
+    "native": "b51d5c8920e57f09d8b75ddd7e3cada92dcf993775cd6f2539b317a36a30b3c6"
+  },
+  "rawOutputCount": 112,
+  "sourceSnapshotCount": 6,
+  "apks": [
+    {
+      "role": "app",
+      "path": "android/app/build/outputs/apk/debug/app-debug.apk",
+      "package": "app.droprun.mobile.debug",
+      "bytes": 2186745,
+      "sha256": "0872cbfc5263c10692a25470c12acd6df5552750b7168eb266f05c038ecf302a",
+      "outputMetadataSha256": "9e1f9ce502ae4d5056e5560d87c92140638933435431e3fcb3538a6a29ca57d6"
+    },
+    {
+      "role": "test",
+      "path": "android/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk",
+      "package": "app.droprun.mobile.debug.test",
+      "bytes": 2069954,
+      "sha256": "7c8ba1ec4d2e53f52c5f65d3c26af0a9b99a998e9cad4814925f8d45accca331",
+      "outputMetadataSha256": "181493b9ffc5a1e4217dc361fbffacc45894e47b81a418b200c67c9b71a83803"
+    }
+  ],
+  "unitActual": {
+    "tests": 27,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "lintActual": {
+    "errors": 0,
+    "warnings": 28
+  },
+  "native": {
+    "counts": {
+      "events": 82,
+      "windows": 4,
+      "entered": 4,
+      "full_completed": 4,
+      "DESTROYED": 4,
+      "zero_guard_streams": 20,
+      "captures": 2,
+      "individually_visible_lines": 28
+    },
+    "junit": {
+      "class": "app.droprun.SettingsProjectIdentityTest",
+      "method": "projectIdentitySeparatesNameFromIdWithoutChangingAccess",
+      "tests": 1,
+      "failures": 0,
+      "seconds": 26.467
+    },
+    "guardReceipts": [
+      {
+        "scene": "project-identity|14f379af-a760-47d6-b175-6fa2cf30e4a8|en|light|1",
+        "phase": "focus-restored-same-id",
+        "forbidden": 0,
+        "work_factories": 0,
+        "model_saves": 0
+      },
+      {
+        "scene": "project-identity|14f379af-a760-47d6-b175-6fa2cf30e4a8|en|light|1",
+        "phase": "unique-name-positive-control",
+        "forbidden": 0,
+        "work_factories": 0,
+        "model_saves": 0
+      },
+      {
+        "scene": "project-identity|14f379af-a760-47d6-b175-6fa2cf30e4a8|en|light|1",
+        "phase": "colliding-prefix-positive-control",
+        "forbidden": 0,
+        "work_factories": 0,
+        "model_saves": 0
+      },
+      {
+        "scene": "project-identity|14f379af-a760-47d6-b175-6fa2cf30e4a8|en|light|1",
+        "phase": "before-close",
+        "forbidden": 0,
+        "work_factories": 0,
+        "model_saves": 0
+      },
+      {
+        "scene": "project-identity|14f379af-a760-47d6-b175-6fa2cf30e4a8|en|light|1",
+        "phase": "after-destroyed",
+        "forbidden": 0,
+        "work_factories": 0,
+        "model_saves": 0
+      },
+      {
+        "scene": "project-identity|14f379af-a760-47d6-b175-6fa2cf30e4a8|zh|dark|1",
+        "phase": "focus-restored-same-id",
+        "forbidden": 0,
+        "work_factories": 0,
+        "model_saves": 0
+      },
+      {
+        "scene": "project-identity|14f379af-a760-47d6-b175-6fa2cf30e4a8|zh|dark|1",
+        "phase": "unique-name-positive-control",
+        "forbidden": 0,
+        "work_factories": 0,
+        "model_saves": 0
+      },
+      {
+        "scene": "project-identity|14f379af-a760-47d6-b175-6fa2cf30e4a8|zh|dark|1",
+        "phase": "colliding-prefix-positive-control",
+        "forbidden": 0,
+        "work_factories": 0,
+        "model_saves": 0
+      },
+      {
+        "scene": "project-identity|14f379af-a760-47d6-b175-6fa2cf30e4a8|zh|dark|1",
+        "phase": "before-close",
+        "forbidden": 0,
+        "work_factories": 0,
+        "model_saves": 0
+      },
+      {
+        "scene": "project-identity|14f379af-a760-47d6-b175-6fa2cf30e4a8|zh|dark|1",
+        "phase": "after-destroyed",
+        "forbidden": 0,
+        "work_factories": 0,
+        "model_saves": 0
+      },
+      {
+        "scene": "project-identity|14f379af-a760-47d6-b175-6fa2cf30e4a8|en|light|2",
+        "phase": "focus-restored-same-id",
+        "forbidden": 0,
+        "work_factories": 0,
+        "model_saves": 0
+      },
+      {
+        "scene": "project-identity|14f379af-a760-47d6-b175-6fa2cf30e4a8|en|light|2",
+        "phase": "unique-name-positive-control",
+        "forbidden": 0,
+        "work_factories": 0,
+        "model_saves": 0
+      },
+      {
+        "scene": "project-identity|14f379af-a760-47d6-b175-6fa2cf30e4a8|en|light|2",
+        "phase": "colliding-prefix-positive-control",
+        "forbidden": 0,
+        "work_factories": 0,
+        "model_saves": 0
+      },
+      {
+        "scene": "project-identity|14f379af-a760-47d6-b175-6fa2cf30e4a8|en|light|2",
+        "phase": "before-close",
+        "forbidden": 0,
+        "work_factories": 0,
+        "model_saves": 0
+      },
+      {
+        "scene": "project-identity|14f379af-a760-47d6-b175-6fa2cf30e4a8|en|light|2",
+        "phase": "after-destroyed",
+        "forbidden": 0,
+        "work_factories": 0,
+        "model_saves": 0
+      },
+      {
+        "scene": "project-identity|14f379af-a760-47d6-b175-6fa2cf30e4a8|zh|dark|2",
+        "phase": "focus-restored-same-id",
+        "forbidden": 0,
+        "work_factories": 0,
+        "model_saves": 0
+      },
+      {
+        "scene": "project-identity|14f379af-a760-47d6-b175-6fa2cf30e4a8|zh|dark|2",
+        "phase": "unique-name-positive-control",
+        "forbidden": 0,
+        "work_factories": 0,
+        "model_saves": 0
+      },
+      {
+        "scene": "project-identity|14f379af-a760-47d6-b175-6fa2cf30e4a8|zh|dark|2",
+        "phase": "colliding-prefix-positive-control",
+        "forbidden": 0,
+        "work_factories": 0,
+        "model_saves": 0
+      },
+      {
+        "scene": "project-identity|14f379af-a760-47d6-b175-6fa2cf30e4a8|zh|dark|2",
+        "phase": "before-close",
+        "forbidden": 0,
+        "work_factories": 0,
+        "model_saves": 0
+      },
+      {
+        "scene": "project-identity|14f379af-a760-47d6-b175-6fa2cf30e4a8|zh|dark|2",
+        "phase": "after-destroyed",
+        "forbidden": 0,
+        "work_factories": 0,
+        "model_saves": 0
+      }
+    ],
+    "lineReceipts": [
+      {
+        "scene": "project-identity|14f379af-a760-47d6-b175-6fa2cf30e4a8|en|light|1",
+        "id": "memory-mobile",
+        "line": 0
+      },
+      {
+        "scene": "project-identity|14f379af-a760-47d6-b175-6fa2cf30e4a8|en|light|1",
+        "id": "memory-mobile",
+        "line": 1
+      },
+      {
+        "scene": "project-identity|14f379af-a760-47d6-b175-6fa2cf30e4a8|en|light|1",
+        "id": "memory-mobile",
+        "line": 2
+      },
+      {
+        "scene": "project-identity|14f379af-a760-47d6-b175-6fa2cf30e4a8|en|light|1",
+        "id": "memory-mobile",
+        "line": 3
+      },
+      {
+        "scene": "project-identity|14f379af-a760-47d6-b175-6fa2cf30e4a8|en|light|1",
+        "id": "memory-desktop",
+        "line": 0
+      },
+      {
+        "scene": "project-identity|14f379af-a760-47d6-b175-6fa2cf30e4a8|en|light|1",
+        "id": "memory-desktop",
+        "line": 1
+      },
+      {
+        "scene": "project-identity|14f379af-a760-47d6-b175-6fa2cf30e4a8|en|light|1",
+        "id": "memory-desktop",
+        "line": 2
+      },
+      {
+        "scene": "project-identity|14f379af-a760-47d6-b175-6fa2cf30e4a8|en|light|1",
+        "id": "memory-desktop",
+        "line": 3
+      },
+      {
+        "scene": "project-identity|14f379af-a760-47d6-b175-6fa2cf30e4a8|zh|dark|1",
+        "id": "memory-mobile",
+        "line": 0
+      },
+      {
+        "scene": "project-identity|14f379af-a760-47d6-b175-6fa2cf30e4a8|zh|dark|1",
+        "id": "memory-mobile",
+        "line": 1
+      },
+      {
+        "scene": "project-identity|14f379af-a760-47d6-b175-6fa2cf30e4a8|zh|dark|1",
+        "id": "memory-mobile",
+        "line": 2
+      },
+      {
+        "scene": "project-identity|14f379af-a760-47d6-b175-6fa2cf30e4a8|zh|dark|1",
+        "id": "memory-desktop",
+        "line": 0
+      },
+      {
+        "scene": "project-identity|14f379af-a760-47d6-b175-6fa2cf30e4a8|zh|dark|1",
+        "id": "memory-desktop",
+        "line": 1
+      },
+      {
+        "scene": "project-identity|14f379af-a760-47d6-b175-6fa2cf30e4a8|zh|dark|1",
+        "id": "memory-desktop",
+        "line": 2
+      },
+      {
+        "scene": "project-identity|14f379af-a760-47d6-b175-6fa2cf30e4a8|en|light|2",
+        "id": "memory-mobile",
+        "line": 0
+      },
+      {
+        "scene": "project-identity|14f379af-a760-47d6-b175-6fa2cf30e4a8|en|light|2",
+        "id": "memory-mobile",
+        "line": 1
+      },
+      {
+        "scene": "project-identity|14f379af-a760-47d6-b175-6fa2cf30e4a8|en|light|2",
+        "id": "memory-mobile",
+        "line": 2
+      },
+      {
+        "scene": "project-identity|14f379af-a760-47d6-b175-6fa2cf30e4a8|en|light|2",
+        "id": "memory-mobile",
+        "line": 3
+      },
+      {
+        "scene": "project-identity|14f379af-a760-47d6-b175-6fa2cf30e4a8|en|light|2",
+        "id": "memory-desktop",
+        "line": 0
+      },
+      {
+        "scene": "project-identity|14f379af-a760-47d6-b175-6fa2cf30e4a8|en|light|2",
+        "id": "memory-desktop",
+        "line": 1
+      },
+      {
+        "scene": "project-identity|14f379af-a760-47d6-b175-6fa2cf30e4a8|en|light|2",
+        "id": "memory-desktop",
+        "line": 2
+      },
+      {
+        "scene": "project-identity|14f379af-a760-47d6-b175-6fa2cf30e4a8|en|light|2",
+        "id": "memory-desktop",
+        "line": 3
+      },
+      {
+        "scene": "project-identity|14f379af-a760-47d6-b175-6fa2cf30e4a8|zh|dark|2",
+        "id": "memory-mobile",
+        "line": 0
+      },
+      {
+        "scene": "project-identity|14f379af-a760-47d6-b175-6fa2cf30e4a8|zh|dark|2",
+        "id": "memory-mobile",
+        "line": 1
+      },
+      {
+        "scene": "project-identity|14f379af-a760-47d6-b175-6fa2cf30e4a8|zh|dark|2",
+        "id": "memory-mobile",
+        "line": 2
+      },
+      {
+        "scene": "project-identity|14f379af-a760-47d6-b175-6fa2cf30e4a8|zh|dark|2",
+        "id": "memory-desktop",
+        "line": 0
+      },
+      {
+        "scene": "project-identity|14f379af-a760-47d6-b175-6fa2cf30e4a8|zh|dark|2",
+        "id": "memory-desktop",
+        "line": 1
+      },
+      {
+        "scene": "project-identity|14f379af-a760-47d6-b175-6fa2cf30e4a8|zh|dark|2",
+        "id": "memory-desktop",
+        "line": 2
+      }
+    ],
+    "boundaries": [
+      "Four closed memory windows; no permission/model/Refresh/navigation activation or real preference/Store write.",
+      "Span size/color, original full accessibility labels, same-ID keyboard focus, unique names and collision extension are actual source/JUnit assertions, not serialized measurements.",
+      "Line receipts identify every individually revealed original-sample line; unique/collision controls assert complete Layout text but do not add scroll or capture claims.",
+      "Framework touch-mode setters return after known close; no post-setter observation, physical-device or TalkBack claim. Font/language/dark/all15palette restoration is source-asserted and followed by an event.",
+      "Only two normal-font stills; system bars/clipping/readability require direct visual review."
+    ]
+  },
+  "reader": {
+    "sha256": "256f244f015567c97b058ba7a2f3c60fee9d0d895788c756b7819469f6c17ba4",
+    "reportSha256": "7e17252b8fe12c492953bd858c2349a46ad05aa632e16fee76f9586315663bf2",
+    "nativeParsing": "Reuses the exact hash-bound pure-file protocol; not an independently authored native semantic parser. Raw event counts and command/file identities are independently checked below.",
+    "commandsExecuted": 0,
+    "ownerImported": false
+  },
+  "visualReview": {
+    "rootDirectlyViewedOriginals": 2,
+    "separateReviewSha256": "2f4633c4da7584752487c6aa6eb93c6dc02a554e9f5c19505a3c6a15bff5f3fe",
+    "reviewKind": "Direct original-image review independent of root visual inspection; reviewer contributed to the proposal/reader, not an independent implementation audit.",
+    "acceptedWithinScope": true,
+    "notClaimed": [
+      "Full Settings page or full project-access group visibility",
+      "The second row or footer fits this capture",
+      "EN dark or ZH light new stills",
+      "Font2 pixel review; large-text reading is only in the bound native run",
+      "True permission action, real user material, installed signed build, physical device, TalkBack or motion performance"
+    ]
+  },
+  "pixelAcceptance": false,
+  "captures": [
+    {
+      "path": "assets/brand/source-settings-identity-en-light-20261007.png",
+      "bytes": 38809,
+      "sha256": "b3b656cc6182fa992d8ae9a35c7782e7b13578bfb1d35338f08964fbb2bc3271",
+      "metadata": {
+        "nonce": "14f379af-a760-47d6-b175-6fa2cf30e4a8",
+        "phase": "accepted",
+        "language": "en",
+        "theme": "light",
+        "font_scale": 1,
+        "memory_only": true,
+        "capture_accepted": false,
+        "fixture": "DemoSettingsRecreationActivity",
+        "scope": "First project access row and memory marker; model rows only when model_rows_in_capture is true; not the full Settings page",
+        "model_rows_in_capture": true,
+        "marker": "UI probe \u00b7 memory only",
+        "model_row_bounds": "[36,130][284,184]",
+        "projects": [
+          {
+            "id": "memory-mobile",
+            "visible_name": "Studio research references \u2014 mobile experience\nmemory-m",
+            "name_bounds": "[36,440][204,523]",
+            "name_width": 168,
+            "name_lines": 4,
+            "chip_bounds": "[214,457][284,505]",
+            "chip_description": "Studio research references \u2014 mobile experience \u00b7 memory-m, allowed, tap to revoke access",
+            "chip_enabled": true,
+            "chip_alpha": 1
+          },
+          {
+            "id": "memory-desktop",
+            "visible_name": "Studio research references \u2014 mobile experience\nmemory-d",
+            "name_bounds": "[36,536][183,619]",
+            "name_width": 147,
+            "name_lines": 4,
+            "chip_bounds": "[193,553][284,601]",
+            "chip_description": "Studio research references \u2014 mobile experience \u00b7 memory-d, not allowed, tap to allow",
+            "chip_enabled": true,
+            "chip_alpha": 1
+          }
+        ],
+        "required_predraws_completed": 2,
+        "settled_at_elapsed_ms": 126624248,
+        "capture_at_elapsed_ms": 126626259,
+        "forbidden_actions": 0,
+        "work_factories": 0,
+        "model_saves": 0,
+        "business_actions": "not_invoked_by_test",
+        "system_bar_pixels_require_visual_review": true
+      },
+      "png": {
+        "width": 320,
+        "height": 640,
+        "crcCheckedChunks": 9
+      },
+      "visualScope": "The complete first project-access row and its identity hierarchy, with memory marker and model rows visible.",
+      "observations": [
+        "Primary project name is visibly stronger than the separate smaller muted ID line; the exact visible first-row ID is memory-m.",
+        "Allowed and not-allowed controls remain visually distinct; first-row permission control is fully visible.",
+        "Memory-only marker and status/navigation glyphs are visible and readable; no keyboard is visible."
+      ],
+      "limitations": [
+        "This is a scrolled fragment, not the full Settings page. Lower access-group/footer extends beyond the viewport; do not claim the second row or group is fully visible."
+      ]
+    },
+    {
+      "path": "assets/brand/source-settings-identity-zh-dark-20261007.png",
+      "bytes": 54569,
+      "sha256": "1ddfdd50fb688f098cb8b7b7fbd6de17c169c23f99065cf52933ba2bdc174345",
+      "metadata": {
+        "nonce": "14f379af-a760-47d6-b175-6fa2cf30e4a8",
+        "phase": "accepted",
+        "language": "zh",
+        "theme": "dark",
+        "font_scale": 1,
+        "memory_only": true,
+        "capture_accepted": false,
+        "fixture": "DemoSettingsRecreationActivity",
+        "scope": "First project access row and memory marker; model rows only when model_rows_in_capture is true; not the full Settings page",
+        "model_rows_in_capture": true,
+        "marker": "\u754c\u9762\u63a2\u9488 \u00b7 \u4ec5\u5185\u5b58",
+        "model_row_bounds": "[36,152][284,212]",
+        "projects": [
+          {
+            "id": "memory-mobile",
+            "visible_name": "\u5de5\u4f5c\u5ba4\u53c2\u8003\u8d44\u6599\u5f52\u6863 \u00b7 \u79fb\u52a8\u7aef\u4ea4\u4e92\u4f53\u9a8c\nmemory-m",
+            "name_bounds": "[36,466][211,536]",
+            "name_width": 175,
+            "name_lines": 3,
+            "chip_bounds": "[221,477][284,525]",
+            "chip_description": "\u5de5\u4f5c\u5ba4\u53c2\u8003\u8d44\u6599\u5f52\u6863 \u00b7 \u79fb\u52a8\u7aef\u4ea4\u4e92\u4f53\u9a8c \u00b7 memory-m\uff0c\u5df2\u5141\u8bb8\uff0c\u70b9\u6309\u505c\u6b62\u8f6c\u53d1",
+            "chip_enabled": true,
+            "chip_alpha": 1
+          },
+          {
+            "id": "memory-desktop",
+            "visible_name": "\u5de5\u4f5c\u5ba4\u53c2\u8003\u8d44\u6599\u5f52\u6863 \u00b7 \u79fb\u52a8\u7aef\u4ea4\u4e92\u4f53\u9a8c\nmemory-d",
+            "name_bounds": "[36,549][211,619]",
+            "name_width": 175,
+            "name_lines": 3,
+            "chip_bounds": "[221,560][284,608]",
+            "chip_description": "\u5de5\u4f5c\u5ba4\u53c2\u8003\u8d44\u6599\u5f52\u6863 \u00b7 \u79fb\u52a8\u7aef\u4ea4\u4e92\u4f53\u9a8c \u00b7 memory-d\uff0c\u672a\u5141\u8bb8\uff0c\u70b9\u6309\u5141\u8bb8",
+            "chip_enabled": true,
+            "chip_alpha": 1
+          }
+        ],
+        "required_predraws_completed": 2,
+        "settled_at_elapsed_ms": 126632601,
+        "capture_at_elapsed_ms": 126634636,
+        "forbidden_actions": 0,
+        "work_factories": 0,
+        "model_saves": 0,
+        "business_actions": "not_invoked_by_test",
+        "system_bar_pixels_require_visual_review": true
+      },
+      "png": {
+        "width": 320,
+        "height": 640,
+        "crcCheckedChunks": 11
+      },
+      "visualScope": "The complete first project-access row and its identity hierarchy, with memory marker and model rows visible.",
+      "observations": [
+        "Primary project name is visibly stronger than the separate smaller muted ID line; the exact visible first-row ID is memory-m.",
+        "Allowed and not-allowed controls remain visually distinct; first-row permission control is fully visible.",
+        "Memory-only marker and status/navigation glyphs are visible and readable; no keyboard is visible."
+      ],
+      "limitations": [
+        "This is a scrolled fragment, not the full Settings page. Lower access-group/footer extends beyond the viewport; do not claim the second row or group is fully visible.",
+        "The existing copy fragment at the top is clipped by the scrolled capture. It is not a complete page header."
+      ]
+    }
+  ]
+}

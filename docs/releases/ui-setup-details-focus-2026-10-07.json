@@ -1,0 +1,405 @@
+{
+  "schema": 1,
+  "kind": "local-setup-focus-inset",
+  "date": "2026-10-07",
+  "nonce": "9b8eddd4-8be8-400b-83b8-2091bd27bfd5",
+  "scope": "Two R2/open keyboard-focus synthetic setup fixtures; CSS containment rule after candidate15. Not real Cloudflare deployment.",
+  "sourceHashes": {
+    "installer/setup.html": "b738fe8813f4b904c73724458f7c91563bf47f795d1ed9688f141a5dadd16a2c",
+    "installer/setup.css": "256bddee61cfac27f3dbaed56ab4568688d6df6516bf1cb9602c23a703d1fa47",
+    "installer/setup-ui.js": "3b434b74213f8c55ba5243a44d8d332c6cbe05fcf4f46cdcf72eb2a4f8f55794",
+    "tests/setup-actions.test.mjs": "416bae90a36a3f5bd0b2a3b77bd5ade171d6cd8ac9179bb65f2dea880e2d05f7",
+    "tests/setup-ui.test.mjs": "f9fc56015ce6b6cda7eb7d0c41acc1cf8429e6cf5f372b8476beb628d0c6caab",
+    "connector/browser.mjs": "2576adea3d7c371464d64bf29d43f3739c61e1e60fe1eac8c1ea72a7da68503d",
+    "connector/routes.mjs": "22a08228b39d15db444c76cc3b40148ab570b928a5eff69684d08ef8748781e7",
+    "package.json": "160313e4439f42d03e3dfb5e0f64e7ec336add9383b78dd9e638eeeac6cc781f",
+    "package-lock.json": "98b977988c9ebb81ac1590d300cd2ada0ff33aea1f2979c90dcb69b2369aa321",
+    "docs/releases/ui-setup-active-feedback-2026-10-07.md": "2a79a0046d9de72b900d3a09cf583db87f6f535f7b75b4da74a26027c7a5d775"
+  },
+  "toolsSha256": {
+    "node": "3602f2bb1a10f2cbab4c36886218a33c1ab3db87290e73b033c46c77147d0237",
+    "browser": "6849d2982038de9f9489a7b3858f3b785b7fec06a842c93c517281d21995c8ca"
+  },
+  "owner": {
+    "nodeExit": 0,
+    "nodeLifetime": "returned",
+    "seconds": 11.171999999962281,
+    "browserReturn": {
+      "code": 0,
+      "signal": null
+    },
+    "browserLifetime": "returned",
+    "retryAttempted": false,
+    "terminationAttempted": false
+  },
+  "raw": {
+    "stdout.log": {
+      "bytes": 132,
+      "sha256": "dac409f7dafff1e3f7dfa11fd8866cf340bbbc4ab2cca4947f1c1a64df25c061"
+    },
+    "stderr.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "browser.stdout.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "browser.stderr.log": {
+      "bytes": 100,
+      "sha256": "285c767be40099df9e35c6f9a4c8e034015954ced99d360f377ddc4296bee7a5"
+    }
+  },
+  "captures": [
+    {
+      "file": "320-en-light-r2-open-inset-focus.png",
+      "fixture": {
+        "name": "320-en-light",
+        "language": "en",
+        "width": 320,
+        "height": 1000,
+        "zoom": 1,
+        "theme": "light",
+        "motion": "no-preference"
+      },
+      "png": {
+        "width": 320,
+        "height": 1000,
+        "chunks": 12,
+        "chunkCrcPass": true,
+        "idatChunks": 10,
+        "decodedBytes": 961000,
+        "bytes": 33099,
+        "sha256": "461c3976374030dff4d11fca651a2e9fa1310e247222d2c2fc10a85cd6bcef97"
+      },
+      "geometry": {
+        "viewport": {
+          "width": 320,
+          "height": 1000
+        },
+        "document": {
+          "clientWidth": 320,
+          "scrollWidth": 320
+        },
+        "scrollX": 0,
+        "scrollY": 1681,
+        "zoom": 1,
+        "button": {
+          "x": 39,
+          "y": 264,
+          "width": 152.03125,
+          "height": 48,
+          "bottom": 312,
+          "right": 191.03125
+        },
+        "status": {
+          "x": 39,
+          "y": 326,
+          "width": 242,
+          "height": 347,
+          "bottom": 673,
+          "right": 281
+        },
+        "summary": {
+          "x": 56,
+          "y": 362,
+          "width": 208,
+          "height": 52,
+          "bottom": 414,
+          "right": 264
+        },
+        "stepTextRect": {
+          "x": 56,
+          "y": 341,
+          "width": 162.96875,
+          "height": 21,
+          "bottom": 362,
+          "right": 218.96875
+        },
+        "stepTextRects": [
+          {
+            "x": 56,
+            "y": 341,
+            "width": 162.96875,
+            "height": 21,
+            "bottom": 362,
+            "right": 218.96875
+          }
+        ],
+        "focusStyle": {
+          "visible": true,
+          "widthCssPx": 3,
+          "offsetCssPx": -3,
+          "style": "solid",
+          "color": "rgb(71, 124, 36)",
+          "borderRadius": "8px"
+        },
+        "focusOutset": {
+          "cssPx": 0,
+          "viewportPx": 0
+        },
+        "paintedOutline": {
+          "x": 56,
+          "y": 362,
+          "width": 208,
+          "height": 52,
+          "bottom": 414,
+          "right": 264
+        },
+        "phaseOutlineGap": 0,
+        "messages": {
+          "rect": {
+            "x": 56,
+            "y": 426,
+            "width": 208,
+            "height": 220,
+            "bottom": 646,
+            "right": 264
+          },
+          "clientWidth": 208,
+          "scrollWidth": 208
+        },
+        "previousId": "deploy",
+        "detailsOpen": true,
+        "errorHidden": true,
+        "focus": "setup-details-summary",
+        "colors": {
+          "background": "rgb(238, 239, 233)",
+          "text": "rgb(25, 29, 26)"
+        },
+        "step": "Preparing file storage"
+      },
+      "recomputedRangeOutlineGap": 0,
+      "cssTargetHeight": 52.0,
+      "geometryPass": true
+    },
+    {
+      "file": "1280-zh-dark-200-reduced-r2-open-inset-focus.png",
+      "fixture": {
+        "name": "1280-zh-dark-200-reduced",
+        "language": "zh",
+        "width": 1280,
+        "height": 1000,
+        "zoom": 2,
+        "theme": "dark",
+        "motion": "reduce"
+      },
+      "png": {
+        "width": 1280,
+        "height": 1000,
+        "chunks": 23,
+        "chunkCrcPass": true,
+        "idatChunks": 21,
+        "decodedBytes": 3841000,
+        "bytes": 78644,
+        "sha256": "4cac625b46c4e5d5d40c7279281981db27af31118a573117e6dc2f1127ca0474"
+      },
+      "geometry": {
+        "viewport": {
+          "width": 1280,
+          "height": 1000
+        },
+        "document": {
+          "clientWidth": 1280,
+          "scrollWidth": 1280
+        },
+        "scrollX": 0,
+        "scrollY": 2998,
+        "zoom": 2,
+        "button": {
+          "x": 114,
+          "y": 36.90625,
+          "width": 292.640625,
+          "height": 96,
+          "bottom": 132.90625,
+          "right": 406.640625
+        },
+        "status": {
+          "x": 114,
+          "y": 160.90625,
+          "width": 1052,
+          "height": 677.296875,
+          "bottom": 838.203125,
+          "right": 1166
+        },
+        "summary": {
+          "x": 148,
+          "y": 233.90625,
+          "width": 984,
+          "height": 104,
+          "bottom": 337.90625,
+          "right": 1132
+        },
+        "stepTextRect": {
+          "x": 148,
+          "y": 190.90625,
+          "width": 256,
+          "height": 43,
+          "bottom": 233.90625,
+          "right": 404
+        },
+        "stepTextRects": [
+          {
+            "x": 148,
+            "y": 190.90625,
+            "width": 256,
+            "height": 43,
+            "bottom": 233.90625,
+            "right": 404
+          }
+        ],
+        "focusStyle": {
+          "visible": true,
+          "widthCssPx": 3,
+          "offsetCssPx": -3,
+          "style": "solid",
+          "color": "rgb(184, 239, 115)",
+          "borderRadius": "8px"
+        },
+        "focusOutset": {
+          "cssPx": 0,
+          "viewportPx": 0
+        },
+        "paintedOutline": {
+          "x": 148,
+          "y": 233.90625,
+          "width": 984,
+          "height": 104,
+          "bottom": 337.90625,
+          "right": 1132
+        },
+        "phaseOutlineGap": 0,
+        "messages": {
+          "rect": {
+            "x": 148,
+            "y": 361.90625,
+            "width": 984,
+            "height": 422.296875,
+            "bottom": 784.203125,
+            "right": 1132
+          },
+          "clientWidth": 492,
+          "scrollWidth": 492
+        },
+        "previousId": "deploy",
+        "detailsOpen": true,
+        "errorHidden": true,
+        "focus": "setup-details-summary",
+        "colors": {
+          "background": "rgb(29, 34, 30)",
+          "text": "rgb(240, 243, 237)"
+        },
+        "step": "\u6b63\u5728\u51c6\u5907\u6587\u4ef6\u5b58\u50a8"
+      },
+      "recomputedRangeOutlineGap": 0.0,
+      "cssTargetHeight": 52.0,
+      "geometryPass": true
+    }
+  ],
+  "recordedFixtureAssertions": 9,
+  "newDocumentsObserved": 3,
+  "fakeLocalPosts": 2,
+  "blockedPageRequests": 0,
+  "independentFileReview": {
+    "readerSha256": "59df619e28ec6291d2342a13a41ca1fe1f8d4095bc0967bd1a32c8b1dd2ab9db",
+    "bytes": 11347,
+    "sha256": "b75570751bdb4064a1d82e75b43e9f60795383ffc7718bd86e72826457e2c441"
+  },
+  "limitedHumanVisualReview": {
+    "acceptedOriginalHashes": [
+      "461c3976374030dff4d11fca651a2e9fa1310e247222d2c2fc10a85cd6bcef97",
+      "4cac625b46c4e5d5d40c7279281981db27af31118a573117e6dc2f1127ca0474"
+    ],
+    "reviewer": "setup_phase_visual",
+    "evidence": {
+      "bytes": 1509,
+      "sha256": "0ecc500e44ad981ed7013dd6b6cc5017f22d78d8ffa5811bea1bcb29fb006f93"
+    },
+    "scope": "Headings remain clear; rounded inset keyboard ring visible in the two original R2/open PNGs. Actual Range gap0; no positive spacing or physical paint claim."
+  },
+  "automatedPixelAcceptance": false,
+  "retainedHistory": [
+    {
+      "nonce": "0d80b82c-4cb3-4f78-9ae1-e5976bb5f5d3",
+      "nodeExit": 1,
+      "nodeSeconds": 10.672000000020489,
+      "browserReturn": {
+        "code": 0,
+        "signal": null
+      },
+      "fixtureSuccess": false,
+      "captures": 0,
+      "recordedAssertions": 0,
+      "fakeLocalPosts": 0,
+      "failure": "Initial source readiness ReferenceError",
+      "retainedResultBindings": {
+        "node": {
+          "bytes": 552,
+          "sha256": "d31e6d94b7a7430dffa9ded90c9c7ac2f6116321efdd5720746f35ac97589228"
+        },
+        "browser": {
+          "bytes": 1559,
+          "sha256": "84c3beba9adf1226538a646fe0e90b197061b305b6e11fcd5b74ca4a48603856"
+        }
+      },
+      "pixelAcceptance": false
+    },
+    {
+      "nonce": "29e0a033-8ba1-42b5-874a-5a037e46ba7a",
+      "nodeExit": 1,
+      "nodeSeconds": 15.98399999999674,
+      "browserReturn": {
+        "code": 0,
+        "signal": null
+      },
+      "fixtureSuccess": false,
+      "captures": 3,
+      "recordedAssertions": 8,
+      "fakeLocalPosts": 1,
+      "failure": "Second same-origin/hash fixture readiness timeout; retained same-document state is an inference",
+      "retainedResultBindings": {
+        "node": {
+          "bytes": 551,
+          "sha256": "55ee167acbd29d4c2ca92f237c9cbaecee68e644365892decd1031cfde8afba9"
+        },
+        "browser": {
+          "bytes": 11045,
+          "sha256": "890d85d29b5a9a003e5372adda1007d5285264610d87d7dc4c16a245310fdfec"
+        }
+      },
+      "pixelAcceptance": false
+    },
+    {
+      "nonce": "3add7636-4b74-4318-9f9c-b72b82d336cb",
+      "nodeExit": 0,
+      "nodeSeconds": 10.98499999998603,
+      "browserReturn": {
+        "code": 0,
+        "signal": null
+      },
+      "fixtureSuccess": true,
+      "captures": 3,
+      "recordedAssertions": 9,
+      "fakeLocalPosts": 1,
+      "failure": null,
+      "retainedResultBindings": {
+        "node": {
+          "bytes": 908,
+          "sha256": "a8bf7706963ce2cd80753857608bba1c668178f439f45d33bf8c398806854dde"
+        },
+        "browser": {
+          "bytes": 11099,
+          "sha256": "46ad38fd2e60df2717357cbeeaf37320b91ee9ef2e1e051ed56fc022da12fd52"
+        }
+      },
+      "pixelAcceptance": false
+    }
+  ],
+  "limitations": [
+    "CSS200% is fixture scaling, not physical Windows zoom/device behavior.",
+    "Computed outline and Range layout boxes are geometry, not glyph-ink/pixel recognition.",
+    "Range-to-outline gaps are0 in both states; ring containment does not add layout spacing.",
+    "No D1/long-error captures rerun for V4; older originals retain their own source scope.",
+    "No actual Cloudflare/Connector/Relay/account, real installation, signed15 inclusion, accessibility or performance certification."
+  ]
+}

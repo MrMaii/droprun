@@ -18,40 +18,13 @@ Codex works on your Windows computer. You deploy the Relay to your own Cloudflar
 2. **Follow local Codex.** Work happens on your computer, in that project. Follow progress and decisions in its history.
 3. **Inspect the delivery.** Check the result, required actions, screenshots and files; open the full report when needed.
 
-## Review before sending
-
-Return to project selection and adjust the model before sending.
-Native memory-only UI; no task sent. [Capture notes](assets/brand/readme-media.md).
-
-<p align="center"><picture><source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/brand/source-share-count-en-dark-20261006.png"><source media="(prefers-reduced-motion: reduce)" srcset="assets/brand/source-share-count-en-light-20261006.png"><img src="assets/brand/native-share-review-before-sending-en-20261006.gif" width="320" alt="Native Android memory-only excerpt: start at the empty note, return to the project list, choose again, change the sample model and collapse the options; no task sent"></picture></p>
-
-<details>
-<summary><strong>Recording scope and still images</strong></summary>
-
-[10.49-second original recording](landing/media/native-share-project-tour-en-20261006.mp4) · [Captions](landing/media/native-share-project-tour-en-20261006.vtt)
-
-This excerpt begins after the initial project choice, at original frame18 (1.116322s), and continues to the natural end. Go back, choose again, then select another model.
-Native memory-only UI (`0.5.12-dev`, code25); the note stays empty and no task is sent.
-Recorded before the always-visible **Your note · optional** label was added; this is not a recording of the signed download.
-
-The excerpt samples the original frames at 25 fps, native 320 × 640: 234 frames, 9.36 seconds. [Complete original GIF](assets/brand/native-share-project-tour-en-20261006.gif). Reduced motion shows the separately captured later development view with the persistent note label and received file counts (after candidate13): [light](assets/brand/source-share-count-en-light-20261006.png) · [dark](assets/brand/source-share-count-en-dark-20261006.png).
-
-[Earlier note view · light](assets/brand/source-share-note-en-light-20261006.png) · [dark](assets/brand/source-share-note-en-dark-20261006.png)
-
-</details>
-
-<details>
-<summary><strong>Share, follow and delivery screens</strong></summary>
-
-Labelled memory-only development UI, not a genuine Codex task; the delivery screen includes changes after 0.5.15-rc.1. [Capture notes](assets/brand/readme-media.md).
+Screenshots and recording show labelled memory-only development samples, not a genuine task or the signed download; delivery includes changes after 0.5.15-rc.1. [Media sources and recording scope](assets/brand/readme-media.md).
 
 <p align="center">
   <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-share-count-en-dark-20261006.png"><img src="assets/brand/source-share-count-en-light-20261006.png" width="260" alt="01 · Share: project and received material together, a persistent optional-note label, received file counts and model controls; native memory-only probe marker retained"></picture>
   <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-home-cards-en-dark-20261006.png"><img src="assets/brand/source-home-cards-en-light-20261006.png" width="260" alt="02 · Follow: native Android project cards with initials, names, task and dispatch counts, status and recency; memory-only and sample-project markers retained"></picture>
   <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-delivery-followup-en-dark-20261007.png"><img src="assets/brand/source-delivery-followup-en-light-20261007.png" width="260" alt="03 · Inspect: native handoff page with a prominent result, grouped preview and files, and an outlined follow-up button; visible memory-only marker"></picture>
 </p>
-
-</details>
 
 Tasks count independent requests; dispatches count accepted shares and follow-ups.
 Network retries add neither.
@@ -61,40 +34,13 @@ For example, share a design reference to an existing app project with this note:
 > Adapt this navigation idea to our settings screen. Keep our existing visual style.
 
 <details>
-<summary><strong>Settings and project history</strong></summary>
+<summary><strong>Watch the sharing interaction</strong></summary>
 
-Settings in one place. Handoff history organized by project.
+Return to project selection and adjust the model before sending.
 
-<p align="center">
-  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-settings-access-en-dark-20261007.png"><img src="assets/brand/source-settings-access-en-light-20261007.png" width="220" alt="Native Android Settings excerpt: separate model and project-access surfaces with complete sampled project names and ID prefixes; normal text, memory-only marker visible"></picture>
-  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-history-hierarchy-en-dark-20261006.png"><img src="assets/brand/source-history-hierarchy-en-light-20261006.png" width="220" alt="Native Android project history with the project identity and three memory-only handoff rows; normal font size, sample marker visible"></picture>
-</p>
+<p align="center"><picture><source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/brand/source-share-count-en-dark-20261006.png"><source media="(prefers-reduced-motion: reduce)" srcset="assets/brand/source-share-count-en-light-20261006.png"><img src="assets/brand/native-share-review-before-sending-en-20261006.gif" width="320" alt="Native Android memory-only excerpt: start at the empty note, return to the project list, choose again, change the sample model and collapse the options; no task sent"></picture></p>
 
-Normal-font memory-only examples: Settings shows a scrolled model/access section; history has three sample rows. These are not 200% text captures.
-
-</details>
-
-<details>
-<summary><strong>Earlier Share layout · 9.06-second recording</strong></summary>
-
-Memory-only development UI; preset project, empty note, no task sent. This earlier layout predates the project-and-material confirmation group.
-
-<p align="center"><picture><source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/brand/source-share-plain-en-dark-20261006.png"><source media="(prefers-reduced-motion: reduce)" srcset="assets/brand/source-share-plain-en-light-20261006.png"><img src="assets/brand/native-share-reading-en-20261006.gif" width="320" alt="Native Android share sheet: inspect received sample material, select another sample model, view its default Thorough effort and collapse the options; visible memory-only marker, no task sent"></picture></p>
-
-[9.06-second original recording](landing/media/native-share-reading-en-20261006.mp4) · [Captions](landing/media/native-share-reading-en-20261006.vtt)
-
-[Light still](assets/brand/source-share-plain-en-light-20261006.png) · [Dark still](assets/brand/source-share-plain-en-dark-20261006.png).
-The earlier GIF remains a 25 fps sampled display at native 320 × 640; its MP4 keeps the original timeline.
-
-</details>
-
-<details>
-<summary><strong>Earlier UI tours and longer walkthrough</strong></summary>
-
-The October 5 tours use the 0.5.1 development UI with labelled demonstration data.
-They show interface navigation, not a completed source-to-Codex task.
-
-[Earlier 9-second tour](https://droprun.dengmaizi0802.chatgpt.site/media/ui-tour-en.mp4) · [24-second video](https://droprun.dengmaizi0802.chatgpt.site/media/demo.mp4) · [64-second walkthrough](https://droprun.dengmaizi0802.chatgpt.site/media/walkthrough.mp4)
+[Original recording](landing/media/native-share-project-tour-en-20261006.mp4) · [Captions](landing/media/native-share-project-tour-en-20261006.vtt)
 
 </details>
 

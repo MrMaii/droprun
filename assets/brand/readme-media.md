@@ -30,6 +30,13 @@ partial native tour. Its media/source tag counts, reduced-motion choices and
 download URLs remain. This text reorder is a design decision, not a new browser
 rendering or measured first-visit-comprehension test.
 
+Subsequent root inspection of the anonymous GitHub EN/ZH desktop galleries
+confirms the new light delivery images load at260px with natural320×640
+dimensions; their outlined follow-up is visible. The three steps precede the
+partial GIF. This is image-loading/content-order observation only; dark/narrow,
+reduced-motion, full GIF timing and first-visit comprehension were not tested.
+[Published source and scoped rendering check](../../docs/releases/ui-task-followup-fit-2026-10-07.md#published-source-and-readme-check).
+
 ## Delivery artifact group · October 7, 2026
 
 The earlier README delivery gallery used four complete, unedited320×640 native
@@ -61,7 +68,7 @@ This README update does not deploy GPTSites or replace candidate14 downloads.
 
 ## Settings access grouping · October 7, 2026
 
-The README Settings gallery now uses four unedited native 320 × 640 PNGs from
+The earlier README Settings gallery used four unedited native 320 × 640 PNGs from
 `0.5.14-dev`, code27, later than signed candidate14. These normal-text scroll
 excerpts show separate model and project-access surfaces, complete sampled
 project names and distinguishing ID prefixes. Both themes keep the memory-only
@@ -158,8 +165,8 @@ The visible memory-only marker, system bars and original timeline remain. No tas
 was sent, no material was opened, and no text was typed. The raw MP4s are byte-exact
 copies of the successful native captures. They are development UI examples, not
 recordings of the signed candidate12, genuine Codex tasks, physical-device motion
-or performance acceptance. The two older 9.06-second recordings remain linked in
-README details; all earlier assets are retained. Website integration is separate.
+or performance acceptance. The two older 9.06-second recordings remain linked in this source record;
+all earlier assets are retained. Website integration is separate.
 
 Both originals decode to 137 frames: English duration **10.494389 s**, Chinese
 **10.496433 s**. Each GIF samples only those existing frames in original order at
@@ -610,7 +617,7 @@ also records the subsequent Chinese headline wrap correction and its limits.
 
 ## October 6, 2026 — History state before metadata
 
-The expanded README History gallery uses four `source-history-hierarchy-*`
+The earlier expanded README History gallery used four `source-history-hierarchy-*`
 originals. State now follows each title, before its complete source/date line.
 Root directly viewed all four normal-font native captures; exact brand copies
 retain the memory marker and system bars. The fixed three-row samples are not
@@ -636,3 +643,72 @@ earlier layout and source. These stills do not represent the signed candidate11.
 | [source-share-confirmation-en-dark-20261006.png](source-share-confirmation-en-dark-20261006.png) | `66096d793408d2073bf79d1884b02952b8658eead1e5cb830094d91cb1b4466e` |
 | [source-share-confirmation-zh-light-20261006.png](source-share-confirmation-zh-light-20261006.png) | `a6c6725507d789da8a12616db9cd3b5a624361f7addc4a239b5e5ff954a4b60f` |
 | [source-share-confirmation-zh-dark-20261006.png](source-share-confirmation-zh-dark-20261006.png) | `9dc7b006d79b69a0d3f38e80276d6d5381b2b6fb09e6b79c0d1e0fc9491efbe7` |
+
+## Supporting views and historical tours
+
+The main README keeps its current three-screen gallery and one sharing-interaction
+excerpt. Older media and detailed recording explanations remain in this source
+record. Moving links here does not remove or replace any original file.
+
+### Settings and project history
+
+Normal-font memory-only examples: Settings shows a scrolled model/access section;
+history has three sample rows. These are not full Settings pages, 200% text
+captures, genuine task history or recordings of the signed download.
+
+| View | English | 简体中文 |
+| --- | --- | --- |
+| Settings access | [Light](source-settings-access-en-light-20261007.png) · [Dark](source-settings-access-en-dark-20261007.png) | [浅色](source-settings-access-zh-light-20261007.png) · [深色](source-settings-access-zh-dark-20261007.png) |
+| Project history | [Light](source-history-hierarchy-en-light-20261006.png) · [Dark](source-history-hierarchy-en-dark-20261006.png) | [浅色](source-history-hierarchy-zh-light-20261006.png) · [深色](source-history-hierarchy-zh-dark-20261006.png) |
+
+普通字号的内存示例：设置展示滚动后的模型与授权局部，历史含三条示例记录；不是完整设置页、
+200% 字号截图、真实交办历史或签名包录制。各组原始来源与验收范围见本文对应日期的记录。
+
+### Earlier Share reading layout
+
+These earlier memory-only recordings use a preset project and empty note; no
+task is sent. They predate the project-and-material confirmation group. Original
+MP4s keep their timelines; the GIFs sample the native 320 × 640 frames at 25 fps.
+Their exact identities and sampling boundaries remain in the earlier reading-layout
+record above.
+
+- English: [GIF](native-share-reading-en-20261006.gif) · [9.06-second original](../../landing/media/native-share-reading-en-20261006.mp4) · [Captions](../../landing/media/native-share-reading-en-20261006.vtt) · [Light still](source-share-plain-en-light-20261006.png) · [Dark still](source-share-plain-en-dark-20261006.png).
+- 中文：[GIF](native-share-reading-zh-20261006.gif) · [9.06 秒原始录屏](../../landing/media/native-share-reading-zh-20261006.mp4) · [字幕](../../landing/media/native-share-reading-zh-20261006.vtt) · [浅色截图](source-share-plain-zh-light-20261006.png) · [深色截图](source-share-plain-zh-dark-20261006.png)。
+
+### October 5 tours and longer walkthrough
+
+The October 5 tours use the 0.5.1 development UI with labelled demonstration data.
+They show interface navigation, not a completed source-to-Codex task.
+
+[Earlier English tour](../../landing/media/ui-tour-en.mp4) · [较早中文导览](../../landing/media/ui-tour-zh.mp4) · [24-second video](../../landing/media/demo.mp4) · [64-second walkthrough](../../landing/media/walkthrough.mp4).
+
+10 月 5 日的较早导览使用 0.5.1 开发界面与标注的演示数据。它们展示界面操作，
+不代表真实来源到 Codex 的完整交办。上述入口沿用之前 README 的媒体，没有新增录制或播放验证。
+
+## Settings project identity · October 7, 2026
+
+Two later normal-font320×640 originals separate the complete15sp medium name
+from its12sp muted ID hint. These byte-exact copies retain the memory marker
+and system pixels. Root and a separate reviewer view both scrolled excerpts;
+only the first project-access row is claimed complete. The second row/footer
+and the clipped Chinese top copy are not a full-page capture. English/dark and
+Chinese/light have no new stills. README's main three-screen gallery is unchanged.
+
+- [English/light](source-settings-identity-en-light-20261007.png),38809B,
+  SHA-256 `b3b656cc6182fa992d8ae9a35c7782e7b13578bfb1d35338f08964fbb2bc3271`.
+- [中文/深色](source-settings-identity-zh-dark-20261007.png),54569B,
+  SHA-256 `1ddfdd50fb688f098cb8b7b7fbd6de17c169c23f99065cf52933ba2bdc174345`.
+
+[Actual reading, source/APK binding and limits](../../docs/releases/ui-settings-project-identity-2026-10-07.md)
+own this later development outside signed15/Site25. No new whole-page,
+TalkBack, genuine permission, motion or physical-device acceptance.
+## Setup Details focus, 2026-10-07
+
+`source-setup-details-focus-en-light-20261007.png` and
+`source-setup-details-focus-zh-dark-20261007.png` are byte-exact local browser
+originals. They show the corrected inset keyboard focus around open Details,
+with active-phase feedback beside the initiating action. These are synthetic
+installation states, not owner Cloudflare deployment or candidate15 screenshots.
+The Chinese dark fixture uses CSS200% and reduced motion; it is not physical
+Windows scaling. [Selected record](../../docs/releases/ui-setup-details-focus-2026-10-07.md)
+owns geometry, original failures, hashes and the limited visual review.

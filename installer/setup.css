@@ -46,6 +46,7 @@ input:disabled { opacity: .6; }
 pre { font: 12px/1.6 ui-monospace, monospace; white-space: pre-wrap; overflow-wrap: anywhere; max-height: 220px; overflow: auto; }
 footer { margin-top: 24px; }
 button:focus-visible, a:focus-visible, input:focus-visible, summary:focus-visible, #project-list:focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; }
+#setup-details > summary:focus-visible { outline-offset: -3px; border-radius: 8px; }
 .connection-summary { margin-top: 22px; padding: 18px 20px; background: var(--soft); border: 1px solid var(--line); border-radius: 16px; }
 .connection-summary > p { margin: 0; }
 .connection-summary dl { margin: 14px 0; }

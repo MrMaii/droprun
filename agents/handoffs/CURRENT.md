@@ -51,13 +51,15 @@ acceptance is unavailable. No stable launch or marketing handover.
 ## Later local installer development
 
 - [Active-step feedback](../../docs/releases/ui-setup-active-feedback-2026-10-07.md)
-  and native diagnostic Details are local
-  development after the immutable a48 candidate15 source. Six UI/test/requirement
-  paths change; signed15 does not contain this work. One closed local browser
-  test child passes eight tests with no failures; five original PNGs are retained.
-  These are synthetic setup fixtures, not an owner Cloudflare installation.
-  The independent review directly accepts only two English light desktop
-  fragments; narrow/dark new-phase visual acceptance remains open.
+  is public development after signed15. Its exact dcc source CI and eight browser
+  checks remain separate from owner installation. Additional narrow/light and
+  dark/CSS200% phase/error originals reveal a Details focus ring crossing the
+  heading. [Inset focus correction](../../docs/releases/ui-setup-details-focus-2026-10-07.md)
+  changes only one CSS rule. Fresh finite browser closes with Node/Chrome0,
+  nine fixture assertions and two full-viewport originals. Root and a separate
+  reviewer accept only those keyboard-focus samples; Range gap is0, not extra
+  spacing or physical paint evidence. V1 readiness and V2 same-document fixture
+  failures remain; V3 dark continuation succeeds. No owner Cloudflare action.
 
 ## Later native development
 
@@ -75,10 +77,27 @@ acceptance is unavailable. No stable launch or marketing handover.
   first reader's underscore-whitelist failure remain unchanged. No native replay
   for the reader correction; no arbitrary first-screen, press/dialog/IME/motion,
   signed15 or genuine acceptance.
-- README now explains material and the complete three-step journey before its
-  partial code25 tour; the third gallery image uses the later outlined follow-up
-  originals with explicit candidate15 separation. This text/media substitution
-  adds no new GitHub rendering or measured comprehension claim. Site25 media stay.
+- Source5876a8f's own CI37576327629 attempt1 passes three jobs/35steps,
+  actual210core+19browser. Full327212B log and separate file reader pass.
+  [Exact CI](../../docs/releases/ui-task-followup-source-ci-2026-10-07.json).
+  Root viewed both anonymous GitHub desktop READMEs and loaded the new delivery
+  images at260px. This is that source's rendering check, not later layout QA.
+- README now shows its complete three-step journey and three current screens
+  by default, with one optional native-interaction recording. Historical media
+  and detailed timing stay in the source record. Installation onward remains;
+  189 local README/provenance/Settings-record links resolve. No comprehension test.
+  Landing source uses the same four outlined-follow-up originals; local build
+  checks20 assets, including canonical/social metadata. It is not yet a new hosted deployment or signed download.
+- [Settings identity](../../docs/releases/ui-settings-project-identity-2026-10-07.md)
+  separates the complete15sp medium name from only the helper-appended12sp ID.
+  Exact135/4 freeze5ffd, build/install/native1/26/29 all return0. Separate
+  file reader7e17252b checks112raw/six snapshots and built/current/installed bytes;
+  bound reports27JVM/zero failures and lint0errors/28warnings. Native1test26.467s
+  closes4memory windows/82events/28 individually revealed lines/20zero guards.
+  Same-ID focus, unique names and colliding prefixes stay in the same two-record
+  cache. Root and separate reviewer accept two normal scrolled excerpts, first
+  access row only; original markers stay. No permission activation, whole-page,
+  new motion, physical, TalkBack, signed15 or genuine claim.
 - Candidate15's clean managed checkout was archived through the app; saved
   release artifacts and evidence remain outside that checkout. Sourcea48 remains.
 
@@ -103,17 +122,20 @@ acceptance is unavailable. No stable launch or marketing handover.
 
 ## Single recommended next action
 
-Refine Settings same-name identity: keep the complete15sp project name, place
-only the helper-appended ID prefix on its own12sp muted line, preserve the original
-full accessibility label, permission controls, confirmations and focus. Current
-proposal is private; do not split arbitrary names on the middle-dot separator.
-Use four finite memory windows rather than legacy matrices. Installer narrow/dark
-phase visuals remain useful. No genuine task or rejected-path replay.
+Update the current Share interaction recording with two finite memory windows:
+actually return and choose a different already-authorized sample project, change
+effort, and inspect the native header's bounded synthetic press and panel motion.
+Review the test-only mode first, then bind fresh source/test APK and finite owner;
+reuse unchanged production/app bytes only after actual equality checks. The old
+code25 film has one project/default-high/performClick and does not prove those
+behaviors. No Send, Pair, IME/OS manipulation, denied replay or real task.
 
 ## Files this pass
 
-TaskActivity/TaskReadingHierarchyTest; PRD/CONTRACTS/ADR0019/CHANGELOG;
-bilingual README and brand provenance/four exact follow-up originals;
-local follow-up release record and current handoff. Earlier candidate15,
-setup source/CI and Site25 delivery retain their separate source identities.
+SettingsActivity/SettingsReadingPresentationTest/new SettingsProjectIdentityTest;
+installer Details focus CSS; PRD/CONTRACTS/ADR0019/CHANGELOG;
+bilingual README and brand provenance/two exact Settings originals;
+Settings/focus release records and earlier5876source CI; landing generator,
+two language HTMLs/four byte-exact outlined-follow-up originals; current handoff.
+Earlier candidate15 and Site25 retain their separate source identities.
 Author Thomas Deng <150266369+MrMaii@users.noreply.github.com>.

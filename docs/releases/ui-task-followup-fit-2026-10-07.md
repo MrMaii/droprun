@@ -52,3 +52,18 @@ or all-state restoration.200% text is functionally checked, not visually accepte
 No new hosted-site deployment or public Markdown rendering is claimed.
 
 [Selected receipts and exact media](ui-task-followup-fit-2026-10-07.json).
+
+## Published source and README check
+
+Source `5876a8f60db348a1d8378d6778458ddb04dc514f` is public with both Thomas Deng
+Git identities. Its own CI37576327629 attempt1 passes three jobs,35steps,
+10required steps and three matching checks. The complete327212-byte log is
+independently checked; actual core210/browser19 all pass with none skipped.
+[Exact source CI](ui-task-followup-source-ci-2026-10-07.json).
+
+Root also opened both anonymous GitHub EN/ZH desktop READMEs. The three steps
+appear before the partial tour; both expanded light galleries load the new
+delivery PNGs at260px, with natural320×640 dimensions and complete follow-up
+outlines. Existing GIFs appear separately. This verifies rendered image loading
+and content order, not raw byte identity, full GIF timing, reduced-motion,
+dark/narrow rendering, user comprehension or hosted-site acceptance.

@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Separate complete Settings project names from ambiguous ID hints, keeping
+  permission feedback and accessibility identity intact.
+  [Four local reading windows and two original stills](docs/releases/ui-settings-project-identity-2026-10-07.md).
+- Keep the installer Details focus ring inside its target, clear of the phase
+  heading above it.
 - Make follow-up recognizable with the existing outlined secondary surface;
   remove stacked delivery spacing while preserving result type and action size.
   [Local reading, complete short-sample targets and original stills](docs/releases/ui-task-followup-fit-2026-10-07.md).

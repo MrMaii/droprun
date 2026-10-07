@@ -16,8 +16,9 @@ in [the current candidate record](../releases/0.5.15-rc.1.md).
   Website first-screen media centers Share: one large share sheet on narrow
   screens, with Home as a secondary desktop view. Installation is primary,
   the native UI tour secondary, and GitHub remains a text entry.
-  README explains the three workflow steps before its native UI tour.
-  Static galleries and recording scope open on demand; the value
+  README explains the three workflow steps and shows its current three-screen
+  gallery by default. The partial native interaction recording opens on demand;
+  detailed capture history belongs in the linked media source record. The value
   sentence has a clear heading. Primary workflow images are larger; reduced motion selects
   a static light/dark capture, with explicit still links and unchanged provenance.
   A localized installation link at the end of the tour lets ready readers move
@@ -246,6 +247,9 @@ in [the current candidate record](../releases/0.5.15-rc.1.md).
   Project access uses a separate flat theme surface with the same group padding
   and corners. Project names and distinguishing ID prefixes wrap completely; preserve
   existing permission confirmation and pending state inside the group.
+  Give the complete project name a15sp medium face. Only an ambiguous name gets
+  its distinguishing ID on a separate12sp muted line; keep the original complete
+  accessibility label. Do not split a separator inside the user's project name.
   A same-screen Settings rebuild keeps keyboard focus on the access disclosure
   or the same complete project ID. When a permission control is unavailable or
   hidden, focus returns to the access header; later completion must not steal it.
