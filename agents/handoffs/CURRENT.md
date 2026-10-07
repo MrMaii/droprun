@@ -6,26 +6,30 @@ handover. Current user request takes precedence over dated handoffs.
 
 ## Current public delivery
 
-- [Signed candidate0.5.15-rc.1](../../docs/releases/0.5.15-rc.1.md) remains
-  immutable, sourcea48c0d5/code28. Public Android certificate/nondebuggable/noDemo
-  and all eight anonymous release assets pass their dated checks. Windows is
-  NotSigned. Signed-native/clean installer/Connector acceptance remains open.
-  The managed release checkout was archived; artifacts/evidence remain outside.
-- Latest public product source is129e5b038c6eb83ee1cd575e5a943450ec919d9d,
-  including Home/Share/Settings, delivery Back and README/data-flow clarity.
-  [Own CI37588500475](../../docs/releases/ui-delivery-back-source-ci-2026-10-07.json)
-  passes three jobs/35steps/10required/three matching checks; actual210core and
-  19browser tests, none failed/cancelled/skipped/todo. Full326858B attempt log
-  SHA31f580f6 and independent eight-raw rehash pass. Priorccee CI remains in its
-  [dated receipt](../../docs/releases/ui-home-typography-source-ci-2026-10-07.json).
-  This is source CI, not genuine workflow or physical-device proof.
-- [GPTSites27](../../docs/releases/site-home-share-tour-2026-10-07.md) is public
-  at https://droprun.dengmaizi0802.chatgpt.site/; native publication succeeds
-  2026-10-07T07:03:31.761795Z, hosting a5e82b8b. Exact125public files/126archive
-  members include four accepted Home stills and six new Share media/caption files.
-  Original archive-reader failure is retained; corrected reader verifies the
-  same archive, without rebuild/republication. No new hosted-browser/playback
-  proof. Download remains signed15, with later development media clearly labelled.
+- [Signed candidate0.5.16-rc.1](../../docs/releases/0.5.16-rc.1.md) is public,
+  immutable source4aea7f653f4614adbb63d16b8588cecee89b5ee6/code29.
+  Eight full anonymous downloads, seven checksums, canonical URLs, API digests
+  and the annotated tag pass. Android stable certificate/nondebuggable/noDemo
+  checks pass; Windows remains NotSigned. Local builders retain23 returned-zero
+  direct children; exporter two and publisher22 known returns. The managed
+  release checkout is clean; artifacts/evidence remain outside it.
+  [Selected release proof](../../docs/releases/public-delivery-2026-10-07-rc0516.json).
+  Candidate15 remains unchanged. Signed-native/clean installer/Connector
+  acceptance is still open.
+- Candidate16's [own CI37595232244](../../docs/releases/ui-candidate16-source-ci-2026-10-07.json)
+  passes attempt1: three jobs/35steps/10required/three matching checks, actual
+  core210/210 and browser19/19, none failed/cancelled/skipped/todo. Complete
+  325606B attempt log SHA b79d833e and eight raw rehashes pass. All21 changed
+  source paths are anonymously byte-matched; author/committer Thomas Deng.
+  Public README, setup guides and generated download links now target16.
+  This follow-through does not infer new source CI or native acceptance.
+- [GPTSites27](../../docs/releases/site-home-share-tour-2026-10-07.md) remains
+  public at https://droprun.dengmaizi0802.chatgpt.site/; native publication
+  succeeds2026-10-07T07:03:31.761795Z, hosting a5e82b8b. Its125public files and
+  126archive members retain accepted Home stills and Share tour. Site28 has
+  opened this exact checkout; only two generated bilingual HTML downloads will
+  change to16. No new media, hosted-browser or playback claim. Do not repeat
+  closed Site27 QA. Official source/save/deploy receipt is pending.
 
 ## Accepted development and present work
 
@@ -65,8 +69,11 @@ handover. Current user request takes precedence over dated handoffs.
   three-image row and actual Set up link into SELF_HOSTING. Private originals
   stay in .local/ux-oct7-readme-audit; wrong/partial gallery captures are retained.
   Added bilingual visible step captions, an English Relay setup sequence and
-  Chinese action labels. New public-render acceptance is still pending. No
-  hosted Site27, narrow-screen, playback or complete accessibility claim.
+  Chinese action labels. New07-gallery-captions-after and06-relay-steps-after
+  originals are directly reviewed and accepted from public source4aea. Earlier
+  brand capture stays source129. Chinese/narrow/dark/keyboard/GIF playback and
+  complete accessibility remain outside this audit. Agent-owned tab closed;
+  user Site27 tab unchanged.
 - File-preview Back now returns to delivery files before leaving the task;
   saving confirmation takes precedence, while picking retains its old exit.
   Only one production branch changed. Fresh debug build/install/native actions
@@ -104,20 +111,18 @@ handover. Current user request takes precedence over dated handoffs.
 
 ## Single recommended next action
 
-Publish the accepted Share recovery and reading guidance in one candidate16
-metadata/source commit (0.5.16/code29). Run that exact commit's own CI, bind a
-fresh clean managed checkout and reviewed build owners, then sign/build/verify
-Android and Windows without replacing candidate15. Publish real candidate16
-assets before updating public download links. Review the new GitHub caption and
-guide rendering. Six cached-project first-screen visibility remains a separate
-local UI check; genuine acceptance gates and private film exclusions stay open.
+Complete Site28's two-page download update through its official source/save/
+deploy flow, retaining125public assets and one independently read archive.
+Then apply the separately reviewed six-project memory fixture, bind a fresh
+freeze/nonce and build/install/capture owner; inspect its four original first-
+screen PNGs before changing production layout. No Send or real Relay task.
+Original project-read and earlier screenshot takes stay immutable. Continue
+native UI/UX polish; real acceptance gates are not a reason to stop local work.
 
 ## Files this pass
 
-ShareActivity, nonexported DemoShareProjectLoadActivity and ShareProjectLoadTest;
-version metadata, bilingual README and self-hosting guidance; selected Share
-recovery/prior source-CI evidence. DeliverablesActivity, nonexported DemoDeliveryBackActivity and opt-in
-DeliveryBackHierarchyTest/debug manifest; PRD/CONTRACTS/CHANGELOG; bilingual
-README/four architecture SVGs/privacy/media provenance; selected delivery, ccee
-CI and Site27 records; this handoff. Private promo and launch-kit remain excluded.
+Bilingual README and self-hosting guides; generated landing index/zh index and
+build script; PROJECT_CONTEXT; candidate16 release/anonymous/own-CI records;
+this handoff. Prior source4aea owns the accepted Share/Home/Delivery/Settings
+changes. Private promo and launch-kit remain excluded.
 Author Thomas Deng <150266369+MrMaii@users.noreply.github.com>.

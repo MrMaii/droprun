@@ -1,0 +1,166 @@
+{
+  "schema": "droprun.source-ci.v1",
+  "date": "2026-10-07",
+  "source": "4aea7f653f4614adbb63d16b8588cecee89b5ee6",
+  "runId": 37595232244,
+  "attempt": 1,
+  "url": "https://github.com/MrMaii/droprun/actions/runs/37595232244",
+  "status": "completed",
+  "conclusion": "success",
+  "jobs": 3,
+  "jobResults": [
+    {
+      "name": "core",
+      "id": 112706135592,
+      "status": "completed",
+      "conclusion": "success",
+      "stepCount": 16
+    },
+    {
+      "name": "browser",
+      "id": 112706135791,
+      "status": "completed",
+      "conclusion": "success",
+      "stepCount": 9
+    },
+    {
+      "name": "android",
+      "id": 112706135881,
+      "status": "completed",
+      "conclusion": "success",
+      "stepCount": 10
+    }
+  ],
+  "steps": 35,
+  "requiredSteps": 10,
+  "requiredStepResults": [
+    {
+      "job": "core",
+      "step": "Install media test tools",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "job": "core",
+      "step": "Test core without concurrent browser processes",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "job": "core",
+      "step": "Run npm audit --audit-level=high",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "job": "core",
+      "step": "Run npm run site:build",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "job": "core",
+      "step": "Verify generated pages and refresh Windows line-ending metadata",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "job": "core",
+      "step": "Run npm run check:public",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "job": "core",
+      "step": "Build Windows installer and portable package",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "job": "core",
+      "step": "Run actions/upload-artifact@v4",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "job": "browser",
+      "step": "Test real browsers in isolation",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "job": "android",
+      "step": "Run ./gradlew assembleDebug assembleDebugAndroidTest testDebugUnitTest lintDebug",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "matchingChecks": 3,
+  "matchingCheckResults": [
+    {
+      "name": "core",
+      "id": 112706135592,
+      "headSha": "4aea7f653f4614adbb63d16b8588cecee89b5ee6",
+      "status": "completed",
+      "conclusion": "success",
+      "detailsUrl": "https://github.com/MrMaii/droprun/actions/runs/37595232244/job/112706135592"
+    },
+    {
+      "name": "browser",
+      "id": 112706135791,
+      "headSha": "4aea7f653f4614adbb63d16b8588cecee89b5ee6",
+      "status": "completed",
+      "conclusion": "success",
+      "detailsUrl": "https://github.com/MrMaii/droprun/actions/runs/37595232244/job/112706135791"
+    },
+    {
+      "name": "android",
+      "id": 112706135881,
+      "headSha": "4aea7f653f4614adbb63d16b8588cecee89b5ee6",
+      "status": "completed",
+      "conclusion": "success",
+      "detailsUrl": "https://github.com/MrMaii/droprun/actions/runs/37595232244/job/112706135881"
+    }
+  ],
+  "actualTests": {
+    "core": {
+      "tests": 210,
+      "suites": 0,
+      "pass": 210,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "duration_ms": 51684.7978
+    },
+    "browser": {
+      "tests": 19,
+      "suites": 0,
+      "pass": 19,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "duration_ms": 63401.6512
+    }
+  },
+  "completeLog": {
+    "bytes": 325606,
+    "sha256": "b79d833e832d823cb4516ec96ae0f683fb8af939fd47a3068cbfd9898d81d9c6",
+    "fetchExit": 0,
+    "fetchStderrBytes": 0
+  },
+  "collectorSha256": "4c957753af349e1ec5b2138b3efd85e61876258dab518794302cf29d8f80b22d",
+  "knownReturnedZeroFetchChildren": 4,
+  "rawOutputsRehashed": 8,
+  "collectorVerificationSha256": "850d7a8ebd609501ab4b7d442f5bc8496a76b9abee50dc94c0a951fd80ae2af7",
+  "readerSha256": "ecfa5a996525fce188500adc7e04c8dcadf6e0a889d4a742237cb7c3d9c49613",
+  "independentVerificationSha256": "c0d146a566d1cf184ca324c31bad404a69d6dd5230ec34d0a9d4ec1560e2ea11",
+  "boundaries": [
+    "Exact 4aea7f6 candidate16 source and complete attempt1 log; prior source CI counts are not reused.",
+    "Actual core/browser totals are parsed from this log timestamped spec footer, with every fail/cancelled/skipped/todo zero; no TAP assumption or inferred Android test count.",
+    "All 35 steps and 10 required steps are source/run-bound and successful; successful Android/Windows CI builds do not establish native instrumentation, physical device, owner installation, candidate16 package acceptance or genuine handoffs.",
+    "Share project loading d2ba43ea has a separate source-bound local memory receipt: two closed font1 windows, no pixels, real submit or signed App. This CI does not replay or substitute for that validation.",
+    "Signed releases and website deployment keep their independent source/hosting receipts; this CI does not update them or establish stable launch."
+  ]
+}
