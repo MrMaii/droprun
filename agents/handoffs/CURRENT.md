@@ -11,12 +11,14 @@ handover. Current user request takes precedence over dated handoffs.
   and all eight anonymous release assets pass their dated checks. Windows is
   NotSigned. Signed-native/clean installer/Connector acceptance remains open.
   The managed release checkout was archived; artifacts/evidence remain outside.
-- Public Home/Share/README source is ccee562002839203df64300c411e0d8574845e89.
-  [Own CI37584787179](../../docs/releases/ui-home-typography-source-ci-2026-10-07.json)
+- Latest public product source is129e5b038c6eb83ee1cd575e5a943450ec919d9d,
+  including Home/Share/Settings, delivery Back and README/data-flow clarity.
+  [Own CI37588500475](../../docs/releases/ui-delivery-back-source-ci-2026-10-07.json)
   passes three jobs/35steps/10required/three matching checks; actual210core and
-  19browser tests, none failed/cancelled/skipped/todo. Full327205B attempt log
-  and independent pure-file rehash retain the original failed reader/preparation
-  separately. This is source CI, not genuine workflow or physical-device proof.
+  19browser tests, none failed/cancelled/skipped/todo. Full326858B attempt log
+  SHA31f580f6 and independent eight-raw rehash pass. Priorccee CI remains in its
+  [dated receipt](../../docs/releases/ui-home-typography-source-ci-2026-10-07.json).
+  This is source CI, not genuine workflow or physical-device proof.
 - [GPTSites27](../../docs/releases/site-home-share-tour-2026-10-07.md) is public
   at https://droprun.dengmaizi0802.chatgpt.site/; native publication succeeds
   2026-10-07T07:03:31.761795Z, hosting a5e82b8b. Exact125public files/126archive
@@ -47,6 +49,24 @@ handover. Current user request takes precedence over dated handoffs.
   own their individual originals, failures and finite checks. ADR0019 owns visual
   grouping decisions; PRD/CONTRACTS own behavior. Do not infer new acceptance from
   older stills or lift old pixel/runtime results into the current source.
+- Share project reads now distinguish loading, confirmed empty and failure,
+  with an explicit 48dp Retry/Refresh and selectable cached projects. Refresh
+  preserves the current material, note, destination, model, effort and step.
+  A fresh local take passes 1/26/25 returned-zero build/install/native children,
+  27 JVM tests and lint 0 errors/29 warnings. The one 7.839s native method closes
+  two memory-only EN/light and ZH/dark windows, with 14 ordered events, five
+  project/five activity GETs, seven exact applies, zero forbidden counters and
+  restored language/theme/palette. Six source receipts retain 139 files/four
+  configurations. Independent retained-file evidence has its own selected
+  [record](../../docs/releases/ui-share-project-load-2026-10-07.md).
+  No pixels, genuine connection, persistent draft, process loss, store swap,
+  200% type, TalkBack, physical touch or signed-App result is inferred.
+- Fresh logged-out GitHub README audit reviews the brand header, complete
+  three-image row and actual Set up link into SELF_HOSTING. Private originals
+  stay in .local/ux-oct7-readme-audit; wrong/partial gallery captures are retained.
+  Added bilingual visible step captions, an English Relay setup sequence and
+  Chinese action labels. New public-render acceptance is still pending. No
+  hosted Site27, narrow-screen, playback or complete accessibility claim.
 - File-preview Back now returns to delivery files before leaving the task;
   saving confirmation takes precedence, while picking retains its old exit.
   Only one production branch changed. Fresh debug build/install/native actions
@@ -84,13 +104,19 @@ handover. Current user request takes precedence over dated handoffs.
 
 ## Single recommended next action
 
-Collect the newly published delivery Back source CI, then bundle the accumulated
-accepted UI into one fresh signed candidate. Preserve genuine acceptance gates; continue design work from
-actual screens/source without replaying rejected diagnostics or private media.
+Publish the accepted Share recovery and reading guidance in one candidate16
+metadata/source commit (0.5.16/code29). Run that exact commit's own CI, bind a
+fresh clean managed checkout and reviewed build owners, then sign/build/verify
+Android and Windows without replacing candidate15. Publish real candidate16
+assets before updating public download links. Review the new GitHub caption and
+guide rendering. Six cached-project first-screen visibility remains a separate
+local UI check; genuine acceptance gates and private film exclusions stay open.
 
 ## Files this pass
 
-DeliverablesActivity, nonexported DemoDeliveryBackActivity and opt-in
+ShareActivity, nonexported DemoShareProjectLoadActivity and ShareProjectLoadTest;
+version metadata, bilingual README and self-hosting guidance; selected Share
+recovery/prior source-CI evidence. DeliverablesActivity, nonexported DemoDeliveryBackActivity and opt-in
 DeliveryBackHierarchyTest/debug manifest; PRD/CONTRACTS/CHANGELOG; bilingual
 README/four architecture SVGs/privacy/media provenance; selected delivery, ccee
 CI and Site27 records; this handoff. Private promo and launch-kit remain excluded.

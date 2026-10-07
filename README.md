@@ -26,6 +26,8 @@ Screenshots and recording show labelled memory-only development samples, not a g
   <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-delivery-followup-en-dark-20261007.png"><img src="assets/brand/source-delivery-followup-en-light-20261007.png" width="260" alt="03 · Inspect: native handoff page with a prominent result, grouped preview and files, and an outlined follow-up button; visible memory-only marker"></picture>
 </p>
 
+<p align="center"><strong>01 · Share a reference</strong> &nbsp; · &nbsp; <strong>02 · Follow the project</strong> &nbsp; · &nbsp; <strong>03 · Inspect the result</strong></p>
+
 Tasks count independent requests; dispatches count accepted shares and follow-ups.
 Network retries add neither.
 

@@ -34,21 +34,22 @@ scripts, ask its administrator rather than changing that policy. See Microsoft's
 [execution-policy scope and precedence](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-5.1#execution-policy-scope-and-precedence)
 (checked 2026-10-05).
 
-The local browser guide checks prerequisites, opens Cloudflare login, selects
-your account and creates a private instance. It records progress so interrupted
-provisioning can resume. Do not change the instance name to recover a failed step:
-retry the original setup first. Cloudflare management credentials belong to setup,
-not the Android app or normal Connector task execution.
+## Connect your own Relay
 
-In the current candidate, expand **Projects on this computer** after the check to
-match a phone's project ID to its local folders. This read-only list includes all
-project pages and marks missing folders. Open the folder in Codex and check again
-to recover an unavailable project. Folder paths stay in the protected local setup
-page; phone access is still granted separately in the Android app.
+1. **Check the computer.** Open the local browser guide and check prerequisites.
+2. **Create your Relay.** Use the guide to open official Cloudflare login, select
+   your account and create a private instance. The guide records progress; if a
+   step fails, retry the original setup before changing the instance name.
+3. **Check your projects.** Expand **Projects on this computer** after the check
+   to match a phone's project ID to its local folder. This read-only list includes
+   all project pages and marks missing folders. Open an unavailable folder in
+   Codex and check again. Phone access is granted separately in the Android app.
+4. **Start the Connector.** Start it from the guide. It runs after Windows
+   sign-in; keep the computer awake and online to execute tasks. Handoffs already
+   accepted by the Relay queue while the computer is offline.
 
-Start the Connector from the guide. It runs after Windows sign-in; the computer
-must remain awake and online to execute tasks. An offline computer does not lose
-handoffs already accepted by its Relay.
+Cloudflare management credentials belong to setup, not the Android app or normal
+Connector task execution. Folder paths stay in the protected local setup page.
 
 ## Pair Android
 

@@ -45,12 +45,13 @@ public class ShareActivity extends StyledActivity {
     static final int PAIR=40;
     final ExecutorService io=Executors.newSingleThreadExecutor();
     final Handler handler=new Handler(Looper.getMainLooper());
-    Store store;FrameLayout root,stage;Capped holder;LinearLayout sheet,projectList,panel;ScrollView scroll;Ui.Dots dots;ImageButton back;
+    Store store,projectRead;FrameLayout root,stage;Capped holder;LinearLayout sheet,projectList,panel;ScrollView scroll;Ui.Dots dots;ImageButton back;
     EditText search,note;TextView gaugeText,sendTitle,status,badge;ImageView modelChevron;Ui.PlaneView plane;Ui.Glass dialog;ColorDrawable scrim;ObjectAnimator scrimAnimator;
     AlertDialog discardDialog;
     ShareImport incoming;Runnable importObserver;Bundle restoredState;
     TextView draftStatus;Button retryDraft;boolean discardOnFinish;
     LinearLayout receiveActions,receiveContent;
+    TextView projectReadStatus,projectRefresh;boolean projectReadFailed;
     String shared="",last="",selected="",model="",effort="",query="",draft="";JSONArray attachments=new JSONArray();
     List<JSONObject> recentProjects=Collections.emptyList();
     int step=-1,permissionGeneration;boolean receiving=true,showAll=false,panelOpen=false,materialOpen=false,busy=false,closing=false,sent=false;
@@ -241,16 +242,35 @@ public class ShareActivity extends StyledActivity {
         try{incoming.bind(store);attachments=incoming.attachments();}catch(Exception e){fatal(e);return;}
         dots.setVisibility(View.VISIBLE);last=store.prefs.getString("lastProject","");model=store.defaultModel();effort=store.defaultEffort(model);
         go(0,1);
-        String before=store.projects().toString()+store.activity();
+        refreshProjects(true);
+    }
+    void refreshProjects(boolean initializeModel){
+        final Store target=store;if(gone()||projectRead==target)return;
+        String before=target.projects().toString()+target.activity();projectRead=target;projectReadFailed=false;updateProjectRead();
         io.execute(()->{
-            try{JSONObject data=store.get("/projects");store.prefs.edit().putString("projects",data.toString()).apply();}catch(Exception ignored){}
-            try{JSONObject data=store.get("/projects/activity");store.prefs.edit().putString("activity",data.toString()).apply();}catch(Exception ignored){}
+            boolean failed=false;
+            try{JSONObject data=target.get("/projects");data.getJSONArray("projects");target.prefs.edit().putString("projects",data.toString()).apply();}catch(Exception ignored){failed=true;}
+            try{JSONObject data=target.get("/projects/activity");target.prefs.edit().putString("activity",data.toString()).apply();}catch(Exception ignored){}
+            boolean readFailed=failed;
             runOnUiThread(()->{
-                if(gone())return;
-                if(model.isEmpty()){model=store.defaultModel();effort=store.defaultEffort(model);updateGauge();}
-                if(step==0&&!(store.projects().toString()+store.activity()).equals(before)){recentProjects=ProjectPresentation.merge(store.activity(),store.pending(),store.tasks());renderProjects();}
+                if(gone()||store!=target||projectRead!=target)return;
+                projectRead=null;projectReadFailed=readFailed;
+                if(initializeModel&&model.isEmpty()){model=target.defaultModel();effort=target.defaultEffort(model);updateGauge();}
+                if(step==0){
+                    if(!(target.projects().toString()+target.activity()).equals(before)){recentProjects=ProjectPresentation.merge(target.activity(),target.pending(),target.tasks());renderProjects();}
+                    else updateProjectRead();
+                }
             });
         });
+    }
+    void updateProjectRead(){
+        if(projectReadStatus==null||projectRefresh==null)return;
+        boolean loading=projectRead==store,empty=store.projects().length()==0;
+        String message=loading?L.t("Loading projects…","正在读取项目…"):projectReadFailed?(empty?L.t("Couldn't load projects. Check your Relay connection, then retry.","无法读取项目。请检查中转连接后重试。"):L.t("Couldn't refresh projects. Showing saved projects.","项目刷新失败，仍显示上次同步的项目。")):empty?L.t("No projects synced yet. Check Connector, add or connect a project, then refresh.","尚未同步项目。请检查 Connector，添加或连接一个项目后刷新。"):"";
+        projectReadStatus.setText(message);projectReadStatus.setTextColor(projectReadFailed?Ui.AMBER:Ui.MUTED);projectReadStatus.setVisibility(message.isEmpty()?View.GONE:View.VISIBLE);
+        projectRefresh.setEnabled(!loading);projectRefresh.setAlpha(loading?0.5f:1f);
+        projectRefresh.setText(loading?L.t("Loading…","正在读取…"):projectReadFailed?L.t("Retry","重试"):L.t("Refresh","刷新"));
+        projectRefresh.setContentDescription(loading?L.t("Loading projects","正在读取项目"):projectReadFailed?L.t("Retry loading projects","重试读取项目"):L.t("Refresh projects","刷新项目"));
     }
     void go(int target,int direction){
         if(gone())return;
@@ -316,6 +336,8 @@ public class ShareActivity extends StyledActivity {
         search=new EditText(this);search.setHint(L.t("Find a project","搜索项目"));search.setSingleLine(true);search.setImeOptions(EditorInfo.IME_ACTION_DONE);search.setText(query);Ui.styleInput(search);
         box.addView(search,Ui.margins(this,2,6));
         projectList=Ui.vertical(this);box.addView(projectList,Ui.fill());
+        projectReadStatus=Ui.caption(this,"");projectReadStatus.setPadding(dp(12),dp(8),dp(12),dp(4));projectReadStatus.setAccessibilityLiveRegion(View.ACCESSIBILITY_LIVE_REGION_POLITE);box.addView(projectReadStatus,Ui.fill());
+        projectRefresh=Ui.linkButton(this,L.t("Refresh","刷新"));projectRefresh.setOnClickListener(v->refreshProjects(false));LinearLayout.LayoutParams refreshParams=new LinearLayout.LayoutParams(-2,-2);refreshParams.setMargins(dp(6),dp(6),dp(6),dp(2));box.addView(projectRefresh,refreshParams);
         search.addTextChangedListener(new TextWatcher(){public void beforeTextChanged(CharSequence s,int a,int b,int c){}public void onTextChanged(CharSequence s,int a,int b,int c){query=s.toString();renderProjects();}public void afterTextChanged(Editable e){}});
         column.addView(box,Ui.margins(this,0,4));
         renderProjects();
@@ -325,7 +347,7 @@ public class ShareActivity extends StyledActivity {
         if(projectList==null)return;projectList.removeAllViews();
         JSONArray projects=store.projects(),history=store.activity();
         search.setVisibility(projects.length()>6||!query.isEmpty()?View.VISIBLE:View.GONE);
-        if(projects.length()==0){projectList.addView(notice(L.t("Waiting for projects. Check that DropRun Connector is running on your computer.","等待电脑同步项目。请确认电脑上的 DropRun Connector 已启动。")));return;}
+        updateProjectRead();if(projects.length()==0)return;
         // Preserve the current choice; otherwise put retained recent activity before unused projects.
         String filter=query.trim().toLowerCase(Locale.ROOT);
         List<JSONObject> ordered=ProjectPresentation.sharing(projects,recentProjects,selected,last);

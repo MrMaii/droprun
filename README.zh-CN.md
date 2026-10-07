@@ -26,6 +26,8 @@ Codex 在你的 Windows 电脑上工作，Relay 由你部署到自己的 Cloudfl
   <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-delivery-followup-zh-dark-20261007.png"><img src="assets/brand/source-delivery-followup-zh-light-20261007.png" width="260" alt="03 · 查看：原生交办页，突出结果，组合展示预览与文件，并提供描边追问按钮；保留仅内存验证标记"></picture>
 </p>
 
+<p align="center"><strong>01 · 分享参考</strong> &nbsp; · &nbsp; <strong>02 · 跟进项目</strong> &nbsp; · &nbsp; <strong>03 · 查看结果</strong></p>
+
 任务数统计独立请求；交办次数统计已接收的分享与追问。网络重试不增加次数。
 
 例如，把一条设计参考分享给已有的 App 项目，留言：

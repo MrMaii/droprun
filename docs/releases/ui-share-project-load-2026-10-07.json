@@ -1,0 +1,174 @@
+{
+  "schema": "droprun.local-ui-validation.v1",
+  "date": "2026-10-07",
+  "nonce": "d2ba43ea-3ff8-4247-891d-8d7f400fe7a4",
+  "passed": true,
+  "sourceFreezeSha256": "44f933f65c5c90b6e06941b7a6c24eb5215306eabdcce3a377ce4ac1208095ac",
+  "sourceCounts": {
+    "sources": 139,
+    "configs": 4
+  },
+  "targetSourceSha256": {
+    "android/app/src/main/java/app/droprun/ShareActivity.java": "b09ca0486cbbf00b13eb96946327d524ca369dd14f7663b4c79f80b41550ecd5",
+    "android/app/src/debug/java/app/droprun/DemoShareProjectLoadActivity.java": "e4bb98673fa7c13dbf59832886e3a368a06fe14bb86961793e2ac7ebcfbcc1cd",
+    "android/app/src/androidTest/java/app/droprun/ShareProjectLoadTest.java": "2ab74d4e95c4ba323d7047019b5cd6740ede5233a9827eebc3de8031913dca0a",
+    "android/app/src/debug/AndroidManifest.xml": "e93b625e293d5e90e6532c0becc2adf795f9a5410d0087e376f2ce1bc960ba2b"
+  },
+  "ownerSha256": "d0625cd2bfeff874a62ad3c95966d44e8dca5ac75d2bc7637638f6b12ebb4acb",
+  "readerSha256": "e8c02ad74f10d4af87f45005c35d31d6bcf90856efcf8ec77970b8074ee9584d",
+  "independentReviewSha256": "fc9633d5d3539e215b6a614af21d23a44f1bc8845f9276da34d0719993aa483a",
+  "stageVerificationSha256": {
+    "build": "2f345fc1fb19b486ad56699d8e60ddb9b174f37122b1caf4784226ade9c80ab3",
+    "install": "06defb71963b07f17036a2f40b77de7fca7d83d98748168672bef5e90a0d2193",
+    "native": "689bfc027aa5774632ad5e5b8a71e71ba1d131af75f4659f8cf48d06213a60b1"
+  },
+  "directChildren": {
+    "build": 1,
+    "install": 26,
+    "native": 25
+  },
+  "knownReturnedZeroChildren": 52,
+  "sourceSnapshotsRehashed": 143,
+  "sourceReceiptsRehashed": 6,
+  "rawFilesRehashed": 104,
+  "version": {
+    "name": "0.5.15-dev",
+    "code": 28
+  },
+  "apks": [
+    {
+      "role": "app",
+      "package": "app.droprun.mobile.debug",
+      "bytes": 2196428,
+      "sha256": "ccd26d8ef79108ccca5b35432553e373428bfa097e81bcd137527b53fde0d179",
+      "outputMetadataSha256": "9e1f9ce502ae4d5056e5560d87c92140638933435431e3fcb3538a6a29ca57d6"
+    },
+    {
+      "role": "test",
+      "package": "app.droprun.mobile.debug.test",
+      "bytes": 2091656,
+      "sha256": "5872fcf740ab6ad9a38736666dbc97665a08367a705e3d4ed6857f5fc9038233",
+      "outputMetadataSha256": "181493b9ffc5a1e4217dc361fbffacc45894e47b81a418b200c67c9b71a83803"
+    }
+  ],
+  "savedCurrentAndFourInstalledReadsMatch": true,
+  "reports": [
+    {
+      "path": "android/app/build/test-results/testDebugUnitTest/TEST-app.droprun.DeletedTaskCacheTest.xml",
+      "bytes": 1883,
+      "sha256": "655a13e47e81ad5cb6e15a76e0512ac1657a4c015fe3528fdef9827c9ce5459c"
+    },
+    {
+      "path": "android/app/build/test-results/testDebugUnitTest/TEST-app.droprun.MobileContractTest.xml",
+      "bytes": 1861,
+      "sha256": "0eb3c251c6f9d3d662c78a0f0201f225e788ec630c87ebdea2fe9aebe1327ab3"
+    },
+    {
+      "path": "android/app/build/test-results/testDebugUnitTest/TEST-app.droprun.ResultSummaryTest.xml",
+      "bytes": 1003,
+      "sha256": "04016be77fee549ef6f8bc3db9532a925ad6b619fa141ec77e204549b65eab35"
+    },
+    {
+      "path": "android/app/build/reports/lint-results-debug.xml",
+      "bytes": 38434,
+      "sha256": "9108737ff1f46aa114f4c2437a35a575b9056a866da7db44ea91ec19c185364c"
+    }
+  ],
+  "unitActual": {
+    "tests": 27,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "lintActual": {
+    "errors": 0,
+    "warnings": 29
+  },
+  "fixedDebugCaptionLint": [
+    {
+      "id": "SetTextI18n",
+      "severity": "Warning",
+      "line": 56
+    }
+  ],
+  "buildStderr": {
+    "bytes": 266,
+    "sha256": "2d606f3695a66d529c7e52b4657f1a09e3bb92ea2bb7f178257f018ce8c2ef46",
+    "description": "Retained javac deprecation notes; build allowed nonempty stderr."
+  },
+  "native": {
+    "selection": "app.droprun.ShareProjectLoadTest#projectReadStatesPreserveTheShareAndIgnoreLateUi",
+    "junitTests": 1,
+    "junitFailures": 0,
+    "seconds": 7.839,
+    "summary": {
+      "entered": 2,
+      "completed": 2,
+      "DESTROYED": 2,
+      "actual_events": 14,
+      "projects_reads": 5,
+      "activity_reads": 5,
+      "memory_cache_writes": 7,
+      "statics_restored": true,
+      "scope": "memory read/callback states only; no import, persistent draft, network, IME, send, capture or stale-store runtime claim"
+    },
+    "zeroGuardSnapshots": 14,
+    "stdoutBytes": 7768,
+    "stdoutSha256": "3daaee09a30b221604f08465e72dcffd8bc0332a9059e3b79e3a280aa4a59862",
+    "events": 14,
+    "windows": [
+      {
+        "language": "en",
+        "theme": "light",
+        "fontScale": 1,
+        "scene": "empty",
+        "phaseOrder": [
+          "entered",
+          "empty-failed",
+          "confirmed-empty-activity-failed",
+          "populated",
+          "DESTROYED",
+          "full-completed"
+        ],
+        "projectsReads": 3,
+        "activityReads": 3,
+        "memoryCacheApplies": 4,
+        "destroyed": true,
+        "executorTerminated": true
+      },
+      {
+        "language": "zh",
+        "theme": "dark",
+        "fontScale": 1,
+        "scene": "cached",
+        "phaseOrder": [
+          "entered",
+          "cached-pending",
+          "cached-failure-kept-editor",
+          "cached-failure-visible",
+          "closing-with-held-read",
+          "late-callback-no-ui",
+          "DESTROYED",
+          "full-completed"
+        ],
+        "projectsReads": 2,
+        "activityReads": 2,
+        "memoryCacheApplies": 3,
+        "destroyed": true,
+        "executorTerminated": true
+      }
+    ]
+  },
+  "tenDeviceReadValuesMatch": true,
+  "pixelAcceptance": false,
+  "boundaries": [
+    "Runtime evidence is fixed EN/light/font1 and ZH/dark/font1 memory windows only. No pixel or visual acceptance.",
+    "After-destroy held View reads are identity/text only; no live-window claim. Late admitted memory cache apply is not persistent storage.",
+    "Language/theme/palette restoration is bound to test assertions and successful native summary, not separate palette-value events.",
+    "Ten saved identity/settings values match; not all device state. Host font read 2.0 does not make this font1-configured fixture a 200% test.",
+    "No Send, Pair, import, genuine Relay, persistent draft, signed App, TalkBack, physical interaction, performance, nonempty query, store-swap or malformed-response runtime claim.",
+    "Root owner-process exit0 observations belong to its separate tool transcript; the file reader independently rehashes only saved receipts and children outputs.",
+    "The caption follows project rows. This take covers two cached choices; it does not accept first-screen visibility with six or more projects.",
+    "Stale Store identity and malformed catalog protection are source-reviewed guards, not tested runtime branches. Candidate 15 is unchanged; no candidate16 build is claimed."
+  ]
+}

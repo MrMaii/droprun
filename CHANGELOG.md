@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Distinguish Share project loading, confirmed empty and failed reads; offer an
+  explicit Retry/Refresh while retaining cached choices and the current intent.
+  [Two closed local recovery windows](docs/releases/ui-share-project-load-2026-10-07.md).
 - Return from an idle file preview to delivery files before leaving the task;
   preserve the existing active-save confirmation and save-picker exit behavior.
 - Give Home project names the full card reading width and a clearer20sp heading;

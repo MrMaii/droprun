@@ -97,6 +97,12 @@ in [the current candidate record](../releases/0.5.15-rc.1.md).
   destination color immediately. [Scoped checks](../releases/ui-share-confirmation-2026-10-06.md).
   Project search matches the displayed label or full project ID, ignoring outer
   whitespace and case without changing the query, selection or directory order.
+  Project reads distinguish loading, a confirmed empty directory and failure.
+  Retry/Refresh is an explicit48dp action, disabled while that read is pending;
+  cached projects remain selectable. Refreshing never reopens the share or resets
+  material, note, selection, step, model or effort. An activity-summary failure
+  alone does not turn a successful directory read into a directory error.
+  [Two fixed local recovery windows](../releases/ui-share-project-load-2026-10-07.md).
   Both pre-Send steps offer a compact, accessible material disclosure.
   Material and model controls use light text rows with visible trailing arrows;
   the optional note remains the distinct input surface. Their complete click

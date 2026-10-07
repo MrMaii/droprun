@@ -14,17 +14,17 @@
 
 ## 安装与连接
 
-1. 从 [0.5.15-rc.1](https://github.com/MrMaii/droprun/releases/tag/v0.5.15-rc.1) 下载
+1. **下载电脑端。** 从 [0.5.15-rc.1](https://github.com/MrMaii/droprun/releases/tag/v0.5.15-rc.1) 下载
    [Windows 安装包](https://github.com/MrMaii/droprun/releases/download/v0.5.15-rc.1/DropRun-0.5.15-windows-x64-setup.exe)或
    [便携 ZIP](https://github.com/MrMaii/droprun/releases/download/v0.5.15-rc.1/DropRun-0.5.15-windows-x64.zip)，对照发布清单校验 SHA-256。Windows 可能提示未知发布者。
-2. 安装器按当前用户安装；便携版解压到固定位置后运行 `DropRun.cmd`。
+2. **安装并打开。** 安装器按当前用户安装；便携版解压到固定位置后运行 `DropRun.cmd`。
    已包含 Node，数据保存在 `%LOCALAPPDATA%\DropRun`。
-3. 本机浏览器向导检查环境，打开 Cloudflare 官方登录，让你选择账号并创建私有
+3. **检查和部署。** 本机浏览器向导检查环境，打开 Cloudflare 官方登录，让你选择账号并创建私有
    Relay。所需媒体工具从上游单独下载，保持各自许可。
-4. 部署失败后重试原步骤；向导保留进度，不用换实例名重新创建。
-5. 启动 Connector，手机安装 [Android APK](https://github.com/MrMaii/droprun/releases/download/v0.5.15-rc.1/DropRun-0.5.15-android.apk)后扫码，确认电脑和 HTTPS 服务器地址，再授权
+4. **需要时重试。** 部署失败后重试原步骤；向导保留进度，不用换实例名重新创建。
+5. **连接手机。** 启动 Connector，手机安装 [Android APK](https://github.com/MrMaii/droprun/releases/download/v0.5.15-rc.1/DropRun-0.5.15-android.apk)后扫码，确认电脑和 HTTPS 服务器地址，再授权
    可交办的项目。配对邀请一次有效且会过期，不要公开真实二维码。
-6. 从其他 Android 应用分享材料，选项目并可选留言，观察真实处理与交付状态。
+6. **首次交办。** 从其他 Android 应用分享材料，选项目并可选留言，观察真实处理与交付状态。
 
 应用以仅当前进程有效的执行策略启动随包 PowerShell 脚本，不修改用户或机器的
 永久策略。组织的组策略仍优先；受管理电脑若禁止未签名脚本，应联系管理员。
