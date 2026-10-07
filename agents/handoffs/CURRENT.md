@@ -55,6 +55,11 @@ handover. Current user request takes precedence over dated handoffs.
   continuous playback remain open. Native gallery/tour source dates remain.
   Own source6d3b10e Validate37604642564 reports success in all three jobs;
   JSON status/steps only, without a new complete-log record.
+- [Compact README artwork](../../docs/releases/readme-compact-cover-2026-10-07.md)
+  addresses an observed narrow baseline: desktop cover text shrank at309.33px.
+  Four640x480 local originals were viewed; desktop artwork stays byte-exact.
+  Both READMEs select compact themes below600px. Published narrow display is
+  pending; artwork does not establish native or continuous-motion acceptance.
 - [Share read feedback first](../../docs/releases/ui-share-read-feedback-2026-10-07.md)
   fixes an actual first-screen issue. Four original six-cache/font1 baseline
   loading/failure captures hid status and Retry; both reviewers confirmed it.

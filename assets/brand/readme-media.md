@@ -32,6 +32,17 @@ entries at source6d3b10e. Both native GIF elements load directly at320×640,
 without a disclosure. Six saved original views were reopened and inspected;
 this is display observation, not continuous playback or narrow/dark acceptance.
 
+## Compact README cover · October 7, 2026
+
+The [narrow-screen baseline](../../docs/releases/readme-compact-cover-2026-10-07.md)
+shows the desktop artwork's tiny text when reduced to309.33px wide. Four separate
+640×480 covers use larger proportional type and stacked platform labels.
+Below600px, each README selects the compact dark/light artwork before its
+desktop theme choice. Native images and recordings remain unchanged.
+Generate with `node scripts/build-readme-cover.mjs --compact`; font provenance
+and artwork limits are the same as the desktop covers. All four local originals
+were directly reviewed; published responsive rendering remains pending.
+
 ## Complete follow-up target · October 7, 2026
 
 The README delivery gallery now uses four complete, unedited320×640 native

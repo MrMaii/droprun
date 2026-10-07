@@ -1,5 +1,5 @@
 <div align="center">
-  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/readme-cover-zh-dark.png"><img src="assets/brand/readme-cover-zh-light.png" width="960" alt="DropRun — 手机分享参考，本地 Codex 接手。Android + Windows，自部署与开源。"></picture>
+  <picture><source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset="assets/brand/readme-cover-zh-dark-compact.png"><source media="(max-width: 600px)" srcset="assets/brand/readme-cover-zh-light-compact.png"><source media="(prefers-color-scheme: dark)" srcset="assets/brand/readme-cover-zh-dark.png"><img src="assets/brand/readme-cover-zh-light.png" width="960" alt="DropRun — 手机分享参考，本地 Codex 接手。Android + Windows，自部署与开源。"></picture>
   <p>把链接、文字或文件分享给已有项目，可选留一句话，在手机查看结果与证据。</p>
   <p><a href="docs/technical/SELF_HOSTING.zh-CN.md"><strong>开始安装 →</strong></a></p>
   <p>Android 8+ · Windows x64 · 已登录 Codex · 自己的 Cloudflare</p>

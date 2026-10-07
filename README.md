@@ -1,5 +1,5 @@
 <div align="center">
-  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/readme-cover-en-dark.png"><img src="assets/brand/readme-cover-en-light.png" width="960" alt="DropRun — Share from your phone. Put local Codex to work. Android + Windows, self-hosted and open source."></picture>
+  <picture><source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset="assets/brand/readme-cover-en-dark-compact.png"><source media="(max-width: 600px)" srcset="assets/brand/readme-cover-en-light-compact.png"><source media="(prefers-color-scheme: dark)" srcset="assets/brand/readme-cover-en-dark.png"><img src="assets/brand/readme-cover-en-light.png" width="960" alt="DropRun — Share from your phone. Put local Codex to work. Android + Windows, self-hosted and open source."></picture>
   <p>Share a link, text or file to an existing project. Add an optional note; inspect the result and evidence on your phone.</p>
   <p><a href="docs/technical/SELF_HOSTING.md"><strong>Start installing →</strong></a></p>
   <p>Android 8+ · Windows x64 · signed-in Codex · your Cloudflare</p>
