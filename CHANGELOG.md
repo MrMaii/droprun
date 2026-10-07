@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Put Share's project-read feedback and Retry before the destination list;
+  use a compact normal-type row and a stacked layout at150% type or above.
 - Distinguish Share project loading, confirmed empty and failed reads; offer an
   explicit Retry/Refresh while retaining cached choices and the current intent.
   [Two closed local recovery windows](docs/releases/ui-share-project-load-2026-10-07.md).

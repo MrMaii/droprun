@@ -1,0 +1,1398 @@
+{
+  "schema": "droprun.native-share-read-feedback.v1",
+  "date": "2026-10-07",
+  "parentSource": "fdda5deb0ec479f8133e87b2ca69df29c7146b4b",
+  "productionBeforeSha256": "b09ca0486cbbf00b13eb96946327d524ca369dd14f7663b4c79f80b41550ecd5",
+  "productionAfterSha256": "e21051a8219c1eab53a51aac478cb136f52a2344da079ac16d6aebfcab6e3a38",
+  "takes": [
+    {
+      "label": "before",
+      "nonce": "70362b1b-13f0-4595-9ed8-75c08d5d6074",
+      "readerSha256": "977b93816f5a8804b443446a1c69efbf207d63a8a7fa381c39bbe45e5b47b5a4",
+      "independentVerificationSha256": "46170fe4867f39c51322c71fa8c025271c7bad9fdbec0581961441a287ac4b07",
+      "source": {
+        "freezeSha256": "131bf1cf8cd250b36eee376c328efc8052a5da9be35d4b282c7b963e6087ab6b",
+        "counts": {
+          "sources": 141,
+          "configs": 4
+        },
+        "snapshotsRehashed": 145,
+        "currentBytesExactAtReview": true
+      },
+      "sourceReceipts": [
+        {
+          "phase": "build",
+          "side": "before",
+          "sha256": "131bf1cf8cd250b36eee376c328efc8052a5da9be35d4b282c7b963e6087ab6b"
+        },
+        {
+          "phase": "build",
+          "side": "after",
+          "sha256": "131bf1cf8cd250b36eee376c328efc8052a5da9be35d4b282c7b963e6087ab6b"
+        },
+        {
+          "phase": "install",
+          "side": "before",
+          "sha256": "131bf1cf8cd250b36eee376c328efc8052a5da9be35d4b282c7b963e6087ab6b"
+        },
+        {
+          "phase": "install",
+          "side": "after",
+          "sha256": "131bf1cf8cd250b36eee376c328efc8052a5da9be35d4b282c7b963e6087ab6b"
+        },
+        {
+          "phase": "native",
+          "side": "before",
+          "sha256": "131bf1cf8cd250b36eee376c328efc8052a5da9be35d4b282c7b963e6087ab6b"
+        },
+        {
+          "phase": "native",
+          "side": "after",
+          "sha256": "131bf1cf8cd250b36eee376c328efc8052a5da9be35d4b282c7b963e6087ab6b"
+        }
+      ],
+      "directChildren": {
+        "build": 1,
+        "install": 26,
+        "native": 33
+      },
+      "rawFilesRehashed": 120,
+      "stageVerificationSha256": {
+        "build": "67af84360d39b56e5eeec7168697a8c2126e1506e1bf106c64bdfdf6a052eca4",
+        "install": "42f1e25d081afbcf0c3db0fe2fa2c5d25237f30333899abff2a76c442baf4b15",
+        "native": "a8429da658030c4d292b722b0dc3158ac563aaf38950c94b0d9beada7e91aacb"
+      },
+      "unitActual": {
+        "tests": 27,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "lintActual": {
+        "errors": 0,
+        "warnings": 29
+      },
+      "apks": [
+        {
+          "role": "app",
+          "path": "android/app/build/outputs/apk/debug/app-debug.apk",
+          "package": "app.droprun.mobile.debug",
+          "bytes": 1977966,
+          "sha256": "acde8f57d2f4e859f1af0e1315ac09090b8799d08705636c4c6f20fa544edb4b",
+          "outputMetadataSha256": "66140bac0675e030042f3d1d044fa98604bb9696b9c0d56dddca0b8a0d1329e0"
+        },
+        {
+          "role": "test",
+          "path": "android/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk",
+          "package": "app.droprun.mobile.debug.test",
+          "bytes": 2099855,
+          "sha256": "3ae96485b40d05ae5223e8bf4b18ecdb46ac8ee686f46296288b367c44542485",
+          "outputMetadataSha256": "181493b9ffc5a1e4217dc361fbffacc45894e47b81a418b200c67c9b71a83803"
+        }
+      ],
+      "native": {
+        "selection": "app.droprun.ShareSixProjectsCaptureTest#sixCachedProjectsExposeInitialReadFeedback",
+        "junitTests": 1,
+        "junitFailures": 0,
+        "seconds": 15.938,
+        "events": [
+          {
+            "nonce": "70362b1b-13f0-4595-9ed8-75c08d5d6074",
+            "language": "en",
+            "theme": "light",
+            "event": "entered",
+            "forbidden": 0,
+            "projects_reads": 1,
+            "activity_reads": 0,
+            "memory_cache_applies": 0,
+            "destroyed": false,
+            "io_terminated": false,
+            "checkpoint_noops": 0,
+            "captures_completed": 0
+          },
+          {
+            "nonce": "70362b1b-13f0-4595-9ed8-75c08d5d6074",
+            "language": "en",
+            "theme": "light",
+            "event": "captured-loading",
+            "forbidden": 0,
+            "projects_reads": 1,
+            "activity_reads": 0,
+            "memory_cache_applies": 0,
+            "destroyed": false,
+            "io_terminated": false,
+            "checkpoint_noops": 0,
+            "captures_completed": 1
+          },
+          {
+            "nonce": "70362b1b-13f0-4595-9ed8-75c08d5d6074",
+            "language": "en",
+            "theme": "light",
+            "event": "captured-failure",
+            "forbidden": 0,
+            "projects_reads": 1,
+            "activity_reads": 1,
+            "memory_cache_applies": 1,
+            "destroyed": false,
+            "io_terminated": false,
+            "checkpoint_noops": 0,
+            "captures_completed": 2
+          },
+          {
+            "nonce": "70362b1b-13f0-4595-9ed8-75c08d5d6074",
+            "language": "en",
+            "theme": "light",
+            "event": "DESTROYED",
+            "forbidden": 0,
+            "projects_reads": 1,
+            "activity_reads": 1,
+            "memory_cache_applies": 1,
+            "destroyed": true,
+            "io_terminated": true,
+            "checkpoint_noops": 1,
+            "captures_completed": 2
+          },
+          {
+            "nonce": "70362b1b-13f0-4595-9ed8-75c08d5d6074",
+            "language": "en",
+            "theme": "light",
+            "event": "full-completed",
+            "forbidden": 0,
+            "projects_reads": 1,
+            "activity_reads": 1,
+            "memory_cache_applies": 1,
+            "destroyed": true,
+            "io_terminated": true,
+            "checkpoint_noops": 1,
+            "captures_completed": 2
+          },
+          {
+            "nonce": "70362b1b-13f0-4595-9ed8-75c08d5d6074",
+            "language": "zh",
+            "theme": "dark",
+            "event": "entered",
+            "forbidden": 0,
+            "projects_reads": 1,
+            "activity_reads": 0,
+            "memory_cache_applies": 0,
+            "destroyed": false,
+            "io_terminated": false,
+            "checkpoint_noops": 0,
+            "captures_completed": 2
+          },
+          {
+            "nonce": "70362b1b-13f0-4595-9ed8-75c08d5d6074",
+            "language": "zh",
+            "theme": "dark",
+            "event": "captured-loading",
+            "forbidden": 0,
+            "projects_reads": 1,
+            "activity_reads": 0,
+            "memory_cache_applies": 0,
+            "destroyed": false,
+            "io_terminated": false,
+            "checkpoint_noops": 0,
+            "captures_completed": 3
+          },
+          {
+            "nonce": "70362b1b-13f0-4595-9ed8-75c08d5d6074",
+            "language": "zh",
+            "theme": "dark",
+            "event": "captured-failure",
+            "forbidden": 0,
+            "projects_reads": 1,
+            "activity_reads": 1,
+            "memory_cache_applies": 1,
+            "destroyed": false,
+            "io_terminated": false,
+            "checkpoint_noops": 0,
+            "captures_completed": 4
+          },
+          {
+            "nonce": "70362b1b-13f0-4595-9ed8-75c08d5d6074",
+            "language": "zh",
+            "theme": "dark",
+            "event": "DESTROYED",
+            "forbidden": 0,
+            "projects_reads": 1,
+            "activity_reads": 1,
+            "memory_cache_applies": 1,
+            "destroyed": true,
+            "io_terminated": true,
+            "checkpoint_noops": 1,
+            "captures_completed": 4
+          },
+          {
+            "nonce": "70362b1b-13f0-4595-9ed8-75c08d5d6074",
+            "language": "zh",
+            "theme": "dark",
+            "event": "full-completed",
+            "forbidden": 0,
+            "projects_reads": 1,
+            "activity_reads": 1,
+            "memory_cache_applies": 1,
+            "destroyed": true,
+            "io_terminated": true,
+            "checkpoint_noops": 1,
+            "captures_completed": 4
+          }
+        ],
+        "summary": {
+          "nonce": "70362b1b-13f0-4595-9ed8-75c08d5d6074",
+          "entered": 2,
+          "completed": 2,
+          "DESTROYED": 2,
+          "captures": 4,
+          "projects_reads": 2,
+          "activity_reads": 2,
+          "memory_cache_applies": 2,
+          "statics_restored": true,
+          "capture_accepted": false,
+          "scope": "two fixed six-cache font1 windows; initial scroll only; no click, import, Send, Pair, network, business storage, IME or OS write"
+        },
+        "allKnownDestroyed": true,
+        "guardSnapshots": 10,
+        "pixelAcceptance": false
+      },
+      "tenReadOnlyDeviceValuesMatched": true,
+      "captures": [
+        {
+          "stem": "share-six-projects-en-light-loading",
+          "files": [
+            {
+              "name": "share-six-projects-en-light-loading.png",
+              "bytes": 45964,
+              "sha256": "9120646215e1dba66abdf6e2aee9c9551f4885c2dc4d094390409f4dcd30859d"
+            },
+            {
+              "name": "share-six-projects-en-light-loading.json",
+              "bytes": 2580,
+              "sha256": "82b9500147e8241fe8e0ee736ae307380f3752da73c9f481a2f42446caaab0de"
+            }
+          ],
+          "metadata": {
+            "nonce": "70362b1b-13f0-4595-9ed8-75c08d5d6074",
+            "language": "en",
+            "theme": "light",
+            "state": "loading",
+            "font_scale": 1,
+            "fixture": "DemoShareSixProjectsActivity",
+            "memory_only": true,
+            "capture_accepted": false,
+            "scroll_x": 0,
+            "scroll_y": 0,
+            "project_count": 6,
+            "row_count": 6,
+            "rows": [
+              {
+                "bounds": "[26,209][294,279]",
+                "visible_rect": "[26,209][294,279]",
+                "viewport_intersection": "[26,209][294,279]",
+                "has_visible_rect": true,
+                "whole_target": true
+              },
+              {
+                "bounds": "[26,280][294,350]",
+                "visible_rect": "[26,280][294,350]",
+                "viewport_intersection": "[26,280][294,350]",
+                "has_visible_rect": true,
+                "whole_target": true
+              },
+              {
+                "bounds": "[26,351][294,421]",
+                "visible_rect": "[26,351][294,421]",
+                "viewport_intersection": "[26,351][294,421]",
+                "has_visible_rect": true,
+                "whole_target": true
+              },
+              {
+                "bounds": "[26,422][294,492]",
+                "visible_rect": "[26,422][294,492]",
+                "viewport_intersection": "[26,422][294,492]",
+                "has_visible_rect": true,
+                "whole_target": true
+              },
+              {
+                "bounds": "[26,493][294,563]",
+                "visible_rect": "[26,493][294,563]",
+                "viewport_intersection": "[26,493][294,563]",
+                "has_visible_rect": true,
+                "whole_target": true
+              },
+              {
+                "bounds": "[26,564][294,634]",
+                "visible_rect": "[26,564][294,596]",
+                "viewport_intersection": "[26,564][294,596]",
+                "has_visible_rect": true,
+                "whole_target": false
+              }
+            ],
+            "safe_bounds": "[0,24][320,616]",
+            "scroll_viewport": "[20,84][300,596]",
+            "status": "Loading projects…",
+            "status_geometry": {
+              "bounds": "[26,634][294,660]",
+              "visible_rect": "[6,550][274,576]",
+              "viewport_intersection": "[0,0][0,0]",
+              "has_visible_rect": false,
+              "whole_target": false
+            },
+            "refresh": "Loading…",
+            "refresh_geometry": {
+              "bounds": "[32,666][118,714]",
+              "visible_rect": "[12,582][98,630]",
+              "viewport_intersection": "[0,0][0,0]",
+              "has_visible_rect": false,
+              "whole_target": false
+            },
+            "refresh_enabled": false,
+            "marker": "MEMORY ONLY · 6 projects",
+            "marker_bounds": "[68,70][252,84]",
+            "header_bounds": "[20,36][300,84]",
+            "marker_added_vertical_space_dp": 0,
+            "required_predraws_completed": 2,
+            "settled_at_elapsed_ms": 139700343,
+            "capture_at_elapsed_ms": 139702359,
+            "window_focus": true,
+            "ime_visible": false,
+            "forbidden": 0,
+            "projects_reads": 1,
+            "activity_reads": 0,
+            "memory_cache_applies": 0,
+            "system_bar_pixels_require_visual_review": true
+          },
+          "originalPixelFlag": false
+        },
+        {
+          "stem": "share-six-projects-en-light-failure",
+          "files": [
+            {
+              "name": "share-six-projects-en-light-failure.png",
+              "bytes": 45964,
+              "sha256": "9120646215e1dba66abdf6e2aee9c9551f4885c2dc4d094390409f4dcd30859d"
+            },
+            {
+              "name": "share-six-projects-en-light-failure.json",
+              "bytes": 2604,
+              "sha256": "6b0923819fd01bef7984c949183b8bc6ceee6635a600eea82a32c0abd776f59c"
+            }
+          ],
+          "metadata": {
+            "nonce": "70362b1b-13f0-4595-9ed8-75c08d5d6074",
+            "language": "en",
+            "theme": "light",
+            "state": "failure",
+            "font_scale": 1,
+            "fixture": "DemoShareSixProjectsActivity",
+            "memory_only": true,
+            "capture_accepted": false,
+            "scroll_x": 0,
+            "scroll_y": 0,
+            "project_count": 6,
+            "row_count": 6,
+            "rows": [
+              {
+                "bounds": "[26,209][294,279]",
+                "visible_rect": "[26,209][294,279]",
+                "viewport_intersection": "[26,209][294,279]",
+                "has_visible_rect": true,
+                "whole_target": true
+              },
+              {
+                "bounds": "[26,280][294,350]",
+                "visible_rect": "[26,280][294,350]",
+                "viewport_intersection": "[26,280][294,350]",
+                "has_visible_rect": true,
+                "whole_target": true
+              },
+              {
+                "bounds": "[26,351][294,421]",
+                "visible_rect": "[26,351][294,421]",
+                "viewport_intersection": "[26,351][294,421]",
+                "has_visible_rect": true,
+                "whole_target": true
+              },
+              {
+                "bounds": "[26,422][294,492]",
+                "visible_rect": "[26,422][294,492]",
+                "viewport_intersection": "[26,422][294,492]",
+                "has_visible_rect": true,
+                "whole_target": true
+              },
+              {
+                "bounds": "[26,493][294,563]",
+                "visible_rect": "[26,493][294,563]",
+                "viewport_intersection": "[26,493][294,563]",
+                "has_visible_rect": true,
+                "whole_target": true
+              },
+              {
+                "bounds": "[26,564][294,634]",
+                "visible_rect": "[26,564][294,596]",
+                "viewport_intersection": "[26,564][294,596]",
+                "has_visible_rect": true,
+                "whole_target": false
+              }
+            ],
+            "safe_bounds": "[0,24][320,616]",
+            "scroll_viewport": "[20,84][300,596]",
+            "status": "Couldn't refresh projects. Showing saved projects.",
+            "status_geometry": {
+              "bounds": "[26,634][294,677]",
+              "visible_rect": "[6,550][274,593]",
+              "viewport_intersection": "[0,0][0,0]",
+              "has_visible_rect": false,
+              "whole_target": false
+            },
+            "refresh": "Retry",
+            "refresh_geometry": {
+              "bounds": "[32,683][91,731]",
+              "visible_rect": "[12,599][71,647]",
+              "viewport_intersection": "[0,0][0,0]",
+              "has_visible_rect": false,
+              "whole_target": false
+            },
+            "refresh_enabled": true,
+            "marker": "MEMORY ONLY · 6 projects",
+            "marker_bounds": "[68,70][252,84]",
+            "header_bounds": "[20,36][300,84]",
+            "marker_added_vertical_space_dp": 0,
+            "required_predraws_completed": 2,
+            "settled_at_elapsed_ms": 139702752,
+            "capture_at_elapsed_ms": 139704778,
+            "window_focus": true,
+            "ime_visible": false,
+            "forbidden": 0,
+            "projects_reads": 1,
+            "activity_reads": 1,
+            "memory_cache_applies": 1,
+            "system_bar_pixels_require_visual_review": true
+          },
+          "originalPixelFlag": false
+        },
+        {
+          "stem": "share-six-projects-zh-dark-loading",
+          "files": [
+            {
+              "name": "share-six-projects-zh-dark-loading.png",
+              "bytes": 45585,
+              "sha256": "6431f3299e014b7eda8fc901864c5c172b96233a7635ed0208205818cc0a3675"
+            },
+            {
+              "name": "share-six-projects-zh-dark-loading.json",
+              "bytes": 2587,
+              "sha256": "0e48da0645992b231090cf2972516ab10636e0fc5b436adbbe79b52fe42d8672"
+            }
+          ],
+          "metadata": {
+            "nonce": "70362b1b-13f0-4595-9ed8-75c08d5d6074",
+            "language": "zh",
+            "theme": "dark",
+            "state": "loading",
+            "font_scale": 1,
+            "fixture": "DemoShareSixProjectsActivity",
+            "memory_only": true,
+            "capture_accepted": false,
+            "scroll_x": 0,
+            "scroll_y": 0,
+            "project_count": 6,
+            "row_count": 6,
+            "rows": [
+              {
+                "bounds": "[26,216][294,289]",
+                "visible_rect": "[26,216][294,289]",
+                "viewport_intersection": "[26,216][294,289]",
+                "has_visible_rect": true,
+                "whole_target": true
+              },
+              {
+                "bounds": "[26,290][294,363]",
+                "visible_rect": "[26,290][294,363]",
+                "viewport_intersection": "[26,290][294,363]",
+                "has_visible_rect": true,
+                "whole_target": true
+              },
+              {
+                "bounds": "[26,364][294,437]",
+                "visible_rect": "[26,364][294,437]",
+                "viewport_intersection": "[26,364][294,437]",
+                "has_visible_rect": true,
+                "whole_target": true
+              },
+              {
+                "bounds": "[26,438][294,511]",
+                "visible_rect": "[26,438][294,511]",
+                "viewport_intersection": "[26,438][294,511]",
+                "has_visible_rect": true,
+                "whole_target": true
+              },
+              {
+                "bounds": "[26,512][294,585]",
+                "visible_rect": "[26,512][294,585]",
+                "viewport_intersection": "[26,512][294,585]",
+                "has_visible_rect": true,
+                "whole_target": true
+              },
+              {
+                "bounds": "[26,586][294,659]",
+                "visible_rect": "[26,586][294,596]",
+                "viewport_intersection": "[26,586][294,596]",
+                "has_visible_rect": true,
+                "whole_target": false
+              }
+            ],
+            "safe_bounds": "[0,24][320,616]",
+            "scroll_viewport": "[20,84][300,596]",
+            "status": "正在读取项目…",
+            "status_geometry": {
+              "bounds": "[26,659][294,688]",
+              "visible_rect": "[6,575][274,604]",
+              "viewport_intersection": "[0,0][0,0]",
+              "has_visible_rect": false,
+              "whole_target": false
+            },
+            "refresh": "正在读取…",
+            "refresh_geometry": {
+              "bounds": "[32,694][122,742]",
+              "visible_rect": "[12,610][102,658]",
+              "viewport_intersection": "[0,0][0,0]",
+              "has_visible_rect": false,
+              "whole_target": false
+            },
+            "refresh_enabled": false,
+            "marker": "MEMORY ONLY · 6 projects",
+            "marker_bounds": "[68,70][252,84]",
+            "header_bounds": "[20,36][300,84]",
+            "marker_added_vertical_space_dp": 0,
+            "required_predraws_completed": 2,
+            "settled_at_elapsed_ms": 139707784,
+            "capture_at_elapsed_ms": 139709801,
+            "window_focus": true,
+            "ime_visible": false,
+            "forbidden": 0,
+            "projects_reads": 1,
+            "activity_reads": 0,
+            "memory_cache_applies": 0,
+            "system_bar_pixels_require_visual_review": true
+          },
+          "originalPixelFlag": false
+        },
+        {
+          "stem": "share-six-projects-zh-dark-failure",
+          "files": [
+            {
+              "name": "share-six-projects-zh-dark-failure.png",
+              "bytes": 45585,
+              "sha256": "6431f3299e014b7eda8fc901864c5c172b96233a7635ed0208205818cc0a3675"
+            },
+            {
+              "name": "share-six-projects-zh-dark-failure.json",
+              "bytes": 2608,
+              "sha256": "7b078b75c448c3337f6b084cf72fe384f448fd6fa85529dc21b7f8897a069cad"
+            }
+          ],
+          "metadata": {
+            "nonce": "70362b1b-13f0-4595-9ed8-75c08d5d6074",
+            "language": "zh",
+            "theme": "dark",
+            "state": "failure",
+            "font_scale": 1,
+            "fixture": "DemoShareSixProjectsActivity",
+            "memory_only": true,
+            "capture_accepted": false,
+            "scroll_x": 0,
+            "scroll_y": 0,
+            "project_count": 6,
+            "row_count": 6,
+            "rows": [
+              {
+                "bounds": "[26,216][294,289]",
+                "visible_rect": "[26,216][294,289]",
+                "viewport_intersection": "[26,216][294,289]",
+                "has_visible_rect": true,
+                "whole_target": true
+              },
+              {
+                "bounds": "[26,290][294,363]",
+                "visible_rect": "[26,290][294,363]",
+                "viewport_intersection": "[26,290][294,363]",
+                "has_visible_rect": true,
+                "whole_target": true
+              },
+              {
+                "bounds": "[26,364][294,437]",
+                "visible_rect": "[26,364][294,437]",
+                "viewport_intersection": "[26,364][294,437]",
+                "has_visible_rect": true,
+                "whole_target": true
+              },
+              {
+                "bounds": "[26,438][294,511]",
+                "visible_rect": "[26,438][294,511]",
+                "viewport_intersection": "[26,438][294,511]",
+                "has_visible_rect": true,
+                "whole_target": true
+              },
+              {
+                "bounds": "[26,512][294,585]",
+                "visible_rect": "[26,512][294,585]",
+                "viewport_intersection": "[26,512][294,585]",
+                "has_visible_rect": true,
+                "whole_target": true
+              },
+              {
+                "bounds": "[26,586][294,659]",
+                "visible_rect": "[26,586][294,596]",
+                "viewport_intersection": "[26,586][294,596]",
+                "has_visible_rect": true,
+                "whole_target": false
+              }
+            ],
+            "safe_bounds": "[0,24][320,616]",
+            "scroll_viewport": "[20,84][300,596]",
+            "status": "项目刷新失败，仍显示上次同步的项目。",
+            "status_geometry": {
+              "bounds": "[26,659][294,688]",
+              "visible_rect": "[6,575][274,604]",
+              "viewport_intersection": "[0,0][0,0]",
+              "has_visible_rect": false,
+              "whole_target": false
+            },
+            "refresh": "重试",
+            "refresh_geometry": {
+              "bounds": "[32,694][84,742]",
+              "visible_rect": "[12,610][64,658]",
+              "viewport_intersection": "[0,0][0,0]",
+              "has_visible_rect": false,
+              "whole_target": false
+            },
+            "refresh_enabled": true,
+            "marker": "MEMORY ONLY · 6 projects",
+            "marker_bounds": "[68,70][252,84]",
+            "header_bounds": "[20,36][300,84]",
+            "marker_added_vertical_space_dp": 0,
+            "required_predraws_completed": 2,
+            "settled_at_elapsed_ms": 139710045,
+            "capture_at_elapsed_ms": 139712071,
+            "window_focus": true,
+            "ime_visible": false,
+            "forbidden": 0,
+            "projects_reads": 1,
+            "activity_reads": 1,
+            "memory_cache_applies": 1,
+            "system_bar_pixels_require_visual_review": true
+          },
+          "originalPixelFlag": false
+        }
+      ]
+    },
+    {
+      "label": "after",
+      "nonce": "44db3e6c-4500-4870-a700-d6d9ca4e9a62",
+      "readerSha256": "70f1357ca87b0538825a689db199d2ea0e3b11752e598281a4f86a5b1e86fb57",
+      "independentVerificationSha256": "dc19895c09e5ac493468a27414012cc67c0efec9b603708715251b4703fe5397",
+      "source": {
+        "freezeSha256": "0a310a8707f5478a00c9baaa330ec456c2a403bb1219f0b075e00fb6bd26cf69",
+        "counts": {
+          "sources": 141,
+          "configs": 4
+        },
+        "snapshotsRehashed": 145,
+        "currentBytesExactAtReview": true
+      },
+      "sourceReceipts": [
+        {
+          "phase": "build",
+          "side": "before",
+          "sha256": "0a310a8707f5478a00c9baaa330ec456c2a403bb1219f0b075e00fb6bd26cf69"
+        },
+        {
+          "phase": "build",
+          "side": "after",
+          "sha256": "0a310a8707f5478a00c9baaa330ec456c2a403bb1219f0b075e00fb6bd26cf69"
+        },
+        {
+          "phase": "install",
+          "side": "before",
+          "sha256": "0a310a8707f5478a00c9baaa330ec456c2a403bb1219f0b075e00fb6bd26cf69"
+        },
+        {
+          "phase": "install",
+          "side": "after",
+          "sha256": "0a310a8707f5478a00c9baaa330ec456c2a403bb1219f0b075e00fb6bd26cf69"
+        },
+        {
+          "phase": "native",
+          "side": "before",
+          "sha256": "0a310a8707f5478a00c9baaa330ec456c2a403bb1219f0b075e00fb6bd26cf69"
+        },
+        {
+          "phase": "native",
+          "side": "after",
+          "sha256": "0a310a8707f5478a00c9baaa330ec456c2a403bb1219f0b075e00fb6bd26cf69"
+        }
+      ],
+      "directChildren": {
+        "build": 1,
+        "install": 26,
+        "native": 33
+      },
+      "rawFilesRehashed": 120,
+      "stageVerificationSha256": {
+        "build": "f1b49a85aab420b1b257105144e20e4dc3ab8cd353046f1641616e07a2995498",
+        "install": "8e6ca362b13c15759c58ad337f35239bbc9c44129fbb1b2ac9d0f19eee87719a",
+        "native": "398a9adaa93f6df2fa25ef75f73cafccac3318734302c5b8514228fc74025d1d"
+      },
+      "unitActual": {
+        "tests": 27,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "lintActual": {
+        "errors": 0,
+        "warnings": 29
+      },
+      "apks": [
+        {
+          "role": "app",
+          "path": "android/app/build/outputs/apk/debug/app-debug.apk",
+          "package": "app.droprun.mobile.debug",
+          "bytes": 2213192,
+          "sha256": "5b443f5ddca32cbf54be575fb0389195dbb8f5aa74856849971e37c8797b8d23",
+          "outputMetadataSha256": "66140bac0675e030042f3d1d044fa98604bb9696b9c0d56dddca0b8a0d1329e0"
+        },
+        {
+          "role": "test",
+          "path": "android/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk",
+          "package": "app.droprun.mobile.debug.test",
+          "bytes": 2099855,
+          "sha256": "3ae96485b40d05ae5223e8bf4b18ecdb46ac8ee686f46296288b367c44542485",
+          "outputMetadataSha256": "181493b9ffc5a1e4217dc361fbffacc45894e47b81a418b200c67c9b71a83803"
+        }
+      ],
+      "native": {
+        "selection": "app.droprun.ShareSixProjectsCaptureTest#sixCachedProjectsExposeInitialReadFeedback",
+        "junitTests": 1,
+        "junitFailures": 0,
+        "seconds": 15.411,
+        "events": [
+          {
+            "nonce": "44db3e6c-4500-4870-a700-d6d9ca4e9a62",
+            "language": "en",
+            "theme": "light",
+            "event": "entered",
+            "forbidden": 0,
+            "projects_reads": 1,
+            "activity_reads": 0,
+            "memory_cache_applies": 0,
+            "destroyed": false,
+            "io_terminated": false,
+            "checkpoint_noops": 0,
+            "captures_completed": 0
+          },
+          {
+            "nonce": "44db3e6c-4500-4870-a700-d6d9ca4e9a62",
+            "language": "en",
+            "theme": "light",
+            "event": "captured-loading",
+            "forbidden": 0,
+            "projects_reads": 1,
+            "activity_reads": 0,
+            "memory_cache_applies": 0,
+            "destroyed": false,
+            "io_terminated": false,
+            "checkpoint_noops": 0,
+            "captures_completed": 1
+          },
+          {
+            "nonce": "44db3e6c-4500-4870-a700-d6d9ca4e9a62",
+            "language": "en",
+            "theme": "light",
+            "event": "captured-failure",
+            "forbidden": 0,
+            "projects_reads": 1,
+            "activity_reads": 1,
+            "memory_cache_applies": 1,
+            "destroyed": false,
+            "io_terminated": false,
+            "checkpoint_noops": 0,
+            "captures_completed": 2
+          },
+          {
+            "nonce": "44db3e6c-4500-4870-a700-d6d9ca4e9a62",
+            "language": "en",
+            "theme": "light",
+            "event": "DESTROYED",
+            "forbidden": 0,
+            "projects_reads": 1,
+            "activity_reads": 1,
+            "memory_cache_applies": 1,
+            "destroyed": true,
+            "io_terminated": true,
+            "checkpoint_noops": 1,
+            "captures_completed": 2
+          },
+          {
+            "nonce": "44db3e6c-4500-4870-a700-d6d9ca4e9a62",
+            "language": "en",
+            "theme": "light",
+            "event": "full-completed",
+            "forbidden": 0,
+            "projects_reads": 1,
+            "activity_reads": 1,
+            "memory_cache_applies": 1,
+            "destroyed": true,
+            "io_terminated": true,
+            "checkpoint_noops": 1,
+            "captures_completed": 2
+          },
+          {
+            "nonce": "44db3e6c-4500-4870-a700-d6d9ca4e9a62",
+            "language": "zh",
+            "theme": "dark",
+            "event": "entered",
+            "forbidden": 0,
+            "projects_reads": 1,
+            "activity_reads": 0,
+            "memory_cache_applies": 0,
+            "destroyed": false,
+            "io_terminated": false,
+            "checkpoint_noops": 0,
+            "captures_completed": 2
+          },
+          {
+            "nonce": "44db3e6c-4500-4870-a700-d6d9ca4e9a62",
+            "language": "zh",
+            "theme": "dark",
+            "event": "captured-loading",
+            "forbidden": 0,
+            "projects_reads": 1,
+            "activity_reads": 0,
+            "memory_cache_applies": 0,
+            "destroyed": false,
+            "io_terminated": false,
+            "checkpoint_noops": 0,
+            "captures_completed": 3
+          },
+          {
+            "nonce": "44db3e6c-4500-4870-a700-d6d9ca4e9a62",
+            "language": "zh",
+            "theme": "dark",
+            "event": "captured-failure",
+            "forbidden": 0,
+            "projects_reads": 1,
+            "activity_reads": 1,
+            "memory_cache_applies": 1,
+            "destroyed": false,
+            "io_terminated": false,
+            "checkpoint_noops": 0,
+            "captures_completed": 4
+          },
+          {
+            "nonce": "44db3e6c-4500-4870-a700-d6d9ca4e9a62",
+            "language": "zh",
+            "theme": "dark",
+            "event": "DESTROYED",
+            "forbidden": 0,
+            "projects_reads": 1,
+            "activity_reads": 1,
+            "memory_cache_applies": 1,
+            "destroyed": true,
+            "io_terminated": true,
+            "checkpoint_noops": 1,
+            "captures_completed": 4
+          },
+          {
+            "nonce": "44db3e6c-4500-4870-a700-d6d9ca4e9a62",
+            "language": "zh",
+            "theme": "dark",
+            "event": "full-completed",
+            "forbidden": 0,
+            "projects_reads": 1,
+            "activity_reads": 1,
+            "memory_cache_applies": 1,
+            "destroyed": true,
+            "io_terminated": true,
+            "checkpoint_noops": 1,
+            "captures_completed": 4
+          }
+        ],
+        "summary": {
+          "nonce": "44db3e6c-4500-4870-a700-d6d9ca4e9a62",
+          "entered": 2,
+          "completed": 2,
+          "DESTROYED": 2,
+          "captures": 4,
+          "projects_reads": 2,
+          "activity_reads": 2,
+          "memory_cache_applies": 2,
+          "statics_restored": true,
+          "capture_accepted": false,
+          "scope": "two fixed six-cache font1 windows; initial scroll only; no click, import, Send, Pair, network, business storage, IME or OS write"
+        },
+        "allKnownDestroyed": true,
+        "guardSnapshots": 10,
+        "pixelAcceptance": false
+      },
+      "tenReadOnlyDeviceValuesMatched": true,
+      "captures": [
+        {
+          "stem": "share-six-projects-en-light-loading",
+          "files": [
+            {
+              "name": "share-six-projects-en-light-loading.png",
+              "bytes": 45873,
+              "sha256": "be437ca5c559f61a1c7d64106847bebe6d942d372117b6f80e7c1a16ae4abc55"
+            },
+            {
+              "name": "share-six-projects-en-light-loading.json",
+              "bytes": 2589,
+              "sha256": "d3249e71ff73ca6d14fbaeb5f4106b5049a0379dc62780624fe300cb213a492b"
+            }
+          ],
+          "metadata": {
+            "nonce": "44db3e6c-4500-4870-a700-d6d9ca4e9a62",
+            "language": "en",
+            "theme": "light",
+            "state": "loading",
+            "font_scale": 1,
+            "fixture": "DemoShareSixProjectsActivity",
+            "memory_only": true,
+            "capture_accepted": false,
+            "scroll_x": 0,
+            "scroll_y": 0,
+            "project_count": 6,
+            "row_count": 6,
+            "rows": [
+              {
+                "bounds": "[26,269][294,339]",
+                "visible_rect": "[26,269][294,339]",
+                "viewport_intersection": "[26,269][294,339]",
+                "has_visible_rect": true,
+                "whole_target": true
+              },
+              {
+                "bounds": "[26,340][294,410]",
+                "visible_rect": "[26,340][294,410]",
+                "viewport_intersection": "[26,340][294,410]",
+                "has_visible_rect": true,
+                "whole_target": true
+              },
+              {
+                "bounds": "[26,411][294,481]",
+                "visible_rect": "[26,411][294,481]",
+                "viewport_intersection": "[26,411][294,481]",
+                "has_visible_rect": true,
+                "whole_target": true
+              },
+              {
+                "bounds": "[26,482][294,552]",
+                "visible_rect": "[26,482][294,552]",
+                "viewport_intersection": "[26,482][294,552]",
+                "has_visible_rect": true,
+                "whole_target": true
+              },
+              {
+                "bounds": "[26,553][294,623]",
+                "visible_rect": "[26,553][294,596]",
+                "viewport_intersection": "[26,553][294,596]",
+                "has_visible_rect": true,
+                "whole_target": false
+              },
+              {
+                "bounds": "[26,624][294,694]",
+                "visible_rect": "[6,540][274,610]",
+                "viewport_intersection": "[0,0][0,0]",
+                "has_visible_rect": false,
+                "whole_target": false
+              }
+            ],
+            "safe_bounds": "[0,24][320,616]",
+            "scroll_viewport": "[20,84][300,596]",
+            "status": "Loading projects…",
+            "status_geometry": {
+              "bounds": "[26,224][196,254]",
+              "visible_rect": "[26,224][196,254]",
+              "viewport_intersection": "[26,224][196,254]",
+              "has_visible_rect": true,
+              "whole_target": true
+            },
+            "refresh": "Loading…",
+            "refresh_geometry": {
+              "bounds": "[202,215][288,263]",
+              "visible_rect": "[202,215][288,263]",
+              "viewport_intersection": "[202,215][288,263]",
+              "has_visible_rect": true,
+              "whole_target": true
+            },
+            "refresh_enabled": false,
+            "marker": "MEMORY ONLY · 6 projects",
+            "marker_bounds": "[68,70][252,84]",
+            "header_bounds": "[20,36][300,84]",
+            "marker_added_vertical_space_dp": 0,
+            "required_predraws_completed": 2,
+            "settled_at_elapsed_ms": 140032155,
+            "capture_at_elapsed_ms": 140034193,
+            "window_focus": true,
+            "ime_visible": false,
+            "forbidden": 0,
+            "projects_reads": 1,
+            "activity_reads": 0,
+            "memory_cache_applies": 0,
+            "system_bar_pixels_require_visual_review": true
+          },
+          "originalPixelFlag": false,
+          "publicOriginal": "../../assets/brand/source-share-read-feedback-en-light-loading-20261007.png"
+        },
+        {
+          "stem": "share-six-projects-en-light-failure",
+          "files": [
+            {
+              "name": "share-six-projects-en-light-failure.png",
+              "bytes": 47863,
+              "sha256": "ff478f2f940a4dc81e74eeec41737f0f3452ffdcf56928e1c1887645b4ba9ea7"
+            },
+            {
+              "name": "share-six-projects-en-light-failure.json",
+              "bytes": 2614,
+              "sha256": "e4ad787f22a4d75c5e615e11c5cc6f9bbb8683bb663fbada91ed978fddf295e1"
+            }
+          ],
+          "metadata": {
+            "nonce": "44db3e6c-4500-4870-a700-d6d9ca4e9a62",
+            "language": "en",
+            "theme": "light",
+            "state": "failure",
+            "font_scale": 1,
+            "fixture": "DemoShareSixProjectsActivity",
+            "memory_only": true,
+            "capture_accepted": false,
+            "scroll_x": 0,
+            "scroll_y": 0,
+            "project_count": 6,
+            "row_count": 6,
+            "rows": [
+              {
+                "bounds": "[26,269][294,339]",
+                "visible_rect": "[26,269][294,339]",
+                "viewport_intersection": "[26,269][294,339]",
+                "has_visible_rect": true,
+                "whole_target": true
+              },
+              {
+                "bounds": "[26,340][294,410]",
+                "visible_rect": "[26,340][294,410]",
+                "viewport_intersection": "[26,340][294,410]",
+                "has_visible_rect": true,
+                "whole_target": true
+              },
+              {
+                "bounds": "[26,411][294,481]",
+                "visible_rect": "[26,411][294,481]",
+                "viewport_intersection": "[26,411][294,481]",
+                "has_visible_rect": true,
+                "whole_target": true
+              },
+              {
+                "bounds": "[26,482][294,552]",
+                "visible_rect": "[26,482][294,552]",
+                "viewport_intersection": "[26,482][294,552]",
+                "has_visible_rect": true,
+                "whole_target": true
+              },
+              {
+                "bounds": "[26,553][294,623]",
+                "visible_rect": "[26,553][294,596]",
+                "viewport_intersection": "[26,553][294,596]",
+                "has_visible_rect": true,
+                "whole_target": false
+              },
+              {
+                "bounds": "[26,624][294,694]",
+                "visible_rect": "[6,540][274,610]",
+                "viewport_intersection": "[0,0][0,0]",
+                "has_visible_rect": false,
+                "whole_target": false
+              }
+            ],
+            "safe_bounds": "[0,24][320,616]",
+            "scroll_viewport": "[20,84][300,596]",
+            "status": "Couldn't refresh projects. Showing saved projects.",
+            "status_geometry": {
+              "bounds": "[26,215][223,262]",
+              "visible_rect": "[26,215][223,262]",
+              "viewport_intersection": "[26,215][223,262]",
+              "has_visible_rect": true,
+              "whole_target": true
+            },
+            "refresh": "Retry",
+            "refresh_geometry": {
+              "bounds": "[229,215][288,263]",
+              "visible_rect": "[229,215][288,263]",
+              "viewport_intersection": "[229,215][288,263]",
+              "has_visible_rect": true,
+              "whole_target": true
+            },
+            "refresh_enabled": true,
+            "marker": "MEMORY ONLY · 6 projects",
+            "marker_bounds": "[68,70][252,84]",
+            "header_bounds": "[20,36][300,84]",
+            "marker_added_vertical_space_dp": 0,
+            "required_predraws_completed": 2,
+            "settled_at_elapsed_ms": 140034714,
+            "capture_at_elapsed_ms": 140036736,
+            "window_focus": true,
+            "ime_visible": false,
+            "forbidden": 0,
+            "projects_reads": 1,
+            "activity_reads": 1,
+            "memory_cache_applies": 1,
+            "system_bar_pixels_require_visual_review": true
+          },
+          "originalPixelFlag": false,
+          "publicOriginal": "../../assets/brand/source-share-read-feedback-en-light-failure-20261007.png"
+        },
+        {
+          "stem": "share-six-projects-zh-dark-loading",
+          "files": [
+            {
+              "name": "share-six-projects-zh-dark-loading.png",
+              "bytes": 46961,
+              "sha256": "bb5e874a116660538f5f8cfec6d7a0688dc4581ea3b1c40251403df01006aa2b"
+            },
+            {
+              "name": "share-six-projects-zh-dark-loading.json",
+              "bytes": 2595,
+              "sha256": "afa174ec42ba9940d2cc70786290a27078665350a8fb2e8f70a343162e87cc03"
+            }
+          ],
+          "metadata": {
+            "nonce": "44db3e6c-4500-4870-a700-d6d9ca4e9a62",
+            "language": "zh",
+            "theme": "dark",
+            "state": "loading",
+            "font_scale": 1,
+            "fixture": "DemoShareSixProjectsActivity",
+            "memory_only": true,
+            "capture_accepted": false,
+            "scroll_x": 0,
+            "scroll_y": 0,
+            "project_count": 6,
+            "row_count": 6,
+            "rows": [
+              {
+                "bounds": "[26,276][294,349]",
+                "visible_rect": "[26,276][294,349]",
+                "viewport_intersection": "[26,276][294,349]",
+                "has_visible_rect": true,
+                "whole_target": true
+              },
+              {
+                "bounds": "[26,350][294,423]",
+                "visible_rect": "[26,350][294,423]",
+                "viewport_intersection": "[26,350][294,423]",
+                "has_visible_rect": true,
+                "whole_target": true
+              },
+              {
+                "bounds": "[26,424][294,497]",
+                "visible_rect": "[26,424][294,497]",
+                "viewport_intersection": "[26,424][294,497]",
+                "has_visible_rect": true,
+                "whole_target": true
+              },
+              {
+                "bounds": "[26,498][294,571]",
+                "visible_rect": "[26,498][294,571]",
+                "viewport_intersection": "[26,498][294,571]",
+                "has_visible_rect": true,
+                "whole_target": true
+              },
+              {
+                "bounds": "[26,572][294,645]",
+                "visible_rect": "[26,572][294,596]",
+                "viewport_intersection": "[26,572][294,596]",
+                "has_visible_rect": true,
+                "whole_target": false
+              },
+              {
+                "bounds": "[26,646][294,719]",
+                "visible_rect": "[6,562][274,635]",
+                "viewport_intersection": "[0,0][0,0]",
+                "has_visible_rect": false,
+                "whole_target": false
+              }
+            ],
+            "safe_bounds": "[0,24][320,616]",
+            "scroll_viewport": "[20,84][300,596]",
+            "status": "正在读取项目…",
+            "status_geometry": {
+              "bounds": "[26,229][192,262]",
+              "visible_rect": "[26,229][192,262]",
+              "viewport_intersection": "[26,229][192,262]",
+              "has_visible_rect": true,
+              "whole_target": true
+            },
+            "refresh": "正在读取…",
+            "refresh_geometry": {
+              "bounds": "[198,222][288,270]",
+              "visible_rect": "[198,222][288,270]",
+              "viewport_intersection": "[198,222][288,270]",
+              "has_visible_rect": true,
+              "whole_target": true
+            },
+            "refresh_enabled": false,
+            "marker": "MEMORY ONLY · 6 projects",
+            "marker_bounds": "[68,70][252,84]",
+            "header_bounds": "[20,36][300,84]",
+            "marker_added_vertical_space_dp": 0,
+            "required_predraws_completed": 2,
+            "settled_at_elapsed_ms": 140039225,
+            "capture_at_elapsed_ms": 140041247,
+            "window_focus": true,
+            "ime_visible": false,
+            "forbidden": 0,
+            "projects_reads": 1,
+            "activity_reads": 0,
+            "memory_cache_applies": 0,
+            "system_bar_pixels_require_visual_review": true
+          },
+          "originalPixelFlag": false,
+          "publicOriginal": "../../assets/brand/source-share-read-feedback-zh-dark-loading-20261007.png"
+        },
+        {
+          "stem": "share-six-projects-zh-dark-failure",
+          "files": [
+            {
+              "name": "share-six-projects-zh-dark-failure.png",
+              "bytes": 48836,
+              "sha256": "1bf0ee15e13ddb4535dc1b30ea4e0c98f637d62586d588fcdb39390bfdfceca8"
+            },
+            {
+              "name": "share-six-projects-zh-dark-failure.json",
+              "bytes": 2618,
+              "sha256": "66c60c5ee8bb639940d9b1c969b1d98582750e7c4cc640f8f775ee1c000d9729"
+            }
+          ],
+          "metadata": {
+            "nonce": "44db3e6c-4500-4870-a700-d6d9ca4e9a62",
+            "language": "zh",
+            "theme": "dark",
+            "state": "failure",
+            "font_scale": 1,
+            "fixture": "DemoShareSixProjectsActivity",
+            "memory_only": true,
+            "capture_accepted": false,
+            "scroll_x": 0,
+            "scroll_y": 0,
+            "project_count": 6,
+            "row_count": 6,
+            "rows": [
+              {
+                "bounds": "[26,276][294,349]",
+                "visible_rect": "[26,276][294,349]",
+                "viewport_intersection": "[26,276][294,349]",
+                "has_visible_rect": true,
+                "whole_target": true
+              },
+              {
+                "bounds": "[26,350][294,423]",
+                "visible_rect": "[26,350][294,423]",
+                "viewport_intersection": "[26,350][294,423]",
+                "has_visible_rect": true,
+                "whole_target": true
+              },
+              {
+                "bounds": "[26,424][294,497]",
+                "visible_rect": "[26,424][294,497]",
+                "viewport_intersection": "[26,424][294,497]",
+                "has_visible_rect": true,
+                "whole_target": true
+              },
+              {
+                "bounds": "[26,498][294,571]",
+                "visible_rect": "[26,498][294,571]",
+                "viewport_intersection": "[26,498][294,571]",
+                "has_visible_rect": true,
+                "whole_target": true
+              },
+              {
+                "bounds": "[26,572][294,645]",
+                "visible_rect": "[26,572][294,596]",
+                "viewport_intersection": "[26,572][294,596]",
+                "has_visible_rect": true,
+                "whole_target": false
+              },
+              {
+                "bounds": "[26,646][294,719]",
+                "visible_rect": "[6,562][274,635]",
+                "viewport_intersection": "[0,0][0,0]",
+                "has_visible_rect": false,
+                "whole_target": false
+              }
+            ],
+            "safe_bounds": "[0,24][320,616]",
+            "scroll_viewport": "[20,84][300,596]",
+            "status": "项目刷新失败，仍显示上次同步的项目。",
+            "status_geometry": {
+              "bounds": "[26,219][230,272]",
+              "visible_rect": "[26,219][230,272]",
+              "viewport_intersection": "[26,219][230,272]",
+              "has_visible_rect": true,
+              "whole_target": true
+            },
+            "refresh": "重试",
+            "refresh_geometry": {
+              "bounds": "[236,222][288,270]",
+              "visible_rect": "[236,222][288,270]",
+              "viewport_intersection": "[236,222][288,270]",
+              "has_visible_rect": true,
+              "whole_target": true
+            },
+            "refresh_enabled": true,
+            "marker": "MEMORY ONLY · 6 projects",
+            "marker_bounds": "[68,70][252,84]",
+            "header_bounds": "[20,36][300,84]",
+            "marker_added_vertical_space_dp": 0,
+            "required_predraws_completed": 2,
+            "settled_at_elapsed_ms": 140041620,
+            "capture_at_elapsed_ms": 140043651,
+            "window_focus": true,
+            "ime_visible": false,
+            "forbidden": 0,
+            "projects_reads": 1,
+            "activity_reads": 1,
+            "memory_cache_applies": 1,
+            "system_bar_pixels_require_visual_review": true
+          },
+          "originalPixelFlag": false,
+          "publicOriginal": "../../assets/brand/source-share-read-feedback-zh-dark-failure-20261007.png"
+        }
+      ]
+    }
+  ],
+  "visualReview": {
+    "rootDirectViewedBefore": 4,
+    "rootDirectViewedAfter": 4,
+    "independentDirectViewedBefore": 4,
+    "independentDirectViewedAfter": 4,
+    "afterAccepted": true,
+    "scope": "Fixed six-cache font1 initial viewports only. All original markers/system bars retained. Whole48dp geometry is a separate saved assertion; no touch, motion or physical result inferred."
+  },
+  "publicMedia": [
+    "assets/brand/source-share-read-feedback-en-light-loading-20261007.png",
+    "assets/brand/source-share-read-feedback-en-light-failure-20261007.png",
+    "assets/brand/source-share-read-feedback-zh-dark-loading-20261007.png",
+    "assets/brand/source-share-read-feedback-zh-dark-failure-20261007.png"
+  ],
+  "changes": "One production layout block: status and existing48dp Retry/Refresh before project rows; normal type horizontal, at150%+ vertical. No read/cache/selection/callback/authorization change.",
+  "boundaries": [
+    "Two distinct nonce/source-bound takes, each1/26/33 known returned-zero children,120raw, six source receipts and145 frozen source/config snapshots; neither replays the earlier7.839s recovery take.",
+    "The first before-reader invocation returned1 on relative CLI paths before creating output. Corrected absolute invocation independently reads the same closed files; no new native or artifact run.",
+    "The successor reader additionally requires whole status/Refresh geometry in four initial viewports. Owner capture flags remain false; separate direct pixel review accepts the scoped presentation.",
+    "Only EN/light and ZH/dark font1; large-type stacking is source-only, not new200% or TalkBack acceptance.",
+    "No clicks, import, Send, Pair, genuine API/cache, business persistence, source-App or signed package interactions. Native method15s includes settling and lifecycle assertions, not user response latency.",
+    "This development follows signed candidate16; its existing immutable APK does not contain the top-feedback layout. No stable release or marketing handover."
+  ]
+}

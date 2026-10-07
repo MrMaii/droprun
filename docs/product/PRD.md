@@ -102,6 +102,9 @@ in [the current candidate record](../releases/0.5.15-rc.1.md).
   cached projects remain selectable. Refreshing never reopens the share or resets
   material, note, selection, step, model or effort. An activity-summary failure
   alone does not turn a successful directory read into a directory error.
+  Read feedback precedes the project rows, so a six-project list cannot bury
+  recovery below its choices. Normal type places status and action beside each
+  other; at150% and above they stack, allowing complete status text to wrap.
   [Two fixed local recovery windows](../releases/ui-share-project-load-2026-10-07.md).
   Both pre-Send steps offer a compact, accessible material disclosure.
   Material and model controls use light text rows with visible trailing arrows;

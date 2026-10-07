@@ -335,9 +335,12 @@ public class ShareActivity extends StyledActivity {
         box.setElevation(0);box.setBackground(Ui.outlined(this,Ui.SURFACE_2,Ui.LINE,Ui.RADIUS_CARD,1));
         search=new EditText(this);search.setHint(L.t("Find a project","搜索项目"));search.setSingleLine(true);search.setImeOptions(EditorInfo.IME_ACTION_DONE);search.setText(query);Ui.styleInput(search);
         box.addView(search,Ui.margins(this,2,6));
+        boolean largeType=getResources().getConfiguration().fontScale>=1.5f;
+        LinearLayout readFeedback=largeType?Ui.vertical(this):Ui.row(this);readFeedback.setGravity(Gravity.END|Gravity.CENTER_VERTICAL);
+        projectReadStatus=Ui.caption(this,"");projectReadStatus.setPadding(dp(12),dp(8),dp(8),dp(8));projectReadStatus.setAccessibilityLiveRegion(View.ACCESSIBILITY_LIVE_REGION_POLITE);readFeedback.addView(projectReadStatus,largeType?Ui.fill():Ui.grow());
+        projectRefresh=Ui.linkButton(this,L.t("Refresh","刷新"));projectRefresh.setOnClickListener(v->refreshProjects(false));LinearLayout.LayoutParams refreshParams=new LinearLayout.LayoutParams(-2,-2);refreshParams.setMargins(dp(6),dp(6),dp(6),dp(6));readFeedback.addView(projectRefresh,refreshParams);
+        box.addView(readFeedback,Ui.fill());
         projectList=Ui.vertical(this);box.addView(projectList,Ui.fill());
-        projectReadStatus=Ui.caption(this,"");projectReadStatus.setPadding(dp(12),dp(8),dp(12),dp(4));projectReadStatus.setAccessibilityLiveRegion(View.ACCESSIBILITY_LIVE_REGION_POLITE);box.addView(projectReadStatus,Ui.fill());
-        projectRefresh=Ui.linkButton(this,L.t("Refresh","刷新"));projectRefresh.setOnClickListener(v->refreshProjects(false));LinearLayout.LayoutParams refreshParams=new LinearLayout.LayoutParams(-2,-2);refreshParams.setMargins(dp(6),dp(6),dp(6),dp(2));box.addView(projectRefresh,refreshParams);
         search.addTextChangedListener(new TextWatcher(){public void beforeTextChanged(CharSequence s,int a,int b,int c){}public void onTextChanged(CharSequence s,int a,int b,int c){query=s.toString();renderProjects();}public void afterTextChanged(Editable e){}});
         column.addView(box,Ui.margins(this,0,4));
         renderProjects();

@@ -12,7 +12,7 @@ handover. Current user request takes precedence over dated handoffs.
   and the annotated tag pass. Android stable certificate/nondebuggable/noDemo
   checks pass; Windows remains NotSigned. Local builders retain23 returned-zero
   direct children; exporter two and publisher22 known returns. The managed
-  release checkout is clean; artifacts/evidence remain outside it.
+  release checkout is archived; artifacts/evidence remain outside it.
   [Selected release proof](../../docs/releases/public-delivery-2026-10-07-rc0516.json).
   Candidate15 remains unchanged. Signed-native/clean installer/Connector
   acceptance is still open.
@@ -33,6 +33,23 @@ handover. Current user request takes precedence over dated handoffs.
 
 ## Accepted development and present work
 
+- [Share read feedback first](../../docs/releases/ui-share-read-feedback-2026-10-07.md)
+  fixes an actual first-screen issue. Four original six-cache/font1 baseline
+  loading/failure captures hid status and Retry; both reviewers confirmed it.
+  One production layout block moves the same status/action above rows, normal
+  type beside each other and150%+ stacked. Fresh successor15.411s captures all
+  four complete status/48dp targets; both reviewers directly accept the pixels.
+  Before15.938s and after15.411s each retain1/26/33 returned-zero direct children,
+  120raw streams, six source receipts and145 frozen files;27JVM/0failure and
+  lint0errors/29warnings. Independent readers separately reparse both closed
+  takes; initial relative-path reader error is retained and corrected only by
+  reading the same files. Six row identities and share values remain unchanged,
+  with zero forbidden actions, known destruction/drain and restored statics.
+  Four exact after originals are public under assets/brand, markers retained.
+  Owner pixel flags stay false; separate root/independent visual reviews accept
+  this fixed scope. No click, Send, real cache/API,200% pixel, motion, physical
+  or signed-App inference. This source follows immutable signed16; own CI for
+  this change is pending. Source/UI tests do not upgrade the public APK.
 - [Home names first](../../docs/releases/ui-home-typography-2026-10-07.md):
   complete20sp project names/232dp reading width, aligned20dp page edges and
   removal of decorative initials. Six closed memory windows retain36rebinds,
@@ -111,16 +128,18 @@ handover. Current user request takes precedence over dated handoffs.
 
 ## Single recommended next action
 
-Apply the separately reviewed six-project memory fixture, bind a fresh freeze/
-nonce and build/install/capture owner; inspect all four original first-screen
-PNGs before changing production layout. No Send or real Relay task. Original
-project-read and earlier screenshot takes stay immutable. Continue native
-UI/UX polish; real acceptance gates are not a reason to stop local work.
+Continue Share's note-confirmation visual hierarchy: review the private minimal
+proposal to remove its decorative initial and emphasize the complete project
+name, then run fresh source-bound local screenshots before acceptance. Preserve
+the completed six-project before/after files. Do not rerun their owners/readers
+after changing source. Collect only this source commit's own CI when needed for
+the next candidate. Real acceptance remains open; continue local UX/brand work.
 
 ## Files this pass
 
-Bilingual README and self-hosting guides; generated landing index/zh index and
-build script; PROJECT_CONTEXT; candidate16 release/anonymous/own-CI records;
-Site28 download publication records; this handoff. Prior source4aea owns the accepted Share/Home/Delivery/Settings
-changes. Private promo and launch-kit remain excluded.
+ShareActivity; new nonexported DemoShareSixProjectsActivity and
+ShareSixProjectsCaptureTest/debug registration; PRD/CONTRACTS/CHANGELOG and
+ADR0019; selected read-feedback record and four unchanged native originals;
+this handoff. Earlier candidate16/download/README/Site28 work has its own
+records. Private promo and launch-kit remain excluded.
 Author Thomas Deng <150266369+MrMaii@users.noreply.github.com>.

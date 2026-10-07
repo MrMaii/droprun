@@ -142,3 +142,24 @@ A new chip or nested card would add another visual boundary without a new
 function. Two text levels clarify identity within the existing surface.
 [Four fixed memory windows and two normal originals](../releases/ui-settings-project-identity-2026-10-07.md)
 own the actual local scope; this adds no real permission or physical acceptance.
+
+### Share project-read extension — accepted 2026-10-07
+
+Six cached destinations put the existing read state and Retry below the initial
+viewport. Loading and failure therefore looked identical, despite useful cached
+choices. Move these same controls before the project rows, within their existing
+surface. At normal type, status takes the remaining width beside its48dp action;
+at150% and above they stack so complete text can wrap. Keep the surface, values,
+polite live region, disabled state, callbacks and row identity.
+
+This exchanges one initially visible project row for immediately discoverable
+recovery. A separate dialog would interrupt a usable cached catalog; a floating
+action would separate Retry from its explanation. The small layout change keeps
+the result and next action together without extra navigation or decoration.
+
+[Two fresh fixed-six-project takes](../releases/ui-share-read-feedback-2026-10-07.md)
+retain four unchanged baseline and four successor originals. Both reviewers
+accept the successor's EN/light and ZH/dark font1 loading/failure feedback.
+Geometry separately requires the complete status and48dp action in each fixed
+initial viewport. Large-type stacking is source behavior, not new200% pixel or
+physical acceptance. No click, Send, genuine cache or signed-package claim.
