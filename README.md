@@ -2,7 +2,7 @@
   <img src="assets/brand/mark.png" width="96" alt="DropRun">
   <p><strong>DropRun</strong> · Android + Windows · Self-hosted</p>
   <h1>Share from your phone.<br>Put local Codex to work.</h1>
-  <p>Choose an existing project. Add an optional note. Inspect the result and evidence on your phone.</p>
+  <p>Share a link, text or file to an existing project. Add an optional note; inspect the result and evidence on your phone.</p>
   <p><a href="docs/technical/SELF_HOSTING.md"><strong>Start installing →</strong></a></p>
   <p>Android 8+ · Windows x64 · signed-in Codex · your Cloudflare</p>
   <p><a href="https://droprun.dengmaizi0802.chatgpt.site">Website</a> · <a href="https://github.com/MrMaii/droprun/releases/tag/v0.5.15-rc.1">Preview downloads</a> · <a href="README.zh-CN.md">简体中文</a></p>
@@ -12,7 +12,13 @@
 
 Codex works on your Windows computer. You deploy the Relay to your own Cloudflare account.
 
-## Check the destination
+## Share. Follow. Inspect.
+
+1. **Share → DropRun.** In another Android app, choose an existing project and add an optional note.
+2. **Follow local Codex.** Work happens on your computer, in that project. Follow progress and decisions in its history.
+3. **Inspect the delivery.** Check the result, required actions, screenshots and files; open the full report when needed.
+
+## Review before sending
 
 Return to project selection and adjust the model before sending.
 Native memory-only UI; no task sent. [Capture notes](assets/brand/readme-media.md).
@@ -34,21 +40,15 @@ The excerpt samples the original frames at 25 fps, native 320 × 640: 234 frames
 
 </details>
 
-## Share. Follow. Inspect.
-
-1. **Share → DropRun.** In another Android app, choose an existing project and add an optional note.
-2. **Follow local Codex.** Work happens on your computer, in that project. Follow progress and decisions in its history.
-3. **Inspect the delivery.** Check the result, required actions, screenshots and files; open the full report when needed.
-
 <details>
 <summary><strong>Share, follow and delivery screens</strong></summary>
 
-The screenshots and recordings below are labelled memory-only development UI, not signed-package or genuine Codex recordings. [Capture notes](assets/brand/readme-media.md).
+Labelled memory-only development UI, not a genuine Codex task; the delivery screen includes changes after 0.5.15-rc.1. [Capture notes](assets/brand/readme-media.md).
 
 <p align="center">
   <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-share-count-en-dark-20261006.png"><img src="assets/brand/source-share-count-en-light-20261006.png" width="260" alt="01 · Share: project and received material together, a persistent optional-note label, received file counts and model controls; native memory-only probe marker retained"></picture>
   <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-home-cards-en-dark-20261006.png"><img src="assets/brand/source-home-cards-en-light-20261006.png" width="260" alt="02 · Follow: native Android project cards with initials, names, task and dispatch counts, status and recency; memory-only and sample-project markers retained"></picture>
-  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-delivery-artifacts-en-dark-20261007.png"><img src="assets/brand/source-delivery-artifacts-en-light-20261007.png" width="260" alt="03 · Inspect: native handoff page with a prominent result and one flat preview-and-files group; visible memory-only marker"></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-delivery-followup-en-dark-20261007.png"><img src="assets/brand/source-delivery-followup-en-light-20261007.png" width="260" alt="03 · Inspect: native handoff page with a prominent result, grouped preview and files, and an outlined follow-up button; visible memory-only marker"></picture>
 </p>
 
 </details>

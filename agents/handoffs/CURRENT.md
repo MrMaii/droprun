@@ -61,16 +61,26 @@ acceptance is unavailable. No stable launch or marketing handover.
 
 ## Later native development
 
-- Follow-up now reuses the existing outlined secondary button. Position,
-  same-session dialog, eligibility, primary delivery action and locks stay.
-  Two reviewed source/test paths are applied. Fresh finite build returns0,
-  installation26 direct children return0 with exact installed debug bytes.
-  Reading1test18.725s closes4memory windows/28streams/four zero counters.
-  Actual unscrolled normal follow-up bounds exceed the safe bottom by1px EN
-  and12px ZH. This passes the measurement probe but is not accepted first-screen
-  fit. Separate capture1/34children completes four normal originals; root views
-  two light originals and keeps them as a baseline, not final visual acceptance.
-  All86 direct phase children return0; no signed15 inclusion or dialog/IME claim.
+- [Complete follow-up targets](../../docs/releases/ui-task-followup-fit-2026-10-07.md)
+  reuse the outlined secondary action and remove16dp stacked outer spacing;
+  result22sp, target52dp,8dp gap and business behavior remain. Fresh freeze2a90ae09,
+  build/install/reading/capture1/26/25/34 direct children all return0. Corrected
+  pure-file reader4b58e064 rehashes172 raw outputs/eight source snapshots and exact
+  built/current/six installed reads. It reuses the bound pure native protocol;
+  separately calculated normal short-sample targets have15px EN/4px ZH clearance.
+  Reading1test14.569s closes4memory windows/28streams/four zero counters;
+  capture1test20.827s closes four normal originals. Root and an independent
+  reviewer directly accept all4EN/ZH/light/dark stills, with byte-exact brand copies.
+  Automated pixelAcceptance remains false. Initial1px/12px overflow baseline and
+  first reader's underscore-whitelist failure remain unchanged. No native replay
+  for the reader correction; no arbitrary first-screen, press/dialog/IME/motion,
+  signed15 or genuine acceptance.
+- README now explains material and the complete three-step journey before its
+  partial code25 tour; the third gallery image uses the later outlined follow-up
+  originals with explicit candidate15 separation. This text/media substitution
+  adds no new GitHub rendering or measured comprehension claim. Site25 media stay.
+- Candidate15's clean managed checkout was archived through the app; saved
+  release artifacts and evidence remain outside that checkout. Sourcea48 remains.
 
 ## Authorization and blocking conditions
 
@@ -93,17 +103,17 @@ acceptance is unavailable. No stable launch or marketing handover.
 
 ## Single recommended next action
 
-Reduce report-present delivery's outer margins from18top/10bottom to12top/0bottom,
-retaining the8dp artifact-to-follow-up gap. Prepare a fresh frozen source/nonce
-and require complete normal-sample initial targets after emitting raw geometry.
-Keep the original measured overflow and captures. Recheck large-text scrolling
-separately; this does not promise every long result fits its first screen.
-Installer narrow/dark phase visuals remain useful. Do not replay denied paths.
+Refine Settings same-name identity: keep the complete15sp project name, place
+only the helper-appended ID prefix on its own12sp muted line, preserve the original
+full accessibility label, permission controls, confirmations and focus. Current
+proposal is private; do not split arbitrary names on the middle-dot separator.
+Use four finite memory windows rather than legacy matrices. Installer narrow/dark
+phase visuals remain useful. No genuine task or rejected-path replay.
 
 ## Files this pass
 
-Bilingual README/setup; current PROJECT_CONTEXT/PRD/ROADMAP release pointers;
-CHANGELOG; candidate15 release and public evidence; website builder/generated
-EN/ZH pages, four byte-exact Task media additions and Site25 record; setup active
-feedback UI/test/requirements and its local record; Task follow-up source/test.
+TaskActivity/TaskReadingHierarchyTest; PRD/CONTRACTS/ADR0019/CHANGELOG;
+bilingual README and brand provenance/four exact follow-up originals;
+local follow-up release record and current handoff. Earlier candidate15,
+setup source/CI and Site25 delivery retain their separate source identities.
 Author Thomas Deng <150266369+MrMaii@users.noreply.github.com>.

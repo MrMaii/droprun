@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- Make follow-up recognizable with the existing outlined secondary surface;
+  remove stacked delivery spacing while preserving result type and action size.
+  [Local reading, complete short-sample targets and original stills](docs/releases/ui-task-followup-fit-2026-10-07.md).
+  This development is outside the signed 0.5.15 candidate.
+- Explain the complete phone-to-local-Codex journey before the README's partial
+  native tour; name accepted material and show the later outlined follow-up view.
 - Keep installer phase and errors beside the active control; collapse diagnostic
   logs separately while preserving focus and polling state.
   [Eight local browser checks](docs/releases/ui-setup-active-feedback-2026-10-07.md).

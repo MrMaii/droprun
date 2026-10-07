@@ -2,7 +2,7 @@
   <img src="assets/brand/mark.png" width="96" alt="DropRun">
   <p><strong>DropRun</strong> · Android + Windows · 自部署</p>
   <h1>手机分享参考，<br>本地 Codex 接手。</h1>
-  <p>选已有项目，可选留一句话，在手机查看结果与证据。</p>
+  <p>把链接、文字或文件分享给已有项目，可选留一句话，在手机查看结果与证据。</p>
   <p><a href="docs/technical/SELF_HOSTING.zh-CN.md"><strong>开始安装 →</strong></a></p>
   <p>Android 8+ · Windows x64 · 已登录 Codex · 自己的 Cloudflare</p>
   <p><a href="https://droprun.dengmaizi0802.chatgpt.site/zh/">官网</a> · <a href="https://github.com/MrMaii/droprun/releases/tag/v0.5.15-rc.1">候选版下载</a> · <a href="README.md">English</a></p>
@@ -12,7 +12,13 @@
 
 Codex 在你的 Windows 电脑上工作，Relay 由你部署到自己的 Cloudflare 账号。
 
-## 确认交办去向
+## 分享、跟进、查看
+
+1. **分享 → DropRun。** 在其他 Android App 分享，选已有项目，按需补充留言。
+2. **跟进本地 Codex。** Codex 在你的电脑和所选项目中工作。按项目查看进展与待确认事项。
+3. **查看交付。** 检查结果、需要处理的动作、截图和文件，再按需展开报告。
+
+## 发送前，确认去向
 
 发送前，返回项目选择，再调整本次交办的模型。
 原生内存界面；未发送任务。[媒体来源](assets/brand/readme-media.md)。
@@ -34,21 +40,15 @@ Codex 在你的 Windows 电脑上工作，Relay 由你部署到自己的 Cloudfl
 
 </details>
 
-## 分享、跟进、查看
-
-1. **分享 → DropRun。** 在其他 Android App 分享，选已有项目，按需补充留言。
-2. **跟进本地 Codex。** Codex 在你的电脑和所选项目中工作。按项目查看进展与待确认事项。
-3. **查看交付。** 检查结果、需要处理的动作、截图和文件，再按需展开报告。
-
 <details>
 <summary><strong>分享、跟进与交付界面</strong></summary>
 
-下方截图与录屏为标注的原生内存示例，不是签名包录制或真实 Codex 任务。[媒体来源](assets/brand/readme-media.md)。
+标注的原生内存示例，未执行真实 Codex 任务；交付界面包含晚于 0.5.15-rc.1 的开发改动。[媒体来源](assets/brand/readme-media.md)。
 
 <p align="center">
   <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-share-count-zh-dark-20261006.png"><img src="assets/brand/source-share-count-zh-light-20261006.png" width="260" alt="01 · 分享：项目与收到材料组合确认，常驻可选留言标签、收到文件数与模型参数；保留原生仅内存验证标记"></picture>
   <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-home-cards-zh-dark-20261006.png"><img src="assets/brand/source-home-cards-zh-light-20261006.png" width="260" alt="02 · 跟进：原生 Android 项目卡，集中展示首字、名称、任务与交办次数、状态和最近交办，保留仅内存验证与示例项目标记"></picture>
-  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-delivery-artifacts-zh-dark-20261007.png"><img src="assets/brand/source-delivery-artifacts-zh-light-20261007.png" width="260" alt="03 · 查看：原生交办页，突出结果，预览与文件入口收于同一平面分组；保留仅内存验证标记"></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-delivery-followup-zh-dark-20261007.png"><img src="assets/brand/source-delivery-followup-zh-light-20261007.png" width="260" alt="03 · 查看：原生交办页，突出结果，组合展示预览与文件，并提供描边追问按钮；保留仅内存验证标记"></picture>
 </p>
 
 </details>

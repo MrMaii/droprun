@@ -16,8 +16,8 @@ in [the current candidate record](../releases/0.5.15-rc.1.md).
   Website first-screen media centers Share: one large share sheet on narrow
   screens, with Home as a secondary desktop view. Installation is primary,
   the native UI tour secondary, and GitHub remains a text entry.
-  README places its native UI tour after the introduction, before the three
-  workflow steps. Static galleries and recording scope open on demand; the value
+  README explains the three workflow steps before its native UI tour.
+  Static galleries and recording scope open on demand; the value
   sentence has a clear heading. Primary workflow images are larger; reduced motion selects
   a static light/dark capture, with explicit still links and unchanged provenance.
   A localized installation link at the end of the tour lets ready readers move
@@ -253,7 +253,10 @@ in [the current candidate record](../releases/0.5.15-rc.1.md).
   actions follow the full project name on a separate line. A page-wide save disables
   and dims permission controls until its actual completion.
   Delivery uses the ready preview as its primary action, an outlined file entry
-  and a quiet follow-up button with the same target and interaction states.
+  and an outlined secondary follow-up button with the same target and interaction
+  states. Report-present delivery uses12dp top/0dp bottom outer margins, retaining
+  an8dp gap before follow-up; keep22sp results and52dp actions. Verify complete
+  initial targets for fixed short normal samples; long/large-text results scroll.
   Empty Home explicitly identifies DropRun as the system-share destination.
   Home sync errors use a compact attention notice with the original cause in
   details. Manual status checks show immediate, accessible progress, prevent

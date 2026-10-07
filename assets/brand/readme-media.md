@@ -1,8 +1,38 @@
 # Native README media
 
+## Complete follow-up target · October 7, 2026
+
+The README delivery gallery now uses four complete, unedited320×640 native
+PNGs from `0.5.15-dev`, code28, later than signed candidate15. Result text stays
+the focus; preview and files share a surface, followed by a recognizable outlined
+secondary action. Root and an independent reviewer directly viewed all four
+normal EN/ZH light/dark originals. Brand copies retain every byte, the memory-only
+notice and system bars; no follow-up, preview or task was activated.
+
+The separately measured short normal sample keeps the complete52dp target above
+navigation with15px/4px clearance. Long results and large text remain scrollable;
+these four stills do not show200% text or establish press, dialog, IME, motion,
+physical performance, genuine work or signed-package behavior. Automated pixel
+acceptance remains false; human acceptance covers only these original views.
+The old overflow baseline, earlier image hashes and the code25 GIF remain unchanged.
+The website continues to use its separately published media.
+
+| File | Bytes | SHA-256 |
+| --- | ---: | --- |
+| [source-delivery-followup-en-light-20261007.png](source-delivery-followup-en-light-20261007.png) | 37400 | `4e137fe4291c485999771108ad835429918bea32710a62ac285b4ba8ae6580ed` |
+| [source-delivery-followup-en-dark-20261007.png](source-delivery-followup-en-dark-20261007.png) | 38656 | `5aefc05024113a250e8910716d2fabaa5ec764cfb0fc005bdca759a0de95c54d` |
+| [source-delivery-followup-zh-light-20261007.png](source-delivery-followup-zh-light-20261007.png) | 46471 | `9956e3b1e1893f3d86fda6f8e1687b9cf9270599ce01c8da1427bea4b97dc9e6` |
+| [source-delivery-followup-zh-dark-20261007.png](source-delivery-followup-zh-dark-20261007.png) | 47782 | `2dc6c22970d8983c4e28aeaae2e21a917238854d84f738810f877a92f967ff08` |
+
+[Actual checks and original baseline](../../docs/releases/ui-task-followup-fit-2026-10-07.md).
+The README now names shareable material and explains the three steps before the
+partial native tour. Its media/source tag counts, reduced-motion choices and
+download URLs remain. This text reorder is a design decision, not a new browser
+rendering or measured first-visit-comprehension test.
+
 ## Delivery artifact group · October 7, 2026
 
-The current README delivery gallery uses four complete, unedited320×640 native
+The earlier README delivery gallery used four complete, unedited320×640 native
 PNGs from `0.5.14-dev`, code27, later than signed candidate14. The result keeps
 its full reading width; preview explanation and preview/file controls form one
 flat theme surface. Root and an independent reviewer directly viewed all four

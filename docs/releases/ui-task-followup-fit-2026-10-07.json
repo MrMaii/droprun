@@ -1,0 +1,241 @@
+{
+  "schema": "droprun.local-ui-followup-fit.v1",
+  "date": "2026-10-07",
+  "verifiedWithinScope": true,
+  "version": {
+    "name": "0.5.15-dev",
+    "code": 28
+  },
+  "signedCandidate15IncludesThisChange": false,
+  "changes": [
+    "Use the existing outlined secondary action for follow-up, retaining its 52dp target and theme-aware interaction states.",
+    "Report-present outer margins change from 18dp top/10dp bottom to 12dp top/0dp bottom; the artifact-to-follow-up gap remains 8dp.",
+    "Result text remains 22sp. Same-thread eligibility, follow-up dialog/draft and primary action are unchanged."
+  ],
+  "source": {
+    "freezeSha256": "2a90ae09ae5314a08133bc206eaee13dd92b4375d5741d36e4df812b40868047",
+    "sources": 134,
+    "configs": 4,
+    "currentExact": true,
+    "ownerSha256": "40be031a335f81c81f31f9f58bb4df8c9fe7cbacf0665d333b19973eb78fac4f",
+    "protocolSha256": "5d3ae5bf19a842c7c98944e52a58de878b44865afd11de33160fcddf5b9d091f"
+  },
+  "nonce": "83f0cb66-fc4d-4b24-8504-51f869463378",
+  "fileReview": {
+    "sha256": "4b58e064ed9a7274ea4e8945ffab1f8e87fbd03de74ba1887f2e1f9ff8a71869",
+    "readerSha256": "d11f689f2ce41e1e4a75e888dea2ea3d30c4ee6bd9ab711e8c686bfe5efa092c",
+    "rawFilesRehashed": 172,
+    "sourceSnapshots": 8,
+    "nativeParsing": "Reuses the exact hash-bound pure-file protocol; not an independently authored native parser. Normal geometry is additionally recalculated below.",
+    "buildCurrentAndSixInstalledReadsExact": true
+  },
+  "phases": {
+    "build": {
+      "verificationSha256": "f58281e1fa3c67366d42e650242d8fe06d287787707f956eec1bca575f350dc6",
+      "directChildrenReturned0": 1
+    },
+    "install": {
+      "verificationSha256": "86d37ae0e80af2ddd4ff3d35862a5745a339b046e815932bab984d2d7993b8cb",
+      "directChildrenReturned0": 26
+    },
+    "reading": {
+      "verificationSha256": "aa0223a325d208a0b1c95435f1b24157ab416c7d42e53023eb974a5cbd6316ea",
+      "directChildrenReturned0": 25,
+      "nativeActual": {
+        "class": "app.droprun.TaskReadingHierarchyTest",
+        "method": "followupAffordancePreservesEligibilityAndRecordsInitialBounds",
+        "tests": 1,
+        "junit_seconds": 14.569,
+        "nonce": "83f0cb66-fc4d-4b24-8504-51f869463378",
+        "nonce_scope": "Canonical source-gated instrumentation argument; two normal geometry receipts include nonce, lifetime tags do not.",
+        "all_known_destroyed": true,
+        "counts": {
+          "streams": 28,
+          "lifetime": 22,
+          "GEOMETRY": 2,
+          "COUNTERS": 4,
+          "entered": 4,
+          "full_completed": 4,
+          "DESTROYED": 4
+        },
+        "initial_geometry_actual": [
+          {
+            "scene": "en|light|font1",
+            "nonce": "83f0cb66-fc4d-4b24-8504-51f869463378",
+            "followup_bounds": "[20,549][300,601]",
+            "safe_bounds": "[0,24][320,616]",
+            "scroll_y": 0,
+            "whole_target_in_safe_area": true,
+            "minimum_height": 52,
+            "forbidden_actions": 0
+          },
+          {
+            "scene": "zh|dark|font1",
+            "nonce": "83f0cb66-fc4d-4b24-8504-51f869463378",
+            "followup_bounds": "[20,560][300,612]",
+            "safe_bounds": "[0,24][320,616]",
+            "scroll_y": 0,
+            "whole_target_in_safe_area": true,
+            "minimum_height": 52,
+            "forbidden_actions": 0
+          }
+        ],
+        "zero_closed_counters": 4
+      }
+    },
+    "capture": {
+      "verificationSha256": "9949bb800b7d311f8b9d5d1bc15d3f2db4ee5fb2403b24b8cac5bcfec04c4274",
+      "directChildrenReturned0": 34,
+      "nativeActual": {
+        "class": "app.droprun.DeliveryStableCaptureTest",
+        "method": "captureFourSettledMemoryDeliveries",
+        "tests": 1,
+        "junit_seconds": 20.827,
+        "all_known_destroyed": true,
+        "counts": {
+          "DESTROYED": 4,
+          "captures": 4
+        },
+        "closedResultSha256": "856e881ed7d8d4d0507c5c471364c70aa3171fb54e6620300ef392d090981668",
+        "scope": "Raw capture eligibility only; direct viewing of all four original PNGs remains required."
+      }
+    }
+  },
+  "debugApks": [
+    {
+      "role": "app",
+      "package": "app.droprun.mobile.debug",
+      "bytes": 2186488,
+      "sha256": "ec4702e58068f08e59e3a36eb840769f8de6fec8e7a3a8480b746e2a5fa85c91"
+    },
+    {
+      "role": "test",
+      "package": "app.droprun.mobile.debug.test",
+      "bytes": 2061632,
+      "sha256": "733ded35725658a23229ddb319bc333531901225ac0522cc396b8eeb51d1ecf5"
+    }
+  ],
+  "boundUnitReports": {
+    "tests": 27,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "boundLintReport": {
+    "errors": 0,
+    "warnings": 28
+  },
+  "reportExecutionBoundary": "XML counts are bound report contents, not a claim that every Gradle task newly executed.",
+  "normalGeometry": [
+    {
+      "scene": "en|light|font1",
+      "target": [
+        20,
+        549,
+        300,
+        601
+      ],
+      "safe": [
+        0,
+        24,
+        320,
+        616
+      ],
+      "bottomClearancePixels": 15
+    },
+    {
+      "scene": "zh|dark|font1",
+      "target": [
+        20,
+        560,
+        300,
+        612
+      ],
+      "safe": [
+        0,
+        24,
+        320,
+        616
+      ],
+      "bottomClearancePixels": 4
+    }
+  ],
+  "initialBaseline": {
+    "nonce": "01176314-8e99-4942-ba83-1bab24b28c00",
+    "verificationSha256": "64b11d2873e27d99d843f74254a046d2b7f2da93fa91cbf5ff00aa047623f331",
+    "normalGeometry": [
+      {
+        "scene": "en|light|font1",
+        "nonce": "01176314-8e99-4942-ba83-1bab24b28c00",
+        "followup_bounds": "[20,565][300,617]",
+        "safe_bounds": "[0,24][320,616]",
+        "scroll_y": 0,
+        "whole_target_in_safe_area": false,
+        "minimum_height": 52,
+        "forbidden_actions": 0
+      },
+      {
+        "scene": "zh|dark|font1",
+        "nonce": "01176314-8e99-4942-ba83-1bab24b28c00",
+        "followup_bounds": "[20,576][300,628]",
+        "safe_bounds": "[0,24][320,616]",
+        "scroll_y": 0,
+        "whole_target_in_safe_area": false,
+        "minimum_height": 52,
+        "forbidden_actions": 0
+      }
+    ],
+    "acceptedFirstScreenFit": false,
+    "retained": true,
+    "note": "The measurement-only test passed while the EN/ZH targets exceeded the safe bottom by 1/12 pixels. No failed native test is invented; the original captures remain unchanged."
+  },
+  "readerCorrection": {
+    "originalVerificationSha256": "568ef8991717070dc12e196c746abcd02ade023287d04c3e27e9a9600598361a",
+    "originalReaderPassed": false,
+    "reason": "The private command-label whitelist omitted underscores used by the existing animation-setting read labels. Corrected pure-file reader uses a fresh output; no native phase was replayed."
+  },
+  "visualReview": {
+    "rootDirectlyViewedAllFour": true,
+    "independentReviewerDirectlyViewedAllFour": true,
+    "independentVisualRecordSha256": "1208a91e6e761e71945a80f91ae892bfd280f3eee4ffb618d7f222002bf3c9d9",
+    "acceptedOnlyFourNormalMemoryStills": true,
+    "automatedPixelAcceptance": false
+  },
+  "media": [
+    {
+      "file": "assets/brand/source-delivery-followup-en-light-20261007.png",
+      "bytes": 37400,
+      "sha256": "4e137fe4291c485999771108ad835429918bea32710a62ac285b4ba8ae6580ed",
+      "width": 320,
+      "height": 640
+    },
+    {
+      "file": "assets/brand/source-delivery-followup-en-dark-20261007.png",
+      "bytes": 38656,
+      "sha256": "5aefc05024113a250e8910716d2fabaa5ec764cfb0fc005bdca759a0de95c54d",
+      "width": 320,
+      "height": 640
+    },
+    {
+      "file": "assets/brand/source-delivery-followup-zh-light-20261007.png",
+      "bytes": 46471,
+      "sha256": "9956e3b1e1893f3d86fda6f8e1687b9cf9270599ce01c8da1427bea4b97dc9e6",
+      "width": 320,
+      "height": 640
+    },
+    {
+      "file": "assets/brand/source-delivery-followup-zh-dark-20261007.png",
+      "bytes": 47782,
+      "sha256": "2dc6c22970d8983c4e28aeaae2e21a917238854d84f738810f877a92f967ff08",
+      "width": 320,
+      "height": 640
+    }
+  ],
+  "limits": [
+    "Two measured normal first-screen targets apply only to the fixed short sample; arbitrary long reports remain scrollable.",
+    "Four reading windows: EN/light and ZH/dark at normal and 200% text. Four separate normal captures. No 200% visual acceptance.",
+    "No Follow up, Send, preview, permission or genuine business action; no actual dialog/IME/press/motion acceptance.",
+    "Ten read-only device identity/settings values match; known scenario DESTROYED is not executor termination or all-state restoration.",
+    "No physical Android, signed-package installation, genuine Relay/Codex, new hosted media or stable-launch acceptance."
+  ]
+}

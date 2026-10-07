@@ -61,7 +61,6 @@ public class TaskActivity extends StyledActivity {
     void button(LinearLayout target,String label,boolean primary,Runnable action){
         Button button=Ui.button(this,label,primary);
         if(label.equals(L.t("Delete record & material","删除记录与材料"))||label.equals(L.t("Stop handoff","停止任务")))Ui.styleDanger(button);
-        else if(label.equals(L.t("Follow up","继续追问")))Ui.styleGhost(button);
         button.setEnabled(!busy);button.setOnClickListener(v->action.run());target.addView(button,Ui.margins(this,8,0));
     }
     void disclosure(String heading,String value){
@@ -119,7 +118,7 @@ public class TaskActivity extends StyledActivity {
             delivery=Ui.vertical(this);TextView label=Ui.title(this,L.t("The result","交付结果"),14);label.setTextColor(Ui.MUTED);label.setPadding(0,0,0,Ui.dp(this,8));delivery.addView(label);
             CharSequence summary=ReportText.render(TaskPresentation.resultSummary(report));
             if(summary.length()>0&&summary.charAt(summary.length()-1)=='\n')summary=summary.subSequence(0,summary.length()-1);
-            delivery.addView(Ui.text(this,summary,22,Ui.TEXT));body.addView(delivery,Ui.margins(this,18,10));
+            delivery.addView(Ui.text(this,summary,22,Ui.TEXT));body.addView(delivery,Ui.margins(this,12,0));
         }
         if(Store.finished(status)){
             if(thumbnail!=null){

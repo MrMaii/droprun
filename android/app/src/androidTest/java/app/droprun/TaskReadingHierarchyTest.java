@@ -31,6 +31,45 @@ import static org.junit.Assert.*;
 public class TaskReadingHierarchyTest {
     static boolean unresolvedLifetime;
     static final String VERSION=DeliveryStableCaptureTest.VERSION;
+    @Test public void followupAffordancePreservesEligibilityAndRecordsInitialBounds()throws Throwable{
+        String mode=InstrumentationRegistry.getArguments().getString("taskFollowupProbe","");if(mode.isEmpty())return;assertEquals("accepted",mode);
+        String nonce=InstrumentationRegistry.getArguments().getString("taskFollowupNonce","");assertEquals("Canonical UUID is required before context or fixture use",java.util.UUID.fromString(nonce).toString(),nonce);
+        assertFalse("No next method after an unknown window",unresolvedLifetime);assertFalse(TaskSyncService.running);
+        Context context=InstrumentationRegistry.getInstrumentation().getTargetContext();assertTrue(context.getPackageName().endsWith(".debug"));
+        for(Class<?> fixture:new Class<?>[]{DemoTaskPreviewNormalActivity.class,DemoTaskPreviewActivity.class})assertFalse(context.getPackageManager().getActivityInfo(new ComponentName(context,fixture),0).exported);
+        String languageBefore=L.chinese()?"zh":"en";boolean[] destroyed={true};
+        try{
+            for(String[] scene:new String[][]{{"en","light","1"},{"zh","dark","1"},{"en","light","2"},{"zh","dark","2"}}){
+                String language=scene[0],theme=scene[1],identity=language+"|"+theme+"|font"+scene[2];float font=Float.parseFloat(scene[2]);ActivityScenario<DemoTaskPreviewActivity> scenario=null;Throwable failure=null;DemoTaskPreviewActivity[] retained={null};
+                try{
+                    assertTrue(destroyed[0]);Intent intent=new Intent(context,font==1f?DemoTaskPreviewNormalActivity.class:DemoTaskPreviewActivity.class).putExtra("language",language).putExtra("appearance",theme).putExtra("snapshotVersionProbe",VERSION);
+                    destroyed[0]=false;unresolvedLifetime=true;event(identity,"launch-attempt");scenario=ActivityScenario.launch(intent);event(identity,"returned-handle");frames(scenario);
+                    String[] original={null};scenario.onActivity(a->{retained[0]=a;safe(a,language,theme,font);original[0]=a.sample.toString();assertReading(a);assertFollowupSurface(a);if(font==1f)initialFollowupBounds(a,identity,nonce);});event(identity,"entered");
+                    if(font==2f){scenario.onActivity(a->{TextView followup=find(a.body,L.t("Follow up","继续追问"));followup.requestRectangleOnScreen(new Rect(0,0,followup.getWidth(),followup.getHeight()),true);});frames(scenario);scenario.onActivity(a->{TextView followup=find(a.body,L.t("Follow up","继续追问"));assertTextComplete(followup);assertSafeRect(a,screenBounds(followup));assertFollowupSurface(a);});event(identity,"followup-revealed");}
+                    scenario.onActivity(a->{try{
+                        a.busy=true;a.snapshot="";a.render();TaskPreviewFeedbackTest.assertActions(a,true,false);assertFalse(find(a.body,L.t("Follow up","继续追问")).isEnabled());
+                        a.busy=false;a.sample.put("thread_id","");a.snapshot="";a.render();assertNull(find(a.body,L.t("Follow up","继续追问")));TaskPreviewFeedbackTest.assertActions(a,true,false);
+                        a.sample=new JSONObject(original[0]);a.sample.put("status","running");a.snapshot="";a.render();assertNull(find(a.body,L.t("Follow up","继续追问")));TaskPreviewFeedbackTest.assertActions(a,true,false);
+                        a.sample=new JSONObject(original[0]);a.snapshot="";a.render();assertEquals(0,a.forbiddenActions.get());
+                    }catch(org.json.JSONException error){throw new AssertionError(error);}});frames(scenario);
+                    scenario.onActivity(a->{safe(a,language,theme,font);assertReading(a);assertFollowupSurface(a);assertEquals(original[0],a.sample.toString());});event(identity,"full-completed");
+                }catch(Throwable error){failure=error;throw error;}
+                finally{closeKnown(scenario,failure,destroyed,identity,retained[0]);}
+            }
+        }finally{if(destroyed[0])L.language(languageBefore);}
+    }
+    static void assertFollowupSurface(DemoTaskPreviewActivity a){
+        TextView text=find(a.body,L.t("Follow up","继续追问"));assertTrue(text instanceof Button);Button followup=(Button)text;
+        assertTrue(followup.isEnabled());assertTrue(followup.isFocusable());assertSame(a.body,followup.getParent());assertTrue(followup.getWidth()>=Ui.dp(a,48));assertTrue(followup.getHeight()>=Ui.dp(a,52));assertTrue(followup.getMinimumHeight()>=Ui.dp(a,52));assertTextComplete(followup);
+        assertTrue(followup.getBackground().getCurrent() instanceof GradientDrawable);GradientDrawable surface=(GradientDrawable)followup.getBackground().getCurrent();assertNotNull(surface.getColor());assertEquals("A secondary surface is visible rather than transparent ghost text",Ui.SURFACE,surface.getColor().getDefaultColor());assertEquals(Ui.dpf(a,Ui.RADIUS),surface.getCornerRadius(),0f);
+        assertEquals(Ui.TEXT,followup.getTextColors().getColorForState(new int[]{android.R.attr.state_enabled},0));assertEquals(0f,followup.getElevation(),0f);assertEquals(1,TaskPreviewFeedbackTest.primaryCount(a.body));assertEquals(0,a.forbiddenActions.get());assertNull(a.followupDialog);
+    }
+    static void initialFollowupBounds(DemoTaskPreviewActivity a,String identity,String nonce){
+        android.widget.ScrollView scroll=(android.widget.ScrollView)a.body.getParent().getParent();assertEquals("Measure before any intentional reveal or focus",0,scroll.getScrollY());
+        Rect target=screenBounds(find(a.body,L.t("Follow up","继续追问"))),safe=screenBounds(scroll),display=new Rect();safe.left+=scroll.getPaddingLeft();safe.top+=scroll.getPaddingTop();safe.right-=scroll.getPaddingRight();safe.bottom-=scroll.getPaddingBottom();a.getWindow().getDecorView().getWindowVisibleDisplayFrame(display);assertTrue(safe.intersect(display));
+        try{Bundle status=new Bundle();status.putString("stream","TASK_FOLLOWUP_GEOMETRY\t"+identity+"\t"+new JSONObject().put("nonce",nonce).put("followup_bounds",target.toShortString()).put("safe_bounds",safe.toShortString()).put("scroll_y",scroll.getScrollY()).put("whole_target_in_safe_area",safe.contains(target)).put("minimum_height",Ui.dp(a,52)).put("forbidden_actions",a.forbiddenActions.get())+"\n");InstrumentationRegistry.getInstrumentation().sendStatus(0,status);}catch(org.json.JSONException error){throw new AssertionError(error);}
+        assertTrue("The fixed short normal sample keeps the whole follow-up target inside its initial safe area",safe.contains(target));
+    }
     @Test public void readingAndPlanEligibilityRemainReachableAtDoubleFont()throws Throwable{
         String mode=InstrumentationRegistry.getArguments().getString("taskReadingProbe","");if(mode.isEmpty())return;assertEquals("accepted",mode);
         String nonce=InstrumentationRegistry.getArguments().getString("taskReadingNonce","");assertEquals("Canonical UUID is required before context or fixture use",java.util.UUID.fromString(nonce).toString(),nonce);

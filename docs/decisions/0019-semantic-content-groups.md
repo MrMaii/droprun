@@ -104,3 +104,19 @@ pass the bounded local checks; root and an independent reviewer view all four
 originals and accept this grouping. Follow-up sits near the normal viewport's
 bottom and can require scrolling; its complete normal-font touch area is not
 established by the stills. No genuine, physical, signed-package or motion claim.
+
+### Follow-up extension — accepted 2026-10-07
+
+The delivery's ghost-style follow-up looked like text and its complete target
+extended below the short normal sample's safe area. Reuse the existing outlined
+secondary action rather than introducing another primary action. Reduce only
+report-present outer margins18top/10bottom to12top/0bottom; keep the8dp gap after
+the artifact group,22sp result and52dp action. Long results and large text scroll.
+The same-thread dialog, eligibility, draft, confirmation and locks remain.
+
+[Fresh source-bound reading and four normal originals](../releases/ui-task-followup-fit-2026-10-07.md)
+establish whole initial targets only for the fixed short EN/ZH sample, with15px/4px
+bottom clearance. Root and an independent reviewer accept all four normal stills;
+the original overflow baseline remains unchanged. This does not claim arbitrary
+first-screen fit, actual press/dialog/IME, new motion, physical or signed-package
+acceptance. The outlined action's existing interaction states are reused.
