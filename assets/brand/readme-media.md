@@ -1,5 +1,31 @@
 # Native README media
 
+## Settings access grouping · October 7, 2026
+
+The README Settings gallery now uses four unedited native 320 × 640 PNGs from
+`0.5.14-dev`, code27, later than signed candidate14. These normal-text scroll
+excerpts show separate model and project-access surfaces, complete sampled
+project names and distinguishing ID prefixes. Both themes keep the memory-only
+marker and system bars. No permission or business action was activated.
+
+Root and an independent reviewer directly viewed all four originals. The English
+access-card bottom corners continue beyond the viewport; these are partial
+Settings views. They do not show 200% text or establish motion, keyboard/TalkBack,
+physical performance or genuine handoffs. Capture assertions guarantee only the
+first project and memory marker; both rows have measured geometry. Automated
+pixel acceptance remains false; separate human review accepts these local views.
+
+| File | Bytes | SHA-256 |
+| --- | ---: | --- |
+| [source-settings-access-en-light-20261007.png](source-settings-access-en-light-20261007.png) | 40403 | `8d033c627db66ef8e7771431d7d43d95a2faf95b5ac512558ea6dd50edb9519c` |
+| [source-settings-access-en-dark-20261007.png](source-settings-access-en-dark-20261007.png) | 41370 | `880499aef042a26d0e8e40993c10934a618f0161c51f32889f2aef6d141a4ae2` |
+| [source-settings-access-zh-light-20261007.png](source-settings-access-zh-light-20261007.png) | 53724 | `94e9afd110757461c93ab0f07b16329dbb619578b259839d163a23e66c03d685` |
+| [source-settings-access-zh-dark-20261007.png](source-settings-access-zh-dark-20261007.png) | 54524 | `06bb29580f363a67e30939ff0562af93c8922050f06117c608f37cf2d77269e4` |
+
+[Exact local scope](../../docs/releases/ui-settings-access-group-2026-10-07.md).
+Earlier model-group images below remain historical evidence. Share motion,
+result stills, candidate14 downloads and separately published Site24 media stay.
+
 ## Result reading focus · October 7, 2026
 
 Four complete, unedited native 320 × 640 PNGs from `0.5.14-dev`, code27.
@@ -504,7 +530,7 @@ original source/provenance. No new motion or genuine handoff footage is claimed.
 
 ## October 6, 2026 — grouped model preferences
 
-The expanded README Settings example now uses the four `source-settings-grouped-*`
+The October 6 README Settings example used the four `source-settings-grouped-*`
 native normal-font originals. They show the scrolled offline model status,
 Refresh, model/effort group and first project-access row. Root directly viewed
 all four; copies retain every original byte, memory-only marker and system pixel.

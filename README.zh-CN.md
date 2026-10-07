@@ -65,7 +65,7 @@ Codex 在你的 Windows 电脑上工作，Relay 由你部署到自己的 Cloudfl
 设置统一收纳，按项目查看交办历史。
 
 <p align="center">
-  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-settings-grouped-zh-dark-20261006.png"><img src="assets/brand/source-settings-grouped-zh-light-20261006.png" width="220" alt="原生 Android 设置页，滚动展示分组的离线模型状态、刷新、模型与强度选项及项目授权；常规字号，保留仅内存标记"></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-settings-access-zh-dark-20261007.png"><img src="assets/brand/source-settings-access-zh-light-20261007.png" width="220" alt="原生 Android 设置局部：模型与项目授权使用独立分组，样本项目名及区分 ID 前缀完整换行；常规字号，保留仅内存标记"></picture>
   <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-history-hierarchy-zh-dark-20261006.png"><img src="assets/brand/source-history-hierarchy-zh-light-20261006.png" width="220" alt="原生 Android 项目历史，展示项目身份与三条仅内存交办示例；普通字号，保留示例标记"></picture>
 </p>
 

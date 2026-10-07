@@ -1,0 +1,263 @@
+{
+  "schema": "droprun.local-ui-settings-access.v1",
+  "date": "2026-10-07",
+  "verifiedWithinScope": true,
+  "developmentParent": "a328357fcab5c2250fb0fcc6f2d678e0e5b1c1d5",
+  "version": {
+    "name": "0.5.14-dev",
+    "code": 27
+  },
+  "signedCandidateIncludesThisChange": false,
+  "changes": [
+    "One flat theme surface around existing project access: radius26dp, horizontal16dp/vertical12dp padding.",
+    "Complete project names wrap naturally without a two-line cap; permission callbacks and confirmations stay."
+  ],
+  "sourceFreeze": {
+    "sha256": "ad12b4b4d5fd1afd6e2a5718651fcf57a5960c4973de72b2fe3d8a8b5e03e3d8",
+    "sources": 134,
+    "configs": 4
+  },
+  "independentReview": {
+    "verified": true,
+    "sha256": "85e2adbc88875c23d561af1e1560ed85e5be913557ce3b905faed9862c59af12",
+    "directChildrenReturned0": 60,
+    "rawFilesRehashed": 120
+  },
+  "phases": {
+    "build": {
+      "verification": {
+        "bytes": 3892,
+        "sha256": "22d343ffd679cac1e25f861e4342167bb6918d29f5514b48bfb5846bccaf3485"
+      },
+      "returned0": 1
+    },
+    "install": {
+      "verification": {
+        "bytes": 20024,
+        "sha256": "31d91f25d168132ef60882a815df9e46dbb0a3a23f6a222fd404f65dc9a9158d"
+      },
+      "returned0": 26
+    },
+    "native": {
+      "verification": {
+        "bytes": 51495,
+        "sha256": "994e53258c07ed5f219851badbdced63e96437328cb759690965559e9e941027"
+      },
+      "returned0": 33
+    }
+  },
+  "debugApks": [
+    {
+      "role": "app",
+      "package": "app.droprun.mobile.debug",
+      "bytes": 2185996,
+      "sha256": "cc486d1a5a46eec998ffa1b5ae66913c2f51145bb08779cc3b57a3b06d6e88d0"
+    },
+    {
+      "role": "test",
+      "package": "app.droprun.mobile.debug.test",
+      "bytes": 2053229,
+      "sha256": "0ceb1a0a37fa4a7283214fc180fef19c317a2c9c8174392986efa095279fd898"
+    }
+  ],
+  "fourInstalledReadsByteExact": true,
+  "boundJvmReport": {
+    "tests": 27,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "boundLintReport": {
+    "errors": 0,
+    "warnings": 28
+  },
+  "compilerStderr": {
+    "bytes": 133,
+    "sha256": "149b4942073466f2d906e9406521e823d43ac50547bb086b0dda99ca5c1ff0a6"
+  },
+  "native": {
+    "counts": {
+      "events": 56,
+      "windows": 6,
+      "entered": 6,
+      "full_completed": 6,
+      "DESTROYED": 6,
+      "zero_guard_streams": 24,
+      "captures": 4
+    },
+    "junit": {
+      "class": "app.droprun.SettingsReadingPresentationTest",
+      "method": "readingSectionsKeepChoicesAndProjectIdentity",
+      "tests": 1,
+      "failures": 0,
+      "seconds": 38.951
+    },
+    "raw": {
+      "bytes": 8989,
+      "sha256": "5c9315e7ac2a14d2ec2aded37d15f8c507a98dc6226d015237a0dfaffb5b57f8"
+    },
+    "zeroGuardReceipts": 24,
+    "exactEventSequence": true,
+    "nonceArgvAndSourceGateBound": true
+  },
+  "captureGeometry": [
+    {
+      "language": "en",
+      "theme": "light",
+      "png": {
+        "dimensions": [
+          320,
+          640
+        ],
+        "CRCCheckedChunks": 9
+      },
+      "modelRowsInCapture": true,
+      "projectsMeasured": [
+        {
+          "id": "memory-mobile",
+          "nameWidth": 168,
+          "nameLines": 3,
+          "chipWidth": 70,
+          "chipHeight": 48
+        },
+        {
+          "id": "memory-desktop",
+          "nameWidth": 147,
+          "nameLines": 4,
+          "chipWidth": 91,
+          "chipHeight": 48
+        }
+      ],
+      "pixelAcceptance": false
+    },
+    {
+      "language": "en",
+      "theme": "dark",
+      "png": {
+        "dimensions": [
+          320,
+          640
+        ],
+        "CRCCheckedChunks": 10
+      },
+      "modelRowsInCapture": true,
+      "projectsMeasured": [
+        {
+          "id": "memory-mobile",
+          "nameWidth": 168,
+          "nameLines": 3,
+          "chipWidth": 70,
+          "chipHeight": 48
+        },
+        {
+          "id": "memory-desktop",
+          "nameWidth": 147,
+          "nameLines": 4,
+          "chipWidth": 91,
+          "chipHeight": 48
+        }
+      ],
+      "pixelAcceptance": false
+    },
+    {
+      "language": "zh",
+      "theme": "light",
+      "png": {
+        "dimensions": [
+          320,
+          640
+        ],
+        "CRCCheckedChunks": 11
+      },
+      "modelRowsInCapture": true,
+      "projectsMeasured": [
+        {
+          "id": "memory-mobile",
+          "nameWidth": 175,
+          "nameLines": 2,
+          "chipWidth": 63,
+          "chipHeight": 48
+        },
+        {
+          "id": "memory-desktop",
+          "nameWidth": 175,
+          "nameLines": 2,
+          "chipWidth": 63,
+          "chipHeight": 48
+        }
+      ],
+      "pixelAcceptance": false
+    },
+    {
+      "language": "zh",
+      "theme": "dark",
+      "png": {
+        "dimensions": [
+          320,
+          640
+        ],
+        "CRCCheckedChunks": 11
+      },
+      "modelRowsInCapture": true,
+      "projectsMeasured": [
+        {
+          "id": "memory-mobile",
+          "nameWidth": 175,
+          "nameLines": 2,
+          "chipWidth": 63,
+          "chipHeight": 48
+        },
+        {
+          "id": "memory-desktop",
+          "nameWidth": 175,
+          "nameLines": 2,
+          "chipWidth": 63,
+          "chipHeight": 48
+        }
+      ],
+      "pixelAcceptance": false
+    }
+  ],
+  "directVisualReview": {
+    "reviewer": "root",
+    "directlyViewedAllFourOriginals": true,
+    "localPartialVisualScopeAccepted": true,
+    "files": [
+      {
+        "file": "assets/brand/source-settings-access-en-light-20261007.png",
+        "bytes": 40403,
+        "sha256": "8d033c627db66ef8e7771431d7d43d95a2faf95b5ac512558ea6dd50edb9519c"
+      },
+      {
+        "file": "assets/brand/source-settings-access-en-dark-20261007.png",
+        "bytes": 41370,
+        "sha256": "880499aef042a26d0e8e40993c10934a618f0161c51f32889f2aef6d141a4ae2"
+      },
+      {
+        "file": "assets/brand/source-settings-access-zh-light-20261007.png",
+        "bytes": 53724,
+        "sha256": "94e9afd110757461c93ab0f07b16329dbb619578b259839d163a23e66c03d685"
+      },
+      {
+        "file": "assets/brand/source-settings-access-zh-dark-20261007.png",
+        "bytes": 54524,
+        "sha256": "06bb29580f363a67e30939ff0562af93c8922050f06117c608f37cf2d77269e4"
+      }
+    ],
+    "independentVisualReviewSHA256": "48a3bdfa2af67d2a5f0dc3b5d693d54f6c51596ba1bea3d067aad1070dc9cb27",
+    "limits": [
+      "Scrolled normal-font excerpts; English access-card bottom corners continue beyond the viewport.",
+      "No full Settings, font2 pixel, motion, click, TalkBack or physical-device acceptance."
+    ]
+  },
+  "tenObservedDeviceValuesEqual": true,
+  "observedGlobalFont": "2.0",
+  "boundaries": [
+    "Six fixed memory windows; no real permission/mode/business action or external execution by this reader.",
+    "Only first project row plus memory marker visibility is source/JUnit-asserted. Second row is measured metadata, not an on-screen claim. Model rows only when the recorded conditional flag is true.",
+    "Surface, complete labels, font2 width248 and preference focus/retention reachability are source/JUnit assertions; no dedicated telemetry for those assertions.",
+    "Known DESTROYED is not executor termination or full Ui-static restoration. Ten observed values do not prove every device state unchanged.",
+    "PNG CRC/dimensions/metadata are byte checks. Pixel acceptance remains false until separate direct review.",
+    "JVM/lint counts come from exact bound report files; do not imply every task freshly executed. No signed candidate, physical performance or genuine handoff acceptance."
+  ]
+}

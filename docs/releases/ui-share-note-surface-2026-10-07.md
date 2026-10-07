@@ -32,6 +32,11 @@ overflow; its two windows closed and English had passed. Adjusting confirmed
 execution context resolves the strict original visibility check. Both original
 raw failures remain unchanged; their native after-device reads never started.
 
+The exact published development source `a328357` also passes its own CI
+37556941797, attempt1: three jobs, 35 steps, ten required checks and three
+job checks. Actual core210/browser18 footers pass; the complete 326,669-byte
+log and independent review are retained. [Exact CI scope](ui-note-result-source-ci-2026-10-07.json).
+
 ## Boundaries
 
 These are specific memory-only windows, not a complete theme/accessibility

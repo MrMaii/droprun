@@ -43,6 +43,11 @@ expectation, retaining primary-action count, color and availability checks. Its
 JUnit failure, original 84 raw files and one known closed window remain unchanged;
 Chinese reading, after-device reads and captures did not start in that attempt.
 
+The exact published development source `a328357` also passes its own CI
+37556941797, attempt1: three jobs, 35 steps, ten required checks and three
+job checks. Actual core210/browser18 footers pass; the complete 326,669-byte
+log and independent review are retained. [Exact CI scope](ui-note-result-source-ci-2026-10-07.json).
+
 ## Boundaries
 
 These are six specific local memory windows, not genuine handoffs or a complete

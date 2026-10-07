@@ -36,6 +36,23 @@ real-environment acceptance is unavailable. No stable launch or marketing handov
 
 ## Completed UX and brand
 
+- [Settings access grouping](../../docs/releases/ui-settings-access-group-2026-10-07.md):
+  one flat theme surface16h/12v/radius26, complete natural project-name wrapping;
+  pending callbacks and permission confirmation retained. Fresh134/4 freeze
+  ad12b4b4 passes exact debug build/install/native;1/26/33 children returned0.
+  Independent reader rehashes120raw, six snapshots/current closure, bound JVM27
+  and lint0errors28warnings, exact built/current/four installed APK reads.
+  Native1test38.951s closes six fixed memory windows with56streams/24zero guards.
+  Four normal-font320×640PNG reviewed directly by root and independent peer;
+  README copies preserve original bytes. Model/access groups are distinct and
+  sampled identity/status readable. English access-card bottom corners continue
+  beyond viewport; no full-page or font2 visual claim. Source/JUnit assertions
+  cover full wrapping,248dp large-text width,48dp controls and fixed preference
+  focus; no separate telemetry. First-row/marker capture guarantee only, both
+  rows measured. Automated pixelAcceptance=false stays; human acceptance separate.
+  Known DESTROYED is not executor termination; only ten observed device values
+  match. No real permission action, TalkBack, physical, motion or signed-native
+  acceptance. This later change is outside signed14 and sourcea328 own CI below.
 - [Task result focus](../../docs/releases/ui-task-result-focus-2026-10-07.md):
   report-present identity20, quiet accessible result heading14 and summary22 at
   full reading width; settled earlier plan follows full report, before note,
@@ -53,7 +70,10 @@ real-environment acceptance is unavailable. No stable launch or marketing handov
   expectation2→0 corrected, production button styling unchanged. No business
   activation, genuine work, actual IME, signed-native, motion, physical or complete
   accessibility acceptance. Known DESTROYED does not prove executor termination;
-  only ten read-only device values match. Current source's own CI is pending push.
+  only ten read-only device values match. Published sourcea328357 own
+  CI37556941797 attempt1 passes3jobs/35steps/10required/3checks, actual210+18;
+  full326669B log SHAfa0c68ed, fetch66760 returned0/stderr0. Settings access
+  grouping is later and is not covered by this CI.
 - [Share note surface](../../docs/releases/ui-share-note-surface-2026-10-07.md):
   genuine two-line minimum after styling; full note padding, max6/15000 limit
   and draft semantics retained. Confirmed execution context is quieter;
@@ -70,7 +90,8 @@ real-environment acceptance is unavailable. No stable launch or marketing handov
   and downloads14 remain. Its delivery gallery now uses the four independently
   viewed October7 code27 native result-focus stills; older media remain linked
   in provenance. Only local target existence was rechecked, not a new GitHub
-  render or hosted-site update.
+  render or hosted-site update. Settings gallery also uses the four reviewed
+  October7 partial access-group views; exact historical images stay in provenance.
 - [Task metadata reading](../../docs/releases/ui-task-metadata-reading-2026-10-07.md):
   local presentation ignores only updated_at, updates the date caption separately,
   and retains report View/buffer/selection/disclosure/focus/offset. Actual report
@@ -130,17 +151,16 @@ real-environment acceptance is unavailable. No stable launch or marketing handov
 
 ## Single recommended next action
 
-Publish the verified Share note/Task result-focus development source, then read
-that exact commit's own CI. Continue native design refinement afterward; the
-next proposed surface is Settings project access, with complete labels and
-large-text width checked before adopting an inset group. Real-environment gates
-do not block local UI, motion, README or brand work.
+Preserve keyboard focus on the project-access disclosure and permission controls
+when Settings rebuilds after a read or busy-state change. Current fixed preference
+IDs do not cover those controls. Review a minimal stable-key implementation and
+extend only the existing guarded memory method; no real permission activation.
+Real-environment gates do not block local UI, motion, README or brand work.
 
 ## Files this pass
 
-ShareActivity/ShareEditorTest, TaskActivity/TaskReadingHierarchyTest and one
-TaskPreviewFeedbackTest assertion; PRD/CONTRACTS/CHANGELOG, new note/result-focus
-records, metadata-reading exact-source CI followthrough and Site24 evidence;
-EN/ZH README, media provenance and four new original delivery PNGs, current
-handoff. No genuine task or stable launch; website media remain Site24's set.
+SettingsActivity/SettingsReadingPresentationTest; PRD/CONTRACTS/CHANGELOG/ADR0019,
+access-group records and a328 exact-source CI followthrough for note/result;
+EN/ZH README, media provenance, four new original Settings PNGs, current handoff.
+No genuine task or stable launch; website media remain Site24's set.
 Author Thomas Deng <150266369+MrMaii@users.noreply.github.com>.

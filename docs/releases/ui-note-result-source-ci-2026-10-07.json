@@ -1,0 +1,55 @@
+{
+  "schema": "droprun.public-source-ci.v1",
+  "date": "2026-10-07",
+  "verified": true,
+  "source": "a328357fcab5c2250fb0fcc6f2d678e0e5b1c1d5",
+  "runId": 37556941797,
+  "attempt": 1,
+  "url": "https://github.com/MrMaii/droprun/actions/runs/37556941797",
+  "branch": "main",
+  "event": "push",
+  "workflow": ".github/workflows/ci.yml",
+  "jobCount": 3,
+  "stepCount": 35,
+  "requiredStepCount": 10,
+  "exactRunCheckCount": 3,
+  "allJobsStepsAndChecksSucceeded": true,
+  "actualCore": {
+    "tests": 210,
+    "suites": 0,
+    "pass": 210,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "duration_ms": 42856.2893
+  },
+  "actualBrowser": {
+    "tests": 18,
+    "suites": 0,
+    "pass": 18,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "duration_ms": 74509.7338
+  },
+  "fullLog": {
+    "bytes": 326669,
+    "sha256": "fa0c68eddaba7523619347d308289c479e2ef8f38aaafc22527d0eb94e6f94ec"
+  },
+  "fetch": {
+    "pid": 66760,
+    "lifetime": "returned",
+    "exit": 0,
+    "stderrBytes": 0
+  },
+  "terminalVerificationSha256": "f7a9bde30924979a4e24eb105cd506dab25f1a9b0e1190c2fe501840803712f4",
+  "independentReviewSha256": "86b9de0c64943ae099aeab958e81136fe2f20dffa0af483fd56d02cb539a7628",
+  "scope": "The exact published Share note, Task result-focus and bilingual README development source. Subsequent Settings access prototype is not in this commit.",
+  "limits": [
+    "Numbers are actual footer counts from this run and attempt, not previous CI or inferred totals.",
+    "Android build/unit/lint success does not run native instrumentation, prove signed-package interaction, physical performance or genuine handoffs.",
+    "This CI does not update the signed candidate or hosted website."
+  ]
+}

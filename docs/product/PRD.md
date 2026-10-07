@@ -243,6 +243,9 @@ in [the current candidate record](../releases/0.5.14-rc.1.md).
   computer retains its distinct surface. Model availability, Refresh/Retry,
   model and effort form one matte content group with complete values at 200%
   text. [Grouping decision](../decisions/0019-semantic-content-groups.md).
+  Project access uses a separate flat theme surface with the same group padding
+  and corners. Project names and distinguishing ID prefixes wrap completely; preserve
+  existing permission confirmation and pending state inside the group.
   At 150% font and above, project access
   actions follow the full project name on a separate line. A page-wide save disables
   and dims permission controls until its actual completion.

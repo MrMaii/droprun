@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Group Settings project access on its own matte surface; preserve complete
+  project names and ID prefixes, existing confirmation and pending feedback.
+  [Local reading and original partial captures](docs/releases/ui-settings-access-group-2026-10-07.md).
 - Make the delivered answer the visual focus; retain full reading width and
   move earlier plans beside the full report. Plans awaiting approval keep
   their existing position and actions.

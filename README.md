@@ -66,7 +66,7 @@ For example, share a design reference to an existing app project with this note:
 Settings in one place. Handoff history organized by project.
 
 <p align="center">
-  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-settings-grouped-en-dark-20261006.png"><img src="assets/brand/source-settings-grouped-en-light-20261006.png" width="220" alt="Native Android settings scrolled to the grouped offline model status, Refresh, model and effort controls, followed by project access; normal font size, memory-only marker visible"></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-settings-access-en-dark-20261007.png"><img src="assets/brand/source-settings-access-en-light-20261007.png" width="220" alt="Native Android Settings excerpt: separate model and project-access surfaces with complete sampled project names and ID prefixes; normal text, memory-only marker visible"></picture>
   <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-history-hierarchy-en-dark-20261006.png"><img src="assets/brand/source-history-hierarchy-en-light-20261006.png" width="220" alt="Native Android project history with the project identity and three memory-only handoff rows; normal font size, sample marker visible"></picture>
 </p>
 

@@ -56,6 +56,27 @@ complete values, keyboard focus or reading position for the new surfaces.
 
 ## Verification
 
+### Project-access extension — accepted 2026-10-07
+
+The model group exposed a similar boundary problem below it: project permissions
+remained on the bare page. Extend the same flat surface to the entire existing
+access disclosure, with its section label outside. Individual rows stay plain.
+Names and distinguishing ID prefixes wrap without a two-line cap. The existing large-text
+stacked action, callbacks, confirmation and pending presentation remain.
+
+At 320dp this changes access inner width280→248dp. Normal text shares that width
+with a48dp-minimum permission control and10dp gap; at150% and above the name uses
+the whole248dp and the control follows. Extra height is preferable to truncating
+identity. A bare page preserved32dp but made unrelated settings harder to scan.
+This extension revises only the previous pass's access-section layout; no glass,
+business action or permission policy is added.
+
+[Six fixed memory windows and four original partial captures](../releases/ui-settings-access-group-2026-10-07.md)
+own its source/APK binding and actual limits. Both reviewers directly accept the
+normal-font excerpts; English lower corners continue beyond the viewport. This
+does not establish full-page visibility, permission focus restoration, TalkBack,
+motion or genuine use.
+
 [Actual native checks and unchanged captures](../releases/ui-settings-model-group-2026-10-06.md)
 own the frozen source, both language/theme samples, large-text reading and
 Refresh recovery results. New visuals use original native pixels, including
