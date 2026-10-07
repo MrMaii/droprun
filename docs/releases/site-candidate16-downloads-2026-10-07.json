@@ -1,0 +1,73 @@
+{
+  "schema": "droprun.site-publication.v1",
+  "date": "2026-10-07",
+  "productSource": "73615cfe88a8741249d25b82f57da6c7ebd2086b",
+  "hostingSource": "ebf4b94c215895635a107977c3679bf2ce43e559",
+  "projectId": "appgprj_6ab726bb8cd48191acd3234da262627d",
+  "versionId": "appgprj_6ab726bb8cd48191acd3234da262627d~appgver_71840a2db77c8191826998d29fcf0990",
+  "versionNumber": 28,
+  "deployment": {
+    "id": "appgdep_6ac60ddfaa60819199717cfaca40d468",
+    "project_id": "appgprj_6ab726bb8cd48191acd3234da262627d",
+    "title": "DropRun — Give inspiration a next step",
+    "version_id": "appgprj_6ab726bb8cd48191acd3234da262627d~appgver_71840a2db77c8191826998d29fcf0990",
+    "type": "publish",
+    "status": "succeeded",
+    "url": "https://droprun.dengmaizi0802.chatgpt.site",
+    "has_mcp": false,
+    "screenshot_asset_pointer": null,
+    "provider_deployment_id": "site---6ab726bb8cd48191acd3234da262627d",
+    "failure_message": null,
+    "env_set_revision": 0,
+    "updated_at": "2026-10-07T09:16:23.042053+00:00"
+  },
+  "audience": {
+    "before": "public",
+    "preserved": true
+  },
+  "publicFiles": 125,
+  "archiveFiles": 126,
+  "changedPages": [
+    "index.html",
+    "zh/index.html"
+  ],
+  "preservedAssets": 123,
+  "localCompressedArchive": {
+    "bytes": 15376940,
+    "sha256": "17c8e5641029fc573a265b6a8075b37c1e1a7e040adca8d3850d5b505bbe3066"
+  },
+  "savedArchiveStorage": {
+    "archive_format": "tar",
+    "sediment_file_id": "file_00000000b71881fdab5d29535592e4f2",
+    "content_hash": "sha256:9a6ef85f338c9bb452f726254dcf4348c41c4e64ace6aa0c7b5a736c0f4fb866",
+    "size_bytes": 16650240,
+    "file_count": 126
+  },
+  "independentArchiveRead": {
+    "passed": true,
+    "archiveFiles": 126,
+    "publicFiles": 125,
+    "changedPages": 2,
+    "preservedAssets": 123,
+    "archiveRaw": {
+      "bytes": 15376940,
+      "sha256": "17c8e5641029fc573a265b6a8075b37c1e1a7e040adca8d3850d5b505bbe3066"
+    },
+    "readerSha256": "2453d44fbc555f5141027817cc3cda56a20c3595dc7610d0c3d86269c89807dc",
+    "copySha256": "da071eee176495b8daf41f544e0c468b34001c39e143c9c502a38cead7481669",
+    "nativeSelectedSha256": "33cb151c3839bf2f8ef3c6a268aa7ecdedc3a24ab17878ae6704574dc1f27472",
+    "scope": "Pure retained archive and selected native receipt; no network, device, browser or playback check."
+  },
+  "copyReceiptSha256": "da071eee176495b8daf41f544e0c468b34001c39e143c9c502a38cead7481669",
+  "nativeSelectedSha256": "33cb151c3839bf2f8ef3c6a268aa7ecdedc3a24ab17878ae6704574dc1f27472",
+  "downloadRelease": "v0.5.16-rc.1",
+  "newMedia": false,
+  "cleanup": false,
+  "ignoredNestedFilesPreserved": 29,
+  "boundaries": [
+    "Official source/save/deploy receipt and exact archive bytes; no repeated closed Site27 browser QA or new deployed-page fetch.",
+    "Two bilingual HTML download/provenance updates only; all123 other public files retained. Four older VTT checkout CRLF exceptions retained.",
+    "The first copy inventory check failed before mutation because29 pre-existing ignored nested files were outside its whitelist. That helper/output is retained; the reviewed successor hashes and preserves all29. No cleanup or deletion.",
+    "Public candidate16 downloads have their own anonymous record. Website publication does not establish signed-native, clean installation, genuine handoffs, stable launch or marketing readiness."
+  ]
+}

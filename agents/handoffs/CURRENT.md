@@ -23,13 +23,13 @@ handover. Current user request takes precedence over dated handoffs.
   source paths are anonymously byte-matched; author/committer Thomas Deng.
   Public README, setup guides and generated download links now target16.
   This follow-through does not infer new source CI or native acceptance.
-- [GPTSites27](../../docs/releases/site-home-share-tour-2026-10-07.md) remains
-  public at https://droprun.dengmaizi0802.chatgpt.site/; native publication
-  succeeds2026-10-07T07:03:31.761795Z, hosting a5e82b8b. Its125public files and
-  126archive members retain accepted Home stills and Share tour. Site28 has
-  opened this exact checkout; only two generated bilingual HTML downloads will
-  change to16. No new media, hosted-browser or playback claim. Do not repeat
-  closed Site27 QA. Official source/save/deploy receipt is pending.
+- [GPTSites28](../../docs/releases/site-candidate16-downloads-2026-10-07.md)
+  is public at https://droprun.dengmaizi0802.chatgpt.site/; hosting ebf4b94c.
+  Official source/save/deploy success and independent126-member archive read
+  retain125public files, change only two bilingual pages to candidate16 and
+  preserve123assets. The first inventory guard failure stays intact; its
+  successor verifies/preserves29 ignored nested files, with no cleanup.
+  No new media, repeated Site27 browser QA, deployed fetch or playback proof.
 
 ## Accepted development and present work
 
@@ -111,18 +111,16 @@ handover. Current user request takes precedence over dated handoffs.
 
 ## Single recommended next action
 
-Complete Site28's two-page download update through its official source/save/
-deploy flow, retaining125public assets and one independently read archive.
-Then apply the separately reviewed six-project memory fixture, bind a fresh
-freeze/nonce and build/install/capture owner; inspect its four original first-
-screen PNGs before changing production layout. No Send or real Relay task.
-Original project-read and earlier screenshot takes stay immutable. Continue
-native UI/UX polish; real acceptance gates are not a reason to stop local work.
+Apply the separately reviewed six-project memory fixture, bind a fresh freeze/
+nonce and build/install/capture owner; inspect all four original first-screen
+PNGs before changing production layout. No Send or real Relay task. Original
+project-read and earlier screenshot takes stay immutable. Continue native
+UI/UX polish; real acceptance gates are not a reason to stop local work.
 
 ## Files this pass
 
 Bilingual README and self-hosting guides; generated landing index/zh index and
 build script; PROJECT_CONTEXT; candidate16 release/anonymous/own-CI records;
-this handoff. Prior source4aea owns the accepted Share/Home/Delivery/Settings
+Site28 download publication records; this handoff. Prior source4aea owns the accepted Share/Home/Delivery/Settings
 changes. Private promo and launch-kit remain excluded.
 Author Thomas Deng <150266369+MrMaii@users.noreply.github.com>.
