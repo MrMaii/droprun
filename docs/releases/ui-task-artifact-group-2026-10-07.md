@@ -50,3 +50,17 @@ result-focus failures remain in their separate dated record. No website deployme
 or fresh public Markdown-rendering check is claimed.
 
 [Selected receipts and original media hashes](ui-task-artifact-group-2026-10-07.json).
+
+## Published source CI and README
+
+Curated source `9fd8e50c35d8ff4183d0da21ed6952f560e134bb` is public with both
+Thomas Deng Git identities. Its own CI37570403297 attempt1 passes three jobs,
+35steps,10required steps and three matching checks; actual core210/browser18.
+Full326858-byte log is independently checked; native proof remains separate.
+[Exact CI](ui-home-task-source-ci-2026-10-07.json).
+
+Root also viewed the actual anonymous GitHub EN/ZH desktop galleries: new light
+delivery PNGs load at260px and the separately labelled older GIFs at320px, both
+with native320×640 image dimensions. This is a rendered-image loading check,
+not immutable raw bytes, GIF timing, reduced-motion, dark or narrow-screen
+acceptance. No hosted-site, signed-package or genuine workflow update is inferred.

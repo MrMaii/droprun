@@ -1,0 +1,51 @@
+{
+  "schema": "droprun.source-ci.v1",
+  "date": "2026-10-07",
+  "source": "9fd8e50c35d8ff4183d0da21ed6952f560e134bb",
+  "runId": 37570403297,
+  "attempt": 1,
+  "url": "https://github.com/MrMaii/droprun/actions/runs/37570403297",
+  "status": "completed",
+  "conclusion": "success",
+  "jobs": 3,
+  "steps": 35,
+  "requiredSuccessfulSteps": 10,
+  "matchingChecks": 3,
+  "actualTests": {
+    "core": {
+      "tests": 210,
+      "suites": 0,
+      "pass": 210,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "duration_ms": 54773.4546
+    },
+    "browser": {
+      "tests": 18,
+      "suites": 0,
+      "pass": 18,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "duration_ms": 65083.89
+    }
+  },
+  "completeLog": {
+    "bytes": 326858,
+    "sha256": "0c86796c31d1e7f7bc7e9c5c8c4a5cc4ea6269cc8a793bd7df779d7a3bae075c",
+    "fetchExit": 0,
+    "fetchStderrBytes": 0
+  },
+  "independentReviewSHA256": "458906c1b11e47e69c38d6051a9a79753200cd21fa036b8a4ef88711b58465fa",
+  "terminalVerificationSHA256": "6d45de267a7ec27d61fc01dc7668a52fdd11730c7f0f28d453d9f05fec2b466c",
+  "boundaries": [
+    "All footer values come from this exact attempt complete log; no old CI counts borrowed.",
+    "Pure-file reader: no owner import, external process, network, device, build or Git operation.",
+    "Android Gradle success is not fresh native instrumentation, physical Android or signed14-package acceptance.",
+    "CI covers this curated Home/Task source only; local memory-native receipts remain separate and are not reexecuted by CI.",
+    "Successful CI does not update candidate14 or Site24. Original Home native/file-reader failures remain separate."
+  ]
+}

@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Prepare runtime0.5.15 and Android code28 for the next signed candidate.
+  Existing candidate14 downloads remain until new artifact verification passes.
 - Group report-present preview details and delivery-file actions on one flat
   surface; retain full-width result text and screenshots, with follow-up separate.
   [Local reading and original native stills](docs/releases/ui-task-artifact-group-2026-10-07.md).

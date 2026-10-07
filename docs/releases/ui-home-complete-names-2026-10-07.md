@@ -59,6 +59,16 @@ fresh host output and exact source/owner/build/install/argv bind the take.
 Known destruction and font/language restoration do not prove executor
 termination or all Ui/device state restored. Only ten read-only values match.
 
-No new source CI, signed-native, physical performance, TalkBack, real handoff
-or full UX closure is claimed. Candidate14 and Site24 retain their own source
-and media scope.
+The local take does not establish source CI, signed-native, physical performance,
+TalkBack, real handoff or full UX closure. Candidate14 and Site24 retain their
+own source and media scope.
+
+## Published source CI
+
+Curated source `9fd8e50c35d8ff4183d0da21ed6952f560e134bb` contains this Home
+change and the subsequent Task artifact group. Its own CI37570403297 attempt1
+passes three jobs,35steps,10required steps and three matching checks; actual
+core210/browser18. An independent file reader checks the full326858-byte log,
+SHA-256 `0c86796c31d1e7f7bc7e9c5c8c4a5cc4ea6269cc8a793bd7df779d7a3bae075c`.
+CI does not rerun native instrumentation or update signed14/Site24.
+[Exact CI scope](ui-home-task-source-ci-2026-10-07.json).

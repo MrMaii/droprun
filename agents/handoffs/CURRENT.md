@@ -36,6 +36,13 @@ real-environment acceptance is unavailable. No stable launch or marketing handov
 
 ## Completed UX and brand
 
+- Curated Home/Task/README source9fd8e50 is public;23 reviewed files, both Thomas
+  identities, public source check672 and cached whitespace check pass. Own
+  CI37570403297 attempt1 passes3jobs/35steps/10required/3checks, actual210+18;
+  complete326858B log SHA0c86796c independently reviewed458906c1. Original pending
+  snapshots remain. [Exact CI](../../docs/releases/ui-home-task-source-ci-2026-10-07.json).
+  Anonymous GitHub EN/ZH desktop galleries actually show the new260px delivery
+  originals and loaded320px older GIFs; no narrow/dark/reduced-motion matrix.
 - Home complete names: remove the ordinary-text two-line cap on creation/bind.
   [Closed reading regression](../../docs/releases/ui-home-complete-names-2026-10-07.md)
   passes six fixed memory windows,31.881s,36 rebinds and12 zero guards; independent
@@ -132,8 +139,8 @@ real-environment acceptance is unavailable. No stable launch or marketing handov
   exact recording links remain inside the complete source disclosure. All media
   and downloads14 remain. Its delivery gallery now uses the four independently
   viewed October7 code27 native artifact-group stills; older media remain linked
-  in provenance. Only local target existence was rechecked, not a new GitHub
-  render or hosted-site update. Settings gallery also uses the four reviewed
+  in provenance. This pass checks actual GitHub EN/ZH desktop delivery images
+  and GIF loading; hosted Site24 media remain unchanged. Settings gallery uses the four reviewed
   October7 partial access-group views; exact historical images stay in provenance.
 - [Task metadata reading](../../docs/releases/ui-task-metadata-reading-2026-10-07.md):
   local presentation ignores only updated_at, updates the date caption separately,
@@ -194,9 +201,11 @@ real-environment acceptance is unavailable. No stable launch or marketing handov
 
 ## Single recommended next action
 
-Publish the curated Home/Task source and accepted README originals, then verify
-that exact source's own CI. Prepare the next signed candidate from that coherent
-verified source; signed14 and Site24 remain separate until new publication passes.
+Finish candidate15 metadata publication and verify its own exact CI, then bind
+fresh Android/Windows finite builders to a clean managed checkout at that SHA.
+Version0.5.15/code28 literals are prepared in six product files; download14 and
+Site24 remain current. The original proposed patch check failed before mutation;
+an exact-before-SHA byte writer preserves EOL and applies the six version files.
 Real-environment gates do not block local UI, motion, README or brand work.
 
 ## Files this pass
@@ -205,5 +214,7 @@ MainActivity/HomeRowsPresentationTest; TaskActivity/TaskReadingHierarchyTest/
 TaskPreviewFeedbackTest; PRD/CONTRACTS/CHANGELOG/ADR0019, Home/Task records and
 exact3139 focus-source CI followthrough; bilingual README, brand provenance and
 four byte-exact artifact-group originals.
+Candidate15 package/lock/Android/Connector/Relay/Inno versions, parent9fd own CI
+followthrough and actual public README loading check.
 No genuine task or stable launch; website media remain Site24's set.
 Author Thomas Deng <150266369+MrMaii@users.noreply.github.com>.
