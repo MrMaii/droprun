@@ -33,6 +33,31 @@ handover. Current user request takes precedence over dated handoffs.
 
 ## Accepted development and present work
 
+- [Quiet Share navigation](../../docs/releases/ui-share-quiet-chrome-2026-10-07.md)
+  removes only idle Back/Close circles; existing48dp layout, tint, press, focus,
+  disabled state and callbacks are source-preserved. Fresh13.248s native closes
+  two EN/light and ZH/dark font1 memory editors, reads7/6 long-name lines and all16
+  ID characters, and reaches whole52dp Send without clicking. Root and an
+  independent reviewer directly accept both original short-name PNGs. Fresh
+  build/install/native1/26/29 returned-zero children,112raw,146frozen files/six
+  source receipts,27JVM and lint0errors/29warnings are independently reparsed.
+  No new feedback measurement, motion,200%, genuine or signed-App acceptance.
+- [Current-source bilingual sharing tour](../../docs/releases/ui-share-current-tour-2026-10-07.md)
+  binds source9fcaa04/code29 and its then-current APKs. Each closed memory take
+  changes two destinations, model and high→medium effort without Send. Original
+  MP4s last10.212667s/10.365144s; native25fps GIFs10.20s/10.36s, with captions on
+  encoded time. Both reviewers accept selected original/composed keyframes and
+  retained proof, not continuous human playback, every-button or physical tests.
+  Original offline decode/DTS and extra final-frame verifier failures remain;
+  successors decode only, without re-recording or fabricated tails. Repository
+  media precede quiet navigation; signed16 and Site28 remain unchanged.
+- [Home source's own CI37622991966](../../docs/releases/ui-home-status-source-ci-2026-10-07.md)
+  is fully closed at exact9fcaa04 attempt1: all three jobs/35steps/10required and
+  three checks pass. Complete327640B log yields core210/210/browser19/19, zero
+  failures/cancellations/skips/todo; audit0 and public-source777files. Android
+  executes all four requested tasks, but CI case/lint totals are not inferred.
+  Four returned fetches/eight raw files and actual footer lines are rechecked.
+  This older source's CI does not cover quiet navigation or newly published docs.
 - [Home state first](../../docs/releases/ui-home-status-hierarchy-2026-10-07.md)
   puts15sp current state below the complete name and13sp counts/date below.
   Fresh37.542s HomeRows closes six memory windows,36 rebinds,32 lifecycle/12zero
@@ -182,15 +207,15 @@ handover. Current user request takes precedence over dated handoffs.
 
 ## Single recommended next action
 
-Bind a fresh current-source project/model/effort tour without Send, then review
-actual continuous playback before replacing old motion media. The new tour
-proposal remains prepare-only until current Home source/APK/closed-read bindings
-are explicitly populated and reviewed. Never auto-rebind or replay an old take.
-Genuine release gates remain open.
+Finish the selected source publication and its own CI, then carry the accumulated
+Home/Share refinements into the next signed candidate and publish the separately
+reviewed media to GPTSites. Keep original failed attempts and closed take bindings;
+never auto-rebind or replay them. Genuine release gates remain open.
 
 ## Files this pass
 
-MainActivity and four compatibility test files; PRD/CONTRACTS/ADR0019/CHANGELOG;
-Home state-first record and four original PNGs; bilingual README gallery and
-media provenance; this handoff. Source does not upgrade signed16 or Site28.
+Ui/ShareActivity; PRD/CONTRACTS/ADR0019/CHANGELOG; quiet Share record and two raw
+originals; current-source bilingual GIF/MP4/captions/first frames and tour record;
+Home source's closed CI record; bilingual README and media provenance; this handoff.
+Source does not upgrade signed16 or Site28.
 Private film/launch-kit/promo and four unaccepted Delivery PNGs stay excluded.

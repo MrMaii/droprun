@@ -1,5 +1,42 @@
 # Native README media
 
+## Current sharing tour · October 7, 2026
+
+The bilingual README uses `native-share-current-{en,zh}-20261007.gif`, captured
+from source `9fcaa04e7e2544cb2839993b2c45413bf0703c4e`, development code29.
+The complete20sp destination name leads the confirmation; the tour changes
+between two sample projects, changes model and Thorough to Balanced, and returns
+to the complete editor. No handoff is sent. Visible memory-only markers, source
+launcher and system bars remain in the native320×640 canvas.
+
+Original MP4 copies are byte-exact; captions use the actual media timeline.
+The25fps GIFs last10.20s/10.36s, respectively12.667ms/5.144ms shorter than their
+originals because of frame sampling. No crop, invented transition or added ending
+is used. Both reviewers inspect selected original and composed GIF keyframes;
+this does not establish continuous human playback or every-button feedback.
+[Source, timelines, exact media hashes and limits](../../docs/releases/ui-share-current-tour-2026-10-07.md)
+own this separate recording. Earlier tours below retain their original files.
+
+- English: [GIF](native-share-current-en-20261007.gif) · [Original](../../landing/media/native-share-current-en-20261007.mp4) · [Captions](../../landing/media/native-share-current-en-20261007.vtt).
+- 中文：[GIF](native-share-current-zh-20261007.gif) · [原始录屏](../../landing/media/native-share-current-zh-20261007.mp4) · [字幕](../../landing/media/native-share-current-zh-20261007.vtt)。
+
+The recording precedes the subsequent quiet Back/Close refinement. The README's
+theme-aware static Share gallery and reduced-motion fallback keep their own earlier
+file-count source; Home and Delivery stills also have their own dated provenance.
+Updating these repository assets does not update signed candidate16 or GPTSites28.
+
+## Quiet Share navigation · October 7, 2026
+
+Two later, byte-exact normal-font native originals remove the idle circles around
+Back and Close. Both reviewers directly view EN/light and ZH/dark short-name
+memory editors: complete destination, note, model and Send remain readable.
+Markers and system bars are retained. Long-name reading is separately asserted;
+preserved target and interaction-state source are not new runtime measurements.
+These stills do not replace the theme-aware four-image Share gallery or recording.
+
+[English/light](source-share-quiet-en-light-20261007.png) · [中文/深色](source-share-quiet-zh-dark-20261007.png)
+· [Source/APK binding, hashes and local scope](../../docs/releases/ui-share-quiet-chrome-2026-10-07.md).
+
 ## README brand cover · October 7, 2026
 
 Four1280×448 editorial covers use the existing DropRun mark, warm neutral
@@ -772,7 +809,7 @@ publication scope; candidate15 remains unchanged.
 
 ## Actual project and effort changes · October 7, 2026
 
-The optional README tour now uses `native-share-touch-{en,zh}-20261007.gif`:
+The earlier optional README tour used `native-share-touch-{en,zh}-20261007.gif`:
 choose one sample project, return and choose a different one, change the sample
 model's Thorough/high effort to Balanced/medium, then collapse. Full original
 MP4s, first frames and captions remain in `landing/media` with the same stem.

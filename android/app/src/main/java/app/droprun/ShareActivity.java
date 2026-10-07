@@ -137,9 +137,9 @@ public class ShareActivity extends StyledActivity {
         sheet=Ui.sheet(this);holder=new Capped(this);holder.addView(sheet,new FrameLayout.LayoutParams(-1,-2));
         root.addView(holder,new FrameLayout.LayoutParams(-1,-2,Gravity.BOTTOM));insets(root);
         LinearLayout header=Ui.row(this);
-        back=Ui.iconButton(this,R.drawable.ic_chevron_left,L.t("Previous step","返回上一步"));back.setVisibility(View.INVISIBLE);back.setOnClickListener(v->{if(step==1)go(0,-1);});header.addView(back,Ui.square(this,48));
+        back=Ui.sheetIconButton(this,R.drawable.ic_chevron_left,L.t("Previous step","返回上一步"));back.setVisibility(View.INVISIBLE);back.setOnClickListener(v->{if(step==1)go(0,-1);});header.addView(back,Ui.square(this,48));
         FrameLayout middle=new FrameLayout(this);dots=new Ui.Dots(this,3);middle.addView(dots,new FrameLayout.LayoutParams(-2,-2,Gravity.CENTER));header.addView(middle,Ui.grow());
-        ImageButton closeButton=Ui.iconButton(this,R.drawable.ic_close,L.t("Close","关闭"));closeButton.setOnClickListener(v->close());header.addView(closeButton,Ui.square(this,48));
+        ImageButton closeButton=Ui.sheetIconButton(this,R.drawable.ic_close,L.t("Close","关闭"));closeButton.setOnClickListener(v->close());header.addView(closeButton,Ui.square(this,48));
         sheet.addView(header,Ui.fill());
         scroll=new ScrollView(this);scroll.setVerticalScrollBarEnabled(false);scroll.setPadding(0,dp(6),0,0);scroll.setClipToPadding(false);
         stage=new FrameLayout(this);scroll.addView(stage,new ViewGroup.LayoutParams(-1,-2));sheet.addView(scroll,Ui.fill());

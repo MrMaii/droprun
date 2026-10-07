@@ -6,7 +6,7 @@ This edition supersedes earlier hosted/pricing assumptions and ADR 0014's visual
 layout. Decisions: [self-hosting](../decisions/0015-public-selfhost-release.md) and
 [project-first UX](../decisions/0016-project-first-light-ux.md). Historical sections
 below describe the original product goals; release evidence is maintained only
-in [the current candidate record](../releases/0.5.15-rc.1.md).
+in [the current candidate record](../releases/0.5.16-rc.1.md).
 
 - Android + Windows x64; each owner deploys a private Cloudflare Relay. No official
   registration, subscription or multitenant service. GPTSites is the public website.
@@ -49,6 +49,9 @@ in [the current candidate record](../releases/0.5.15-rc.1.md).
   [Bounded metadata-reading check](../releases/ui-task-metadata-reading-2026-10-07.md).
   Navigation gear/information icons share restrained round outlines; their 48dp
   targets, theme tint, focus, press feedback and action meaning remain distinct.
+  Share's Back and Close use quiet, transparent idle surfaces so they do not
+  compete with destination and intent. Their existing target, press, keyboard
+  focus and disabled treatment remain; other navigation icons keep their outline.
   Home contains Recent handoffs and settings, with only used or pending projects.
   The heading and connection notice share the list's20dp page edge. Project cards
   prioritize the complete20sp name, then15sp state and13sp counts/recency;

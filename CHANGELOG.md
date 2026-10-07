@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Give Share's Back and Close quiet idle surfaces; preserve their existing target,
+  press, focus and disabled treatment.
+- Refresh the bilingual native sharing tour from the Home/Share development source,
+  retaining memory-only labels, full original recordings and captions.
+- Remove repeated workflow prose from both READMEs so the visual journey leads.
 - Put Home's current state directly below the project name, with counts and
   recency secondary; keep complete large-text reading and match accessibility order.
 - Lead Share confirmation with the complete20sp project name, removing the

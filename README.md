@@ -12,11 +12,7 @@ Codex works on your Windows computer. You deploy the Relay to your own Cloudflar
 
 ## Share. Follow. Inspect.
 
-1. **Share → DropRun.** In another Android app, choose an existing project and add an optional note.
-2. **Follow local Codex.** Work happens on your computer, in that project. Follow progress and decisions in its history.
-3. **Inspect the delivery.** Check the result, required actions, screenshots and files; open the full report when needed.
-
-Screenshots and recording show separately captured, labelled memory-only development samples, not a genuine task or the signed download. [Media sources and recording scope](assets/brand/readme-media.md).
+Memory-only development demos, not real handoffs or signed-download footage. [Sources and scope](assets/brand/readme-media.md).
 
 <p align="center">
   <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-share-count-en-dark-20261006.png"><img src="assets/brand/source-share-count-en-light-20261006.png" width="260" alt="01 · Share: project and received material together, a persistent optional-note label, received file counts and model controls; native memory-only probe marker retained"></picture>
@@ -33,13 +29,13 @@ For example, share a design reference to an existing app project with this note:
 
 > Adapt this navigation idea to our settings screen. Keep our existing visual style.
 
-### Watch the sharing interaction
+### Review your choices before sending
 
-Choose a different project, then switch from Thorough to Balanced before sending.
+Switch projects, choose a model and adjust reasoning effort. This memory-only demo stops before Send.
 
-<p align="center"><picture><source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/brand/source-share-count-en-dark-20261006.png"><source media="(prefers-reduced-motion: reduce)" srcset="assets/brand/source-share-count-en-light-20261006.png"><img src="assets/brand/native-share-touch-en-20261007.gif" width="320" alt="Native Android memory-only full-timeline tour: choose a project, return and switch to a different project, change Thorough to Balanced and collapse; no task sent"></picture></p>
+<p align="center"><picture><source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/brand/source-share-count-en-dark-20261006.png"><source media="(prefers-reduced-motion: reduce)" srcset="assets/brand/source-share-count-en-light-20261006.png"><img src="assets/brand/native-share-current-en-20261007.gif" width="320" alt="Native Android memory-only demo: switch projects and models, change reasoning effort from Thorough to Balanced, then return to the editor; no task sent"></picture></p>
 
-[Original recording](landing/media/native-share-touch-en-20261007.mp4) · [Captions](landing/media/native-share-touch-en-20261007.vtt)
+[Original recording](landing/media/native-share-current-en-20261007.mp4) · [Captions](landing/media/native-share-current-en-20261007.vtt)
 
 **[Set up DropRun →](docs/technical/SELF_HOSTING.md)**
 

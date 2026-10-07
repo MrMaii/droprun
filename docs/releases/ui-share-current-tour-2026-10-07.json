@@ -1,0 +1,230 @@
+{
+  "date": "2026-10-07",
+  "status": "Original and derived keyframes plus retained proof accepted within the stated scope",
+  "source": {
+    "ref": "9fcaa04e7e2544cb2839993b2c45413bf0703c4e",
+    "versionName": "0.5.16-dev",
+    "versionCode": 29,
+    "packageKind": "debug",
+    "sources": 142,
+    "configs": 4,
+    "freezeSha256": "c9250d8e7929ff51f1dfe22d87d78b3f8bab1c0bc376a3e2e4e1daf01e766053",
+    "sourceSetSha256": "32577bd346a5a3bf73b57f307d387973a99625385b67ab50572e3735a060e690",
+    "appApkSha256": "a42fa84ec3f545b154cdc6aa34b47138a7418eca24084366df3ce1d6893f585e",
+    "testApkSha256": "94a36f170896d898f09022cd4ad9109d7885aab31ae12ae9dac5129949eac01f",
+    "buildReceiptSha256": "cd5318120087639587c1a4ccabb021fdec3771dfe12c1767f0672ba0401eea66",
+    "installReceiptSha256": "beef4b010c072fa33d82464d12c875d84cfd3b5925945dada192a9dd35e7468c",
+    "closedHomeNativeReceiptSha256": "c53c25014b01a5bcb4fe93c44cd0001b5e329dbda91f1098fd74f45ea6d8dfaf",
+    "retainedFileReaderReceiptSha256": "e566d47ef53fe6bb31205ce11d58882990996e5c46b9623a2624ba2c2af4c8df"
+  },
+  "capture": {
+    "method": "app.droprun.NativeShareTourCaptureTest#captureOneGuardedNativeShareTour",
+    "mode": "reviewed-memory-project-touch-tour-v3",
+    "recorderSha256": "75e832bef40b29ce62fb81111b0e468db410692614471049e36185bdba7b615c",
+    "theme": "light",
+    "activityFontScale": 1,
+    "canvas": [320, 640],
+    "codec": "h264",
+    "memoryOnly": true,
+    "projectCount": 2,
+    "screenrecordLimitSeconds": 14,
+    "screenrecordLimitIsMediaDuration": false,
+    "perTake": {
+      "nativeEvents": 22,
+      "nativeProjectRowClicks": 2,
+      "localModelHeaderDowns": 1,
+      "localModelHeaderUps": 1,
+      "localModelHeaderCancels": 0,
+      "otherChoiceInput": "performClick",
+      "effortChange": "high to medium after model selection",
+      "sendInvoked": false,
+      "typingInvoked": false,
+      "readyStartDoneIdentityBound": true,
+      "nativeExitCode": 0,
+      "recorderNaturalExitCode": 0,
+      "knownDestroyed": true,
+      "fixtureStaticsRestored": true,
+      "processStaticsRestored": true,
+      "deviceReadValuesUnchanged": 10,
+      "sourceBeforeAfterExact": true,
+      "installedApkHashesBeforeAfterExact": true,
+      "businessGuardCounters": {
+        "forbidden": 0,
+        "network": 0,
+        "save": 0,
+        "pair": 0,
+        "submit": 0,
+        "start": 0,
+        "checkpoint_persistence": 0
+      },
+      "diagnosticCounters": {
+        "checkpoint_noops": 12,
+        "keyboard_bypasses": 4,
+        "initialization_closes": 1
+      }
+    }
+  },
+  "takes": [
+    {
+      "language": "en",
+      "run": "3066f5f612e54ec39ff3db83ab279c10",
+      "directChildren": {"returned": 84, "exitZero": 83, "expectedAbsenceExitOne": 1, "unknown": 0},
+      "junit": {"tests": 1, "failures": 0, "seconds": 22.165},
+      "hostReceiptSha256": "79611095448a3621a6129bfd4d79b769cd6f94a8898bda079c13f87770dfb1cf",
+      "nativeResultSha256": "493021c9ef464c70e256559509a416870e4edb20b59bde4fe34c3cbd60983181",
+      "eventsSha256": "80018fddfda82f612380ef89b26d9070ec982900518a7603a2088b1bb4761290",
+      "mp4": {
+        "bytes": 422203,
+        "sha256": "f796fb23adffacbd45582fdef9605d7942e128adcd920653358e868ec2526c22",
+        "decodedFrames": 99,
+        "variableFrameRate": true,
+        "durationSeconds": 10.212667,
+        "firstPtsSeconds": 0,
+        "lastPtsSeconds": 10.186667,
+        "largestPtsGapSeconds": 1.1838,
+        "strictlyIncreasingPts": true
+      },
+      "offlineReviewSha256": "099b7e2e5ab0de51d7b698b810163d7ce3f21a5b20dfcb55d18ffb48bd37e573",
+      "acceptedForFollowingExplicitChineseTake": true,
+      "directlyViewedKeyframes": [1, 4, 8, 13, 16, 18, 20],
+      "contactSheetViewed": true,
+      "successfulOfflinePass": {"revision": 2, "childrenReturnedZero": 3, "stderrEmpty": true}
+    },
+    {
+      "language": "zh",
+      "run": "33ea5faa24274de6870158a867572022",
+      "directChildren": {"returned": 81, "exitZero": 80, "expectedAbsenceExitOne": 1, "unknown": 0},
+      "junit": {"tests": 1, "failures": 0, "seconds": 22.142},
+      "hostReceiptSha256": "83cc60075e6d0ab2f3520e4bdf7ee089dee4fe849ffc6bb77b9adb1e0c9675e1",
+      "nativeResultSha256": "9307b0e63e1286809e0cc4720ba39eb9fbee73d45550c7c5ad503829ce432706",
+      "eventsSha256": "0383151fbc8e056e874846bc8247f2cd866845c5a259a68006faaaeb83d34210",
+      "mp4": {
+        "bytes": 420233,
+        "sha256": "0c14476958a200208366c55d8e708a47d722729ed1962771e003758ed1dbb71c",
+        "decodedFrames": 95,
+        "variableFrameRate": true,
+        "durationSeconds": 10.365144,
+        "firstPtsSeconds": 0,
+        "lastPtsSeconds": 10.347067,
+        "largestPtsGapSeconds": 1.096744,
+        "strictlyIncreasingPts": true
+      },
+      "offlineReviewSha256": "3d6e0c5d77490bf99e78c02bcc8898b58688a15f9daf322a767eb4b2aa402a1b",
+      "priorEnglishReviewSha256": "099b7e2e5ab0de51d7b698b810163d7ce3f21a5b20dfcb55d18ffb48bd37e573",
+      "directlyViewedKeyframes": [1, 4, 9, 13, 16, 18, 21],
+      "contactSheetViewed": true,
+      "transitionFrameEightIsNotStaticEndStateEvidence": true,
+      "successfulOfflinePass": {"revision": 1, "childrenReturnedZero": 4, "stderrEmpty": true}
+    }
+  ],
+  "captureChildTotals": {"returned": 165, "exitZero": 163, "expectedAbsenceExitOne": 2, "unknown": 0},
+  "expectedExitOneMeaning": "Read-only existence check confirmed each fresh output directory was absent; stdout and stderr were empty.",
+  "retainedOfflineFailure": {
+    "take": "en",
+    "revision": 1,
+    "childrenReturnedZero": 2,
+    "emptyStderrGuardPassed": false,
+    "reason": "Default null-output timebase emitted DTS diagnostics.",
+    "originalOutputsRetained": true,
+    "successorChange": "Offline decode only: fps_mode passthrough and enc_time_base demux.",
+    "recordingRepeated": false
+  },
+  "review": {
+    "reviewers": ["primary reviewer", "independent reviewer"],
+    "accepted": "Selected original keyframes, contact sheets, retained native events and decoded timestamps.",
+    "visibleOutcome": "Two project destinations, changed model, high-to-medium effort, retained memory markers and system bars, and a complete final editor with an unclicked handoff button.",
+    "notEstablished": [
+      "continuous human playback",
+      "physical or global touch",
+      "all-button feedback",
+      "performance from variable-frame-rate intervals",
+      "genuine handoff or business persistence",
+      "signed-package acceptance"
+    ]
+  },
+  "derivedMedia": {
+    "summarySha256": "a6872760f5d11a36fd75d4fd00e16a18b073091abcd92892cc8d96403d725d96",
+    "status": "Verified outputs; selected composed keyframes accepted",
+    "canvas": [320, 640],
+    "gifFramesPerSecond": 25,
+    "eachGifDelayCentiseconds": 4,
+    "mp4CopiesByteExact": true,
+    "captionCuesPerLanguage": 4,
+    "knownReturnedZeroEncodeDecodeChildren": {"enOriginal": 4, "enSuccessorDecodeOnly": 2, "zh": 5, "total": 11},
+    "separateFromCaptureChildTotals": true,
+    "languages": [
+      {
+        "language": "en",
+        "gifFrames": 255,
+        "gifSeconds": 10.2,
+        "gifMinusSourceSeconds": -0.012667,
+        "firstSelectedSourceIndex": 0,
+        "lastSelectedSourceIndex": 97,
+        "verificationSha256": "5fccb68d694b3477682155522f73148e6d463e611e79be0789dfd9970166e220",
+        "finalMediaReviewSha256": "98f4c3c6810f27d7fb2852f6b8441606cf195d1b7c9700d52cdddf6c5837069e"
+      },
+      {
+        "language": "zh",
+        "gifFrames": 259,
+        "gifSeconds": 10.36,
+        "gifMinusSourceSeconds": -0.005144,
+        "firstSelectedSourceIndex": 0,
+        "lastSelectedSourceIndex": 93,
+        "verificationSha256": "29824aaa63028f1e444f647693798f604750317c5a716afdd136c832daa46726",
+        "finalMediaReviewSha256": "9e8edfa82ab773afcd3cc773a30bcba2775c9d463e8509eb00b20cd70ac4b3f5"
+      }
+    ],
+    "publicMedia": [
+      {
+        "path": "assets/brand/native-share-current-en-20261007.gif",
+        "bytes": 1375103,
+        "sha256": "cdda6ecefb6754f24ee9a00762c41a4d19486eb83bfc5d635cd36ad16f781afd"
+      },
+      {
+        "path": "landing/media/native-share-current-en-20261007.mp4",
+        "bytes": 422203,
+        "sha256": "f796fb23adffacbd45582fdef9605d7942e128adcd920653358e868ec2526c22"
+      },
+      {
+        "path": "landing/media/native-share-current-en-20261007-first-frame.png",
+        "bytes": 67829,
+        "sha256": "27db8c08b31968c334346a263ebe391ba489d22147fa6b6a31067954189fe9d5"
+      },
+      {
+        "path": "landing/media/native-share-current-en-20261007.vtt",
+        "bytes": 241,
+        "sha256": "6f298601c25c377334fc1bf5b8ab433748df87dd01b109cc9d589e87269e9a62"
+      },
+      {
+        "path": "assets/brand/native-share-current-zh-20261007.gif",
+        "bytes": 1296568,
+        "sha256": "05f356e469d97a5649615cd45b1143fb2e58a508d9aa86edb10136c97972933f"
+      },
+      {
+        "path": "landing/media/native-share-current-zh-20261007.mp4",
+        "bytes": 420233,
+        "sha256": "0c14476958a200208366c55d8e708a47d722729ed1962771e003758ed1dbb71c"
+      },
+      {
+        "path": "landing/media/native-share-current-zh-20261007-first-frame.png",
+        "bytes": 67324,
+        "sha256": "4d5464603873049eee48f47bae390fab69bc7042722feb9472769b3eaf5b7afb"
+      },
+      {
+        "path": "landing/media/native-share-current-zh-20261007.vtt",
+        "bytes": 249,
+        "sha256": "d0ee0dfbed44922ec2b9344008f3067110799f4f709df77373b9a3af9982f0a2"
+      }
+    ],
+    "retainedAdditionalVerifierFailure": {
+      "language": "en",
+      "exitCode": 1,
+      "reason": "An extra strict assertion expected final source index98; actual 25fps sampling ends at index97.",
+      "originalOutputsRetained": true,
+      "separateActualMappingReviewPassed": true,
+      "reEncoded": false,
+      "extraTailAdded": false
+    },
+    "reviewScope": "Primary and separate media reviewers directly viewed seven composed GIF keyframes per language. Markers, system bars and the complete final editor remain visible. No continuous human playback claim."
+  }
+}

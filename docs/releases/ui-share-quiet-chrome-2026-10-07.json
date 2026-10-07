@@ -1,0 +1,211 @@
+{
+  "date": "2026-10-07",
+  "scope": "Share Back and Close idle fill/stroke only; native Views",
+  "recordStatus": "Local source and finite checks complete; both original captures visually accepted; repository image copies byte-exact",
+  "source": {
+    "binding": "Exact frozen source/config bytes; no new commit or CI claim",
+    "version": {
+      "name": "0.5.16-dev",
+      "code": 29
+    },
+    "appliedBindingsSha256": "aedbb3a34d17eff326bd0ccd432223002a99971189985e6cade11d2357c12a86",
+    "freezeSha256": "1971480f7901d99c1b9bdc6e82e152e780f93a9ceb45d8f35b729ba159014092",
+    "sourceFiles": 142,
+    "configFiles": 4,
+    "snapshotsRehashed": 146,
+    "currentBytesExactAtReaderTime": true,
+    "matchingBeforeAfterSourceReceipts": 6,
+    "proposalDiffSha256": "35c2b0c145a7b7c45d0fefdcfe850881bc3c44b2e9596c8bd9824a5a6c75a99e",
+    "targets": [
+      {
+        "path": "android/app/src/main/java/app/droprun/Ui.java",
+        "beforeSha256": "651330f4bc266700dea58fd45350ae52ab28993443a50bda0f8dd225b1b55f7c",
+        "afterSha256": "1214af6180e51040b4cf7a13ddc62803d6a66eeb4d5a1fbcd5070dbceacb8350"
+      },
+      {
+        "path": "android/app/src/main/java/app/droprun/ShareActivity.java",
+        "beforeSha256": "d4f8864a69dfb2d566d5ef919fb8a2a40db74ddf698b30bae88eeb4cefde275c",
+        "afterSha256": "d4bd27414f8eb51314a2a317bca1227ef934f6652884bd385fbde6c4934bb89c"
+      }
+    ],
+    "unchangedSelectedTest": {
+      "path": "android/app/src/androidTest/java/app/droprun/ShareDestinationReadingTest.java",
+      "sha256": "0218fcd349231b129e44c5c9b91798a6312d79abab51ba89ddc062deb8319735"
+    },
+    "changes": [
+      "Ui.sheetIconButton delegates to the shared icon-button implementation with transparent idle fill and no idle stroke.",
+      "ShareActivity uses sheetIconButton for the existing Back and Close controls.",
+      "Ordinary Ui.iconButton retains its default appearance, including the Home settings gear."
+    ],
+    "preservedSource": [
+      "Disabled, pressed and focused drawable definitions are byte-identical.",
+      "Icon tint, descriptions, callbacks, 48dp targets and bindPress call remain.",
+      "Opaque sheet, content layout and material/note/model/action meaning remain."
+    ],
+    "preservedFeedbackSourceIsNewRuntimeFeedbackProof": false,
+    "newBaselineRun": false,
+    "newTest": false,
+    "changedFixture": false,
+    "changedWaits": false
+  },
+  "closedVerification": {
+    "passed": true,
+    "reviewedAt": "2026-10-07T13:31:12.678152+00:00",
+    "verificationSha256": "6ab32b60f2b109e5686cdf89c492e427cc279d6c007812a8ed2a302ac0349c91",
+    "readerSha256": "c795a3a0b3d0e435a837645f5ff6916ae2494ec2d1fc5cb3531f3530863ddea5",
+    "nativeReparseSha256": "676e5ab03f34538011c7bb413398c95d3d7a621a80d8438a1c019c5c03c0e57d",
+    "captureReparseSha256": "c7f01e74c7fb2765d726b6a2dc2d23eaff6ee94038960750fcf9177d99ea9126",
+    "inputRehashSha256": "80ca2788773a06011f6f153b92681d22aa8d1f7f8ffa3ea7f5abed0d060e82e3",
+    "nonce": "a7a8b0bb-8bc4-40dd-9383-7465cd539ee4",
+    "phase": "accepted",
+    "directChildren": {
+      "build": 1,
+      "install": 26,
+      "native": 29
+    },
+    "knownReturnedZeroChildren": 56,
+    "rawFilesRehashed": 112,
+    "stageVerificationSha256": {
+      "build": "1cf232944f0fd3d7ba92a2021d1259cd71127d5fb2670c79ea28cd1d9d23056a",
+      "install": "bfe79e50fd3a02f3e83a7d2472346209ed13732604bd5ff7137bcd854f120660",
+      "native": "f6d1832549c05b6845ca3699a6163061881dbd75024775ee8b2e1db3d84cbafc"
+    },
+    "unitActual": {
+      "tests": 27,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "lintActual": {
+      "errors": 0,
+      "warnings": 29
+    },
+    "apks": [
+      {
+        "role": "app",
+        "package": "app.droprun.mobile.debug",
+        "bytes": 2213524,
+        "sha256": "32feb0785648f1bcff11e21202f780c3cb5e8e22d0ba50bfd75819c90e18f834"
+      },
+      {
+        "role": "test",
+        "package": "app.droprun.mobile.debug.test",
+        "bytes": 2117870,
+        "sha256": "94a36f170896d898f09022cd4ad9109d7885aab31ae12ae9dac5129949eac01f"
+      }
+    ],
+    "savedCurrentAndFourInstalledReadsMatch": true,
+    "tenReadOnlyDeviceValuesUnchanged": true,
+    "native": {
+      "selection": "app.droprun.ShareDestinationReadingTest#nameFirstConfirmationKeepsIdentityReadable",
+      "selectionArgument": {
+        "shareNoteIdentityProbe": "accepted"
+      },
+      "fixture": "DemoShareEditorActivity",
+      "memoryOnly": true,
+      "fontScale": 1,
+      "junitTests": 1,
+      "junitFailures": 0,
+      "seconds": 13.248,
+      "events": 27,
+      "guardSnapshots": 23,
+      "zeroGuardCounters": [
+        "forbidden",
+        "network",
+        "save",
+        "pairing",
+        "submit",
+        "start",
+        "checkpoint_persistence",
+        "keyboard_bypasses"
+      ],
+      "summary": {
+        "entered": 2,
+        "full_completed": 2,
+        "DESTROYED": 2,
+        "captures": 2,
+        "long_name_lines_read": 13,
+        "statics_restored": true,
+        "business_actions": "not_invoked_by_test",
+        "catalog_integration": "not exercised"
+      },
+      "allKnownDestroyed": true,
+      "executorsTerminated": true,
+      "longNameReading": [
+        {
+          "window": "en-light",
+          "lines": 7,
+          "idCharacters": 16,
+          "sendBounds": [
+            20,
+            544,
+            300,
+            596
+          ],
+          "sendClicked": false
+        },
+        {
+          "window": "zh-dark",
+          "lines": 6,
+          "idCharacters": 16,
+          "sendBounds": [
+            20,
+            544,
+            300,
+            596
+          ],
+          "sendClicked": false
+        }
+      ],
+      "captureScope": "Short-name, font1, blank-note memory editor only; long-name reading uses separate assertions in the same window",
+      "pixelAcceptance": false
+    },
+    "pixelAcceptance": false,
+    "readerLimit": "Pure-file reparse retains native parsing rules from the reviewed protocol; it is not an independently authored algorithm. Parent owner-process returns are separate root tool-transcript evidence."
+  },
+  "directVisualReview": {
+    "root": "Accepted both actual original short-name font1 captures",
+    "independent": "Accepted both actual original short-name font1 captures",
+    "independentReviewSha256": "5fa42875ae72e59c992a709931fbf919478b3ca0952babb753d81dbf10fd7fd0",
+    "scope": "EN/light and ZH/dark idle Back/Close appearance; visible identity, material, note, model, whole primary action and notice; memory-only markers and system-bar pixels retained",
+    "publicImageCopies": "byte-exact repository originals",
+    "newRuntimeFeedbackOrFocusAcceptance": false
+  },
+  "images": [
+    {
+      "path": "assets/brand/source-share-quiet-en-light-20261007.png",
+      "language": "en",
+      "theme": "light",
+      "fontScale": 1,
+      "bytes": 52010,
+      "sha256": "3b534779b142ed1d10fd145ecb13921af615d8b22f8ad1cfd4c1abba64e4fefa",
+      "width": 320,
+      "height": 640,
+      "metadataSha256": "ed71b3b258b67e26cd487f5a7cbed5775f8f5268b0b4f67627c60255c98b6530",
+      "markerRetained": true,
+      "captureAcceptedFlag": false
+    },
+    {
+      "path": "assets/brand/source-share-quiet-zh-dark-20261007.png",
+      "language": "zh",
+      "theme": "dark",
+      "fontScale": 1,
+      "bytes": 57184,
+      "sha256": "9f30b8aa3c74456c420197a789704d195352aa15a8645f12cf54c53fbfc31c92",
+      "width": 320,
+      "height": 640,
+      "metadataSha256": "e16ef2e4fa12064915e20cc1f0c25cfcb1bbc406bc102d2e237ebfb465ba8f15",
+      "markerRetained": true,
+      "captureAcceptedFlag": false
+    }
+  ],
+  "limits": [
+    "Only two normal-font short-name originals receive direct visual acceptance. Long-name and helper-ID reading use assertions, not long-name pixel acceptance.",
+    "Preserved disabled/pressed/focused source bytes and bindPress reuse do not establish new runtime feedback, focus, 48dp hit-testing, navigation or accessibility acceptance for Share Back/Close.",
+    "No business click, Send, Pair, import, persistent draft, genuine catalog/API, real Relay or OS setting write was exercised.",
+    "No whole-page or 200% pixels, keyboard/IME, TalkBack, physical performance, continuous motion, signed-package or website acceptance is inferred.",
+    "Fixture font1 does not imply the host font setting was 1. Only ten saved device read values were compared.",
+    "No new baseline, test, fixture or wait is introduced. Older results are not promoted into evidence for this source.",
+    "Current source/tool/APK equality applies at retained-file reader time."
+  ]
+}

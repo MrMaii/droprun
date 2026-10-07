@@ -195,3 +195,20 @@ cover the six existing memory windows. The card accessibility description now
 follows visual order and includes labelled recency and visible exception text.
 Four old test expectations are minimally adapted; only HomeRows is selected.
 No new motion, genuine-use, TalkBack or signed-App acceptance is inferred.
+
+### Quiet Share navigation — accepted 2026-10-07
+
+The outlined Back and Close circles gave idle navigation the same visual boundary
+as the note input, drawing attention away from the selected destination. Use a
+transparent, unoutlined idle surface for these two Share controls. Reuse the
+existing icon factory, with its48dp layout, theme tint, press/ripple, disabled and
+keyboard-focus states. Home's gear and other icon buttons keep their outline.
+
+This changes drawing only; no target, callback, confirmation or timing changes.
+A dedicated Share factory names the exception rather than changing every icon.
+[Two fresh local originals and reading checks](../releases/ui-share-quiet-chrome-2026-10-07.md)
+cover EN/light and ZH/dark normal-font memory editors. Root and an independent
+reviewer accept those stills. Long-name reading is assertion evidence; preserved
+interaction-state source is not a new runtime feedback or focus measurement.
+The separately recorded native tour predates this refinement. No new motion,
+all-button, physical, genuine-use or signed-package acceptance is inferred.

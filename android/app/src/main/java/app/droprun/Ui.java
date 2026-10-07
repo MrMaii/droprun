@@ -237,6 +237,13 @@ public final class Ui {
     }
     /** Round icon button (settings gear, back chevron, close). Tint follows TEXT. */
     public static ImageButton iconButton(Context context,int icon,CharSequence description){
+        return iconButton(context,icon,description,false);
+    }
+    /** Share-sheet controls keep idle chrome quiet while retaining interaction feedback. */
+    public static ImageButton sheetIconButton(Context context,int icon,CharSequence description){
+        return iconButton(context,icon,description,true);
+    }
+    private static ImageButton iconButton(Context context,int icon,CharSequence description,boolean quiet){
         ImageButton button=new ImageButton(context);button.setImageResource(icon);button.setImageTintList(ColorStateList.valueOf(TEXT));button.setContentDescription(description);
         button.setScaleType(ImageView.ScaleType.CENTER_INSIDE);int pad=dp(context,9);button.setPadding(pad,pad,pad,pad);
         GradientDrawable focused=circle(context,SURFACE_2,ACCENT);focused.setStroke(dp(context,2),ACCENT);
@@ -244,7 +251,7 @@ public final class Ui {
         states.addState(new int[]{-android.R.attr.state_enabled},circle(context,SURFACE_2,LINE));
         states.addState(new int[]{android.R.attr.state_pressed},circle(context,SURFACE_3,LINE_STRONG));
         states.addState(new int[]{android.R.attr.state_focused},focused);
-        states.addState(new int[]{},circle(context,SURFACE,LINE));
+        states.addState(new int[]{},circle(context,quiet?Color.TRANSPARENT:SURFACE,quiet?0:LINE));
         button.setBackground(states);bindPress(button);return button;
     }
     /** Compact text pill button for secondary header actions. */
