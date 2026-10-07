@@ -20,7 +20,7 @@ Screenshots and recording show separately captured, labelled memory-only develop
 
 <p align="center">
   <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-share-count-en-dark-20261006.png"><img src="assets/brand/source-share-count-en-light-20261006.png" width="260" alt="01 · Share: project and received material together, a persistent optional-note label, received file counts and model controls; native memory-only probe marker retained"></picture>
-  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-home-typography-en-dark-20261007.png"><img src="assets/brand/source-home-typography-en-light-20261007.png" width="260" alt="02 · Follow: native Android project cards with larger complete names, task and dispatch counts, status and recency; memory-only and sample-project markers retained"></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-home-status-en-dark-20261007.png"><img src="assets/brand/source-home-status-en-light-20261007.png" width="260" alt="02 · Follow: native Android project cards with complete names, current state, then task and dispatch counts with recency; memory-only and sample-project markers retained"></picture>
   <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-delivery-followup-en-dark-20261007.png"><img src="assets/brand/source-delivery-followup-en-light-20261007.png" width="260" alt="03 · Inspect: native handoff page with a prominent result, grouped preview and files, and an outlined follow-up button; visible memory-only marker"></picture>
 </p>
 

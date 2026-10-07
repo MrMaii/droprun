@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Put Home's current state directly below the project name, with counts and
+  recency secondary; keep complete large-text reading and match accessibility order.
 - Lead Share confirmation with the complete20sp project name, removing the
   decorative initial and reclaiming44dp for identity and distinguishing IDs.
 - Give the bilingual README theme-aware brand covers using the original mark;

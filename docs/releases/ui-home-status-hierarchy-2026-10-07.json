@@ -1,0 +1,110 @@
+{
+  "date": "2026-10-07",
+  "status": "Accepted local development; outside immutable signed candidate16",
+  "version": {
+    "name": "0.5.16-dev",
+    "code": 29
+  },
+  "targets": {
+    "android/app/src/main/java/app/droprun/MainActivity.java": "1cd5bf067c09ac4c95e22d8e2248a08f80da6ce30d78925f6051904281c50631",
+    "android/app/src/androidTest/java/app/droprun/HomeRowsPresentationTest.java": "5c15812e9afc7907b7a0024c618ab6774b03f8113a6a9ba864a359ad7d16e6bd",
+    "android/app/src/androidTest/java/app/droprun/HomeStatusFooterTest.java": "08b2d1621748ae3ff84af698c0f6fca585939462ac3f2a24662c591344397c0b",
+    "android/app/src/androidTest/java/app/droprun/HomeProjectHierarchyTest.java": "fdf1ccd935e705a7fd7d2981c5b443e486c3753a356fe756da59f8925d7c61a1",
+    "android/app/src/androidTest/java/app/droprun/LocalRecoveryTest.java": "0eee7ecb902c99c22bd1157f1d4fab19ced624ebc9df2a8900dd85126ab97b62"
+  },
+  "readerVerificationSha256": "e566d47ef53fe6bb31205ce11d58882990996e5c46b9623a2624ba2c2af4c8df",
+  "bindingsSha256": "018e442e294b6dd89cb520f86dd3eab9900b722a72427e4359c4e30f795b5515",
+  "freezeSha256": "c9250d8e7929ff51f1dfe22d87d78b3f8bab1c0bc376a3e2e4e1daf01e766053",
+  "sourceCounts": {
+    "sources": 142,
+    "configs": 4
+  },
+  "snapshotsRehashed": 146,
+  "stages": {
+    "build": "cd5318120087639587c1a4ccabb021fdec3771dfe12c1767f0672ba0401eea66",
+    "install": "beef4b010c072fa33d82464d12c875d84cfd3b5925945dada192a9dd35e7468c",
+    "native": "c53c25014b01a5bcb4fe93c44cd0001b5e329dbda91f1098fd74f45ea6d8dfaf"
+  },
+  "directChildren": {
+    "build": 1,
+    "install": 26,
+    "native": 42
+  },
+  "rawFilesRehashed": 138,
+  "unitActual": {
+    "tests": 27,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "lintActual": {
+    "errors": 0,
+    "warnings": 29
+  },
+  "apks": [
+    {
+      "role": "app",
+      "package": "app.droprun.mobile.debug",
+      "bytes": 2213387,
+      "sha256": "a42fa84ec3f545b154cdc6aa34b47138a7418eca24084366df3ce1d6893f585e"
+    },
+    {
+      "role": "test",
+      "package": "app.droprun.mobile.debug.test",
+      "bytes": 2117870,
+      "sha256": "94a36f170896d898f09022cd4ad9109d7885aab31ae12ae9dac5129949eac01f"
+    }
+  ],
+  "native": {
+    "selection": "app.droprun.HomeRowsPresentationTest#continuousRowsKeepIdentityAndReadPosition",
+    "junitTests": 1,
+    "junitFailures": 0,
+    "seconds": 37.542,
+    "entered": 6,
+    "completed": 6,
+    "DESTROYED": 6,
+    "completed_rebinds": 36,
+    "captures": 4,
+    "guardSnapshots": 12,
+    "fontLanguageRestorationStream": true,
+    "executorTerminationClaim": false,
+    "fullPaletteRestorationClaim": false,
+    "pixelAcceptance": false
+  },
+  "originals": [
+    {
+      "path": "assets/brand/source-home-status-en-light-20261007.png",
+      "bytes": 36698,
+      "sha256": "f1d54c492796b4a4f313c382a2d531e3857e6d7a8a00615d2bc052821098ae37",
+      "review": "Root and separate reviewer directly viewed the original normal-font short-name capture; markers retained."
+    },
+    {
+      "path": "assets/brand/source-home-status-en-dark-20261007.png",
+      "bytes": 36826,
+      "sha256": "f03f35340d161c60e68fbb86c07ba75d8f9e6d1e61f4c07dfee97fa96e7f2906",
+      "review": "Root and separate reviewer directly viewed the original normal-font short-name capture; markers retained."
+    },
+    {
+      "path": "assets/brand/source-home-status-zh-light-20261007.png",
+      "bytes": 43986,
+      "sha256": "6263107cfc4f6303a287e485d4ad951e5d2941ad9b1a5749a7b81d569dec403e",
+      "review": "Root and separate reviewer directly viewed the original normal-font short-name capture; markers retained."
+    },
+    {
+      "path": "assets/brand/source-home-status-zh-dark-20261007.png",
+      "bytes": 44499,
+      "sha256": "989c28db76db8b9bdb72557cb9067b6ba3b87bb8dd9087ea28314464951df5e3",
+      "review": "Root and separate reviewer directly viewed the original normal-font short-name capture; markers retained."
+    }
+  ],
+  "standaloneCompatibilityMethodsExecuted": false,
+  "scope": [
+    "Pure-file reparse, no helper imports, subprocess, network or device; parsing rules copied locally, not a claim of independently authored implementation.",
+    "Existing six memory HomeRows windows; same-holder adapter binds and item variants, not show/poll refresh. No business click or touch-mode setter.",
+    "Actual six DESTROYED and font/language restoration stream only. No executor-drain, full-palette restoration or global-focus claim.",
+    "Four normal originals contain restored short names/completed states. Active/attention and long-name/200% reading are source-bound assertions, not separately emitted geometry or such pixels. Third-card fullness is not required.",
+    "Only ten device values compared. No genuine Relay, signed package, physical device, motion, TalkBack or performance acceptance.",
+    "Parent owner-process returns remain root tool-transcript evidence, not independently rehashed from these child receipts.",
+    "Current source/tools/APKs/report bytes are required exact at reader time; later changes intentionally fail."
+  ]
+}

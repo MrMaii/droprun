@@ -51,12 +51,12 @@ in [the current candidate record](../releases/0.5.15-rc.1.md).
   targets, theme tint, focus, press feedback and action meaning remain distinct.
   Home contains Recent handoffs and settings, with only used or pending projects.
   The heading and connection notice share the list's20dp page edge. Project cards
-  prioritize the complete20sp name, then13sp counts and the status/recency line;
+  prioritize the complete20sp name, then15sp state and13sp counts/recency;
   decorative initials do not take width from Home names. Long names wrap.
   Project names, counts and status form recognizable groups using the
   [current surface decision](../decisions/0019-semantic-content-groups.md).
   Recycled Home rows update status text and its tint together. Large text puts
-  the date below the status, preserving natural wrapping and the project target;
+  the date below the counts, preserving natural wrapping and the project target;
   normal text retains the compact horizontal footer.
   Older list dates identify the calendar date without requiring mental arithmetic;
   absent dates are explicit. The display policy is owned by CONTRACTS.

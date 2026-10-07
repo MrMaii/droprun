@@ -20,7 +20,7 @@ Codex 在你的 Windows 电脑上工作，Relay 由你部署到自己的 Cloudfl
 
 <p align="center">
   <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-share-count-zh-dark-20261006.png"><img src="assets/brand/source-share-count-zh-light-20261006.png" width="260" alt="01 · 分享：项目与收到材料组合确认，常驻可选留言标签、收到文件数与模型参数；保留原生仅内存验证标记"></picture>
-  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-home-typography-zh-dark-20261007.png"><img src="assets/brand/source-home-typography-zh-light-20261007.png" width="260" alt="02 · 跟进：原生 Android 项目卡，突出完整项目名，展示任务与交办次数、状态和最近交办，保留仅内存验证与示例项目标记"></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-home-status-zh-dark-20261007.png"><img src="assets/brand/source-home-status-zh-light-20261007.png" width="260" alt="02 · 跟进：原生 Android 项目卡，按完整项目名、当前状态、任务与交办次数及最近交办排列，保留仅内存验证与示例项目标记"></picture>
   <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/source-delivery-followup-zh-dark-20261007.png"><img src="assets/brand/source-delivery-followup-zh-light-20261007.png" width="260" alt="03 · 查看：原生交办页，突出结果，组合展示预览与文件，并提供描边追问按钮；保留仅内存验证标记"></picture>
 </p>
 

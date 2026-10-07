@@ -748,7 +748,7 @@ public class LocalRecoveryTest {
             instrumentation.sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_TAB);instrumentation.waitForIdleSync();
             scenario.onActivity(activity->focusDescription(activity,"Settings"));
             instrumentation.sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_TAB);
-            scenario.onActivity(activity->assertEquals("Studio website, 3 tasks · 5 dispatches, Delivered",activity.getCurrentFocus().getContentDescription().toString()));
+            scenario.onActivity(activity->{android.view.View focused=activity.getCurrentFocus();MainActivity.HomeHolder holder=(MainActivity.HomeHolder)((android.view.View)focused.getParent()).getTag();assertEquals("Studio website, Delivered, 3 tasks · 5 dispatches, "+holder.date.getContentDescription(),focused.getContentDescription().toString());});
             instrumentation.sendKeyDownUpSync(android.view.KeyEvent.KEYCODE_ENTER);
             instrumentation.waitForIdleSync();assertEquals(1,destination.getHits());
         }finally{instrumentation.removeMonitor(destination);}

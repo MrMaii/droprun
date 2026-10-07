@@ -821,3 +821,13 @@ browser rendering, comprehension study or privacy-control validation.
 | [readme-architecture-dark.svg](readme-architecture-dark.svg) | `3f160e562b1d33303a2dd1ea372963e0b5fc78e0579d4f01ec0f73975c8e5030` |
 | [readme-architecture-zh.svg](readme-architecture-zh.svg) | `bed691cfb8f811ea443cc3677fc06c8a1e5a7684127c7712b9b2989e48d20c91` |
 | [readme-architecture-zh-dark.svg](readme-architecture-zh-dark.svg) | `10361fa6e8953e773686723bcf2716ee1b78b31070845032763889a44cf56025` |
+
+## Home state first · October 7, 2026
+
+The bilingual workflow gallery now selects four byte-exact
+`source-home-status-{en,zh}-{light,dark}-20261007.png` native originals.
+Each keeps the memory-only and sample-project markers and system bars. Name,
+state and the secondary counts/date line are directly reviewed in both themes
+and languages. Long-name/200% reading and same-holder rebinds are assertions,
+not such pixels or real polling. Signed16 and the website are unchanged.
+[Source/APK binding, hashes and limits](../../docs/releases/ui-home-status-hierarchy-2026-10-07.md).

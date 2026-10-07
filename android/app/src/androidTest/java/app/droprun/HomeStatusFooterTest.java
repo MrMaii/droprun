@@ -5,7 +5,6 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
 import android.graphics.Rect;
-import android.graphics.drawable.GradientDrawable;
 import android.view.Gravity;
 import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
@@ -43,10 +42,9 @@ public class HomeStatusFooterTest {
                             assertSame("Rebind the exact already laid-out outer row",recycled[0],a.adapter.getView(0,recycled[0],a.list));assertSame(identity[0],recycled[0].getTag());
                             MainActivity.HomeHolder holder=identity[0];int color=step==2?Ui.AMBER:step==1?Ui.ACCENT:Ui.MUTED;
                             assertEquals(ProjectPresentation.state(project),holder.state.getText().toString());assertEquals(color,holder.state.getCurrentTextColor());
-                            GradientDrawable shape=(GradientDrawable)holder.state.getBackground();assertNotNull(shape.getColor());assertEquals((color&0x00ffffff)|0x1F000000,shape.getColor().getDefaultColor());
                             assertEquals(id[0],holder.id);assertEquals(name[0],holder.name.getText().toString());assertEquals(counts[0],holder.counts.getText().toString());assertEquals(stableId[0],a.adapter.getItemId(0));
-                            LinearLayout footer=(LinearLayout)holder.state.getParent();assertEquals(LinearLayout.HORIZONTAL,footer.getOrientation());assertEquals(Gravity.END,(holder.date.getGravity()&Gravity.RELATIVE_HORIZONTAL_GRAVITY_MASK));
-                            LinearLayout.LayoutParams params=(LinearLayout.LayoutParams)holder.date.getLayoutParams();assertEquals(0,params.width);assertEquals(1f,params.weight,0f);assertEquals(0,params.topMargin);
+                            LinearLayout footer=(LinearLayout)holder.counts.getParent();assertEquals(LinearLayout.HORIZONTAL,footer.getOrientation());assertEquals(Gravity.END,(holder.date.getGravity()&Gravity.RELATIVE_HORIZONTAL_GRAVITY_MASK));
+                            LinearLayout.LayoutParams params=(LinearLayout.LayoutParams)holder.date.getLayoutParams();assertEquals(-2,params.width);assertEquals(0f,params.weight,0f);assertEquals(0,params.topMargin);
                             assertSame("A bind does not replace the currently focused View",focusBefore[0],a.getWindow().getDecorView().findFocus());assertCard(a,holder,project);safe(a);
                         }catch(org.json.JSONException error){throw new AssertionError(error);}});
                         awaitLayout(scenario);scenario.onActivity(a->{assertAnchor(a,anchorBefore[0],offsetBefore[0]);assertSame(focusBefore[0],a.getWindow().getDecorView().findFocus());assertCompleteText(identity[0].name);assertCompleteText(identity[0].state);assertCompleteText(identity[0].date);safe(a);});
@@ -81,10 +79,10 @@ public class HomeStatusFooterTest {
                             assertSame(bound[0],a.adapter.getView(row,bound[0],a.list));assertSame(identity[0],bound[0].getTag());
                         });
                         awaitLayout(scenario);scenario.onActivity(a->{
-                            MainActivity.HomeHolder holder=identity[0];JSONObject project=a.items.get(row);LinearLayout footer=(LinearLayout)holder.state.getParent();
+                            MainActivity.HomeHolder holder=identity[0];JSONObject project=a.items.get(row);LinearLayout footer=(LinearLayout)holder.counts.getParent();
                             assertEquals(LinearLayout.VERTICAL,footer.getOrientation());assertEquals(Gravity.START,(holder.date.getGravity()&Gravity.RELATIVE_HORIZONTAL_GRAVITY_MASK));LinearLayout.LayoutParams params=(LinearLayout.LayoutParams)holder.date.getLayoutParams();assertEquals(-1,params.width);assertEquals(0f,params.weight,0f);assertEquals(Ui.dp(a,8),params.topMargin);
-                            LinearLayout.LayoutParams stateParams=(LinearLayout.LayoutParams)holder.state.getLayoutParams();assertEquals(-2,stateParams.width);assertEquals(-2,stateParams.height);
-                            Rect state=HomeProjectHierarchyTest.bounds(holder.state),date=HomeProjectHierarchyTest.bounds(holder.date);assertEquals(state.left,date.left);assertTrue("Date follows the complete status with spacing",date.top>=state.bottom+Ui.dp(a,8));
+                            LinearLayout.LayoutParams stateParams=(LinearLayout.LayoutParams)holder.state.getLayoutParams();assertEquals(-1,stateParams.width);assertEquals(-2,stateParams.height);
+                            Rect counts=HomeProjectHierarchyTest.bounds(holder.counts),date=HomeProjectHierarchyTest.bounds(holder.date);assertEquals(counts.left,date.left);assertTrue("Date follows the complete counts with spacing",date.top>=counts.bottom+Ui.dp(a,8));
                             assertEquals(L.t("9999 days ago","9999 天前"),holder.date.getText().toString());assertEquals(L.t("Last handoff · ","最近交办 · ")+holder.date.getText(),holder.date.getContentDescription());
                             assertCompleteText(holder.name);assertCompleteText(holder.counts);assertCompleteText(holder.state);assertCompleteText(holder.date);assertFullVisibility(holder.date);
                             Rect safeBounds=new Rect();a.getWindow().getDecorView().getWindowVisibleDisplayFrame(safeBounds);assertTrue(safeBounds.intersect(HomeProjectHierarchyTest.bounds(a.list)));assertTrue("Date is inside the visible window and actual list viewport",safeBounds.contains(date));
@@ -108,7 +106,7 @@ public class HomeStatusFooterTest {
     static void safe(DemoHomeRecoveryActivity a){assertTrue(a.getIntent().getBooleanExtra("hierarchyProbe",false));assertFalse(a.cacheOnlyProbe);assertFalse(a.backgroundSyncEnabled());assertEquals(0,a.probeStore.syncCalls.get());assertSafe(a);}
     static void assertCard(DemoHomeRecoveryActivity a,MainActivity.HomeHolder holder,JSONObject project){
         assertTrue(holder.card.getWidth()>=Ui.dp(a,48));assertTrue(holder.card.getHeight()>=Ui.dp(a,48));assertTrue(holder.card.isFocusable());assertTrue(holder.card.isClickable());assertTrue(holder.card.isEnabled());
-        assertEquals(project.optString("name")+", "+ProjectPresentation.counts(project)+", "+ProjectPresentation.state(project),holder.card.getContentDescription());
+        assertEquals(project.optString("name")+", "+ProjectPresentation.state(project)+", "+ProjectPresentation.counts(project)+", "+holder.date.getContentDescription()+(holder.pending.getVisibility()==View.VISIBLE?", "+holder.pending.getText():"")+(holder.unavailable.getVisibility()==View.VISIBLE?", "+holder.unavailable.getText():""),holder.card.getContentDescription());
         AccessibilityNodeInfo node=holder.card.createAccessibilityNodeInfo();try{assertTrue(node.isFocusable());assertTrue(node.isClickable());assertTrue(node.isEnabled());assertEquals(holder.card.getContentDescription(),node.getContentDescription());}finally{node.recycle();}
     }
     static void closeKnown(ActivityScenario<DemoHomeRecoveryActivity> scenario,Throwable failure,boolean[] destroyed,String lifetime)throws Throwable{

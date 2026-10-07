@@ -33,6 +33,19 @@ handover. Current user request takes precedence over dated handoffs.
 
 ## Accepted development and present work
 
+- [Home state first](../../docs/releases/ui-home-status-hierarchy-2026-10-07.md)
+  puts15sp current state below the complete name and13sp counts/date below.
+  Fresh37.542s HomeRows closes six memory windows,36 rebinds,32 lifecycle/12zero
+  guard streams and four normal originals, directly accepted by both reviewers.
+  146 source/config copies,1/26/42 returned-zero children,138raw,27JVM and
+  lint0errors/29warnings are separately reparsed. Five necessary source/test
+  targets change; no new test, fixture or wait. Long/200% reading is assertion
+  evidence; no new motion, TalkBack, genuine or signed-package acceptance.
+  README gallery uses these originals. Signed16 and Site28 stay unchanged.
+- Source0930283 Validate37610691262 reports attempt2 success in all three jobs.
+  First-attempt Maven403/pre-compile and browser fixture-readiness timeout remain
+  retained; the browser cause is unknown. This is status/steps evidence only.
+
 - [Share project focus](../../docs/releases/ui-share-project-focus-2026-10-07.md)
   keeps a surviving full-ID keyboard destination through local row replacement.
   Closed baseline13.217s observes0/2 retained focus; accepted13.172s observes2/2,
@@ -42,7 +55,7 @@ handover. Current user request takes precedence over dated handoffs.
   both reviewers directly accept both font1 after originals, including the
   second-row gray focus fill. Touch restore records setter return only. No actual
   async catalog, removed-row fallback, Send, motion,200%, physical or signed-App
-  acceptance. Next visual refinement: Home state before secondary counts/date.
+  acceptance. The subsequent Home refinement is recorded above.
 
 - [Share confirmation names first](../../docs/releases/ui-share-name-first-2026-10-07.md)
   uses complete20sp names and248dp reading width without decorative initials.
@@ -169,19 +182,15 @@ handover. Current user request takes precedence over dated handoffs.
 
 ## Single recommended next action
 
-Complete the narrow Share project-focus improvement and its finite local
-baseline/accepted capture, using the unchanged memory fixture. Its private
-proposal is prepared, not applied or run. Then bind a fresh current-source
-project/model/effort tour without Send and review actual continuous playback
-before replacing old motion media. The earlier recorder draft binds name-first
-APKs and becomes ineligible after any source/APK change; never auto-rebind or
-replay a closed take. Genuine release gates remain open.
+Bind a fresh current-source project/model/effort tour without Send, then review
+actual continuous playback before replacing old motion media. The new tour
+proposal remains prepare-only until current Home source/APK/closed-read bindings
+are explicitly populated and reviewed. Never auto-rebind or replay an old take.
+Genuine release gates remain open.
 
 ## Files this pass
 
-ShareActivity and ShareDestinationReadingTest; PRD/CONTRACTS/CHANGELOG/ADR0019;
-selected name-first record and two unchanged native originals; bilingual README,
-four editorial covers and their generator/media notes/.gitignore; this handoff.
-Source changes do not upgrade signed16 or Site28. Private film/launch-kit/promo
-and four unaccepted Delivery PNGs stay excluded.
-Author Thomas Deng <150266369+MrMaii@users.noreply.github.com>.
+MainActivity and four compatibility test files; PRD/CONTRACTS/ADR0019/CHANGELOG;
+Home state-first record and four original PNGs; bilingual README gallery and
+media provenance; this handoff. Source does not upgrade signed16 or Site28.
+Private film/launch-kit/promo and four unaccepted Delivery PNGs stay excluded.

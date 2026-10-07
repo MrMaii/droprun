@@ -31,7 +31,7 @@ container.
 
 Home gives each project one matte surface using the same radius and no border
 or elevation. Refined2026-10-07: the complete20sp name leads without a decorative
-initial;13sp counts follow, while state and recency share the lower reading line.
+initial;15sp state follows, while13sp counts and recency share the lower line.
 The card keeps16dp padding and12dp separation. Complete names wrap at every text
 size. IDs, counts, permissions, navigation, polling and feedback retain their
 existing meaning.
@@ -181,3 +181,17 @@ short-name capture and known destruction; no images were transferred. A fresh
 successor preserves the assertion and adds diagnostic text only. Its passing
 new layout does not establish the old failure's cause. No200%, real catalog,
 business action, motion, physical or signed-package acceptance is inferred.
+
+### Home state-first refinement — accepted 2026-10-07
+
+A small status pill below statistics made the current state easy to miss. Use
+plain15sp state below the complete name, with secondary counts/date below.
+Lime and amber retain their existing active/attention meanings; Delivered stays
+muted. Large text stacks the date after counts. No extra decoration, animation,
+request or action is added.
+
+[Fresh reading/rebind check and four original captures](../releases/ui-home-status-hierarchy-2026-10-07.md)
+cover the six existing memory windows. The card accessibility description now
+follows visual order and includes labelled recency and visible exception text.
+Four old test expectations are minimally adapted; only HomeRows is selected.
+No new motion, genuine-use, TalkBack or signed-App acceptance is inferred.

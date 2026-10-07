@@ -69,6 +69,11 @@ plan-version, per-command approval and report-evidence checks remain in force.
   Home project names retain complete natural wrapping on every bind, including
   ordinary text size and independent names with a distinguishing suffix. This
   changes card height, not project identity, statistics or navigation.
+  Home cards read name, current state, then counts and recency. At150%+ the date
+  follows complete counts vertically. The accessible card description follows
+  this order and includes labelled recency plus visible pending/unavailable text.
+  Status color retains its existing semantic mapping; recycled IDs and actions
+  do not change.
   Settings saves its project-access disclosure state in the Activity Bundle and
   assigns stable IDs to its scroll container and appearance/language controls for
   native scroll/focus restoration. After layout, a restored keyboard preference
