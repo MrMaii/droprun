@@ -33,6 +33,24 @@ handover. Current user request takes precedence over dated handoffs.
 
 ## Accepted development and present work
 
+- [Share confirmation names first](../../docs/releases/ui-share-name-first-2026-10-07.md)
+  uses complete20sp names and248dp reading width without decorative initials.
+  A fresh12.754s accepted method closes two EN/light and ZH/dark font1 memory
+  windows, reads7/6 long-name lines and all16 ID characters each, and reaches
+  whole52dp Send without clicking. Both reviewers accept both original short-name
+  PNGs. Actual1/26/29 returned-zero children,112raw,145 frozen files,27JVM and
+  lint0errors/29warnings pass; the separate retained-file reader reparses them.
+  Original6.859s baseline retains one EN capture receipt and known close followed
+  by the long-name ordering assertion failure; no ZH or image transfer completed.
+  Its cause remains unknown. Successor adds error text only, with no relaxed
+  assertion or extra frame wait. No200%, real catalog, Send, motion, physical or
+  signed-App inference. This development is outside immutable signed16.
+- Bilingual README has four1280×448 theme-aware editorial brand covers using
+  the original mark, plus the existing labelled native GIF directly visible.
+  Both reviewers viewed all four local cover originals; a local check resolves
+  13 image references per README with alt text. Artwork is separate from native
+  evidence. GitHub rendering, narrow/dark interaction and continuous playback
+  are not yet accepted. Native gallery/tour source dates remain unchanged.
 - [Share read feedback first](../../docs/releases/ui-share-read-feedback-2026-10-07.md)
   fixes an actual first-screen issue. Four original six-cache/font1 baseline
   loading/failure captures hid status and Retry; both reviewers confirmed it.
@@ -48,8 +66,9 @@ handover. Current user request takes precedence over dated handoffs.
   Four exact after originals are public under assets/brand, markers retained.
   Owner pixel flags stay false; separate root/independent visual reviews accept
   this fixed scope. No click, Send, real cache/API,200% pixel, motion, physical
-  or signed-App inference. This source follows immutable signed16; own CI for
-  this change is pending. Source/UI tests do not upgrade the public APK.
+  or signed-App inference. This source follows immutable signed16. GitHub reports own Validate37601475593
+  at5a5e1a8c completed/success in all three jobs; only its JSON status was read,
+  without a new complete-log record. Later source has separate validation. Source/UI tests do not upgrade the public APK.
 - [Home names first](../../docs/releases/ui-home-typography-2026-10-07.md):
   complete20sp project names/232dp reading width, aligned20dp page edges and
   removal of decorative initials. Six closed memory windows retain36rebinds,
@@ -128,18 +147,18 @@ handover. Current user request takes precedence over dated handoffs.
 
 ## Single recommended next action
 
-Continue Share's note-confirmation visual hierarchy: review the private minimal
-proposal to remove its decorative initial and emphasize the complete project
-name, then run fresh source-bound local screenshots before acceptance. Preserve
-the completed six-project before/after files. Do not rerun their owners/readers
-after changing source. Collect only this source commit's own CI when needed for
-the next candidate. Real acceptance remains open; continue local UX/brand work.
+Continue the current Share interaction tour with the refined name-first source:
+prepare a finite local walkthrough of project choice, return and model/effort
+changes without Send, then bind fresh native recording and review continuous
+playback before replacing old README/website motion media. Do not rerun the
+closed failed baseline or accepted readers after source/APK changes. Check this
+commit's own CI for a later candidate; genuine release gates remain open.
 
 ## Files this pass
 
-ShareActivity; new nonexported DemoShareSixProjectsActivity and
-ShareSixProjectsCaptureTest/debug registration; PRD/CONTRACTS/CHANGELOG and
-ADR0019; selected read-feedback record and four unchanged native originals;
-this handoff. Earlier candidate16/download/README/Site28 work has its own
-records. Private promo and launch-kit remain excluded.
+ShareActivity and ShareDestinationReadingTest; PRD/CONTRACTS/CHANGELOG/ADR0019;
+selected name-first record and two unchanged native originals; bilingual README,
+four editorial covers and their generator/media notes/.gitignore; this handoff.
+Source changes do not upgrade signed16 or Site28. Private film/launch-kit/promo
+and four unaccepted Delivery PNGs stay excluded.
 Author Thomas Deng <150266369+MrMaii@users.noreply.github.com>.

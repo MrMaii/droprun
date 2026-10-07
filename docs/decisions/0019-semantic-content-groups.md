@@ -53,8 +53,8 @@ text hid it and used232dp. The2026-10-07 revision removes its48dp allocation at
 every size, giving normal names232dp too. Two English names shared S and two
 Chinese names shared 工: the repeated decoration did not distinguish those
 projects. The20sp name restores emphasis while the matte surface still separates
-identity and state. This loses the repeated initial motif between Home and Share;
-Share's destination-confirmation tile remains. Larger headings may change wrapping
+identity and state. The complete name now carries the shared visual motif;
+Share's subsequent confirmation refinement is recorded below. Larger headings may change wrapping
 and height. Do not trade complete values, keyboard focus or reading position for
 the new surfaces. [Fresh reading and rebind checks](../releases/ui-home-typography-2026-10-07.md)
 cover six fixed local windows; both reviewers accept the four normal-font originals.
@@ -163,3 +163,21 @@ accept the successor's EN/light and ZH/dark font1 loading/failure feedback.
 Geometry separately requires the complete status and48dp action in each fixed
 initial viewport. Large-type stacking is source behavior, not new200% pixel or
 physical acceptance. No click, Send, genuine cache or signed-package claim.
+
+### Share confirmation identity — accepted 2026-10-07
+
+The decorative32dp initial and12dp gap repeated a name without helping identify
+the destination. Remove them and use the same20sp medium identity as Home.
+Keep the complete For/转发到 label, matte confirmation surface and material
+disclosure. No extra surface, permission prompt or delay is added.
+
+At320dp, the name uses248dp rather than204dp. Additional height is preferable
+to hiding a long name or its distinguishing ID. The two fresh normal-font
+originals are accepted separately by root and an independent reviewer.
+[Actual source-bound check and retained failure](../releases/ui-share-name-first-2026-10-07.md)
+record long-name order, per-line reading and Send reachability in local memory.
+The original baseline failed its long-name order assertion after one English
+short-name capture and known destruction; no images were transferred. A fresh
+successor preserves the assertion and adds diagnostic text only. Its passing
+new layout does not establish the old failure's cause. No200%, real catalog,
+business action, motion, physical or signed-package acceptance is inferred.

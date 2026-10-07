@@ -1,7 +1,5 @@
 <div align="center">
-  <img src="assets/brand/mark.png" width="96" alt="DropRun">
-  <p><strong>DropRun</strong> · Android + Windows · 自部署</p>
-  <h1>手机分享参考，<br>本地 Codex 接手。</h1>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/readme-cover-zh-dark.png"><img src="assets/brand/readme-cover-zh-light.png" width="960" alt="DropRun — 手机分享参考，本地 Codex 接手。Android + Windows，自部署与开源。"></picture>
   <p>把链接、文字或文件分享给已有项目，可选留一句话，在手机查看结果与证据。</p>
   <p><a href="docs/technical/SELF_HOSTING.zh-CN.md"><strong>开始安装 →</strong></a></p>
   <p>Android 8+ · Windows x64 · 已登录 Codex · 自己的 Cloudflare</p>
@@ -34,16 +32,13 @@ Codex 在你的 Windows 电脑上工作，Relay 由你部署到自己的 Cloudfl
 
 > 借鉴这里的导航思路，改进我们的设置页。保持现有视觉风格。
 
-<details>
-<summary><strong>观看分享交互</strong></summary>
+### 观看分享交互
 
 发送前，返回并改选另一个项目，再把推理强度从深入改为均衡。
 
 <p align="center"><picture><source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/brand/source-share-count-zh-dark-20261006.png"><source media="(prefers-reduced-motion: reduce)" srcset="assets/brand/source-share-count-zh-light-20261006.png"><img src="assets/brand/native-share-touch-zh-20261007.gif" width="320" alt="原生 Android 仅内存完整时序：选择项目，返回并改选另一个项目，从深入改为均衡后收起；未发送任务"></picture></p>
 
 [原始录屏](landing/media/native-share-touch-zh-20261007.mp4) · [字幕](landing/media/native-share-touch-zh-20261007.vtt)
-
-</details>
 
 **[开始安装与配对 →](docs/technical/SELF_HOSTING.zh-CN.md)**
 

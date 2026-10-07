@@ -89,7 +89,8 @@ in [the current candidate record](../releases/0.5.15-rc.1.md).
   The selected destination stays prominent above the optional note, wraps its
   complete name and remains individually readable before the Send action.
   In the note step, project identity and received material share one read-only
-  confirmation surface. Larger text removes the decorative project initial.
+  confirmation surface. The complete20sp project name leads at every text size,
+  without a decorative initial; full identity and material remain readable.
   Selecting an available, authorized project advances directly without moving
   that row or adding a fixed delay; selection alone never sends a handoff.
   Reversing the share scrim continues from its current color, cancels its previous

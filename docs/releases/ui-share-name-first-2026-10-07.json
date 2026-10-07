@@ -1,0 +1,184 @@
+{
+  "date": "2026-10-07",
+  "status": "Accepted local development; outside immutable signed candidate16",
+  "version": {
+    "name": "0.5.16-dev",
+    "code": 29
+  },
+  "source": {
+    "ShareActivitySha256": "253811bb87f522f71edbf0b7487c3878bf413d4941ebfa7dd087f18409f7eec9",
+    "ShareDestinationReadingTestSha256": "0218fcd349231b129e44c5c9b91798a6312d79abab51ba89ddc062deb8319735",
+    "freeze": {
+      "freezeSha256": "38137184a6965c2ea1156efef7b18c697baa87b5b46f9763f955a814f123a2cb",
+      "counts": {
+        "sources": 141,
+        "configs": 4
+      },
+      "snapshotsRehashed": 145,
+      "currentBytesExactAtReview": true
+    }
+  },
+  "accepted": {
+    "nonce": "5ec7aa19-622f-442d-8fd2-7846c32a8df0",
+    "bindingsSha256": "895c7770e970fab6c38cac5d9bb1a1629c33302d86cccf99530c19d8e5cfb9fb",
+    "helpers": {
+      "owner": "07ef854a9393dcd112e3f4333f951a1431fcd9f9cd819e4a1d7876e7f246b489",
+      "protocol": "1bbd71f9a0f26cb9a6abee39781a4b0c1944b34c33ceccc2a2fbef30ede9c623",
+      "reader": "c795a3a0b3d0e435a837645f5ff6916ae2494ec2d1fc5cb3531f3530863ddea5",
+      "binder": "a7010fd023cd6fb15ab2d6a3e97cebdacbfb9612439a9c314ade6d23118954e1"
+    },
+    "stages": {
+      "build": "800392565d5af24e562fbe67ecd1fd2442ef0e1bbea19b7b1975a7ecaa2e74d0",
+      "install": "f571017c1af3e345e61a194b6a3d0177fd66e6f7119cde292b02ed9636ca1135",
+      "native": "e70ef03ed443aaad7a445a0d31d5469c83c61b3be8f25072d64ae78d9803544b"
+    },
+    "readerVerificationSha256": "0fd709720ead6b5509c18d10e285dc25c71aa30880d73228d609099c5b74e562",
+    "directChildren": {
+      "build": 1,
+      "install": 26,
+      "native": 29
+    },
+    "knownReturnedZeroChildren": 56,
+    "rawFilesRehashed": 112,
+    "sourceReceipts": [
+      {
+        "phase": "build",
+        "side": "before",
+        "sha256": "38137184a6965c2ea1156efef7b18c697baa87b5b46f9763f955a814f123a2cb"
+      },
+      {
+        "phase": "build",
+        "side": "after",
+        "sha256": "38137184a6965c2ea1156efef7b18c697baa87b5b46f9763f955a814f123a2cb"
+      },
+      {
+        "phase": "install",
+        "side": "before",
+        "sha256": "38137184a6965c2ea1156efef7b18c697baa87b5b46f9763f955a814f123a2cb"
+      },
+      {
+        "phase": "install",
+        "side": "after",
+        "sha256": "38137184a6965c2ea1156efef7b18c697baa87b5b46f9763f955a814f123a2cb"
+      },
+      {
+        "phase": "native",
+        "side": "before",
+        "sha256": "38137184a6965c2ea1156efef7b18c697baa87b5b46f9763f955a814f123a2cb"
+      },
+      {
+        "phase": "native",
+        "side": "after",
+        "sha256": "38137184a6965c2ea1156efef7b18c697baa87b5b46f9763f955a814f123a2cb"
+      }
+    ],
+    "unitActual": {
+      "tests": 27,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "lintActual": {
+      "errors": 0,
+      "warnings": 29
+    },
+    "apks": [
+      {
+        "role": "app",
+        "path": "android/app/build/outputs/apk/debug/app-debug.apk",
+        "package": "app.droprun.mobile.debug",
+        "bytes": 2213162,
+        "sha256": "79c0560e0fec6c92d67db0b53204e4b78ab8ea8db1001b21754875b979c19d55",
+        "outputMetadataSha256": "66140bac0675e030042f3d1d044fa98604bb9696b9c0d56dddca0b8a0d1329e0"
+      },
+      {
+        "role": "test",
+        "path": "android/app/build/outputs/apk/androidTest/debug/app-debug-androidTest.apk",
+        "package": "app.droprun.mobile.debug.test",
+        "bytes": 2108379,
+        "sha256": "79dcdbc608b9e598cb538b35b6986416839d74daac54eba5fda0180281fb8fe4",
+        "outputMetadataSha256": "181493b9ffc5a1e4217dc361fbffacc45894e47b81a418b200c67c9b71a83803"
+      }
+    ],
+    "nativeSeconds": 12.754,
+    "events": 27,
+    "guardSnapshots": 23,
+    "summary": {
+      "entered": 2,
+      "full_completed": 2,
+      "DESTROYED": 2,
+      "captures": 2,
+      "long_name_lines_read": 13,
+      "statics_restored": true,
+      "business_actions": "not_invoked_by_test",
+      "catalog_integration": "not exercised"
+    },
+    "longNameReading": [
+      {
+        "window": "en-light",
+        "lines": 7,
+        "idCharacters": 16,
+        "sendBounds": [
+          20,
+          544,
+          300,
+          596
+        ],
+        "sendClicked": false
+      },
+      {
+        "window": "zh-dark",
+        "lines": 6,
+        "idCharacters": 16,
+        "sendBounds": [
+          20,
+          544,
+          300,
+          596
+        ],
+        "sendClicked": false
+      }
+    ],
+    "tenReadOnlyDeviceValuesUnchanged": true,
+    "pixelAcceptance": false,
+    "directVisualReview": {
+      "root": "accepted both original short-name font1 captures",
+      "independent": "accepted both original short-name font1 captures"
+    },
+    "images": [
+      {
+        "path": "assets/brand/source-share-name-first-en-light-20261007.png",
+        "bytes": 52714,
+        "sha256": "4968e81551faeca7fe1f900e0f1608483350a2a54d8bb0989e337b31b55f5684",
+        "width": 320,
+        "height": 640,
+        "markerRetained": true
+      },
+      {
+        "path": "assets/brand/source-share-name-first-zh-dark-20261007.png",
+        "bytes": 58093,
+        "sha256": "3b7fba4749e73b499a8c477f225cfaad5df5dffcddea3efc595b6ccf17a06e8c",
+        "width": 320,
+        "height": 640,
+        "markerRetained": true
+      }
+    ]
+  },
+  "retainedFailedBaseline": {
+    "nonce": "fea18b01-4de5-4010-88dd-4e95ee3a4b47",
+    "nativeSeconds": 6.859,
+    "nativeStdoutBytes": 8633,
+    "nativeStdoutSha256": "a3396e0c816c18c5cebde88c549a5bfea7513d15a07c9346e8f30550510549f3",
+    "junitFailures": 1,
+    "windowsKnownDestroyed": 1,
+    "captureReceipts": 1,
+    "transferredImages": 0,
+    "failure": "Long-name destination-before-material assertion; cause not established. No original replay; successor adds assertion diagnostic message without relaxing it or changing frame waits."
+  },
+  "limits": [
+    "Memory-only, existing nonexported fixture; no business click, Send, Pair, persistent draft, API, genuine catalog or OS settings write.",
+    "Two short-name font1 originals; long-name/helper-ID reading uses assertions only. No200% pixel, continuous motion, IME, TalkBack, physical performance or signed-App inference.",
+    "Native parsing rules are re-executed from retained files, not claimed as an independently authored algorithm.",
+    "Real-environment release gates remain open."
+  ]
+}

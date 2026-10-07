@@ -1,7 +1,5 @@
 <div align="center">
-  <img src="assets/brand/mark.png" width="96" alt="DropRun">
-  <p><strong>DropRun</strong> · Android + Windows · Self-hosted</p>
-  <h1>Share from your phone.<br>Put local Codex to work.</h1>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="assets/brand/readme-cover-en-dark.png"><img src="assets/brand/readme-cover-en-light.png" width="960" alt="DropRun — Share from your phone. Put local Codex to work. Android + Windows, self-hosted and open source."></picture>
   <p>Share a link, text or file to an existing project. Add an optional note; inspect the result and evidence on your phone.</p>
   <p><a href="docs/technical/SELF_HOSTING.md"><strong>Start installing →</strong></a></p>
   <p>Android 8+ · Windows x64 · signed-in Codex · your Cloudflare</p>
@@ -35,16 +33,13 @@ For example, share a design reference to an existing app project with this note:
 
 > Adapt this navigation idea to our settings screen. Keep our existing visual style.
 
-<details>
-<summary><strong>Watch the sharing interaction</strong></summary>
+### Watch the sharing interaction
 
 Choose a different project, then switch from Thorough to Balanced before sending.
 
 <p align="center"><picture><source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="assets/brand/source-share-count-en-dark-20261006.png"><source media="(prefers-reduced-motion: reduce)" srcset="assets/brand/source-share-count-en-light-20261006.png"><img src="assets/brand/native-share-touch-en-20261007.gif" width="320" alt="Native Android memory-only full-timeline tour: choose a project, return and switch to a different project, change Thorough to Balanced and collapse; no task sent"></picture></p>
 
 [Original recording](landing/media/native-share-touch-en-20261007.mp4) · [Captions](landing/media/native-share-touch-en-20261007.vtt)
-
-</details>
 
 **[Set up DropRun →](docs/technical/SELF_HOSTING.md)**
 

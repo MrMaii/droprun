@@ -1,5 +1,31 @@
 # Native README media
 
+## README brand cover · October 7, 2026
+
+Four1280×448 editorial covers use the existing DropRun mark, warm neutral
+surfaces, restrained lime light and large platform typography. They are brand
+artwork, not product screens or evidence of task execution. All four local
+originals were directly reviewed. The README keeps a text description, actual
+installation link and prerequisites outside the artwork; its dark cover follows
+the reader's theme. The existing labelled native GIF is now visible without
+opening a disclosure, with its reduced-motion still choices preserved.
+
+Generate with `node scripts/build-readme-cover.mjs`. The captured render used
+the installed Segoe UI and Microsoft YaHei fonts on Windows; another machine's
+font fallback can change the output. Font files are not distributed. The source
+mark and native screenshot/recording files remain unchanged.
+
+| File | Bytes | SHA-256 |
+| --- | ---: | --- |
+| [readme-cover-en-light.png](readme-cover-en-light.png) | 148718 | `bc5b93e41791761fe0fd308907c8921f826a57f1c063533121e96ce2dd9670f0` |
+| [readme-cover-en-dark.png](readme-cover-en-dark.png) | 151583 | `af3b54d26549245149e863c5710163b49e2c17608d0ace4bf5913b2fa6e71d2c` |
+| [readme-cover-zh-light.png](readme-cover-zh-light.png) | 145113 | `66008ad2d17aac4adc9321f70dc61616de638353ec713d23c2e18d74c4a6d697` |
+| [readme-cover-zh-dark.png](readme-cover-zh-dark.png) | 148026 | `c1323fe32fc6a0b7e79d76ec05ef9e8c2a7bc4fdd95d4d822795fb0fe2acd7a7` |
+
+This local artwork review does not establish GitHub rendering, narrow-screen
+readability, GIF playback or complete accessibility. Those observations must
+be recorded separately when performed.
+
 ## Complete follow-up target · October 7, 2026
 
 The README delivery gallery now uses four complete, unedited320×640 native

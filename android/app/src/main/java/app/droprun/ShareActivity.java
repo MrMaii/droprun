@@ -425,8 +425,7 @@ public class ShareActivity extends StyledActivity {
         column.addView(Ui.title(this,L.t("What should Codex do?","想让 Codex 做什么？"),22));
         LinearLayout receipt=Ui.vertical(this);receipt.setTag("share-destination-material");receipt.setPadding(dp(16),dp(12),dp(16),dp(8));receipt.setBackground(Ui.outlined(this,Ui.SURFACE_2,0,Ui.RADIUS_CARD,0));
         LinearLayout destination=Ui.row(this);destination.setGravity(Gravity.TOP);destination.setTag("share-destination-identity");
-        if(getResources().getConfiguration().fontScale<1.5f){destination.addView(Ui.projectTile(this,projectName()),Ui.square(this,32));Ui.space(destination,12);}
-        TextView target=Ui.text(this,L.t("For “","转发到「")+projectName()+L.t("”","」"),17,Ui.TEXT);target.setTypeface(Ui.medium());target.setPadding(0,0,0,0);target.setTag("share-destination-name");destination.addView(target,Ui.grow());receipt.addView(destination,Ui.fill());
+        TextView target=Ui.text(this,L.t("For “","转发到「")+projectName()+L.t("”","」"),20,Ui.TEXT);target.setTypeface(Ui.medium());target.setPadding(0,0,0,0);target.setTag("share-destination-name");destination.addView(target,Ui.grow());receipt.addView(destination,Ui.fill());
         receipt.addView(materialDisclosure(),Ui.margins(this,2,0));column.addView(receipt,Ui.margins(this,8,4));
         TextView noteLabel=Ui.text(this,L.t("Your note · optional","留言 · 可选"),13,Ui.TEXT);noteLabel.setTypeface(Ui.medium());noteLabel.setPadding(0,0,0,0);noteLabel.setTag("share-note-label");column.addView(noteLabel,Ui.margins(this,4,0));
         note=new EditText(this);note.setId(View.generateViewId());noteLabel.setLabelFor(note.getId());note.setHint(L.t("Leave blank for Codex to decide.","留空，让 Codex 判断。"));note.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_FLAG_MULTI_LINE|InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);

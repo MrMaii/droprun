@@ -43,6 +43,7 @@ docs/technical/SCENARIO_READINESS.md
 !/scripts/install-page.mjs
 !/scripts/check-public.mjs
 !/scripts/build-landing.mjs
+!/scripts/build-readme-cover.mjs
 !/scripts/capture-android-demo.mjs
 !/scripts/record-android-demo.mjs
 /pair-device.ps1

@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Lead Share confirmation with the complete20sp project name, removing the
+  decorative initial and reclaiming44dp for identity and distinguishing IDs.
+- Give the bilingual README theme-aware brand covers using the original mark;
+  show the labelled native interaction GIF without an extra disclosure.
+
 - Put Share's project-read feedback and Retry before the destination list;
   use a compact normal-type row and a stacked layout at150% type or above.
 - Distinguish Share project loading, confirmed empty and failed reads; offer an
