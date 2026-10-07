@@ -26,6 +26,12 @@ This local artwork review does not establish GitHub rendering, narrow-screen
 readability, GIF playback or complete accessibility. Those observations must
 be recorded separately when performed.
 
+The subsequent [anonymous GitHub check](../../docs/releases/readme-cover-rendering-2026-10-07.md)
+accepts the English and Chinese desktop light covers and readable installation
+entries at source6d3b10e. Both native GIF elements load directly at320×640,
+without a disclosure. Six saved original views were reopened and inspected;
+this is display observation, not continuous playback or narrow/dark acceptance.
+
 ## Complete follow-up target · October 7, 2026
 
 The README delivery gallery now uses four complete, unedited320×640 native

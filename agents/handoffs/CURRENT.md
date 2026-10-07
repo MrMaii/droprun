@@ -49,8 +49,12 @@ handover. Current user request takes precedence over dated handoffs.
   the original mark, plus the existing labelled native GIF directly visible.
   Both reviewers viewed all four local cover originals; a local check resolves
   13 image references per README with alt text. Artwork is separate from native
-  evidence. GitHub rendering, narrow/dark interaction and continuous playback
-  are not yet accepted. Native gallery/tour source dates remain unchanged.
+  evidence. The [anonymous GitHub check](../../docs/releases/readme-cover-rendering-2026-10-07.md)
+  accepts EN/ZH desktop light covers, installation entries and direct320×640 GIF
+  display; six saved originals were reopened. Narrow/dark interaction and
+  continuous playback remain open. Native gallery/tour source dates remain.
+  Own source6d3b10e Validate37604642564 reports success in all three jobs;
+  JSON status/steps only, without a new complete-log record.
 - [Share read feedback first](../../docs/releases/ui-share-read-feedback-2026-10-07.md)
   fixes an actual first-screen issue. Four original six-cache/font1 baseline
   loading/failure captures hid status and Retry; both reviewers confirmed it.
