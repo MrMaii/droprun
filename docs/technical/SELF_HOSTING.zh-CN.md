@@ -1,6 +1,6 @@
 # 自部署 DropRun
 
-[English](SELF_HOSTING.md) · [发布说明](../releases/0.5.13-rc.1.md)
+[English](SELF_HOSTING.md) · [发布说明](../releases/0.5.14-rc.1.md)
 
 当前为公开预览版。重要项目使用前请阅读验证缺口。一套 Relay 对应一个所有者和
 一台 Windows Connector，可配对多个手机；没有官方注册账号。
@@ -14,15 +14,15 @@
 
 ## 安装与连接
 
-1. 从 [0.5.13-rc.1](https://github.com/MrMaii/droprun/releases/tag/v0.5.13-rc.1) 下载
-   [Windows 安装包](https://github.com/MrMaii/droprun/releases/download/v0.5.13-rc.1/DropRun-0.5.13-windows-x64-setup.exe)或
-   [便携 ZIP](https://github.com/MrMaii/droprun/releases/download/v0.5.13-rc.1/DropRun-0.5.13-windows-x64.zip)，对照发布清单校验 SHA-256。Windows 可能提示未知发布者。
+1. 从 [0.5.14-rc.1](https://github.com/MrMaii/droprun/releases/tag/v0.5.14-rc.1) 下载
+   [Windows 安装包](https://github.com/MrMaii/droprun/releases/download/v0.5.14-rc.1/DropRun-0.5.14-windows-x64-setup.exe)或
+   [便携 ZIP](https://github.com/MrMaii/droprun/releases/download/v0.5.14-rc.1/DropRun-0.5.14-windows-x64.zip)，对照发布清单校验 SHA-256。Windows 可能提示未知发布者。
 2. 安装器按当前用户安装；便携版解压到固定位置后运行 `DropRun.cmd`。
    已包含 Node，数据保存在 `%LOCALAPPDATA%\DropRun`。
 3. 本机浏览器向导检查环境，打开 Cloudflare 官方登录，让你选择账号并创建私有
    Relay。所需媒体工具从上游单独下载，保持各自许可。
 4. 部署失败后重试原步骤；向导保留进度，不用换实例名重新创建。
-5. 启动 Connector，手机安装 [Android APK](https://github.com/MrMaii/droprun/releases/download/v0.5.13-rc.1/DropRun-0.5.13-android.apk)后扫码，确认电脑和 HTTPS 服务器地址，再授权
+5. 启动 Connector，手机安装 [Android APK](https://github.com/MrMaii/droprun/releases/download/v0.5.14-rc.1/DropRun-0.5.14-android.apk)后扫码，确认电脑和 HTTPS 服务器地址，再授权
    可交办的项目。配对邀请一次有效且会过期，不要公开真实二维码。
 6. 从其他 Android 应用分享材料，选项目并可选留言，观察真实处理与交付状态。
 

@@ -1,0 +1,1097 @@
+{
+  "schema": "droprun.native-task-metadata-reading.v1",
+  "date": "2026-10-07",
+  "verified": true,
+  "implementation": "Task presentation comparison excludes updated_at only; the existing shared-date TextView updates separately. Store receipts and ordering retain updated_at.",
+  "version": {
+    "name": "0.5.14-dev",
+    "code": 27
+  },
+  "memoryOnly": true,
+  "source": {
+    "sources": 134,
+    "configs": 4,
+    "freezeSha256": "215fad3fccb11bda9626fba9902c02a12c56a1f4bff81f4c2acec3885c9ac216",
+    "changedFiles": {
+      "android/app/src/main/java/app/droprun/TaskActivity.java": "55202ae857f5242b3b43e6a6528632a146c5acf74b6ab9b3fc4ab4d165b198b1",
+      "android/app/src/androidTest/java/app/droprun/TaskScrollRestorationTest.java": "58584dca720ae351d79d52747c9b83c01acf7fd823f4affe44542d447c3a7f23"
+    }
+  },
+  "phases": {
+    "build": {
+      "passed": true,
+      "sourceBeforeExact": true,
+      "sourceAfterExact": true,
+      "commandsReturned0": 1,
+      "verificationSha256": "51071588837558d4605cc7086a5311ef14646df5151adba8ebddeff48cb09fda"
+    },
+    "install": {
+      "passed": true,
+      "sourceBeforeExact": true,
+      "sourceAfterExact": true,
+      "commandsReturned0": 26,
+      "verificationSha256": "31ad59aa6e35527d9b7f5efea3d6be820cf6ece4bb26bc0e881d370934d168ca"
+    },
+    "native": {
+      "passed": true,
+      "sourceBeforeExact": true,
+      "sourceAfterExact": true,
+      "commandsReturned0": 25,
+      "verificationSha256": "17fcd2210ccc3d5d617c6e110751cfcda74c03866b3e2ce8d4d91d8c2a435f99"
+    }
+  },
+  "build": {
+    "unitActual": {
+      "tests": 27,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "lintActual": {
+      "errors": 0,
+      "warnings": 28
+    },
+    "seconds": 25.922,
+    "stderrBytes": 333,
+    "stderrSha256": "a8ee6c37168f4f4a9c0e9557479804328487165878755fc04a8cbc503e68df88"
+  },
+  "apks": [
+    {
+      "role": "app",
+      "package": "app.droprun.mobile.debug",
+      "bytes": 1964242,
+      "sha256": "89cf4c8ba41617d776df635398a1719c29966dbfc2a14ee68a1611bc0e5bc608"
+    },
+    {
+      "role": "test",
+      "package": "app.droprun.mobile.debug.test",
+      "bytes": 2043772,
+      "sha256": "8c1182bd0068d60a60f3c0c2f33beacbf7711c8b5c06b3831eb746afcc8a67fd"
+    }
+  ],
+  "installedBytesMatchBuild": true,
+  "native": {
+    "counts": {
+      "events": 25,
+      "fixture_bearing_receipts": 20,
+      "live_metadata_receipts": 18,
+      "launch_attempts": 2,
+      "entered": 2,
+      "full_completed": 2,
+      "DESTROYED": 2,
+      "metadata_updates": 4,
+      "touch_mode_changes": 2,
+      "touch_mode_restores": 2
+    },
+    "actual_summary": {
+      "entered": 2,
+      "full_completed": 2,
+      "DESTROYED": 2,
+      "metadata_updates": 4,
+      "touch_mode_restores": 2,
+      "clock_scope": "Synthetic stale label restored by actual render; no wall-clock minute wait"
+    },
+    "events": [
+      {
+        "identity": "en|light",
+        "event": "launch-attempt",
+        "actual": {}
+      },
+      {
+        "identity": "en|light",
+        "event": "entered",
+        "actual": {
+          "fixture": "DemoTaskScrollActivity",
+          "language": "en",
+          "theme": "light",
+          "memory_only": true,
+          "forbidden_actions": 0,
+          "render_calls": 1,
+          "restore_calls": 0,
+          "scroll_y": 0,
+          "header_top": 636,
+          "header_focused": false,
+          "report_view_identity": 188055605,
+          "report_buffer_identity": 14019786,
+          "header_identity": 125275707,
+          "selection_start": 0,
+          "selection_end": 0,
+          "report_sha256": "3fe3f441e652ae89e4959f61e6c6955c1b4b7d89413667afbeb260d98492404a",
+          "updated_at": null,
+          "shared_text": "Shared 20733 days ago",
+          "touch_mode": false,
+          "destroyed": false,
+          "executor_terminated": false
+        }
+      },
+      {
+        "identity": "en|light",
+        "event": "touch-mode-changed",
+        "actual": {
+          "fixture": "DemoTaskScrollActivity",
+          "language": "en",
+          "theme": "light",
+          "memory_only": true,
+          "forbidden_actions": 0,
+          "render_calls": 1,
+          "restore_calls": 0,
+          "scroll_y": 0,
+          "header_top": 636,
+          "header_focused": false,
+          "report_view_identity": 188055605,
+          "report_buffer_identity": 14019786,
+          "header_identity": 125275707,
+          "selection_start": 0,
+          "selection_end": 0,
+          "report_sha256": "3fe3f441e652ae89e4959f61e6c6955c1b4b7d89413667afbeb260d98492404a",
+          "updated_at": null,
+          "shared_text": "Shared 20733 days ago",
+          "touch_mode": false,
+          "destroyed": false,
+          "executor_terminated": false
+        }
+      },
+      {
+        "identity": "en|light",
+        "event": "reading-before",
+        "actual": {
+          "fixture": "DemoTaskScrollActivity",
+          "language": "en",
+          "theme": "light",
+          "memory_only": true,
+          "forbidden_actions": 0,
+          "render_calls": 1,
+          "restore_calls": 0,
+          "scroll_y": 1062,
+          "header_top": -426,
+          "header_focused": false,
+          "report_view_identity": 188055605,
+          "report_buffer_identity": 14019786,
+          "header_identity": 125275707,
+          "selection_start": 1229,
+          "selection_end": 1242,
+          "report_sha256": "3fe3f441e652ae89e4959f61e6c6955c1b4b7d89413667afbeb260d98492404a",
+          "updated_at": null,
+          "shared_text": "Shared 20733 days ago",
+          "touch_mode": false,
+          "destroyed": false,
+          "executor_terminated": false
+        }
+      },
+      {
+        "identity": "en|light",
+        "event": "reading-after",
+        "actual": {
+          "fixture": "DemoTaskScrollActivity",
+          "language": "en",
+          "theme": "light",
+          "memory_only": true,
+          "forbidden_actions": 0,
+          "render_calls": 2,
+          "restore_calls": 0,
+          "scroll_y": 1062,
+          "header_top": -426,
+          "header_focused": false,
+          "report_view_identity": 188055605,
+          "report_buffer_identity": 14019786,
+          "header_identity": 125275707,
+          "selection_start": 1229,
+          "selection_end": 1242,
+          "report_sha256": "3fe3f441e652ae89e4959f61e6c6955c1b4b7d89413667afbeb260d98492404a",
+          "updated_at": 2,
+          "shared_text": "Shared 20733 days ago",
+          "touch_mode": false,
+          "destroyed": false,
+          "executor_terminated": false
+        }
+      },
+      {
+        "identity": "en|light",
+        "event": "focus-before",
+        "actual": {
+          "fixture": "DemoTaskScrollActivity",
+          "language": "en",
+          "theme": "light",
+          "memory_only": true,
+          "forbidden_actions": 0,
+          "render_calls": 2,
+          "restore_calls": 0,
+          "scroll_y": 612,
+          "header_top": 24,
+          "header_focused": true,
+          "report_view_identity": 188055605,
+          "report_buffer_identity": 14019786,
+          "header_identity": 125275707,
+          "selection_start": 1229,
+          "selection_end": 1242,
+          "report_sha256": "3fe3f441e652ae89e4959f61e6c6955c1b4b7d89413667afbeb260d98492404a",
+          "updated_at": 2,
+          "shared_text": "Shared 20733 days ago",
+          "touch_mode": false,
+          "destroyed": false,
+          "executor_terminated": false
+        }
+      },
+      {
+        "identity": "en|light",
+        "event": "focus-after",
+        "actual": {
+          "fixture": "DemoTaskScrollActivity",
+          "language": "en",
+          "theme": "light",
+          "memory_only": true,
+          "forbidden_actions": 0,
+          "render_calls": 3,
+          "restore_calls": 0,
+          "scroll_y": 612,
+          "header_top": 24,
+          "header_focused": true,
+          "report_view_identity": 188055605,
+          "report_buffer_identity": 14019786,
+          "header_identity": 125275707,
+          "selection_start": 1229,
+          "selection_end": 1242,
+          "report_sha256": "3fe3f441e652ae89e4959f61e6c6955c1b4b7d89413667afbeb260d98492404a",
+          "updated_at": 3,
+          "shared_text": "Shared 20733 days ago",
+          "touch_mode": false,
+          "destroyed": false,
+          "executor_terminated": false
+        }
+      },
+      {
+        "identity": "en|light",
+        "event": "clock-label-refreshed",
+        "actual": {
+          "fixture": "DemoTaskScrollActivity",
+          "language": "en",
+          "theme": "light",
+          "memory_only": true,
+          "forbidden_actions": 0,
+          "render_calls": 4,
+          "restore_calls": 0,
+          "scroll_y": 612,
+          "header_top": 24,
+          "header_focused": true,
+          "report_view_identity": 188055605,
+          "report_buffer_identity": 14019786,
+          "header_identity": 125275707,
+          "selection_start": 1229,
+          "selection_end": 1242,
+          "report_sha256": "3fe3f441e652ae89e4959f61e6c6955c1b4b7d89413667afbeb260d98492404a",
+          "updated_at": 3,
+          "shared_text": "Shared 20733 days ago",
+          "touch_mode": false,
+          "destroyed": false,
+          "executor_terminated": false
+        }
+      },
+      {
+        "identity": "en|light",
+        "event": "report-changed",
+        "actual": {
+          "fixture": "DemoTaskScrollActivity",
+          "language": "en",
+          "theme": "light",
+          "memory_only": true,
+          "forbidden_actions": 0,
+          "render_calls": 5,
+          "restore_calls": 0,
+          "scroll_y": 612,
+          "header_top": 24,
+          "header_focused": false,
+          "report_view_identity": 69497264,
+          "report_buffer_identity": 206059561,
+          "header_identity": 76715950,
+          "selection_start": 0,
+          "selection_end": 0,
+          "report_sha256": "f3fe5dff71dc43c3459b7ba5937103020da7360bdb705ca3d04f8f28a14ce0cf",
+          "updated_at": 3,
+          "shared_text": "Shared 20733 days ago",
+          "touch_mode": false,
+          "destroyed": false,
+          "executor_terminated": false
+        }
+      },
+      {
+        "identity": "en|light",
+        "event": "full-completed",
+        "actual": {
+          "fixture": "DemoTaskScrollActivity",
+          "language": "en",
+          "theme": "light",
+          "memory_only": true,
+          "forbidden_actions": 0,
+          "render_calls": 6,
+          "restore_calls": 0,
+          "scroll_y": 612,
+          "header_top": 24,
+          "header_focused": false,
+          "report_view_identity": 235228606,
+          "report_buffer_identity": 82193951,
+          "header_identity": 50939244,
+          "selection_start": 0,
+          "selection_end": 0,
+          "report_sha256": "3fe3f441e652ae89e4959f61e6c6955c1b4b7d89413667afbeb260d98492404a",
+          "updated_at": null,
+          "shared_text": "Shared 20733 days ago",
+          "touch_mode": false,
+          "destroyed": false,
+          "executor_terminated": false
+        }
+      },
+      {
+        "identity": "en|light",
+        "event": "DESTROYED",
+        "actual": {
+          "fixture": "DemoTaskScrollActivity",
+          "memory_only": true,
+          "forbidden_actions": 0,
+          "destroyed": true,
+          "executor_terminated": true,
+          "restore_calls": 0,
+          "foreground": false,
+          "refresh_queued": false
+        }
+      },
+      {
+        "identity": "en|light",
+        "event": "touch-mode-restored",
+        "actual": {
+          "prior_touch_mode": false,
+          "setInTouchMode_returned": true
+        }
+      },
+      {
+        "identity": "zh|dark",
+        "event": "launch-attempt",
+        "actual": {}
+      },
+      {
+        "identity": "zh|dark",
+        "event": "entered",
+        "actual": {
+          "fixture": "DemoTaskScrollActivity",
+          "language": "zh",
+          "theme": "dark",
+          "memory_only": true,
+          "forbidden_actions": 0,
+          "render_calls": 1,
+          "restore_calls": 0,
+          "scroll_y": 0,
+          "header_top": 648,
+          "header_focused": false,
+          "report_view_identity": 115589807,
+          "report_buffer_identity": 111503036,
+          "header_identity": 186791493,
+          "selection_start": 0,
+          "selection_end": 0,
+          "report_sha256": "3fe3f441e652ae89e4959f61e6c6955c1b4b7d89413667afbeb260d98492404a",
+          "updated_at": null,
+          "shared_text": "交办于 20733 天前",
+          "touch_mode": false,
+          "destroyed": false,
+          "executor_terminated": false
+        }
+      },
+      {
+        "identity": "zh|dark",
+        "event": "touch-mode-changed",
+        "actual": {
+          "fixture": "DemoTaskScrollActivity",
+          "language": "zh",
+          "theme": "dark",
+          "memory_only": true,
+          "forbidden_actions": 0,
+          "render_calls": 1,
+          "restore_calls": 0,
+          "scroll_y": 0,
+          "header_top": 648,
+          "header_focused": false,
+          "report_view_identity": 115589807,
+          "report_buffer_identity": 111503036,
+          "header_identity": 186791493,
+          "selection_start": 0,
+          "selection_end": 0,
+          "report_sha256": "3fe3f441e652ae89e4959f61e6c6955c1b4b7d89413667afbeb260d98492404a",
+          "updated_at": null,
+          "shared_text": "交办于 20733 天前",
+          "touch_mode": false,
+          "destroyed": false,
+          "executor_terminated": false
+        }
+      },
+      {
+        "identity": "zh|dark",
+        "event": "reading-before",
+        "actual": {
+          "fixture": "DemoTaskScrollActivity",
+          "language": "zh",
+          "theme": "dark",
+          "memory_only": true,
+          "forbidden_actions": 0,
+          "render_calls": 1,
+          "restore_calls": 0,
+          "scroll_y": 1074,
+          "header_top": -426,
+          "header_focused": false,
+          "report_view_identity": 115589807,
+          "report_buffer_identity": 111503036,
+          "header_identity": 186791493,
+          "selection_start": 1229,
+          "selection_end": 1242,
+          "report_sha256": "3fe3f441e652ae89e4959f61e6c6955c1b4b7d89413667afbeb260d98492404a",
+          "updated_at": null,
+          "shared_text": "交办于 20733 天前",
+          "touch_mode": false,
+          "destroyed": false,
+          "executor_terminated": false
+        }
+      },
+      {
+        "identity": "zh|dark",
+        "event": "reading-after",
+        "actual": {
+          "fixture": "DemoTaskScrollActivity",
+          "language": "zh",
+          "theme": "dark",
+          "memory_only": true,
+          "forbidden_actions": 0,
+          "render_calls": 2,
+          "restore_calls": 0,
+          "scroll_y": 1074,
+          "header_top": -426,
+          "header_focused": false,
+          "report_view_identity": 115589807,
+          "report_buffer_identity": 111503036,
+          "header_identity": 186791493,
+          "selection_start": 1229,
+          "selection_end": 1242,
+          "report_sha256": "3fe3f441e652ae89e4959f61e6c6955c1b4b7d89413667afbeb260d98492404a",
+          "updated_at": 2,
+          "shared_text": "交办于 20733 天前",
+          "touch_mode": false,
+          "destroyed": false,
+          "executor_terminated": false
+        }
+      },
+      {
+        "identity": "zh|dark",
+        "event": "focus-before",
+        "actual": {
+          "fixture": "DemoTaskScrollActivity",
+          "language": "zh",
+          "theme": "dark",
+          "memory_only": true,
+          "forbidden_actions": 0,
+          "render_calls": 2,
+          "restore_calls": 0,
+          "scroll_y": 624,
+          "header_top": 24,
+          "header_focused": true,
+          "report_view_identity": 115589807,
+          "report_buffer_identity": 111503036,
+          "header_identity": 186791493,
+          "selection_start": 1229,
+          "selection_end": 1242,
+          "report_sha256": "3fe3f441e652ae89e4959f61e6c6955c1b4b7d89413667afbeb260d98492404a",
+          "updated_at": 2,
+          "shared_text": "交办于 20733 天前",
+          "touch_mode": false,
+          "destroyed": false,
+          "executor_terminated": false
+        }
+      },
+      {
+        "identity": "zh|dark",
+        "event": "focus-after",
+        "actual": {
+          "fixture": "DemoTaskScrollActivity",
+          "language": "zh",
+          "theme": "dark",
+          "memory_only": true,
+          "forbidden_actions": 0,
+          "render_calls": 3,
+          "restore_calls": 0,
+          "scroll_y": 624,
+          "header_top": 24,
+          "header_focused": true,
+          "report_view_identity": 115589807,
+          "report_buffer_identity": 111503036,
+          "header_identity": 186791493,
+          "selection_start": 1229,
+          "selection_end": 1242,
+          "report_sha256": "3fe3f441e652ae89e4959f61e6c6955c1b4b7d89413667afbeb260d98492404a",
+          "updated_at": 3,
+          "shared_text": "交办于 20733 天前",
+          "touch_mode": false,
+          "destroyed": false,
+          "executor_terminated": false
+        }
+      },
+      {
+        "identity": "zh|dark",
+        "event": "clock-label-refreshed",
+        "actual": {
+          "fixture": "DemoTaskScrollActivity",
+          "language": "zh",
+          "theme": "dark",
+          "memory_only": true,
+          "forbidden_actions": 0,
+          "render_calls": 4,
+          "restore_calls": 0,
+          "scroll_y": 624,
+          "header_top": 24,
+          "header_focused": true,
+          "report_view_identity": 115589807,
+          "report_buffer_identity": 111503036,
+          "header_identity": 186791493,
+          "selection_start": 1229,
+          "selection_end": 1242,
+          "report_sha256": "3fe3f441e652ae89e4959f61e6c6955c1b4b7d89413667afbeb260d98492404a",
+          "updated_at": 3,
+          "shared_text": "交办于 20733 天前",
+          "touch_mode": false,
+          "destroyed": false,
+          "executor_terminated": false
+        }
+      },
+      {
+        "identity": "zh|dark",
+        "event": "report-changed",
+        "actual": {
+          "fixture": "DemoTaskScrollActivity",
+          "language": "zh",
+          "theme": "dark",
+          "memory_only": true,
+          "forbidden_actions": 0,
+          "render_calls": 5,
+          "restore_calls": 0,
+          "scroll_y": 624,
+          "header_top": 24,
+          "header_focused": false,
+          "report_view_identity": 261589306,
+          "report_buffer_identity": 204556779,
+          "header_identity": 205800264,
+          "selection_start": 0,
+          "selection_end": 0,
+          "report_sha256": "f3fe5dff71dc43c3459b7ba5937103020da7360bdb705ca3d04f8f28a14ce0cf",
+          "updated_at": 3,
+          "shared_text": "交办于 20733 天前",
+          "touch_mode": false,
+          "destroyed": false,
+          "executor_terminated": false
+        }
+      },
+      {
+        "identity": "zh|dark",
+        "event": "full-completed",
+        "actual": {
+          "fixture": "DemoTaskScrollActivity",
+          "language": "zh",
+          "theme": "dark",
+          "memory_only": true,
+          "forbidden_actions": 0,
+          "render_calls": 6,
+          "restore_calls": 0,
+          "scroll_y": 624,
+          "header_top": 24,
+          "header_focused": false,
+          "report_view_identity": 236832534,
+          "report_buffer_identity": 106604695,
+          "header_identity": 264370820,
+          "selection_start": 0,
+          "selection_end": 0,
+          "report_sha256": "3fe3f441e652ae89e4959f61e6c6955c1b4b7d89413667afbeb260d98492404a",
+          "updated_at": null,
+          "shared_text": "交办于 20733 天前",
+          "touch_mode": false,
+          "destroyed": false,
+          "executor_terminated": false
+        }
+      },
+      {
+        "identity": "zh|dark",
+        "event": "DESTROYED",
+        "actual": {
+          "fixture": "DemoTaskScrollActivity",
+          "memory_only": true,
+          "forbidden_actions": 0,
+          "destroyed": true,
+          "executor_terminated": true,
+          "restore_calls": 0,
+          "foreground": false,
+          "refresh_queued": false
+        }
+      },
+      {
+        "identity": "zh|dark",
+        "event": "touch-mode-restored",
+        "actual": {
+          "prior_touch_mode": false,
+          "setInTouchMode_returned": true
+        }
+      },
+      {
+        "identity": null,
+        "event": "summary",
+        "actual": {
+          "entered": 2,
+          "full_completed": 2,
+          "DESTROYED": 2,
+          "metadata_updates": 4,
+          "touch_mode_restores": 2,
+          "clock_scope": "Synthetic stale label restored by actual render; no wall-clock minute wait"
+        }
+      }
+    ],
+    "guard_rows": [
+      {
+        "identity": "en|light",
+        "event": "entered",
+        "forbidden_actions": 0
+      },
+      {
+        "identity": "en|light",
+        "event": "touch-mode-changed",
+        "forbidden_actions": 0
+      },
+      {
+        "identity": "en|light",
+        "event": "reading-before",
+        "forbidden_actions": 0
+      },
+      {
+        "identity": "en|light",
+        "event": "reading-after",
+        "forbidden_actions": 0
+      },
+      {
+        "identity": "en|light",
+        "event": "focus-before",
+        "forbidden_actions": 0
+      },
+      {
+        "identity": "en|light",
+        "event": "focus-after",
+        "forbidden_actions": 0
+      },
+      {
+        "identity": "en|light",
+        "event": "clock-label-refreshed",
+        "forbidden_actions": 0
+      },
+      {
+        "identity": "en|light",
+        "event": "report-changed",
+        "forbidden_actions": 0
+      },
+      {
+        "identity": "en|light",
+        "event": "full-completed",
+        "forbidden_actions": 0
+      },
+      {
+        "identity": "en|light",
+        "event": "DESTROYED",
+        "forbidden_actions": 0
+      },
+      {
+        "identity": "zh|dark",
+        "event": "entered",
+        "forbidden_actions": 0
+      },
+      {
+        "identity": "zh|dark",
+        "event": "touch-mode-changed",
+        "forbidden_actions": 0
+      },
+      {
+        "identity": "zh|dark",
+        "event": "reading-before",
+        "forbidden_actions": 0
+      },
+      {
+        "identity": "zh|dark",
+        "event": "reading-after",
+        "forbidden_actions": 0
+      },
+      {
+        "identity": "zh|dark",
+        "event": "focus-before",
+        "forbidden_actions": 0
+      },
+      {
+        "identity": "zh|dark",
+        "event": "focus-after",
+        "forbidden_actions": 0
+      },
+      {
+        "identity": "zh|dark",
+        "event": "clock-label-refreshed",
+        "forbidden_actions": 0
+      },
+      {
+        "identity": "zh|dark",
+        "event": "report-changed",
+        "forbidden_actions": 0
+      },
+      {
+        "identity": "zh|dark",
+        "event": "full-completed",
+        "forbidden_actions": 0
+      },
+      {
+        "identity": "zh|dark",
+        "event": "DESTROYED",
+        "forbidden_actions": 0
+      }
+    ],
+    "metadata_pairs": [
+      {
+        "identity": "en|light",
+        "before": "reading-before",
+        "after": "reading-after",
+        "actual_before": {
+          "fixture": "DemoTaskScrollActivity",
+          "language": "en",
+          "theme": "light",
+          "memory_only": true,
+          "forbidden_actions": 0,
+          "render_calls": 1,
+          "restore_calls": 0,
+          "scroll_y": 1062,
+          "header_top": -426,
+          "header_focused": false,
+          "report_view_identity": 188055605,
+          "report_buffer_identity": 14019786,
+          "header_identity": 125275707,
+          "selection_start": 1229,
+          "selection_end": 1242,
+          "report_sha256": "3fe3f441e652ae89e4959f61e6c6955c1b4b7d89413667afbeb260d98492404a",
+          "updated_at": null,
+          "shared_text": "Shared 20733 days ago",
+          "touch_mode": false,
+          "destroyed": false,
+          "executor_terminated": false
+        },
+        "actual_after": {
+          "fixture": "DemoTaskScrollActivity",
+          "language": "en",
+          "theme": "light",
+          "memory_only": true,
+          "forbidden_actions": 0,
+          "render_calls": 2,
+          "restore_calls": 0,
+          "scroll_y": 1062,
+          "header_top": -426,
+          "header_focused": false,
+          "report_view_identity": 188055605,
+          "report_buffer_identity": 14019786,
+          "header_identity": 125275707,
+          "selection_start": 1229,
+          "selection_end": 1242,
+          "report_sha256": "3fe3f441e652ae89e4959f61e6c6955c1b4b7d89413667afbeb260d98492404a",
+          "updated_at": 2,
+          "shared_text": "Shared 20733 days ago",
+          "touch_mode": false,
+          "destroyed": false,
+          "executor_terminated": false
+        }
+      },
+      {
+        "identity": "en|light",
+        "before": "focus-before",
+        "after": "focus-after",
+        "actual_before": {
+          "fixture": "DemoTaskScrollActivity",
+          "language": "en",
+          "theme": "light",
+          "memory_only": true,
+          "forbidden_actions": 0,
+          "render_calls": 2,
+          "restore_calls": 0,
+          "scroll_y": 612,
+          "header_top": 24,
+          "header_focused": true,
+          "report_view_identity": 188055605,
+          "report_buffer_identity": 14019786,
+          "header_identity": 125275707,
+          "selection_start": 1229,
+          "selection_end": 1242,
+          "report_sha256": "3fe3f441e652ae89e4959f61e6c6955c1b4b7d89413667afbeb260d98492404a",
+          "updated_at": 2,
+          "shared_text": "Shared 20733 days ago",
+          "touch_mode": false,
+          "destroyed": false,
+          "executor_terminated": false
+        },
+        "actual_after": {
+          "fixture": "DemoTaskScrollActivity",
+          "language": "en",
+          "theme": "light",
+          "memory_only": true,
+          "forbidden_actions": 0,
+          "render_calls": 3,
+          "restore_calls": 0,
+          "scroll_y": 612,
+          "header_top": 24,
+          "header_focused": true,
+          "report_view_identity": 188055605,
+          "report_buffer_identity": 14019786,
+          "header_identity": 125275707,
+          "selection_start": 1229,
+          "selection_end": 1242,
+          "report_sha256": "3fe3f441e652ae89e4959f61e6c6955c1b4b7d89413667afbeb260d98492404a",
+          "updated_at": 3,
+          "shared_text": "Shared 20733 days ago",
+          "touch_mode": false,
+          "destroyed": false,
+          "executor_terminated": false
+        }
+      },
+      {
+        "identity": "zh|dark",
+        "before": "reading-before",
+        "after": "reading-after",
+        "actual_before": {
+          "fixture": "DemoTaskScrollActivity",
+          "language": "zh",
+          "theme": "dark",
+          "memory_only": true,
+          "forbidden_actions": 0,
+          "render_calls": 1,
+          "restore_calls": 0,
+          "scroll_y": 1074,
+          "header_top": -426,
+          "header_focused": false,
+          "report_view_identity": 115589807,
+          "report_buffer_identity": 111503036,
+          "header_identity": 186791493,
+          "selection_start": 1229,
+          "selection_end": 1242,
+          "report_sha256": "3fe3f441e652ae89e4959f61e6c6955c1b4b7d89413667afbeb260d98492404a",
+          "updated_at": null,
+          "shared_text": "交办于 20733 天前",
+          "touch_mode": false,
+          "destroyed": false,
+          "executor_terminated": false
+        },
+        "actual_after": {
+          "fixture": "DemoTaskScrollActivity",
+          "language": "zh",
+          "theme": "dark",
+          "memory_only": true,
+          "forbidden_actions": 0,
+          "render_calls": 2,
+          "restore_calls": 0,
+          "scroll_y": 1074,
+          "header_top": -426,
+          "header_focused": false,
+          "report_view_identity": 115589807,
+          "report_buffer_identity": 111503036,
+          "header_identity": 186791493,
+          "selection_start": 1229,
+          "selection_end": 1242,
+          "report_sha256": "3fe3f441e652ae89e4959f61e6c6955c1b4b7d89413667afbeb260d98492404a",
+          "updated_at": 2,
+          "shared_text": "交办于 20733 天前",
+          "touch_mode": false,
+          "destroyed": false,
+          "executor_terminated": false
+        }
+      },
+      {
+        "identity": "zh|dark",
+        "before": "focus-before",
+        "after": "focus-after",
+        "actual_before": {
+          "fixture": "DemoTaskScrollActivity",
+          "language": "zh",
+          "theme": "dark",
+          "memory_only": true,
+          "forbidden_actions": 0,
+          "render_calls": 2,
+          "restore_calls": 0,
+          "scroll_y": 624,
+          "header_top": 24,
+          "header_focused": true,
+          "report_view_identity": 115589807,
+          "report_buffer_identity": 111503036,
+          "header_identity": 186791493,
+          "selection_start": 1229,
+          "selection_end": 1242,
+          "report_sha256": "3fe3f441e652ae89e4959f61e6c6955c1b4b7d89413667afbeb260d98492404a",
+          "updated_at": 2,
+          "shared_text": "交办于 20733 天前",
+          "touch_mode": false,
+          "destroyed": false,
+          "executor_terminated": false
+        },
+        "actual_after": {
+          "fixture": "DemoTaskScrollActivity",
+          "language": "zh",
+          "theme": "dark",
+          "memory_only": true,
+          "forbidden_actions": 0,
+          "render_calls": 3,
+          "restore_calls": 0,
+          "scroll_y": 624,
+          "header_top": 24,
+          "header_focused": true,
+          "report_view_identity": 115589807,
+          "report_buffer_identity": 111503036,
+          "header_identity": 186791493,
+          "selection_start": 1229,
+          "selection_end": 1242,
+          "report_sha256": "3fe3f441e652ae89e4959f61e6c6955c1b4b7d89413667afbeb260d98492404a",
+          "updated_at": 3,
+          "shared_text": "交办于 20733 天前",
+          "touch_mode": false,
+          "destroyed": false,
+          "executor_terminated": false
+        }
+      }
+    ],
+    "closed_lifetimes": [
+      {
+        "identity": "en|light",
+        "actual": {
+          "fixture": "DemoTaskScrollActivity",
+          "memory_only": true,
+          "forbidden_actions": 0,
+          "destroyed": true,
+          "executor_terminated": true,
+          "restore_calls": 0,
+          "foreground": false,
+          "refresh_queued": false
+        }
+      },
+      {
+        "identity": "zh|dark",
+        "actual": {
+          "fixture": "DemoTaskScrollActivity",
+          "memory_only": true,
+          "forbidden_actions": 0,
+          "destroyed": true,
+          "executor_terminated": true,
+          "restore_calls": 0,
+          "foreground": false,
+          "refresh_queued": false
+        }
+      }
+    ],
+    "touch_mode_receipts": [
+      {
+        "identity": "en|light",
+        "changed": {
+          "fixture": "DemoTaskScrollActivity",
+          "language": "en",
+          "theme": "light",
+          "memory_only": true,
+          "forbidden_actions": 0,
+          "render_calls": 1,
+          "restore_calls": 0,
+          "scroll_y": 0,
+          "header_top": 636,
+          "header_focused": false,
+          "report_view_identity": 188055605,
+          "report_buffer_identity": 14019786,
+          "header_identity": 125275707,
+          "selection_start": 0,
+          "selection_end": 0,
+          "report_sha256": "3fe3f441e652ae89e4959f61e6c6955c1b4b7d89413667afbeb260d98492404a",
+          "updated_at": null,
+          "shared_text": "Shared 20733 days ago",
+          "touch_mode": false,
+          "destroyed": false,
+          "executor_terminated": false
+        },
+        "restore": {
+          "prior_touch_mode": false,
+          "setInTouchMode_returned": true
+        },
+        "scope": "Instrumentation setter returned after DESTROYED; no post-close geometry or fresh touch-state read."
+      },
+      {
+        "identity": "zh|dark",
+        "changed": {
+          "fixture": "DemoTaskScrollActivity",
+          "language": "zh",
+          "theme": "dark",
+          "memory_only": true,
+          "forbidden_actions": 0,
+          "render_calls": 1,
+          "restore_calls": 0,
+          "scroll_y": 0,
+          "header_top": 648,
+          "header_focused": false,
+          "report_view_identity": 115589807,
+          "report_buffer_identity": 111503036,
+          "header_identity": 186791493,
+          "selection_start": 0,
+          "selection_end": 0,
+          "report_sha256": "3fe3f441e652ae89e4959f61e6c6955c1b4b7d89413667afbeb260d98492404a",
+          "updated_at": null,
+          "shared_text": "交办于 20733 天前",
+          "touch_mode": false,
+          "destroyed": false,
+          "executor_terminated": false
+        },
+        "restore": {
+          "prior_touch_mode": false,
+          "setInTouchMode_returned": true
+        },
+        "scope": "Instrumentation setter returned after DESTROYED; no post-close geometry or fresh touch-state read."
+      }
+    ],
+    "all_known_destroyed": true,
+    "junit": {
+      "class": "app.droprun.TaskScrollRestorationTest",
+      "method": "metadataOnlyRefreshKeepsReportReadingState",
+      "tests": 1,
+      "failures": 0,
+      "seconds": 7.901
+    },
+    "boundaries": [
+      "Fixture font1 is asserted natively; the device global font setting remains unchanged.",
+      "Paragraph offset and expanded-state checks are native assertions, not fields emitted in these receipts.",
+      "DESTROYED contains only actual lifetime/guards; no post-destruction geometry is synthesized.",
+      "Clock label uses synthetic stale text and actual render; no minute wait or wall-clock change.",
+      "Instrumentation requests non-touch mode and the restoring setter returns; both windows already reported false. No observed mode transition, restored-state reread or all-device-state claim."
+    ]
+  },
+  "nativeRaw": {
+    "stdoutBytes": 14958,
+    "stdoutSha256": "2eff8c9d10a9ecea98f1862887e83ebc1810c7ee345689d47592b69778a2eb3d",
+    "stderrBytes": 0,
+    "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "exit": 0,
+    "lifetime": "returned"
+  },
+  "device": {
+    "emulator": "DropRunTest",
+    "sdk": 35,
+    "physicalSize": "320x640",
+    "density": 160,
+    "fixtureFontScale": 1,
+    "globalFontScale": 2,
+    "tenReadOnlyValuesMatch": true,
+    "touchModeScope": "Instrumentation requested non-touch mode; both windows were already observed there. The setter restoring saved mode returned after known closure without a fresh state read. Event/count names describe setter stages, not an observed mode transition or all-state equality.",
+    "observedNonTouchModeBeforeAndAfterRequestBothWindows": true
+  },
+  "releaseBoundary": "Later development after immutable signed 0.5.14-rc.1; not included in that package.",
+  "limits": [
+    "Direct render calls with fixed memory data; no live polling schedule, genuine task, Relay or Codex.",
+    "Text selection is set programmatically; no long-press selection gesture or IME claim.",
+    "Actual paragraph position and expanded state are native assertions; receipts emit scroll and identities, not paragraph geometry.",
+    "Date label test replaces text with Stale then runs actual render; no real minute transition or clock change.",
+    "English light and Chinese dark only, fixture font 1; no new 200% test, rotation, process death, signed package or physical performance claim.",
+    "Prior failed installation, unknown original process exit and all previous failure evidence remain retained."
+  ],
+  "independentReview": {
+    "verified": true,
+    "sha256": "2f299495dc70ea0127b9645fd2f5a84ecb665ad2649f5fc4f86ad085d58bb845",
+    "rawFilesRehashed": 104
+  }
+}

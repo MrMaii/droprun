@@ -19,7 +19,7 @@ import java.util.concurrent.*;
 public class TaskActivity extends StyledActivity {
     final ExecutorService io=Executors.newSingleThreadExecutor();
     final Handler handler=new Handler(Looper.getMainLooper());
-    Store store;String taskId,snapshot="",actionFailure="";LinearLayout body;TextView notice;boolean foreground,busy,loading,thumbnailRequested;
+    Store store;String taskId,snapshot="",actionFailure="";LinearLayout body;TextView notice,sharedAt;boolean foreground,busy,loading,thumbnailRequested;
     android.graphics.Bitmap thumbnail;String thumbnailError="";final java.util.Set<String> expanded=new java.util.HashSet<>();
     AlertDialog followupDialog,actionErrorDialog,localRemovalDialog;EditText followupInput;String followupDraft="",followupId=UUID.randomUUID().toString();
     final Runnable refresh=this::load;
@@ -71,6 +71,11 @@ public class TaskActivity extends StyledActivity {
         group.getChildAt(0).setPadding(0,0,0,0);
         body.addView(group,Ui.margins(this,8,0));
     }
+    String taskViewSnapshot(JSONObject task){
+        if(task==null)return "missing";String raw=task.toString();
+        try{JSONObject view=new JSONObject(raw);view.remove("updated_at");return view.toString();}
+        catch(JSONException failure){return raw;}
+    }
     void render(){
         JSONObject task=store.task(taskId);long now=System.currentTimeMillis();int liveApprovals=0;
         JSONArray approvals=task==null?null:task.optJSONArray("approvals");
@@ -78,15 +83,17 @@ public class TaskActivity extends StyledActivity {
         String previewState=task==null?"":TaskPresentation.previewStatus(text(task,"preview_status"),text(task,"preview_url"),task.optLong("preview_expires_at"),now);
         String projectLabel=task==null?"":store.projectLabel(text(task,"project_id"),text(task,"project_name"));
         boolean unavailableDelete=store.canClearUnavailableTask(taskId);
-        String next=(task==null?"missing":task.toString())+busy+(thumbnail!=null)+thumbnailError+liveApprovals+previewState+projectLabel+unavailableDelete;
-        if(snapshot.equals(next))return;snapshot=next;body.removeAllViews();
+        String sharedText=task==null?"":L.t("Shared ","交办于 ")+TaskPresentation.elapsed(task.optLong("created_at"),now);
+        if(sharedAt!=null&&!sharedText.contentEquals(sharedAt.getText()))sharedAt.setText(sharedText);
+        String next=taskViewSnapshot(task)+busy+(thumbnail!=null)+thumbnailError+liveApprovals+previewState+projectLabel+unavailableDelete;
+        if(snapshot.equals(next))return;snapshot=next;body.removeAllViews();sharedAt=null;
         if(task==null){block(L.t("Handoff unavailable","任务暂不可用"),L.t("Refresh when connected. This handoff may have been deleted.","请联网刷新；任务也可能已被删除。"));return;}
         String status=text(task,"status"),plan=text(task,"plan_report"),report=text(task,"report");
         body.addView(Ui.title(this,MainActivity.name(task),24));
         body.addView(Ui.caption(this,projectLabel+" · "+TaskPresentation.mode(text(task,"execution_mode"))),Ui.margins(this,6,0));
         boolean largeText=getResources().getConfiguration().fontScale>=1.5f;
         LinearLayout statusLine=largeText?Ui.vertical(this):Ui.row(this);statusLine.addView(Ui.pill(this,TaskPresentation.status(status),TaskPresentation.statusColor(status)),new LinearLayout.LayoutParams(-2,-2));
-        TextView sharedAt=Ui.caption(this,L.t("Shared ","交办于 ")+TaskPresentation.elapsed(task.optLong("created_at"),System.currentTimeMillis()));sharedAt.setGravity(largeText?android.view.Gravity.START:android.view.Gravity.END);
+        sharedAt=Ui.caption(this,sharedText);sharedAt.setGravity(largeText?android.view.Gravity.START:android.view.Gravity.END);
         if(largeText)statusLine.addView(sharedAt,Ui.margins(this,6,0));else{Ui.space(statusLine,12);statusLine.addView(sharedAt,Ui.grow());}body.addView(statusLine,Ui.margins(this,12,6));
         block(L.t("Needs attention","需要处理"),text(task,"error"));
         if(unavailableDelete)block(L.t("Relay record inaccessible","无法访问中转记录"),L.t("Cloud deletion could not be confirmed. You can clear the phone's cached copy. The record may return if your Relay makes it available again.","尚未确认云端已删除。可以清除手机上的缓存副本；若中转服务再次提供此记录，它可能重新出现。"));

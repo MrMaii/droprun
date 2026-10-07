@@ -5,10 +5,10 @@
   <p>选已有项目，可选留一句话，在手机查看结果与证据。</p>
   <p><a href="docs/technical/SELF_HOSTING.zh-CN.md"><strong>开始安装 →</strong></a></p>
   <p>Android 8+ · Windows x64 · 已登录 Codex · 自己的 Cloudflare</p>
-  <p><a href="https://droprun.dengmaizi0802.chatgpt.site/zh/">官网</a> · <a href="https://github.com/MrMaii/droprun/releases/tag/v0.5.13-rc.1">候选版下载</a> · <a href="README.md">English</a></p>
+  <p><a href="https://droprun.dengmaizi0802.chatgpt.site/zh/">官网</a> · <a href="https://github.com/MrMaii/droprun/releases/tag/v0.5.14-rc.1">候选版下载</a> · <a href="README.md">English</a></p>
 </div>
 
-> **公开预览 · 0.5.13-rc.1。** [实际验证记录与待通过的验收门槛](docs/releases/0.5.13-rc.1.md)。
+> **公开预览 · 0.5.14-rc.1。** [实际验证记录与待通过的验收门槛](docs/releases/0.5.14-rc.1.md)。
 
 Codex 在你的 Windows 电脑上工作，Relay 由你部署到自己的 Cloudflare 账号。
 
@@ -105,10 +105,10 @@ Codex 在你的 Windows 电脑上工作，Relay 由你部署到自己的 Cloudfl
 | --- | --- | --- |
 | Windows x64、Git、已登录 Codex、Chrome 或 Edge | Android 8 或更新版本 | 自己的 Cloudflare 账号，启用 Workers、D1、R2 |
 
-1. **安装电脑端。** 下载 [Windows 安装包](https://github.com/MrMaii/droprun/releases/download/v0.5.13-rc.1/DropRun-0.5.13-windows-x64-setup.exe)或[便携 ZIP](https://github.com/MrMaii/droprun/releases/download/v0.5.13-rc.1/DropRun-0.5.13-windows-x64.zip)。
+1. **安装电脑端。** 下载 [Windows 安装包](https://github.com/MrMaii/droprun/releases/download/v0.5.14-rc.1/DropRun-0.5.14-windows-x64-setup.exe)或[便携 ZIP](https://github.com/MrMaii/droprun/releases/download/v0.5.14-rc.1/DropRun-0.5.14-windows-x64.zip)。
    便携版解压到固定位置后，运行 `DropRun.cmd`。
 2. **部署自己的 Relay。** 打开本机浏览器向导，检查环境，部署到自己的 Cloudflare 账号。
-3. **配对手机。** 安装 [Android APK](https://github.com/MrMaii/droprun/releases/download/v0.5.13-rc.1/DropRun-0.5.13-android.apk)，扫码确认电脑与服务器，再授权项目。
+3. **配对手机。** 安装 [Android APK](https://github.com/MrMaii/droprun/releases/download/v0.5.14-rc.1/DropRun-0.5.14-android.apk)，扫码确认电脑与服务器，再授权项目。
 4. **发出第一项交办。** 在其他 Android App 点 **分享 → DropRun**，选择项目，跟进接收、执行、审批与报告。“已保存”表示手机已保存，
    不表示任务已完成。
 
@@ -116,7 +116,7 @@ Codex 在你的 Windows 电脑上工作，Relay 由你部署到自己的 Cloudfl
 
 DropRun 没有官方账号或订阅。Cloudflare、可选转写和 Codex 使用你自己的账号，
 **用量可能产生费用**。Windows 包未签名，可能提示未知发布者，请对照发布的
-[校验值](https://github.com/MrMaii/droprun/releases/download/v0.5.13-rc.1/SHA256SUMS.txt)。
+[校验值](https://github.com/MrMaii/droprun/releases/download/v0.5.14-rc.1/SHA256SUMS.txt)。
 公共 Android 版与历史私人/debug 版并行安装，不尝试跨签名覆盖。
 
 ## 让一次交办更顺手
@@ -148,7 +148,7 @@ DropRun 没有官方账号或订阅。Cloudflare、可选转写和 Codex 使用�
 - **取消不等于回滚。** 取消任务或删除云端记录，不会撤销项目里已经发生的改动。
 
 当前仍为候选版。实体 Android 性能、干净 Windows 安装与真实来源完整交办仍有待通过的
-验收门槛。重要项目使用前，请阅读[带日期的验证记录](docs/releases/0.5.13-rc.1.md)。
+验收门槛。重要项目使用前，请阅读[带日期的验证记录](docs/releases/0.5.14-rc.1.md)。
 截图与界面动图不能代替这些结果。
 
 ## 开发与贡献

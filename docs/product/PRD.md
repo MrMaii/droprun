@@ -6,7 +6,7 @@ This edition supersedes earlier hosted/pricing assumptions and ADR 0014's visual
 layout. Decisions: [self-hosting](../decisions/0015-public-selfhost-release.md) and
 [project-first UX](../decisions/0016-project-first-light-ux.md). Historical sections
 below describe the original product goals; release evidence is maintained only
-in [the current candidate record](../releases/0.5.13-rc.1.md).
+in [the current candidate record](../releases/0.5.14-rc.1.md).
 
 - Android + Windows x64; each owner deploys a private Cloudflare Relay. No official
   registration, subscription or multitenant service. GPTSites is the public website.
@@ -41,6 +41,10 @@ in [the current candidate record](../releases/0.5.13-rc.1.md).
   Reading an expanded report retains its position after an in-process Activity
   recreation when content and layout stay the same.
   [Checked scenario and limits](../releases/ui-task-reading-position-2026-10-06.md).
+  A task receipt changing only `updated_at` preserves the expanded report's View,
+  selected text and keyboard focus instead of rebuilding its body. The shared-date
+  caption updates separately; changed report content still renders normally.
+  [Bounded metadata-reading check](../releases/ui-task-metadata-reading-2026-10-07.md).
   Navigation gear/information icons share restrained round outlines; their 48dp
   targets, theme tint, focus, press feedback and action meaning remain distinct.
   Home contains Recent handoffs and settings, with only used or pending projects.

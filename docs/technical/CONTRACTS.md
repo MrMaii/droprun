@@ -97,6 +97,13 @@ plan-version, per-command approval and report-evidence checks remain in force.
   render, then Android restores the view hierarchy. This retains reading position
   for unchanged content/layout during in-process recreation; it adds no task data,
   request or manual scroll repair. Other recovery scenarios have separate gates.
+  Task's local presentation snapshot excludes only `updated_at`; metadata-only
+  changes retain existing body Views, expanded content, text selection and keyboard
+  focus. Its shared-date caption is updated independently using `created_at` and
+  the current time. All other task fields and existing busy/thumbnail/approval/
+  preview/project/cache-removal invalidators remain in the presentation comparison.
+  Store receipt freshness and history ordering still use the original `updated_at`.
+  This adds no request, approval, task mutation or manual scroll restoration.
 - Fresh installs apply migrations-fresh/0001-baseline.sql only. Existing instances
   apply the compatibility upgrade; never apply consolidated schema and duplicate
   historical ALTER migrations to the same new database.

@@ -2,7 +2,14 @@
 
 ## Unreleased
 
+- Preserve expanded report Views, text selection and keyboard focus when only a
+  task receipt's `updated_at` changes. Update its shared-date caption separately;
+  retain actual report updates and Store freshness ordering.
+  [Bounded native check and limits](docs/releases/ui-task-metadata-reading-2026-10-07.md).
+
 ## 0.5.14-rc.1 — clearer material and lasting decision feedback
+
+[Verified candidate and open acceptance](docs/releases/0.5.14-rc.1.md).
 
 - Keep task action errors visible after background reads and error-dialog dismissal;
   save them with Activity state and clear them when a new operation starts.
@@ -15,7 +22,6 @@
   file-count stills in the README and website; keep development-media scope visible.
 - Synchronize Android code27, Node package, Connector/Relay health and installer
   default with runtime 0.5.14.
-  Signed artifacts and public downloads require this candidate's own verification.
 
 ## 0.5.13-rc.1 — clearer notes and activity dates
 
